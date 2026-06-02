@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#2563EB" />
+<link rel="manifest" href="/manifest.json" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Staff Hub" />
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
+<link rel="apple-touch-icon" sizes="192x192" href="/assets/icons/icon-192.png" />
+<title>Events &amp; Year Topics · Staff Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="sidebar__brand"><div class="sidebar__logo"><img src="assets/icf-logo.png" alt="ICF Cambodia" /></div><div class="sidebar__title"><strong>ICF Cambodia</strong><span>Staff Hub</span></div></div>
+    <nav class="nav">
+      <a class="nav__item" href="index.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>Home</a>
+      <a class="nav__item" href="about.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></span>About ICF</a>
+      <a class="nav__item" href="resources.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>Staff Resources</a>
+      <a class="nav__item" href="tools.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>Staff Tools</a>
+      <a class="nav__item" href="training.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/></svg></span>Training &amp; Development</a>
+      <a class="nav__item" href="medical.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.5-3 1.5-6 0-9-3 0-6 0-7.5 1.5C10 5 7 5 4 5c-1.5 3-1.5 6 0 9 3 0 6 0 7.5-1.5C13 14 16 14 19 14z"/></svg></span>Medical Hub</a>
+      <a class="nav__item" href="media.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg></span>Media Center</a>
+      <a class="nav__item" href="departments.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>Departments</a>
+      <a class="nav__item is-active" href="events.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>Events &amp; Year Topics</a>
+      <div class="nav__group-label" style="margin-top:12px;">Quick Links</div>
+      <a class="nav__item" href="about.html#open-fullchart"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><line x1="17" y1="17" x2="17" y2="21"/><line x1="17" y1="17" x2="21" y2="17"/></svg></span>Org Chart</a>
+      <a class="nav__item" href="contacts.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Staff Contacts</a>
+      <a class="nav__item" href="https://t.me/+KU4xqUNc6lNmZjU1" target="_blank" rel="noopener"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>Staff Telegram</a>
+      <a class="nav__item" href="https://drive.google.com/drive/u/0/home" target="_blank" rel="noopener"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span>Google Drive</a>
+      <button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScskJ0UijIWOWdoLFYQTE8J1jNYmpveZ32rU-BmOtprbFXxvg/viewform','_blank')" style="display:flex;align-items:center;gap:10px;width:100%;border:none;cursor:pointer;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:10px;padding:9px 12px;font-size:14px;font-weight:600;font-family:inherit;margin-top:10px;text-align:left;"><span style="font-size:17px;line-height:1;">🏆</span>Honor a Colleague</button>
+    </nav>
+  </aside>
+
+  <main class="main">
+        <header class="topbar">
+      <button class="topbar__menu" data-action="open-menu" aria-label="Menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <div class="topbar__mobile-brand">
+        <div class="sidebar__logo"><img src="assets/icf-logo.png" alt="ICF Cambodia" /></div>
+        <span>Events & Year Topics</span>
+      </div>
+      <div class="topbar__right">
+        <button class="topbar__btn" data-action="open-search" aria-label="Search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button class="topbar__btn" aria-label="Notifications">
+          <span class="dot"></span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        </button>
+        <button class="topbar__btn lang-toggle" data-action="toggle-lang" aria-label="Language" title="Toggle language EN / KH"><span class="lang-toggle__label">EN</span></button>
+        <div class="avatar" title="Sokha Chea">SC</div>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="crumbs"><a href="index.html">Home</a><span class="sep">/</span><span>Events &amp; Year Topics</span></div>
+      <div class="page-header">
+        <div>
+          <h1>Events &amp; Year Topics</h1>
+          <p>Plan, run, and look back on the moments that shape our year — together.</p>
+        </div>
+        <div class="page-header__actions">
+          <a class="btn" href="tools.html">Event support →</a>
+          <a class="btn btn--primary" href="#event-planner">New event</a>
+        </div>
+      </div>
+
+      <!-- Year topic banner -->
+      <section class="hero" style="background: radial-gradient(at 90% 0%, rgba(245,158,11,0.25), transparent 50%), radial-gradient(at 0% 100%, rgba(220,38,38,0.20), transparent 50%), linear-gradient(135deg, #7C2D12, #B45309 60%, #F59E0B 120%); margin-bottom: 24px;">
+        <p class="hero__greeting">Year Topic 2026</p>
+        <h1 class="hero__title">Rooted &amp; Reaching</h1>
+        <p class="hero__sub">Anchored in love. Stretching toward those still on the edges. Our shared theme for everything from family events to donor reports this year.</p>
+        <div class="hero__chips">
+          <button class="hero__chip">Brand assets</button>
+          <button class="hero__chip">Khmer translation</button>
+          <button class="hero__chip">Sermon series</button>
+          <button class="hero__chip">Story library</button>
+        </div>
+      </section>
+
+      <!-- Upcoming events — live from Google Calendar -->
+      <div class="section-title"><h2>Upcoming Events</h2></div>
+      <div id="gcal-events" class="gcal-list" data-max="12">
+        <div class="gcal-loading">Loading events…</div>
+      </div>
+
+      <!-- Today's Lunch -->
+      <div class="section-title" style="margin-top:28px;"><h2>Staff Lunch Menu</h2></div>
+      <div style="display:flex;gap:12px;align-items:stretch;">
+        <div id="today-lunch-card" class="card" style="flex:1;padding:14px 18px;display:flex;align-items:center;gap:12px;background:linear-gradient(135deg,#fff7ed,#ffffff);border-left:4px solid #f59e0b;">
+          <div style="font-size:24px;line-height:1;">🍽️</div>
+          <div style="flex:1;min-width:0;">
+            <p style="margin:0 0 2px;font-size:10px;font-weight:600;color:#b45309;text-transform:uppercase;letter-spacing:.06em;" id="today-lunch-date">Loading…</p>
+            <p style="margin:0;font-size:14px;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" id="today-lunch-text">Checking today's menu…</p>
+          </div>
+        </div>
+        <a href="https://calendar.google.com/calendar/embed?src=c_16d101edc06a072b283e851d543b6a024cada259be1b6be3dfd098272aa56fb9%40group.calendar.google.com&ctz=Asia%2FBangkok" target="_blank" class="card btn--primary" style="flex:1;padding:14px 18px;display:flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;color:#fff;background:var(--primary,#2563eb);border-radius:12px;font-size:14px;font-weight:600;">
+          <span style="font-size:20px;">&#128197;</span>
+          View Full Lunch Menu
+        </a>
+      </div>
+
+      <!-- Staff Birthdays -->
+      <div class="section-title" style="margin-top:28px;"><h2>Staff Birthdays</h2></div>
+      <div style="display:flex;gap:12px;align-items:stretch;">
+        <div id="today-birthday-card" class="card" style="flex:1;padding:14px 18px;display:flex;align-items:center;gap:12px;background:linear-gradient(135deg,#fdf2f8,#ffffff);border-left:4px solid #ec4899;">
+          <div style="font-size:24px;line-height:1;">🎂</div>
+          <div style="flex:1;min-width:0;">
+            <p style="margin:0 0 2px;font-size:10px;font-weight:600;color:#be185d;text-transform:uppercase;letter-spacing:.06em;" id="today-birthday-date">Loading…</p>
+            <p style="margin:0;font-size:14px;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" id="today-birthday-text">Checking today's birthdays…</p>
+          </div>
+        </div>
+        <a href="https://calendar.google.com/calendar/embed?src=icf-campus.com_fm6n628u1trm8b0evais34neu8%40group.calendar.google.com&ctz=Asia%2FBangkok" target="_blank" class="card" style="flex:1;padding:14px 18px;display:flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;color:#fff;background:#ec4899;border-radius:12px;font-size:14px;font-weight:600;">
+          <span style="font-size:20px;">&#127881;</span>
+          View Full Birthday Calendar
+        </a>
+      </div>
+
+      <!-- Year topics archive -->
+      <div class="section-title" style="margin-top:28px;"><h2>Year Topics Archive</h2></div>
+      <div class="res-grid">
+        <article class="resource" style="background: linear-gradient(135deg, #FEF3C7, #FFFFFF);">
+          <div class="resource__top"><span class="resource__icon" style="background:rgba(245,158,11,0.15);color:#B45309;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></span><span class="chip chip--active">Current</span></div>
+          <h3 class="resource__title">2026 · Rooted &amp; Reaching</h3>
+          <p class="resource__desc">Anchored in love, reaching beyond. Family roots meet community arms.</p>
+          <div class="resource__actions"><a class="btn btn--primary btn--sm" href="media.html">Brand assets</a></div>
+        </article>
+        <article class="resource" style="background: linear-gradient(135deg, #DBEAFE, #FFFFFF);">
+          <div class="resource__top"><span class="resource__icon" style="background:rgba(37,99,235,0.15);color:var(--blue-700);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg></span><span class="chip">2025</span></div>
+          <h3 class="resource__title">2025 · Whole &amp; Holy</h3>
+          <p class="resource__desc">Walking together toward integrated, whole-person flourishing.</p>
+          <div class="resource__actions"><span style="display:inline-flex;align-items:center;gap:5px;padding:6px 12px;background:#f1f5f9;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-weight:500;color:#94a3b8;cursor:not-allowed;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Coming soon</span></div>
+        </article>
+        <article class="resource" style="background: linear-gradient(135deg, #D1FAE5, #FFFFFF);">
+          <div class="resource__top"><span class="resource__icon" style="background:rgba(16,185,129,0.15);color:var(--green-600);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></span><span class="chip">2024</span></div>
+          <h3 class="resource__title">2024 · Together for Good</h3>
+          <p class="resource__desc">Partnership year: deepening community and donor relationships.</p>
+          <div class="resource__actions"><span style="display:inline-flex;align-items:center;gap:5px;padding:6px 12px;background:#f1f5f9;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-weight:500;color:#94a3b8;cursor:not-allowed;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Coming soon</span></div>
+        </article>
+      </div>
+
+      <!-- Event Planner -->
+      <div class="section-title" id="event-planner" style="margin-top:28px;"><h2>Event Planner</h2><a href="resources.html#events">Templates →</a></div>
+      <div class="card" style="padding:0;overflow:hidden;">
+        <div style="background:linear-gradient(135deg,#7C3AED,#3B82F6);color:#fff;padding:20px;">
+          <h3 style="margin:0 0 6px;font-size:17px;">Running an event? Start here.</h3>
+          <p style="margin:0;opacity:.92;font-size:13.5px;">A simple 4-stage flow that keeps logistics, communication, and reporting in sync.</p>
+        </div>
+        <div class="list">
+          <div class="list__item"><span class="list__icon" style="background:var(--purple-50);color:var(--purple-600);">1</span><div class="list__text"><p class="list__title">Concept · Define purpose, audience, budget</p><p class="list__sub">Use the Event Brief template · Submit Event Support Request</p></div><a class="btn btn--sm" href="tools.html">Form →</a></div>
+          <div class="list__item"><span class="list__icon" style="background:var(--blue-50);color:var(--blue-700);">2</span><div class="list__text"><p class="list__title">Logistics · Venue, vehicles, hospitality, volunteers</p><p class="list__sub">Coordinate with Property + Communication</p></div><a class="btn btn--sm" href="resources.html#events">Checklist →</a></div>
+          <div class="list__item"><span class="list__icon" style="background:var(--green-50);color:var(--green-600);">3</span><div class="list__text"><p class="list__title">Run-day · Setup, schedule, photo permissions, safeguarding</p><p class="list__sub">Use the Run-Day Sheet · Brief volunteers</p></div><span style="display:inline-flex;align-items:center;gap:5px;padding:6px 12px;background:#f1f5f9;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-weight:500;color:#94a3b8;cursor:not-allowed;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Coming soon</span></div>
+          <div class="list__item"><span class="list__icon" style="background:var(--amber-50);color:var(--amber-600);">4</span><div class="list__text"><p class="list__title">Debrief &amp; Report · What worked, what to improve, financials</p><p class="list__sub">Submit Event Report within 7 days</p></div><span style="display:inline-flex;align-items:center;gap:5px;padding:6px 12px;background:#f1f5f9;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-weight:500;color:#94a3b8;cursor:not-allowed;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Coming soon</span></div>
+        </div>
+      </div>
+
+      <!-- Past meeting resources -->
+      <div class="section-title" style="margin-top:28px;"><h2>All-Hands Meeting Notes</h2><span style="display:inline-flex;align-items:center;gap:5px;padding:6px 12px;background:#f1f5f9;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-weight:500;color:#94a3b8;cursor:not-allowed;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Coming soon</span></div>
+      <div class="card" style="padding:0;">
+        <div class="list">
+          <a class="list__item" href="#"><span class="list__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></span><div class="list__text"><p class="list__title">April 2026 · Q1 Recap &amp; Year-Topic Launch</p><p class="list__sub">Notes · Slides · Photos</p></div><span class="list__arrow">→</span></a>
+          <a class="list__item" href="#"><span class="list__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></span><div class="list__text"><p class="list__title">February 2026 · Year Kickoff</p><p class="list__sub">Notes · Slides</p></div><span class="list__arrow">→</span></a>
+          <a class="list__item" href="#"><span class="list__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></span><div class="list__text"><p class="list__title">December 2025 · Year-End Reflection</p><p class="list__sub">Notes · Video · Photos</p></div><span class="list__arrow">→</span></a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<nav class="mobilenav">
+    <div class="mobilenav__row">
+    <a class="mobilenav__btn is-active" href="index.html">
+      <span class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+      Home
+    </a>
+    <a class="mobilenav__btn" href="https://icf.akas.co/self-service/leave-request" target="_blank">
+      <span class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
+      Leave
+    </a>
+    <a class="mobilenav__btn" href="resources.html">
+      <span class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+      Resources
+    </a>
+    <a class="mobilenav__btn" href="tools.html">
+      <span class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
+      Tools
+    </a>
+    <button class="mobilenav__btn" id="mob-more-btn" data-action="open-menu">
+      <span class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></span>
+      More
+    </button>
+  </div>
+</nav>
+
+<div class="sidesheet" id="sidesheet">
+  <div class="sidesheet__panel">
+    <button class="sidesheet__close" data-action="close-menu" aria-label="Close">&times;</button>
+    <div class="sidebar__brand"><div class="sidebar__logo"><img src="assets/icf-logo.png" alt="ICF Cambodia" /></div><div class="sidebar__title"><strong>ICF Cambodia</strong><span>Staff Hub</span></div></div>
+    <nav class="nav">
+      <a class="nav__item" href="index.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>Home</a>
+      <a class="nav__item" href="about.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></span>About ICF</a>
+      <a class="nav__item" href="resources.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>Staff Resources</a>
+      <a class="nav__item" href="tools.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>Staff Tools</a>
+      <a class="nav__item" href="training.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/></svg></span>Training &amp; Development</a>
+      <a class="nav__item" href="medical.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.5-3 1.5-6 0-9-3 0-6 0-7.5 1.5C10 5 7 5 4 5c-1.5 3-1.5 6 0 9 3 0 6 0 7.5-1.5C13 14 16 14 19 14z"/></svg></span>Medical Hub</a>
+      <a class="nav__item" href="media.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg></span>Media Center</a>
+      <a class="nav__item" href="departments.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>Departments</a>
+      <a class="nav__item" href="events.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>Events &amp; Year Topics</a>
+      <div class="nav__group-label" style="margin-top:12px;">My Favorites</div>
+      <div id="sidesheet-favs"><p style="font-size:13px;color:var(--text-soft);font-style:italic;padding:6px 12px;">Tap &#x2661; on any card to save it here</p></div>
+      <div class="nav__group-label" style="margin-top:12px;">Quick Links</div>
+      <a class="nav__item" href="about.html#open-fullchart"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><line x1="17" y1="17" x2="17" y2="21"/><line x1="17" y1="17" x2="21" y2="17"/></svg></span>Org Chart</a>
+      <a class="nav__item" href="contacts.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Staff Contacts</a>
+      <a class="nav__item" href="https://t.me/+KU4xqUNc6lNmZjU1" target="_blank" rel="noopener"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>Staff Telegram</a>
+      <a class="nav__item" href="https://drive.google.com/drive/u/0/home" target="_blank" rel="noopener"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span>Google Drive</a>
+      <button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScskJ0UijIWOWdoLFYQTE8J1jNYmpveZ32rU-BmOtprbFXxvg/viewform','_blank')" style="display:flex;align-items:center;gap:10px;width:100%;border:none;cursor:pointer;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:10px;padding:9px 12px;font-size:14px;font-weight:600;font-family:inherit;margin-top:10px;text-align:left;"><span style="font-size:17px;line-height:1;">&#x1F3C6;</span>Honor a Colleague</button>
+    </nav>
+  </div>
+</div>
+
+<div class="search-modal" id="search-modal">
+  <div class="search-modal__panel">
+    <div class="search-modal__input">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="search" placeholder="Search the Staff Hub…" />
+    </div>
+    <div class="search-modal__results" id="search-results"></div>
+    <div class="search-modal__footer"><span><kbd>↵</kbd> open</span><span><kbd>↑</kbd><kbd>↓</kbd> navigate</span><span><kbd>esc</kbd> close</span></div>
+  </div>
+</div>
+<script src="assets/app.js"></script>
+
+
+<script>
+(function() {
+  const CAL_ID = 'c_16d101edc06a072b283e851d543b6a024cada259be1b6be3dfd098272aa56fb9%40group.calendar.google.com';
+  const ICS_URL = 'https://calendar.google.com/calendar/ical/' + CAL_ID + '/public/basic.ics';
+  const PROXY   = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(ICS_URL);
+
+  function todayYMD() {
+    const d = new Date();
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2,'0');
+    const day = String(d.getDate()).padStart(2,'0');
+    return y + m + day;
+  }
+
+  function friendlyDate() {
+    return new Date().toLocaleDateString('en-GB', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+  }
+
+  function parseEvents(icsText, dateStr) {
+    const summaries = [];
+    const blocks = icsText.split('BEGIN:VEVENT');
+    for (let i = 1; i < blocks.length; i++) {
+      const block = blocks[i];
+      // DTSTART can be VALUE=DATE:YYYYMMDD  or  :YYYYMMDDTHHMMSS  or  ;TZID=...:YYYYMMDDTHHMMSS
+      const dtMatch = block.match(/DTSTART[^:]*:(\d{8})/);
+      if (dtMatch && dtMatch[1] === dateStr) {
+        // Handle line folding — continued lines start with a space
+        const unfolded = block.replace(/
+?
+[ 	]/g, '');
+        const sumMatch = unfolded.match(/SUMMARY:([^
+]+)/);
+        if (sumMatch) summaries.push(sumMatch[1].trim());
+      }
+    }
+    return summaries;
+  }
+
+  function setCard(text, isMenu) {
+    const dateEl = document.getElementById('today-lunch-date');
+    const textEl = document.getElementById('today-lunch-text');
+    const card   = document.getElementById('today-lunch-card');
+    if (!dateEl || !textEl) return;
+    dateEl.textContent = 'Today · ' + friendlyDate();
+    textEl.textContent = text;
+    if (!isMenu && card) {
+      card.style.background = 'linear-gradient(135deg,#f9fafb,#ffffff)';
+      card.style.borderLeftColor = '#d1d5db';
+      document.querySelector('#today-lunch-card .r-icon') && (document.querySelector('#today-lunch-card div:first-child').textContent = '🚫');
+    }
+  }
+
+  async function loadLunch() {
+    const today = todayYMD();
+    try {
+      const resp = await fetch(PROXY, { cache: 'no-cache' });
+      if (!resp.ok) throw new Error('fetch failed');
+      const ics = await resp.text();
+      const events = parseEvents(ics, today);
+      if (events.length === 0) {
+        setCard('No Lunch today', false);
+      } else {
+        setCard(events.join(' · '), true);
+      }
+    } catch (e) {
+      setCard('No Lunch today', false);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadLunch);
+  } else {
+    loadLunch();
+  }
+})();
+</script>
+
+<script>
+(function() {
+  const CAL_ID = 'icf-campus.com_fm6n628u1trm8b0evais34neu8%40group.calendar.google.com';
+  const ICS_URL = 'https://calendar.google.com/calendar/ical/' + CAL_ID + '/public/basic.ics';
+  const PROXY   = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(ICS_URL);
+
+  function todayMD() {
+    const d = new Date();
+    const m = String(d.getMonth() + 1).padStart(2,'0');
+    const day = String(d.getDate()).padStart(2,'0');
+    return m + day; // MMDD — birthdays recur yearly
+  }
+
+  function friendlyDate() {
+    return new Date().toLocaleDateString('en-GB', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+  }
+
+  function parseEvents(icsText, mmdd) {
+    const summaries = [];
+    const blocks = icsText.split('BEGIN:VEVENT');
+    for (let i = 1; i < blocks.length; i++) {
+      const block = blocks[i];
+      const unfolded = block.replace(/
+?
+[ 	]/g, '');
+      const dtMatch = unfolded.match(/DTSTART[^:]*:(\d{4})(\d{2})(\d{2})/);
+      if (dtMatch) {
+        const eventMMDD = dtMatch[2] + dtMatch[3];
+        if (eventMMDD === mmdd) {
+          const sumMatch = unfolded.match(/SUMMARY:([^
+]+)/);
+          if (sumMatch) summaries.push(sumMatch[1].trim());
+        }
+      }
+    }
+    return [...new Set(summaries)]; // deduplicate recurring entries
+  }
+
+  function setCard(text, hasEvent) {
+    const dateEl = document.getElementById('today-birthday-date');
+    const textEl = document.getElementById('today-birthday-text');
+    const card   = document.getElementById('today-birthday-card');
+    if (!dateEl || !textEl) return;
+    dateEl.textContent = 'Today · ' + friendlyDate();
+    textEl.textContent = text;
+    if (!hasEvent && card) {
+      card.style.background = 'linear-gradient(135deg,#f9fafb,#ffffff)';
+      card.style.borderLeftColor = '#d1d5db';
+    }
+  }
+
+  async function loadBirthdays() {
+    const mmdd = todayMD();
+    try {
+      const resp = await fetch(PROXY, { cache: 'no-cache' });
+      if (!resp.ok) throw new Error('fetch failed');
+      const ics = await resp.text();
+      const events = parseEvents(ics, mmdd);
+      if (events.length === 0) {
+        setCard('No birthdays today', false);
+      } else {
+        setCard('🎉 ' + events.join(', '), true);
+      }
+    } catch (e) {
+      setCard('No birthdays today', false);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadBirthdays);
+  } else {
+    loadBirthdays();
+  }
+})();
+</script>
+</body>
+</html>

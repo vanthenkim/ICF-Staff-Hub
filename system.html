@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#2563EB" />
+<link rel="manifest" href="/manifest.json" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Staff Hub" />
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
+<link rel="apple-touch-icon" sizes="192x192" href="/assets/icons/icon-192.png" />
+<title>Design System · Staff Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="sidebar__brand"><div class="sidebar__logo"><img src="assets/icf-logo.png" alt="ICF Cambodia" /></div><div class="sidebar__title"><strong>ICF Cambodia</strong><span>Staff Hub</span></div></div>
+    <nav class="nav">
+      <a class="nav__item" href="index.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>Home</a>
+      <a class="nav__item" href="about.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></span>About ICF</a>
+      <a class="nav__item" href="resources.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>Staff Resources</a>
+      <a class="nav__item" href="tools.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>Staff Tools</a>
+      <a class="nav__item" href="training.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/></svg></span>Training &amp; Development</a>
+      <a class="nav__item" href="medical.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.5-3 1.5-6 0-9-3 0-6 0-7.5 1.5C10 5 7 5 4 5c-1.5 3-1.5 6 0 9 3 0 6 0 7.5-1.5C13 14 16 14 19 14z"/></svg></span>Medical Hub</a>
+      <a class="nav__item" href="media.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg></span>Media Center</a>
+      <a class="nav__item" href="departments.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>Departments</a>
+      <a class="nav__item" href="events.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>Events &amp; Year Topics</a>
+      <div class="nav__group-label" style="margin-top:12px;">Quick Links</div>
+      <a class="nav__item" href="about.html#open-fullchart"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><line x1="17" y1="17" x2="17" y2="21"/><line x1="17" y1="17" x2="21" y2="17"/></svg></span>Org Chart</a>
+      <a class="nav__item" href="contacts.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Staff Contacts</a>
+      <a class="nav__item" href="https://t.me/+KU4xqUNc6lNmZjU1" target="_blank" rel="noopener"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>Staff Telegram</a>
+      <a class="nav__item" href="https://drive.google.com/drive/u/0/home" target="_blank" rel="noopener"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span>Google Drive</a>
+      <button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScskJ0UijIWOWdoLFYQTE8J1jNYmpveZ32rU-BmOtprbFXxvg/viewform','_blank')" style="display:flex;align-items:center;gap:10px;width:100%;border:none;cursor:pointer;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:10px;padding:9px 12px;font-size:14px;font-weight:600;font-family:inherit;margin-top:10px;text-align:left;"><span style="font-size:17px;line-height:1;">🏆</span>Honor a Colleague</button>
+    </nav>
+  </aside>
+
+  <main class="main">
+        <header class="topbar">
+      <button class="topbar__menu" data-action="open-menu" aria-label="Menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <div class="topbar__mobile-brand">
+        <div class="sidebar__logo"><img src="assets/icf-logo.png" alt="ICF Cambodia" /></div>
+        <span>System</span>
+      </div>
+      <div class="topbar__right">
+        <button class="topbar__btn" data-action="open-search" aria-label="Search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button class="topbar__btn" aria-label="Notifications">
+          <span class="dot"></span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        </button>
+        <button class="topbar__btn lang-toggle" data-action="toggle-lang" aria-label="Language" title="Toggle language EN / KH"><span class="lang-toggle__label">EN</span></button>
+        <div class="avatar" title="Sokha Chea">SC</div>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="crumbs"><a href="index.html">Home</a><span class="sep">/</span><span>Design System</span></div>
+      <div class="page-header">
+        <div>
+          <h1>Design System</h1>
+          <p>The visual vocabulary, components, and patterns used across the Staff Hub. Treat this page as the source of truth when extending.</p>
+        </div>
+      </div>
+
+      <!-- Tokens -->
+      <div class="section-title" id="tokens"><h2>Color Tokens</h2></div>
+      <div class="card">
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;">
+          <div><div style="height:60px;border-radius:10px;background:var(--blue-600);"></div><div style="margin-top:6px;font-weight:600;font-size:13px;">Blue 600</div><div style="font-size:12px;color:var(--text-muted);">Primary</div></div>
+          <div><div style="height:60px;border-radius:10px;background:var(--green-600);"></div><div style="margin-top:6px;font-weight:600;font-size:13px;">Green 600</div><div style="font-size:12px;color:var(--text-muted);">Action</div></div>
+          <div><div style="height:60px;border-radius:10px;background:var(--amber-500);"></div><div style="margin-top:6px;font-weight:600;font-size:13px;">Amber 500</div><div style="font-size:12px;color:var(--text-muted);">Alert</div></div>
+          <div><div style="height:60px;border-radius:10px;background:var(--red-500);"></div><div style="margin-top:6px;font-weight:600;font-size:13px;">Red 500</div><div style="font-size:12px;color:var(--text-muted);">Emergency</div></div>
+          <div><div style="height:60px;border-radius:10px;background:var(--purple-500);"></div><div style="margin-top:6px;font-weight:600;font-size:13px;">Purple 500</div><div style="font-size:12px;color:var(--text-muted);">Accent</div></div>
+          <div><div style="height:60px;border-radius:10px;background:var(--text);"></div><div style="margin-top:6px;font-weight:600;font-size:13px;">Slate 900</div><div style="font-size:12px;color:var(--text-muted);">Text</div></div>
+          <div><div style="height:60px;border-radius:10px;background:var(--bg);border:1px solid var(--border);"></div><div style="margin-top:6px;font-weight:600;font-size:13px;">Bg</div><div style="font-size:12px;color:var(--text-muted);">Page bg</div></div>
+          <div><div style="height:60px;border-radius:10px;background:var(--surface-2);border:1px solid var(--border);"></div><div style="margin-top:6px;font-weight:600;font-size:13px;">Surface 2</div><div style="font-size:12px;color:var(--text-muted);">Sub-surface</div></div>
+        </div>
+      </div>
+
+      <!-- Typography -->
+      <div class="section-title" id="typography"><h2>Typography</h2></div>
+      <div class="card">
+        <div style="font-size:34px;font-weight:800;letter-spacing:-0.02em;">Heading 1 · 34/40</div>
+        <div style="font-size:24px;font-weight:700;letter-spacing:-0.01em;">Heading 2 · 24/30</div>
+        <div style="font-size:18px;font-weight:600;">Heading 3 · 18/24</div>
+        <div style="font-size:16px;">Body · 16/26 — the working sentence size.</div>
+        <div style="font-size:13.5px;color:var(--text-muted);">Caption · 13.5/20 — supporting metadata.</div>
+        <div style="font-size:11.5px;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-soft);">Eyebrow · 11.5/16</div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="section-title" id="buttons"><h2>Buttons</h2></div>
+      <div class="card" style="flex-direction:row;flex-wrap:wrap;gap:10px;">
+        <button class="btn btn--primary">Primary</button>
+        <button class="btn btn--green">Green action</button>
+        <button class="btn">Secondary</button>
+        <button class="btn btn--ghost">Ghost</button>
+        <button class="btn btn--sm btn--primary">Small primary</button>
+        <button class="btn btn--sm">Small</button>
+      </div>
+
+      <!-- Cards -->
+      <div class="section-title" id="cards"><h2>Card surface</h2></div>
+      <div class="row-2">
+        <div class="card">
+          <h3 style="margin:0;font-size:15px;">Card title</h3>
+          <p class="muted" style="margin:0;font-size:13.5px;">Default card surface — used as the base for most content blocks.</p>
+        </div>
+        <div class="card" style="background:linear-gradient(135deg,#EFF6FF,#ECFDF5);border:none;">
+          <h3 style="margin:0;font-size:15px;">Emphasis card</h3>
+          <p class="muted" style="margin:0;font-size:13.5px;">Use sparingly for hero summaries.</p>
+        </div>
+      </div>
+
+      <!-- Quick actions -->
+      <div class="section-title" id="qa"><h2>Quick Action Buttons</h2></div>
+      <div class="qa-grid">
+        <a class="qa" href="#"><span class="qa__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/></svg></span><span><div class="qa__label">Default</div><div class="qa__sub">Blue tint</div></span></a>
+        <a class="qa qa--green" href="#"><span class="qa__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/></svg></span><span><div class="qa__label">Green</div><div class="qa__sub">Action</div></span></a>
+        <a class="qa qa--amber" href="#"><span class="qa__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/></svg></span><span><div class="qa__label">Amber</div><div class="qa__sub">Caution</div></span></a>
+        <a class="qa qa--red" href="#"><span class="qa__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/></svg></span><span><div class="qa__label">Red</div><div class="qa__sub">Safeguarding</div></span></a>
+        <a class="qa qa--purple" href="#"><span class="qa__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/></svg></span><span><div class="qa__label">Purple</div><div class="qa__sub">Media/Brand</div></span></a>
+        <a class="qa qa--slate" href="#"><span class="qa__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/></svg></span><span><div class="qa__label">Slate</div><div class="qa__sub">Neutral</div></span></a>
+      </div>
+
+      <!-- Resource card -->
+      <div class="section-title" id="resources"><h2>Resource Card</h2></div>
+      <div class="res-grid">
+        <article class="resource">
+          <div class="resource__top">
+            <span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></span>
+            <span class="chip chip--active">Active</span>
+          </div>
+          <h3 class="resource__title">Resource title</h3>
+          <p class="resource__desc">Short, clear description (~ 2 lines). State what it is and who it's for.</p>
+          <div class="resource__tags"><span class="chip">Tag</span><span class="chip">Tag</span></div>
+          <div class="resource__meta"><span>Owner / Department</span><span>Last updated</span></div>
+          <div class="resource__actions"><a class="btn btn--primary btn--sm" href="#">Open file</a><a class="btn btn--sm" href="#">Related form</a></div>
+        </article>
+        <article class="resource">
+          <div class="resource__top">
+            <span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></span>
+            <span class="chip chip--draft">Draft</span>
+          </div>
+          <h3 class="resource__title">Draft state</h3>
+          <p class="resource__desc">Hidden from main listings or shown with reduced affordance.</p>
+        </article>
+        <article class="resource">
+          <div class="resource__top">
+            <span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></span>
+            <span class="chip chip--review">Needs Review</span>
+          </div>
+          <h3 class="resource__title">Stale content</h3>
+          <p class="resource__desc">Trigger owners to review past expiry date.</p>
+        </article>
+        <article class="resource">
+          <div class="resource__top">
+            <span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></span>
+            <span class="chip chip--archived">Archived</span>
+          </div>
+          <h3 class="resource__title">Archived item</h3>
+          <p class="resource__desc">Kept for reference but no longer in active rotation.</p>
+        </article>
+      </div>
+
+      <!-- Departments -->
+      <div class="section-title" id="depts"><h2>Department Cards</h2></div>
+      <div class="dept-grid">
+        <a class="dept" href="#"><span class="dept__band"></span><span class="dept__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="7" r="4"/></svg></span><h3 class="dept__name">Blue dept</h3><p class="dept__desc">Description.</p></a>
+        <a class="dept dept--green" href="#"><span class="dept__band"></span><span class="dept__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="7" r="4"/></svg></span><h3 class="dept__name">Green dept</h3><p class="dept__desc">Description.</p></a>
+        <a class="dept dept--amber" href="#"><span class="dept__band"></span><span class="dept__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="7" r="4"/></svg></span><h3 class="dept__name">Amber dept</h3><p class="dept__desc">Description.</p></a>
+        <a class="dept dept--purple" href="#"><span class="dept__band"></span><span class="dept__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="7" r="4"/></svg></span><h3 class="dept__name">Purple dept</h3><p class="dept__desc">Description.</p></a>
+      </div>
+
+      <!-- Announcement -->
+      <div class="section-title" id="announcements"><h2>Announcement Card</h2></div>
+      <div class="announce">
+        <article class="announce__item">
+          <span class="announce__tag tag-blue">All Staff</span>
+          <div class="announce__body">
+            <h4>Announcement title</h4>
+            <p>Short text body, typically 1–3 lines explaining the announcement.</p>
+            <div class="announce__meta"><span>Posted by</span> · <span>Time ago</span></div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Emergency -->
+      <div class="section-title" id="emergency"><h2>Emergency Box</h2></div>
+      <div class="emergency">
+        <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg> Emergency Contacts</h3>
+        <p>Tap to call. Always show at least 3 critical contacts.</p>
+        <div class="emergency__list">
+          <div class="emergency__row"><div>Name / Role</div><a href="tel:+855">+855 ··· ···</a></div>
+        </div>
+      </div>
+
+      <!-- Status -->
+      <div class="section-title" id="status"><h2>Status Labels &amp; Tags</h2></div>
+      <div class="card" style="flex-direction:row;flex-wrap:wrap;gap:8px;">
+        <span class="chip chip--active">Active</span>
+        <span class="chip chip--draft">Draft</span>
+        <span class="chip chip--review">Needs Review</span>
+        <span class="chip chip--archived">Archived</span>
+        <span class="chip">Default</span>
+        <span class="announce__tag tag-blue">Blue tag</span>
+        <span class="announce__tag tag-green">Green tag</span>
+        <span class="announce__tag tag-amber">Amber tag</span>
+        <span class="announce__tag tag-red">Red tag</span>
+        <span class="announce__tag tag-purple">Purple tag</span>
+        <span class="announce__tag tag-slate">Slate tag</span>
+      </div>
+
+      <!-- Nav -->
+      <div class="section-title" id="nav"><h2>Navigation</h2></div>
+      <div class="card">
+        <p class="muted" style="margin:0;font-size:13.5px;">
+          Desktop: persistent left sidebar (260px) with primary navigation.<br>
+          Mobile (&lt; 960px): hidden sidebar, hamburger reveals a slide-in sheet. A 5-item bottom nav stays anchored at the screen base.
+        </p>
+      </div>
+
+      <!-- Search -->
+      <div class="section-title" id="search"><h2>Search</h2></div>
+      <div class="card">
+        <p class="muted" style="margin:0 0 8px;font-size:13.5px;">Global search appears in the top bar (desktop), on the home hero, and via a bottom-nav button (mobile). Pressing ⌘K / Ctrl+K from anywhere opens the modal.</p>
+        <button class="btn btn--primary" data-action="open-search">Open search modal</button>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="card">
+        <h3 style="margin:0 0 6px;font-size:16px;">Governance fields (every page)</h3>
+        <p class="muted" style="margin:0;font-size:13.5px;">Owner · Last updated · Next review · Status (Active / Draft / Needs Review / Archived). Built into the resource-card meta and dept-card "Governance" panel.</p>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<nav class="mobilenav">
+    <div class="mobilenav__row">
+    <a class="mobilenav__btn is-active" href="index.html">
+      <span class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+      Home
+    </a>
+    <a class="mobilenav__btn" href="https://icf.akas.co/self-service/leave-request" target="_blank">
+      <span class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
+      Leave
+    </a>
+    <a class="mobilenav__btn" href="resources.html">
+      <span class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+      Resources
+    </a>
+    <a class="mobilenav__btn" href="tools.html">
+      <span class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
+      Tools
+    </a>
+    <button class="mobilenav__btn" id="mob-more-btn" data-action="open-menu">
+      <span class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></span>
+      More
+    </button>
+  </div>
+</nav>
+
+<div class="sidesheet" id="sidesheet">
+  <div class="sidesheet__panel">
+    <button class="sidesheet__close" data-action="close-menu" aria-label="Close">&times;</button>
+    <div class="sidebar__brand"><div class="sidebar__logo"><img src="assets/icf-logo.png" alt="ICF Cambodia" /></div><div class="sidebar__title"><strong>ICF Cambodia</strong><span>Staff Hub</span></div></div>
+    <nav class="nav">
+      <a class="nav__item" href="index.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>Home</a>
+      <a class="nav__item" href="about.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></span>About ICF</a>
+      <a class="nav__item" href="resources.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>Staff Resources</a>
+      <a class="nav__item" href="tools.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>Staff Tools</a>
+      <a class="nav__item" href="training.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/></svg></span>Training &amp; Development</a>
+      <a class="nav__item" href="medical.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.5-3 1.5-6 0-9-3 0-6 0-7.5 1.5C10 5 7 5 4 5c-1.5 3-1.5 6 0 9 3 0 6 0 7.5-1.5C13 14 16 14 19 14z"/></svg></span>Medical Hub</a>
+      <a class="nav__item" href="media.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg></span>Media Center</a>
+      <a class="nav__item" href="departments.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>Departments</a>
+      <a class="nav__item" href="events.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>Events &amp; Year Topics</a>
+      <div class="nav__group-label" style="margin-top:12px;">My Favorites</div>
+      <div id="sidesheet-favs"><p style="font-size:13px;color:var(--text-soft);font-style:italic;padding:6px 12px;">Tap &#x2661; on any card to save it here</p></div>
+      <div class="nav__group-label" style="margin-top:12px;">Quick Links</div>
+      <a class="nav__item" href="about.html#open-fullchart"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><line x1="17" y1="17" x2="17" y2="21"/><line x1="17" y1="17" x2="21" y2="17"/></svg></span>Org Chart</a>
+      <a class="nav__item" href="contacts.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Staff Contacts</a>
+      <a class="nav__item" href="https://t.me/+KU4xqUNc6lNmZjU1" target="_blank" rel="noopener"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>Staff Telegram</a>
+      <a class="nav__item" href="https://drive.google.com/drive/u/0/home" target="_blank" rel="noopener"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span>Google Drive</a>
+      <button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScskJ0UijIWOWdoLFYQTE8J1jNYmpveZ32rU-BmOtprbFXxvg/viewform','_blank')" style="display:flex;align-items:center;gap:10px;width:100%;border:none;cursor:pointer;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:10px;padding:9px 12px;font-size:14px;font-weight:600;font-family:inherit;margin-top:10px;text-align:left;"><span style="font-size:17px;line-height:1;">&#x1F3C6;</span>Honor a Colleague</button>
+    </nav>
+  </div>
+</div>
+
+<div class="search-modal" id="search-modal">
+  <div class="search-modal__panel">
+    <div class="search-modal__input">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="search" placeholder="Search the Staff Hub…" />
+    </div>
+    <div class="search-modal__results" id="search-results"></div>
+    <div class="search-modal__footer"><span><kbd>↵</kbd> open</span><span><kbd>↑</kbd><kbd>↓</kbd> navigate</span><span><kbd>esc</kbd> close</span></div>
+  </div>
+</div>
+<script src="assets/app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+# Netlify config — ICF Cambodia Staff Hub
+# Static site + serverless functions for Notion-powered dynamic content.
+
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+# Friendly URL aliases so HTML pages drop the .html extension
+[[redirects]]
+  from = "/api/announcements"
+  to = "/.netlify/functions/announcements"
+  status = 200
+
+[[redirects]]
+  from = "/api/staff"
+  to = "/.netlify/functions/staff"
+  status = 200
+
+[[redirects]]
+  from = "/api/documents"
+  to = "/.netlify/functions/documents"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options         = "SAMEORIGIN"
+    X-Content-Type-Options  = "nosniff"
+    Referrer-Policy         = "strict-origin-when-cross-origin"
+    Permissions-Policy      = "geolocation=(), microphone=(), camera=()"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
