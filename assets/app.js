@@ -139,7 +139,7 @@ if ('serviceWorker' in navigator) {
   (function setHeroDate() {
     const now = new Date();
     const hour = now.getHours();
-    const name = 'VV'; // TODO: replace with logged-in user name
+    const name = 'VV 😊'; // TODO: replace with logged-in user name
 
     const greet = hour < 5 ? '🌙 Good evening' : hour < 12 ? '☀️ Good morning' : hour < 17 ? '🌤️ Good afternoon' : '🌙 Good evening';
     const greetEl = document.getElementById('hero-greeting');
