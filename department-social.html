@@ -258,10 +258,6 @@
                 <div style="width:36px;height:36px;border-radius:50%;background:#fef2f2;border:1.5px solid #fca5a5;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#991b1b;flex-shrink:0;">SS</div>
                 <div><div style="font-weight:600;font-size:13.5px;">Sa Soueyvan</div><div class="muted" style="font-size:12px;">Social Worker · sa.soueyvan@icf-cambodia.com</div></div>
               </div>
-              <div data-person="Bora Heang" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#fef2f2'" onmouseout="this.style.background=''">
-                <div style="width:36px;height:36px;border-radius:50%;background:#fef2f2;border:1.5px solid #fca5a5;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#991b1b;flex-shrink:0;">BH</div>
-                <div><div style="font-weight:600;font-size:13.5px;">Bora Heang</div><div class="muted" style="font-size:12px;">Social Worker · bora.heang@icf-cambodia.com</div></div>
-              </div>
               <div data-person="Matthew Seng" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#fef2f2'" onmouseout="this.style.background=''">
                 <div style="width:36px;height:36px;border-radius:50%;background:#fef2f2;border:1.5px solid #fca5a5;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#991b1b;flex-shrink:0;">MS</div>
                 <div><div style="font-weight:600;font-size:13.5px;">Matthew Seng</div><div class="muted" style="font-size:12px;">Social Worker · matthew.seng@icf-cambodia.com</div></div>
@@ -374,30 +370,29 @@
 </div>
 <script>
 var people = {
-    "Ousaphea Lim": { role:"Social Program & Administration Manager", email:"ousaphea.lim@icf-cambodia.com" },
+    "Ousaphea Lim": { role:"Social Program & Administration Manager", email:"ousaphea.lim@icf-cambodia.com", phone:"+85589483448", telegram:"Ousaphealim" },
     "Rina Nov": { role:"Social Administration Coordinator", email:"rina.nov@icf-cambodia.com", telegram:"NovRina", phone:"+85592200184" },
-    "Sreyleak So": { role:"Social Administrator", email:"sreyleak.so@icf-cambodia.com" },
-    "Simone Strupler": { role:"Daycare Manager", email:"simone.strupler@icf-cambodia.com" },
-    "Sothiery Un": { role:"Daycare Coordinator", email:"sothiery.un@icf-cambodia.com" },
-    "Vann Rotha": { role:"Daycare Teacher", email:"vann.rotha@icf-cambodia.com" },
-    "Kropumkannika Gnorng": { role:"Daycare Teacher", email:"kropumkannika.gnorng@icf-cambodia.com" },
-    "Rongroeung Chamroeun": { role:"Social Worker", email:"rongroeung.chamroeun@icf-cambodia.com" },
+    "Sreyleak So": { role:"Social Administrator", email:"sreyleak.so@icf-cambodia.com", phone:"+85517760632", telegram:"sreyleakso" },
+    "Simone Strupler": { role:"Daycare Manager", email:"simone.strupler@icf-cambodia.com", phone:"+85512542130", telegram:"SimoneVivianneStrupler" },
+    "Sothiery Un": { role:"Daycare Coordinator", email:"sothiery.un@icf-cambodia.com", telegram:"Sothiery" },
+    "Vann Rotha": { role:"Daycare Teacher", email:"vann.rotha@icf-cambodia.com", phone:"+85592555130", telegram:"vannrotha" },
+    "Kropumkannika Gnorng": { role:"Daycare Teacher", email:"kropumkannika.gnorng@icf-cambodia.com", telegram:"Kropumkannika" },
+    "Rongroeung Chamroeun": { role:"Social Worker", email:"rongroeung.chamroeun@icf-cambodia.com", phone:"+85585627539", telegram:"chamroeunrongroeung" },
     "Champa Toch": { role:"Social Worker", email:"champa.toch@icf-cambodia.com", telegram:"ChampaTOCH" },
-    "Sreypeou Hout": { role:"Social Worker", email:"sreypeou.hout@icf-cambodia.com" },
-    "Srey Roth Outh": { role:"Social Worker", email:"sreyroth.outh@icf-cambodia.com" },
-    "Sopheaktra Mao": { role:"Social Worker", email:"sopheaktra.mao@icf-cambodia.com" },
-    "Sokuntheary Sim": { role:"Social Worker", email:"sokuntheary.sim@icf-cambodia.com" },
-    "Sideth Duch": { role:"Social Worker", email:"sideth.duch@icf-cambodia.com" },
-    "Chamroeun Muon": { role:"Social Worker", email:"chamroeun.muon@icf-cambodia.com" },
+    "Sreypeou Hout": { role:"Social Worker", email:"sreypeou.hout@icf-cambodia.com", telegram:"HoutSreyPov" },
+    "Srey Roth Outh": { role:"Social Worker", email:"sreyroth.outh@icf-cambodia.com", telegram:"sreyrothouth" },
+    "Sopheaktra Mao": { role:"Social Worker", email:"sopheaktra.mao@icf-cambodia.com", telegram:"Pheaktra_M" },
+    "Sokuntheary Sim": { role:"Social Worker", email:"sokuntheary.sim@icf-cambodia.com", telegram:"Sokuntheary" },
+    "Sideth Duch": { role:"Social Worker", email:"sideth.duch@icf-cambodia.com", phone:"+85587747433" },
+    "Chamroeun Muon": { role:"Social Worker", email:"chamroeun.muon@icf-cambodia.com", telegram:"ChamroenMuon" },
     "Savry Klot": { role:"Social Worker", email:"savry.klot@icf-cambodia.com", telegram:"savryklot" },
-    "Sophea Mak": { role:"Social Worker", email:"sophea.mak@icf-cambodia.com" },
+    "Sophea Mak": { role:"Social Worker", email:"sophea.mak@icf-cambodia.com", telegram:"maksophea" },
     "Noya Men": { role:"Social Worker", email:"noya.men@icf-cambodia.com", telegram:"Noya777", phone:"+85593801755" },
-    "Thea Rith Keo": { role:"Social Worker", email:"thearith.keo@icf-cambodia.com" },
-    "Hana Seap": { role:"Social Worker", email:"hana.seap@icf-cambodia.com" },
+    "Thea Rith Keo": { role:"Social Worker", email:"thearith.keo@icf-cambodia.com", telegram:"Thearithkeo" },
+    "Hana Seap": { role:"Social Worker", email:"hana.seap@icf-cambodia.com", phone:"+85510647392", telegram:"Hana_seab" },
     "Sa Soueyvan": { role:"Social Worker", email:"sa.soueyvan@icf-cambodia.com" },
-    "Bora Heang": { role:"Social Worker", email:"bora.heang@icf-cambodia.com" },
     "Matthew Seng": { role:"Social Worker", email:"matthew.seng@icf-cambodia.com" },
-    "Sophy Chek": { role:"Social Worker", email:"sophy.chek@icf-cambodia.com" }
+    "Sophy Chek": { role:"Social Worker", email:"sophy.chek@icf-cambodia.com", phone:"+85592200181" }
   };
 (function(){
   var btnStyle = "display:flex;align-items:center;gap:10px;padding:9px 13px;background:#f8fafc;border-radius:9px;text-decoration:none;color:#1a2332;font-size:13px;border:1px solid #e2e8f0;";
