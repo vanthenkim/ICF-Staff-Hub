@@ -21,6 +21,7 @@
     <nav class="nav">
       <a class="nav__item" href="index.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>Home</a>
       <a class="nav__item" href="about.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></span>About ICF</a>
+      <a class="nav__item" href="guidelines.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span>Staff Guidelines</a>
       <a class="nav__item is-active" href="resources.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>Staff Resources</a>
       <a class="nav__item" href="tools.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>Staff Tools</a>
       <a class="nav__item" href="training.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/></svg></span>Training &amp; Development</a>
@@ -64,7 +65,7 @@
       <div class="page-header">
         <div>
           <h1>Staff Resources</h1>
-          <p>Policies, SOPs, templates, and forms — every official document, in one place.</p>
+          <p>Forms, templates, and working documents — everything you need to get things done.</p>
         </div>
         <div class="view-toggle" id="view-toggle" role="group" aria-label="View mode">
           <button class="view-toggle__btn is-active" id="btn-gallery" title="Gallery view" aria-pressed="true">
@@ -76,10 +77,11 @@
         </div>
       </div>
 
-      <!-- Category filter bar -->
+            <!-- Category filter bar -->
       <div class="cat-filter-bar" id="cat-filter-bar">
         <button class="cat-filter__btn is-active" data-filter="all">All</button>
         <button class="cat-filter__btn" data-filter="child-protection"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Child Protection</button>
+        <button class="cat-filter__btn" data-filter="hr-forms"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg> HR Forms</button>
         <button class="cat-filter__btn" data-filter="lifecycle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg> Life Cycle</button>
         <button class="cat-filter__btn" data-filter="recruitment"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/></svg> Recruitment</button>
         <button class="cat-filter__btn" data-filter="finance"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/></svg> Finance</button>
@@ -96,32 +98,12 @@
       </div>
 
       <!-- KEEP below for fallback until sheet is published -->
-      <div id="resources-fallback" style="display:none">
+            <div id="resources-fallback" style="display:none">
+
+      <!-- Child Protection Forms -->
       <div class="res-section" data-section="child-protection">
-      <div class="section-title" id="child-protection"><h2>Child Protection &amp; Information Sharing</h2><a href="Resources%20Public/5-%20Child%20Protection%20%26%20Information%20Sharing" target="_blank">Open folder ↗</a></div>
+      <div class="section-title" id="child-protection"><h2>Child Protection Forms</h2><a href="Resources%20Public/5-%20Child%20Protection%20%26%20Information%20Sharing" target="_blank">Open folder ↗</a></div>
       <div class="res-grid">
-        <article class="resource resource--red">
-          <div class="resource__top"><span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><span class="chip chip--active">Active</span></div>
-          <h3 class="resource__title">Child Protection Policy 2024 (English)</h3>
-          <p class="resource__desc">Our complete safeguarding policy. Required reading for every staff member and volunteer.</p>
-          <div class="resource__tags"><span class="chip">Policy</span><span class="chip">Required</span></div>
-          <div class="resource__meta"><span>HR / Safeguarding</span><span>Updated 2024</span></div>
-          <div class="resource__actions"><a class="btn btn--primary btn--sm" href="Resources%20Public/5-%20Child%20Protection%20%26%20Information%20Sharing/Child%20Protection%20Policy%202024%20-%20English.pdf" target="_blank">Open</a><a class="btn btn--sm" href="Resources%20Public/5-%20Child%20Protection%20%26%20Information%20Sharing/Child%20Protection%20Policy%202024.pdf" target="_blank">Khmer</a></div>
-        </article>
-        <article class="resource resource--red">
-          <div class="resource__top"><span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><span class="chip chip--active">Active</span></div>
-          <h3 class="resource__title">Implementation Guide</h3>
-          <p class="resource__desc">How to put the Child Protection Policy into practice in your department — roles, reporting, response.</p>
-          <div class="resource__meta"><span>HR / Safeguarding</span><span>Updated 2024</span></div>
-          <div class="resource__actions"><a class="btn btn--primary btn--sm" href="Resources%20Public/5-%20Child%20Protection%20%26%20Information%20Sharing/Implementation%20-%20Child%20Protection%20Policy%20.pdf" target="_blank">Open</a></div>
-        </article>
-        <article class="resource resource--red">
-          <div class="resource__top"><span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span><span class="chip chip--active">Active</span></div>
-          <h3 class="resource__title">Information Sharing &amp; Communication Guidelines</h3>
-          <p class="resource__desc">When and how to share information about beneficiaries and staff. Bilingual (Khmer / English).</p>
-          <div class="resource__tags"><span class="chip">Guideline</span><span class="chip">Bilingual</span></div>
-          <div class="resource__actions"><a class="btn btn--primary btn--sm" href="Resources%20Public/5-%20Child%20Protection%20%26%20Information%20Sharing/Information%20Sharing%20and%20Communication%20Guidelines%20%28Khmer-English%29.pdf" target="_blank">Open</a></div>
-        </article>
         <article class="resource">
           <div class="resource__top"><span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></span><span class="chip chip--active">Active</span></div>
           <h3 class="resource__title">Consent Form · Information Gathering</h3>
@@ -134,15 +116,39 @@
           <p class="resource__desc">Required for all new staff &amp; volunteers. Bilingual (Khmer / English).</p>
           <div class="resource__actions"><a class="btn btn--primary btn--sm" href="Resources%20Public/5-%20Child%20Protection%20%26%20Information%20Sharing/Self%20Declaration%20Form%20English_Khmer%20V2%20IN%20PROCESS%20%28Khmer-English%29.pdf" target="_blank">Open</a></div>
         </article>
-        <article class="resource resource--purple">
-          <div class="resource__top"><span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span><span class="chip chip--active">Active</span></div>
-          <h3 class="resource__title">Social Media Policy</h3>
-          <p class="resource__desc">Personal and ICF social media use — photos of children, confidentiality, online conduct.</p>
-          <div class="resource__actions"><a class="btn btn--primary btn--sm" href="Resources%20Public/5-%20Child%20Protection%20%26%20Information%20Sharing/Social%20Media%20Policy.pdf" target="_blank">Open</a></div>
+      </div>
+      </div><!-- /child-protection -->
+
+      <!-- HR Forms -->
+      <div class="res-section" data-section="hr-forms">
+      <div class="section-title" id="hr-forms"><h2>HR Forms &amp; Templates</h2><a href="Resources%20Public/3_%20GUIDELINES%20" target="_blank">Open folder ↗</a></div>
+      <div class="res-grid">
+        <article class="resource">
+          <div class="resource__top"><span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></span><span class="chip chip--active">Active</span></div>
+          <h3 class="resource__title">Training Commitment Form</h3>
+          <p class="resource__desc">Required for staff attending external training paid for by ICF.</p>
+          <div class="resource__actions"><a class="btn btn--primary btn--sm" href="Resources%20Public/3_%20GUIDELINES%20/10_TRAINING%20COMMITMENT/HR-TRAINING%20COMMITMENT%20FORM-Latest.pdf" target="_blank">Open</a></div>
+        </article>
+        <article class="resource">
+          <div class="resource__top"><span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></span><span class="chip chip--active">Active</span></div>
+          <h3 class="resource__title">Local Volunteers</h3>
+          <p class="resource__desc">Commitment form, child protection foundations, and onboarding pack for local volunteers.</p>
+          <div class="resource__actions"><a class="btn btn--primary btn--sm" href="Resources%20Public/3_%20GUIDELINES%20/13_LOCAL%20VOLUNTEERS/Commitment%20Agreement%20Form.docx" target="_blank">Commitment Form</a><a class="btn btn--sm" href="Resources%20Public/3_%20GUIDELINES%20/13_LOCAL%20VOLUNTEERS/Archive/ENGL_Local%20Volunteer%20Committment%20Form.pdf" target="_blank">English</a></div>
+        </article>
+        <article class="resource">
+          <div class="resource__top"><span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></span><span class="chip chip--active">Active</span></div>
+          <h3 class="resource__title">Shared Hour Request Form</h3>
+          <p class="resource__desc">Request shared hours within your team.</p>
+          <div class="resource__actions"><a class="btn btn--primary btn--sm" href="Resources%20Public/3_%20GUIDELINES%20/8_SHARE%20HOUR%20FORM/Shared%20Hour%20Request%20Form.pdf" target="_blank">Open</a></div>
+        </article>
+        <article class="resource">
+          <div class="resource__top"><span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></span><span class="chip chip--active">Active</span></div>
+          <h3 class="resource__title">Baby Gift &amp; Funeral Fund</h3>
+          <p class="resource__desc">Staff family-life support programs. Bilingual.</p>
+          <div class="resource__actions"><a class="btn btn--primary btn--sm" href="Resources%20Public/3_%20GUIDELINES%20/1_EMPLOYMENT%20GUIDLINE/KH%20%26%20Eng%20ICF_BABY%20GIFT%202025.pdf" target="_blank">Baby Gift</a><a class="btn btn--sm" href="Resources%20Public/3_%20GUIDELINES%20/1_EMPLOYMENT%20GUIDLINE/Kh%20%26%20Eng%20ICF_FUNERAL%20FUND.docx.pdf" target="_blank">Funeral Fund</a></div>
         </article>
       </div>
-
-      </div><!-- /child-protection -->
+      </div><!-- /hr-forms -->
 
       <!-- Employee Life Cycle -->
       <div class="res-section" data-section="lifecycle">
@@ -172,12 +178,6 @@
           <p class="resource__desc">Move a staff member between departments or roles.</p>
           <div class="resource__actions"><a class="btn btn--primary btn--sm" href="Resources%20Public/2_%20EMPLOYEE%20LIFE%20CYCLE/3_RETENTION%20FORM/Staff%20Transfer/Staff%20Transfer%20Form%20.docx" target="_blank">Download form</a></div>
         </article>
-        <article class="resource">
-          <div class="resource__top"><span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></span><span class="chip chip--active">Active</span></div>
-          <h3 class="resource__title">Employee of the Month</h3>
-          <p class="resource__desc">Guideline for monthly staff recognition.</p>
-          <div class="resource__actions"><a class="btn btn--primary btn--sm" href="Resources%20Public/2_%20EMPLOYEE%20LIFE%20CYCLE/3_RETENTION%20FORM/Employee%20of%20the%20Month%20Guideline%20/Employee%20of%20The%20Month%20Guideline.pdf" target="_blank">Open</a></div>
-        </article>
         <article class="resource resource--amber">
           <div class="resource__top"><span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></span><span class="chip chip--active">Active</span></div>
           <h3 class="resource__title">Warning Letter Template</h3>
@@ -203,19 +203,12 @@
           <div class="resource__actions"><a class="btn btn--primary btn--sm" href="Resources%20Public/2_%20EMPLOYEE%20LIFE%20CYCLE/7_TRAINEE%20EVALUATION%20FORM/Trainee%20Review%20Form.docx" target="_blank">Download</a></div>
         </article>
       </div>
-
       </div><!-- /lifecycle -->
 
       <!-- Recruitment -->
       <div class="res-section" data-section="recruitment">
       <div class="section-title" id="recruitment"><h2>Recruitment</h2><a href="Resources%20Public/1_RECRUITMENT" target="_blank">Open folder ↗</a></div>
       <div class="res-grid">
-        <article class="resource resource--green">
-          <div class="resource__top"><span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></span><span class="chip chip--active">Active</span></div>
-          <h3 class="resource__title">Recruitment Workflow</h3>
-          <p class="resource__desc">Step-by-step workflow from request to hire.</p>
-          <div class="resource__actions"><a class="btn btn--green btn--sm" href="Resources%20Public/1_RECRUITMENT/1_RECRUITMENT%20GUIDELINE%20/ICF-%20Recruitment%20Workflow.pdf" target="_blank">Open</a></div>
-        </article>
         <article class="resource resource--green">
           <div class="resource__top"><span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></span><span class="chip chip--active">Active</span></div>
           <h3 class="resource__title">Hiring Request Template</h3>
@@ -253,25 +246,12 @@
           <div class="resource__actions"><a class="btn btn--primary btn--sm" href="Resources%20Public/1_RECRUITMENT/HOLIDAYS%20CALENDAR%202026.pdf" target="_blank">Holidays</a><a class="btn btn--sm" href="Resources%20Public/1_RECRUITMENT/PAYROLL%20CALENDAR%202026.pdf" target="_blank">Payroll</a></div>
         </article>
       </div>
-
       </div><!-- /recruitment -->
 
-      <!-- Finance -->
+      <!-- Finance Forms -->
       <div class="res-section" data-section="finance">
-      <div class="section-title" id="finance"><h2>Finance · Policy &amp; Forms</h2><a href="Resources%20Public/1-%20Finance" target="_blank">Open folder ↗</a></div>
+      <div class="section-title" id="finance"><h2>Finance Forms</h2><a href="Resources%20Public/1-%20Finance" target="_blank">Open folder ↗</a></div>
       <div class="res-grid">
-        <article class="resource resource--amber">
-          <div class="resource__top"><span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/></svg></span><span class="chip chip--active">Active</span></div>
-          <h3 class="resource__title">Financial Policy &amp; Procedures (V3)</h3>
-          <p class="resource__desc">Master policy document — required reading for anyone managing budgets or expenses.</p>
-          <div class="resource__actions"><a class="btn btn--primary btn--sm" href="Resources%20Public/1-%20Finance/3-%20Finance%20Policy/Financial%20Policy%20and%20Procedures_Eng_V3.pdf" target="_blank">Open</a></div>
-        </article>
-        <article class="resource resource--amber">
-          <div class="resource__top"><span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 17a2 2 0 1 0 4 0 2 2 0 0 0-4 0zM15 17a2 2 0 1 0 4 0 2 2 0 0 0-4 0zM5 17h-2v-4h13.4l1.6 4h2"/></svg></span><span class="chip chip--active">Active</span></div>
-          <h3 class="resource__title">Travel Expense Policy 2025</h3>
-          <p class="resource__desc">Per diem, vehicles, and travel reimbursement rules.</p>
-          <div class="resource__actions"><a class="btn btn--primary btn--sm" href="Resources%20Public/1-%20Finance/3-%20Finance%20Policy/Travel%20Expense%20Policy%20For%20Staff-2025.pdf" target="_blank">Open</a></div>
-        </article>
         <article class="resource">
           <div class="resource__top"><span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></span><span class="chip chip--active">Active</span></div>
           <h3 class="resource__title">Finance Forms · NGO &amp; Church</h3>
@@ -284,14 +264,7 @@
           <p class="resource__desc">Use these codes when filling out any expense form.</p>
           <div class="resource__actions"><a class="btn btn--primary btn--sm" href="Resources%20Public/1-%20Finance/1-%20Finance%20Forms/3-%20Class%20Code%20and%20Expense%20Code" target="_blank">Open folder</a></div>
         </article>
-        <article class="resource">
-          <div class="resource__top"><span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10L12 5 2 10l10 5 10-5z"/></svg></span><span class="chip chip--active">Active</span></div>
-          <h3 class="resource__title">Finance Policy Refresher Training</h3>
-          <p class="resource__desc">Latest training deck (Sep 2025) — reviewed annually.</p>
-          <div class="resource__actions"><a class="btn btn--primary btn--sm" href="Resources%20Public/1-%20Finance/2-%20Finance%20Policy%20Training/3-%20Refresher%20Training%2019-Sep-2025/Refresher%20Training%20Finance%20Policy.pdf" target="_blank">Open</a></div>
-        </article>
       </div>
-
       </div><!-- /finance -->
 
       <!-- Allowances -->
@@ -311,19 +284,12 @@
           <div class="resource__actions"><a class="btn btn--primary btn--sm" href="Resources%20Public/3_%20GUIDELINES%20/6_CHILD%20ALLOWANCE%20%26%20FORMS/Lunch%20Form/Request%20Lunch%20Form%20KH-EN.pdf" target="_blank">Open</a></div>
         </article>
       </div>
-
       </div><!-- /allowances -->
 
-      <!-- Insurance & Pension -->
+      <!-- Insurance -->
       <div class="res-section" data-section="insurance">
-      <div class="section-title" id="insurance"><h2>Insurance, NSSF &amp; Pension</h2></div>
+      <div class="section-title" id="insurance"><h2>Insurance &amp; NSSF</h2></div>
       <div class="res-grid">
-        <article class="resource resource--red">
-          <div class="resource__top"><span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><span class="chip chip--active">Active</span></div>
-          <h3 class="resource__title">ICF Retirement &amp; NSSF Pension Guideline</h3>
-          <p class="resource__desc">How the ICF retirement and pension plans work — bilingual.</p>
-          <div class="resource__actions"><a class="btn btn--primary btn--sm" href="Resources%20Public/3_%20GUIDELINES%20/4_ICF%20RETIREMENT%20PLAN%20%26%20PENSION%20PLAN/ICF%20Retirement%20%26%20NSSF%20Pension%20Guideline%20.docx%20%281%29.pdf" target="_blank">English</a><a class="btn btn--sm" href="Resources%20Public/3_%20GUIDELINES%20/4_ICF%20RETIREMENT%20PLAN%20%26%20PENSION%20PLAN/Khmer%20Guidelines_%20Retirement%20Plan%20V1.pdf" target="_blank">Khmer</a><a class="btn btn--sm" href="Resources%20Public/3_%20GUIDELINES%20/4_ICF%20RETIREMENT%20PLAN%20%26%20PENSION%20PLAN/លិខិតអនុញ្ញាតិសុំដកប្រាក់.pdf" target="_blank">Withdrawal Form</a></div>
-        </article>
         <article class="resource">
           <div class="resource__top"><span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.5-3 1.5-6 0-9-3 0-6 0-7.5 1.5C10 5 7 5 4 5c-1.5 3-1.5 6 0 9 3 0 6 0 7.5-1.5C13 14 16 14 19 14z"/></svg></span><span class="chip">Reference</span></div>
           <h3 class="resource__title">NSSF Insurance</h3>
@@ -343,8 +309,8 @@
           <div class="resource__actions"><a class="btn btn--sm" href="Resources%20Public/3_%20GUIDELINES%20/0_ARCHIVE/7_INSURANCE%20GUIDELINE/Claim%20form_HNS_Forte_2023-2024.pdf" target="_blank">HNS Claim</a><a class="btn btn--sm" href="Resources%20Public/3_%20GUIDELINES%20/0_ARCHIVE/7_INSURANCE%20GUIDELINE/Claim%20form_GPA_Forte_2023-2024.pdf" target="_blank">GPA Claim</a><a class="btn btn--sm" href="Resources%20Public/3_%20GUIDELINES%20/0_ARCHIVE/7_INSURANCE%20GUIDELINE/Panel%20Hospitals_HNS_Forte.pdf" target="_blank">Panel Hospitals</a></div>
         </article>
       </div>
-
       </div><!-- /insurance -->
+
       </div><!-- /resources-fallback -->
     </div>
   </main>
