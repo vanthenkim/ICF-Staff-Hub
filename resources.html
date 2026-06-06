@@ -493,8 +493,11 @@ body.list-view .res-grid .resource__body { flex: 1; min-width: 0; }
     'church':           'Church'
   };
 
-  // Sections that have moved to guidelines.html or are stale — ignore from sheet data
+  // Sections that have moved to guidelines.html or are stale — ignore from sheet data (case-insensitive)
   var HIDDEN_SECTIONS = ['guidelines', 'campus', 'dlt', 'hr-guidelines', 'finance-policies', 'child-protection-policies'];
+  function isHidden(sec) {
+    return HIDDEN_SECTIONS.indexOf(sec.toLowerCase().trim()) !== -1;
+  }
 
   var VIEW_KEY   = 'resources-view';
   var FILTER_KEY = 'resources-filter';
@@ -578,7 +581,7 @@ body.list-view .res-grid .resource__body { flex: 1; min-width: 0; }
     var sectionOrder = [];
     rows.forEach(function(r) {
       if (!r.section) return;
-      if (HIDDEN_SECTIONS.indexOf(r.section) !== -1) return;
+      if (isHidden(r.section)) return;
       if (!grouped[r.section]) { grouped[r.section] = []; sectionOrder.push(r.section); }
       grouped[r.section].push(r);
     });
