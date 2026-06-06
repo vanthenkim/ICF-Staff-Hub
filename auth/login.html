@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#2563EB" />
+<title>Sign In · ICF Cambodia Staff Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%);
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 48px 40px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+    text-align: center;
+  }
+
+  .logo {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 20px;
+    background: #eff6ff;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .logo img {
+    width: 52px;
+    height: 52px;
+    object-fit: contain;
+  }
+
+  h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 6px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 32px;
+  }
+
+  .error-banner {
+    display: none;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #dc2626;
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+
+  .error-banner.visible { display: block; }
+
+  .btn-google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    padding: 14px 20px;
+    background: #fff;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    color: #111827;
+    cursor: pointer;
+    transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+    text-decoration: none;
+  }
+
+  .btn-google:hover {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    background: #f8faff;
+  }
+
+  .btn-google:active {
+    background: #eff6ff;
+  }
+
+  .google-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  .divider {
+    height: 1px;
+    background: #f3f4f6;
+    margin: 28px 0;
+  }
+
+  .restriction-note {
+    font-size: 12px;
+    color: #9ca3af;
+    line-height: 1.5;
+  }
+
+  .restriction-note strong {
+    color: #6b7280;
+    font-weight: 600;
+  }
+
+  .footer-logo {
+    margin-top: 28px;
+    font-size: 12px;
+    color: #d1d5db;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="logo">
+    <img src="/assets/icf-logo.png" alt="ICF Cambodia" onerror="this.style.display='none'" />
+  </div>
+
+  <h1>ICF Cambodia Staff Hub</h1>
+  <p class="subtitle">Sign in with your ICF Cambodia Google account to continue.</p>
+
+  <div class="error-banner" id="errorBanner"></div>
+
+  <a id="loginBtn" href="#" class="btn-google">
+    <!-- Google "G" logo -->
+    <svg class="google-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+      <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+      <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+      <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+    </svg>
+    Sign in with Google
+  </a>
+
+  <div class="divider"></div>
+
+  <p class="restriction-note">
+    Access is restricted to <strong>@icf-cambodia.com</strong> accounts.<br>
+    Use your ICF Cambodia work email to sign in.
+  </p>
+
+  <div class="footer-logo">ICF Cambodia · Staff Hub</div>
+</div>
+
+<script>
+  // Build the login URL with the redirect destination
+  (function () {
+    const params = new URLSearchParams(window.location.search);
+    const redirect = params.get('redirect') || '/';
+    const errorCode = params.get('error');
+
+    // Point the button at the login function
+    const btn = document.getElementById('loginBtn');
+    btn.href = '/.netlify/functions/auth-login?redirect=' + encodeURIComponent(redirect);
+
+    // Show error messages
+    const banner = document.getElementById('errorBanner');
+    const errors = {
+      domain:   '⛔ Your account is not authorized. Please use your @icf-cambodia.com Google account.',
+      google:   '⚠️ Google returned an error. Please try again.',
+      token:    '⚠️ Authentication failed. Please try again.',
+      server:   '⚠️ A server error occurred. Please try again in a moment.',
+      no_code:  '⚠️ Sign-in was cancelled or failed. Please try again.',
+      no_email: '⚠️ Could not retrieve your email address. Please try again.',
+    };
+
+    if (errorCode && errors[errorCode]) {
+      banner.textContent = errors[errorCode];
+      banner.classList.add('visible');
+    }
+  })();
+</script>
+
+</body>
+</html>

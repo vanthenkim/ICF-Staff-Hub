@@ -4,6 +4,18 @@
 [build]
   publish = "."
   functions = "netlify/functions"
+  edge_functions = "netlify/edge-functions"
+
+# ── Auth routes ──────────────────────────────────────────────────────────────
+[[redirects]]
+  from = "/auth/logout"
+  to = "/.netlify/functions/auth-logout"
+  status = 302
+
+# ── Edge function — runs on every request before the CDN serves anything ─────
+[[edge_functions]]
+  function = "auth-guard"
+  path = "/*"
 
 # Friendly URL aliases so HTML pages drop the .html extension
 [[redirects]]
