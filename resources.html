@@ -86,6 +86,7 @@
         <button class="cat-filter__btn" data-filter="finance"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/></svg> Finance</button>
         <button class="cat-filter__btn" data-filter="allowances"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg> Allowances</button>
         <button class="cat-filter__btn" data-filter="insurance"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Insurance</button>
+        <button class="cat-filter__btn" data-filter="church"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 22H6a2 2 0 0 1-2-2V7l8-5 8 5v13a2 2 0 0 1-2 2z"/><line x1="12" y1="2" x2="12" y2="7"/><line x1="9" y1="5" x2="15" y2="5"/></svg> Church</button>
       </div>
 
       <!-- Dynamic resources rendered by JS -->
@@ -310,6 +311,19 @@
       </div>
       </div><!-- /insurance -->
 
+      <!-- Church -->
+      <div class="res-section" data-section="church">
+      <div class="section-title" id="church"><h2>Church</h2></div>
+      <div class="res-grid">
+        <article class="resource">
+          <div class="resource__top"><span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></span><span class="chip chip--active">Active</span></div>
+          <h3 class="resource__title">wqer</h3>
+          <p class="resource__desc">qwerwqer</p>
+          <div class="resource__actions"><a class="btn btn--primary btn--sm" href="#" target="_blank">Open</a><a class="btn btn--sm" href="#" target="_blank">Watch on YouTube</a></div>
+        </article>
+      </div>
+      </div><!-- /church -->
+
       </div><!-- /resources-fallback -->
     </div>
   </main>
@@ -469,14 +483,18 @@ body.list-view .res-grid .resource__body { flex: 1; min-width: 0; }
   var SHEET_URL = 'https://script.google.com/macros/s/AKfycbwy8X4bis4wntmFYRR1IKf6IPxUbOU47F3VR9iwWz31q4TaTXJrf4oCGsQ7suXSXUDQ/exec';
 
   var SECTION_LABELS = {
-    'child-protection': 'Child Protection & Information Sharing',
+    'child-protection': 'Child Protection Forms',
+    'hr-forms':         'HR Forms & Templates',
     'lifecycle':        'Employee Life Cycle',
     'recruitment':      'Recruitment',
-    'finance':          'Finance · Policy & Forms',
+    'finance':          'Finance Forms',
     'allowances':       'Allowances & Family Support',
-    'insurance':        'Insurance, NSSF & Pension',
-    'campus':           'Campus & Kitchen Guidelines'  // moved to guidelines.html
+    'insurance':        'Insurance & NSSF',
+    'church':           'Church'
   };
+
+  // Sections that have moved to guidelines.html or are stale — ignore from sheet data
+  var HIDDEN_SECTIONS = ['guidelines', 'campus', 'dlt', 'hr-guidelines', 'finance-policies', 'child-protection-policies'];
 
   var VIEW_KEY   = 'resources-view';
   var FILTER_KEY = 'resources-filter';
@@ -560,6 +578,7 @@ body.list-view .res-grid .resource__body { flex: 1; min-width: 0; }
     var sectionOrder = [];
     rows.forEach(function(r) {
       if (!r.section) return;
+      if (HIDDEN_SECTIONS.indexOf(r.section) !== -1) return;
       if (!grouped[r.section]) { grouped[r.section] = []; sectionOrder.push(r.section); }
       grouped[r.section].push(r);
     });
