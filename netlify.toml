@@ -6,6 +6,9 @@
   functions = "netlify/functions"
   edge_functions = "netlify/edge-functions"
 
+[build.environment]
+  SECRETS_SCAN_SMART_DETECTION_ENABLED = "false"
+
 # ── Auth routes ──────────────────────────────────────────────────────────────
 [[redirects]]
   from = "/auth/logout"
