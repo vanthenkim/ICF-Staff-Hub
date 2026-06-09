@@ -32,7 +32,8 @@
       <a class="nav__item" href="contacts.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Staff Contacts</a>
       <a class="nav__item" href="https://t.me/+KU4xqUNc6lNmZjU1" target="_blank" rel="noopener"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>Staff Telegram</a>
       <a class="nav__item" href="https://drive.google.com/drive/u/0/home" target="_blank" rel="noopener"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span>Google Drive</a>
-      <button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScskJ0UijIWOWdoLFYQTE8J1jNYmpveZ32rU-BmOtprbFXxvg/viewform','_blank')" style="display:flex;align-items:center;gap:10px;width:100%;border:none;cursor:pointer;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:10px;padding:9px 12px;font-size:14px;font-weight:600;font-family:inherit;margin-top:10px;text-align:left;"><span style="font-size:17px;line-height:1;">🏆</span>Honor a Colleague</button>
+      <!-- HONOR_A_COLLEAGUE: remove the display:none div to reactivate -->
+      <div style="display:none"><button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScskJ0UijIWOWdoLFYQTE8J1jNYmpveZ32rU-BmOtprbFXxvg/viewform','_blank')" style="display:flex;align-items:center;gap:10px;width:100%;border:none;cursor:pointer;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:10px;padding:9px 12px;font-size:14px;font-weight:600;font-family:inherit;margin-top:10px;text-align:left;"><span style="font-size:17px;line-height:1;">🏆</span>Honor a Colleague</button></div>
     </nav>
   </aside>
 
@@ -81,7 +82,6 @@
           <a class="hero__chip" href="#impact">Impact 2025/26</a>
           <a class="hero__chip" href="#values">Our values</a>
           <a class="hero__chip" href="#leadership">Leadership</a>
-          <a class="hero__chip" href="#campus">New Campus</a>
           <a class="hero__chip" href="Copy%20of%20Static_IMPACT%20REPORT%202026__ICF%20CAMBODIA_ENGLISH.pdf" target="_blank">Impact Report 2026 (PDF)</a>
         </div>
       </section>
@@ -423,91 +423,100 @@
 
       </div>
 
-      <!-- New ICF Campus -->
-      <div class="section-title" id="campus" style="margin-top:28px;"><h2>The New ICF Campus</h2><a href="Copy%20of%20Static_IMPACT%20REPORT%202026__ICF%20CAMBODIA_ENGLISH.pdf" target="_blank">See full master plan →</a></div>
-      <div class="card" style="padding:0;overflow:hidden;">
-        <img src="assets/campus/campus-rendering.jpg" alt="New ICF Campus rendering" style="display:block;width:100%;height:auto;" />
-        <div style="padding:20px 22px;">
-          <h3 style="margin:0 0 6px;font-size:18px;">Let's build the future</h3>
-          <p class="muted" style="margin:0 0 14px;">
-            2025 was a year of significant progress. With our partnership with PETRAM Design International,
-            the master plan and updated 3D visualizations give a clear picture of the new campus, stepping forward
-            from concept design into detailed design in 2026. By the end of 2025, all administrative documentation
-            was finalized and the building permit application was officially submitted.
-          </p>
-          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;">
-            <div style="border:1px solid var(--border);border-radius:12px;padding:14px;">
-              <div style="font-weight:700;font-size:13px;color:var(--blue-700);">DAYCARE</div>
-              <div style="font-size:13px;color:var(--text-muted);margin-top:4px;">4 rooms · 100 kids · food prep · sleeping area · playground</div>
-            </div>
-            <div style="border:1px solid var(--border);border-radius:12px;padding:14px;">
-              <div style="font-weight:700;font-size:13px;color:var(--green-600);">EDUCATION BUILDING</div>
-              <div style="font-size:13px;color:var(--text-muted);margin-top:4px;">3 small auditoriums · classrooms · creative workshop</div>
-            </div>
-            <div style="border:1px solid var(--border);border-radius:12px;padding:14px;">
-              <div style="font-weight:700;font-size:13px;color:var(--purple-600);">MAIN HALL · ADULTS</div>
-              <div style="font-size:13px;color:var(--text-muted);margin-top:4px;">400 seats · A/V booth · broadcast &amp; recording rooms</div>
-            </div>
-            <div style="border:1px solid var(--border);border-radius:12px;padding:14px;">
-              <div style="font-weight:700;font-size:13px;color:var(--amber-600);">YOUTH HALL</div>
-              <div style="font-size:13px;color:var(--text-muted);margin-top:4px;">350 seats · A/V booth · sport activity space</div>
-            </div>
-            <div style="border:1px solid var(--border);border-radius:12px;padding:14px;">
-              <div style="font-weight:700;font-size:13px;color:#0369A1;">OFFICE BUILDING</div>
-              <div style="font-size:13px;color:var(--text-muted);margin-top:4px;">HR · Finance · MarCom · Fundraising · IT · meeting rooms</div>
-            </div>
-            <div style="border:1px solid var(--border);border-radius:12px;padding:14px;">
-              <div style="font-weight:700;font-size:13px;color:var(--red-600);">ADDITIONAL</div>
-              <div style="font-size:13px;color:var(--text-muted);margin-top:4px;">Drinking water station · maintenance · reception · security · sports</div>
-            </div>
-          </div>
-        </div>
-      </div>
 
       <!-- Departments quick links -->
-      <div class="section-title" style="margin-top:28px;"><h2>Departments</h2><a href="departments.html">All departments →</a></div>
+      <div class="section-title" id="departments" style="margin-top:28px;"><h2>Departments</h2><a href="departments.html">All departments →</a></div>
       <div class="dept-grid">
         <a class="dept dept--red" href="department-hr.html">
           <span class="dept__band"></span>
-          <span class="dept__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="7" r="4"/></svg></span>
+          <span class="dept__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
           <h3 class="dept__name">HR</h3>
-          <p class="dept__desc">People, hiring, onboarding, staff care.</p>
-          <div class="dept__meta"><span class="dept__contact">Thavy Tham</span><span class="dept__arrow">→</span></div>
+          <p class="dept__desc">People, policies, leave, recruitment, staff care.</p>
+          <div class="dept__meta"><span class="dept__contact">Lead: Thavy Tham</span><span class="dept__arrow">→</span></div>
         </a>
-        <a class="dept dept--blue" href="#">
+        <a class="dept dept--blue" href="javascript:void(0)">
           <span class="dept__band"></span>
-          <span class="dept__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/></svg></span>
+          <span class="dept__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/></svg></span>
           <h3 class="dept__name">Finance</h3>
-          <p class="dept__desc">Budgets, donor reporting, audits.</p>
-          <div class="dept__meta"><span class="dept__contact">Linet Un</span><span class="dept__arrow">→</span></div>
+          <p class="dept__desc">Budgets, expense claims, donor reporting, audits.</p>
+          <div class="dept__meta"><span class="dept__contact">Lead: Linet Un</span><span style="font-size:11px;font-weight:600;color:#6b7280;background:#f3f4f6;border-radius:99px;padding:2px 8px;white-space:nowrap;">Coming soon</span></div>
+        </a>
+        <a class="dept dept--blue" href="department-it.html">
+          <span class="dept__band"></span>
+          <span class="dept__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/></svg></span>
+          <h3 class="dept__name">IT</h3>
+          <p class="dept__desc">Devices, accounts, Wi-Fi, software, support tickets.</p>
+          <div class="dept__meta"><span class="dept__contact">Lead: Vanthen Kim</span><span class="dept__arrow">→</span></div>
+        </a>
+        <a class="dept dept--amber" href="department-property.html">
+          <span class="dept__band"></span>
+          <span class="dept__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h.01M9 13h.01M9 17h.01M15 9h.01M15 13h.01M15 17h.01"/></svg></span>
+          <h3 class="dept__name">Property</h3>
+          <p class="dept__desc">Campus, maintenance, vehicles, security, logistics.</p>
+          <div class="dept__meta"><span class="dept__contact">Lead: Sarath Sok</span><span class="dept__arrow">→</span></div>
         </a>
         <a class="dept dept--cyan" href="department-marcom.html">
           <span class="dept__band"></span>
-          <span class="dept__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/></svg></span>
-          <h3 class="dept__name">MarCom</h3>
-          <p class="dept__desc">Creative media, marketing, communication.</p>
-          <div class="dept__meta"><span class="dept__contact">Ratana Khy</span><span class="dept__arrow">→</span></div>
+          <span class="dept__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>
+          <h3 class="dept__name">Communication / Media</h3>
+          <p class="dept__desc">Brand, design, content, translation, external storytelling.</p>
+          <div class="dept__meta"><span class="dept__contact">Lead: Ratana Khy</span><span class="dept__arrow">→</span></div>
         </a>
-        <a class="dept dept--red" href="#">
+        <a class="dept dept--red" href="javascript:void(0)">
           <span class="dept__band"></span>
-          <span class="dept__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
-          <h3 class="dept__name">Family Care</h3>
-          <p class="dept__desc">Foster care, kinship, family strengthening.</p>
-          <div class="dept__meta"><span class="dept__contact">Karano Chhuon</span><span class="dept__arrow">→</span></div>
+          <span class="dept__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+          <h3 class="dept__name">Social</h3>
+          <p class="dept__desc">Community programs, outreach, family engagement.</p>
+          <div class="dept__meta"><span class="dept__contact">Lead: Theara Sok</span><span style="font-size:11px;font-weight:600;color:#6b7280;background:#f3f4f6;border-radius:99px;padding:2px 8px;white-space:nowrap;">Coming soon</span></div>
         </a>
-        <a class="dept dept--red" href="#">
+        <a class="dept dept--red" href="department-education.html">
           <span class="dept__band"></span>
-          <span class="dept__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10L12 5 2 10l10 5 10-5z"/></svg></span>
+          <span class="dept__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/></svg></span>
           <h3 class="dept__name">Education</h3>
-          <p class="dept__desc">Tutoring, school sponsorship, after-school.</p>
-          <div class="dept__meta"><span class="dept__contact">Parigna Soeum</span><span class="dept__arrow">→</span></div>
+          <p class="dept__desc">Tutoring, school sponsorship, curriculum, youth programs.</p>
+          <div class="dept__meta"><span class="dept__contact">Lead: Parigna Souem</span><span class="dept__arrow">→</span></div>
         </a>
-        <a class="dept dept--green" href="#">
+        <a class="dept dept--red" href="department-family-care.html">
           <span class="dept__band"></span>
-          <span class="dept__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
+          <span class="dept__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg></span>
+          <h3 class="dept__name">Family Care</h3>
+          <p class="dept__desc">Foster care, family strengthening, kinship support.</p>
+          <div class="dept__meta"><span class="dept__contact">Lead: Karano Chhuon</span><span class="dept__arrow">→</span></div>
+        </a>
+        <a class="dept dept--red" href="medical.html">
+          <span class="dept__band"></span>
+          <span class="dept__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.5-3 1.5-6 0-9-3 0-6 0-7.5 1.5C10 5 7 5 4 5c-1.5 3-1.5 6 0 9 3 0 6 0 7.5-1.5C13 14 16 14 19 14z"/></svg></span>
+          <h3 class="dept__name">Medical Care</h3>
+          <p class="dept__desc">Clinic, referrals, health education, emergency procedures.</p>
+          <div class="dept__meta"><span class="dept__contact">Lead: Dr. Pisey Ouk</span><span class="dept__arrow">→</span></div>
+        </a>
+        <a class="dept dept--blue" href="department-leadership.html">
+          <span class="dept__band"></span>
+          <span class="dept__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
+          <h3 class="dept__name">Leadership</h3>
+          <p class="dept__desc">Strategy, partnerships, executive operations, governance.</p>
+          <div class="dept__meta"><span class="dept__contact">Lead: Dara Keo</span><span class="dept__arrow">→</span></div>
+        </a>
+        <a class="dept dept--purple" href="department-church.html">
+          <span class="dept__band"></span>
+          <span class="dept__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></span>
+          <h3 class="dept__name">Church</h3>
+          <p class="dept__desc">Worship, outreach, discipleship, youth &amp; kids ministry.</p>
+          <div class="dept__meta"><span class="dept__contact">Lead: Eddie Roach</span><span class="dept__arrow">→</span></div>
+        </a>
+        <a class="dept dept--green" href="department-fundraising.html">
+          <span class="dept__band"></span>
+          <span class="dept__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/></svg></span>
           <h3 class="dept__name">Fundraising</h3>
-          <p class="dept__desc">Donor care, partnerships, campaigns.</p>
-          <div class="dept__meta"><span class="dept__contact">Longsamnieng Pol</span><span class="dept__arrow">→</span></div>
+          <p class="dept__desc">Donor relations, fundraising strategy, accountability.</p>
+          <div class="dept__meta"><span class="dept__contact">Lead: Longsamnieng Pol</span><span class="dept__arrow">→</span></div>
+        </a>
+        <a class="dept dept--cyan" href="department-guest-relations.html">
+          <span class="dept__band"></span>
+          <span class="dept__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+          <h3 class="dept__name">Guest Relations</h3>
+          <p class="dept__desc">Donor visits, hospitality, campus tours.</p>
+          <div class="dept__meta"><span class="dept__contact">Lead: Steffi Lendi</span><span class="dept__arrow">→</span></div>
         </a>
       </div>
 
