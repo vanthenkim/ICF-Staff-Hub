@@ -702,10 +702,14 @@
     wireChart('#fundraising-org-chart');
     wireChart('#facility-org-chart');
     // Auto-open full org chart if navigated here with #open-fullchart
-    if(window.location.hash === '#open-fullchart'){
-      var m = document.getElementById('modal-icf-main-org-chart');
-      if(m){ m.style.display='flex'; }
+    function openOrgChartIfHash(){
+      if(window.location.hash === '#open-fullchart'){
+        var m = document.getElementById('modal-icf-main-org-chart');
+        if(m){ m.style.display='flex'; }
+      }
     }
+    openOrgChartIfHash();
+    window.addEventListener('hashchange', openOrgChartIfHash);
   });
 })();
 </script>
