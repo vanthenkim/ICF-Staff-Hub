@@ -653,16 +653,16 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 .dept--red .dept__band { background: var(--red-500); }
 .dept--purple .dept__band { background: var(--purple-500); }
 .dept--slate .dept__band { background: #64748B; }
-.dept--green  { border-color: #86efac; }
-.dept--amber  { border-color: #fcd34d; }
-.dept--red    { border-color: #fca5a5; }
-.dept--purple { border-color: #c4b5fd; }
-.dept--slate  { border-color: #cbd5e1; }
-.dept--green:hover  { border-color: var(--green-500); }
-.dept--amber:hover  { border-color: var(--amber-500); }
-.dept--red:hover    { border-color: var(--red-500); }
-.dept--purple:hover { border-color: var(--purple-500); }
-.dept--slate:hover  { border-color: #64748b; }
+.dept.dept--green  { border-color: #86efac; }
+.dept.dept--amber  { border-color: #fcd34d; }
+.dept.dept--red    { border-color: #fca5a5; }
+.dept.dept--purple { border-color: #c4b5fd; }
+.dept.dept--slate  { border-color: #cbd5e1; }
+.dept.dept--green:hover  { border-color: var(--green-500); }
+.dept.dept--amber:hover  { border-color: var(--amber-500); }
+.dept.dept--red:hover    { border-color: var(--red-500); }
+.dept.dept--purple:hover { border-color: var(--purple-500); }
+.dept.dept--slate:hover  { border-color: #64748b; }
 .dept__icon {
   width: 44px; height: 44px;
   border-radius: 12px;
@@ -1622,15 +1622,15 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 /* Cyan department class — matches MarCom org chart button */
 .dept--cyan .dept__band   { background: #0891b2; }
 .dept--cyan .dept__icon   { background: #ecfeff; color: #0891b2; }
-.dept--cyan               { border-color: #67e8f9; }
-.dept--cyan:hover         { border-color: #0891b2; }
+.dept.dept--cyan          { border-color: #67e8f9; }
+.dept.dept--cyan:hover    { border-color: #0891b2; }
 .person--cyan .person__chip { background: #ecfeff; color: #0891b2; }
 
 /* Orange — Vattey Chhun / Operations */
 .dept--blue .dept__band   { background: #2563eb; }
 .dept--blue .dept__icon   { background: #eff6ff; color: #2563eb; }
-.dept--blue               { border-color: #93c5fd; }
-.dept--blue:hover         { border-color: #2563eb; }
+.dept.dept--blue          { border-color: #93c5fd; }
+.dept.dept--blue:hover    { border-color: #2563eb; }
 .person--blue .person__chip { background: #eff6ff; color: #2563eb; }
 
 
