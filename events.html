@@ -252,15 +252,10 @@
     const blocks = icsText.split('BEGIN:VEVENT');
     for (let i = 1; i < blocks.length; i++) {
       const block = blocks[i];
-      // DTSTART can be VALUE=DATE:YYYYMMDD  or  :YYYYMMDDTHHMMSS  or  ;TZID=...:YYYYMMDDTHHMMSS
       const dtMatch = block.match(/DTSTART[^:]*:(\d{8})/);
       if (dtMatch && dtMatch[1] === dateStr) {
-        // Handle line folding — continued lines start with a space
-        const unfolded = block.replace(/
-?
-[ 	]/g, '');
-        const sumMatch = unfolded.match(/SUMMARY:([^
-]+)/);
+        const unfolded = block.replace(/\r?\n[ \t]/g, '');
+        const sumMatch = unfolded.match(/SUMMARY:([^\r\n]+)/);
         if (sumMatch) summaries.push(sumMatch[1].trim());
       }
     }
@@ -329,20 +324,17 @@
     const blocks = icsText.split('BEGIN:VEVENT');
     for (let i = 1; i < blocks.length; i++) {
       const block = blocks[i];
-      const unfolded = block.replace(/
-?
-[ 	]/g, '');
+      const unfolded = block.replace(/\r?\n[ \t]/g, '');
       const dtMatch = unfolded.match(/DTSTART[^:]*:(\d{4})(\d{2})(\d{2})/);
       if (dtMatch) {
         const eventMMDD = dtMatch[2] + dtMatch[3];
         if (eventMMDD === mmdd) {
-          const sumMatch = unfolded.match(/SUMMARY:([^
-]+)/);
+          const sumMatch = unfolded.match(/SUMMARY:([^\r\n]+)/);
           if (sumMatch) summaries.push(sumMatch[1].trim());
         }
       }
     }
-    return [...new Set(summaries)]; // deduplicate recurring entries
+    return [...new Set(summaries)];
   }
 
   function setCard(text, hasEvent) {
