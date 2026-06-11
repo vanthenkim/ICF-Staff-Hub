@@ -184,7 +184,7 @@ function renderList(staff) {
       onmouseenter="this.style.background='#eff6ff'" onmouseleave="this.style.background='${bg}'">
       <td style="padding:8px 12px;">
         <div style="display:flex;align-items:center;gap:8px;">
-          ${p.photo ? `<img src="${p.photo}" alt="${p.name}" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;">` : `<div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">${initials(p.name)}</div>`}
+          ${p.photo ? `<img src="${p.photo}" alt="${p.name}" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;" onerror="this.outerHTML='<div style=\\'width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;\\'>${initials(p.name)}</div>'">` : `<div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">${initials(p.name)}</div>`}
           <div>
             <div style="font-weight:400;font-size:15px;">${p.name}</div>
             ${p.khmerName ? `<div style="font-size:11px;color:#94a3b8;">${p.khmerName}</div>` : ''}
@@ -211,7 +211,7 @@ function renderGallery(staff) {
       const s = DEPT_STYLES[p.department] || ['#f1f5f9','#374151','#e2e8f0'];
       const srch = [p.name, p.khmerName, p.department, p.email, p.telegram].join(' ').toLowerCase();
       const avatar = p.photo
-        ? `<img src="${p.photo}" alt="${p.name}" style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.12);">`
+        ? `<img src="${p.photo}" alt="${p.name}" style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.12);" onerror="this.outerHTML='<div style=\\'width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:24px;font-weight:700;display:flex;align-items:center;justify-content:center;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.12);\\'>${initials(p.name)}</div>'">`
         : `<div style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:24px;font-weight:700;display:flex;align-items:center;justify-content:center;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.12);">${initials(p.name)}</div>`;
       return `<div data-dept="${p.department}" data-search="${srch}" style="background:#fff;border:1.5px solid #e2e8f0;border-radius:16px;overflow:hidden;transition:box-shadow .15s;text-align:center;" onmouseenter="this.style.boxShadow='0 4px 20px rgba(37,99,235,.12)'" onmouseleave="this.style.boxShadow=''">
         <div style="padding:28px 20px 16px;display:flex;flex-direction:column;align-items:center;">
@@ -306,11 +306,17 @@ function renderGallery(staff) {
     return name.trim().toLowerCase().replace(/\s+/g, '-');
   }
 
+  function driveThumb(fileId) {
+    // thumbnail endpoint is more reliable for public files than uc?export=view
+    return `https://lh3.googleusercontent.com/d/${fileId}`;
+  }
+
   function resolvePhoto(name, sheetPhotoUrl) {
     if (sheetPhotoUrl && sheetPhotoUrl.trim()) {
       let url = sheetPhotoUrl.trim();
-      const driveMatch = url.match(/\/file\/d\/([^/]+)/);
-      if (driveMatch) url = `https://drive.google.com/uc?export=view&id=${driveMatch[1]}`;
+      // Convert any Drive share/view link to the reliable lh3 thumbnail
+      const driveMatch = url.match(/[?&]id=([^&]+)/) || url.match(/\/file\/d\/([^/]+)/);
+      if (driveMatch) return driveThumb(driveMatch[1]);
       return url;
     }
     const slug = nameToSlug(name);
