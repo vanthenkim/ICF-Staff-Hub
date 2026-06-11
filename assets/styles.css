@@ -653,16 +653,6 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 .dept--red .dept__band { background: var(--red-500); }
 .dept--purple .dept__band { background: var(--purple-500); }
 .dept--slate .dept__band { background: #64748B; }
-.dept.dept--green  { border-top: 2px solid #86efac; }
-.dept.dept--amber  { border-top: 2px solid #fcd34d; }
-.dept.dept--red    { border-top: 2px solid #fca5a5; }
-.dept.dept--purple { border-top: 2px solid #c4b5fd; }
-.dept.dept--slate  { border-top: 2px solid #cbd5e1; }
-.dept.dept--green:hover  { border-top-color: var(--green-500); }
-.dept.dept--amber:hover  { border-top-color: var(--amber-500); }
-.dept.dept--red:hover    { border-top-color: var(--red-500); }
-.dept.dept--purple:hover { border-top-color: var(--purple-500); }
-.dept.dept--slate:hover  { border-top-color: #64748b; }
 .dept__icon {
   width: 44px; height: 44px;
   border-radius: 12px;
@@ -996,13 +986,15 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   color: #111827 !important;
 }
 
-/* Dept top bands → light gray */
-.dept__band,
-.dept--green .dept__band, .dept--amber .dept__band, .dept--red .dept__band,
-.dept--purple .dept__band, .dept--slate .dept__band,
-.dept--cyan .dept__band, .dept--blue .dept__band {
-  background: #D1D5DB !important;
-}
+/* Dept top bands → department color */
+.dept__band                  { background: var(--blue-500) !important; }
+.dept--green .dept__band     { background: var(--green-500) !important; }
+.dept--amber .dept__band     { background: var(--amber-500) !important; }
+.dept--red .dept__band       { background: var(--red-500) !important; }
+.dept--purple .dept__band    { background: #7c3aed !important; }
+.dept--slate .dept__band     { background: #64748b !important; }
+.dept--cyan .dept__band      { background: #0891b2 !important; }
+.dept--blue .dept__band      { background: #2563eb !important; }
 
 /* Nav active */
 .nav__item.is-active { background: #F3F4F6; color: #111827; }
@@ -1622,15 +1614,11 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 /* Cyan department class — matches MarCom org chart button */
 .dept--cyan .dept__band   { background: #0891b2; }
 .dept--cyan .dept__icon   { background: #ecfeff; color: #0891b2; }
-.dept.dept--cyan          { border-top: 2px solid #67e8f9; }
-.dept.dept--cyan:hover    { border-top-color: #0891b2; }
 .person--cyan .person__chip { background: #ecfeff; color: #0891b2; }
 
 /* Orange — Vattey Chhun / Operations */
 .dept--blue .dept__band   { background: #2563eb; }
 .dept--blue .dept__icon   { background: #eff6ff; color: #2563eb; }
-.dept.dept--blue          { border-top: 2px solid #93c5fd; }
-.dept.dept--blue:hover    { border-top-color: #2563eb; }
 .person--blue .person__chip { background: #eff6ff; color: #2563eb; }
 
 
