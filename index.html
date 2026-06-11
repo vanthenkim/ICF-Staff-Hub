@@ -214,9 +214,7 @@
 <script>
 // ── Today's Lunch ───────────────────────────────────────────────────────────
 (function() {
-  const CAL_ID = 'c_16d101edc06a072b283e851d543b6a024cada259be1b6be3dfd098272aa56fb9%40group.calendar.google.com';
-  const ICS_URL = 'https://calendar.google.com/calendar/ical/' + CAL_ID + '/public/basic.ics';
-  const PROXY   = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(ICS_URL);
+  const PROXY = '/.netlify/functions/calendar-proxy?cal=lunch';
 
   function todayYMD() {
     const d = new Date();
@@ -269,9 +267,7 @@
 <script>
 // ── Today's Birthdays ────────────────────────────────────────────────────────
 (function() {
-  const CAL_ID = 'icf-campus.com_fm6n628u1trm8b0evais34neu8%40group.calendar.google.com';
-  const ICS_URL = 'https://calendar.google.com/calendar/ical/' + CAL_ID + '/public/basic.ics';
-  const PROXY   = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(ICS_URL);
+  const PROXY = '/.netlify/functions/calendar-proxy?cal=birthday';
 
   function todayMD() {
     const d = new Date();
