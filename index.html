@@ -94,6 +94,16 @@
         </div>
       </div>
 
+      <!-- =============== Today's Birthdays =============== -->
+      <div class="section-title" style="margin-top:16px;"><h2>Today's Birthdays</h2><a href="events.html">Full calendar →</a></div>
+      <div id="home-birthday-card" class="card" style="padding:12px 16px;display:flex;align-items:center;gap:12px;background:linear-gradient(135deg,#fdf2f8,#ffffff);border-left:4px solid #ec4899;margin-bottom:4px;">
+        <div style="font-size:22px;line-height:1;">🎂</div>
+        <div style="flex:1;min-width:0;">
+          <p style="margin:0 0 2px;font-size:10px;font-weight:600;color:#be185d;text-transform:uppercase;letter-spacing:.06em;" id="home-birthday-date">Loading…</p>
+          <p style="margin:0;font-size:14px;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" id="home-birthday-text">Checking today's birthdays…</p>
+        </div>
+      </div>
+
       <!-- =============== Announcements + Events (side by side) =============== -->
       <div class="home-two-col" style="margin-top: 28px;">
         <section>
@@ -254,6 +264,61 @@
   document.readyState === 'loading'
     ? document.addEventListener('DOMContentLoaded', loadLunch)
     : loadLunch();
+})();
+</script>
+<script>
+// ── Today's Birthdays ────────────────────────────────────────────────────────
+(function() {
+  const CAL_ID = 'icf-campus.com_fm6n628u1trm8b0evais34neu8%40group.calendar.google.com';
+  const ICS_URL = 'https://calendar.google.com/calendar/ical/' + CAL_ID + '/public/basic.ics';
+  const PROXY   = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(ICS_URL);
+
+  function todayMD() {
+    const d = new Date();
+    return String(d.getMonth()+1).padStart(2,'0') + String(d.getDate()).padStart(2,'0');
+  }
+  function friendlyDate() {
+    return new Date().toLocaleDateString('en-GB', { weekday:'long', day:'numeric', month:'long' });
+  }
+  function parseEvents(icsText, mmdd) {
+    const summaries = [];
+    const blocks = icsText.split('BEGIN:VEVENT');
+    for (let i = 1; i < blocks.length; i++) {
+      const block = blocks[i];
+      const dtMatch = block.match(/DTSTART[^:]*:(\d{4})(\d{2})(\d{2})/);
+      if (dtMatch && (dtMatch[2] + dtMatch[3]) === mmdd) {
+        const unfolded = block.replace(/\r?\n[ \t]/g, '');
+        const sumMatch = unfolded.match(/SUMMARY:([^\r\n]+)/);
+        if (sumMatch) summaries.push(sumMatch[1].trim());
+      }
+    }
+    return [...new Set(summaries)];
+  }
+  function setCard(text, hasEvent) {
+    const dateEl = document.getElementById('home-birthday-date');
+    const textEl = document.getElementById('home-birthday-text');
+    const card   = document.getElementById('home-birthday-card');
+    if (!dateEl || !textEl) return;
+    dateEl.textContent = 'Today · ' + friendlyDate();
+    textEl.textContent = text;
+    if (!hasEvent && card) {
+      card.style.background = 'linear-gradient(135deg,#f9fafb,#ffffff)';
+      card.style.borderLeftColor = '#d1d5db';
+    }
+  }
+  async function loadBirthdays() {
+    try {
+      const resp = await fetch(PROXY, { cache: 'no-cache' });
+      if (!resp.ok) throw new Error();
+      const events = parseEvents(await resp.text(), todayMD());
+      setCard(events.length ? '🎉 ' + events.join(', ') : 'No birthdays today', !!events.length);
+    } catch(e) {
+      setCard('No birthdays today', false);
+    }
+  }
+  document.readyState === 'loading'
+    ? document.addEventListener('DOMContentLoaded', loadBirthdays)
+    : loadBirthdays();
 })();
 </script>
 <script>
