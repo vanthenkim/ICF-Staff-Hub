@@ -289,4 +289,124 @@ function renderGallery(staff) {
   // Key = lowercase "firstname-lastname", value = path.
   // When a "Photo URL" column exists in the sheet, that takes priority.
   const LOCAL_PHOTOS = {
-    'eddie-roach':
+    'eddie-roach':       'assets/people/eddie-roach.jpg',
+    'rany-mom':          'assets/people/rany-mom.jpg',
+    'parigna-souem':     'assets/people/parigna-soeum.jpg',
+    'karano-chhuon':     'assets/people/karano-chhuon.jpg',
+    'longsamnieng-pol':  'assets/people/longsamnieng-pol.jpg',
+    'nuthida-han':       'assets/people/nuthida-han.jpg',
+    'sodalin-thangham':  'assets/people/sodalin-thangham.jpg',
+    'thavy-tham':        'assets/people/thavy-tham.jpg',
+    'vivian-stumpf':     'assets/people/vivian-stumpf.jpg',
+    'martin-strupler':   'assets/people/martin-strupler.jpg',
+    'matthias-lendi':    'assets/people/matthias-lendi.jpg',
+    'stephanie-shelow':  'assets/people/stephanie-shelow.jpg',
+    'vattey-chhun':      'assets/people/vattey-chhun.jpg',
+    'ratana-khy':        'assets/people/ratana-khy.jpg',
+  };
+
+  function nameToSlug(name) {
+    return name.trim().toLowerCase().replace(/\s+/g, '-');
+  }
+
+  function resolvePhoto(name, sheetPhotoUrl) {
+    // Sheet column takes priority
+    if (sheetPhotoUrl && sheetPhotoUrl.trim()) {
+      let url = sheetPhotoUrl.trim();
+      // Convert Google Drive share links to direct image links
+      // https://drive.google.com/file/d/FILE_ID/view → https://drive.google.com/uc?export=view&id=FILE_ID
+      const driveMatch = url.match(/\/file\/d\/([^/]+)/);
+      if (driveMatch) url = `https://drive.google.com/uc?export=view&id=${driveMatch[1]}`;
+      return url;
+    }
+    // Fall back to locally hosted photo by name slug
+    const slug = nameToSlug(name);
+    if (LOCAL_PHOTOS[slug]) return LOCAL_PHOTOS[slug];
+    // Also try reversed (surname-first names)
+    const parts = name.trim().split(/\s+/);
+    if (parts.length === 2) {
+      const rev = `${parts[1].toLowerCase()}-${parts[0].toLowerCase()}`;
+      if (LOCAL_PHOTOS[rev]) return LOCAL_PHOTOS[rev];
+    }
+    return '';
+  }
+
+  function parseCSV(text) {
+    // Simple CSV parser that handles quoted fields
+    const rows = [];
+    let cur = '', inQ = false, row = [];
+    for (let i = 0; i < text.length; i++) {
+      const c = text[i];
+      if (c === '"') { inQ = !inQ; continue; }
+      if (c === ',' && !inQ) { row.push(cur); cur = ''; continue; }
+      if ((c === '\n' || c === '\r') && !inQ) {
+        if (c === '\r' && text[i+1] === '\n') i++;
+        row.push(cur); rows.push(row); row = []; cur = '';
+        continue;
+      }
+      cur += c;
+    }
+    if (cur || row.length) { row.push(cur); rows.push(row); }
+    return rows;
+  }
+
+  fetch(SHEET_CSV)
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
+    .then(csv => {
+      const rows = parseCSV(csv);
+      if (rows.length < 2) throw new Error('empty');
+
+      // Detect columns from header row (handles "# CHURCH" style headers from Sheets)
+      const header = rows[0].map(h => h.trim().toLowerCase());
+      const col = {
+        num:      header.findIndex(h => h.includes('#')),
+        name:     header.findIndex(h => h.includes('name')),
+        role:     header.findIndex(h => h.includes('role')),
+        dept:     header.findIndex(h => h.includes('department') || h === 'dept'),
+        email:    header.findIndex(h => h.includes('email')),
+        phone:    header.findIndex(h => h.includes('phone')),
+        telegram: header.findIndex(h => h.includes('telegram')),
+        photo:    header.findIndex(h => h.includes('photo')),
+      };
+
+      const contacts = [];
+      for (let i = 1; i < rows.length; i++) {
+        const r = rows[i];
+        if (!r.length || r.every(c => !c.trim())) continue;
+        const num = r[col.num] || '';
+        // Skip section header rows (e.g. "# CHURCH") and empty rows
+        if (!num.trim() || isNaN(Number(num.trim()))) continue;
+        const name = col.name >= 0 ? (r[col.name] || '').trim() : '';
+        if (!name) continue;
+        const photoUrl = col.photo >= 0 ? (r[col.photo] || '').trim() : '';
+        contacts.push({
+          name,
+          role:       col.role >= 0     ? (r[col.role] || '').trim()     : '',
+          department: col.dept >= 0     ? (r[col.dept] || '').trim()     : '',
+          email:      col.email >= 0    ? (r[col.email] || '').trim()    : '',
+          phone:      col.phone >= 0    ? (r[col.phone] || '').trim()    : '',
+          telegram:   col.telegram >= 0 ? (r[col.telegram] || '').trim().replace(/^@/, '') : '',
+          photo:      resolvePhoto(name, photoUrl),
+        });
+      }
+
+      allStaff = contacts;
+      const countEl = document.getElementById('staff-count-label');
+      if (countEl) countEl.textContent = `Directory of ${allStaff.length} staff members · phone & Telegram where available`;
+      const depts = [...new Set(allStaff.map(p => p.department).filter(Boolean))].sort();
+      depts.forEach(dept => {
+        const opt = document.createElement('option');
+        opt.value = dept;
+        opt.textContent = dept;
+        deptSel.appendChild(opt);
+      });
+      applyFilters();
+    })
+    .catch(() => {
+      const row = document.getElementById('loading-row');
+      if (row) row.cells[0].textContent = 'Could not load contact directory. Please refresh.';
+    });
+})();
+</script>
+</body>
+</html>
