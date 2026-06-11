@@ -255,7 +255,10 @@
   }
   async function loadLunch() {
     try {
-      const resp = await fetch(PROXY, { cache: 'no-cache' });
+      const ctrl = new AbortController();
+      const tid  = setTimeout(() => ctrl.abort(), 7000);
+      const resp = await fetch(PROXY, { cache: 'no-cache', signal: ctrl.signal });
+      clearTimeout(tid);
       if (!resp.ok) throw new Error();
       const events = parseEvents(await resp.text(), todayYMD());
       setCard(events.length ? events.join(' · ') : 'No lunch today', !!events.length);
@@ -308,7 +311,10 @@
   }
   async function loadBirthdays() {
     try {
-      const resp = await fetch(PROXY, { cache: 'no-cache' });
+      const ctrl = new AbortController();
+      const tid  = setTimeout(() => ctrl.abort(), 7000);
+      const resp = await fetch(PROXY, { cache: 'no-cache', signal: ctrl.signal });
+      clearTimeout(tid);
       if (!resp.ok) throw new Error();
       const events = parseEvents(await resp.text(), todayMD());
       setCard(events.length ? '🎉 ' + events.join(', ') : 'No birthdays today', !!events.length);
