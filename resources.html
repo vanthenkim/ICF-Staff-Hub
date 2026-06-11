@@ -32,7 +32,8 @@
       <a class="nav__item" href="contacts.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Staff Contacts</a>
       <a class="nav__item" href="https://t.me/+KU4xqUNc6lNmZjU1" target="_blank" rel="noopener"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>Staff Telegram</a>
       <a class="nav__item" href="https://drive.google.com/drive/u/0/home" target="_blank" rel="noopener"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span>Google Drive</a>
-      <button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScskJ0UijIWOWdoLFYQTE8J1jNYmpveZ32rU-BmOtprbFXxvg/viewform','_blank')" style="display:flex;align-items:center;gap:10px;width:100%;border:none;cursor:pointer;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:10px;padding:9px 12px;font-size:14px;font-weight:600;font-family:inherit;margin-top:10px;text-align:left;"><span style="font-size:17px;line-height:1;">🏆</span>Honor a Colleague</button>
+      <!-- HONOR_A_COLLEAGUE: remove the display:none div to reactivate -->
+      <div style="display:none"><button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScskJ0UijIWOWdoLFYQTE8J1jNYmpveZ32rU-BmOtprbFXxvg/viewform','_blank')" style="display:flex;align-items:center;gap:10px;width:100%;border:none;cursor:pointer;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:10px;padding:9px 12px;font-size:14px;font-weight:600;font-family:inherit;margin-top:10px;text-align:left;"><span style="font-size:17px;line-height:1;">🏆</span>Honor a Colleague</button></div>
     </nav>
   </aside>
 
@@ -85,7 +86,6 @@
         <button class="cat-filter__btn" data-filter="finance"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/></svg> Finance</button>
         <button class="cat-filter__btn" data-filter="allowances"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg> Allowances</button>
         <button class="cat-filter__btn" data-filter="insurance"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Insurance</button>
-        <button class="cat-filter__btn" data-filter="church"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 22H6a2 2 0 0 1-2-2V7l8-5 8 5v13a2 2 0 0 1-2 2z"/><line x1="12" y1="2" x2="12" y2="7"/><line x1="9" y1="5" x2="15" y2="5"/></svg> Church</button>
       </div>
 
       <!-- Dynamic resources rendered by JS -->
@@ -156,7 +156,7 @@
         <article class="resource resource--purple">
           <div class="resource__top"><span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></span><span class="chip chip--active">Active</span></div>
           <h3 class="resource__title">Employment Contract Template</h3>
-          <p class="resource__desc">Standard bilingual contract for full-time staff.</p>
+          <p class="resource__desc">Standard contract for full-time staff.</p>
           <div class="resource__actions"><a class="btn btn--primary btn--sm" href="Resources%20Public/2_%20EMPLOYEE%20LIFE%20CYCLE/1_WORKING%20CONTRACT%20TEMPLATE/Template%20Employment%20Contract.docx%20%281%29.docx" target="_blank">English</a><a class="btn btn--sm" href="Resources%20Public/2_%20EMPLOYEE%20LIFE%20CYCLE/1_WORKING%20CONTRACT%20TEMPLATE/Khmer%20Template%20Employment%20Contract.docx%20-%20Copy.pdf" target="_blank">Khmer</a></div>
         </article>
         <article class="resource resource--purple">
@@ -212,19 +212,19 @@
           <div class="resource__top"><span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></span><span class="chip chip--active">Active</span></div>
           <h3 class="resource__title">Hiring Request Template</h3>
           <p class="resource__desc">First step — submit a new-hire request to HR.</p>
-          <div class="resource__actions"><a class="btn btn--green btn--sm" href="Resources%20Public/1_RECRUITMENT/2_REQUEST%20NEW%20STAFF%20TEMPLATE/2%20-%20Hiring%20Request-%20HR-ICF-2019.docx" target="_blank">Download</a></div>
+          <div class="resource__actions"><a class="btn btn--primary btn--sm" href="Resources%20Public/1_RECRUITMENT/2_REQUEST%20NEW%20STAFF%20TEMPLATE/2%20-%20Hiring%20Request-%20HR-ICF-2019.docx" target="_blank">Download</a></div>
         </article>
         <article class="resource resource--green">
           <div class="resource__top"><span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></span><span class="chip chip--active">Active</span></div>
           <h3 class="resource__title">Job Description Template (2026)</h3>
           <p class="resource__desc">Standardized JD template for new roles.</p>
-          <div class="resource__actions"><a class="btn btn--green btn--sm" href="Resources%20Public/1_RECRUITMENT/2_REQUEST%20NEW%20STAFF%20TEMPLATE/1%20-%20Job%20Description-HR-ICF-New%20templete-2026.docx" target="_blank">Download</a></div>
+          <div class="resource__actions"><a class="btn btn--primary btn--sm" href="Resources%20Public/1_RECRUITMENT/2_REQUEST%20NEW%20STAFF%20TEMPLATE/1%20-%20Job%20Description-HR-ICF-New%20templete-2026.docx" target="_blank">Download</a></div>
         </article>
         <article class="resource resource--green">
           <div class="resource__top"><span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></span><span class="chip chip--active">Active</span></div>
           <h3 class="resource__title">Capture Success Profile (2026)</h3>
           <p class="resource__desc">Define what good looks like before hiring.</p>
-          <div class="resource__actions"><a class="btn btn--green btn--sm" href="Resources%20Public/1_RECRUITMENT/2_REQUEST%20NEW%20STAFF%20TEMPLATE/3%20-%20Capture%20Success%20Profile%20From-2026_.docx" target="_blank">Download</a></div>
+          <div class="resource__actions"><a class="btn btn--primary btn--sm" href="Resources%20Public/1_RECRUITMENT/2_REQUEST%20NEW%20STAFF%20TEMPLATE/3%20-%20Capture%20Success%20Profile%20From-2026_.docx" target="_blank">Download</a></div>
         </article>
         <article class="resource">
           <div class="resource__top"><span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></span><span class="chip chip--active">Active</span></div>
@@ -310,18 +310,6 @@
       </div>
       </div><!-- /insurance -->
 
-      <!-- Church -->
-      <div class="res-section" data-section="church">
-      <div class="section-title" id="church"><h2>Church</h2></div>
-      <div class="res-grid">
-        <article class="resource">
-          <div class="resource__top"><span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></span><span class="chip chip--active">Active</span></div>
-          <h3 class="resource__title">wqer</h3>
-          <p class="resource__desc">qwerwqer</p>
-          <div class="resource__actions"><a class="btn btn--primary btn--sm" href="#" target="_blank">Open</a><a class="btn btn--sm" href="#" target="_blank">Watch on YouTube</a></div>
-        </article>
-      </div>
-      </div><!-- /church -->
 
       </div><!-- /resources-fallback -->
     </div>
@@ -334,10 +322,7 @@
       <span class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
       Home
     </a>
-    <a class="mobilenav__btn" href="https://icf.akas.co/self-service/leave-request" target="_blank" rel="noopener">
-      <span class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
-      Leave
-    </a>
+
     <a class="mobilenav__btn" href="resources.html">
       <span class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
       Resources
@@ -478,7 +463,7 @@ body.list-view .res-grid .resource__body { flex: 1; min-width: 0; }
      CONFIG — paste your published CSV URL here
      Steps: File → Share → Publish to web → CSV → Copy link
   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  var SHEET_URL = 'https://script.google.com/macros/s/AKfycbwy8X4bis4wntmFYRR1IKf6IPxUbOU47F3VR9iwWz31q4TaTXJrf4oCGsQ7suXSXUDQ/exec';
+  var SHEET_URL = ''; // sheet integration disabled — using static fallback
 
   var SECTION_LABELS = {
     'child-protection': 'Child Protection Forms',
@@ -638,7 +623,6 @@ body.list-view .res-grid .resource__body { flex: 1; min-width: 0; }
     document.querySelectorAll('.res-section').forEach(function(s) {
       s.classList.toggle('is-hidden', cat !== 'all' && s.dataset.section !== cat);
     });
-    try { localStorage.setItem(FILTER_KEY, cat); } catch(e) {}
   }
 
   btnGallery.addEventListener('click', function() { setView('gallery'); });
@@ -650,7 +634,7 @@ body.list-view .res-grid .resource__body { flex: 1; min-width: 0; }
   /* ── Init view prefs ── */
   try {
     setView(localStorage.getItem(VIEW_KEY) || 'list');
-    currentFilter = localStorage.getItem(FILTER_KEY) || 'all';
+    currentFilter = 'all'; // always start on All
   } catch(e) { setView('list'); }
 
   /* ── Fetch sheet from Apps Script (returns JSON) ── */

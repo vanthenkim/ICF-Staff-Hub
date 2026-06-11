@@ -32,7 +32,8 @@
       <a class="nav__item" href="contacts.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Staff Contacts</a>
       <a class="nav__item" href="https://t.me/+KU4xqUNc6lNmZjU1" target="_blank" rel="noopener"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>Staff Telegram</a>
       <a class="nav__item" href="https://drive.google.com/drive/u/0/home" target="_blank" rel="noopener"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span>Google Drive</a>
-      <button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScskJ0UijIWOWdoLFYQTE8J1jNYmpveZ32rU-BmOtprbFXxvg/viewform','_blank')" style="display:flex;align-items:center;gap:10px;width:100%;border:none;cursor:pointer;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:10px;padding:9px 12px;font-size:14px;font-weight:600;font-family:inherit;margin-top:10px;text-align:left;"><span style="font-size:17px;line-height:1;">🏆</span>Honor a Colleague</button>
+      <!-- HONOR_A_COLLEAGUE: remove the display:none div to reactivate -->
+      <div style="display:none"><button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScskJ0UijIWOWdoLFYQTE8J1jNYmpveZ32rU-BmOtprbFXxvg/viewform','_blank')" style="display:flex;align-items:center;gap:10px;width:100%;border:none;cursor:pointer;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:10px;padding:9px 12px;font-size:14px;font-weight:600;font-family:inherit;margin-top:10px;text-align:left;"><span style="font-size:17px;line-height:1;">🏆</span>Honor a Colleague</button></div>
     </nav>
   </aside>
 
@@ -61,52 +62,45 @@
     <div class="container">
       <div class="crumbs"><a href="index.html">Home</a><span class="sep">/</span><a href="departments.html">Departments</a><span class="sep">/</span><span>Church</span></div>
 
-      <section class="dept-hero" style="border-left:4px solid #7c3aed;">
+      <section class="dept-hero" style="background:linear-gradient(135deg,#5b21b6,#7c3aed);">
         <div class="dept-hero__icon" style="background:#f5f3ff;color:#7c3aed;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="8" x2="22" y2="8"/></svg></div>
         <div style="flex:1;">
           <h1>Church</h1>
           <p>Gathering people around Jesus — through worship, outreach, discipleship, youth and kids ministry, and pastoral care across all ICF Cambodia church locations.</p>
-          <div class="dept-hero__meta">
-            <span><strong>Lead:</strong> Eddie Roach</span>
-            <span><strong>Team:</strong> 29 staff</span>
-            <span><strong>Services:</strong> English &amp; Khmer</span>
-          </div>
         </div>
       </section>
 
       <div class="col-2">
         <section>
           <div class="section-title"><h2>What We Do</h2></div>
-          <div class="card" style="margin-bottom:16px;">
-            <div style="display:flex;flex-direction:column;gap:14px;">
-              <div style="display:flex;gap:14px;align-items:flex-start;">
-                <span style="width:32px;height:32px;border-radius:8px;background:#f5f3ff;color:#7c3aed;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="8" x2="22" y2="8"/></svg></span>
-                <div><div style="font-weight:600;font-size:14px;margin-bottom:2px;">Worship Services</div><div class="muted" style="font-size:13px;">Weekly church gatherings — English and Khmer services — with worship, teaching, and community for all ages.</div></div>
+          <div style="display:flex;flex-direction:column;gap:0;border:0.5px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:28px;">
+              <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;border-bottom:0.5px solid var(--border);">
+                <div style="width:32px;height:32px;border-radius:8px;background:#f5f3ff;color:#7c3aed;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="8" x2="22" y2="8"/></svg></div>
+                <div><div style="font-weight:500;font-size:14px;margin:0 0 2px;">Worship Services</div><div style="font-size:12.5px;color:var(--text-muted);line-height:1.4;">Weekly church gatherings — English and Khmer services — with worship, teaching, and community for all ages.</div></div>
               </div>
-              <div style="display:flex;gap:14px;align-items:flex-start;">
-                <span style="width:32px;height:32px;border-radius:8px;background:#f5f3ff;color:#7c3aed;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
-                <div><div style="font-weight:600;font-size:14px;margin-bottom:2px;">Outreach & Next Steps</div><div class="muted" style="font-size:13px;">Community outreach, evangelism, and helping new believers take their next steps in faith through intentional follow-up and discipleship.</div></div>
+              <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;border-bottom:0.5px solid var(--border);">
+                <div style="width:32px;height:32px;border-radius:8px;background:#f5f3ff;color:#7c3aed;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+                <div><div style="font-weight:500;font-size:14px;margin:0 0 2px;">Outreach & Next Steps</div><div style="font-size:12.5px;color:var(--text-muted);line-height:1.4;">Community outreach, evangelism, and helping new believers take their next steps in faith through intentional follow-up and discipleship.</div></div>
               </div>
-              <div style="display:flex;gap:14px;align-items:flex-start;">
-                <span style="width:32px;height:32px;border-radius:8px;background:#f5f3ff;color:#7c3aed;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/></svg></span>
-                <div><div style="font-weight:600;font-size:14px;margin-bottom:2px;">Youth & Kids Ministry</div><div class="muted" style="font-size:13px;">Dedicated programs for children and teenagers — God's Kids, Mighty Kids, Adventure Kids, and Youth — nurturing the next generation of believers.</div></div>
+              <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;border-bottom:0.5px solid var(--border);">
+                <div style="width:32px;height:32px;border-radius:8px;background:#f5f3ff;color:#7c3aed;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/></svg></div>
+                <div><div style="font-weight:500;font-size:14px;margin:0 0 2px;">Youth & Kids Ministry</div><div style="font-size:12.5px;color:var(--text-muted);line-height:1.4;">Dedicated programs for children and teenagers — God's Kids, Mighty Kids, Adventure Kids, and Youth — nurturing the next generation of believers.</div></div>
               </div>
-              <div style="display:flex;gap:14px;align-items:flex-start;">
-                <span style="width:32px;height:32px;border-radius:8px;background:#f5f3ff;color:#7c3aed;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></span>
-                <div><div style="font-weight:600;font-size:14px;margin-bottom:2px;">Worship & Technical</div><div class="muted" style="font-size:13px;">Leading worship through music, sound, and multimedia — creating an atmosphere where people can encounter God.</div></div>
+              <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;border-bottom:0.5px solid var(--border);">
+                <div style="width:32px;height:32px;border-radius:8px;background:#f5f3ff;color:#7c3aed;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
+                <div><div style="font-weight:500;font-size:14px;margin:0 0 2px;">Worship & Technical</div><div style="font-size:12.5px;color:var(--text-muted);line-height:1.4;">Leading worship through music, sound, and multimedia — creating an atmosphere where people can encounter God.</div></div>
               </div>
-              <div style="display:flex;gap:14px;align-items:flex-start;">
-                <span style="width:32px;height:32px;border-radius:8px;background:#f5f3ff;color:#7c3aed;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
-                <div><div style="font-weight:600;font-size:14px;margin-bottom:2px;">Inner Healing & Guest Relations</div><div class="muted" style="font-size:13px;">Supporting emotional and spiritual healing through pastoral care, inner healing sessions, and welcoming guests with warmth.</div></div>
+              <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;">
+                <div style="width:32px;height:32px;border-radius:8px;background:#f5f3ff;color:#7c3aed;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+                <div><div style="font-weight:500;font-size:14px;margin:0 0 2px;">Inner Healing & Guest Relations</div><div style="font-size:12.5px;color:var(--text-muted);line-height:1.4;">Supporting emotional and spiritual healing through pastoral care, inner healing sessions, and welcoming guests with warmth.</div></div>
               </div>
-            </div>
           </div>
 
           <div class="section-title" style="margin-top:8px;"><h2>Resources &amp; Tools</h2></div>
           <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px;">
-            <div class="card" style="padding:14px 16px;display:flex;align-items:center;justify-content:space-between;"><div><div style="font-weight:600;font-size:14px;">Church Calendar</div><div class="muted" style="font-size:13px;">Service times, events, and special gatherings</div></div><span style="display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#f1f5f9;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-weight:500;color:#94a3b8;cursor:not-allowed;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Coming soon</span></div>
-            <div class="card" style="padding:14px 16px;display:flex;align-items:center;justify-content:space-between;"><div><div style="font-weight:600;font-size:14px;">Next Steps Materials</div><div class="muted" style="font-size:13px;">Discipleship resources for new believers</div></div><span style="display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#f1f5f9;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-weight:500;color:#94a3b8;cursor:not-allowed;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Coming soon</span></div>
-            <div class="card" style="padding:14px 16px;display:flex;align-items:center;justify-content:space-between;"><div><div style="font-weight:600;font-size:14px;">Event Support Request</div><div class="muted" style="font-size:13px;">Request support for church events</div></div><span style="display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#f1f5f9;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-weight:500;color:#94a3b8;cursor:not-allowed;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Coming soon</span></div>
+            <div class="card" style="padding:14px 16px;display:flex;align-items:center;justify-content:space-between;"><div><div style="font-weight:600;font-size:14px;">Church Calendar</div><div style="font-size:12.5px;color:var(--text-muted);line-height:1.4;">Service times, events, and special gatherings</div></div><span style="display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#f5f3ff;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-weight:500;color:#94a3b8;cursor:not-allowed;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Coming soon</span></div>
+            <div class="card" style="padding:14px 16px;display:flex;align-items:center;justify-content:space-between;"><div><div style="font-weight:600;font-size:14px;">Next Steps Materials</div><div style="font-size:12.5px;color:var(--text-muted);line-height:1.4;">Discipleship resources for new believers</div></div><span style="display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#f5f3ff;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-weight:500;color:#94a3b8;cursor:not-allowed;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Coming soon</span></div>
+            <div class="card" style="padding:14px 16px;display:flex;align-items:center;justify-content:space-between;"><div><div style="font-weight:600;font-size:14px;">Event Support Request</div><div style="font-size:12.5px;color:var(--text-muted);line-height:1.4;">Request support for church events</div></div><span style="display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#f5f3ff;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-weight:500;color:#94a3b8;cursor:not-allowed;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Coming soon</span></div>
           </div>
 
           <div class="section-title"><h2>Standard Operating Procedures</h2></div>
@@ -114,19 +108,19 @@
             <div style="display:flex;flex-direction:column;">
               <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);">
                 <div style="font-size:13.5px;font-weight:500;">SOP 01 — Sunday Service Preparation</div>
-                <span style="display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#f1f5f9;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-weight:500;color:#94a3b8;cursor:not-allowed;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Coming soon</span>
+                <span style="display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#f5f3ff;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-weight:500;color:#94a3b8;cursor:not-allowed;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Coming soon</span>
               </div>
               <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);">
                 <div style="font-size:13.5px;font-weight:500;">SOP 02 — Outreach Visit Protocol</div>
-                <span style="display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#f1f5f9;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-weight:500;color:#94a3b8;cursor:not-allowed;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Coming soon</span>
+                <span style="display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#f5f3ff;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-weight:500;color:#94a3b8;cursor:not-allowed;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Coming soon</span>
               </div>
               <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);">
                 <div style="font-size:13.5px;font-weight:500;">SOP 03 — Kids Ministry Safety & Safeguarding</div>
-                <span style="display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#f1f5f9;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-weight:500;color:#94a3b8;cursor:not-allowed;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Coming soon</span>
+                <span style="display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#f5f3ff;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-weight:500;color:#94a3b8;cursor:not-allowed;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Coming soon</span>
               </div>
               <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);">
                 <div style="font-size:13.5px;font-weight:500;">SOP 04 — Inner Healing Session Guidelines</div>
-                <span style="display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#f1f5f9;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-weight:500;color:#94a3b8;cursor:not-allowed;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Coming soon</span>
+                <span style="display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#f5f3ff;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-weight:500;color:#94a3b8;cursor:not-allowed;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Coming soon</span>
               </div>
               <div style="padding-top:10px;font-size:12px;color:#94a3b8;">SOPs are being uploaded — check back soon.</div>
             </div>
@@ -137,141 +131,143 @@
           <div class="card" style="margin-bottom:14px;">
             <h3 style="margin:0 0 10px;font-size:15px;">Team</h3>
             <div style="display:flex;flex-direction:column;gap:10px;">
+              <!-- Executive Director -->
+              <div style="font-size:11px;font-weight:700;color:#7c3aed;text-transform:uppercase;letter-spacing:.06em;padding:2px 0 4px;">Executive Director</div>
               <div data-person="Eddie Roach" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#f5f3ff'" onmouseout="this.style.background=''">
                 <img src="assets/people/eddie-roach.jpg" alt="Eddie Roach" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;" />
-                <div><div style="font-weight:600;font-size:13.5px;">Eddie Roach</div><div class="muted" style="font-size:12px;">Executive Director · eddie.roach@icf-cambodia.com</div></div>
+                <div><div style="font-weight:600;font-size:13.5px;">Eddie Roach</div><div class="muted" style="font-size:12px;">Executive Director</div></div>
               </div>
+              <div style="font-size:11px;font-weight:700;color:#7c3aed;text-transform:uppercase;letter-spacing:.06em;padding:6px 0 2px;border-top:1px solid var(--border);">Management</div>
               <div data-person="Rany Mom" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#f5f3ff'" onmouseout="this.style.background=''">
                 <img src="assets/people/rany-mom.jpg" alt="Rany Mom" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;" />
-                <div><div style="font-weight:600;font-size:13.5px;">Rany Mom</div><div class="muted" style="font-size:12px;">Location Pastor (Khnar) · rany.mom@icf-cambodia.com</div></div>
+                <div><div style="font-weight:600;font-size:13.5px;">Rany Mom</div><div class="muted" style="font-size:12px;">Location Pastor (Khnar)</div></div>
               </div>
+              <!-- Next Steps -->
+              <div style="font-size:11px;font-weight:700;color:#7c3aed;text-transform:uppercase;letter-spacing:.06em;padding:6px 0 2px;border-top:1px solid var(--border);">Next Steps</div>
               <div data-person="Panha Neang" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#f5f3ff'" onmouseout="this.style.background=''">
-                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #c4b5fd;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#7c3aed;flex-shrink:0;">PN</div>
-                <div><div style="font-weight:600;font-size:13.5px;">Panha Neang</div><div class="muted" style="font-size:12px;">Next Steps Pastor · panha.neang@icf-cambodia.com</div></div>
+                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #cbd5e1;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#475569;flex-shrink:0;">PN</div>
+                <div><div style="font-weight:600;font-size:13.5px;">Panha Neang</div><div class="muted" style="font-size:12px;">Next Steps Pastor</div></div>
               </div>
               <div data-person="Boromey Hom" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#f5f3ff'" onmouseout="this.style.background=''">
-                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #c4b5fd;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#7c3aed;flex-shrink:0;">BH</div>
-                <div><div style="font-weight:600;font-size:13.5px;">Boromey Hom</div><div class="muted" style="font-size:12px;">Next Steps Facilitator · boromey.hom@icf-cambodia.com</div></div>
+                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #cbd5e1;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#475569;flex-shrink:0;">BH</div>
+                <div><div style="font-weight:600;font-size:13.5px;">Boromey Hom</div><div class="muted" style="font-size:12px;">Next Steps Facilitator</div></div>
               </div>
+              <!-- Outreach -->
+              <div style="font-size:11px;font-weight:700;color:#7c3aed;text-transform:uppercase;letter-spacing:.06em;padding:6px 0 2px;border-top:1px solid var(--border);">Outreach</div>
               <div data-person="Bethany Roach" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#f5f3ff'" onmouseout="this.style.background=''">
-                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #c4b5fd;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#7c3aed;flex-shrink:0;">BR</div>
-                <div><div style="font-weight:600;font-size:13.5px;">Bethany Roach</div><div class="muted" style="font-size:12px;">Outreach Pastor · bethany.roach@icf-cambodia.com</div></div>
+                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #cbd5e1;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#475569;flex-shrink:0;">BR</div>
+                <div><div style="font-weight:600;font-size:13.5px;">Bethany Roach</div><div class="muted" style="font-size:12px;">Outreach Pastor</div></div>
               </div>
               <div data-person="Seangly Leng" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#f5f3ff'" onmouseout="this.style.background=''">
-                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #c4b5fd;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#7c3aed;flex-shrink:0;">SL</div>
-                <div><div style="font-weight:600;font-size:13.5px;">Seangly Leng</div><div class="muted" style="font-size:12px;">Outreach Supervisor · seangly.leng@icf-cambodia.com</div></div>
+                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #cbd5e1;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#475569;flex-shrink:0;">SL</div>
+                <div><div style="font-weight:600;font-size:13.5px;">Seangly Leng</div><div class="muted" style="font-size:12px;">Outreach Supervisor</div></div>
               </div>
               <div data-person="Champa Vong" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#f5f3ff'" onmouseout="this.style.background=''">
-                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #c4b5fd;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#7c3aed;flex-shrink:0;">CV</div>
-                <div><div style="font-weight:600;font-size:13.5px;">Champa Vong</div><div class="muted" style="font-size:12px;">Outreach Facilitator · champa.vong@icf-cambodia.com</div></div>
+                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #cbd5e1;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#475569;flex-shrink:0;">CV</div>
+                <div><div style="font-weight:600;font-size:13.5px;">Champa Vong</div><div class="muted" style="font-size:12px;">Outreach Facilitator</div></div>
               </div>
               <div data-person="Rothana Ros" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#f5f3ff'" onmouseout="this.style.background=''">
-                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #c4b5fd;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#7c3aed;flex-shrink:0;">RR</div>
-                <div><div style="font-weight:600;font-size:13.5px;">Rothana Ros</div><div class="muted" style="font-size:12px;">Outreach Facilitator · rothana.ros@icf-cambodia.com</div></div>
+                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #cbd5e1;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#475569;flex-shrink:0;">RR</div>
+                <div><div style="font-weight:600;font-size:13.5px;">Rothana Ros</div><div class="muted" style="font-size:12px;">Outreach Facilitator</div></div>
               </div>
               <div data-person="Sambath Song" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#f5f3ff'" onmouseout="this.style.background=''">
-                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #c4b5fd;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#7c3aed;flex-shrink:0;">SS</div>
-                <div><div style="font-weight:600;font-size:13.5px;">Sambath Song</div><div class="muted" style="font-size:12px;">Youth Outreach Staff · sambath.song@icf-cambodia.com</div></div>
+                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #cbd5e1;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#475569;flex-shrink:0;">SS</div>
+                <div><div style="font-weight:600;font-size:13.5px;">Sambath Song</div><div class="muted" style="font-size:12px;">Youth Outreach Staff</div></div>
               </div>
+              <!-- Inner Healing & Guest Relations -->
+              <div style="font-size:11px;font-weight:700;color:#7c3aed;text-transform:uppercase;letter-spacing:.06em;padding:6px 0 2px;border-top:1px solid var(--border);">Inner Healing &amp; Guest Relations</div>
               <div data-person="Noa Flammer" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#f5f3ff'" onmouseout="this.style.background=''">
-                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #c4b5fd;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#7c3aed;flex-shrink:0;">NF</div>
-                <div><div style="font-weight:600;font-size:13.5px;">Noa Flammer</div><div class="muted" style="font-size:12px;">Inner Healing & Event Support Coordinator · noa.flammer@icf-cambodia.com</div></div>
+                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #cbd5e1;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#475569;flex-shrink:0;">NF</div>
+                <div><div style="font-weight:600;font-size:13.5px;">Noa Flammer</div><div class="muted" style="font-size:12px;">Inner Healing &amp; Event Support Coordinator</div></div>
               </div>
               <div data-person="Ranaomi Heak" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#f5f3ff'" onmouseout="this.style.background=''">
-                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #c4b5fd;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#7c3aed;flex-shrink:0;">RH</div>
-                <div><div style="font-weight:600;font-size:13.5px;">Ranaomi Heak</div><div class="muted" style="font-size:12px;">Guest Relations Specialist · ranaomi.heak@icf-cambodia.com</div></div>
+                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #cbd5e1;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#475569;flex-shrink:0;">RH</div>
+                <div><div style="font-weight:600;font-size:13.5px;">Ranaomi Heak</div><div class="muted" style="font-size:12px;">Guest Relations Specialist</div></div>
               </div>
               <div data-person="Mom Kalic" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#f5f3ff'" onmouseout="this.style.background=''">
-                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #c4b5fd;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#7c3aed;flex-shrink:0;">MK</div>
-                <div><div style="font-weight:600;font-size:13.5px;">Mom Kalic</div><div class="muted" style="font-size:12px;">Adult Program Coordinator · kali.mom@icf-cambodia.com</div></div>
+                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #cbd5e1;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#475569;flex-shrink:0;">MK</div>
+                <div><div style="font-weight:600;font-size:13.5px;">Mom Kalic</div><div class="muted" style="font-size:12px;">Adult Program Coordinator</div></div>
               </div>
+              <!-- Worship & Technical -->
+              <div style="font-size:11px;font-weight:700;color:#7c3aed;text-transform:uppercase;letter-spacing:.06em;padding:6px 0 2px;border-top:1px solid var(--border);">Worship &amp; Technical</div>
               <div data-person="Sombo Ros" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#f5f3ff'" onmouseout="this.style.background=''">
-                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #c4b5fd;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#7c3aed;flex-shrink:0;">SR</div>
-                <div><div style="font-weight:600;font-size:13.5px;">Sombo Ros</div><div class="muted" style="font-size:12px;">Worship Pastor · sombo.ros@icf-cambodia.com</div></div>
+                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #cbd5e1;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#475569;flex-shrink:0;">SR</div>
+                <div><div style="font-weight:600;font-size:13.5px;">Sombo Ros</div><div class="muted" style="font-size:12px;">Worship Pastor</div></div>
               </div>
               <div data-person="Sreileak Rous" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#f5f3ff'" onmouseout="this.style.background=''">
-                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #c4b5fd;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#7c3aed;flex-shrink:0;">SR</div>
-                <div><div style="font-weight:600;font-size:13.5px;">Sreileak Rous</div><div class="muted" style="font-size:12px;">Worship Specialist · sreileak.rous@icf-cambodia.com</div></div>
+                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #cbd5e1;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#475569;flex-shrink:0;">SR</div>
+                <div><div style="font-weight:600;font-size:13.5px;">Sreileak Rous</div><div class="muted" style="font-size:12px;">Worship Specialist</div></div>
               </div>
               <div data-person="Dana Thy" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#f5f3ff'" onmouseout="this.style.background=''">
-                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #c4b5fd;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#7c3aed;flex-shrink:0;">DT</div>
-                <div><div style="font-weight:600;font-size:13.5px;">Dana Thy</div><div class="muted" style="font-size:12px;">Worship Specialist · dana.thy@icf-cambodia.com</div></div>
+                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #cbd5e1;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#475569;flex-shrink:0;">DT</div>
+                <div><div style="font-weight:600;font-size:13.5px;">Dana Thy</div><div class="muted" style="font-size:12px;">Worship Specialist</div></div>
               </div>
               <div data-person="Pichey Ken" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#f5f3ff'" onmouseout="this.style.background=''">
-                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #c4b5fd;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#7c3aed;flex-shrink:0;">PK</div>
-                <div><div style="font-weight:600;font-size:13.5px;">Pichey Ken</div><div class="muted" style="font-size:12px;">Worship Specialist · pichey.ken@icf-cambodia.com</div></div>
+                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #cbd5e1;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#475569;flex-shrink:0;">PK</div>
+                <div><div style="font-weight:600;font-size:13.5px;">Pichey Ken</div><div class="muted" style="font-size:12px;">Worship Specialist</div></div>
               </div>
               <div data-person="Somun Yem" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#f5f3ff'" onmouseout="this.style.background=''">
-                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #c4b5fd;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#7c3aed;flex-shrink:0;">SY</div>
-                <div><div style="font-weight:600;font-size:13.5px;">Somun Yem</div><div class="muted" style="font-size:12px;">Sound & Technical Trainee · somun.yem@icf-cambodia.com</div></div>
+                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #cbd5e1;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#475569;flex-shrink:0;">SY</div>
+                <div><div style="font-weight:600;font-size:13.5px;">Somun Yem</div><div class="muted" style="font-size:12px;">Sound &amp; Technical Trainee</div></div>
               </div>
               <div data-person="Kanal Tensok" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#f5f3ff'" onmouseout="this.style.background=''">
-                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #c4b5fd;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#7c3aed;flex-shrink:0;">KT</div>
-                <div><div style="font-weight:600;font-size:13.5px;">Kanal Tensok</div><div class="muted" style="font-size:12px;">Multimedia Specialist · kanal.tensok@icf-cambodia.com</div></div>
+                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #cbd5e1;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#475569;flex-shrink:0;">KT</div>
+                <div><div style="font-weight:600;font-size:13.5px;">Kanal Tensok</div><div class="muted" style="font-size:12px;">Multimedia Specialist</div></div>
               </div>
               <div data-person="Elea Weber" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#f5f3ff'" onmouseout="this.style.background=''">
-                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #c4b5fd;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#7c3aed;flex-shrink:0;">EW</div>
-                <div><div style="font-weight:600;font-size:13.5px;">Elea Weber</div><div class="muted" style="font-size:12px;">Sound Assistant · elea.weber@icf-cambodia.com</div></div>
+                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #cbd5e1;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#475569;flex-shrink:0;">EW</div>
+                <div><div style="font-weight:600;font-size:13.5px;">Elea Weber</div><div class="muted" style="font-size:12px;">Sound Assistant</div></div>
               </div>
+              <!-- Youth -->
+              <div style="font-size:11px;font-weight:700;color:#7c3aed;text-transform:uppercase;letter-spacing:.06em;padding:6px 0 2px;border-top:1px solid var(--border);">Youth</div>
               <div data-person="Sreypich Chhean" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#f5f3ff'" onmouseout="this.style.background=''">
-                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #c4b5fd;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#7c3aed;flex-shrink:0;">SC</div>
-                <div><div style="font-weight:600;font-size:13.5px;">Sreypich Chhean</div><div class="muted" style="font-size:12px;">Youth Pastor · sreypich.chhean@icf-cambodia.com</div></div>
+                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #cbd5e1;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#475569;flex-shrink:0;">SC</div>
+                <div><div style="font-weight:600;font-size:13.5px;">Sreypich Chhean</div><div class="muted" style="font-size:12px;">Youth Pastor</div></div>
               </div>
               <div data-person="Sotheavy Ngen" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#f5f3ff'" onmouseout="this.style.background=''">
-                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #c4b5fd;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#7c3aed;flex-shrink:0;">SN</div>
-                <div><div style="font-weight:600;font-size:13.5px;">Sotheavy Ngen</div><div class="muted" style="font-size:12px;">Youth Facilitator · sotheavy.ngen@icf-cambodia.com</div></div>
+                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #cbd5e1;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#475569;flex-shrink:0;">SN</div>
+                <div><div style="font-weight:600;font-size:13.5px;">Sotheavy Ngen</div><div class="muted" style="font-size:12px;">Youth Facilitator</div></div>
               </div>
+              <!-- Kids -->
+              <div style="font-size:11px;font-weight:700;color:#7c3aed;text-transform:uppercase;letter-spacing:.06em;padding:6px 0 2px;border-top:1px solid var(--border);">Kids</div>
               <div data-person="Khemry Men" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#f5f3ff'" onmouseout="this.style.background=''">
-                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #c4b5fd;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#7c3aed;flex-shrink:0;">KM</div>
-                <div><div style="font-weight:600;font-size:13.5px;">Khemry Men</div><div class="muted" style="font-size:12px;">God's Kids Pastor · khemry.men@icf-cambodia.com</div></div>
+                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #cbd5e1;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#475569;flex-shrink:0;">KM</div>
+                <div><div style="font-weight:600;font-size:13.5px;">Khemry Men</div><div class="muted" style="font-size:12px;">God's Kids Pastor</div></div>
               </div>
               <div data-person="Robson Barbosa" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#f5f3ff'" onmouseout="this.style.background=''">
-                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #c4b5fd;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#7c3aed;flex-shrink:0;">RB</div>
-                <div><div style="font-weight:600;font-size:13.5px;">Robson Barbosa</div><div class="muted" style="font-size:12px;">Kids Resource Coordinator · robson.barbosa@icf-cambodia.com</div></div>
+                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #cbd5e1;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#475569;flex-shrink:0;">RB</div>
+                <div><div style="font-weight:600;font-size:13.5px;">Robson Barbosa</div><div class="muted" style="font-size:12px;">Kids Resource Coordinator</div></div>
               </div>
               <div data-person="Aline Barbosa" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#f5f3ff'" onmouseout="this.style.background=''">
-                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #c4b5fd;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#7c3aed;flex-shrink:0;">AB</div>
-                <div><div style="font-weight:600;font-size:13.5px;">Aline Barbosa</div><div class="muted" style="font-size:12px;">Kids Resource Specialist · aline.barbosa@icf-cambodia.com</div></div>
+                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #cbd5e1;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#475569;flex-shrink:0;">AB</div>
+                <div><div style="font-weight:600;font-size:13.5px;">Aline Barbosa</div><div class="muted" style="font-size:12px;">Kids Resource Specialist</div></div>
               </div>
               <div data-person="Sovansreyreach Tat" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#f5f3ff'" onmouseout="this.style.background=''">
-                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #c4b5fd;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#7c3aed;flex-shrink:0;">ST</div>
-                <div><div style="font-weight:600;font-size:13.5px;">Sovansreyreach Tat</div><div class="muted" style="font-size:12px;">Kids Program Facilitator · sovansreyreach.tat@icf-cambodia.com</div></div>
+                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #cbd5e1;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#475569;flex-shrink:0;">ST</div>
+                <div><div style="font-weight:600;font-size:13.5px;">Sovansreyreach Tat</div><div class="muted" style="font-size:12px;">Kids Program Facilitator</div></div>
               </div>
               <div data-person="Ryna Mom" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#f5f3ff'" onmouseout="this.style.background=''">
-                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #c4b5fd;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#7c3aed;flex-shrink:0;">RM</div>
-                <div><div style="font-weight:600;font-size:13.5px;">Ryna Mom</div><div class="muted" style="font-size:12px;">Kids Pastor · ryna.mom@icf-cambodia.com</div></div>
+                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #cbd5e1;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#475569;flex-shrink:0;">RM</div>
+                <div><div style="font-weight:600;font-size:13.5px;">Ryna Mom</div><div class="muted" style="font-size:12px;">Kids Pastor</div></div>
               </div>
               <div data-person="Ryca Mom" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#f5f3ff'" onmouseout="this.style.background=''">
-                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #c4b5fd;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#7c3aed;flex-shrink:0;">RM</div>
-                <div><div style="font-weight:600;font-size:13.5px;">Ryca Mom</div><div class="muted" style="font-size:12px;">Kids Coordinator · ryca.mom@icf-cambodia.com</div></div>
+                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #cbd5e1;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#475569;flex-shrink:0;">RM</div>
+                <div><div style="font-weight:600;font-size:13.5px;">Ryca Mom</div><div class="muted" style="font-size:12px;">Kids Coordinator</div></div>
               </div>
               <div data-person="Sopheap Ngat" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#f5f3ff'" onmouseout="this.style.background=''">
-                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #c4b5fd;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#7c3aed;flex-shrink:0;">SN</div>
-                <div><div style="font-weight:600;font-size:13.5px;">Sopheap Ngat</div><div class="muted" style="font-size:12px;">Mighty Kids Pastor · sopheap.ngat@icf-cambodia.com</div></div>
+                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #cbd5e1;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#475569;flex-shrink:0;">SN</div>
+                <div><div style="font-weight:600;font-size:13.5px;">Sopheap Ngat</div><div class="muted" style="font-size:12px;">Mighty Kids Pastor</div></div>
               </div>
               <div data-person="Sopheak Vat" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#f5f3ff'" onmouseout="this.style.background=''">
-                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #c4b5fd;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#7c3aed;flex-shrink:0;">SV</div>
-                <div><div style="font-weight:600;font-size:13.5px;">Sopheak Vat</div><div class="muted" style="font-size:12px;">Adventure Kids Pastor · sopheak.vat@icf-cambodia.com</div></div>
+                <div style="width:36px;height:36px;border-radius:50%;background:#f5f3ff;border:1.5px solid #cbd5e1;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#475569;flex-shrink:0;">SV</div>
+                <div><div style="font-weight:600;font-size:13.5px;">Sopheak Vat</div><div class="muted" style="font-size:12px;">Adventure Kids Pastor</div></div>
               </div>
             </div>
           </div>
 
-          <div class="card" style="margin-bottom:14px;">
-            <h3 style="margin:0 0 8px;font-size:15px;">Request Forms</h3>
-            <div style="display:flex;flex-direction:column;gap:8px;">
-              <div style="display:flex;align-items:center;justify-content:space-between;padding:2px 0;"><span style="display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#f1f5f9;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-weight:500;color:#94a3b8;cursor:not-allowed;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Coming soon</span> <span style="font-size:13px;color:#64748b;">Event Support Request</span></div>
-              <div style="display:flex;align-items:center;justify-content:space-between;padding:2px 0;"><span style="display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#f1f5f9;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-weight:500;color:#94a3b8;cursor:not-allowed;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Coming soon</span> <span style="font-size:13px;color:#64748b;">Pastoral Care Request</span></div>
-            </div>
-          </div>
 
-          <div class="card">
-            <h3 style="margin:0 0 8px;font-size:15px;">Governance</h3>
-            <div style="font-size:13px;display:flex;flex-direction:column;gap:6px;">
-              <div><span class="muted">Owner:</span> Eddie Roach</div>
-              <div><span class="muted">Last reviewed:</span> May 2026</div>
-              <div><span class="muted">Next review:</span> November 2026</div>
-              <div><span class="muted">Status:</span> <span class="chip chip--active" style="margin-left:4px;">Active</span></div>
-            </div>
+
+          
           </div>
         </aside>
       </div>
@@ -285,10 +281,7 @@
       <span class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
       Home
     </a>
-    <a class="mobilenav__btn" href="https://icf.akas.co/self-service/leave-request" target="_blank" rel="noopener">
-      <span class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
-      Leave
-    </a>
+
     <a class="mobilenav__btn" href="resources.html">
       <span class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
       Resources
@@ -319,7 +312,8 @@
       <a class="nav__item" href="contacts.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Staff Contacts</a>
       <a class="nav__item" href="https://t.me/+KU4xqUNc6lNmZjU1" target="_blank" rel="noopener"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>Staff Telegram</a>
       <a class="nav__item" href="https://drive.google.com/drive/u/0/home" target="_blank" rel="noopener"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span>Google Drive</a>
-      <button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScskJ0UijIWOWdoLFYQTE8J1jNYmpveZ32rU-BmOtprbFXxvg/viewform','_blank')" style="display:flex;align-items:center;gap:10px;width:100%;border:none;cursor:pointer;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:10px;padding:9px 12px;font-size:14px;font-weight:600;font-family:inherit;margin-top:10px;text-align:left;"><span style="font-size:17px;line-height:1;">&#x1F3C6;</span>Honor a Colleague</button>
+      <!-- HONOR_A_COLLEAGUE: remove the display:none div to reactivate -->
+      <div style="display:none"><button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScskJ0UijIWOWdoLFYQTE8J1jNYmpveZ32rU-BmOtprbFXxvg/viewform','_blank')" style="display:flex;align-items:center;gap:10px;width:100%;border:none;cursor:pointer;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:10px;padding:9px 12px;font-size:14px;font-weight:600;font-family:inherit;margin-top:10px;text-align:left;"><span style="font-size:17px;line-height:1;">🏆</span>Honor a Colleague</button></div>
     </nav>
   </div>
 </div>
@@ -338,7 +332,7 @@
   <div style="background:#fff;border-radius:16px;padding:28px 24px;max-width:320px;width:90%;box-shadow:0 8px 40px rgba(0,0,0,0.18);position:relative;text-align:center;">
     <button onclick="document.getElementById('person-modal').style.display='none'" style="position:absolute;top:10px;right:14px;background:none;border:none;font-size:22px;cursor:pointer;color:#94a3b8;line-height:1;">&times;</button>
     <img id="pm-photo" src="" alt="" style="width:80px;height:80px;border-radius:50%;object-fit:cover;margin-bottom:12px;display:none;border:2px solid #e2e8f0;" />
-    <div id="pm-initials" style="width:80px;height:80px;border-radius:50%;background:#f1f5f9;color:#475569;font-size:26px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;"></div>
+    <div id="pm-initials" style="width:80px;height:80px;border-radius:50%;background:#f5f3ff;color:#475569;font-size:26px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;"></div>
     <div id="pm-name" style="font-weight:700;font-size:17px;color:#1a2332;margin-bottom:3px;"></div>
     <div id="pm-role" style="color:#6b7a8d;font-size:13px;margin-bottom:18px;"></div>
     <div id="pm-contacts" style="display:flex;flex-direction:column;gap:8px;text-align:left;"></div>
@@ -378,9 +372,9 @@ var people = {
   };
 (function(){
   var btnStyle = "display:flex;align-items:center;gap:10px;padding:9px 13px;background:#f8fafc;border-radius:9px;text-decoration:none;color:#1a2332;font-size:13px;border:1px solid #e2e8f0;";
-  var emailSvg = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>';
-  var phoneSvg = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13 1.05.37 2.07.7 3.07a2 2 0 0 1-.45 2.11L8.09 10.91a16 16 0 0 0 6 6l2-1.27a2 2 0 0 1 2.11-.45c1 .33 2 .57 3.07.7A2 2 0 0 1 22 16.92z"/></svg>';
-  var tgSvg   = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>';
+  var emailSvg = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>';
+  var phoneSvg = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13 1.05.37 2.07.7 3.07a2 2 0 0 1-.45 2.11L8.09 10.91a16 16 0 0 0 6 6l2-1.27a2 2 0 0 1 2.11-.45c1 .33 2 .57 3.07.7A2 2 0 0 1 22 16.92z"/></svg>';
+  var tgSvg   = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>';
   function openModal(name){
     var d = people[name]||{};
     document.getElementById('pm-name').textContent = name;

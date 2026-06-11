@@ -32,7 +32,8 @@
       <a class="nav__item" href="contacts.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Staff Contacts</a>
       <a class="nav__item" href="https://t.me/+KU4xqUNc6lNmZjU1" target="_blank" rel="noopener"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>Staff Telegram</a>
       <a class="nav__item" href="https://drive.google.com/drive/u/0/home" target="_blank" rel="noopener"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span>Google Drive</a>
-      <button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScskJ0UijIWOWdoLFYQTE8J1jNYmpveZ32rU-BmOtprbFXxvg/viewform','_blank')" style="display:flex;align-items:center;gap:10px;width:100%;border:none;cursor:pointer;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:10px;padding:9px 12px;font-size:14px;font-weight:600;font-family:inherit;margin-top:10px;text-align:left;"><span style="font-size:17px;line-height:1;">🏆</span>Honor a Colleague</button>
+      <!-- HONOR_A_COLLEAGUE: remove the display:none div to reactivate -->
+      <div style="display:none"><button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScskJ0UijIWOWdoLFYQTE8J1jNYmpveZ32rU-BmOtprbFXxvg/viewform','_blank')" style="display:flex;align-items:center;gap:10px;width:100%;border:none;cursor:pointer;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:10px;padding:9px 12px;font-size:14px;font-weight:600;font-family:inherit;margin-top:10px;text-align:left;"><span style="font-size:17px;line-height:1;">🏆</span>Honor a Colleague</button></div>
     </nav>
   </aside>
   <main class="main">
@@ -58,16 +59,11 @@
     </header>
     <div class="container">
       <div class="crumbs"><a href="index.html">Home</a><span class="sep">/</span><a href="departments.html">Departments</a><span class="sep">/</span><span>New Campus</span></div>
-      <section class="dept-hero" style="border-left:4px solid #ea580c;">
+      <section class="dept-hero" style="background:linear-gradient(135deg,#c2410c,#ea580c);">
         <div class="dept-hero__icon" style="background:#fff7ed;color:#ea580c;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h.01M9 13h.01M9 17h.01M15 9h.01M15 13h.01M15 17h.01"/></svg></div>
         <div style="flex:1;">
           <h1>New Campus</h1>
           <p>Building the future home of ICF Cambodia — coordinating the planning, construction, and fundraising for the new campus that will serve the next generation of our mission.</p>
-          <div class="dept-hero__meta">
-            <span><strong>Lead:</strong> Annina Huembeli</span>
-            <span><strong>Team:</strong> 2 staff</span>
-            <span><strong>ED:</strong> ND Strupler</span>
-          </div>
         </div>
       </section>
             <section class="card" style="margin-bottom:24px;padding:0;overflow:hidden;">
@@ -90,20 +86,20 @@
 
           <!-- ── What We Do ─────────────────────────────────────────── -->
           <div class="section-title"><h2>What We Do</h2></div>
-          <div class="card" style="margin-bottom:16px;"><div style="display:flex;flex-direction:column;gap:14px;">
-            <div style="display:flex;gap:14px;align-items:flex-start;">
-              <span style="width:32px;height:32px;border-radius:8px;background:#fff7ed;color:#ea580c;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14"/></svg></span>
-              <div><div style="font-weight:600;font-size:14px;margin-bottom:2px;">Campus Development</div><div class="muted" style="font-size:13px;">Overseeing the planning, design, and construction of ICF Cambodia's new ~12,000 m² campus — a landmark investment in the long-term future of the organisation. In partnership with PETRAM Design International.</div></div>
+          <div style="display:flex;flex-direction:column;gap:0;border:0.5px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:28px;">
+            <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;border-bottom:0.5px solid var(--border);">
+              <div style="width:32px;height:32px;border-radius:8px;background:#f0fdf4;color:#ea580c;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14"/></svg></div>
+              <div><div style="font-weight:500;font-size:14px;margin:0 0 2px;">Campus Development</div><div style="font-size:12.5px;color:var(--text-muted);line-height:1.4;">Overseeing the planning, design, and construction of ICF Cambodia's new ~12,000 m² campus — a landmark investment in the long-term future of the organisation. In partnership with PETRAM Design International.</div></div>
             </div>
-            <div style="display:flex;gap:14px;align-items:flex-start;">
-              <span style="width:32px;height:32px;border-radius:8px;background:#fff7ed;color:#ea580c;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/></svg></span>
-              <div><div style="font-weight:600;font-size:14px;margin-bottom:2px;">Fundraising for New Campus</div><div class="muted" style="font-size:13px;">Coordinating dedicated fundraising efforts — total budget USD 6.18M (Phase 1: USD 4.98M · Phase 2: approx. USD 1.2M). Working with donors, foundations, and partners worldwide.</div></div>
+            <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;border-bottom:0.5px solid var(--border);">
+              <div style="width:32px;height:32px;border-radius:8px;background:#f0fdf4;color:#ea580c;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/></svg></div>
+              <div><div style="font-weight:500;font-size:14px;margin:0 0 2px;">Fundraising for New Campus</div><div style="font-size:12.5px;color:var(--text-muted);line-height:1.4;">Coordinating dedicated fundraising efforts — total budget USD 6.18M (Phase 1: USD 4.98M · Phase 2: approx. USD 1.2M). Working with donors, foundations, and partners worldwide.</div></div>
             </div>
-            <div style="display:flex;gap:14px;align-items:flex-start;">
-              <span style="width:32px;height:32px;border-radius:8px;background:#fff7ed;color:#ea580c;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><line x1="16" y1="13" x2="8" y2="13"/></svg></span>
-              <div><div style="font-weight:600;font-size:14px;margin-bottom:2px;">Project Management &amp; Reporting</div><div class="muted" style="font-size:13px;">Tracking construction milestones, budgets, timelines, and contractor relationships — keeping all stakeholders informed throughout the build.</div></div>
+            <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;">
+              <div style="width:32px;height:32px;border-radius:8px;background:#f0fdf4;color:#ea580c;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><line x1="16" y1="13" x2="8" y2="13"/></svg></div>
+              <div><div style="font-weight:500;font-size:14px;margin:0 0 2px;">Project Management &amp; Reporting</div><div style="font-size:12.5px;color:var(--text-muted);line-height:1.4;">Tracking construction milestones, budgets, timelines, and contractor relationships — keeping all stakeholders informed throughout the build.</div></div>
             </div>
-          </div></div>
+          </div>
 
           <!-- ── Construction Timeline ──────────────────────────────── -->
           <div class="section-title" style="margin-top:8px;"><h2>Construction Timeline</h2></div>
@@ -153,7 +149,7 @@
                 <div>• Drink Water Station providing clean water to the community</div>
               </div>
             </div>
-            <div class="card" style="border-left:4px solid #ea580c;">
+            <div class="card" style="background:linear-gradient(135deg,#c2410c,#ea580c);">
               <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;"><div style="font-weight:700;font-size:14px;color:#ea580c;">Phase 2 — Expansion &amp; Completion</div><span style="font-size:12px;font-weight:700;color:#ea580c;background:#fff7ed;border-radius:99px;padding:2px 9px;white-space:nowrap;">~USD 1.2M</span></div>
               <div style="font-size:13px;color:#374151;display:flex;flex-direction:column;gap:4px;">
                 <div>• Daycare expansion to 100 children</div>
@@ -162,8 +158,7 @@
                 <div>• Play and sports facilities · Parks and landscape design</div>
                 <div>• Crematorium as a social service for the local community</div>
               </div>
-            </div>
-          </div>
+
 
           <!-- ── Campus Buildings ──────────────────────────────────── -->
           <div class="section-title" style="margin-top:8px;"><h2>Campus Buildings</h2></div>
@@ -254,8 +249,7 @@
                 </div>
                 <div id="outlet-body" style="font-size:14px;color:#374151;line-height:1.6;"></div>
               </div>
-            </div>
-          </div>
+
 
           <!-- ── Latest Updates ────────────────────────────────────── -->
           <div class="section-title" style="margin-top:8px;"><h2>Latest Project Updates</h2></div>
@@ -285,9 +279,9 @@
           <!-- ── Resources & SOPs ──────────────────────────────────── -->
           <div class="section-title" style="margin-top:8px;"><h2>Resources &amp; Documents</h2></div>
           <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px;">
-            <div class="card" style="padding:14px 16px;display:flex;align-items:center;justify-content:space-between;"><div><div style="font-weight:600;font-size:14px;">Project Timeline</div><div class="muted" style="font-size:13px;">Detailed construction schedule and milestones</div></div><span style="display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#f1f5f9;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-weight:500;color:#94a3b8;cursor:not-allowed;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Coming soon</span></div>
-            <div class="card" style="padding:14px 16px;display:flex;align-items:center;justify-content:space-between;"><div><div style="font-weight:600;font-size:14px;">Donor Update Reports</div><div class="muted" style="font-size:13px;">Progress reports for new campus donors</div></div><span style="display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#f1f5f9;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-weight:500;color:#94a3b8;cursor:not-allowed;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Coming soon</span></div>
-            <div class="card" style="padding:14px 16px;display:flex;align-items:center;justify-content:space-between;"><div><div style="font-weight:600;font-size:14px;">Master Plan &amp; Renderings</div><div class="muted" style="font-size:13px;">Full campus master plan — Impact Report 2026</div></div><a href="Copy%20of%20Static_IMPACT%20REPORT%202026__ICF%20CAMBODIA_ENGLISH.pdf" target="_blank" style="display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#fff7ed;border:1.5px solid #fed7aa;border-radius:8px;font-size:12px;font-weight:600;color:#ea580c;text-decoration:none;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16h12V8z"/><path d="M14 2v6h6"/></svg>Open</a></div>
+            <div class="card" style="padding:14px 16px;display:flex;align-items:center;justify-content:space-between;"><div><div style="font-weight:600;font-size:14px;">Project Timeline</div><div style="font-size:12.5px;color:var(--text-muted);line-height:1.4;">Detailed construction schedule and milestones</div></div><span style="display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#f1f5f9;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-weight:500;color:#94a3b8;cursor:not-allowed;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Coming soon</span></div>
+            <div class="card" style="padding:14px 16px;display:flex;align-items:center;justify-content:space-between;"><div><div style="font-weight:600;font-size:14px;">Donor Update Reports</div><div style="font-size:12.5px;color:var(--text-muted);line-height:1.4;">Progress reports for new campus donors</div></div><span style="display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#f1f5f9;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-weight:500;color:#94a3b8;cursor:not-allowed;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Coming soon</span></div>
+            <div class="card" style="padding:14px 16px;display:flex;align-items:center;justify-content:space-between;"><div><div style="font-weight:600;font-size:14px;">Master Plan &amp; Renderings</div><div style="font-size:12.5px;color:var(--text-muted);line-height:1.4;">Full campus master plan — Impact Report 2026</div></div><a href="Copy%20of%20Static_IMPACT%20REPORT%202026__ICF%20CAMBODIA_ENGLISH.pdf" target="_blank" style="display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#fff7ed;border:1.5px solid #fed7aa;border-radius:8px;font-size:12px;font-weight:600;color:#ea580c;text-decoration:none;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16h12V8z"/><path d="M14 2v6h6"/></svg>Open</a></div>
 </div><a href="https://icf-cambodia.com/new-campus" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#fff7ed;border:1.5px solid #fed7aa;border-radius:8px;font-size:12px;font-weight:600;color:#ea580c;text-decoration:none;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Open</a></div>
           </div>
 
@@ -296,11 +290,13 @@
           <div class="card" style="margin-bottom:14px;">
             <h3 style="margin:0 0 10px;font-size:15px;">Team</h3>
             <div style="display:flex;flex-direction:column;gap:10px;">
+              <div style="font-size:11px;font-weight:700;color:#059669;text-transform:uppercase;letter-spacing:.06em;padding:6px 0 2px;">Executive Director</div>
               <div data-person="ND Strupler" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#fff7ed'" onmouseout="this.style.background=''">
                 <img src="assets/people/andreas-strupler.jpg" alt="ND Strupler" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;" />
                 <div><div style="font-weight:600;font-size:13.5px;">ND Strupler</div><div class="muted" style="font-size:12px;">Executive Director – New Campus · nd.strupler@icf-cambodia.com</div></div>
               </div>
 
+              <div style="font-size:11px;font-weight:700;color:#059669;text-transform:uppercase;letter-spacing:.06em;padding:6px 0 2px;border-top:1px solid var(--border);">Management</div>
               <div data-person="Annina Huembeli" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#fff7ed'" onmouseout="this.style.background=''">
                 <div style="width:36px;height:36px;border-radius:50%;background:#fff7ed;border:1.5px solid #fed7aa;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#9a3412;flex-shrink:0;">AH</div>
                 <div><div style="font-weight:600;font-size:13.5px;">Annina Huembeli</div><div class="muted" style="font-size:12px;">Project Manager · annina.huembeli@icf-cambodia.com</div></div>
@@ -309,7 +305,7 @@
           </div>
           <div class="card" style="margin-bottom:14px;background:linear-gradient(135deg,#0088cc11,#0088cc05);border:1.5px solid #0088cc44;">
             <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-              <span style="width:32px;height:32px;border-radius:8px;background:#0088cc;color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+              <div style="width:32px;height:32px;border-radius:8px;background:#f0fdf4;color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
               <h3 style="margin:0;font-size:15px;">New Campus Updates</h3>
             </div>
             <p style="font-size:13px;color:#6b7280;margin:0 0 10px;">Stay up to date with construction progress, milestones, and announcements.</p>
@@ -348,15 +344,6 @@
               </div>
             </div>
           </div>
-          <div class="card">
-            <h3 style="margin:0 0 8px;font-size:15px;">Governance</h3>
-            <div style="font-size:13px;display:flex;flex-direction:column;gap:6px;">
-              <div><span class="muted">Owner:</span> Annina Huembeli</div>
-              <div><span class="muted">Last reviewed:</span> May 2026</div>
-              <div><span class="muted">Next review:</span> November 2026</div>
-              <div><span class="muted">Status:</span> <span class="chip chip--active" style="margin-left:4px;">Active</span></div>
-            </div>
-          </div>
         </aside>
       </div>
     </div>
@@ -368,10 +355,7 @@
       <span class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
       Home
     </a>
-    <a class="mobilenav__btn" href="https://icf.akas.co/self-service/leave-request" target="_blank" rel="noopener">
-      <span class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
-      Leave
-    </a>
+
     <a class="mobilenav__btn" href="resources.html">
       <span class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
       Resources
@@ -442,9 +426,9 @@ var people = {
   };
 (function(){
   var btnStyle = "display:flex;align-items:center;gap:10px;padding:9px 13px;background:#f8fafc;border-radius:9px;text-decoration:none;color:#1a2332;font-size:13px;border:1px solid #e2e8f0;";
-  var emailSvg = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>';
-  var phoneSvg = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13 1.05.37 2.07.7 3.07a2 2 0 0 1-.45 2.11L8.09 10.91a16 16 0 0 0 6 6l2-1.27a2 2 0 0 1 2.11-.45c1 .33 2 .57 3.07.7A2 2 0 0 1 22 16.92z"/></svg>';
-  var tgSvg   = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>';
+  var emailSvg = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>';
+  var phoneSvg = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13 1.05.37 2.07.7 3.07a2 2 0 0 1-.45 2.11L8.09 10.91a16 16 0 0 0 6 6l2-1.27a2 2 0 0 1 2.11-.45c1 .33 2 .57 3.07.7A2 2 0 0 1 22 16.92z"/></svg>';
+  var tgSvg   = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>';
   function openModal(name){
     var d = people[name]||{};
     document.getElementById('pm-name').textContent = name;
