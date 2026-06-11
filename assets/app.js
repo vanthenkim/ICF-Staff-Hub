@@ -158,7 +158,7 @@ if ('serviceWorker' in navigator) {
     const container = document.getElementById('gcal-events');
     if (!container) return;
 
-    const CAL_ID     = 'c_19ec41b02565b57079243e9f170fa26c692c37bb0b44fccd89efd12c9971e6d9@group.calendar.google.com';
+    const CAL_ID     = 'c_7d85r5jnut8ish3elr9er8ji0k@group.calendar.google.com';
     const API_KEY    = 'AIzaSyBmEJXC-jKF9jSup7cRKF23XKOC1mdUK60';
     const maxResults = container.dataset.max || 6;
     const now        = new Date().toISOString();
