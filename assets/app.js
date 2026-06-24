@@ -98,7 +98,7 @@ if ('serviceWorker' in navigator) {
       walkAndSwap(document.body, false);
     }
     document.querySelectorAll('.lang-toggle__label').forEach(el => {
-      el.textContent = (lang === 'km') ? 'KH' : 'EN';
+      el.textContent = (lang === 'km') ? 'EN' : 'KH';
     });
     try { localStorage.setItem('icf-lang', lang); } catch (e) {}
   }
