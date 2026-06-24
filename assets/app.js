@@ -140,10 +140,10 @@ if ('serviceWorker' in navigator) {
     const el = document.getElementById('user-avatar');
     if (!el) return;
     try {
-      const cookie = document.cookie.split('; ').find(r => r.startsWith('icf_auth='));
+      const cookie = document.cookie.split('; ').find(r => r.startsWith('icf_user='));
       if (!cookie) return;
-      const b64 = cookie.split('=').slice(1).join('=').split('.')[0];
-      const email = atob(b64).split('|')[0]; // e.g. vivian.stumpf@icf-cambodia.com
+      const b64 = cookie.split('=').slice(1).join('=');
+      const email = atob(b64); // e.g. vivian.stumpf@icf-cambodia.com
       const local = email.split('@')[0];     // vivian.stumpf
       const parts = local.split('.');
       const initials = parts.map(p => p.charAt(0).toUpperCase()).join('').slice(0, 2);

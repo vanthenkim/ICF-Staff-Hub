@@ -82,10 +82,13 @@ exports.handler = async (event) => {
 
     return {
       statusCode: 302,
-      headers: {
-        Location:    destination,
-        'Set-Cookie': `icf_auth=${cookie}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=28800`,
-        'Cache-Control': 'no-store',
+      multiValueHeaders: {
+        Location:    [destination],
+        'Set-Cookie': [
+          `icf_auth=${cookie}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=28800`,
+          `icf_user=${Buffer.from(email).toString('base64')}; Path=/; Secure; SameSite=Lax; Max-Age=28800`,
+        ],
+        'Cache-Control': ['no-store'],
       },
       body: '',
     };

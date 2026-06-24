@@ -8,10 +8,13 @@
 exports.handler = async () => {
   return {
     statusCode: 302,
-    headers: {
-      Location: '/auth/login.html',
-      'Set-Cookie': 'icf_auth=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0; Expires=Thu, 01 Jan 1970 00:00:00 GMT',
-      'Cache-Control': 'no-store',
+    multiValueHeaders: {
+      Location: ['/auth/login.html'],
+      'Set-Cookie': [
+        'icf_auth=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0; Expires=Thu, 01 Jan 1970 00:00:00 GMT',
+        'icf_user=; Path=/; Secure; SameSite=Lax; Max-Age=0; Expires=Thu, 01 Jan 1970 00:00:00 GMT',
+      ],
+      'Cache-Control': ['no-store'],
     },
     body: '',
   };
