@@ -135,6 +135,32 @@ if ('serviceWorker' in navigator) {
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
   })();
 
+  // ---------- User avatar ----------
+  (function setUserAvatar() {
+    const el = document.getElementById('user-avatar');
+    if (!el) return;
+    try {
+      const cookie = document.cookie.split('; ').find(r => r.startsWith('icf_auth='));
+      if (!cookie) return;
+      const b64 = cookie.split('=').slice(1).join('=').split('.')[0];
+      const email = atob(b64).split('|')[0]; // e.g. vivian.stumpf@icf-cambodia.com
+      const local = email.split('@')[0];     // vivian.stumpf
+      const parts = local.split('.');
+      const initials = parts.map(p => p.charAt(0).toUpperCase()).join('').slice(0, 2);
+      // Try photo first: assets/people/firstname-lastname.jpg
+      const photoPath = 'assets/people/' + parts.join('-') + '.jpg';
+      const img = new Image();
+      img.onload = function() {
+        el.style.cssText += ';background-image:url(' + photoPath + ');background-size:cover;background-position:center;color:transparent;font-size:0;';
+      };
+      img.onerror = function() {
+        el.textContent = initials;
+      };
+      img.src = photoPath;
+      el.title = email;
+    } catch(e) {}
+  })();
+
   // ---------- Hero greeting + date ----------
   (function setHeroDate() {
     const now = new Date();
