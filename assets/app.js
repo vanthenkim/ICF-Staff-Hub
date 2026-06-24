@@ -139,7 +139,17 @@ if ('serviceWorker' in navigator) {
   (function setHeroDate() {
     const now = new Date();
     const hour = now.getHours();
-    const name = 'VV 😊'; // TODO: replace with logged-in user name
+    // Read first name from icf_auth cookie (format: base64(email|expiry).hmac)
+    let name = 'Friend';
+    try {
+      const cookie = document.cookie.split('; ').find(r => r.startsWith('icf_auth='));
+      if (cookie) {
+        const b64 = cookie.split('=').slice(1).join('=').split('.')[0];
+        const email = atob(b64).split('|')[0]; // e.g. vivian.stumpf@icf-cambodia.com
+        const first = email.split('@')[0].split('.')[0];
+        if (first) name = first.charAt(0).toUpperCase() + first.slice(1);
+      }
+    } catch(e) {}
 
     const greet = hour < 5 ? '🌙 Good evening' : hour < 12 ? '☀️ Good morning' : hour < 17 ? '🌤️ Good afternoon' : '🌙 Good evening';
     const greetEl = document.getElementById('hero-greeting');
