@@ -10,7 +10,7 @@
 <meta name="apple-mobile-web-app-title" content="Staff Hub" />
 <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
 <link rel="apple-touch-icon" sizes="192x192" href="/assets/icons/icon-192.png" />
-<title>Departments · Staff Hub</title>
+<title>Staff Tools · Staff Hub</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css" />
 </head>
@@ -25,7 +25,7 @@
       <a class="nav__item" href="resources.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>Staff Resources</a>
       <a class="nav__item" href="training.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/></svg></span>Training &amp; Development</a>
       <a class="nav__item" href="medical.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.5-3 1.5-6 0-9-3 0-6 0-7.5 1.5C10 5 7 5 4 5c-1.5 3-1.5 6 0 9 3 0 6 0 7.5-1.5C13 14 16 14 19 14z"/></svg></span>Medical Hub</a>
-      <a class="nav__item is-active" href="departments.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>Departments</a>
+      <a class="nav__item" href="departments.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>Departments</a>
       <a class="nav__item" href="events.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>Events &amp; Year Topics</a>
       <div class="nav__group-label" style="margin-top:12px;">Quick Links</div>
       <a class="nav__item" href="about.html#open-fullchart"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><line x1="17" y1="17" x2="17" y2="21"/><line x1="17" y1="17" x2="21" y2="17"/></svg></span>Org Chart</a>
@@ -44,11 +44,15 @@
       </button>
       <div class="topbar__mobile-brand">
         <div class="sidebar__logo"><img src="assets/icf-logo.png" alt="ICF Cambodia" /></div>
-        <span>Departments</span>
+        <span>Staff Tools</span>
       </div>
       <div class="topbar__right">
         <button class="topbar__btn" data-action="open-search" aria-label="Search">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button class="topbar__btn" aria-label="Notifications">
+          <span class="dot"></span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
         </button>
         <button class="topbar__btn lang-toggle" data-action="toggle-lang" aria-label="Language" title="Toggle language EN / KH"><span class="lang-toggle__label">EN</span></button>
         <div class="avatar" id="user-avatar"></div>
@@ -56,93 +60,122 @@
     </header>
 
     <div class="container">
-      <div class="crumbs"><a href="index.html">Home</a><span class="sep">/</span><span>Departments</span></div>
+      <div class="crumbs"><a href="index.html">Home</a><span class="sep">/</span><span>Staff Tools</span></div>
       <div class="page-header">
         <div>
-          <h1>Departments</h1>
-          <p>Each department's home — with key contacts, SOPs, templates, and request forms in one place.</p>
+          <h1>Staff Tools</h1>
+          <p>Request forms for everything you might need — submitted to the right team, with the right people in the loop.</p>
         </div>
       </div>
 
-      <div class="dept-grid">
-        <a class="dept dept--red" href="department-hr.html">
-          <span class="dept__band"></span>
-          <span class="dept__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
-          <h3 class="dept__name">HR</h3>
-          <p class="dept__desc">People, policies, leave, recruitment, staff care.</p>
-          <div class="dept__meta"><span class="dept__contact">Lead: Thavy Tham</span><span class="dept__arrow">→</span></div>
-        </a>
-        <a class="dept dept--amber" href="department-property.html">
-          <span class="dept__band"></span>
-          <span class="dept__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h.01M9 13h.01M9 17h.01M15 9h.01M15 13h.01M15 17h.01"/></svg></span>
-          <h3 class="dept__name">Property</h3>
-          <p class="dept__desc">Campus, maintenance, vehicles, security, logistics.</p>
-          <div class="dept__meta"><span class="dept__contact">Lead: Sarath Sok</span><span class="dept__arrow">→</span></div>
-        </a>
-        <a class="dept dept--cyan" href="department-marcom.html">
-          <span class="dept__band"></span>
-          <span class="dept__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>
-          <h3 class="dept__name">MarCom</h3>
-          <p class="dept__desc">Brand, design, content, translation, external storytelling.</p>
-          <div class="dept__meta"><span class="dept__contact">Lead: Ratana Khy</span><span class="dept__arrow">→</span></div>
-        </a>
-        <a class="dept dept--red" href="department-social.html">
-          <span class="dept__band"></span>
-          <span class="dept__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
-          <h3 class="dept__name">Social</h3>
-          <p class="dept__desc">Community programs, outreach, family engagement.</p>
-          <div class="dept__meta"><span class="dept__contact">Manager: Ousaphea Lim</span><span class="dept__arrow">→</span></div>
-        </a>
-        <a class="dept dept--red" href="medical.html">
-          <span class="dept__band"></span>
-          <span class="dept__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.5-3 1.5-6 0-9-3 0-6 0-7.5 1.5C10 5 7 5 4 5c-1.5 3-1.5 6 0 9 3 0 6 0 7.5-1.5C13 14 16 14 19 14z"/></svg></span>
-          <h3 class="dept__name">Medical Care</h3>
-          <p class="dept__desc">Clinic, referrals, health education, emergency procedures.</p>
-          <div class="dept__meta"><span class="dept__contact">Lead: Sibimol Pol</span><span class="dept__arrow">→</span></div>
-        </a>
+      <div class="banner banner--green">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/></svg>
+        All forms route through Google Forms · approvals notify managers automatically · your submissions stay in Google Drive.
+      </div>
 
-        <a class="dept dept--purple" href="department-church.html">
-          <span class="dept__band"></span>
-          <span class="dept__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></span>
-          <h3 class="dept__name">Church</h3>
-          <p class="dept__desc">Worship, outreach, discipleship, youth &amp; kids ministry.</p>
-          <div class="dept__meta"><span class="dept__contact">Lead: Eddie Roach</span><span class="dept__arrow">→</span></div>
-        </a>
-        <a class="dept dept--green" href="department-fundraising.html">
-          <span class="dept__band"></span>
-          <span class="dept__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/></svg></span>
-          <h3 class="dept__name">Fundraising</h3>
-          <p class="dept__desc">Donor relations, fundraising strategy, accountability.</p>
-          <div class="dept__meta"><span class="dept__contact">Lead: Longsamnieng Pol</span><span class="dept__arrow">→</span></div>
-        </a>
-        <a class="dept dept--green" href="department-guest-relations.html">
-          <span class="dept__band"></span>
-          <span class="dept__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
-          <h3 class="dept__name">Guest Relations</h3>
-          <p class="dept__desc">Donor visits, hospitality, campus tours.</p>
-          <div class="dept__meta"><span class="dept__contact">Lead: Steffi Lendi</span><span class="dept__arrow">→</span></div>
-        </a>
-        <a class="dept dept--slate" href="department-operations.html">
-          <span class="dept__band"></span>
-          <span class="dept__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg></span>
-          <h3 class="dept__name">Operations</h3>
-          <p class="dept__desc">Procurement, logistics, transport, cross-department coordination.</p>
-          <div class="dept__meta"><span class="dept__contact">Lead: Vattey Chhun</span><span class="dept__arrow">→</span></div>
-        </a>
-        <a class="dept dept--red" href="department-catering.html">
-          <span class="dept__band"></span>
-          <span class="dept__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18M5 11V7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v4M5 11v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></span>
-          <h3 class="dept__name">Catering</h3>
-          <p class="dept__desc">Daily staff meals, event catering, and kitchen operations.</p>
-          <div class="dept__meta"><span class="dept__contact">Lead: Bopha Mom (Acting)</span><span class="dept__arrow">→</span></div>
-        </a>
-        <a class="dept dept--green" href="department-new-campus.html">
-          <span class="dept__band"></span>
-          <span class="dept__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h.01M9 13h.01M9 17h.01M15 9h.01M15 13h.01M15 17h.01"/></svg></span>
-          <h3 class="dept__name">New Campus</h3>
-          <p class="dept__desc">Campus construction, project management, campus fundraising.</p>
-          <div class="dept__meta"><span class="dept__contact">Lead: Annina Huembeli</span><span class="dept__arrow">→</span></div>
-        </a>
+      <div class="res-grid">
+        <div class="tool">
+          <div class="tool__top">
+            <span class="tool__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/></svg></span>
+            <div><h3 class="tool__title">IT Request</h3><p class="tool__sub">Devices · Accounts · Help · Wi-Fi</p></div>
+          </div>
+          <p class="muted" style="margin:0;font-size:13.5px;">Email setup, password reset, new device requests, software installation, account access.</p>
+          <div class="tool__bottom"><span class="tool__sla">~24 hours · IT Team</span><span style="display:inline-flex;align-items:center;gap:5px;padding:6px 12px;background:#f1f5f9;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-weight:500;color:#94a3b8;cursor:not-allowed;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Coming soon</span></div>
+        </div>
+
+        <div class="tool">
+          <div class="tool__top">
+            <span class="tool__icon" style="background:var(--green-50);color:var(--green-600);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
+            <div><h3 class="tool__title">Leave Request</h3><p class="tool__sub">Annual · Sick · Personal</p></div>
+          </div>
+          <p class="muted" style="margin:0;font-size:13.5px;">Submit time-off requests. Routed to your line manager and HR for approval.</p>
+          <div class="tool__bottom"><span class="tool__sla">~2 days · HR</span><span class="chip">Coming soon</span></div>
+        </div>
+
+        <div class="tool">
+          <div class="tool__top">
+            <span class="tool__icon" style="background:var(--amber-50);color:var(--amber-600);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/></svg></span>
+            <div><h3 class="tool__title">Expense Request</h3><p class="tool__sub">Reimbursements · Advances</p></div>
+          </div>
+          <p class="muted" style="margin:0;font-size:13.5px;">Upload receipts, request reimbursement, or apply for a cash advance.</p>
+          <div class="tool__bottom"><span class="tool__sla">~5 days · Finance</span><span style="display:inline-flex;align-items:center;gap:5px;padding:6px 12px;background:#f1f5f9;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-weight:500;color:#94a3b8;cursor:not-allowed;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Coming soon</span></div>
+        </div>
+
+        <div class="tool">
+          <div class="tool__top">
+            <span class="tool__icon" style="background:#F1F5F9;color:#475569;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="13" height="11" rx="1"/><path d="M14 9h4l3 4v4h-7z"/><circle cx="6" cy="19" r="2"/><circle cx="17" cy="19" r="2"/></svg></span>
+            <div><h3 class="tool__title">Vehicle Request</h3><p class="tool__sub">Office vehicles · Trips</p></div>
+          </div>
+          <p class="muted" style="margin:0;font-size:13.5px;">Book a vehicle for field trips, donor visits, or program logistics. Driver coordination included.</p>
+          <div class="tool__bottom"><span class="tool__sla">~3 days · Property</span><span style="display:inline-flex;align-items:center;gap:5px;padding:6px 12px;background:#f1f5f9;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-weight:500;color:#94a3b8;cursor:not-allowed;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Coming soon</span></div>
+        </div>
+
+        <div class="tool">
+          <div class="tool__top">
+            <span class="tool__icon" style="background:#F1F5F9;color:#475569;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
+            <div><h3 class="tool__title">Maintenance Request</h3><p class="tool__sub">Repairs · Facilities</p></div>
+          </div>
+          <p class="muted" style="margin:0;font-size:13.5px;">Report something broken, request a repair, or schedule maintenance on the campus.</p>
+          <div class="tool__bottom"><span class="tool__sla">~2 days · Property</span><span style="display:inline-flex;align-items:center;gap:5px;padding:6px 12px;background:#f1f5f9;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-weight:500;color:#94a3b8;cursor:not-allowed;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Coming soon</span></div>
+        </div>
+
+        <div class="tool">
+          <div class="tool__top">
+            <span class="tool__icon" style="background:var(--purple-50);color:var(--purple-600);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg></span>
+            <div><h3 class="tool__title">Media Request</h3><p class="tool__sub">Design · Photo · Video</p></div>
+          </div>
+          <p class="muted" style="margin:0;font-size:13.5px;">Request a graphic, social media asset, photo shoot, or video for your program or event.</p>
+          <div class="tool__bottom"><span class="tool__sla">~5 days · Communication</span><span style="display:inline-flex;align-items:center;gap:5px;padding:6px 12px;background:#f1f5f9;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-weight:500;color:#94a3b8;cursor:not-allowed;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Coming soon</span></div>
+        </div>
+
+        <div class="tool">
+          <div class="tool__top">
+            <span class="tool__icon" style="background:#F0F9FF;color:#0369A1;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg></span>
+            <div><h3 class="tool__title">Translation Request</h3><p class="tool__sub">EN ↔ KH</p></div>
+          </div>
+          <p class="muted" style="margin:0;font-size:13.5px;">Send a document or text for official translation, reviewed against our internal glossary.</p>
+          <div class="tool__bottom"><span class="tool__sla">~3 days · Communication</span><span style="display:inline-flex;align-items:center;gap:5px;padding:6px 12px;background:#f1f5f9;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-weight:500;color:#94a3b8;cursor:not-allowed;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Coming soon</span></div>
+        </div>
+
+        <div class="tool">
+          <div class="tool__top">
+            <span class="tool__icon" style="background:var(--red-50);color:var(--red-600);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
+            <div><h3 class="tool__title">Event Support Request</h3><p class="tool__sub">Logistics · Hospitality · Setup</p></div>
+          </div>
+          <p class="muted" style="margin:0;font-size:13.5px;">Get support for an event you're hosting — from setup to refreshments to volunteer help.</p>
+          <div class="tool__bottom"><span class="tool__sla">~7 days · Property + Communication</span><span style="display:inline-flex;align-items:center;gap:5px;padding:6px 12px;background:#f1f5f9;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-weight:500;color:#94a3b8;cursor:not-allowed;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Coming soon</span></div>
+        </div>
+      </div>
+
+      <!-- My recent requests (sample) -->
+      <div class="section-title" style="margin-top:28px;"><h2>My Recent Requests</h2><span style="display:inline-flex;align-items:center;gap:5px;padding:6px 12px;background:#f1f5f9;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-weight:500;color:#94a3b8;cursor:not-allowed;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Coming soon</span></div>
+      <div class="card" style="padding:0;">
+        <div class="list">
+          <div class="list__item">
+            <span class="list__icon" style="background:var(--green-50);color:var(--green-600);">✓</span>
+            <div class="list__text">
+              <p class="list__title">Leave Request · 3 days · 12–14 May</p>
+              <p class="list__sub">Approved by Sreypov Lim · Submitted 5 May</p>
+            </div>
+            <span class="chip chip--active">Approved</span>
+          </div>
+          <div class="list__item">
+            <span class="list__icon" style="background:var(--amber-50);color:var(--amber-600);">⋯</span>
+            <div class="list__text">
+              <p class="list__title">IT Request · Replace office laptop charger</p>
+              <p class="list__sub">In progress · Submitted 11 May</p>
+            </div>
+            <span class="chip chip--draft">In progress</span>
+          </div>
+          <div class="list__item">
+            <span class="list__icon" style="background:#F1F5F9;color:#475569;">✓</span>
+            <div class="list__text">
+              <p class="list__title">Vehicle Request · Field visit to Battambang</p>
+              <p class="list__sub">Completed · 28 Apr</p>
+            </div>
+            <span class="chip">Completed</span>
+          </div>
+        </div>
       </div>
 
     </div>
