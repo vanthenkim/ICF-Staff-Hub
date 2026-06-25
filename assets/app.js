@@ -103,13 +103,10 @@ if ('serviceWorker' in navigator) {
     try { localStorage.setItem('icf-lang', lang); } catch (e) {}
   }
 
-  // Init from saved preference
+  // Init from saved preference — always call applyLang so the button label is correct
   let savedLang = 'en';
   try { savedLang = localStorage.getItem('icf-lang') || 'en'; } catch (e) {}
-  if (savedLang === 'km') {
-    // Defer until DOM/body is fully parsed
-    document.addEventListener('DOMContentLoaded', () => applyLang('km'));
-  }
+  document.addEventListener('DOMContentLoaded', () => applyLang(savedLang));
 
   document.addEventListener('click', (e) => {
     const btn = e.target.closest('[data-action="toggle-lang"]');
