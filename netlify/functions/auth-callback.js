@@ -86,7 +86,7 @@ exports.handler = async (event) => {
         Location:    [destination],
         'Set-Cookie': [
           `icf_auth=${cookie}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=28800`,
-          `icf_user=${Buffer.from(email).toString('base64')}; Path=/; Secure; SameSite=Lax; Max-Age=28800`,
+          `icf_user=${Buffer.from(user.email).toString('base64')}; Path=/; Secure; SameSite=Lax; Max-Age=28800`,
         ],
         'Cache-Control': ['no-store'],
       },
