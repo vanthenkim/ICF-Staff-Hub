@@ -165,13 +165,12 @@ if ('serviceWorker' in navigator) {
   (function setHeroDate() {
     const now = new Date();
     const hour = now.getHours();
-    // Read first name from icf_auth cookie (format: base64(email|expiry).hmac)
+    // Read first name from icf_user cookie (base64-encoded email, set by auth-callback)
     let name = 'Friend';
     try {
-      const cookie = document.cookie.split('; ').find(r => r.startsWith('icf_auth='));
+      const cookie = document.cookie.split('; ').find(r => r.startsWith('icf_user='));
       if (cookie) {
-        const b64 = cookie.split('=').slice(1).join('=').split('.')[0];
-        const email = atob(b64).split('|')[0]; // e.g. vivian.stumpf@icf-cambodia.com
+        const email = atob(cookie.split('=').slice(1).join('=')); // e.g. vivian.stumpf@icf-cambodia.com
         const first = email.split('@')[0].split('.')[0];
         if (first) name = first.charAt(0).toUpperCase() + first.slice(1);
       }
