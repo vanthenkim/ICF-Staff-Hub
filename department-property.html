@@ -67,6 +67,10 @@
           <h1>Property</h1>
           <p>Maintaining, securing, and improving ICF Cambodia's campus — from daily cleaning and security to vehicles, maintenance, and electrical services.</p>
         </div>
+        <a href="#property-org-chart" onclick="document.getElementById('property-org-section').style.display='block';" style="flex-shrink:0;display:inline-flex;align-items:center;gap:8px;padding:9px 16px;background:rgba(255,255,255,0.15);border:1.5px solid rgba(255,255,255,0.3);border-radius:10px;color:#fff;font-size:13px;font-weight:600;text-decoration:none;backdrop-filter:blur(4px);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><line x1="17" y1="17" x2="17" y2="21"/><line x1="17" y1="17" x2="21" y2="17"/></svg>
+          Org Chart
+        </a>
       </section>
 
       <div class="col-2">
@@ -229,6 +233,119 @@
           </div>
 
         </aside>
+
+      <!-- Property Org Chart -->
+      <div id="property-org-chart" style="margin-top:28px;">
+        <div class="section-title">
+          <h2>Property Org Chart</h2>
+          <button onclick="var s=document.getElementById('property-org-section');s.style.display=s.style.display==='none'?'block':'none';" style="display:flex;align-items:center;gap:6px;background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:8px;padding:6px 12px;font-size:13px;font-weight:600;color:#374151;cursor:pointer;font-family:inherit;">Toggle</button>
+        </div>
+        <div id="property-org-section" style="display:none;overflow-x:auto;padding-bottom:16px;">
+          <div style="display:flex;flex-direction:column;align-items:center;width:max-content;margin:0 auto;">
+
+          <!-- Root: Martin Strupler -->
+          <div data-person="Martin Strupler" style="display:flex;align-items:center;gap:14px;cursor:pointer;background:linear-gradient(135deg,#b45309,#d97706);color:#fff;border-radius:14px;padding:14px 22px;min-width:260px;transition:box-shadow .15s;" onmouseover="this.style.boxShadow='0 4px 20px rgba(180,83,9,.4)'" onmouseout="this.style.boxShadow='none'">
+            <img src="assets/people/martin-strupler.jpg" style="width:56px;height:56px;border-radius:50%;object-fit:cover;border:2.5px solid rgba(255,255,255,.35);flex-shrink:0;">
+            <div>
+              <div style="font-size:9.5px;opacity:.75;text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px;">Executive Director · Property</div>
+              <div style="font-weight:700;font-size:17px;line-height:1.2;">Martin Strupler</div>
+            </div>
+          </div>
+
+          <!-- Connector -->
+          <div style="width:2px;height:16px;background:#fde68a;"></div>
+          <div style="width:100%;border-top:2px solid #fde68a;"></div>
+
+          <!-- Department columns -->
+          <div style="display:flex;gap:8px;align-items:flex-start;">
+            <style>
+              .prop-col-wrap { display:flex;flex-direction:column;align-items:center; }
+              .prop-col-drop { width:2px;height:16px;background:#fde68a;margin-bottom:0; }
+            </style>
+
+            <!-- Management -->
+            <div class="prop-col-wrap">
+              <div class="prop-col-drop"></div>
+              <div style="flex:0 0 180px;display:flex;flex-direction:column;gap:0;background:#fff;border:1.5px solid #e2e8f0;border-top:3px solid #d97706;border-radius:10px;padding:12px 10px;">
+  <div style="font-size:9px;font-weight:700;color:#d97706;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;">Management</div>
+  <div data-person="Sarath Sok" style="display:flex;align-items:center;gap:10px;cursor:pointer;background:#fffbeb;border-radius:10px;padding:10px 12px;transition:background .15s,box-shadow .15s;margin-bottom:6px;" onmouseover="this.style.background='#fef3c7';this.style.boxShadow='0 2px 10px rgba(217,119,6,.15)'" onmouseout="this.style.background='#fffbeb';this.style.boxShadow='none'"><img src="assets/people/sarath-sok.jpg" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;"><div><div style="font-weight:700;font-size:12.5px;color:#78350f;">Sarath Sok</div><div style="font-size:11px;color:#d97706;">Facility Manager</div></div></div>
+  <div style="margin-left:18px;border-left:2px solid #fde68a;padding-left:10px;display:flex;flex-direction:column;gap:5px;">
+  <div data-person="Kim Sopheap" style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#fff;border:1px solid #fef3c7;border-left:3px solid #fde68a;border-radius:8px;padding:7px 10px;transition:background .15s;" onmouseover="this.style.background='#fffbeb'" onmouseout="this.style.background='#fff'"><img src="https://lh3.googleusercontent.com/d/1_uXFwzOPjKKG3AhD79qTEZRN1r2eoA7F" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;"><div><div style="font-weight:600;font-size:11.5px;color:#1f2937;">Kim Sopheap</div><div style="font-size:10.5px;color:#6b7280;">Purchasing Coordinator</div></div></div>
+  </div>
+</div>
+            </div>
+
+            <!-- Electrical -->
+            <div class="prop-col-wrap">
+              <div class="prop-col-drop"></div>
+              <div style="flex:0 0 180px;display:flex;flex-direction:column;gap:0;background:#fff;border:1.5px solid #e2e8f0;border-top:3px solid #d97706;border-radius:10px;padding:12px 10px;">
+  <div style="font-size:9px;font-weight:700;color:#d97706;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;">Electrical</div>
+  <div data-person="Kim Sorn Soeuth" style="display:flex;align-items:center;gap:10px;cursor:pointer;background:#fffbeb;border-radius:10px;padding:10px 12px;transition:background .15s,box-shadow .15s;margin-bottom:6px;" onmouseover="this.style.background='#fef3c7';this.style.boxShadow='0 2px 10px rgba(217,119,6,.15)'" onmouseout="this.style.background='#fffbeb';this.style.boxShadow='none'"><img src="https://lh3.googleusercontent.com/d/1uPuo4OjupoKrLsqTtgsFojhIi6G77a6D" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;"><div><div style="font-weight:700;font-size:12.5px;color:#78350f;">Kim Sorn Soeuth</div><div style="font-size:11px;color:#d97706;">Senior Electrician</div></div></div>
+  <div style="margin-left:18px;border-left:2px solid #fde68a;padding-left:10px;display:flex;flex-direction:column;gap:5px;">
+  <div data-person="Chrach Chen" style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#fff;border:1px solid #fef3c7;border-left:3px solid #fde68a;border-radius:8px;padding:7px 10px;transition:background .15s;" onmouseover="this.style.background='#fffbeb'" onmouseout="this.style.background='#fff'"><img src="https://lh3.googleusercontent.com/d/1PpiMAxMDmLGjD66rC3DiEY5RcCmCwHc3" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;"><div><div style="font-weight:600;font-size:11.5px;color:#1f2937;">Chrach Chen</div><div style="font-size:10.5px;color:#6b7280;">Electrician</div></div></div>
+  </div>
+</div>
+            </div>
+
+            <!-- Security -->
+            <div class="prop-col-wrap">
+              <div class="prop-col-drop"></div>
+              <div style="flex:0 0 180px;display:flex;flex-direction:column;gap:0;background:#fff;border:1.5px solid #e2e8f0;border-top:3px solid #d97706;border-radius:10px;padding:12px 10px;">
+  <div style="font-size:9px;font-weight:700;color:#d97706;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;">Security</div>
+  <div data-person="Hing Hoeun" style="display:flex;align-items:center;gap:10px;cursor:pointer;background:#fffbeb;border-radius:10px;padding:10px 12px;transition:background .15s,box-shadow .15s;margin-bottom:6px;" onmouseover="this.style.background='#fef3c7';this.style.boxShadow='0 2px 10px rgba(217,119,6,.15)'" onmouseout="this.style.background='#fffbeb';this.style.boxShadow='none'"><img src="assets/people/hing-hoeun.jpg" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;"><div><div style="font-weight:700;font-size:12.5px;color:#78350f;">Hing Hoeun</div><div style="font-size:11px;color:#d97706;">Security Leader</div></div></div>
+  <div style="margin-left:18px;border-left:2px solid #fde68a;padding-left:10px;display:flex;flex-direction:column;gap:5px;">
+  <div data-person="Thon Tep" style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#fff;border:1px solid #fef3c7;border-left:3px solid #fde68a;border-radius:8px;padding:7px 10px;transition:background .15s;" onmouseover="this.style.background='#fffbeb'" onmouseout="this.style.background='#fff'"><img src="assets/people/thon-tep.jpg" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;"><div><div style="font-weight:600;font-size:11.5px;color:#1f2937;">Thon Tep</div><div style="font-size:10.5px;color:#6b7280;">Security Guard</div></div></div>
+  <div data-person="Hin Loeb" style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#fff;border:1px solid #fef3c7;border-left:3px solid #fde68a;border-radius:8px;padding:7px 10px;transition:background .15s;" onmouseover="this.style.background='#fffbeb'" onmouseout="this.style.background='#fff'"><img src="https://lh3.googleusercontent.com/d/1xXxQM4x8eRw6s-XZWSIIXizwq4aefY3o" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;"><div><div style="font-weight:600;font-size:11.5px;color:#1f2937;">Hin Loeb</div><div style="font-size:10.5px;color:#6b7280;">Security Guard</div></div></div>
+  <div data-person="Ya Hoeun" style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#fff;border:1px solid #fef3c7;border-left:3px solid #fde68a;border-radius:8px;padding:7px 10px;transition:background .15s;" onmouseover="this.style.background='#fffbeb'" onmouseout="this.style.background='#fff'"><img src="https://lh3.googleusercontent.com/d/1ypQbxtmFqJjtvROE24XPOSu7ViInuCkI" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;"><div><div style="font-weight:600;font-size:11.5px;color:#1f2937;">Ya Hoeun</div><div style="font-size:10.5px;color:#6b7280;">Security Guard</div></div></div>
+  <div data-person="Saroeun Kim" style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#fff;border:1px solid #fef3c7;border-left:3px solid #fde68a;border-radius:8px;padding:7px 10px;transition:background .15s;" onmouseover="this.style.background='#fffbeb'" onmouseout="this.style.background='#fff'"><img src="assets/people/saroeun-kim.jpg" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;"><div><div style="font-weight:600;font-size:11.5px;color:#1f2937;">Saroeun Kim</div><div style="font-size:10.5px;color:#6b7280;">Security Guard</div></div></div>
+  </div>
+</div>
+            </div>
+
+            <!-- Cleaning -->
+            <div class="prop-col-wrap">
+              <div class="prop-col-drop"></div>
+              <div style="flex:0 0 180px;display:flex;flex-direction:column;gap:0;background:#fff;border:1.5px solid #e2e8f0;border-top:3px solid #d97706;border-radius:10px;padding:12px 10px;">
+  <div style="font-size:9px;font-weight:700;color:#d97706;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;">Cleaning</div>
+  <div data-person="Sila Kun" style="display:flex;align-items:center;gap:10px;cursor:pointer;background:#fffbeb;border-radius:10px;padding:10px 12px;transition:background .15s,box-shadow .15s;margin-bottom:6px;" onmouseover="this.style.background='#fef3c7';this.style.boxShadow='0 2px 10px rgba(217,119,6,.15)'" onmouseout="this.style.background='#fffbeb';this.style.boxShadow='none'"><img src="https://lh3.googleusercontent.com/d/1kH7H9xvH8HJLpwOPb3bm-H5jp7VKnKkt" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;"><div><div style="font-weight:700;font-size:12.5px;color:#78350f;">Sila Kun</div><div style="font-size:11px;color:#d97706;">Cleaning Leader</div></div></div>
+  <div style="margin-left:18px;border-left:2px solid #fde68a;padding-left:10px;display:flex;flex-direction:column;gap:5px;">
+  <div data-person="Hou Sokcheat" style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#fff;border:1px solid #fef3c7;border-left:3px solid #fde68a;border-radius:8px;padding:7px 10px;transition:background .15s;" onmouseover="this.style.background='#fffbeb'" onmouseout="this.style.background='#fff'"><img src="assets/people/hou-sokcheat.jpg" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;"><div><div style="font-weight:600;font-size:11.5px;color:#1f2937;">Hou Sokcheat</div><div style="font-size:10.5px;color:#6b7280;">Cleaner</div></div></div>
+  <div data-person="Rin Nga" style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#fff;border:1px solid #fef3c7;border-left:3px solid #fde68a;border-radius:8px;padding:7px 10px;transition:background .15s;" onmouseover="this.style.background='#fffbeb'" onmouseout="this.style.background='#fff'"><img src="https://lh3.googleusercontent.com/d/1iEbb8-9-r213z3AMgI3cr7wvlfvvBOXV" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;"><div><div style="font-weight:600;font-size:11.5px;color:#1f2937;">Rin Nga</div><div style="font-size:10.5px;color:#6b7280;">Cleaner</div></div></div>
+  </div>
+</div>
+            </div>
+
+            <!-- Gardening -->
+            <div class="prop-col-wrap">
+              <div class="prop-col-drop"></div>
+              <div style="flex:0 0 180px;display:flex;flex-direction:column;gap:0;background:#fff;border:1.5px solid #e2e8f0;border-top:3px solid #d97706;border-radius:10px;padding:12px 10px;">
+  <div style="font-size:9px;font-weight:700;color:#d97706;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;">Gardening</div>
+  <div data-person="Nan Houn" style="display:flex;align-items:center;gap:10px;cursor:pointer;background:#fffbeb;border-radius:10px;padding:10px 12px;transition:background .15s,box-shadow .15s;margin-bottom:6px;" onmouseover="this.style.background='#fef3c7';this.style.boxShadow='0 2px 10px rgba(217,119,6,.15)'" onmouseout="this.style.background='#fffbeb';this.style.boxShadow='none'"><img src="https://lh3.googleusercontent.com/d/18VtEdGxrvoe8J3T6oj_TYrNp11qZJPAn" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;"><div><div style="font-weight:700;font-size:12.5px;color:#78350f;">Nan Houn</div><div style="font-size:11px;color:#d97706;">Gardening Leader</div></div></div>
+  <div style="margin-left:18px;border-left:2px solid #fde68a;padding-left:10px;display:flex;flex-direction:column;gap:5px;">
+  <div data-person="Hean Luos" style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#fff;border:1px solid #fef3c7;border-left:3px solid #fde68a;border-radius:8px;padding:7px 10px;transition:background .15s;" onmouseover="this.style.background='#fffbeb'" onmouseout="this.style.background='#fff'"><img src="https://lh3.googleusercontent.com/d/1F_DuiMORuPeP8bRF3u-FJns1ks40v8mX" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;"><div><div style="font-weight:600;font-size:11.5px;color:#1f2937;">Hean Luos</div><div style="font-size:10.5px;color:#6b7280;">Gardener</div></div></div>
+  <div data-person="Minea Soy" style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#fff;border:1px solid #fef3c7;border-left:3px solid #fde68a;border-radius:8px;padding:7px 10px;transition:background .15s;" onmouseover="this.style.background='#fffbeb'" onmouseout="this.style.background='#fff'"><img src="assets/people/minea-soy.jpg" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;"><div><div style="font-weight:600;font-size:11.5px;color:#1f2937;">Minea Soy</div><div style="font-size:10.5px;color:#6b7280;">Gardener</div></div></div>
+  </div>
+</div>
+            </div>
+
+            <!-- Maintenance -->
+            <div class="prop-col-wrap">
+              <div class="prop-col-drop"></div>
+              <div style="flex:0 0 180px;display:flex;flex-direction:column;gap:0;background:#fff;border:1.5px solid #e2e8f0;border-top:3px solid #d97706;border-radius:10px;padding:12px 10px;">
+  <div style="font-size:9px;font-weight:700;color:#d97706;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;">Maintenance</div>
+  <div data-person="Barang Soeurm" style="display:flex;align-items:center;gap:10px;cursor:pointer;background:#fffbeb;border-radius:10px;padding:10px 12px;transition:background .15s,box-shadow .15s;margin-bottom:6px;" onmouseover="this.style.background='#fef3c7';this.style.boxShadow='0 2px 10px rgba(217,119,6,.15)'" onmouseout="this.style.background='#fffbeb';this.style.boxShadow='none'"><img src="https://lh3.googleusercontent.com/d/1E9Xl3TlsgJRSYpL4pdEYdYmV1Xprd7jb" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;"><div><div style="font-weight:700;font-size:12.5px;color:#78350f;">Barang Soeurm</div><div style="font-size:11px;color:#d97706;">Maintenance Leader</div></div></div>
+  <div style="margin-left:18px;border-left:2px solid #fde68a;padding-left:10px;display:flex;flex-direction:column;gap:5px;">
+  <div data-person="Sopheap Puth" style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#fff;border:1px solid #fef3c7;border-left:3px solid #fde68a;border-radius:8px;padding:7px 10px;transition:background .15s;" onmouseover="this.style.background='#fffbeb'" onmouseout="this.style.background='#fff'"><img src="assets/people/sopheap-puth.jpg" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;"><div><div style="font-weight:600;font-size:11.5px;color:#1f2937;">Sopheap Puth</div><div style="font-size:10.5px;color:#6b7280;">Maintenance</div></div></div>
+  <div data-person="Sen Meta" style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#fff;border:1px solid #fef3c7;border-left:3px solid #fde68a;border-radius:8px;padding:7px 10px;transition:background .15s;" onmouseover="this.style.background='#fffbeb'" onmouseout="this.style.background='#fff'"><img src="assets/people/sen-meta.jpg" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;"><div><div style="font-weight:600;font-size:11.5px;color:#1f2937;">Sen Meta</div><div style="font-size:10.5px;color:#6b7280;">Maintenance</div></div></div>
+  <div data-person="Nhoem David" style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#fff;border:1px solid #fef3c7;border-left:3px solid #fde68a;border-radius:8px;padding:7px 10px;transition:background .15s;" onmouseover="this.style.background='#fffbeb'" onmouseout="this.style.background='#fff'"><div style="width:32px;height:32px;border-radius:50%;background:#fffbeb;border:1.5px solid #fde68a;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;color:#78350f;flex-shrink:0;">ND</div><div><div style="font-weight:600;font-size:11.5px;color:#1f2937;">Nhoem David</div><div style="font-size:10.5px;color:#6b7280;">Maintenance</div></div></div>
+  </div>
+</div>
+            </div>
+
+          </div><!-- /columns -->
+          </div><!-- /width:max-content wrapper -->
+        </div><!-- /property-org-section -->
+      </div><!-- /property-org-chart -->
       </div>
     </div>
   </main>
@@ -302,6 +419,7 @@
 </div>
 <script>
 var people = {
+    "Martin Strupler": { role:"Executive Director – Property", email:"martin.strupler@icf-cambodia.com", telegram:"Martinstrupler", phone:"+85512542190", photo:"assets/people/martin-strupler.jpg"},
     "Sarath Sok": { role:"Facility Manager", email:"sarath.sok@icf-cambodia.com", phone:"+85589585378", telegram:"sarathsok", photo:"assets/people/sarath-sok.jpg"},
     "Kim Sopheap": { role:"Purchasing Coordinator", email:"kim.sopheap@icf-cambodia.com", telegram:"Sopheapkim",photo:"https://lh3.googleusercontent.com/d/1_uXFwzOPjKKG3AhD79qTEZRN1r2eoA7F"},
     "Kim Sorn Soeuth": { role:"Senior Electrician", email:"kim.soeuth@icf-cambodia.com", phone:"+85585685335",photo:"https://lh3.googleusercontent.com/d/1uPuo4OjupoKrLsqTtgsFojhIi6G77a6D"},
