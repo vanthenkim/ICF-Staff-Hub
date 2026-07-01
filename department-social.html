@@ -67,7 +67,7 @@
           <h1>Social</h1>
           <p>Walking alongside vulnerable families through community outreach, social work, mental health support, and daycare — rooted in compassion and dignity.</p>
           <div style="margin-top:14px;">
-            <a href="#social-org-chart" onclick="document.getElementById('social-org-section').style.display='block';" style="flex-shrink:0;display:inline-flex;align-items:center;gap:8px;padding:9px 16px;background:rgba(255,255,255,0.15);border:1.5px solid rgba(255,255,255,0.3);border-radius:10px;color:#fff;font-size:13px;font-weight:600;text-decoration:none;backdrop-filter:blur(4px);">
+            <a href="#" onclick="event.preventDefault();document.getElementById('social-org-chart').style.display='flex';" style="flex-shrink:0;display:inline-flex;align-items:center;gap:8px;padding:9px 16px;background:rgba(255,255,255,0.15);border:1.5px solid rgba(255,255,255,0.3);border-radius:10px;color:#fff;font-size:13px;font-weight:600;text-decoration:none;backdrop-filter:blur(4px);">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
               Org Chart
             </a>
@@ -207,8 +207,14 @@
       </div>
 
       <!-- Social Org Chart -->
-      <div id="social-org-chart" style="margin-top:28px;padding:0 16px 28px;">
-        <div id="social-org-section" style="display:none;overflow-x:auto;padding-bottom:16px;">
+      <div id="social-org-chart" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.72);z-index:9990;overflow-y:auto;" onclick="document.getElementById('social-org-chart').style.display='none'">
+        <div id="social-org-section" style="display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:24px 16px;min-height:100%;" onclick="event.stopPropagation()">
+          <div style="background:#f8fafc;border-radius:20px;padding:24px 28px;max-width:1400px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.25);">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+              <div style="font-weight:700;font-size:18px;color:#1a2332;">Social · Org Chart</div>
+              <button onclick="document.getElementById('social-org-chart').style.display='none'" style="background:none;border:none;font-size:28px;cursor:pointer;color:#94a3b8;line-height:1;">&times;</button>
+            </div>
+            <div style="overflow-x:auto;padding-bottom:8px;">
 
           <!-- Root: Matthias Lendi -->
           <div style="display:flex;justify-content:center;margin-bottom:6px;">
@@ -305,6 +311,8 @@
   </div>
 </div></div>
           </div>
+                    </div><!-- /scroll-wrapper -->
+          </div><!-- /white-box -->
         </div><!-- /social-org-section -->
       </div>
     </div>
