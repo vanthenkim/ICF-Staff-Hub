@@ -64,6 +64,10 @@
           <h1>Church</h1>
           <p>Gathering people around Jesus — through worship, outreach, discipleship, youth and kids ministry, and pastoral care across all ICF Cambodia church locations.</p>
         </div>
+        <a href="#church-org-chart" onclick="document.getElementById('church-org-section').style.display='block';" style="flex-shrink:0;display:inline-flex;align-items:center;gap:8px;padding:9px 16px;background:rgba(255,255,255,0.15);border:1.5px solid rgba(255,255,255,0.3);border-radius:10px;color:#fff;font-size:13px;font-weight:600;text-decoration:none;backdrop-filter:blur(4px);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><line x1="17" y1="17" x2="17" y2="21"/><line x1="17" y1="17" x2="21" y2="17"/></svg>
+          Org Chart
+        </a>
       </section>
 
       <div class="col-2">
@@ -245,6 +249,167 @@
           </div>
         </aside>
       </div>
+
+      <!-- Church Org Chart -->
+      <div id="church-org-chart" style="margin-top:28px;">
+        <div class="section-title">
+          <h2>Church Org Chart</h2>
+          <button onclick="var s=document.getElementById('church-org-section');s.style.display=s.style.display==='none'?'block':'none';" style="display:flex;align-items:center;gap:6px;background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:8px;padding:6px 12px;font-size:13px;font-weight:600;color:#374151;cursor:pointer;font-family:inherit;">Toggle</button>
+        </div>
+        <div id="church-org-section" style="overflow-x:auto;padding-bottom:12px;">
+          <style>
+            .co { display:flex;flex-direction:column;align-items:center;position:relative; }
+            .co-node { display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;padding:8px 10px;border-radius:10px;transition:background .15s;min-width:100px;max-width:120px;text-align:center; }
+            .co-node:hover { background:#f5f3ff; }
+            .co-node img,.co-node .co-init { width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0; }
+            .co-init { display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:#6b7280;background:#e5e7eb; }
+            .co-name { font-size:11.5px;font-weight:600;color:#111827;line-height:1.3; }
+            .co-role { font-size:10.5px;color:#6b7280;line-height:1.3; }
+            .co-children { display:flex;gap:8px;align-items:flex-start;position:relative;padding-top:24px; }
+            .co-children::before { content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:2px;height:24px;background:#e2e8f0; }
+            .co-child { display:flex;flex-direction:column;align-items:center;position:relative; }
+            .co-child::before { content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:2px;height:20px;background:#e2e8f0; }
+            .co-row { display:flex;gap:4px;align-items:flex-start;position:relative;padding-top:20px; }
+            .co-row::before { content:'';position:absolute;top:0;left:0;right:0;height:2px;background:#e2e8f0; }
+            .co-row > .co { position:relative; }
+            .co-row > .co::before { content:'';position:absolute;top:-20px;left:50%;transform:translateX(-50%);width:2px;height:20px;background:#e2e8f0; }
+          </style>
+
+          <!-- Root: Eddie Roach -->
+          <div class="co" style="padding-top:16px;">
+            <div class="co-node" data-person="Eddie Roach">
+              <img src="assets/people/eddie-roach.jpg" alt="Eddie Roach">
+              <div class="co-name">Eddie Roach</div>
+              <div class="co-role">Executive Director</div>
+            </div>
+
+            <!-- Level 1: Direct reports -->
+            <div class="co-children" style="flex-wrap:wrap;justify-content:center;">
+
+              <!-- Rany Mom -->
+              <div class="co-child">
+                <div class="co-node" data-person="Rany Mom">
+                  <img src="assets/people/rany-mom.jpg" alt="Rany Mom">
+                  <div class="co-name">Rany Mom</div>
+                  <div class="co-role">Location Pastor (Khnar)</div>
+                </div>
+              </div>
+
+              <!-- Panha Neang — Next Steps -->
+              <div class="co-child">
+                <div class="co-node" data-person="Panha Neang">
+                  <img src="https://lh3.googleusercontent.com/d/1T3YGRTVpRbs0H1LC-s2l5Anbewx56ovU" alt="Panha Neang">
+                  <div class="co-name">Panha Neang</div>
+                  <div class="co-role">Next Steps Pastor</div>
+                </div>
+                <div class="co-row">
+                  <div class="co">
+                    <div class="co-node" data-person="Boromey Hom">
+                      <img src="https://lh3.googleusercontent.com/d/1_Z6rt4eP2F69dr-VNCH8mfCOuikOz5OK" alt="Boromey Hom">
+                      <div class="co-name">Boromey Hom</div>
+                      <div class="co-role">Next Steps Facilitator</div>
+                    </div>
+                  </div>
+                  <div class="co">
+                    <div class="co-node" data-person="Mom Kalic">
+                      <img src="https://lh3.googleusercontent.com/d/1fd75gzxxBfmTiTbb9Km1cn4Xg6bjzOgZ" alt="Mom Kalic">
+                      <div class="co-name">Mom Kalic</div>
+                      <div class="co-role">Adult Program Coord.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Bethany Roach — Outreach -->
+              <div class="co-child">
+                <div class="co-node" data-person="Bethany Roach">
+                  <img src="assets/people/bethany-roach.jpg" alt="Bethany Roach">
+                  <div class="co-name">Bethany Roach</div>
+                  <div class="co-role">Outreach Pastor</div>
+                </div>
+                <div class="co-row">
+                  <div class="co">
+                    <div class="co-node" data-person="Seangly Leng">
+                      <img src="https://lh3.googleusercontent.com/d/1herP04RX_uIUvFCi5pOtEGjjy3uLoaz4" alt="Seangly Leng">
+                      <div class="co-name">Seangly Leng</div>
+                      <div class="co-role">Outreach Supervisor</div>
+                    </div>
+                    <div class="co-row">
+                      <div class="co"><div class="co-node" data-person="Champa Vong"><img src="assets/people/champa-vong.jpg" alt="Champa Vong"><div class="co-name">Champa Vong</div><div class="co-role">Outreach Facilitator</div></div></div>
+                      <div class="co"><div class="co-node" data-person="Rothana Ros"><img src="https://lh3.googleusercontent.com/d/1lwnSCHbwJ2l9n4V53nwGMrkR3izbH_VK" alt="Rothana Ros"><div class="co-name">Rothana Ros</div><div class="co-role">Outreach Facilitator</div></div></div>
+                      <div class="co"><div class="co-node" data-person="Sambath Song"><img src="https://lh3.googleusercontent.com/d/1T5PsmIWlR-wD4yRPjPlK9y7lQAsZdEp3" alt="Sambath Song"><div class="co-name">Sambath Song</div><div class="co-role">Youth Outreach Staff</div></div></div>
+                    </div>
+                  </div>
+                  <div class="co">
+                    <div class="co-node" data-person="Noa Flammer">
+                      <img src="assets/people/noa-flammer.jpg" alt="Noa Flammer">
+                      <div class="co-name">Noa Flammer</div>
+                      <div class="co-role">Inner Healing Coord.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Sombo Ros — Worship -->
+              <div class="co-child">
+                <div class="co-node" data-person="Sombo Ros">
+                  <img src="https://lh3.googleusercontent.com/d/1vih05SeCfwzEwDcvD7_AVNPsXwca_U9F" alt="Sombo Ros">
+                  <div class="co-name">Sombo Ros</div>
+                  <div class="co-role">Worship Pastor</div>
+                </div>
+                <div class="co-row">
+                  <div class="co"><div class="co-node" data-person="Dana Thy"><img src="assets/people/dana-thy.jpg" alt="Dana Thy"><div class="co-name">Dana Thy</div><div class="co-role">Worship Specialist</div></div></div>
+                  <div class="co"><div class="co-node" data-person="Pichey Ken"><img src="https://lh3.googleusercontent.com/d/12B50ktYeAUaShjg1MiCpkEY_i6m87_u-" alt="Pichey Ken"><div class="co-name">Pichey Ken</div><div class="co-role">Worship Specialist</div></div></div>
+                  <div class="co"><div class="co-node" data-person="Sreileak Rous"><img src="https://lh3.googleusercontent.com/d/1ivaGknObKl9Db7zwfLxGf3h74OkYKWkp" alt="Sreileak Rous"><div class="co-name">Sreileak Rous</div><div class="co-role">Worship Specialist</div></div></div>
+                  <div class="co"><div class="co-node" data-person="Kanal Tensok"><img src="assets/people/kanal-tensok.jpg" alt="Kanal Tensok"><div class="co-name">Kanal Tensok</div><div class="co-role">Multimedia</div></div></div>
+                  <div class="co"><div class="co-node" data-person="Somun Yem"><img src="assets/people/somun-yem.jpg" alt="Somun Yem"><div class="co-name">Somun Yem</div><div class="co-role">Sound Trainee</div></div></div>
+                  <div class="co"><div class="co-node" data-person="Elea Weber"><img src="assets/people/elea-weber.jpg" alt="Elea Weber"><div class="co-name">Elea Weber</div><div class="co-role">Sound Assistant</div></div></div>
+                </div>
+              </div>
+
+              <!-- Sreypich Chhean — Youth -->
+              <div class="co-child">
+                <div class="co-node" data-person="Sreypich Chhean">
+                  <img src="https://lh3.googleusercontent.com/d/1YtvZLyqBhNF-PqOP_wMpJjmfvrRqSWPl" alt="Sreypich Chhean">
+                  <div class="co-name">Sreypich Chhean</div>
+                  <div class="co-role">Youth Pastor</div>
+                </div>
+                <div class="co-row">
+                  <div class="co"><div class="co-node" data-person="Sotheavy Ngen"><img src="assets/people/sotheavy-ngen.jpg" alt="Sotheavy Ngen"><div class="co-name">Sotheavy Ngen</div><div class="co-role">Youth Facilitator</div></div></div>
+                </div>
+              </div>
+
+              <!-- Khemry Men — Kids -->
+              <div class="co-child">
+                <div class="co-node" data-person="Khemry Men">
+                  <img src="https://lh3.googleusercontent.com/d/1Lm0pWKXWWjEHs4OcKgrptcAVRztjCSXf" alt="Khemry Men">
+                  <div class="co-name">Khemry Men</div>
+                  <div class="co-role">God's Kids Pastor</div>
+                </div>
+                <div class="co-row">
+                  <div class="co">
+                    <div class="co-node" data-person="Ryna Mom">
+                      <img src="https://lh3.googleusercontent.com/d/1Kg8bRlHgVSJp_EkVxxLoQ2wRNfGvI8yW" alt="Ryna Mom">
+                      <div class="co-name">Ryna Mom</div>
+                      <div class="co-role">Kids Pastor</div>
+                    </div>
+                    <div class="co-row">
+                      <div class="co"><div class="co-node" data-person="Robson Barbosa"><img src="assets/people/robson-barbosa.jpg" alt="Robson Barbosa"><div class="co-name">Robson Barbosa</div><div class="co-role">Kids Resource Coord.</div></div></div>
+                      <div class="co"><div class="co-node" data-person="Aline Barbosa"><img src="assets/people/aline-barbosa.jpg" alt="Aline Barbosa"><div class="co-name">Aline Barbosa</div><div class="co-role">Kids Resource Spec.</div></div></div>
+                      <div class="co"><div class="co-node" data-person="Sovansreyreach Tat"><img src="https://lh3.googleusercontent.com/d/1U3o2ytDZMEtJHvwkUQ82y-OSG_YiYnum" alt="Sovansreyreach Tat"><div class="co-name">Sovansreyreach Tat</div><div class="co-role">Kids Program Facil.</div></div></div>
+                      <div class="co"><div class="co-node" data-person="Ryca Mom"><div class="co-init">RM</div><div class="co-name">Ryca Mom</div><div class="co-role">Kids Coordinator</div></div></div>
+                    </div>
+                  </div>
+                  <div class="co"><div class="co-node" data-person="Sopheap Ngat"><img src="https://lh3.googleusercontent.com/d/1Ryqt_yfBD6Wm5pTu-oWlKrZbD8tBIc-o" alt="Sopheap Ngat"><div class="co-name">Sopheap Ngat</div><div class="co-role">Mighty Kids Pastor</div></div></div>
+                  <div class="co"><div class="co-node" data-person="Sopheak Vat"><img src="https://lh3.googleusercontent.com/d/1Ckxmav7FZlQw5WNOcQO7PUxYLlEIo4hs" alt="Sopheak Vat"><div class="co-name">Sopheak Vat</div><div class="co-role">Adventure Kids Pastor</div></div></div>
+                </div>
+              </div>
+
+            </div><!-- /co-children -->
+          </div><!-- /root co -->
+        </div><!-- /church-org-section -->
+      </div><!-- /church-org-chart -->
+
     </div>
   </main>
 </div>
