@@ -646,18 +646,18 @@
 </script>
 
 
-<div id="modal-icf-main-org-chart" style="display:none;position:fixed;inset:0;z-index:2000;background:rgba(15,23,42,.6);align-items:flex-start;justify-content:center;padding:40px 16px;overflow-y:auto;" onclick="if(event.target===this)this.style.display='none'">
-  <div style="background:#fff;border-radius:16px;width:100%;max-width:1200px;box-shadow:0 32px 72px rgba(0,0,0,.35);position:relative;padding:28px 28px 24px;">
-    <button onclick="document.getElementById('modal-icf-main-org-chart').style.display='none'" style="position:absolute;top:14px;right:14px;background:#f1f5f9;border:none;border-radius:8px;width:34px;height:34px;font-size:20px;cursor:pointer;color:#64748b;line-height:1;display:flex;align-items:center;justify-content:center;">×</button>
-    <article id="icf-main-org-chart" style="grid-column:1/-1;background:#fff;border:1.5px solid #e2e8f0;border-radius:12px;padding:22px 24px;overflow-x:auto;">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
-            <div>
-              <h3 style="margin:0 0 2px;font-size:15px;font-weight:700;">ICF Cambodia &middot; Full Org Chart 2026</h3>
-              <p style="color:#6b7a8d;font-size:13px;margin:0;">All departments and reporting lines</p>
-            </div>
-            <span style="background:#dcfce7;color:#166534;border-radius:99px;font-size:11px;font-weight:600;padding:3px 10px;flex-shrink:0;">Active</span>
-          </div>
-          <div style="min-width:1200px;display:flex;flex-direction:column;align-items:center;">
+<div id="modal-icf-main-org-chart" style="display:none;position:fixed;inset:0;z-index:9990;background:rgba(15,23,42,0.72);overflow-y:auto;" onclick="if(event.target===this)this.style.display='none'">
+  <div style="display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:24px 16px;min-height:100%;" onclick="event.stopPropagation()">
+    <div style="background:#f8fafc;border-radius:20px;padding:24px 28px;max-width:1400px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.25);">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+        <div>
+          <h3 style="margin:0 0 2px;font-size:16px;font-weight:700;color:#1e293b;">ICF Cambodia &middot; Org Chart 2026</h3>
+          <p style="color:#6b7a8d;font-size:13px;margin:0;">All departments and reporting lines</p>
+        </div>
+        <button onclick="document.getElementById('modal-icf-main-org-chart').style.display='none'" style="background:#f1f5f9;border:none;border-radius:8px;width:34px;height:34px;font-size:20px;cursor:pointer;color:#64748b;display:flex;align-items:center;justify-content:center;flex-shrink:0;">×</button>
+      </div>
+      <div id="icf-main-org-chart" style="overflow-x:auto;padding-bottom:8px;">
+        <div style="width:max-content;margin:0 auto;display:flex;flex-direction:column;align-items:center;">
 
             <!-- Board row -->
             <div style="display:flex;align-items:center;gap:10px;">
@@ -665,21 +665,40 @@
                 <div style="font-weight:700;font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:.06em;">Advisory Board</div>
               </div>
               <div style="width:28px;height:2px;background:#cbd5e1;"></div>
-              <div data-org-name="ND Strupler" style="background:#1e3a5f;border-radius:10px;padding:10px 22px;text-align:center;color:#fff;">
-                <div style="font-size:9px;color:#94a3b8;text-transform:uppercase;letter-spacing:.07em;margin-bottom:2px;">Board of Directors</div>
+              <div data-org-name="ND Strupler" style="background:linear-gradient(135deg,#1e3a5f,#2563eb);border-radius:14px;padding:12px 22px;text-align:center;color:#fff;cursor:pointer;">
+                <img src="assets/people/nd-strupler.jpg" alt="ND Strupler" style="width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,0.35);margin:0 auto 6px;display:block;">
+                <div style="font-size:9px;color:#93c5fd;text-transform:uppercase;letter-spacing:.07em;margin-bottom:2px;">Founder &amp; Executive Director</div>
                 <div style="font-weight:700;font-size:14px;">ND Strupler</div>
-                <div style="font-size:11px;color:#bfdbfe;margin-top:1px;">President</div>
               </div>
               <div style="width:28px;height:2px;background:#cbd5e1;"></div>
-              <div style="background:#f1f5f9;border:1.5px solid #cbd5e1;border-radius:9px;padding:7px 14px;text-align:center;">
-                <div style="font-weight:700;font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:.06em;">Internal Counsel</div>
+              <div style="position:relative;">
+                <button onclick="var p=document.getElementById('ic-panel');p.style.display=p.style.display==='block'?'none':'block'" style="background:#fefce8;border:1.5px solid #fde68a;border-radius:9px;padding:7px 14px;text-align:center;cursor:pointer;font-family:inherit;line-height:1.3;display:block;">
+                  <div style="font-weight:700;font-size:10px;color:#92400e;text-transform:uppercase;letter-spacing:.06em;">Internal Council</div>
+                  <div style="font-size:9px;color:#b45309;margin-top:2px;">4 members ▾</div>
+                </button>
+                <div id="ic-panel" style="display:none;position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#fff;border:1.5px solid #fde68a;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.14);padding:10px;min-width:195px;z-index:100;">
+                  <div style="font-weight:700;font-size:10px;color:#92400e;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;text-align:center;padding-bottom:6px;border-bottom:1px solid #fde68a;">Internal Council</div>
+                  <div data-org-name="Sophal Strupler" style="background:#fefce8;border:1.5px solid #fde68a;border-radius:8px;padding:5px 8px;margin-bottom:5px;text-align:center;cursor:pointer;">
+                    <div style="font-weight:700;font-size:10.5px;color:#92400e;">Sophal Strupler</div>
+                    <div style="font-size:9px;color:#b45309;">Lead</div>
+                  </div>
+                  <div data-org-name="Bethany Roach" style="background:#fff;border:1.5px solid #e2e8f0;border-left:3px solid #fde68a;border-radius:8px;padding:5px 8px;margin-bottom:5px;text-align:center;cursor:pointer;">
+                    <div style="font-weight:700;font-size:10.5px;color:#1a2332;">Bethany Roach</div>
+                  </div>
+                  <div data-org-name="Simone Strupler" style="background:#fff;border:1.5px solid #e2e8f0;border-left:3px solid #fde68a;border-radius:8px;padding:5px 8px;margin-bottom:5px;text-align:center;cursor:pointer;">
+                    <div style="font-weight:700;font-size:10.5px;color:#1a2332;">Simone Strupler</div>
+                  </div>
+                  <div data-org-name="Steffi Lendi" style="background:#fff;border:1.5px solid #e2e8f0;border-left:3px solid #fde68a;border-radius:8px;padding:5px 8px;text-align:center;cursor:pointer;">
+                    <div style="font-weight:700;font-size:10.5px;color:#1a2332;">Steffi Lendi</div>
+                  </div>
+                </div>
               </div>
             </div>
 
             <div style="width:2px;height:10px;background:#cbd5e1;"></div>
-            <div data-org-name="Sophal Strupler" style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:9px;padding:6px 18px;text-align:center;">
-              <div style="font-weight:700;font-size:11px;color:#166534;">Sophal Strupler</div>
-              <div style="font-size:10px;color:#16a34a;margin-top:1px;">Executive Assistant</div>
+            <div data-org-name="Sophal Strupler" style="background:#eff6ff;border:1.5px solid #93c5fd;border-radius:9px;padding:6px 18px;text-align:center;cursor:pointer;">
+              <div style="font-weight:700;font-size:11px;color:#1e40af;">Sophal Strupler</div>
+              <div style="font-size:10px;color:#2563eb;margin-top:1px;">Executive Assistant</div>
             </div>
             <div style="width:2px;height:10px;background:#cbd5e1;"></div>
             <div style="width:1020px;height:2px;background:#cbd5e1;"></div>
@@ -690,11 +709,11 @@
               <!-- column -->
               <div style="display:flex;flex-direction:column;align-items:center;width:180px;gap:5px;">
                 <div style="width:2px;height:20px;background:#cbd5e1;"></div>
-              <div data-org-name="Eddie Roach" style="background:#2563eb;border-radius:10px;padding:9px 10px;text-align:center;color:#fff;width:100%;box-sizing:border-box;">
-                <div style="font-size:9px;color:#bfdbfe;text-transform:uppercase;letter-spacing:.06em;">Executive Director</div>
+              <div data-org-name="Eddie Roach" style="background:#7c3aed;border-radius:10px;padding:9px 10px;text-align:center;color:#fff;width:100%;box-sizing:border-box;">
+                <div style="font-size:9px;color:#ddd6fe;text-transform:uppercase;letter-spacing:.06em;">Executive Director</div>
                 <div style="font-weight:700;font-size:12px;margin-top:2px;">Eddie Roach</div>
               </div>
-              <div style="background:#eff6ff;border-radius:5px;padding:2px 8px;font-size:9px;font-weight:700;color:#2563eb;text-transform:uppercase;letter-spacing:.06em;margin:8px 0 4px;align-self:flex-start;">Church</div>
+              <div style="background:#f5f3ff;border-radius:5px;padding:2px 8px;font-size:9px;font-weight:700;color:#7c3aed;text-transform:uppercase;letter-spacing:.06em;margin:8px 0 4px;align-self:flex-start;">Church</div>
               <div data-org-name="Robson Barbosa" style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:8px;padding:5px 7px;width:100%;box-sizing:border-box;text-align:center;">
                 <div style="font-weight:700;font-size:10.5px;color:#166534;">Robson Barbosa</div>
                 <div style="font-size:9.5px;color:#16a34a;margin-top:1px;line-height:1.3;">Kids Church Resource Leader</div>
@@ -811,11 +830,11 @@
               <!-- column -->
               <div style="display:flex;flex-direction:column;align-items:center;width:180px;gap:5px;">
                 <div style="width:2px;height:20px;background:#cbd5e1;"></div>
-              <div data-org-name="Matthias Lendi" style="background:#2563eb;border-radius:10px;padding:9px 10px;text-align:center;color:#fff;width:100%;box-sizing:border-box;">
-                <div style="font-size:9px;color:#bfdbfe;text-transform:uppercase;letter-spacing:.06em;">Executive Director</div>
+              <div data-org-name="Matthias Lendi" style="background:#dc2626;border-radius:10px;padding:9px 10px;text-align:center;color:#fff;width:100%;box-sizing:border-box;">
+                <div style="font-size:9px;color:#fca5a5;text-transform:uppercase;letter-spacing:.06em;">Executive Director</div>
                 <div style="font-weight:700;font-size:12px;margin-top:2px;">Matthias Lendi</div>
               </div>
-              <div style="background:#eff6ff;border-radius:5px;padding:2px 8px;font-size:9px;font-weight:700;color:#2563eb;text-transform:uppercase;letter-spacing:.06em;margin:8px 0 4px;align-self:flex-start;">Social</div>
+              <div style="background:#fef2f2;border-radius:5px;padding:2px 8px;font-size:9px;font-weight:700;color:#dc2626;text-transform:uppercase;letter-spacing:.06em;margin:8px 0 4px;align-self:flex-start;">Social</div>
               <div data-org-name="Parigna Souem" style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:8px;padding:5px 7px;width:100%;box-sizing:border-box;text-align:center;">
                 <div style="font-weight:700;font-size:10.5px;color:#166534;">Parigna Souem</div>
                 <div style="font-size:9.5px;color:#16a34a;margin-top:1px;line-height:1.3;">Education Manager</div>
@@ -1119,11 +1138,11 @@
               <!-- column -->
               <div style="display:flex;flex-direction:column;align-items:center;width:180px;gap:5px;">
                 <div style="width:2px;height:20px;background:#cbd5e1;"></div>
-              <div data-org-name="Stephanie Shelow" style="background:#2563eb;border-radius:10px;padding:9px 10px;text-align:center;color:#fff;width:100%;box-sizing:border-box;">
-                <div style="font-size:9px;color:#bfdbfe;text-transform:uppercase;letter-spacing:.06em;">Executive Director</div>
+              <div data-org-name="Stephanie Shelow" style="background:#0891b2;border-radius:10px;padding:9px 10px;text-align:center;color:#fff;width:100%;box-sizing:border-box;">
+                <div style="font-size:9px;color:#a5f3fc;text-transform:uppercase;letter-spacing:.06em;">Executive Director</div>
                 <div style="font-weight:700;font-size:12px;margin-top:2px;">Stephanie Shelow</div>
               </div>
-              <div style="background:#eff6ff;border-radius:5px;padding:2px 8px;font-size:9px;font-weight:700;color:#2563eb;text-transform:uppercase;letter-spacing:.06em;margin:8px 0 4px;align-self:flex-start;">MarCom</div>
+              <div style="background:#ecfeff;border-radius:5px;padding:2px 8px;font-size:9px;font-weight:700;color:#0891b2;text-transform:uppercase;letter-spacing:.06em;margin:8px 0 4px;align-self:flex-start;">MarCom</div>
               <div data-org-name="Ratana Khy" style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:8px;padding:5px 7px;width:100%;box-sizing:border-box;text-align:center;">
                 <div style="font-weight:700;font-size:10.5px;color:#166534;">Ratana Khy</div>
                 <div style="font-size:9.5px;color:#16a34a;margin-top:1px;line-height:1.3;">Creative Media Manager</div>
@@ -1173,11 +1192,11 @@
               <!-- column -->
               <div style="display:flex;flex-direction:column;align-items:center;width:180px;gap:5px;">
                 <div style="width:2px;height:20px;background:#cbd5e1;"></div>
-              <div data-org-name="Martin Strupler" style="background:#2563eb;border-radius:10px;padding:9px 10px;text-align:center;color:#fff;width:100%;box-sizing:border-box;">
-                <div style="font-size:9px;color:#bfdbfe;text-transform:uppercase;letter-spacing:.06em;">Executive Director</div>
+              <div data-org-name="Martin Strupler" style="background:#d97706;border-radius:10px;padding:9px 10px;text-align:center;color:#fff;width:100%;box-sizing:border-box;">
+                <div style="font-size:9px;color:#fcd34d;text-transform:uppercase;letter-spacing:.06em;">Executive Director</div>
                 <div style="font-weight:700;font-size:12px;margin-top:2px;">Martin Strupler</div>
               </div>
-              <div style="background:#eff6ff;border-radius:5px;padding:2px 8px;font-size:9px;font-weight:700;color:#2563eb;text-transform:uppercase;letter-spacing:.06em;margin:8px 0 4px;align-self:flex-start;">Property Management</div>
+              <div style="background:#fffbeb;border-radius:5px;padding:2px 8px;font-size:9px;font-weight:700;color:#d97706;text-transform:uppercase;letter-spacing:.06em;margin:8px 0 4px;align-self:flex-start;">Property Management</div>
               <div data-org-name="Sarath Sok" style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:8px;padding:5px 7px;width:100%;box-sizing:border-box;text-align:center;">
                 <div style="font-weight:700;font-size:10.5px;color:#166534;">Sarath Sok</div>
                 <div style="font-size:9.5px;color:#16a34a;margin-top:1px;line-height:1.3;">Facility Manager</div>
@@ -1259,11 +1278,11 @@
               <!-- column -->
               <div style="display:flex;flex-direction:column;align-items:center;width:180px;gap:5px;">
                 <div style="width:2px;height:20px;background:#cbd5e1;"></div>
-              <div data-org-name="ND Strupler" style="background:#2563eb;border-radius:10px;padding:9px 10px;text-align:center;color:#fff;width:100%;box-sizing:border-box;">
-                <div style="font-size:9px;color:#bfdbfe;text-transform:uppercase;letter-spacing:.06em;">Executive Director</div>
+              <div data-org-name="ND Strupler" style="background:#059669;border-radius:10px;padding:9px 10px;text-align:center;color:#fff;width:100%;box-sizing:border-box;">
+                <div style="font-size:9px;color:#6ee7b7;text-transform:uppercase;letter-spacing:.06em;">Executive Director</div>
                 <div style="font-weight:700;font-size:12px;margin-top:2px;">ND Strupler</div>
               </div>
-              <div style="background:#eff6ff;border-radius:5px;padding:2px 8px;font-size:9px;font-weight:700;color:#2563eb;text-transform:uppercase;letter-spacing:.06em;margin:8px 0 4px;align-self:flex-start;">Fundraising</div>
+              <div style="background:#f0fdf4;border-radius:5px;padding:2px 8px;font-size:9px;font-weight:700;color:#059669;text-transform:uppercase;letter-spacing:.06em;margin:8px 0 4px;align-self:flex-start;">Fundraising</div>
               <div data-org-name="Longsamnieng Pol" style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:8px;padding:5px 7px;width:100%;box-sizing:border-box;text-align:center;">
                 <div style="font-weight:700;font-size:10.5px;color:#166534;">Longsamnieng Pol</div>
                 <div style="font-size:9.5px;color:#16a34a;margin-top:1px;line-height:1.3;">Head of Fundraising</div>
@@ -1301,7 +1320,9 @@
               </div>
             </div>
           </div>
-        </article>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
