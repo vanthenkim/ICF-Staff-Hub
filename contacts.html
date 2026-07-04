@@ -13,6 +13,17 @@
 <title>Staff Contacts · ICF Cambodia Staff Hub</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css" />
+<style>
+#cov{display:none;position:fixed;inset:0;z-index:1000;background:rgba(15,23,42,.48);backdrop-filter:blur(2px);}
+#cov.open{display:flex;align-items:flex-start;justify-content:flex-end;}
+#cpanel{background:#fff;width:min(460px,100vw);height:100%;overflow-y:auto;box-shadow:-6px 0 40px rgba(0,0,0,.15);transform:translateX(110%);transition:transform .22s cubic-bezier(.4,0,.2,1);}
+#cov.open #cpanel{transform:translateX(0);}
+@media(max-width:540px){
+  #cov.open{align-items:flex-end;justify-content:center;}
+  #cpanel{width:100vw;height:92dvh;border-radius:18px 18px 0 0;transform:translateY(110%);}
+  #cov.open #cpanel{transform:translateY(0);}
+}
+</style>
 </head>
 <body>
 <div class="app">
@@ -135,6 +146,17 @@
   </nav>
 </div>
 
+<!-- Contact detail overlay -->
+<div id="cov" onclick="if(event.target===this)closeContact()">
+  <div id="cpanel">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:18px 20px 0;position:sticky;top:0;background:#fff;z-index:1;border-bottom:1.5px solid #f1f5f9;padding-bottom:14px;">
+      <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#94a3b8;">Staff Profile</span>
+      <button onclick="closeContact()" style="background:none;border:none;cursor:pointer;color:#94a3b8;font-size:24px;line-height:1;padding:2px 6px;" aria-label="Close">&times;</button>
+    </div>
+    <div id="cpbody"></div>
+  </div>
+</div>
+
 <script src="assets/app.js?v=20260611"></script>
 <script>
 const DEPT_STYLES = {
@@ -175,8 +197,8 @@ function renderList(staff) {
     const srch = [p.name, p.khmerName, p.department, p.email, p.telegram].join(' ').toLowerCase();
     const phoneLink = p.phone ? `<a href="tel:${p.phone}" style="color:#2563eb;font-size:12px;text-decoration:none;">${p.phone}</a>` : '<span style="color:#cbd5e1;font-size:12px;">—</span>';
     const tgLink = p.telegram ? `<a href="https://t.me/${p.telegram.replace(/^@/,'')}" target="_blank" style="color:#2563eb;font-size:12px;text-decoration:none;">@${p.telegram.replace(/^@/,'')}</a>` : '<span style="color:#cbd5e1;font-size:12px;">—</span>';
-    return `<tr data-dept="${p.department}" data-search="${srch}"
-      style="background:${bg};border-bottom:1px solid #f1f5f9;"
+    return `<tr data-dept="${p.department}" data-search="${srch}" data-n="${p.name.replace(/"/g,'&quot;')}" onclick="openContactByName(this.dataset.n)"
+      style="background:${bg};border-bottom:1px solid #f1f5f9;cursor:pointer;"
       onmouseenter="this.style.background='#eff6ff'" onmouseleave="this.style.background='${bg}'">
       <td style="padding:8px 12px;">
         <div style="display:flex;align-items:center;gap:8px;">
@@ -209,7 +231,7 @@ function renderGallery(staff) {
       const avatar = p.photo
         ? `<img src="${p.photo}" alt="${p.name}" style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.12);" onerror="this.outerHTML='<div style=\\'width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:24px;font-weight:700;display:flex;align-items:center;justify-content:center;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.12);\\'>${initials(p.name)}</div>'">`
         : `<div style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:24px;font-weight:700;display:flex;align-items:center;justify-content:center;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.12);">${initials(p.name)}</div>`;
-      return `<div data-dept="${p.department}" data-search="${srch}" style="background:#fff;border:1.5px solid #e2e8f0;border-radius:16px;overflow:hidden;transition:box-shadow .15s;text-align:center;" onmouseenter="this.style.boxShadow='0 4px 20px rgba(37,99,235,.12)'" onmouseleave="this.style.boxShadow=''">
+      return `<div data-dept="${p.department}" data-search="${srch}" data-n="${p.name.replace(/"/g,'&quot;')}" onclick="openContactByName(this.dataset.n)" style="background:#fff;border:1.5px solid #e2e8f0;border-radius:16px;overflow:hidden;transition:box-shadow .15s;text-align:center;cursor:pointer;" onmouseenter="this.style.boxShadow='0 4px 20px rgba(37,99,235,.12)'" onmouseleave="this.style.boxShadow=''">
         <div style="padding:28px 20px 16px;display:flex;flex-direction:column;align-items:center;">
           ${avatar}
           <div style="font-weight:400;font-size:16px;color:#1e293b;margin-top:14px;line-height:1.3;">${p.name}</div>
@@ -504,6 +526,7 @@ function renderGallery(staff) {
       }
 
       allStaff = contacts;
+      allStaff.forEach(p => { staffByName[p.name] = p; });
       const countEl = document.getElementById('staff-count-label');
       if (countEl) countEl.textContent = `Directory of ${allStaff.length} staff members · phone & Telegram where available`;
       const depts = [...new Set(allStaff.map(p => p.department).filter(Boolean))].sort();
@@ -520,6 +543,258 @@ function renderGallery(staff) {
       if (row) row.cells[0].textContent = 'Could not load contact directory. Please refresh.';
     });
 })();
+
+// ── Org Hierarchy ─────────────────────────────────────────────────────────────
+const ORG = {
+  // Top
+  "ND Strupler":           { manager: null,                 reports: ["Sophal Strupler","Longsamnieng Pol","Steffi Lendi","Annina Huembeli"] },
+  "Sophal Strupler":       { manager: "ND Strupler",        reports: ["Eddie Roach","Matthias Lendi","Karano Chhuon","Sibimol Pol","Simone Strupler","Thavy Tham","Vattey Chhun","Martin Strupler","Stephanie Shelow"] },
+  "Longsamnieng Pol":      { manager: "ND Strupler",        reports: ["Kongkea Kouk","Jane Meas","Sreyleak Orn"] },
+  "Steffi Lendi":          { manager: "ND Strupler",        reports: ["Loy Sambo Hout","Seavva Hann"] },
+  "Annina Huembeli":       { manager: "ND Strupler",        reports: [] },
+  // Church
+  "Eddie Roach":           { manager: "Sophal Strupler",    reports: ["Robson Barbosa","Rany Mom","Mom Kalic","Sombo Ros","Bethany Roach","Panha Neang"] },
+  "Robson Barbosa":        { manager: "Eddie Roach",        reports: ["Aline Barbosa"] },
+  "Aline Barbosa":         { manager: "Robson Barbosa",     reports: [] },
+  "Rany Mom":              { manager: "Eddie Roach",        reports: [] },
+  "Mom Kalic":             { manager: "Eddie Roach",        reports: ["Kanal Tensok","Somun Yem","Elea Weber"] },
+  "Kanal Tensok":          { manager: "Mom Kalic",          reports: [] },
+  "Somun Yem":             { manager: "Mom Kalic",          reports: [] },
+  "Elea Weber":            { manager: "Mom Kalic",          reports: [] },
+  "Sombo Ros":             { manager: "Eddie Roach",        reports: ["Sreileak Rous","Dana Thy","Pichey Ken"] },
+  "Sreileak Rous":         { manager: "Sombo Ros",          reports: [] },
+  "Dana Thy":              { manager: "Sombo Ros",          reports: [] },
+  "Pichey Ken":            { manager: "Sombo Ros",          reports: [] },
+  "Bethany Roach":         { manager: "Eddie Roach",        reports: ["Ranaomi Heak","Noa Flammer","Seangly Leng","Champa Vong","Rothana Ros","Sambath Song"] },
+  "Ranaomi Heak":          { manager: "Bethany Roach",      reports: [] },
+  "Noa Flammer":           { manager: "Bethany Roach",      reports: [] },
+  "Seangly Leng":          { manager: "Bethany Roach",      reports: [] },
+  "Champa Vong":           { manager: "Bethany Roach",      reports: [] },
+  "Rothana Ros":           { manager: "Bethany Roach",      reports: [] },
+  "Sambath Song":          { manager: "Bethany Roach",      reports: [] },
+  "Panha Neang":           { manager: "Eddie Roach",        reports: ["Boromey Hom","Sreypich Chhean"] },
+  "Boromey Hom":           { manager: "Panha Neang",        reports: [] },
+  "Sreypich Chhean":       { manager: "Panha Neang",        reports: ["Sotheavy Ngen"] },
+  "Sotheavy Ngen":         { manager: "Sreypich Chhean",    reports: [] },
+  // Women's Ministry
+  "Simone Strupler":       { manager: "Sophal Strupler",    reports: ["Sothiery Un","Vann Rotha","Kropumkannika Gnorng"] },
+  "Sothiery Un":           { manager: "Simone Strupler",    reports: [] },
+  "Vann Rotha":            { manager: "Simone Strupler",    reports: [] },
+  "Kropumkannika Gnorng":  { manager: "Simone Strupler",    reports: [] },
+  // Education
+  "Matthias Lendi":        { manager: "Sophal Strupler",    reports: ["Parigna Souem","Khunhy Thoeun","Phin Teb"] },
+  "Parigna Souem":         { manager: "Matthias Lendi",     reports: [] },
+  "Khunhy Thoeun":         { manager: "Matthias Lendi",     reports: ["Su Sey","Nirorn Sok","David Piseth","Sreynouch Khit","Sotheany Ngeun","Tola Khem","Vicheth Song","Seav Ey Khean"] },
+  "Su Sey":                { manager: "Khunhy Thoeun",      reports: [] },
+  "Nirorn Sok":            { manager: "Khunhy Thoeun",      reports: [] },
+  "David Piseth":          { manager: "Khunhy Thoeun",      reports: [] },
+  "Sreynouch Khit":        { manager: "Khunhy Thoeun",      reports: [] },
+  "Sotheany Ngeun":        { manager: "Khunhy Thoeun",      reports: [] },
+  "Tola Khem":             { manager: "Khunhy Thoeun",      reports: [] },
+  "Vicheth Song":          { manager: "Khunhy Thoeun",      reports: [] },
+  "Seav Ey Khean":         { manager: "Khunhy Thoeun",      reports: [] },
+  "Phin Teb":              { manager: "Matthias Lendi",     reports: ["Makara Seng","Srytom Pogn"] },
+  "Makara Seng":           { manager: "Phin Teb",           reports: [] },
+  "Srytom Pogn":           { manager: "Phin Teb",           reports: [] },
+  // Family Care
+  "Karano Chhuon":         { manager: "Sophal Strupler",    reports: ["Sreymom Thorng","Sopheap Heang","Sreymom Touch","Seyla Nga","Kolap Touch","Vichea Khen","Chanthat Leat","Sotheavy Thea","Rongroeung Chamroeun","Champa Toch","Sreypeou Hout","Srey Roth Outh","Sopheaktra Mao","Sokuntheary Sim","Sideth Duch","Chamroeun Muon","Savry Klot","Sophea Mak","Noya Men","Thea Rith Keo","Hana Seap","Sa Soueyvan","Bora Heang","Matthew Seng","Sophy Chek"] },
+  "Sreymom Thorng":        { manager: "Karano Chhuon",      reports: [] },
+  "Sopheap Heang":         { manager: "Karano Chhuon",      reports: [] },
+  "Sreymom Touch":         { manager: "Karano Chhuon",      reports: [] },
+  "Seyla Nga":             { manager: "Karano Chhuon",      reports: [] },
+  "Kolap Touch":           { manager: "Karano Chhuon",      reports: [] },
+  "Vichea Khen":           { manager: "Karano Chhuon",      reports: [] },
+  "Chanthat Leat":         { manager: "Karano Chhuon",      reports: [] },
+  "Sotheavy Thea":         { manager: "Karano Chhuon",      reports: [] },
+  "Rongroeung Chamroeun":  { manager: "Karano Chhuon",      reports: [] },
+  "Champa Toch":           { manager: "Karano Chhuon",      reports: [] },
+  "Sreypeou Hout":         { manager: "Karano Chhuon",      reports: [] },
+  "Srey Roth Outh":        { manager: "Karano Chhuon",      reports: [] },
+  "Sopheaktra Mao":        { manager: "Karano Chhuon",      reports: [] },
+  "Sokuntheary Sim":       { manager: "Karano Chhuon",      reports: [] },
+  "Sideth Duch":           { manager: "Karano Chhuon",      reports: [] },
+  "Chamroeun Muon":        { manager: "Karano Chhuon",      reports: [] },
+  "Savry Klot":            { manager: "Karano Chhuon",      reports: [] },
+  "Sophea Mak":            { manager: "Karano Chhuon",      reports: [] },
+  "Noya Men":              { manager: "Karano Chhuon",      reports: [] },
+  "Thea Rith Keo":         { manager: "Karano Chhuon",      reports: [] },
+  "Hana Seap":             { manager: "Karano Chhuon",      reports: [] },
+  "Sa Soueyvan":           { manager: "Karano Chhuon",      reports: [] },
+  "Bora Heang":            { manager: "Karano Chhuon",      reports: [] },
+  "Matthew Seng":          { manager: "Karano Chhuon",      reports: [] },
+  "Sophy Chek":            { manager: "Karano Chhuon",      reports: [] },
+  // Medical
+  "Sibimol Pol":           { manager: "Sophal Strupler",    reports: ["Chakriya Nith","Rina Nov","Sreyleak So","Ousaphea Lim"] },
+  "Chakriya Nith":         { manager: "Sibimol Pol",        reports: [] },
+  "Rina Nov":              { manager: "Sibimol Pol",        reports: [] },
+  "Sreyleak So":           { manager: "Sibimol Pol",        reports: [] },
+  "Ousaphea Lim":          { manager: "Sibimol Pol",        reports: [] },
+  // HR & Catering
+  "Thavy Tham":            { manager: "Sophal Strupler",    reports: ["Nuthida Han","Sodalin Thangham","Vivian Stumpf","Bopha Mom"] },
+  "Nuthida Han":           { manager: "Thavy Tham",         reports: [] },
+  "Sodalin Thangham":      { manager: "Thavy Tham",         reports: [] },
+  "Vivian Stumpf":         { manager: "Thavy Tham",         reports: [] },
+  "Bopha Mom":             { manager: "Thavy Tham",         reports: ["Lieng Huon","Som Chhang","Phat Sout","Pech Sang"] },
+  "Lieng Huon":            { manager: "Bopha Mom",          reports: [] },
+  "Som Chhang":            { manager: "Bopha Mom",          reports: [] },
+  "Phat Sout":             { manager: "Bopha Mom",          reports: [] },
+  "Pech Sang":             { manager: "Bopha Mom",          reports: [] },
+  // Operations
+  "Vattey Chhun":          { manager: "Sophal Strupler",    reports: ["Kanha Un","Linet Un","Vanthen Kim","Sakorun Pok"] },
+  "Kanha Un":              { manager: "Vattey Chhun",       reports: [] },
+  "Linet Un":              { manager: "Vattey Chhun",       reports: ["Rachana San","Kimbuoy Pheng"] },
+  "Rachana San":           { manager: "Linet Un",           reports: [] },
+  "Kimbuoy Pheng":         { manager: "Linet Un",           reports: [] },
+  "Vanthen Kim":           { manager: "Vattey Chhun",       reports: ["Makara Tes","Neaksen Sok"] },
+  "Makara Tes":            { manager: "Vanthen Kim",        reports: [] },
+  "Neaksen Sok":           { manager: "Vanthen Kim",        reports: [] },
+  "Sakorun Pok":           { manager: "Vattey Chhun",       reports: ["Sreymom Lim","Kimleang Lun"] },
+  "Sreymom Lim":           { manager: "Sakorun Pok",        reports: [] },
+  "Kimleang Lun":          { manager: "Sakorun Pok",        reports: [] },
+  // MarCom & Learning Center
+  "Stephanie Shelow":      { manager: "Sophal Strupler",    reports: ["Ratana Khy","Makara Ne","Davit Mao"] },
+  "Ratana Khy":            { manager: "Stephanie Shelow",   reports: ["Piseth Noun","Florin Flammer","Sengly Muol","Soktheavy Tann","Vutha Kry","Savann Sun","Rayu Roeun","Sorotha Oeun"] },
+  "Piseth Noun":           { manager: "Ratana Khy",         reports: [] },
+  "Florin Flammer":        { manager: "Ratana Khy",         reports: [] },
+  "Sengly Muol":           { manager: "Ratana Khy",         reports: [] },
+  "Soktheavy Tann":        { manager: "Ratana Khy",         reports: [] },
+  "Vutha Kry":             { manager: "Ratana Khy",         reports: [] },
+  "Savann Sun":            { manager: "Ratana Khy",         reports: [] },
+  "Rayu Roeun":            { manager: "Ratana Khy",         reports: [] },
+  "Sorotha Oeun":          { manager: "Ratana Khy",         reports: [] },
+  "Makara Ne":             { manager: "Stephanie Shelow",   reports: [] },
+  "Davit Mao":             { manager: "Stephanie Shelow",   reports: [] },
+  // Property
+  "Martin Strupler":       { manager: "Sophal Strupler",    reports: ["Sarath Sok"] },
+  "Sarath Sok":            { manager: "Martin Strupler",    reports: ["Hing Hoeun","Sila Kun","Nan Houn","Kim Sorn Soeuth","Barang Soeurm"] },
+  "Hing Hoeun":            { manager: "Sarath Sok",         reports: ["Hin Loeb","Ya Hoeun","Thon Tep","Saroeun Kim"] },
+  "Hin Loeb":              { manager: "Hing Hoeun",         reports: [] },
+  "Ya Hoeun":              { manager: "Hing Hoeun",         reports: [] },
+  "Thon Tep":              { manager: "Hing Hoeun",         reports: [] },
+  "Saroeun Kim":           { manager: "Hing Hoeun",         reports: [] },
+  "Sila Kun":              { manager: "Sarath Sok",         reports: ["Hou Sokcheat","Rin Nga"] },
+  "Hou Sokcheat":          { manager: "Sila Kun",           reports: [] },
+  "Rin Nga":               { manager: "Sila Kun",           reports: [] },
+  "Nan Houn":              { manager: "Sarath Sok",         reports: ["Hean Luos","Minea Soy"] },
+  "Hean Luos":             { manager: "Nan Houn",           reports: [] },
+  "Minea Soy":             { manager: "Nan Houn",           reports: [] },
+  "Kim Sorn Soeuth":       { manager: "Sarath Sok",         reports: ["Chrach Chen"] },
+  "Chrach Chen":           { manager: "Kim Sorn Soeuth",    reports: [] },
+  "Barang Soeurm":         { manager: "Sarath Sok",         reports: ["Sopheap Puth","Sen Meta","Nhoem David"] },
+  "Sopheap Puth":          { manager: "Barang Soeurm",      reports: [] },
+  "Sen Meta":              { manager: "Barang Soeurm",      reports: [] },
+  "Nhoem David":           { manager: "Barang Soeurm",      reports: [] },
+  // Fundraising & Guest Relations
+  "Kongkea Kouk":          { manager: "Longsamnieng Pol",   reports: [] },
+  "Jane Meas":             { manager: "Longsamnieng Pol",   reports: [] },
+  "Sreyleak Orn":          { manager: "Longsamnieng Pol",   reports: [] },
+  "Loy Sambo Hout":        { manager: "Steffi Lendi",       reports: [] },
+  "Seavva Hann":           { manager: "Steffi Lendi",       reports: [] },
+};
+
+// ── Contact Modal ─────────────────────────────────────────────────────────────
+const staffByName = {};
+
+function _miniAvatar(p, size) {
+  const s = size || 36;
+  const fs = Math.round(s * 0.33);
+  const ini = initials(p ? p.name : '?');
+  const fallback = `<div style="width:${s}px;height:${s}px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:${fs}px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">${ini}</div>`;
+  if (p && p.photo) {
+    return `<img src="${p.photo}" alt="${p.name}" style="width:${s}px;height:${s}px;border-radius:50%;object-fit:cover;flex-shrink:0;" onerror="this.outerHTML='${fallback.replace(/'/g,'&apos;')}'">`;
+  }
+  return fallback;
+}
+
+function _orgNode(name, isSelf) {
+  const sp = staffByName[name] || { name, role: '', photo: '' };
+  const bg = isSelf
+    ? 'background:#eff6ff;border:1.5px solid #bfdbfe;'
+    : 'background:#f8fafc;border:1.5px solid #e2e8f0;cursor:pointer;';
+  const hover = isSelf ? '' : `onmouseenter="this.style.background='#eff6ff'" onmouseleave="this.style.background='#f8fafc'"`;
+  const click = isSelf ? '' : `onclick="openContactByName(this.dataset.n)" data-n="${name.replace(/"/g,'&quot;')}"`;
+  return `<div ${click} ${hover} style="${bg}border-radius:10px;padding:9px 13px;display:flex;align-items:center;gap:12px;margin-bottom:4px;transition:background .12s;">
+    ${_miniAvatar(sp, 36)}
+    <div style="min-width:0;">
+      <div style="font-size:13px;font-weight:600;color:#1e293b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${sp.name}</div>
+      ${sp.role ? `<div style="font-size:11px;color:#64748b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${sp.role}</div>` : ''}
+    </div>
+  </div>`;
+}
+
+function openContact(p) {
+  staffByName[p.name] = p;
+  const body = document.getElementById('cpbody');
+  const orgInfo = ORG[p.name] || null;
+  const managerName = orgInfo ? orgInfo.manager : null;
+  const reportNames = orgInfo ? orgInfo.reports : [];
+  const depts = DEPT_STYLES[p.department] || ['#f1f5f9','#374151','#e2e8f0'];
+
+  // Big avatar
+  const ini = initials(p.name);
+  const bigFallback = `<div style='width:88px;height:88px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:26px;font-weight:700;display:flex;align-items:center;justify-content:center;border:3px solid #fff;box-shadow:0 4px 16px rgba(0,0,0,.12);'>${ini}</div>`;
+  const bigAvatar = p.photo
+    ? `<img src="${p.photo}" alt="${p.name}" style="width:88px;height:88px;border-radius:50%;object-fit:cover;border:3px solid #fff;box-shadow:0 4px 16px rgba(0,0,0,.12);" onerror="this.outerHTML='${bigFallback.replace(/'/g,'&apos;')}'">`
+    : bigFallback;
+
+  // Contact rows
+  const iconStyle = `width:16px;height:16px;flex-shrink:0;`;
+  const rowStyle = `display:flex;align-items:center;gap:10px;padding:10px 14px;border:1.5px solid #e2e8f0;border-radius:10px;text-decoration:none;color:#374151;font-size:13px;margin-bottom:8px;transition:background .12s;`;
+  const emailRow = p.email
+    ? `<a href="mailto:${p.email}" style="${rowStyle}" onmouseenter="this.style.background='#eff6ff'" onmouseleave="this.style.background=''">
+        <svg style="${iconStyle}" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${p.email}</span></a>` : '';
+  const phoneRow = p.phone
+    ? `<a href="tel:${p.phone}" style="${rowStyle}" onmouseenter="this.style.background='#eff6ff'" onmouseleave="this.style.background=''">
+        <svg style="${iconStyle}" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.14 13.5a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.05 2.7h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 10.1a16 16 0 0 0 6.29 6.29l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.32 17z"/></svg>
+        ${p.phone}</a>` : '';
+  const tgRow = p.telegram
+    ? `<a href="https://t.me/${p.telegram.replace(/^@/,'')}" target="_blank" style="${rowStyle}" onmouseenter="this.style.background='#eff6ff'" onmouseleave="this.style.background=''">
+        <svg style="${iconStyle}" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M22 3 2 10l7 3 3 7 3-8 7-9z"/></svg>
+        @${p.telegram.replace(/^@/,'')}</a>` : '';
+
+  // Reporting line
+  const arrow = `<div style="width:2px;height:16px;background:#cbd5e1;margin:0 0 4px 17px;"></div>`;
+  let orgHtml = '';
+  if (orgInfo) {
+    orgHtml = `<div style="margin-top:24px;padding-top:20px;border-top:1.5px solid #f1f5f9;">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#94a3b8;margin-bottom:12px;">Reporting Line</div>
+      ${managerName ? _orgNode(managerName, false) + arrow : ''}
+      ${_orgNode(p.name, true)}
+      ${reportNames.length ? arrow + `<div style="font-size:11px;font-weight:600;color:#64748b;margin:4px 0 8px;">${reportNames.length} direct report${reportNames.length !== 1 ? 's' : ''}</div>` + reportNames.map(n => _orgNode(n, false)).join('') : ''}
+    </div>`;
+  }
+
+  body.innerHTML = `
+    <div style="text-align:center;padding:28px 24px 20px;">
+      <div style="display:flex;justify-content:center;">${bigAvatar}</div>
+      <div style="font-size:20px;font-weight:700;color:#1e293b;margin-top:14px;line-height:1.25;">${p.name}</div>
+      ${p.role ? `<div style="font-size:14px;color:#64748b;margin-top:5px;">${p.role}</div>` : ''}
+      <div style="margin-top:10px;">${deptBadge(p.department)}</div>
+    </div>
+    ${emailRow || phoneRow || tgRow ? `<div style="padding:0 20px 4px;">${emailRow}${phoneRow}${tgRow}</div>` : ''}
+    ${orgHtml ? `<div style="padding:0 20px 36px;">${orgHtml}</div>` : '<div style="height:24px;"></div>'}
+  `;
+
+  // scroll panel to top
+  document.getElementById('cpanel').scrollTop = 0;
+  document.getElementById('cov').classList.add('open');
+}
+
+function openContactByName(name) {
+  const p = staffByName[name];
+  if (p) { openContact(p); return; }
+  // Not in contacts sheet — render minimal card using ORG data
+  const orgInfo = ORG[name] || {};
+  openContact({ name, role: '', department: '', email: '', phone: '', telegram: '', photo: '', ...orgInfo });
+}
+
+function closeContact() {
+  document.getElementById('cov').classList.remove('open');
+}
+
+// Close on Escape
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeContact(); });
 </script>
 </body>
 </html>
