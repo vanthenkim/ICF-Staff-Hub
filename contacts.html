@@ -559,7 +559,7 @@ function renderGallery(staff) {
       allStaff.forEach(p => { staffByName[p.name] = p; });
       const countEl = document.getElementById('staff-count-label');
       if (countEl) countEl.textContent = `Directory of ${allStaff.length} staff members · phone & Telegram where available`;
-      const depts = [...new Set(allStaff.map(p => p.department).filter(Boolean))].sort();
+      const depts = ['Catering','Church','Donor Care','Human Resources','MarCom','New Campus','Operations','Property','Social'];
       depts.forEach(dept => {
         const opt = document.createElement('option');
         opt.value = dept;
