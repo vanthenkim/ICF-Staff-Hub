@@ -180,11 +180,21 @@ const DEPT_REMAP = {
 
 // Department value remaps — normalises sheet values to display names
 const DEPT_VALUE_REMAP = {
-  'HR':          'Human Resources',
-  'Fundraising': 'Donor Care',
-  'Finance':     'Operations',
-  'IT':          'Operations',
-  'Admin':       'Operations',
+  // Human Resources
+  'HR':            'Human Resources',
+  // Donor Care
+  'Fundraising':   'Donor Care',
+  // Operations (Finance, IT, Admin all live under Operations dept page)
+  'Finance':       'Operations',
+  'IT':            'Operations',
+  'Admin':         'Operations',
+  // Social (sub-departments all sit under the Social dept page)
+  'Family Care':   'Social',
+  'Medical':       'Social',
+  'Education':     'Social',
+  'Daycare':       'Social',
+  'After School':  'Social',
+  'Scholarship':   'Social',
 };
 
 // Role overrides — shown in reporting line nodes regardless of sheet data
