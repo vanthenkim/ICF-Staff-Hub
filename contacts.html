@@ -767,7 +767,7 @@ function openContact(p) {
   const body = document.getElementById('cpbody');
   const orgInfo = ORG[p.name] || null;
   const managerName = orgInfo ? orgInfo.manager : null;
-  const reportNames = orgInfo ? orgInfo.reports : [];
+  const reportNames = (orgInfo && p.name !== 'Sophal Strupler') ? orgInfo.reports : [];
   const depts = DEPT_STYLES[p.department] || ['#f1f5f9','#374151','#e2e8f0'];
 
   // Big avatar
