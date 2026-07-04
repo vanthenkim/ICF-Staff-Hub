@@ -166,6 +166,11 @@ const HIDDEN_STAFF = new Set([
   "Ryca Mom",
 ]);
 
+// Role overrides — shown in reporting line nodes regardless of sheet data
+const ROLE_OVERRIDES = {
+  'ND Strupler': 'Executive Director · Founder',
+};
+
 const DEPT_STYLES = {
   Leadership:        ['#dbeafe','#1e40af','#bfdbfe'],
   Church:            ['#f5f3ff','#7c3aed','#ddd6fe'],
@@ -728,6 +733,7 @@ function _miniAvatar(p, size) {
 
 function _orgNode(name, isSelf) {
   const sp = staffByName[name] || { name, role: '', photo: '' };
+  const role = ROLE_OVERRIDES[name] || sp.role;
   const bg = isSelf
     ? 'background:#eff6ff;border:1.5px solid #bfdbfe;'
     : 'background:#f8fafc;border:1.5px solid #e2e8f0;cursor:pointer;';
@@ -737,7 +743,7 @@ function _orgNode(name, isSelf) {
     ${_miniAvatar(sp, 36)}
     <div style="min-width:0;">
       <div style="font-size:13px;font-weight:600;color:#1e293b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${sp.name}</div>
-      ${sp.role ? `<div style="font-size:11px;color:#64748b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${sp.role}</div>` : ''}
+      ${role ? `<div style="font-size:11px;color:#64748b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${role}</div>` : ''}
     </div>
   </div>`;
 }
