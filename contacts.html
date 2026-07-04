@@ -171,6 +171,9 @@ const ROLE_OVERRIDES = {
   'ND Strupler': 'Executive Director · Founder',
 };
 
+// Names hidden from the reporting line chain (chain still traverses through them)
+const REPORTING_LINE_HIDDEN = new Set(['Sophal Strupler']);
+
 const DEPT_STYLES = {
   Leadership:        ['#dbeafe','#1e40af','#bfdbfe'],
   Church:            ['#f5f3ff','#7c3aed','#ddd6fe'],
@@ -796,7 +799,7 @@ function openContact(p) {
       ancestors.unshift(info.manager);
       cur = info.manager;
     }
-    const ancestorHtml = ancestors.map(n => _orgNode(n, false) + arrow).join('');
+    const ancestorHtml = ancestors.filter(n => !REPORTING_LINE_HIDDEN.has(n)).map(n => _orgNode(n, false) + arrow).join('');
     const mentorHtml = mentorName ? `<div style="margin-top:12px;padding-top:12px;border-top:1px dashed #e2e8f0;">
       <div style="font-size:11px;font-weight:600;color:#94a3b8;margin-bottom:6px;letter-spacing:.04em;">Mentor</div>
       ${_orgNode(mentorName, false)}
