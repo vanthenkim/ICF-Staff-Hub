@@ -168,6 +168,7 @@ const HIDDEN_STAFF = new Set([
 
 // Department overrides — fixes wrong dept in Google Sheet without editing the sheet
 const DEPT_REMAP = {
+  'HR':          'Human Resources',
   'Bopha Mom':   'Catering',
   'Lieng Huon':  'Catering',
   'Som Chhang':  'Catering',
@@ -192,7 +193,7 @@ const DEPT_STYLES = {
   MarCom:            ['#cffafe','#155e75','#67e8f9'],
   Fundraising:       ['#dcfce7','#14532d','#86efac'],
   'Donor Care':      ['#dcfce7','#14532d','#86efac'],
-  HR:                ['#fee2e2','#991b1b','#fca5a5'],
+  'Human Resources': ['#fee2e2','#991b1b','#fca5a5'],
   Finance:           ['#fef3c7','#92400e','#fcd34d'],
   IT:                ['#f1f5f9','#374151','#e2e8f0'],
   Operations:        ['#dbeafe','#1e40af','#bfdbfe'],
@@ -658,7 +659,7 @@ const ORG = {
   "Rina Nov":              { manager: "Sibimol Pol",        reports: [] },
   "Sreyleak So":           { manager: "Sibimol Pol",        reports: [] },
   "Ousaphea Lim":          { manager: "Sibimol Pol",        reports: [] },
-  // HR & Catering
+  // Human Resources & Catering
   "Thavy Tham":            { manager: "Sophal Strupler",    reports: ["Nuthida Han","Sodalin Thangham","Vivian Stumpf","Bopha Mom"] },
   "Nuthida Han":           { manager: "Thavy Tham",         reports: [] },
   "Sodalin Thangham":      { manager: "Thavy Tham",         reports: [] },
