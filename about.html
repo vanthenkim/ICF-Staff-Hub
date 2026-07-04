@@ -504,7 +504,9 @@
     "Panha Neang": { email:"panha.neang@icf-cambodia.com",photo:"https://lh3.googleusercontent.com/d/1T3YGRTVpRbs0H1LC-s2l5Anbewx56ovU"},
     "Pichey Ken": { email:"pichey.ken@icf-cambodia.com", telegram:"pichey16",photo:"https://lh3.googleusercontent.com/d/12B50ktYeAUaShjg1MiCpkEY_i6m87_u-"},
     "Ranaomi Heak": { email:"ranaomi.heak@icf-cambodia.com", telegram:"Naomi_Heak", photo:"assets/people/ranaomi-heak.jpg"},
+    "Davit Mao": { email:"davit.mao@icf-cambodia.com", telegram:"davitmao", photo:"assets/people/davit-mao.jpg"},
     "Rany Mom": { email:"rany.mom@icf-cambodia.com", telegram:"RanyMom", photo:"assets/people/rany-mom.jpg"},
+    "Tola Khy": { email:"tola.khy@icf-cambodia.com" },
     "Robson Barbosa": { email:"robson.barbosa@icf-cambodia.com", telegram:"RobsonICF", photo:"assets/people/robson-barbosa.jpg"},
     "Rothana Ros": { email:"rothana.ros@icf-cambodia.com", telegram:"Rothanaros",photo:"https://lh3.googleusercontent.com/d/1lwnSCHbwJ2l9n4V53nwGMrkR3izbH_VK"},
     "Ryna Mom": { email:"ryna.mom@icf-cambodia.com", telegram:"RynaMom",photo:"https://lh3.googleusercontent.com/d/1Kg8bRlHgVSJp_EkVxxLoQ2wRNfGvI8yW"},
@@ -580,8 +582,8 @@
     "Neaksen Sok": { email:"neaksen.sok@icf-cambodia.com", telegram:"neksensok", photo:"assets/people/neaksen-sok.jpg"},
     "Vanthen Kim": { email:"vanthen.kim@icf-cambodia.com", phone:"+85517506441", telegram:"VanthenKim", photo:"assets/people/vanthen-kim.jpg"},
     /* ── MarCom ──────────────────────────────────── */
-    "Davit Mao": { email:"davit.mao@icf-cambodia.com", telegram:"davitmao", photo:"assets/people/davit-mao.jpg"},
     "Florin Flammer": { email:"florin.flammer@icf-cambodia.com", telegram:"florinflammer", photo:"assets/people/florin-flammer.jpg"},
+    "Malin Toy": { email:"malin.toy@icf-cambodia.com" },
     "Ratana Khy": { email:"ratana.khy@icf-cambodia.com", phone:"+855966931822", telegram:"RatanaKhy", photo:"assets/people/ratana-khy.jpg"},
     "Rayu Roeun": { email:"rayu.roeun@icf-cambodia.com", telegram:"rayngu", photo:"assets/people/rayu-roeun.jpg"},
     "Savann Sun": { email:"savann.sun@icf-cambodia.com", telegram:"savannss", photo:"assets/people/savann-sun.jpg"},
@@ -771,9 +773,16 @@
                 <div style="font-size:9.5px;color:#6b7a8d;margin-top:1px;line-height:1.3;">Kids Resource Networker</div>
               </div>
               </div>
-              <div data-org-name="Rany Mom" style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:8px;padding:5px 7px;width:100%;box-sizing:border-box;text-align:center;">
+              <div data-org-name="Rany Mom" style="position:relative;background:#f0fdf4;border:1.5px solid #86efac;border-radius:8px;padding:5px 7px;width:100%;box-sizing:border-box;text-align:center;">
+                <button onclick="event.stopPropagation();var f=document.getElementById('fg-rany');f.style.display=f.style.display==='none'?'flex':'none'" style="position:absolute;top:3px;right:3px;background:#dcfce7;border:1px solid #86efac;border-radius:5px;cursor:pointer;font-size:13px;color:#16a34a;padding:1px 5px;line-height:1.4;">▸</button>
                 <div style="font-weight:700;font-size:10.5px;color:#166534;">Rany Mom</div>
                 <div style="font-size:9.5px;color:#16a34a;margin-top:1px;line-height:1.3;">Associate Pastor</div>
+              </div>
+              <div id="fg-rany" style="display:none;flex-direction:column;gap:5px;width:100%;align-items:center;">
+              <div data-org-name="Davit Mao" style="background:#fff;border:1.5px solid #e2e8f0;border-left:3px solid #86efac;border-radius:8px;padding:5px 7px;width:calc(100% - 16px);box-sizing:border-box;text-align:center;margin-left:16px;">
+                <div style="font-weight:700;font-size:10.5px;">Davit Mao</div>
+                <div style="font-size:9.5px;color:#6b7a8d;margin-top:1px;line-height:1.3;">Pastor Trainee</div>
+              </div>
               </div>
               <div data-org-name="Mom Kalic" style="position:relative;background:#f0fdf4;border:1.5px solid #86efac;border-left:3px solid #16a34a;border-radius:8px;padding:5px 7px;width:calc(100% - 8px);box-sizing:border-box;text-align:center;margin-left:8px;">
                 <button onclick="event.stopPropagation();var f=document.getElementById('fg-momkalic');f.style.display=f.style.display==='none'?'flex':'none'" style="position:absolute;top:3px;right:3px;background:#dcfce7;border:1px solid #86efac;border-radius:5px;cursor:pointer;font-size:13px;color:#16a34a;padding:1px 5px;line-height:1.4;">▸</button>
@@ -853,6 +862,10 @@
               <div data-org-name="Boromey Hom" style="background:#fff;border:1.5px solid #e2e8f0;border-left:3px solid #86efac;border-radius:8px;padding:5px 7px;width:calc(100% - 16px);box-sizing:border-box;text-align:center;margin-left:16px;">
                 <div style="font-weight:700;font-size:10.5px;">Boromey Hom</div>
                 <div style="font-size:9.5px;color:#6b7a8d;margin-top:1px;line-height:1.3;">Next Step Facilitator</div>
+              </div>
+              <div data-org-name="Tola Khy" style="background:#fff;border:1.5px solid #e2e8f0;border-left:3px solid #86efac;border-radius:8px;padding:5px 7px;width:calc(100% - 16px);box-sizing:border-box;text-align:center;margin-left:16px;">
+                <div style="font-weight:700;font-size:10.5px;">Tola Khy</div>
+                <div style="font-size:9.5px;color:#6b7a8d;margin-top:1px;line-height:1.3;">Pastor Trainee</div>
               </div>
               </div>
               <div data-org-name="Sreypich Chhean" style="position:relative;background:#f0fdf4;border:1.5px solid #86efac;border-radius:8px;padding:5px 7px;width:100%;box-sizing:border-box;text-align:center;">
@@ -1270,16 +1283,16 @@
                 <div style="font-weight:700;font-size:10.5px;">Sorotha Oeun</div>
                 <div style="font-size:9.5px;color:#6b7a8d;margin-top:1px;line-height:1.3;">Visual Specialist</div>
               </div>
+              <div data-org-name="Malin Toy" style="background:#fff;border:1.5px solid #e2e8f0;border-left:3px solid #86efac;border-radius:8px;padding:5px 7px;width:calc(100% - 8px);box-sizing:border-box;text-align:center;margin-left:8px;">
+                <div style="font-weight:700;font-size:10.5px;">Malin Toy</div>
+                <div style="font-size:9.5px;color:#6b7a8d;margin-top:1px;line-height:1.3;">MarCom Assistant</div>
+              </div>
               </div>
               <div onclick="var f=document.getElementById('fg-learningcenter');f.style.display=f.style.display==='none'?'flex':'none'" style="background:#ecfeff;border-radius:5px;padding:2px 8px;font-size:9px;font-weight:700;color:#0891b2;text-transform:uppercase;letter-spacing:.06em;margin:8px 0 4px;align-self:flex-start;cursor:pointer;">Learning Center ▸</div>
               <div id="fg-learningcenter" style="display:none;flex-direction:column;gap:5px;width:100%;align-items:center;">
               <div data-org-name="Makara Ne" style="background:#fff;border:1.5px solid #e2e8f0;border-radius:8px;padding:5px 7px;width:100%;box-sizing:border-box;text-align:center;">
                 <div style="font-weight:700;font-size:10.5px;color:#1a2332;">Makara Ne</div>
                 <div style="font-size:9.5px;color:#6b7a8d;margin-top:1px;line-height:1.3;">Learning Center Coordinator</div>
-              </div>
-              <div data-org-name="Davit Mao" style="background:#fff;border:1.5px solid #e2e8f0;border-radius:8px;padding:5px 7px;width:100%;box-sizing:border-box;text-align:center;">
-                <div style="font-weight:700;font-size:10.5px;color:#1a2332;">Davit Mao</div>
-                <div style="font-size:9.5px;color:#6b7a8d;margin-top:1px;line-height:1.3;">Learning Center</div>
               </div>
               </div>
               </div>
