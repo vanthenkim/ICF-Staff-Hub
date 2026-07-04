@@ -166,6 +166,17 @@ const HIDDEN_STAFF = new Set([
   "Ryca Mom",
 ]);
 
+// Department overrides — fixes wrong dept in Google Sheet without editing the sheet
+const DEPT_REMAP = {
+  'Bopha Mom':   'Catering',
+  'Lieng Huon':  'Catering',
+  'Som Chhang':  'Catering',
+  'Phat Sout':   'Catering',
+  'Pech Sang':   'Catering',
+  'Sakorun Pok': 'Catering',
+  'Sreymom Lim': 'Catering',
+};
+
 // Role overrides — shown in reporting line nodes regardless of sheet data
 const ROLE_OVERRIDES = {
   'ND Strupler': 'Executive Director · Founder',
@@ -535,7 +546,7 @@ function renderGallery(staff) {
         contacts.push({
           name,
           role:       col.role >= 0     ? (r[col.role] || '').trim()     : '',
-          department: col.dept >= 0     ? (r[col.dept] || '').trim()     : '',
+          department: DEPT_REMAP[name] || (col.dept >= 0 ? (r[col.dept] || '').trim() : ''),
           email:      col.email >= 0    ? (r[col.email] || '').trim()    : '',
           phone:      col.phone >= 0    ? (r[col.phone] || '').trim()    : '',
           telegram:   col.telegram >= 0 ? (r[col.telegram] || '').trim().replace(/^@/, '') : '',
