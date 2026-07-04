@@ -773,18 +773,31 @@ function openContact(p) {
         <svg style="${iconStyle}" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M22 3 2 10l7 3 3 7 3-8 7-9z"/></svg>
         @${p.telegram.replace(/^@/,'')}</a>` : '';
 
-  // Reporting line
+  // Reporting line — walk all the way up to ND (manager: null)
   const arrow = `<div style="width:2px;height:16px;background:#cbd5e1;margin:0 0 4px 17px;"></div>`;
   const mentorName = orgInfo ? (orgInfo.mentor || null) : null;
   let orgHtml = '';
   if (orgInfo) {
+    // Build full ancestor chain (top-down: ND → … → manager)
+    const ancestors = [];
+    let cur = p.name;
+    const seen = new Set([cur]);
+    while (true) {
+      const info = ORG[cur];
+      if (!info || !info.manager) break;
+      if (seen.has(info.manager)) break; // guard against cycles
+      seen.add(info.manager);
+      ancestors.unshift(info.manager);
+      cur = info.manager;
+    }
+    const ancestorHtml = ancestors.map(n => _orgNode(n, false) + arrow).join('');
     const mentorHtml = mentorName ? `<div style="margin-top:12px;padding-top:12px;border-top:1px dashed #e2e8f0;">
       <div style="font-size:11px;font-weight:600;color:#94a3b8;margin-bottom:6px;letter-spacing:.04em;">Mentor</div>
       ${_orgNode(mentorName, false)}
     </div>` : '';
     orgHtml = `<div style="margin-top:24px;padding-top:20px;border-top:1.5px solid #f1f5f9;">
       <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#94a3b8;margin-bottom:12px;">Reporting Line</div>
-      ${managerName ? _orgNode(managerName, false) + arrow : ''}
+      ${ancestorHtml}
       ${_orgNode(p.name, true)}
       ${reportNames.length ? arrow + `<div style="font-size:11px;font-weight:600;color:#64748b;margin:4px 0 8px;">${reportNames.length} direct report${reportNames.length !== 1 ? 's' : ''}</div>` + reportNames.map(n => _orgNode(n, false)).join('') : ''}
       ${mentorHtml}
