@@ -159,6 +159,11 @@
 
 <script src="assets/app.js?v=20260611"></script>
 <script>
+// Staff removed from display (still in Google Sheet)
+const HIDDEN_STAFF = new Set([
+  "Ryca Mom",
+]);
+
 const DEPT_STYLES = {
   Leadership:        ['#dbeafe','#1e40af','#bfdbfe'],
   Church:            ['#dcfce7','#166534','#86efac'],
@@ -513,6 +518,7 @@ function renderGallery(staff) {
         if (!num.trim() || isNaN(Number(num.trim()))) continue;
         const name = col.name >= 0 ? (r[col.name] || '').trim() : '';
         if (!name) continue;
+        if (HIDDEN_STAFF.has(name)) continue;
         const photoUrl = col.photo >= 0 ? (r[col.photo] || '').trim() : '';
         contacts.push({
           name,
