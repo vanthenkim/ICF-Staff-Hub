@@ -166,9 +166,9 @@ const HIDDEN_STAFF = new Set([
   "Ryca Mom",
 ]);
 
-// Department overrides — fixes wrong dept in Google Sheet without editing the sheet
+// Per-person department overrides (keyed by staff name)
 const DEPT_REMAP = {
-  'HR':          'Human Resources',
+  'Davit Mao':   'Church',
   'Bopha Mom':   'Catering',
   'Lieng Huon':  'Catering',
   'Som Chhang':  'Catering',
@@ -176,6 +176,12 @@ const DEPT_REMAP = {
   'Pech Sang':   'Catering',
   'Sakorun Pok': 'Catering',
   'Sreymom Lim': 'Catering',
+};
+
+// Department value remaps — normalises sheet values to display names
+const DEPT_VALUE_REMAP = {
+  'HR':          'Human Resources',
+  'Fundraising': 'Donor Care',
 };
 
 // Role overrides — shown in reporting line nodes regardless of sheet data
@@ -547,7 +553,7 @@ function renderGallery(staff) {
         contacts.push({
           name,
           role:       col.role >= 0     ? (r[col.role] || '').trim()     : '',
-          department: DEPT_REMAP[name] || (col.dept >= 0 ? (r[col.dept] || '').trim() : ''),
+          department: (() => { const d = DEPT_REMAP[name] || (col.dept >= 0 ? (r[col.dept] || '').trim() : ''); return DEPT_VALUE_REMAP[d] || d; })(),
           email:      col.email >= 0    ? (r[col.email] || '').trim()    : '',
           phone:      col.phone >= 0    ? (r[col.phone] || '').trim()    : '',
           telegram:   col.telegram >= 0 ? (r[col.telegram] || '').trim().replace(/^@/, '') : '',
@@ -578,7 +584,7 @@ function renderGallery(staff) {
 const ORG = {
   // Top
   "ND Strupler":           { manager: null,                 reports: ["Sophal Strupler","Longsamnieng Pol","Steffi Lendi","Annina Huembeli"] },
-  "Sophal Strupler":       { manager: "ND Strupler",        reports: ["Eddie Roach","Matthias Lendi","Karano Chhuon","Sibimol Pol","Simone Strupler","Thavy Tham","Vattey Chhun","Martin Strupler","Stephanie Shelow"] },
+  "Sophal Strupler":       { manager: "ND Strupler",        reports: ["Eddie Roach","Matthias Lendi","Karano Chhuon","Sibimol Pol","Simone Strupler","Vattey Chhun","Martin Strupler","Stephanie Shelow"] },
   "Longsamnieng Pol":      { manager: "ND Strupler",        reports: ["Kongkea Kouk","Jane Meas","Sreyleak Orn"] },
   "Steffi Lendi":          { manager: "ND Strupler",        reports: ["Loy Sambo Hout","Seavva Hann"] },
   "Annina Huembeli":       { manager: "ND Strupler",        reports: [] },
@@ -612,7 +618,7 @@ const ORG = {
   "Vann Rotha":            { manager: "Simone Strupler",    reports: [] },
   "Kropumkannika Gnorng":  { manager: "Simone Strupler",    reports: [] },
   // Education
-  "Matthias Lendi":        { manager: "Sophal Strupler",    reports: ["Parigna Souem","Khunhy Thoeun","Phin Teb"] },
+  "Matthias Lendi":        { manager: "Sophal Strupler",    reports: ["Parigna Souem","Khunhy Thoeun","Phin Teb","Thavy Tham"] },
   "Parigna Souem":         { manager: "Matthias Lendi",     reports: [] },
   "Khunhy Thoeun":         { manager: "Matthias Lendi",     reports: ["Su Sey","Nirorn Sok","David Piseth","Sreynouch Khit","Sotheany Ngeun","Tola Khem","Vicheth Song","Seav Ey Khean"] },
   "Su Sey":                { manager: "Khunhy Thoeun",      reports: [] },
@@ -660,7 +666,7 @@ const ORG = {
   "Sreyleak So":           { manager: "Sibimol Pol",        reports: [] },
   "Ousaphea Lim":          { manager: "Sibimol Pol",        reports: [] },
   // Human Resources & Catering
-  "Thavy Tham":            { manager: "Sophal Strupler",    reports: ["Nuthida Han","Sodalin Thangham","Vivian Stumpf","Bopha Mom"] },
+  "Thavy Tham":            { manager: "Matthias Lendi",     reports: ["Nuthida Han","Sodalin Thangham","Vivian Stumpf","Bopha Mom"] },
   "Nuthida Han":           { manager: "Thavy Tham",         reports: [] },
   "Sodalin Thangham":      { manager: "Thavy Tham",         reports: [] },
   "Vivian Stumpf":         { manager: "Thavy Tham",         reports: [] },
