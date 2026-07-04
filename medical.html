@@ -78,6 +78,16 @@
         </div>
       </div>
 
+      <!-- ── HEALTH HELP NAVIGATOR ── -->
+      <div style="margin-bottom:24px;">
+        <div class="section-title"><h2>Find Help Fast</h2><span style="font-size:12px;color:var(--text-muted);">Simple health guidance · Tap a card</span></div>
+        <div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;">
+          <a onclick="hOpenCat('hospital');return false;" href="#" style="flex:1;min-width:180px;display:flex;align-items:center;gap:10px;background:#fef2f2;border:1.5px solid #fca5a5;border-radius:10px;padding:11px 14px;text-decoration:none;color:#991b1b;font-weight:600;font-size:13px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex-shrink:0;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>When to go to hospital →</a>
+          <a href="tel:119" style="flex:1;min-width:180px;display:flex;align-items:center;gap:10px;background:#dc2626;border-radius:10px;padding:11px 14px;text-decoration:none;color:#fff;font-weight:700;font-size:13px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex-shrink:0;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.11 9.18 19.79 19.79 0 0 1 1.04 4 2 2 0 0 1 3 2h3a2 2 0 0 1 2 1.72c.127 1.024.373 2.03.73 3a2 2 0 0 1-.45 2.11L8.09 9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.97.358 1.976.604 3 .73A2 2 0 0 1 22 16.92z"/></svg>Emergency? Call 119 &nbsp;·&nbsp; <span style="font-weight:400;opacity:.85;font-size:12px;">Free ambulance in Cambodia</span></a>
+        </div>
+        <div id="hcat-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;"></div>
+      </div>
+
       <div class="row-2">
         <section>
           <!-- Health Resource Center -->
@@ -192,6 +202,36 @@
       </div>
 
     </div>
+
+    <!-- Health Help: Category Modal -->
+    <div id="h-cat-modal" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,.72);z-index:9980;overflow-y:auto;" onclick="if(event.target===this)hCloseCat();">
+      <div style="background:#f8fafc;min-height:100%;max-width:600px;margin:0 auto;padding:20px 16px 100px;">
+        <button onclick="hCloseCat()" style="display:inline-flex;align-items:center;gap:6px;background:none;border:none;font-size:14px;font-weight:600;color:#64748b;cursor:pointer;padding:8px 0;margin-bottom:12px;">← Back</button>
+        <div id="h-cat-content"></div>
+      </div>
+    </div>
+
+    <!-- Health Help: Topic Modal -->
+    <div id="h-topic-modal" style="display:none;position:fixed;inset:0;background:#fff;z-index:9990;overflow-y:auto;">
+      <div style="max-width:600px;margin:0 auto;padding:20px 16px 100px;">
+        <button onclick="hCloseTopic()" style="display:inline-flex;align-items:center;gap:6px;background:none;border:none;font-size:14px;font-weight:600;color:#64748b;cursor:pointer;padding:8px 0;margin-bottom:12px;">← Back</button>
+        <div id="h-topic-content"></div>
+      </div>
+    </div>
+
+    <!-- Health Help: Before-hospital modal -->
+    <div id="h-hosp-modal" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,.72);z-index:9995;align-items:center;justify-content:center;padding:20px;">
+      <div style="background:#fff;border-radius:16px;padding:24px 20px;max-width:320px;width:100%;position:relative;">
+        <button onclick="hCloseHospModal()" style="position:absolute;top:12px;right:14px;background:none;border:none;font-size:22px;cursor:pointer;color:#94a3b8;line-height:1;">&times;</button>
+        <div style="font-weight:700;font-size:16px;color:#991b1b;margin-bottom:6px;">Before going to hospital</div>
+        <p style="font-size:13px;color:#64748b;margin:0 0 16px;">Please contact Sibimol first if possible — she can help you prepare.</p>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <a href="tel:+85599527462" style="display:flex;align-items:center;justify-content:center;gap:8px;background:#dc2626;color:#fff;border-radius:10px;padding:12px 16px;text-decoration:none;font-weight:700;font-size:14px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.11 9.18 19.79 19.79 0 0 1 1.04 4 2 2 0 0 1 3 2h3a2 2 0 0 1 2 1.72c.127 1.024.373 2.03.73 3a2 2 0 0 1-.45 2.11L8.09 9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.97.358 1.976.604 3 .73A2 2 0 0 1 22 16.92z"/></svg>Call Sibimol</a>
+          <a href="tel:119" style="display:flex;align-items:center;justify-content:center;gap:8px;background:#991b1b;color:#fff;border-radius:10px;padding:12px 16px;text-decoration:none;font-weight:700;font-size:14px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.11 9.18 19.79 19.79 0 0 1 1.04 4 2 2 0 0 1 3 2h3a2 2 0 0 1 2 1.72c.127 1.024.373 2.03.73 3a2 2 0 0 1-.45 2.11L8.09 9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.97.358 1.976.604 3 .73A2 2 0 0 1 22 16.92z"/></svg>Call 119 now</a>
+          <button onclick="hCloseHospModal();hOpenCat('hospital');" style="display:flex;align-items:center;justify-content:center;background:#f1f5f9;border:none;cursor:pointer;border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;font-family:inherit;width:100%;">View hospital warning signs →</button>
+        </div>
+      </div>
+    </div>
   </main>
 </div>
 
@@ -291,6 +331,339 @@
     el.addEventListener('click',function(){ openModal(el.getAttribute('data-person')); });
   });
 })();
+</script>
+<!-- Health Help: sticky bar -->
+<style>
+  @media (max-width:768px){ #hcat-grid{grid-template-columns:repeat(2,1fr);} #h-sticky{bottom:60px;} }
+</style>
+<div id="h-sticky" style="position:fixed;bottom:0;left:0;right:0;z-index:9970;background:#991b1b;display:flex;align-items:center;justify-content:space-between;padding:10px 16px;box-shadow:0 -2px 12px rgba(0,0,0,.25);">
+  <a href="tel:119" style="color:#fff;font-weight:700;font-size:15px;text-decoration:none;display:flex;align-items:center;gap:8px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.11 9.18 19.79 19.79 0 0 1 1.04 4 2 2 0 0 1 3 2h3a2 2 0 0 1 2 1.72c.127 1.024.373 2.03.73 3a2 2 0 0 1-.45 2.11L8.09 9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.97.358 1.976.604 3 .73A2 2 0 0 1 22 16.92z"/></svg>Call 119</a>
+  <button onclick="hOpenHospModal()" style="background:#fff;color:#991b1b;border:none;cursor:pointer;border-radius:8px;padding:8px 16px;font-weight:700;font-size:14px;font-family:inherit;">Go to hospital</button>
+</div>
+<script>
+// ── HEALTH HELP NAVIGATOR DATA + FUNCTIONS ──────────────────────────────
+function he(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+var HCAT=[
+  {id:'emergency',title:'Emergency Help',desc:'Choking, bleeding, heat, burns, breathing.',color:'#dc2626',bg:'#fef2f2',topics:['choking','severe-bleeding','heat-stroke','dangerous-burns','trouble-breathing']},
+  {id:'sick',title:'Feeling Sick',desc:'Fever, stomach, weakness, dehydration.',color:'#d97706',bg:'#fffbeb',topics:['fever','diarrhea','vomiting','exhaustion-recovery','weakness','common-cold','eye-infection','mouth-gum','dehydration']},
+  {id:'injury',title:'Injuries & Pain',desc:'Cuts, sprains, falls, back pain, nosebleed.',color:'#2563eb',bg:'#eff6ff',topics:['cold-heat','burns','open-wounds','sprained-ankle','falls','back-pain','nosebleed','hemorrhoids']},
+  {id:'child',title:'Child Health',desc:'Falls, fever, dehydration, choking.',color:'#7c3aed',bg:'#f5f3ff',topics:['child-falls','child-fever','child-dehydration','child-choking']},
+  {id:'women',title:"Women's Health",desc:'Period, pregnancy, warning signs.',color:'#db2777',bg:'#fdf2f8',topics:['menstruation','pregnancy','pregnancy-warning']},
+  {id:'heat',title:'Heat & Environment',desc:'Sun, heat, mosquitoes, dengue.',color:'#ea580c',bg:'#fff7ed',topics:['sunstroke','heat-exhaustion','mosquito-risks','dengue']},
+  {id:'med',title:'Medication',desc:'ORS, paracetamol, antibiotics.',color:'#059669',bg:'#f0fdf4',topics:['ors','paracetamol','antibiotics','medication-safety']},
+  {id:'hospital',title:'Go to Hospital Now',desc:'Warning signs. When to leave right now.',color:'#991b1b',bg:'#fef2f2',topics:['emergency-warning-signs','severe-dehydration','dangerous-pregnancy','hosp-trouble-breathing','child-emergency']}
+];
+
+var HT={
+  'choking':{t:'Choking',s:'Person cannot breathe, talk, or cough. Act fast.',c:'emergency',
+    d:['Ask: "Are you choking?" If they cannot answer, act now.','Stand behind them. Lean them forward.','Hit firmly between the shoulder blades 5 times with the heel of your hand.','If it does not work, do 5 abdominal thrusts (hands above the belly button, push in and up).','Repeat back blows + thrusts until the object comes out or help arrives.'],
+    w:['Cannot speak or cough','Lips or face turning blue','Becomes unconscious','Sudden silence after eating or playing'],
+    n:['Do NOT give water','Do NOT slap their back while they are upright (lean them forward)','Do NOT put your fingers blindly in their mouth','Do NOT leave them alone'],
+    h:'Go to hospital right after the object comes out, or call 119 immediately if they faint or cannot breathe.'},
+  'severe-bleeding':{t:'Severe Bleeding',s:'Lots of blood, or blood will not stop. Press and call.',c:'emergency',
+    d:['Press hard on the wound with a clean cloth.','Keep pressing — do not lift the cloth to check.','Lift the injured part above the heart if possible.','Add more cloth on top if the first one soaks through.','Call 119 or go to hospital now.'],
+    w:['Blood spurting out','Wound deeper than skin / shows muscle or bone','Person feels dizzy, cold, sweaty, confused','Bleeding will not stop after 10 minutes of pressure'],
+    n:['Do NOT remove an object stuck in the wound — press around it','Do NOT use a tourniquet unless trained','Do NOT wash a deep wound with soap before going to hospital'],
+    h:'Go to hospital immediately for any deep cut, lots of blood, or if the person feels weak.'},
+  'heat-stroke':{t:'Heat Stroke',s:'Body too hot. Confused or fainted. Cool down NOW.',c:'emergency',
+    d:['Move them to shade or a cool room.','Take off extra clothes.','Pour cool water on skin. Fan them.','Put cool wet cloths on neck, armpits, groin.','Call 119. This is a real emergency.'],
+    w:['Confused, slurred speech, or strange behavior','Skin hot and dry, or no sweat','Fainting or fits','Body temperature feels very hot'],
+    n:['Do NOT give cold drinks if they are confused or unconscious','Do NOT use medicine to lower fever — it does NOT help heat stroke','Do NOT leave them alone'],
+    h:'Always go to hospital. Heat stroke can damage the body even after cooling.'},
+  'dangerous-burns':{t:'Dangerous Burns',s:'Big or deep burns need quick cooling and hospital.',c:'emergency',
+    d:['Cool the burn under clean running water for 20 minutes.','Remove tight clothes or jewelry near the burn (not stuck ones).','Cover loosely with a clean cloth or cling film.','Give paracetamol for pain (if no allergy).','Go to hospital for any burn bigger than the person\'s hand, or on face / hands / feet / genitals.'],
+    w:['Burn is white, brown, black, or leathery','Burn covers a large area','Burn on face, hands, feet, joints, or genitals','Trouble breathing or burned mouth/throat','Caused by electricity or chemical'],
+    n:['Do NOT put ice on a burn','Do NOT put toothpaste, butter, oil, or soy sauce','Do NOT pop blisters','Do NOT remove clothing stuck to the burn'],
+    h:'Go to hospital now for any deep, large, or face/hand/foot burn — or any electrical / chemical burn.'},
+  'trouble-breathing':{t:'Trouble Breathing',s:'Cannot get enough air. Stay calm. Get help fast.',c:'emergency',
+    d:['Help them sit up straight. Loosen tight clothes.','Open a window or move to fresh air.','If they have an inhaler / asthma medicine, help them use it.','Stay with them. Talk calmly.','Call 119 if breathing is very fast, very slow, or they cannot speak.'],
+    w:['Lips, face, or fingertips turn blue','Cannot speak full sentences','Chest pulling in around the ribs','Wheezing or noisy breathing','Confusion, fainting'],
+    n:['Do NOT make them lie flat — sitting up is easier','Do NOT give food or drink','Do NOT leave them alone'],
+    h:'Always go to hospital for sudden trouble breathing, blue lips, or chest pain.'},
+  'fever':{t:'Fever',s:'Body feels hot. Often from infection. Most fevers are safe at home.',c:'sick',
+    d:['Rest in a cool room. Wear light clothes.','Drink plenty of water or ORS.','Place a cool wet cloth on forehead, neck, armpits.','Take paracetamol if fever is over 38.5°C and you feel uncomfortable.','Check temperature again every 4 hours.'],
+    w:['Fever above 39.5°C','Lasts more than 3 days','Stiff neck, rash, or strong headache','Confusion or hard to wake','Trouble breathing'],
+    n:['Do NOT cover yourself with thick blankets','Do NOT take more than 4 doses of paracetamol in 24 hours','Do NOT give aspirin to children'],
+    h:'Go to hospital if fever is very high, lasts more than 3 days, or any warning sign appears.'},
+  'diarrhea':{t:'Diarrhea',s:'Loose, watery stools. The biggest danger is losing too much water.',c:'sick',
+    d:['Drink ORS after every loose stool.','Keep eating soft foods — rice, banana, soup, bread.','Wash hands with soap before eating and after toilet.','Rest. Avoid heavy work in the heat.','Watch for signs of dehydration.'],
+    w:['Blood or black color in stool','More than 6 episodes in a day','Cannot keep liquids down','Very dry mouth, no urine, sunken eyes','High fever with diarrhea'],
+    n:['Do NOT stop drinking water','Do NOT take strong anti-diarrhea medicine without advice','Do NOT eat very oily, spicy or very sweet food'],
+    h:'Go to hospital if there is blood, severe dehydration, or it lasts more than 2 days.'},
+  'vomiting':{t:'Vomiting',s:'Stomach pushes food out. Slow sips of liquid help most.',c:'sick',
+    d:['Rest. Do not eat for 1 hour.','Then take small sips of water or ORS every 5–10 minutes.','When you can hold liquid down, eat plain rice, banana, dry bread.','Avoid oily, spicy, or sweet foods.','Watch for dehydration.'],
+    w:['Vomiting blood, or vomit looks like coffee grounds','Cannot keep any liquid down for 12 hours','Strong belly pain','Severe headache or stiff neck','Sunken eyes, no urine, very weak'],
+    n:['Do NOT drink large amounts at once','Do NOT eat heavy food right away','Do NOT take random medicine to stop vomiting'],
+    h:'Go to hospital if vomiting blood, very weak, or unable to drink anything for half a day.'},
+  'exhaustion-recovery':{t:'Exhaustion & Recovery',s:'Body is very tired after illness, heat, or hard work.',c:'sick',
+    d:['Rest in a cool, quiet place.','Drink water + ORS slowly.','Eat small, light meals — rice, fruit, soup.','Sleep at least 8 hours.','Return to work slowly the next day.'],
+    w:['Cannot stand or walk','Faints or feels dizzy when sitting up','Confused','Heart beating very fast for more than 30 minutes'],
+    n:['Do NOT skip meals','Do NOT drink alcohol or strong coffee','Do NOT do hard work in the heat for 24 hours'],
+    h:'See a clinic if exhaustion lasts more than 2 days or you cannot keep food/water down.'},
+  'weakness':{t:'Weakness',s:'No energy, hard to lift things, want to lie down.',c:'sick',
+    d:['Sit or lie down. Avoid sudden standing.','Drink ORS or sweet juice.','Eat something — banana, rice, bread.','Check if you are too hot, dehydrated, or have not eaten today.','Rest the rest of the day.'],
+    w:['Weakness on only one side of the body','Trouble speaking or seeing','Fainting','Chest pain or fast breathing','Lasts more than 2 days'],
+    n:['Do NOT keep working in the heat','Do NOT skip meals to "feel lighter"','Do NOT drink only coffee or energy drinks'],
+    h:'Sudden weakness on one side, or with chest pain, is an emergency — go to hospital now.'},
+  'common-cold':{t:'Common Cold',s:'Runny nose, cough, sore throat, sometimes fever. Rest and hydrate.',c:'sick',
+    d:['Rest plenty to help your body heal.','Drink lots of fluids: water, clear broth, warm water with lemon and honey.','Eat fresh fruits — your body needs the vitamins.','For runny nose: breathe in steam from a bowl of hot water, or use saline spray (no longer than 7 days).','For cough: 1 spoon of honey for adults and children over 1 year.','For sore throat: gargle salt water (1/4–1/2 tsp salt in a glass of warm water).','For fever over 38.5°C: take paracetamol.'],
+    w:['Fever above 39°C lasting more than 3 days','Trouble breathing or chest pain','Severe headache or stiff neck','Symptoms get worse instead of better','Cough with blood or thick yellow/green mucus'],
+    n:['Do NOT take antibiotics — colds come from a virus, not bacteria','Do NOT use saline nasal spray longer than 7 days','Do NOT give honey to babies under 1 year'],
+    h:'Go to clinic if fever does not improve after a few hours of paracetamol, lasts more than 3 days, or any warning sign appears.'},
+  'eye-infection':{t:'Eye Infection',s:'Red, irritated, possibly swollen eyes. Keep clean — many infections are contagious.',c:'sick',
+    d:['Warm compress: clean warm cloth on closed eye for 5–10 minutes, a few times a day.','Cold compress: use a cool cloth if eye feels swollen or itchy.','Wash hands often. Gently wipe discharge with a clean pad.','Avoid contact lenses and eye makeup until healed.','Green tea compress: clean cooled tea bag on the closed eye.','Do not share towels, pillows, or makeup — eye infections are contagious.'],
+    w:['Vision is affected or blurry','Severe eye pain','Symptoms last more than a few days','Heavy pus or eye is very swollen','Eye injury or contact-lens-related symptoms','Light sensitivity that gets worse'],
+    n:['Do NOT share towels, pillows, or makeup','Do NOT rub the eye','Do NOT wear contact lenses while infected','Do NOT use someone else\'s eye drops'],
+    h:'See a doctor if symptoms are severe, last more than a few days, or vision is affected. Bacterial infections need prescription treatment.'},
+  'mouth-gum':{t:'Mouth & Gum Infection',s:'Red, swollen or bleeding gums. Sores in the mouth. Salt water and good hygiene help most.',c:'sick',
+    d:['Salt water rinse: 1/2 tsp salt in a glass of warm water. Rinse 30 seconds, 2–3x a day.','Brush teeth twice daily with toothpaste; clean between teeth.','Drink enough water to keep your mouth moist.','Coconut oil: gently apply a small amount to the affected area.','Clean your tongue gently every day.'],
+    w:['Severe pain that does not improve in 1 week','Fever or swollen face','Difficulty swallowing or breathing','Bleeding gums that won\'t stop','White patches that bleed when wiped','Pus or strong bad smell'],
+    n:['Do NOT share toothbrush','Do NOT eat very hot, spicy, acidic, or sugary foods','Do NOT smoke','Do NOT skip dental hygiene because it hurts'],
+    h:'See a doctor if pain is severe, you have fever, swollen face, or symptoms last more than 1 week.'},
+  'dehydration':{t:'Dehydration',s:'Body has lost too much water — from heat, diarrhea, vomiting, or work.',c:'sick',
+    d:['Drink ORS — small sips, often.','Rest in shade or a cool room.','Continue ORS even if you feel a little better.','Eat soft food once you can keep liquid down.','Check urine — should become pale yellow again.'],
+    w:['Very dry mouth, sunken eyes','No urine for 8 hours, or very dark urine','Skin slow to bounce back when pinched','Very weak, fainting, confused','Fast breathing or fast heartbeat'],
+    n:['Do NOT drink only sugary soft drinks','Do NOT drink large amounts at once','Do NOT ignore — children and elderly get worse fast'],
+    h:'Go to hospital for severe dehydration: confused, no urine, very weak, or cannot drink.'},
+  'cold-heat':{t:'When to Use Cold or Heat',s:'Cold (ice) for fresh injuries. Heat (warmth) for muscle tension and chronic pain.',c:'injury',
+    d:['Fresh injury (sprain, bruise, swelling): apply COLD for 20 minutes, every 2 hours, on day 1.','Muscle tension or chronic pain: apply WARM cloth or heat pad for 15–20 minutes.','Always wrap ice in a cloth — never put ice directly on skin.','Apply heat at least 24–48 hours AFTER the injury, not before.','Stop if skin becomes very red, pale, or numb.'],
+    w:['Skin turns very pale, blue, or numb','Pain gets worse during application','Burn-like marks on the skin after heat','No improvement after 2 days','Open wound where you wanted to apply heat'],
+    n:['Do NOT put ice directly on bare skin — wrap it','Do NOT use heat on a fresh injury (first 24–48h)','Do NOT apply heat to an open wound','Do NOT fall asleep with a heat pad'],
+    h:'See a doctor if pain is severe, swelling does not improve, or skin shows burn-like marks.'},
+  'burns':{t:'Small Burns',s:'Small, red, painful burns from kitchen, hot water, or motor.',c:'injury',
+    d:['Cool under clean running water for 20 minutes.','Remove rings, watches, tight clothes near the burn.','Cover with clean, non-stick cloth.','Take paracetamol for pain.','Keep clean and dry. Watch for infection.'],
+    w:['Burn bigger than the person\'s hand','Burn on face, hands, feet, joints, genitals','White, brown, or black skin','Skin smell, pus, growing redness','Fever after burn'],
+    n:['Do NOT use ice','Do NOT use toothpaste, oil, butter, or soy sauce','Do NOT pop blisters','Do NOT cover with cotton wool'],
+    h:'Go to hospital for any deep, large, infected, or face/hand/foot burn.'},
+  'open-wounds':{t:'Open Wounds & Cuts',s:'Skin cut, scrape, or torn. Stop bleeding, then clean.',c:'injury',
+    d:['Press with a clean cloth until bleeding stops.','Wash hands with soap before touching the wound.','Wash the wound gently with clean water.','Cover with a clean dressing.','Change dressing every day. Keep dry.'],
+    w:['Wound very deep or shows fat / muscle / bone','Caused by dirty metal, animal, or human bite','Bleeding will not stop','Redness, heat, pus, growing pain','Fever after a wound'],
+    n:['Do NOT pour soap or alcohol into a deep wound','Do NOT close a deep dirty wound with tape','Do NOT ignore a bite — see a clinic'],
+    h:'Go to hospital for deep cuts, animal/human bites, dirty wounds, or signs of infection. Tetanus injection may be needed.'},
+  'sprained-ankle':{t:'Sprained Ankle / Knee',s:'Twisted joint. Painful, swelling, hard to walk.',c:'injury',
+    d:['Rest — do not walk on it for the first hours.','Ice or cold cloth for 20 minutes, every 2 hours, the first day.','Wrap with an elastic bandage (not too tight).','Lift the leg above the heart when sitting.','Take paracetamol for pain.'],
+    w:['Cannot put any weight on the leg','Joint looks twisted or out of place','Numb foot or toes','Severe swelling that does not improve','Pain is getting worse after 2 days'],
+    n:['Do NOT massage hard the first 48 hours','Do NOT apply heat the first day','Do NOT keep walking on it'],
+    h:'Go to clinic if you cannot walk, the joint looks deformed, or pain is getting worse.'},
+  'falls':{t:'Falls',s:'After a fall — check for injury before standing up.',c:'injury',
+    d:['Stay still for a moment. Breathe.','Slowly check head, neck, back, arms, legs.','Sit up slowly. Then stand only if no pain.','Use ice on bumps and bruises.','Rest and watch for warning signs for 24 hours.'],
+    w:['Hit the head — and confused, vomiting, sleepy, or unequal pupils','Pain in neck or back — do not move them','Bone looks bent or out of place','Numbness or weakness in a limb','Loss of consciousness — even briefly'],
+    n:['Do NOT pull someone up if neck/back pain','Do NOT ignore a head hit','Do NOT walk it off if pain is sharp'],
+    h:'Go to hospital after a head hit if there is any vomiting, confusion, sleepiness, or memory loss.'},
+  'back-pain':{t:'Back Pain',s:'Sore lower back from lifting, sitting too long, or bad position.',c:'injury',
+    d:['Stop heavy lifting. Rest 1–2 days only — long rest makes it worse.','Use a warm cloth on the painful area.','Take paracetamol if needed.','Walk gently every hour.','Sleep on a firm bed, knees slightly bent.'],
+    w:['Pain spreads down the leg with numbness','Lose control of urine or stool','Weak legs, hard to walk','Strong night pain that wakes you up','Pain after a hard fall or accident'],
+    n:['Do NOT lift heavy things until better','Do NOT rest in bed for many days','Do NOT bend forward to pick things — bend the knees'],
+    h:'Go to clinic if pain spreads to the leg with numbness, weakness, or loss of bladder control.'},
+  'nosebleed':{t:'Nosebleed',s:'Common, usually safe. Most stop in 10 minutes.',c:'injury',
+    d:['Sit up. Lean head slightly forward (not back).','Pinch the soft part of the nose for 10 minutes — do not let go.','Breathe through the mouth.','Spit out blood, do not swallow it.','After it stops, do not blow your nose for 24 hours.'],
+    w:['Bleeding more than 20 minutes','Heavy bleeding that fills cloths fast','Started after a head injury','You feel dizzy or weak','Frequent nosebleeds with bruising'],
+    n:['Do NOT lean head back — blood goes into the stomach','Do NOT pack the nose deeply yourself','Do NOT blow your nose right after it stops'],
+    h:'Go to clinic if bleeding does not stop in 20 minutes, or after a head injury.'},
+  'hemorrhoids':{t:'Hemorrhoids',s:'Swollen veins around the anus. Painful, itchy, sometimes bleeding.',c:'injury',
+    d:['Drink more water — at least 2 liters per day.','Eat fruit, vegetables, and fiber to soften stool.','Sit in warm clean water for 10 minutes, twice a day.','Keep the area clean and dry.','Avoid sitting on the toilet too long.'],
+    w:['A lot of bleeding (more than a few drops)','Black or dark stool','Strong pain that does not improve in 1 week','A hard painful lump that does not go down','Fever or weakness'],
+    n:['Do NOT push hard during toilet','Do NOT use harsh soap or perfumed wipes','Do NOT ignore heavy bleeding'],
+    h:'Go to clinic if bleeding is heavy, pain is severe, or there is fever.'},
+  'child-falls':{t:'Falls in Children',s:'Children fall often. Most are fine. Watch for head signs.',c:'child',
+    d:['Comfort the child.','Check the head, arms, legs gently.','Use ice or a cool cloth on bumps.','Watch the child for 24 hours.','Let them rest and drink water.'],
+    w:['Vomits more than once','Sleepy and hard to wake','Crying that will not stop','Eyes look strange or pupils are different sizes','Bleeding from ear or nose','Bone looks bent'],
+    n:['Do NOT shake the child','Do NOT give medicine to make them sleep','Do NOT ignore behavior changes'],
+    h:'Go to hospital now if the child vomits, is hard to wake, or behaves differently after a fall.'},
+  'child-fever':{t:'Child Fever',s:'Children get fever often. Cool, calm, and watch carefully.',c:'child',
+    d:['Take off extra clothes. Light fan or cool room.','Cool wet cloth on forehead, neck, armpits.','Give plenty of water, breastmilk, or ORS.','Give paracetamol by weight if uncomfortable.','Check temperature every 2 hours.'],
+    w:['Baby under 3 months with any fever','Fever above 39°C','Hard to wake, very sleepy, or floppy','Rash, stiff neck, fits','Trouble breathing, blue lips','Not drinking, no urine for 8 hours'],
+    n:['Do NOT cover with thick blankets','Do NOT give aspirin to children','Do NOT give cold baths'],
+    h:'Go to hospital for any fever in a baby under 3 months, or any warning sign at any age.'},
+  'child-dehydration':{t:'Dehydration in Children',s:'Children lose water fast. Watch closely after diarrhea, vomiting, fever, or heat.',c:'child',
+    d:['Give ORS in small spoons every few minutes.','Continue breastfeeding.','Avoid sugary soft drinks.','Keep the child cool and resting.','Watch how much they urinate.'],
+    w:['No tears when crying','Sunken soft spot on baby\'s head','No urine for 6 hours','Very sleepy, floppy, hard to wake','Sunken eyes, very dry mouth','Skin slow to spring back when pinched'],
+    n:['Do NOT give plain water only — use ORS','Do NOT force a sleeping child to drink','Do NOT ignore early signs'],
+    h:'Go to hospital fast if child cannot drink, has no urine, or is very sleepy.'},
+  'child-choking':{t:'Choking Child',s:'Child cannot breathe, talk, or cough. Act fast.',c:'child',
+    d:['If they are coughing strongly, encourage them to keep coughing.','If they cannot make sound: lay the child face-down on your forearm, head lower than chest.','Give 5 firm back blows between the shoulder blades.','Then turn over and give 5 chest thrusts (two fingers on the breastbone for babies).','Repeat until the object comes out or help arrives.'],
+    w:['Cannot make sound','Lips, face, or fingers turn blue','Becomes floppy or unconscious','Sudden silence after eating, playing with small objects'],
+    n:['Do NOT do abdominal thrusts on a baby under 1 year','Do NOT put your fingers in their mouth blindly','Do NOT shake the child'],
+    h:'Always take the child to hospital after choking, even if the object comes out.'},
+  'menstruation':{t:'Menstruation',s:'Monthly bleeding. Normal — but pain, very heavy bleeding, or missed periods need attention.',c:'women',
+    d:['Use clean pads or cups. Change every 4–6 hours.','Drink water and eat well.','Use a warm cloth on the lower belly for cramps.','Take paracetamol if needed.','Rest if you feel weak.'],
+    w:['Bleeding so heavy you change a pad every hour','Period lasts more than 7 days','Severe pain that stops normal life','Fever or bad-smelling bleeding','No period for 3 months and not pregnant'],
+    n:['Do NOT use one pad all day — risk of infection','Do NOT ignore heavy or painful periods','Do NOT skip meals during your period'],
+    h:'See a clinic for very heavy bleeding, fever, severe pain, or long missed periods.'},
+  'pregnancy':{t:'Pregnancy',s:'Take care of yourself. Eat well, rest, attend check-ups.',c:'women',
+    d:['Visit a clinic for at least 4 antenatal check-ups.','Take iron + folic acid as advised.','Eat varied food: rice, fish, vegetables, fruit, eggs.','Drink clean water. Sleep well.','Tell a clinic about any medicine before taking it.'],
+    w:['Heavy vaginal bleeding','Strong belly pain','Severe headache or blurred vision','Swollen face/hands suddenly','No baby movement for many hours (after 6 months)','Fever and chills'],
+    n:['Do NOT smoke or drink alcohol','Do NOT take medicine without asking the clinic','Do NOT lift very heavy things'],
+    h:'Go to hospital for any pregnancy warning sign — see the next topic.'},
+  'pregnancy-warning':{t:'Pregnancy Warning Signs',s:'These signs mean: go to hospital now.',c:'women',
+    d:['Stop what you are doing. Sit down.','Tell someone you trust.','Call 119 or go to the nearest hospital.','Bring your antenatal card.','Do not eat anything heavy on the way.'],
+    w:['Heavy vaginal bleeding','Strong continuous belly pain','Severe headache that does not go away','Blurred vision or seeing spots','Sudden swelling of face, hands, or feet','Fits / convulsions','No baby movement for many hours','Water breaks before 9 months','Fever with chills'],
+    n:['Do NOT wait at home to see if it gets better','Do NOT take strong painkillers','Do NOT travel alone if very unwell'],
+    h:'Always go to hospital for any pregnancy warning sign — even if it improves.'},
+  'sunstroke':{t:'Sunstroke',s:'Too much sun. Headache, dizziness, hot skin.',c:'heat',
+    d:['Move to shade or indoors.','Take off extra clothes.','Drink ORS or water in small sips.','Cool wet cloth on neck, head, armpits.','Rest. Avoid sun for the rest of the day.'],
+    w:['Confused or strange behavior','Skin hot and dry','Fainting or fits','Vomiting that will not stop','Body temperature very hot'],
+    n:['Do NOT continue working in the sun','Do NOT drink alcohol','Do NOT take fever medicine — it does not help heat'],
+    h:'Confusion, fainting, or hot dry skin is an emergency — go to hospital now.'},
+  'heat-exhaustion':{t:'Heat Exhaustion',s:'Body losing too much water and salt from heat or work.',c:'heat',
+    d:['Stop work. Move to shade or cool place.','Loosen clothes.','Drink ORS slowly.','Cool wet cloth on neck, head, armpits.','Rest at least 1 hour before any activity.'],
+    w:['Confused, slurred speech','Faint or cannot stand','Stops sweating, hot dry skin (= heat stroke)','Fits','Strong headache that gets worse'],
+    n:['Do NOT keep working','Do NOT drink only sugary drinks','Do NOT ignore — heat exhaustion can become heat stroke'],
+    h:'Go to hospital if confused, faints, or skin becomes hot and dry.'},
+  'mosquito-risks':{t:'Mosquito Bite Risks',s:'Mosquitoes carry dengue, malaria, and other diseases. Prevention matters.',c:'heat',
+    d:['Sleep under a clean mosquito net every night.','Wear long sleeves at dawn and dusk.','Use repellent on skin and clothes.','Empty water containers around the house every week.','Tell a clinic if you get fever after many bites.'],
+    w:['High fever 1–7 days after bites','Strong headache, eye pain','Bleeding gums, nosebleeds, blood in urine','Belly pain, vomiting','Very sleepy, weak, cold hands'],
+    n:['Do NOT leave water sitting in pots, buckets, tires','Do NOT use only repellent — use a net at night','Do NOT ignore fever after bites'],
+    h:'Go to clinic for any fever 1–7 days after mosquito exposure — could be dengue or malaria.'},
+  'dengue':{t:'Dengue Warning Signs',s:'Dengue is common in Cambodia. Watch for danger signs after fever.',c:'heat',
+    d:['Rest. Drink ORS, water, soup.','Take paracetamol for fever — never aspirin or ibuprofen.','Have a blood test at the clinic.','Watch for warning signs days 3–7 (when fever drops).','Tell family so someone can take you to hospital quickly.'],
+    w:['Strong belly pain','Vomiting many times','Bleeding gums, nosebleeds, blood spots on skin','Cold hands and feet, sweating, restless','Very tired, sleepy, or confused','Less urine'],
+    n:['Do NOT take aspirin or ibuprofen — they cause bleeding','Do NOT ignore the day fever drops — it is the danger time','Do NOT stay home if any warning sign appears'],
+    h:'Go to hospital immediately for ANY dengue warning sign — even if fever has stopped.'},
+  'ors':{t:'ORS (Oral Rehydration Salts)',s:'The most important medicine for diarrhea, vomiting, heat, or any dehydration.',c:'med',
+    d:['Mix one ORS sachet in 1 liter of clean water (read the packet).','Drink small sips often — every 5–10 minutes.','Use within 24 hours, then make a fresh mix.','Continue until urine is pale yellow again.','Children: small spoons, even when sleepy.'],
+    w:['Cannot keep ORS down at all','Continues to be very weak','No urine for 8 hours (adults) or 6 hours (child)','Very sleepy, confused, or floppy','Sunken eyes or no tears'],
+    n:['Do NOT use too much water — follow packet','Do NOT mix with milk, soup, or juice','Do NOT add extra sugar or salt'],
+    h:'Go to hospital if the person cannot drink, no urine, or stays very weak.'},
+  'paracetamol':{t:'Paracetamol',s:'Common medicine for pain and fever. Safe if used correctly.',c:'med',
+    d:['Adults: 500–1000 mg every 6 hours, max 4 doses in 24 hours.','Children: by weight (10–15 mg per kg per dose) — read the packet.','Take with water, not on a totally empty stomach if possible.','Wait at least 4 hours between doses.','Stop if rash, swelling, or trouble breathing.'],
+    w:['Yellow eyes or skin','Dark urine, pale stools','Strong belly pain','Confusion','Allergy: rash, swelling, trouble breathing'],
+    n:['Do NOT take more than 4 doses in 24 hours','Do NOT mix with other paracetamol products (combo cold medicines)','Do NOT drink alcohol while taking paracetamol','Do NOT give to children without checking weight'],
+    h:'Go to hospital if you suspect overdose, allergic reaction, or yellow eyes/skin.'},
+  'antibiotics':{t:'Antibiotics',s:'Powerful medicine. Use only when prescribed, finish the course.',c:'med',
+    d:['Only take antibiotics prescribed for you.','Take at the same time every day.','Finish the full course — even if you feel better.','Drink plenty of water.','Tell the clinic if rash, diarrhea, or feeling worse.'],
+    w:['Rash, swelling, or trouble breathing (allergy)','Severe diarrhea with blood','No improvement after 3 days','Fever returns or gets worse','Vomiting all doses'],
+    n:['Do NOT share antibiotics with other people','Do NOT keep leftover antibiotics for next time','Do NOT take antibiotics for normal cold or flu','Do NOT stop early when you feel better'],
+    h:'Go to clinic for allergic reaction, severe diarrhea, or no improvement.'},
+  'medication-safety':{t:'Medication Safety',s:'Simple rules to keep medicine safe and effective.',c:'med',
+    d:['Keep medicine in original packaging with label.','Store in a cool, dry place out of children\'s reach.','Check expiry date before each use.','Tell the clinic about all medicines and herbal products you take.','Bring a list of medicines to every appointment.'],
+    w:['Allergy: rash, swelling, trouble breathing','Wrong dose taken (especially child)','Mixing many medicines','Sharing medicines between people','Using medicine from an old illness'],
+    n:['Do NOT take expired medicine','Do NOT split tablets unless told it is OK','Do NOT mix medicines without asking','Do NOT use someone else\'s prescription'],
+    h:'Go to hospital for allergic reactions, suspected overdose, or wrong-dose to a child.'},
+  'emergency-warning-signs':{t:'Emergency Warning Signs',s:'If you see any of these, go to hospital immediately.',c:'hospital',
+    d:['Stop. Sit the person down.','Call 119 or go to the nearest hospital.','Bring ID, money, phone, and any medicine list.','Do not drive yourself if very unwell — ask a colleague.','Tell the focal point so they know.'],
+    w:['Trouble breathing or blue lips','Chest pain or pressure','Fainting or cannot wake the person','Confusion, sudden weakness, or trouble speaking','Severe bleeding that will not stop','Very strong belly pain','Severe burns','Pregnancy with bleeding or strong pain','High fever with stiff neck or rash'],
+    n:['Do NOT wait to see if it gets better','Do NOT eat or drink if surgery may be needed','Do NOT take strong painkillers that hide symptoms'],
+    h:'Any of these signs = hospital, now.'},
+  'severe-dehydration':{t:'Severe Dehydration',s:'Body has lost so much water it is dangerous. Hospital level.',c:'hospital',
+    d:['Lay the person on their side in shade.','Try to give ORS in small sips if they can swallow.','Cool them with wet cloths — but do not make them shiver.','Call 119 or go to hospital now.','Bring ORS with you.'],
+    w:['No urine for 8 hours','Very sunken eyes, no tears','Cannot drink anything','Confused, very sleepy, hard to wake','Cold hands and feet, fast heart','Skin very slow to bounce back when pinched'],
+    n:['Do NOT force a confused person to drink — risk of choking','Do NOT give plain water only — use ORS if they can swallow','Do NOT delay'],
+    h:'Severe dehydration needs IV fluids — go to hospital now.'},
+  'dangerous-pregnancy':{t:'Dangerous Pregnancy Signs',s:'Any of these signs in pregnancy = hospital now.',c:'hospital',
+    d:['Sit or lie down on your left side.','Tell someone immediately.','Call 119 or go to hospital.','Bring antenatal card and any medicines.','Stay calm — keep breathing slowly.'],
+    w:['Heavy vaginal bleeding','Strong belly pain that does not stop','Severe headache, blurred vision, seeing spots','Sudden swelling of face / hands','Fits / convulsions','No baby movement for many hours (after 6 months)','Water breaks early','Fever with chills'],
+    n:['Do NOT wait at home','Do NOT take strong painkillers','Do NOT travel alone if very unwell','Do NOT try to handle this without the clinic'],
+    h:'Always go to hospital for any pregnancy warning sign.'},
+  'hosp-trouble-breathing':{t:'Trouble Breathing — Go Now',s:'Sudden or worsening trouble breathing = hospital now.',c:'hospital',
+    d:['Help them sit up. Loosen tight clothes.','Open windows or move outside.','If they have asthma medicine, help them use it.','Stay calm and stay with them.','Call 119 if very fast, very slow, or blue lips.'],
+    w:['Blue lips, face, or fingers','Cannot speak full sentences','Chest pulling in around ribs','Wheezing or noisy breathing','Confusion, fainting'],
+    n:['Do NOT make them lie flat','Do NOT give food or drink','Do NOT leave them alone'],
+    h:'Sudden trouble breathing is always a hospital emergency.'},
+  'child-emergency':{t:'Child Emergency Signs',s:'Any of these in a child = hospital, fast.',c:'hospital',
+    d:['Stay calm. Pick the child up gently.','Keep them comfortable — sitting if breathing trouble, lying on side if fits.','Call 119 or go to hospital.','Bring vaccination card and medicines.','Keep talking softly to the child.'],
+    w:['Hard to wake, very sleepy, or floppy','Trouble breathing, fast breathing, blue lips','Fits / convulsions','Very pale or blue skin','Not drinking, no urine for 6 hours','Heavy bleeding','Strong belly pain with vomiting','Stiff neck with fever','Skin rash that does not fade with pressure'],
+    n:['Do NOT delay','Do NOT shake the child','Do NOT give food if they are very sleepy or fitting','Do NOT give aspirin'],
+    h:'Any of these signs = hospital, immediately.'}
+};
+
+// ── RENDER FUNCTIONS ────────────────────────────────────────────────────
+
+function hOpenCat(catId) {
+  var cat=null;
+  for(var i=0;i<HCAT.length;i++){if(HCAT[i].id===catId){cat=HCAT[i];break;}}
+  if(!cat) return;
+  var html='<div style="font-size:12px;color:#94a3b8;margin-bottom:4px;">Health Help</div>';
+  html+='<h2 style="font-size:20px;font-weight:700;color:#1e293b;margin:0 0 4px;">'+he(cat.title)+'</h2>';
+  html+='<p style="font-size:13px;color:#64748b;margin:0 0 20px;">'+he(cat.desc)+'</p>';
+  for(var j=0;j<cat.topics.length;j++){
+    var sl=cat.topics[j], t=HT[sl];
+    if(!t) continue;
+    html+='<a href="#" onclick="hOpenTopic(\''+sl+'\');return false;" style="display:flex;align-items:center;justify-content:space-between;gap:12px;background:#fff;border:1.5px solid #e2e8f0;border-radius:10px;padding:14px 16px;text-decoration:none;margin-bottom:8px;">';
+    html+='<div><div style="font-weight:600;font-size:14px;color:#1e293b;">'+he(t.t)+'</div>';
+    html+='<div style="font-size:12px;color:#64748b;margin-top:2px;">'+he(t.s)+'</div></div>';
+    html+='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></a>';
+  }
+  document.getElementById('h-cat-content').innerHTML=html;
+  document.getElementById('h-cat-modal').style.display='block';
+  document.getElementById('h-cat-modal').scrollTop=0;
+}
+
+function hCloseCat(){document.getElementById('h-cat-modal').style.display='none';}
+
+function hOpenTopic(slug) {
+  var t=HT[slug];
+  if(!t) return;
+  var cat=null;
+  for(var i=0;i<HCAT.length;i++){if(HCAT[i].id===t.c){cat=HCAT[i];break;}}
+  var html='';
+  if(cat) html+='<div style="font-size:12px;color:#94a3b8;margin-bottom:4px;">'+he(cat.title)+'</div>';
+  html+='<h2 style="font-size:22px;font-weight:700;color:#1e293b;margin:0 0 4px;">'+he(t.t)+'</h2>';
+  html+='<p style="font-size:14px;color:#64748b;margin:0 0 16px;">'+he(t.s)+'</p>';
+  html+='<div style="background:#fefce8;border:1.5px solid #fde68a;border-radius:10px;padding:12px 14px;margin-bottom:20px;display:flex;gap:10px;align-items:flex-start;">';
+  html+='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2.4" style="flex-shrink:0;margin-top:1px;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>';
+  html+='<div><div style="font-weight:700;font-size:13px;color:#92400e;margin-bottom:2px;">Talk to your team leader first</div>';
+  html+='<div style="font-size:12px;color:#78350f;">Please call Sibimol first. If it is a real emergency, call 119 right away.</div></div></div>';
+  html+='<div style="margin-bottom:16px;"><div style="font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:#1e293b;margin-bottom:8px;">What to do</div>';
+  html+='<ol style="margin:0;padding-left:18px;font-size:13px;color:#374151;line-height:1.7;">';
+  for(var i=0;i<t.d.length;i++) html+='<li style="margin-bottom:4px;">'+he(t.d[i])+'</li>';
+  html+='</ol></div>';
+  html+='<div style="background:#fef2f2;border-radius:10px;padding:14px;margin-bottom:16px;">';
+  html+='<div style="font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:#991b1b;margin-bottom:8px;">Warning signs</div>';
+  html+='<ul style="margin:0;padding-left:16px;font-size:13px;color:#374151;line-height:1.7;">';
+  for(var i=0;i<t.w.length;i++) html+='<li style="margin-bottom:2px;">'+he(t.w[i])+'</li>';
+  html+='</ul></div>';
+  html+='<div style="background:#f8fafc;border-radius:10px;padding:14px;margin-bottom:16px;">';
+  html+='<div style="font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:#475569;margin-bottom:8px;">Do NOT do this</div>';
+  html+='<ul style="margin:0;padding-left:16px;font-size:13px;color:#374151;line-height:1.7;">';
+  for(var i=0;i<t.n.length;i++) html+='<li style="margin-bottom:2px;">'+he(t.n[i])+'</li>';
+  html+='</ul></div>';
+  html+='<div style="background:#eff6ff;border-radius:10px;padding:14px;margin-bottom:20px;">';
+  html+='<div style="font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:#1d4ed8;margin-bottom:6px;">When to go to hospital</div>';
+  html+='<p style="margin:0;font-size:13px;color:#1e293b;">'+he(t.h)+'</p></div>';
+  html+='<div style="border-top:1.5px solid #f1f5f9;padding-top:16px;">';
+  html+='<div style="font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:#94a3b8;margin-bottom:12px;">Emergency contacts</div>';
+  html+=hCRow('Sibimol Pol','Medical Coordinator — call her FIRST','tel:+85599527462','#dc2626');
+  html+=hCRow('Sodalin Thangham','HR Administrator &amp; support','tel:+85589595512','#dc2626');
+  html+=hCRow('119 — Ambulance','Free emergency ambulance in Cambodia','tel:119','#991b1b');
+  html+=hCRow('118 — Fire / Rescue','Fire and rescue emergencies','tel:118','#ea580c');
+  html+=hCRow('117 — Police','Police emergencies','tel:117','#1d4ed8');
+  html+='</div>';
+  var m=document.getElementById('h-topic-modal');
+  document.getElementById('h-topic-content').innerHTML=html;
+  m.scrollTop=0;
+  m.style.display='block';
+}
+
+function hCRow(name,desc,tel,color){
+  return '<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px;">'+
+    '<div><div style="font-weight:600;font-size:13px;color:#1e293b;">'+name+'</div>'+
+    '<div style="font-size:12px;color:#64748b;">'+desc+'</div></div>'+
+    '<a href="'+tel+'" style="flex-shrink:0;background:'+color+';color:#fff;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:700;text-decoration:none;">Call</a></div>';
+}
+
+function hCloseTopic(){document.getElementById('h-topic-modal').style.display='none';}
+function hOpenHospModal(){document.getElementById('h-hosp-modal').style.display='flex';}
+function hCloseHospModal(){document.getElementById('h-hosp-modal').style.display='none';}
+
+// Build category grid on load
+document.addEventListener('DOMContentLoaded',function(){
+  var grid=document.getElementById('hcat-grid');
+  if(!grid) return;
+  HCAT.forEach(function(cat){
+    var a=document.createElement('a');
+    a.href='#';
+    a.style.cssText='display:flex;flex-direction:column;gap:6px;background:#fff;border:1.5px solid #e2e8f0;border-radius:12px;padding:14px 12px;text-decoration:none;transition:box-shadow .15s,border-color .15s;';
+    a.onclick=function(e){e.preventDefault();hOpenCat(cat.id);};
+    a.innerHTML='<div style="width:10px;height:10px;border-radius:50%;background:'+cat.color+';margin-bottom:4px;flex-shrink:0;"></div>'+
+      '<div style="font-weight:700;font-size:13px;color:#1e293b;line-height:1.3;">'+he(cat.title)+'</div>'+
+      '<div style="font-size:11px;color:#64748b;line-height:1.5;">'+he(cat.desc)+'</div>';
+    a.addEventListener('mouseenter',function(){a.style.boxShadow='0 2px 12px rgba(0,0,0,.08)';a.style.borderColor='#cbd5e1';});
+    a.addEventListener('mouseleave',function(){a.style.boxShadow='';a.style.borderColor='#e2e8f0';});
+    grid.appendChild(a);
+  });
+});
 </script>
 </body>
 </html>
