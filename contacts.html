@@ -543,7 +543,7 @@ function renderGallery(staff) {
         });
       }
 
-      allStaff = contacts;
+      allStaff = contacts.slice().sort((a, b) => a.name.localeCompare(b.name));
       allStaff.forEach(p => { staffByName[p.name] = p; });
       const countEl = document.getElementById('staff-count-label');
       if (countEl) countEl.textContent = `Directory of ${allStaff.length} staff members · phone & Telegram where available`;
