@@ -168,14 +168,22 @@ const HIDDEN_STAFF = new Set([
 
 // Per-person department overrides (keyed by staff name)
 const DEPT_REMAP = {
-  'Davit Mao':   'Church',
-  'Bopha Mom':   'Catering',
-  'Lieng Huon':  'Catering',
-  'Som Chhang':  'Catering',
-  'Phat Sout':   'Catering',
-  'Pech Sang':   'Catering',
-  'Sakorun Pok': 'Catering',
-  'Sreymom Lim': 'Catering',
+  // Church
+  'Davit Mao':      'Church',
+  // Catering (kitchen team — were wrongly under New Campus in sheet)
+  'Bopha Mom':      'Catering',
+  'Lieng Huon':     'Catering',
+  'Som Chhang':     'Catering',
+  'Phat Sout':      'Catering',
+  'Pech Sang':      'Catering',
+  // Operations — Vattey + Finance team + Coffee Shop
+  'Vattey Chhun':   'Operations',
+  'Linet Un':       'Operations',
+  'Rachana San':    'Operations',
+  'Kimbuoy Pheng':  'Operations',
+  'Sakorun Pok':    'Operations',
+  'Sreymom Lim':    'Operations',
+  'Kimleang Lun':   'Operations',
 };
 
 // Department value remaps — normalises sheet values to display names
