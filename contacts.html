@@ -146,8 +146,6 @@
   </nav>
 </div>
 
-<script src="assets/staff-history.js"></script>
-
 <!-- Contact detail overlay -->
 <div id="cov" onclick="if(event.target===this)closeContact()">
   <div id="cpanel">
@@ -852,10 +850,6 @@ function openContact(p) {
     </div>`;
   }
 
-  const currentUserName = _getCurrentUserName();
-  const isOwnProfile = !!(currentUserName && p.name === currentUserName);
-  const historyHtml = isOwnProfile ? _buildHistoryHtml(p.name) : '';
-
   body.innerHTML = `
     <div style="text-align:center;padding:28px 24px 20px;">
       <div style="display:flex;justify-content:center;">${bigAvatar}</div>
@@ -864,8 +858,7 @@ function openContact(p) {
       <div style="margin-top:10px;">${deptBadge(p.department)}</div>
     </div>
     ${emailRow || phoneRow || tgRow ? `<div style="padding:0 20px 4px;">${emailRow}${phoneRow}${tgRow}</div>` : ''}
-    ${orgHtml ? `<div style="padding:0 20px ${historyHtml ? '20px' : '36px'};">${orgHtml}</div>` : '<div style="height:24px;"></div>'}
-    ${historyHtml ? `<div style="padding:0 20px 36px;">${historyHtml}</div>` : ''}
+    ${orgHtml ? `<div style="padding:0 20px 36px;">${orgHtml}</div>` : '<div style="height:24px;"></div>'}
   `;
 
   // scroll panel to top
@@ -888,58 +881,6 @@ function closeContact() {
 // Close on Escape
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeContact(); });
 
-// ── Current user detection ────────────────────────────────────────────────────
-function _getCurrentUserName() {
-  try {
-    const cookie = document.cookie.split('; ').find(r => r.startsWith('icf_user='));
-    if (!cookie) return null;
-    const email = atob(cookie.split('=').slice(1).join('='));
-    const match = allStaff.find(p => p.email && p.email.toLowerCase() === email.toLowerCase());
-    return match ? match.name : null;
-  } catch { return null; }
-}
-
-// ── Career History ────────────────────────────────────────────────────────────
-function _buildHistoryHtml(name) {
-  const entries = (typeof STAFF_HISTORY !== 'undefined' && STAFF_HISTORY[name]) ? STAFF_HISTORY[name] : [];
-  if (!entries.length) return '';
-
-  const TYPE_COLOR = {
-    joined:     { dot: '#22c55e', bg: '#f0fdf4', text: '#166534' },
-    role:       { dot: '#2563eb', bg: '#eff6ff', text: '#1e40af' },
-    department: { dot: '#7c3aed', bg: '#f5f3ff', text: '#5b21b6' },
-    other:      { dot: '#94a3b8', bg: '#f8fafc', text: '#475569' },
-  };
-
-  // Sort chronologically
-  const sorted = [...entries].sort((a, b) => a.date.localeCompare(b.date));
-
-  function fmtDate(d) {
-    const dt = new Date(d + 'T00:00:00');
-    return dt.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
-  }
-
-  const rows = sorted.map((e, i) => {
-    const c = TYPE_COLOR[e.type] || TYPE_COLOR.other;
-    const isLast = i === sorted.length - 1;
-    return `<div style="display:flex;gap:12px;position:relative;padding-bottom:${isLast ? '4' : '18'}px;">
-      <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;">
-        <div style="width:10px;height:10px;border-radius:50%;background:${c.dot};flex-shrink:0;margin-top:3px;"></div>
-        ${!isLast ? `<div style="width:2px;flex:1;background:#e2e8f0;margin-top:4px;"></div>` : ''}
-      </div>
-      <div style="flex:1;padding-bottom:2px;">
-        <div style="font-size:11px;color:#94a3b8;margin-bottom:2px;">${fmtDate(e.date)}</div>
-        <span style="display:inline-block;font-size:11px;font-weight:700;background:${c.bg};color:${c.text};padding:2px 8px;border-radius:99px;margin-bottom:4px;">${e.label}</span>
-        ${e.note ? `<div style="font-size:12px;color:#374151;">${e.note}</div>` : ''}
-      </div>
-    </div>`;
-  }).join('');
-
-  return `<div style="margin-top:24px;padding-top:20px;border-top:1.5px solid #f1f5f9;">
-    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#94a3b8;margin-bottom:14px;">Career at ICF</div>
-    ${rows}
-  </div>`;
-}
 </script>
 </body>
 </html>
