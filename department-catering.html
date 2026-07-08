@@ -147,7 +147,7 @@
               <button onclick="document.getElementById('catering-org-chart').style.display='none'" style="background:none;border:none;font-size:28px;cursor:pointer;color:#94a3b8;line-height:1;">&times;</button>
             </div>
             <div style="overflow-x:auto;padding-bottom:8px;">
-          <div style="display:flex;flex-direction:column;align-items:center;width:max-content;margin:0 auto;">
+          <div style="display:inline-flex;flex-direction:column;align-items:center;">
 
           <div data-person="Matthias Lendi" style="display:flex;align-items:center;gap:14px;cursor:pointer;background:linear-gradient(135deg,#991b1b,#dc2626);color:#fff;border-radius:14px;padding:14px 22px;min-width:260px;transition:box-shadow .15s;" onmouseover="this.style.boxShadow='0 4px 20px rgba(220,38,38,.4)'" onmouseout="this.style.boxShadow='none'">
             <img src="assets/people/matthias-lendi.jpg" style="width:56px;height:56px;border-radius:50%;object-fit:cover;border:2.5px solid rgba(255,255,255,.35);flex-shrink:0;">
@@ -177,15 +177,8 @@
           <!-- Connector from Thavy block to Kitchen Team -->
           <div style="width:2px;height:20px;background:#fca5a5;"></div>
 
-          <!-- Kitchen Team (single column, border-top as connector) -->
-          <style>
-            .cat-wrap { display:flex;flex-direction:column;align-items:center; }
-            .cat-drop { width:2px;height:16px;background:#fca5a5;margin-bottom:0; }
-          </style>
-          <div style="display:flex;gap:8px;align-items:flex-start;border-top:2px solid #fca5a5;">
-            <div class="cat-wrap">
-              <div class="cat-drop"></div>
-              <div style="display:flex;flex-direction:column;gap:0;background:#fff;border:1.5px solid #e2e8f0;border-top:3px solid #dc2626;border-radius:10px;padding:12px 10px;min-width:220px;">
+          <!-- Kitchen Team (single column, straight vertical connector) -->
+          <div style="display:flex;flex-direction:column;gap:0;background:#fff;border:1.5px solid #e2e8f0;border-top:3px solid #dc2626;border-radius:10px;padding:12px 10px;min-width:220px;">
   <div style="font-size:9px;font-weight:700;color:#dc2626;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;">Kitchen Team</div>
   <div data-person="Lieng Huon" style="display:flex;align-items:center;gap:10px;cursor:pointer;background:#fef2f2;border-radius:10px;padding:10px 12px;transition:background .15s,box-shadow .15s;margin-bottom:6px;" onmouseover="this.style.background='#fee2e2';this.style.boxShadow='0 2px 10px rgba(220,38,38,.15)'" onmouseout="this.style.background='#fef2f2';this.style.boxShadow='none'"><img src="https://lh3.googleusercontent.com/d/1FEfUzck7LZcOAHJUVRU_SwTgR37qpdq9" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;"><div><div style="font-weight:700;font-size:12.5px;color:#7f1d1d;">Lieng Huon</div><div style="font-size:11px;color:#dc2626;">Cook</div></div></div>
   <div style="margin-left:18px;border-left:2px solid #fca5a5;padding-left:10px;display:flex;flex-direction:column;gap:5px;">
@@ -194,8 +187,6 @@
   <div data-person="Pech Sang" style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#fff;border:1px solid #f1f5f9;border-left:3px solid #fca5a5;border-radius:8px;padding:7px 10px;transition:background .15s;" onmouseover="this.style.background='#fef2f2'" onmouseout="this.style.background='#fff'"><img src="assets/people/pech-sang.jpg" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;"><div><div style="font-weight:600;font-size:11.5px;color:#1f2937;">Pech Sang</div><div style="font-size:10.5px;color:#6b7280;">Kitchen Cleaner</div></div></div>
   </div>
 </div>
-            </div>
-          </div><!-- /columns -->
           </div><!-- /max-content wrapper -->
                     </div><!-- /scroll-wrapper -->
           </div><!-- /white-box -->
