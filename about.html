@@ -724,10 +724,14 @@
               <div style="position:relative;">
                 <button onclick="var p=document.getElementById('ic-panel');p.style.display=p.style.display==='block'?'none':'block'" style="background:#fefce8;border:1.5px solid #fde68a;border-radius:9px;padding:7px 14px;text-align:center;cursor:pointer;font-family:inherit;line-height:1.3;display:block;">
                   <div style="font-weight:700;font-size:10px;color:#92400e;text-transform:uppercase;letter-spacing:.06em;">Internal Council</div>
-                  <div style="font-size:9px;color:#b45309;margin-top:2px;">3 members ▾</div>
+                  <div style="font-size:9px;color:#b45309;margin-top:2px;">4 members ▾</div>
                 </button>
                 <div id="ic-panel" style="display:none;position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#fff;border:1.5px solid #fde68a;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.14);padding:10px;min-width:195px;z-index:100;">
                   <div style="font-weight:700;font-size:10px;color:#92400e;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;text-align:center;padding-bottom:6px;border-bottom:1px solid #fde68a;">Internal Council</div>
+                  <div data-org-name="Sophal Strupler" style="background:#fefce8;border:1.5px solid #fde68a;border-radius:8px;padding:5px 8px;margin-bottom:5px;text-align:center;cursor:pointer;">
+                    <div style="font-weight:700;font-size:10.5px;color:#92400e;">Sophal Strupler</div>
+                    <div style="font-size:9px;color:#b45309;">Lead</div>
+                  </div>
                   <div data-org-name="Bethany Roach" style="background:#fff;border:1.5px solid #e2e8f0;border-left:3px solid #fde68a;border-radius:8px;padding:5px 8px;margin-bottom:5px;text-align:center;cursor:pointer;">
                     <div style="font-weight:700;font-size:10.5px;color:#1a2332;">Bethany Roach</div>
                   </div>
@@ -936,8 +940,6 @@
                 <div style="font-weight:700;font-size:10.5px;">Seav Ey Khean</div>
                 <div style="font-size:9.5px;color:#6b7a8d;margin-top:1px;line-height:1.3;">PE Teacher</div>
               </div>
-              </div>
-              </div>
               <div onclick="var f=document.getElementById('fg-scholarship');f.style.display=f.style.display==='none'?'flex':'none'" style="background:#fef2f2;border-radius:5px;padding:2px 8px;font-size:9px;font-weight:700;color:#dc2626;text-transform:uppercase;letter-spacing:.06em;margin:8px 0 4px;align-self:flex-start;margin-left:8px;cursor:pointer;">Scholarship ▸</div>
               <div data-org-name="Phin Teb" style="background:#fff;border:1.5px solid #e2e8f0;border-left:3px solid #86efac;border-radius:8px;padding:5px 7px;width:calc(100% - 8px);box-sizing:border-box;text-align:center;margin-left:8px;">
                 <div style="font-weight:700;font-size:10.5px;">Phin Teb</div>
@@ -951,6 +953,8 @@
               <div data-org-name="Srytom Pogn" style="background:#fff;border:1.5px solid #e2e8f0;border-left:3px solid #86efac;border-radius:8px;padding:5px 7px;width:calc(100% - 16px);box-sizing:border-box;text-align:center;margin-left:16px;">
                 <div style="font-weight:700;font-size:10.5px;">Srytom Pogn</div>
                 <div style="font-size:9.5px;color:#6b7a8d;margin-top:1px;line-height:1.3;">Uni Scholarship Coordinator</div>
+              </div>
+              </div>
               </div>
               </div>
               <div data-org-name="Karano Chhuon" style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:8px;padding:5px 7px;width:100%;box-sizing:border-box;text-align:center;position:relative;">
@@ -1176,10 +1180,12 @@
                 <div style="font-size:9px;color:#bfdbfe;text-transform:uppercase;letter-spacing:.06em;">Executive Director</div>
                 <div style="font-weight:700;font-size:12px;margin-top:2px;">Vattey Chhun</div>
               </div>
-              <div style="background:#eff6ff;border-radius:5px;padding:2px 8px;font-size:9px;font-weight:700;color:#2563eb;text-transform:uppercase;letter-spacing:.06em;margin:8px 0 4px;align-self:flex-start;">Operations</div>
-              <div data-org-name="Kanha Un" style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:8px;padding:5px 7px;width:100%;box-sizing:border-box;text-align:center;">
-                <div style="font-weight:700;font-size:10.5px;color:#166534;">Kanha Un</div>
-                <div style="font-size:9.5px;color:#16a34a;margin-top:1px;line-height:1.3;">Admin &amp; Legal Coordinator</div>
+              <div onclick="var f=document.getElementById('fg-operations');f.style.display=f.style.display==='none'?'flex':'none'" style="background:#eff6ff;border-radius:5px;padding:2px 8px;font-size:9px;font-weight:700;color:#2563eb;text-transform:uppercase;letter-spacing:.06em;margin:8px 0 4px;align-self:flex-start;cursor:pointer;">Operations ▸</div>
+              <div id="fg-operations" style="display:none;flex-direction:column;gap:5px;width:100%;align-items:center;">
+              <div data-org-name="Kanha Un" style="background:#fff;border:1.5px solid #e2e8f0;border-left:3px solid #86efac;border-radius:8px;padding:5px 7px;width:calc(100% - 8px);box-sizing:border-box;text-align:center;margin-left:8px;">
+                <div style="font-weight:700;font-size:10.5px;">Kanha Un</div>
+                <div style="font-size:9.5px;color:#6b7a8d;margin-top:1px;line-height:1.3;">Admin &amp; Legal Coordinator</div>
+              </div>
               </div>
               <div onclick="var f=document.getElementById('fg-linet');f.style.display=f.style.display==='none'?'flex':'none'" style="background:#eff6ff;border-radius:5px;padding:2px 8px;font-size:9px;font-weight:700;color:#2563eb;text-transform:uppercase;letter-spacing:.06em;margin:8px 0 4px;align-self:flex-start;margin-left:8px;cursor:pointer;">Finance ▸</div>
               <div data-org-name="Linet Un" style="position:relative;background:#f0fdf4;border:1.5px solid #86efac;border-radius:8px;padding:5px 7px;width:100%;box-sizing:border-box;text-align:center;">
@@ -1355,9 +1361,9 @@
               </div>
               </div>
               <div onclick="var f=document.getElementById('fg-engineering');f.style.display=f.style.display==='none'?'flex':'none'" style="background:#fffbeb;border-radius:5px;padding:2px 8px;font-size:9px;font-weight:700;color:#d97706;text-transform:uppercase;letter-spacing:.06em;margin:8px 0 4px;align-self:flex-start;cursor:pointer;">Engineering ▸</div>
-              <div data-org-name="Kim Sorn Soeuth" style="background:#fff;border:1.5px solid #e2e8f0;border-left:3px solid #86efac;border-radius:8px;padding:5px 7px;width:calc(100% - 8px);box-sizing:border-box;text-align:center;margin-left:8px;">
-                <div style="font-weight:700;font-size:10.5px;">Kim Sorn Soeuth</div>
-                <div style="font-size:9.5px;color:#6b7a8d;margin-top:1px;line-height:1.3;">Senior Electrician</div>
+              <div data-org-name="Kim Sorn Soeuth" style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:8px;padding:5px 7px;width:calc(100% - 8px);box-sizing:border-box;text-align:center;margin-left:8px;">
+                <div style="font-weight:700;font-size:10.5px;color:#166534;">Kim Sorn Soeuth</div>
+                <div style="font-size:9.5px;color:#16a34a;margin-top:1px;line-height:1.3;">Senior Electrician</div>
               </div>
               <div id="fg-engineering" style="display:none;flex-direction:column;gap:5px;width:100%;align-items:center;">
               <div data-org-name="Chrach Chen" style="background:#fff;border:1.5px solid #e2e8f0;border-left:3px solid #86efac;border-radius:8px;padding:5px 7px;width:calc(100% - 16px);box-sizing:border-box;text-align:center;margin-left:16px;">
