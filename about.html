@@ -709,25 +709,48 @@
       <div id="icf-main-org-chart" style="overflow-x:auto;padding-bottom:8px;">
         <div style="width:max-content;margin:0 auto;display:flex;flex-direction:column;align-items:center;">
 
-            <!-- Board row -->
-            <div style="display:flex;align-items:center;gap:10px;">
-              <div style="background:#f1f5f9;border:1.5px solid #cbd5e1;border-radius:9px;padding:7px 14px;text-align:center;">
-                <div style="font-weight:700;font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:.06em;">Advisory Board</div>
+            <!-- Governance: ICF Movement -->
+            <div style="position:relative;">
+              <button onclick="var p=document.getElementById('icfm-panel');p.style.display=p.style.display==='block'?'none':'block'" style="background:#c0392b;border-radius:9px;padding:7px 22px;text-align:center;border:none;cursor:pointer;font-family:inherit;">
+                <div style="font-weight:700;font-size:10px;color:#fff;text-transform:uppercase;letter-spacing:.08em;">ICF Movement ▾</div>
+              </button>
+              <div id="icfm-panel" style="display:none;position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#fff;border:1.5px solid #c0392b;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.14);padding:12px 14px;min-width:240px;z-index:100;">
+                <div style="font-weight:700;font-size:10px;color:#7b1a1a;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;">ICF Movement · Vision &amp; Values</div>
+                <div style="font-size:11.5px;color:#4b5563;line-height:1.5;">ICF Cambodia is part of the broader ICF Movement. The movement sets the overarching vision, values, and theological direction that ICF Cambodia operates within.</div>
               </div>
-              <div style="width:28px;height:2px;background:#cbd5e1;"></div>
+            </div>
+            <div style="width:2px;height:12px;background:#cbd5e1;"></div>
+
+            <!-- Board row = Board of Directors -->
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div style="position:relative;">
+                <button onclick="var p=document.getElementById('ab-panel');p.style.display=p.style.display==='block'?'none':'block'" style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:9px;padding:7px 14px;text-align:center;cursor:pointer;font-family:inherit;">
+                  <div style="font-weight:700;font-size:10px;color:#166534;text-transform:uppercase;letter-spacing:.06em;">Advisory Board ▾</div>
+                </button>
+                <div id="ab-panel" style="display:none;position:absolute;top:calc(100% + 8px);right:0;background:#fff;border:1.5px solid #86efac;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.14);padding:12px 14px;min-width:260px;z-index:100;">
+                  <div style="font-weight:700;font-size:10px;color:#166534;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;">Advisory Board · Advice · Contracts · Vision</div>
+                  <div style="font-size:11.5px;color:#4b5563;line-height:1.5;">Provides strategic advice to the BOD on annual budget, contracts, goals, and major projects. Members offer encouragement, knowledge, and critical thinking to keep ICF Cambodia on track with the overall vision and mission. Members are nominated by the BOD.</div>
+                </div>
+              </div>
+              <div style="width:20px;height:2px;background:#cbd5e1;"></div>
+              <div style="width:6px;height:6px;border-top:2px solid #94a3b8;border-right:2px solid #94a3b8;transform:rotate(45deg);margin-left:-8px;"></div>
               <div data-org-name="ND Strupler" style="background:linear-gradient(135deg,#1e3a5f,#2563eb);border-radius:14px;padding:12px 22px;text-align:center;color:#fff;cursor:pointer;">
                 <img src="assets/people/nd-strupler.jpg" alt="ND Strupler" style="width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,0.35);margin:0 auto 6px;display:block;">
                 <div style="font-size:9px;color:#93c5fd;text-transform:uppercase;letter-spacing:.07em;margin-bottom:2px;">Founder &amp; Executive Director</div>
                 <div style="font-weight:700;font-size:14px;">ND Strupler</div>
               </div>
-              <div style="width:28px;height:2px;background:#cbd5e1;"></div>
+              <div style="display:flex;align-items:center;gap:0;">
+                <div style="width:6px;height:6px;border-top:2px solid #94a3b8;border-left:2px solid #94a3b8;transform:rotate(-45deg);margin-right:-4px;"></div>
+                <div style="width:24px;height:2px;background:#cbd5e1;"></div>
+              </div>
               <div style="position:relative;">
                 <button onclick="var p=document.getElementById('ic-panel');p.style.display=p.style.display==='block'?'none':'block'" style="background:#fefce8;border:1.5px solid #fde68a;border-radius:9px;padding:7px 14px;text-align:center;cursor:pointer;font-family:inherit;line-height:1.3;display:block;">
                   <div style="font-weight:700;font-size:10px;color:#92400e;text-transform:uppercase;letter-spacing:.06em;">Internal Council</div>
                   <div style="font-size:9px;color:#b45309;margin-top:2px;">4 members ▾</div>
                 </button>
                 <div id="ic-panel" style="display:none;position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#fff;border:1.5px solid #fde68a;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.14);padding:10px;min-width:195px;z-index:100;">
-                  <div style="font-weight:700;font-size:10px;color:#92400e;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;text-align:center;padding-bottom:6px;border-bottom:1px solid #fde68a;">Internal Council</div>
+                  <div style="font-weight:700;font-size:10px;color:#92400e;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;text-align:center;">Internal Council · Spiritual Guidance</div>
+                  <div style="font-size:11px;color:#78350f;line-height:1.4;margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid #fde68a;">Prays for the BOD and listens for spiritual guidance. Members are nominated by the BOD.</div>
                   <div data-org-name="Sophal Strupler" style="background:#fefce8;border:1.5px solid #fde68a;border-radius:8px;padding:5px 8px;margin-bottom:5px;text-align:center;cursor:pointer;">
                     <div style="font-weight:700;font-size:10.5px;color:#92400e;">Sophal Strupler</div>
                     <div style="font-size:9px;color:#b45309;">Lead</div>
