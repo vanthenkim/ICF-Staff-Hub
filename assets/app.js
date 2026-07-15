@@ -424,7 +424,10 @@ if ('serviceWorker' in navigator) {
           const a = document.createElement('a');
           a.className = 'nav__fav-item';
           a.href = fav.href;
-          if (/^https?:\/\//.test(fav.href)) { a.target = '_blank'; a.rel = 'noopener'; }
+          if (/^https?:\/\//.test(fav.href)) {
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+          }
           a.innerHTML = `${HEART_SVG}<span>${fav.label}</span>`;
           section.appendChild(a);
         });
