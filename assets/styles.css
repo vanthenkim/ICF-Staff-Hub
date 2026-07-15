@@ -1047,6 +1047,8 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   font-size: 15px;
   font-weight: 500;
   color: var(--text);
+  text-decoration: none;
+  cursor: pointer;
   transition: background .15s;
   overflow: hidden;
   white-space: nowrap;
