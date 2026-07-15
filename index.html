@@ -368,9 +368,18 @@
       author:    h.findIndex(x => x.includes('author') || x.includes('by')),
       link:      h.findIndex(x => x === 'link' || x === 'url'),
       linkLabel: h.findIndex(x => x.includes('label') || x.includes('link label')),
+      active:    h.findIndex(x => x.includes('active') || x.includes('visible') || x.includes('show') || x.includes('publish')),
     };
     const items = rows.slice(1)
-      .filter(r => r.length > 1 && (r[col.title] || '').trim())
+      .filter(r => {
+        if (!r.length || !(r[col.title] || '').trim()) return false;
+        // If there's an active/visible column, only show rows where it's TRUE
+        if (col.active >= 0) {
+          const v = (r[col.active] || '').trim().toUpperCase();
+          if (v === 'FALSE' || v === 'NO' || v === '0') return false;
+        }
+        return true;
+      })
       .map(r => ({
         title:     (r[col.title]     || '').trim(),
         body:      col.body      >= 0 ? (r[col.body]      || '').trim() : '',
