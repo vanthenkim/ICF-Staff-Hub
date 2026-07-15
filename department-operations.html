@@ -353,6 +353,7 @@ var people = {
     el.addEventListener('click',function(){ openModal(el.getAttribute('data-person')); });
   });
 })();
+if(window.location.hash==='#open-orgchart'){var _m=document.getElementById('operations-org-chart');if(_m)_m.style.display='flex';}
 </script>
 <div id="person-modal" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.45);z-index:9999;align-items:center;justify-content:center;" onclick="if(event.target===this)this.style.display='none'">
   <div style="background:#fff;border-radius:16px;padding:28px 24px;max-width:320px;width:90%;box-shadow:0 8px 40px rgba(0,0,0,0.18);position:relative;text-align:center;">
