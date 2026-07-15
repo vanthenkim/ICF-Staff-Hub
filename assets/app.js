@@ -374,8 +374,21 @@ if ('serviceWorker' in navigator) {
     const STORAGE_KEY = 'icf-favorites';
     const HEART_SVG = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>`;
 
+    function isValidHref(href) {
+      // Must start with http(s), /, or contain a dot (relative .html link)
+      return href && (/^https?:\/\//.test(href) || href.startsWith('/') || href.includes('.'));
+    }
+
     function loadFavs() {
-      try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch(e) { return []; }
+      try {
+        const raw = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+        // Migrate: drop any old slug-style hrefs that aren't real URLs or page links
+        const valid = raw.filter(f => isValidHref(f.href));
+        if (valid.length !== raw.length) {
+          try { localStorage.setItem(STORAGE_KEY, JSON.stringify(valid)); } catch(e) {}
+        }
+        return valid;
+      } catch(e) { return []; }
     }
     function saveFavs(favs) {
       try { localStorage.setItem(STORAGE_KEY, JSON.stringify(favs)); } catch(e) {}
