@@ -502,20 +502,25 @@ if ('serviceWorker' in navigator) {
     const STORAGE_KEY = 'icf-favorites';
     const HEART_SVG = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>`;
 
-    function isValidHref(href) {
-      // Must start with http(s), /, or contain a dot (relative .html link)
-      return href && (/^https?:\/\//.test(href) || href.startsWith('/') || href.includes('.'));
-    }
-
     function loadFavs() {
       try {
         const raw = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-        // Migrate: drop any old slug-style hrefs that aren't real URLs or page links
-        const valid = raw.filter(f => isValidHref(f.href));
-        if (valid.length !== raw.length) {
-          try { localStorage.setItem(STORAGE_KEY, JSON.stringify(valid)); } catch(e) {}
-        }
-        return valid;
+        // Migrate old format { label, href } → new format { key, label, links }
+        let changed = false;
+        const migrated = raw.map(f => {
+          if (f.key && f.links) return f; // already new format
+          if (f.label && f.href) {
+            changed = true;
+            return {
+              key: f.label.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''),
+              label: f.label,
+              links: [{ label: 'Open', href: f.href }]
+            };
+          }
+          return null;
+        }).filter(Boolean);
+        if (changed) try { localStorage.setItem(STORAGE_KEY, JSON.stringify(migrated)); } catch(e) {}
+        return migrated;
       } catch(e) { return []; }
     }
     function saveFavs(favs) {
@@ -571,20 +576,27 @@ if ('serviceWorker' in navigator) {
     ];
 
     function getCardKey(card) {
-      // Use href for anchor cards
+      // Anchor cards (dept, hc-card etc.) use their href directly
       const href = card.getAttribute('href');
       if (href) return href;
-      // For non-anchor cards (resource, guideline, etc.) use the primary action link
-      const actionLink = card.querySelector('.resource__actions a[href], .guideline__actions a[href]');
-      if (actionLink) return actionLink.getAttribute('href');
-      // Fallback: slug from title (internal pages)
+      // Non-anchor cards: use a stable slug from the title
       const title = card.querySelector('h3,h4,[class*="title"]');
-      return title ? title.textContent.trim().toLowerCase().replace(/\s+/g, '-') : null;
+      return title ? title.textContent.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') : null;
+    }
+
+    function getCardLinks(card) {
+      // Anchor cards open via their own href
+      const href = card.getAttribute('href');
+      if (href) return [{ label: 'Open', href }];
+      // Non-anchor cards: collect ALL action buttons
+      const actions = card.querySelectorAll('.resource__actions a[href], .guideline__actions a[href]');
+      if (actions.length) return Array.from(actions).map(a => ({ label: a.textContent.trim() || 'Open', href: a.getAttribute('href') }));
+      return [];
     }
 
     function initCardHearts() {
       const favs    = loadFavs();
-      const favKeys = favs.map(f => f.href);
+      const favKeys = favs.map(f => f.key);
 
       CARD_DEFS.forEach(({ sel, labelSel, insertInto }) => {
         document.querySelectorAll(sel).forEach(card => {
@@ -605,10 +617,10 @@ if ('serviceWorker' in navigator) {
             e.stopPropagation();
 
             let favs = loadFavs();
-            const idx = favs.findIndex(f => f.href === key);
+            const idx = favs.findIndex(f => f.key === key);
             const isFav = idx > -1;
 
-            if (isFav) { favs.splice(idx, 1); } else { favs.push({ label: labelText, href: key }); }
+            if (isFav) { favs.splice(idx, 1); } else { favs.push({ key, label: labelText, links: getCardLinks(card) }); }
 
             saveFavs(favs);
             renderSidebarFavs();

@@ -171,13 +171,18 @@
 
     empty.style.display = 'none';
     grid.innerHTML = favs.map(function(fav, i) {
+      // Support both new format { key, label, links } and old { label, href }
+      var links = fav.links && fav.links.length ? fav.links : (fav.href ? [{ label: 'Open', href: fav.href }] : []);
+      var btnHTML = links.map(function(l) {
+        return '<a class="btn btn--sm" href="' + escapeHTML(l.href) + '" target="_blank" rel="noopener noreferrer">' + escapeHTML(l.label) + '</a>';
+      }).join('');
       return '<article class="resource" style="display:flex;flex-direction:column;gap:12px;">'
         + '<div class="resource__top">'
         + '<span class="resource__icon" style="background:#fef2f2;color:#EF4444;">' + HEART_SVG + '</span>'
         + '</div>'
         + '<h3 class="resource__title">' + escapeHTML(fav.label) + '</h3>'
         + '<div class="resource__actions" style="margin-top:auto;">'
-        + '<a class="btn btn--sm" href="' + escapeHTML(fav.href) + '" target="_blank" rel="noopener noreferrer">Open</a>'
+        + btnHTML
         + '<button class="btn btn--sm" style="background:none;border:1px solid var(--border);color:var(--text-muted);cursor:pointer;" onclick="window.__removeFav(' + i + ')">Remove</button>'
         + '</div>'
         + '</article>';
