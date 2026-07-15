@@ -490,12 +490,19 @@
     if (sopEl) sopEl.innerHTML = sops.map(buildSopRow).join('');
   }
 
-  /* Show fallback immediately so there's never a blank page, then
-     overwrite with live sheet data if configured. */
-  render(FALLBACK_ROWS);
-
+  /* Only show the built-in fallback when there's no sheet configured, or
+     the fetch fails / returns nothing usable. Otherwise wait for the live
+     sheet data so old fallback rows never flash on screen after a refresh. */
   if (MARCOM_SHEET_URL) {
-    fetch(MARCOM_SHEET_URL)
+    var loadingHtml = '<div style="padding:12px 16px;font-size:12.5px;color:var(--text-muted);">Loading…</div>';
+    ['marcom-services', 'marcom-brand-resources', 'marcom-sops'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.innerHTML = loadingHtml;
+    });
+
+    // cache-bust so a stale cached CSV response never gets shown after a sheet edit
+    var bustedUrl = MARCOM_SHEET_URL + (MARCOM_SHEET_URL.indexOf('?') === -1 ? '?' : '&') + '_=' + Date.now();
+    fetch(bustedUrl, { cache: 'no-store' })
       .then(function (r) { return r.text(); })
       .then(function (text) {
         var rows = parseCSV(text);
@@ -503,10 +510,16 @@
         if (rows.length && hasKnownType) {
           render(rows);
         } else {
-          console.warn('MarCom sheet returned no recognizable rows — keeping fallback content.');
+          console.warn('MarCom sheet returned no recognizable rows — showing fallback content.');
+          render(FALLBACK_ROWS);
         }
       })
-      .catch(function (e) { console.error('MarCom sheet fetch failed, showing fallback content:', e); });
+      .catch(function (e) {
+        console.error('MarCom sheet fetch failed, showing fallback content:', e);
+        render(FALLBACK_ROWS);
+      });
+  } else {
+    render(FALLBACK_ROWS);
   }
 })();
 </script>
