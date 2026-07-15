@@ -455,7 +455,7 @@
     var iconPath = ICONS[row.icon] || ICONS.doc;
     var activeCls = (row.status || '').toLowerCase() === 'active' ? ' chip--active' : '';
     var action = row.link_url
-      ? '<a class="btn btn--primary btn--sm" href="' + esc(row.link_url) + '">' + esc(row.link_label || 'Open') + '</a>'
+      ? '<a class="btn btn--primary btn--sm" href="' + esc(row.link_url) + '" target="_blank" rel="noopener">' + esc(row.link_label || 'Open') + '</a>'
       : '<span class="btn btn--sm" style="opacity:.5;cursor:default;">' + esc(row.status || 'Coming soon') + '</span>';
     return '<article class="resource">' +
       '<div class="resource__top"><span class="resource__icon" style="background:#ecfeff;color:#0891b2;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">' + iconPath + '</svg></span><span class="chip' + activeCls + '">' + esc(row.status || '') + '</span></div>' +
