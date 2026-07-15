@@ -411,6 +411,7 @@ if ('serviceWorker' in navigator) {
           const a = document.createElement('a');
           a.className = 'nav__fav-item';
           a.href = fav.href;
+          if (/^https?:\/\//.test(fav.href)) { a.target = '_blank'; a.rel = 'noopener'; }
           a.innerHTML = `${HEART_SVG}<span>${fav.label}</span>`;
           section.appendChild(a);
         });
@@ -440,9 +441,13 @@ if ('serviceWorker' in navigator) {
     ];
 
     function getCardKey(card) {
-      // Use href for anchor cards, otherwise a slug of the title
+      // Use href for anchor cards
       const href = card.getAttribute('href');
       if (href) return href;
+      // For non-anchor cards (resource, guideline, etc.) use the primary action link
+      const actionLink = card.querySelector('.resource__actions a[href], .guideline__actions a[href]');
+      if (actionLink) return actionLink.getAttribute('href');
+      // Fallback: slug from title (internal pages)
       const title = card.querySelector('h3,h4,[class*="title"]');
       return title ? title.textContent.trim().toLowerCase().replace(/\s+/g, '-') : null;
     }
