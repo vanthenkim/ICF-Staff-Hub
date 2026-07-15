@@ -1141,7 +1141,7 @@
                 <div style="font-size:9.5px;color:#6b7a8d;margin-top:1px;line-height:1.3;">Daycare Teacher</div>
               </div>
               </div>
-              <div onclick="var f=document.getElementById('fg-humanresource');f.style.display=f.style.display==='none'?'flex':'none'" style="background:#fef2f2;border-radius:5px;padding:2px 8px;font-size:9px;font-weight:700;color:#dc2626;text-transform:uppercase;letter-spacing:.06em;margin:8px 0 4px;align-self:flex-start;cursor:pointer;">Human Resource ▸</div>
+              <div style="display:flex;align-items:center;gap:5px;margin:8px 0 4px;align-self:flex-start;"><div onclick="var f=document.getElementById('fg-humanresource');f.style.display=f.style.display==='none'?'flex':'none'" style="background:#fef2f2;border-radius:5px;padding:2px 8px;font-size:9px;font-weight:700;color:#dc2626;text-transform:uppercase;letter-spacing:.06em;cursor:pointer;">Human Resources ▸</div><a href="department-hr.html#open-orgchart" style="display:inline-flex;align-items:center;padding:2px 6px;border-radius:5px;background:#fef2f2;border:1px solid #fca5a5;color:#dc2626;font-size:9px;font-weight:600;text-decoration:none;" onmouseover="this.style.background='#fee2e2'" onmouseout="this.style.background='#fef2f2'">chart →</a></div>
               <div data-org-name="Thavy Tham" style="background:#f0fdf4;border:1.5px solid #86efac;border-left:3px solid #16a34a;border-radius:8px;padding:5px 7px;width:calc(100% - 8px);box-sizing:border-box;text-align:center;margin-left:8px;">
                 <div style="font-weight:700;font-size:10.5px;color:#166534;">Thavy Tham</div>
                 <div style="font-size:9.5px;color:#16a34a;margin-top:1px;line-height:1.3;">Head of Human Resources</div>
@@ -1416,12 +1416,16 @@
                 <div style="font-size:9px;color:#6ee7b7;text-transform:uppercase;letter-spacing:.06em;">Executive Director</div>
                 <div style="font-weight:700;font-size:12px;margin-top:2px;">ND Strupler</div>
               </div>
-              <div style="display:flex;align-items:center;gap:5px;margin:8px 0 4px;align-self:flex-start;"><div onclick="var f=document.getElementById('fg-fundraising');f.style.display=f.style.display==='none'?'flex':'none'" style="background:#f0fdf4;border-radius:5px;padding:2px 8px;font-size:9px;font-weight:700;color:#059669;text-transform:uppercase;letter-spacing:.06em;cursor:pointer;">Fundraising ▸</div><a href="department-fundraising.html#open-orgchart" style="display:inline-flex;align-items:center;padding:2px 6px;border-radius:5px;background:#f0fdf4;border:1px solid #6ee7b7;color:#059669;font-size:9px;font-weight:600;text-decoration:none;" onmouseover="this.style.background='#d1fae5'" onmouseout="this.style.background='#f0fdf4'">chart →</a></div>
+              <div style="display:flex;align-items:center;gap:5px;margin:8px 0 4px;align-self:flex-start;"><div onclick="var f=document.getElementById('fg-donorcare');f.style.display=f.style.display==='none'?'flex':'none'" style="background:#f0fdf4;border-radius:5px;padding:2px 8px;font-size:9px;font-weight:700;color:#059669;text-transform:uppercase;letter-spacing:.06em;cursor:pointer;">Donor Care ▸</div><a href="department-fundraising.html#open-orgchart" style="display:inline-flex;align-items:center;padding:2px 6px;border-radius:5px;background:#f0fdf4;border:1px solid #6ee7b7;color:#059669;font-size:9px;font-weight:600;text-decoration:none;" onmouseover="this.style.background='#d1fae5'" onmouseout="this.style.background='#f0fdf4'">chart →</a></div>
               <div data-org-name="Longsamnieng Pol" style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:8px;padding:5px 7px;width:100%;box-sizing:border-box;text-align:center;">
                 <div style="font-weight:700;font-size:10.5px;color:#166534;">Longsamnieng Pol</div>
                 <div style="font-size:9.5px;color:#16a34a;margin-top:1px;line-height:1.3;">Head of Fundraising</div>
               </div>
-              <div id="fg-fundraising" style="display:none;flex-direction:column;gap:5px;width:100%;align-items:center;">
+              <div data-org-name="Steffi Lendi" style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:8px;padding:5px 7px;width:100%;box-sizing:border-box;text-align:center;">
+                <div style="font-weight:700;font-size:10.5px;color:#166534;">Steffi Lendi</div>
+                <div style="font-size:9.5px;color:#16a34a;margin-top:1px;line-height:1.3;">Hospitality Manager</div>
+              </div>
+              <div id="fg-donorcare" style="display:none;flex-direction:column;gap:5px;width:100%;align-items:center;">
               <div data-org-name="Kongkea Kouk" style="background:#fff;border:1.5px solid #e2e8f0;border-left:3px solid #86efac;border-radius:8px;padding:5px 7px;width:calc(100% - 8px);box-sizing:border-box;text-align:center;margin-left:8px;">
                 <div style="font-weight:700;font-size:10.5px;">Kongkea Kouk</div>
                 <div style="font-size:9.5px;color:#6b7a8d;margin-top:1px;line-height:1.3;">Donor Care Coordinator</div>
@@ -1434,16 +1438,9 @@
                 <div style="font-weight:700;font-size:10.5px;">Sreyleak Orn</div>
                 <div style="font-size:9.5px;color:#6b7a8d;margin-top:1px;line-height:1.3;">Fundraising Accountant</div>
               </div>
-              </div>
-              <div onclick="var f=document.getElementById('fg-guestrelations');f.style.display=f.style.display==='none'?'flex':'none'" style="background:#f0fdf4;border-radius:5px;padding:2px 8px;font-size:9px;font-weight:700;color:#059669;text-transform:uppercase;letter-spacing:.06em;margin:8px 0 4px;align-self:flex-start;cursor:pointer;">Guest Relations ▸</div>
-              <div data-org-name="Steffi Lendi" style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:8px;padding:5px 7px;width:100%;box-sizing:border-box;text-align:center;">
-                <div style="font-weight:700;font-size:10.5px;color:#166534;">Steffi Lendi</div>
-                <div style="font-size:9.5px;color:#16a34a;margin-top:1px;line-height:1.3;">Guest Relations</div>
-              </div>
-              <div id="fg-guestrelations" style="display:none;flex-direction:column;gap:5px;width:100%;align-items:center;">
               <div data-org-name="Loy Sambo Hout" style="background:#fff;border:1.5px solid #e2e8f0;border-left:3px solid #86efac;border-radius:8px;padding:5px 7px;width:calc(100% - 8px);box-sizing:border-box;text-align:center;margin-left:8px;">
                 <div style="font-weight:700;font-size:10.5px;">Loy Sambo Hout</div>
-                <div style="font-size:9.5px;color:#6b7a8d;margin-top:1px;line-height:1.3;">Guest Relations Department</div>
+                <div style="font-size:9.5px;color:#6b7a8d;margin-top:1px;line-height:1.3;">Hospitality Coordinator</div>
               </div>
               <div data-org-name="Seavva Hann" style="background:#fff;border:1.5px solid #e2e8f0;border-left:3px solid #86efac;border-radius:8px;padding:5px 7px;width:calc(100% - 8px);box-sizing:border-box;text-align:center;margin-left:8px;">
                 <div style="font-weight:700;font-size:10.5px;">Seavva Hann</div>
