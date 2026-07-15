@@ -78,7 +78,7 @@
 
           <!-- Services (dynamic — see MARCOM_SHEET_URL script near end of file) -->
           <div class="section-title"><h2>Creative Request Links</h2></div>
-          <div id="marcom-services" style="display:flex;flex-direction:column;gap:0;border:0.5px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:28px;"></div>
+          <div class="res-grid" id="marcom-services" style="margin-bottom:28px;"></div>
 
           <!-- Brand resources (dynamic) -->
           <div class="section-title" style="margin-top:24px;" id="brand-resources"><h2>Brand &amp; Media Resources</h2></div>
@@ -432,23 +432,19 @@
   }
 
   /* ── Row builders ── */
-  function buildServiceRow(row, isLast) {
-    var border = isLast ? '' : 'border-bottom:0.5px solid var(--border);';
+  function buildServiceCard(row) {
     var iconPath = ICONS[row.icon] || ICONS.doc;
-    var right;
-    if (row.link_url) {
-      right = '<a class="btn btn--primary btn--sm" style="flex-shrink:0;" href="' + esc(row.link_url) + '" target="_blank" rel="noopener">' + esc(row.link_label || 'Request') + '</a>';
-    } else if (row.status) {
-      var activeCls = row.status.toLowerCase() === 'active' ? ' chip--active' : '';
-      right = '<span class="chip' + activeCls + '" style="flex-shrink:0;">' + esc(row.status) + '</span>';
-    } else {
-      right = '';
-    }
-    return '<div style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;' + border + '">' +
-      '<div style="width:32px;height:32px;border-radius:8px;background:#ecfeff;color:#0891b2;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">' + iconPath + '</svg></div>' +
-      '<div style="flex:1;min-width:0;"><div style="font-weight:500;font-size:14px;margin:0 0 2px;">' + esc(row.title) + '</div><div style="font-size:12.5px;color:var(--text-muted);line-height:1.4;">' + esc(row.description) + '</div></div>' +
-      right +
-      '</div>';
+    var activeCls = (row.status || '').toLowerCase() === 'active' ? ' chip--active' : '';
+    var chip = row.status ? '<span class="chip' + activeCls + '">' + esc(row.status) + '</span>' : '';
+    var action = row.link_url
+      ? '<div class="resource__actions"><a class="btn btn--primary btn--sm" href="' + esc(row.link_url) + '" target="_blank" rel="noopener">' + esc(row.link_label || 'Request') + '</a></div>'
+      : '';
+    return '<article class="resource">' +
+      '<div class="resource__top"><span class="resource__icon" style="background:#ecfeff;color:#0891b2;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">' + iconPath + '</svg></span>' + chip + '</div>' +
+      '<h3 class="resource__title">' + esc(row.title) + '</h3>' +
+      '<p class="resource__desc">' + esc(row.description) + '</p>' +
+      action +
+      '</article>';
   }
 
   function buildBrandCard(row) {
@@ -481,13 +477,17 @@
     var sops     = rows.filter(function (r) { return r.type === 'sop'; }).sort(byOrder);
 
     var svcEl = document.getElementById('marcom-services');
-    if (svcEl) svcEl.innerHTML = services.map(function (r, i) { return buildServiceRow(r, i === services.length - 1); }).join('');
+    if (svcEl) svcEl.innerHTML = services.map(buildServiceCard).join('');
 
     var brandEl = document.getElementById('marcom-brand-resources');
     if (brandEl) brandEl.innerHTML = brand.map(buildBrandCard).join('');
 
     var sopEl = document.getElementById('marcom-sops');
     if (sopEl) sopEl.innerHTML = sops.map(buildSopRow).join('');
+
+    // Re-attach the site's favorite/bookmark heart buttons to the freshly
+    // rendered cards (same hook resources.html uses for its dynamic cards).
+    if (window.initCards) window.initCards();
   }
 
   /* Only show the built-in fallback when there's no sheet configured, or
