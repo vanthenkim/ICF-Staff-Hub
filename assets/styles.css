@@ -1037,7 +1037,23 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 /* Announce items: heart top-right */
 .announce__item .card-fav-btn { top: 12px; right: 12px; }
 
-/* Favorites nav items in sidebar */
+/* Favorites count badge in sidebar nav link */
+.nav__fav-count {
+  margin-left: auto;
+  background: #EF4444;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Favorites nav items in sidebar (legacy) */
 .nav__fav-item {
   display: flex;
   align-items: center;

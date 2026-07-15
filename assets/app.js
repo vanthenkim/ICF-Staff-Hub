@@ -522,53 +522,39 @@ if ('serviceWorker' in navigator) {
       try { localStorage.setItem(STORAGE_KEY, JSON.stringify(favs)); } catch(e) {}
     }
 
-    // ---- Render sidebar favorites section ----
+    // ---- Render sidebar favorites nav link ----
+    const FAV_HEART = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>`;
     function renderSidebarFavs() {
-      const nav = document.querySelector('.sidebar .nav');
-      if (!nav) return;
-
-      // Remove existing rendered section
-      const existing = nav.querySelector('.fav-section');
-      if (existing) existing.remove();
-
       const favs = loadFavs();
+      const count = favs.length;
+      const badge = count > 0 ? `<span class="nav__fav-count">${count}</span>` : '';
+      const isFavPage = location.pathname.endsWith('favorites.html');
 
-      const section = document.createElement('div');
-      section.className = 'fav-section';
-
-      const label = document.createElement('div');
-      label.className = 'nav__group-label';
-      label.style.marginTop = '12px';
-      label.textContent = 'My Favorites';
-      section.appendChild(label);
-
-      if (favs.length === 0) {
-        const empty = document.createElement('div');
-        empty.className = 'nav__fav-empty';
-        empty.textContent = 'Tap ♡ on any card to save it here';
-        section.appendChild(empty);
-      } else {
-        favs.forEach(fav => {
-          const a = document.createElement('a');
-          a.className = 'nav__fav-item';
-          a.href = fav.href;
-          if (/^https?:\/\//.test(fav.href)) {
-            a.target = '_blank';
-            a.rel = 'noopener noreferrer';
-          }
-          a.innerHTML = `${HEART_SVG}<span>${fav.label}</span>`;
-          section.appendChild(a);
-        });
+      // Desktop sidebar: single nav link
+      const nav = document.querySelector('.sidebar .nav');
+      if (nav) {
+        let existing = nav.querySelector('.fav-section');
+        if (existing) existing.remove();
+        const link = document.createElement('a');
+        link.className = 'nav__item fav-section' + (isFavPage ? ' is-active' : '');
+        link.href = 'favorites.html';
+        link.innerHTML = `<span class="icon">${FAV_HEART}</span>My Favorites${badge}`;
+        const ql = Array.from(nav.querySelectorAll('.nav__group-label')).find(el => el.textContent.trim() === 'Quick Links');
+        if (ql) nav.insertBefore(link, ql);
+        else nav.appendChild(link);
       }
 
-      // Insert after Quick Links group label
-      const quickLinks = Array.from(nav.querySelectorAll('.nav__group-label'))
-        .find(el => el.textContent.trim() === 'Quick Links');
-      if (quickLinks) {
-        // Insert before Quick Links
-        nav.insertBefore(section, quickLinks);
-      } else {
-        nav.appendChild(section);
+      // Mobile sidesheet: replace sidesheet-favs content with a nav link
+      const sidesheetFavs = document.getElementById('sidesheet-favs');
+      if (sidesheetFavs) {
+        const prev = sidesheetFavs.previousElementSibling;
+        if (prev && prev.classList.contains('nav__group-label')) prev.style.display = 'none';
+        sidesheetFavs.innerHTML = '';
+        const link = document.createElement('a');
+        link.className = 'nav__item' + (isFavPage ? ' is-active' : '');
+        link.href = 'favorites.html';
+        link.innerHTML = `<span class="icon">${FAV_HEART}</span>My Favorites${badge}`;
+        sidesheetFavs.appendChild(link);
       }
     }
 
