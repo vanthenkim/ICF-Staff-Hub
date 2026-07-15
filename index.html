@@ -324,17 +324,62 @@
 })();
 </script>
 <script>
-// ── Dynamic Announcements from Notion ──────────────────────────────────────
+// ── Dynamic Announcements from Google Sheet ─────────────────────────────────
 (async () => {
+  const SHEET_ID = '1tvePpohFXDiSgzJSVB7fRIsVxO3nqtNN7tJ_NtCs4rU';
+  const SHEET_CSV = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=ANNOUNCEMENTS`;
   const TAG_COLORS = {
-    'All Staff': 'tag-blue', Human Resources: 'tag-green', Training: 'tag-green',
-    Finance: 'tag-blue', Leadership: 'tag-blue', MarCom: 'tag-blue', IT: 'tag-blue'
+    'All Staff': 'tag-blue', 'Human Resources': 'tag-green', Training: 'tag-green',
+    Finance: 'tag-blue', Leadership: 'tag-blue', MarCom: 'tag-blue', IT: 'tag-blue',
+    Church: 'tag-blue', Social: 'tag-green', Operations: 'tag-blue', Property: 'tag-blue'
   };
   const list = document.getElementById('announcements-list');
+
+  function parseCSV(text) {
+    const rows = []; let row = [], cur = '', inQ = false;
+    for (let i = 0; i < text.length; i++) {
+      const c = text[i];
+      if (c === '"') { inQ = !inQ; continue; }
+      if (c === ',' && !inQ) { row.push(cur); cur = ''; continue; }
+      if ((c === '\n' || c === '\r') && !inQ) {
+        if (c === '\r' && text[i+1] === '\n') i++;
+        row.push(cur); rows.push(row); row = []; cur = ''; continue;
+      }
+      cur += c;
+    }
+    if (cur || row.length) { row.push(cur); rows.push(row); }
+    return rows;
+  }
+
   try {
-    const res = await fetch('https://script.google.com/macros/s/AKfycbxyVJZc879v5LEuTK3QAIouunXREMWztdEyW_VMwT8CllG8D__jmteNnZFdw-jf7K1Dgw/exec?sheet=ANNOUNCEMENTS');
+    const res = await fetch(SHEET_CSV, { cache: 'no-cache' });
     if (!res.ok) throw new Error('fetch failed');
-    const items = await res.json();
+    const rows = parseCSV(await res.text());
+    if (rows.length < 2) {
+      list.innerHTML = '<p style="color:#64748b;font-size:14px;padding:12px 0;">No announcements yet.</p>';
+      return;
+    }
+    const h = rows[0].map(x => x.trim().toLowerCase());
+    const col = {
+      title:     h.findIndex(x => x.includes('title')),
+      body:      h.findIndex(x => x.includes('body') || x.includes('text') || x.includes('content')),
+      tag:       h.findIndex(x => x.includes('tag') || x.includes('category')),
+      date:      h.findIndex(x => x.includes('date')),
+      author:    h.findIndex(x => x.includes('author') || x.includes('by')),
+      link:      h.findIndex(x => x === 'link' || x === 'url'),
+      linkLabel: h.findIndex(x => x.includes('label') || x.includes('link label')),
+    };
+    const items = rows.slice(1)
+      .filter(r => r.length > 1 && (r[col.title] || '').trim())
+      .map(r => ({
+        title:     (r[col.title]     || '').trim(),
+        body:      col.body      >= 0 ? (r[col.body]      || '').trim() : '',
+        tag:       col.tag       >= 0 ? (r[col.tag]       || '').trim() : '',
+        date:      col.date      >= 0 ? (r[col.date]      || '').trim() : '',
+        author:    col.author    >= 0 ? (r[col.author]    || '').trim() : '',
+        link:      col.link      >= 0 ? (r[col.link]      || '').trim() : '',
+        linkLabel: col.linkLabel >= 0 ? (r[col.linkLabel] || '').trim() : '',
+      }));
     if (!items.length) {
       list.innerHTML = '<p style="color:#64748b;font-size:14px;padding:12px 0;">No announcements yet.</p>';
       return;
@@ -343,12 +388,11 @@
     list.innerHTML = items.slice(0, 3).map(a => {
       const tagClass = TAG_COLORS[a.tag] || 'tag-blue';
       const d = a.date ? new Date(a.date) : null;
-      const dateStr = d ? d.toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' }) : '';
-      const timeStr = d ? d.toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit' }) : '';
+      const dateStr = d && !isNaN(d) ? d.toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' }) : a.date;
       const linkHtml = a.link ? `<a class="announce__link" href="${a.link}" target="_blank" rel="noopener">${a.linkLabel || 'Open'}<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:3px;vertical-align:middle;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>` : '';
-      const metaParts = [a.author, dateStr, timeStr].filter(Boolean).join(' · ');
+      const metaParts = [a.author, dateStr].filter(Boolean).join(' · ');
       return `<article class="announce__item">
-        <span class="announce__tag ${tagClass}">${a.tag}</span>
+        ${a.tag ? `<span class="announce__tag ${tagClass}">${a.tag}</span>` : ''}
         <div class="announce__body">
           <h4>${a.title}</h4>
           ${a.body ? `<p>${a.body}</p>` : ''}
