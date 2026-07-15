@@ -77,7 +77,7 @@
         <section>
 
           <!-- Services (dynamic — see MARCOM_SHEET_URL script near end of file) -->
-          <div class="section-title"><h2>Services &amp; How to Request</h2></div>
+          <div class="section-title"><h2>Creative Request Links</h2></div>
           <div id="marcom-services" style="display:flex;flex-direction:column;gap:0;border:0.5px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:28px;"></div>
 
           <!-- Brand resources (dynamic) -->
@@ -85,7 +85,7 @@
           <div class="res-grid" id="marcom-brand-resources"></div>
 
           <!-- SOPs (dynamic) -->
-          <div class="section-title" style="margin-top:24px;"><h2>SOPs &amp; Guidelines</h2></div>
+          <div class="section-title" style="margin-top:24px;"><h2>Guidelines</h2></div>
           <div class="card" style="padding:0;">
             <div class="list" id="marcom-sops"></div>
           </div>
@@ -347,10 +347,13 @@
      sheet tab → CSV → Publish → copy the link → paste below.
      Sheet columns (header row, exact names):
        type, order, icon, title, description, status, meta,
-       contact_label, contact_url, link_label, link_url, live
+       link_label, link_url, live
      type = service | brand | sop
      icon (services/brand only) = design | video | social | translate |
        event | learning | circle | palette | doc
+     link_label/link_url (optional, all types) = shows a button instead
+       of the status chip — e.g. link_label "Request", link_url your
+       form link. Leave both blank to just show the status chip.
      live = TRUE to publish the row, FALSE to keep it hidden while you
        draft it. Leave blank and it's treated as TRUE (published).
      Leave MARCOM_SHEET_URL empty to keep showing the built-in fallback
@@ -370,14 +373,13 @@
     doc:       '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/>'
   };
   var CHECK_ICON = '<path d="M9 11l3 3L22 4"/>';
-  var TELEGRAM_ICON = '<line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>';
 
   /* Built-in fallback — mirrors the sheet schema so the page looks
      identical until MARCOM_SHEET_URL is configured. */
   var FALLBACK_ROWS = [
     { type:'service', order:1, icon:'design',    title:'Graphic Design & Print',    description:'Flyers, banners, posters, certificates, social graphics. Submit via Media Request with brief and deadline.', status:'Coming soon' },
     { type:'service', order:2, icon:'video',      title:'Photography & Video',       description:'Event coverage, staff portraits, promo videos. Book at least 2 weeks in advance.', status:'Coming soon' },
-    { type:'service', order:3, icon:'social',     title:'Social Media & Content',    description:'Facebook, Instagram, YouTube posts and campaigns. Share content brief 5 days before posting date.', contact_label:'Savann', contact_url:'https://t.me/savannss' },
+    { type:'service', order:3, icon:'social',     title:'Social Media & Content',    description:'Facebook, Instagram, YouTube posts and campaigns. Share content brief 5 days before posting date.', status:'Coming soon' },
     { type:'service', order:4, icon:'translate',  title:'Translation (EN ↔ KH)',     description:'Documents, emails, announcements. Allow 3–5 working days per document.', status:'Coming soon' },
     { type:'service', order:5, icon:'event',      title:'Event Support',             description:'Stage design, livestreaming, AV setup for internal events and church services.', status:'Coming soon' },
     { type:'service', order:6, icon:'learning',   title:'Learning Center',           description:'Staff learning resources, training materials and development content. Coordinator: Makara Ne.', status:'Active' },
@@ -434,8 +436,8 @@
     var border = isLast ? '' : 'border-bottom:0.5px solid var(--border);';
     var iconPath = ICONS[row.icon] || ICONS.doc;
     var right;
-    if (row.contact_url) {
-      right = '<a href="' + esc(row.contact_url) + '" target="_blank" rel="noopener" style="flex-shrink:0;display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#ecfeff;border:1.5px solid #67e8f9;border-radius:8px;font-size:12px;font-weight:600;color:#0891b2;text-decoration:none;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">' + TELEGRAM_ICON + '</svg>' + esc(row.contact_label || 'Contact') + '</a>';
+    if (row.link_url) {
+      right = '<a class="btn btn--primary btn--sm" style="flex-shrink:0;" href="' + esc(row.link_url) + '" target="_blank" rel="noopener">' + esc(row.link_label || 'Request') + '</a>';
     } else if (row.status) {
       var activeCls = row.status.toLowerCase() === 'active' ? ' chip--active' : '';
       right = '<span class="chip' + activeCls + '" style="flex-shrink:0;">' + esc(row.status) + '</span>';
