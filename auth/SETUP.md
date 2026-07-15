@@ -20,9 +20,10 @@ This guide sets up Google login so only `@icf-cambodia.com` accounts can access 
    - Name: `Staff Hub`
    - Authorized redirect URIs — add both:
      ```
+     https://staff-icf-cambodia.com/.netlify/functions/auth-callback
      https://candid-moxie-b648e8.netlify.app/.netlify/functions/auth-callback
      ```
-     *(If you add a custom domain later, add that URI too)*
+     *(The custom domain is primary; the netlify.app URI is kept as a fallback)*
 6. Click **Create** — copy the **Client ID** and **Client Secret**
 
 ---
