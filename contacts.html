@@ -653,8 +653,8 @@ function renderGallery(staff) {
   }
 
   function driveThumb(fileId) {
-    // thumbnail endpoint is more reliable for public files than uc?export=view
-    return `https://lh3.googleusercontent.com/d/${fileId}`;
+    // =s400 forces a 400px image — sharp enough for retina at 80px display size
+    return `https://lh3.googleusercontent.com/d/${fileId}=s400`;
   }
 
   function resolvePhoto(name, sheetPhotoUrl) {
