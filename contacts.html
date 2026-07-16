@@ -248,7 +248,7 @@ function renderList(staff) {
   }
   tbody.innerHTML = staff.map((p, i) => {
     const bg = i % 2 === 0 ? '#fff' : '#fafafa';
-    const srch = [p.name, p.khmerName, p.department, p.email, p.telegram].join(' ').toLowerCase();
+    const srch = [p.name, p.alias, p.khmerName, p.department, p.email, p.telegram].join(' ').toLowerCase();
     const phoneLink = p.phone ? `<a href="tel:${p.phone}" style="color:#2563eb;font-size:12px;text-decoration:none;">${p.phone}</a>` : '<span style="color:#cbd5e1;font-size:12px;">—</span>';
     const tgLink = p.telegram ? `<a href="https://t.me/${p.telegram.replace(/^@/,'')}" target="_blank" style="color:#2563eb;font-size:12px;text-decoration:none;">@${p.telegram.replace(/^@/,'')}</a>` : '<span style="color:#cbd5e1;font-size:12px;">—</span>';
     return `<tr data-dept="${p.department}" data-search="${srch}" data-n="${p.name.replace(/"/g,'&quot;')}" onclick="openContactByName(this.dataset.n)"
@@ -281,7 +281,7 @@ function renderGallery(staff) {
   el.innerHTML = `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;">${
     staff.map(p => {
       const s = DEPT_STYLES[p.department] || ['#f1f5f9','#374151','#e2e8f0'];
-      const srch = [p.name, p.khmerName, p.department, p.email, p.telegram].join(' ').toLowerCase();
+      const srch = [p.name, p.alias, p.khmerName, p.department, p.email, p.telegram].join(' ').toLowerCase();
       const avatar = p.photo
         ? `<img src="${p.photo}" alt="${p.name}" style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.12);" onerror="this.outerHTML='<div style=\\'width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:24px;font-weight:700;display:flex;align-items:center;justify-content:center;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.12);\\'>${initials(p.name)}</div>'">`
         : `<div style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:24px;font-weight:700;display:flex;align-items:center;justify-content:center;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.12);">${initials(p.name)}</div>`;
@@ -333,7 +333,7 @@ function renderGallery(staff) {
     const dept = deptSel.value;
     return allStaff.filter(p => {
       const matchDept = dept === 'all' || p.department === dept;
-      const matchQ = !q || [p.name, p.department, p.email, p.telegram].join(' ').toLowerCase().includes(q);
+      const matchQ = !q || [p.name, p.alias, p.department, p.email, p.telegram].join(' ').toLowerCase().includes(q);
       return matchDept && matchQ;
     });
   }
