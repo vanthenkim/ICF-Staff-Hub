@@ -740,6 +740,12 @@ function renderGallery(staff) {
       STATIC_STAFF.forEach(s => { if (!sheetNames.has(s.name)) contacts.push(s); });
 
       allStaff = contacts.slice().sort((a, b) => a.name.localeCompare(b.name));
+      // Nickname / alias overrides — add entries here as needed
+      const ALIASES = {
+        'Longsamnieng Pol': 'Paul',
+        'Seava Han': 'Sophie',
+      };
+      allStaff.forEach(p => { if (ALIASES[p.name]) p.alias = ALIASES[p.name]; });
       allStaff.forEach(p => { staffByName[p.name] = p; });
       const countEl = document.getElementById('staff-count-label');
       if (countEl) countEl.textContent = `Directory of ${allStaff.length} staff members · phone & Telegram where available`;
