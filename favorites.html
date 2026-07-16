@@ -143,7 +143,9 @@
     try {
       var raw = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
       return raw.filter(function(f) {
-        return f && f.href && (/^https?:\/\//.test(f.href) || f.href.startsWith('/') || f.href.includes('.'));
+        if (!f) return false;
+        if (f.key && f.links && f.links.length) return true; // new format
+        return f.href && (/^https?:\/\//.test(f.href) || f.href.startsWith('/') || f.href.includes('.'));
       });
     } catch(e) { return []; }
   }
