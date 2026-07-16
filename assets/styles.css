@@ -1150,6 +1150,60 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   border-radius: var(--radius);
 }
 
+/* ---------- Year Planner (events page) ---------- */
+.planner-tabs { display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
+.planner-tab {
+  border: 1px solid var(--border);
+  background: var(--white);
+  padding: 7px 14px;
+  font-size: 14px; font-weight: 500;
+  border-radius: 999px;
+  color: var(--text-muted);
+}
+.planner-tab:hover { background: var(--surface-2); }
+.planner-tab.is-active { background: var(--blue-600); border-color: var(--blue-600); color: #fff; }
+
+.planner-pills { display: flex; gap: 6px; flex-wrap: wrap; margin: 0 0 16px; }
+.planner-pill {
+  display: flex; align-items: center; gap: 6px;
+  border: 1px solid var(--border);
+  background: var(--white);
+  padding: 6px 12px;
+  font-size: 13px; font-weight: 500;
+  border-radius: 999px;
+  color: var(--text-muted);
+}
+.planner-pill:hover { background: var(--surface-2); }
+.planner-pill.is-active { border-color: var(--border-strong); color: var(--text); background: var(--surface-2); }
+.planner-pill__dot { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+
+.planner-month {
+  font-size: 12px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--text-soft);
+  margin: 16px 0 8px;
+}
+.planner-month:first-child { margin-top: 0; }
+
+.planner-card {
+  display: flex; align-items: center; gap: 14px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  box-shadow: var(--shadow-xs);
+  transition: border-color .15s, box-shadow .15s;
+}
+.planner-card:hover { border-color: var(--border-strong); box-shadow: var(--shadow-sm); }
+.planner-card__date { flex: none; min-width: 44px; text-align: center; }
+.planner-card__date strong { display: block; font-size: 17px; font-weight: 600; line-height: 1.2; white-space: nowrap; }
+.planner-card__date span { display: block; font-size: 10px; font-weight: 600; text-transform: uppercase; color: var(--text-soft); margin-top: 2px; }
+.planner-card__bar { width: 3px; align-self: stretch; border-radius: 0; flex: none; }
+.planner-card__body { flex: 1; min-width: 0; }
+.planner-card__title { margin: 0 0 4px; font-size: 15px; font-weight: 600; }
+.planner-card__cat { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 999px; }
+
 /* ---------- Emergency contacts footer strip ---------- */
 /* Home page two-column layout */
 .home-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
