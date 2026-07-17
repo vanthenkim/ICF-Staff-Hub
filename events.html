@@ -117,9 +117,28 @@
         </a>
       </div>
 
-      <!-- Year topics archive -->
-      <div class="section-title" style="margin-top:28px;"><h2>ICF Year Planner 2026</h2></div>
-      <a href="https://docs.google.com/spreadsheets/d/1VMcwMqWxRDnLZ6QTGel33aNVHLlNtqZf_HnwtCanALA/edit?gid=324796546#gid=324796546" target="_blank" rel="noopener" class="card" style="display:flex;align-items:center;gap:16px;padding:18px 20px;text-decoration:none;color:inherit;border-left:4px solid #059669;background:linear-gradient(135deg,#f0fdf4,#ffffff);margin-bottom:0;">
+      <!-- Year planner — live from Google Sheet -->
+      <div class="section-title" style="margin-top:28px;"><h2>Year Planner</h2></div>
+      <div class="planner-tabs" id="planner-tabs">
+        <button type="button" class="planner-tab is-active" data-range="week">This week</button>
+        <button type="button" class="planner-tab" data-range="month">This month</button>
+        <button type="button" class="planner-tab" data-range="2months">Next 2 months</button>
+      </div>
+      <div class="planner-pills" id="planner-pills">
+        <button type="button" class="planner-pill is-active" data-cat="all">All</button>
+        <button type="button" class="planner-pill" data-cat="all-staff"><span class="planner-pill__dot" style="background:#2563EB"></span>All staff / holiday</button>
+        <button type="button" class="planner-pill" data-cat="church"><span class="planner-pill__dot" style="background:#9333EA"></span>Church</button>
+        <button type="button" class="planner-pill" data-cat="social"><span class="planner-pill__dot" style="background:#059669"></span>Social</button>
+        <button type="button" class="planner-pill" data-cat="LA"><span class="planner-pill__dot" style="background:#0891B2"></span>Leadership Academy</button>
+        <button type="button" class="planner-pill" data-cat="BN"><span class="planner-pill__dot" style="background:#475569"></span>Business Network</button>
+        <button type="button" class="planner-pill" data-cat="GUEST"><span class="planner-pill__dot" style="background:#DB2777"></span>Guests</button>
+        <button type="button" class="planner-pill" data-cat="MISSION"><span class="planner-pill__dot" style="background:#D97706"></span>Mission Team</button>
+      </div>
+      <div id="planner-events">
+        <div class="gcal-loading">Loading planner…</div>
+      </div>
+
+      <a href="https://docs.google.com/spreadsheets/d/1VMcwMqWxRDnLZ6QTGel33aNVHLlNtqZf_HnwtCanALA/edit?gid=324796546#gid=324796546" target="_blank" rel="noopener" class="card" style="display:flex;align-items:center;gap:16px;padding:18px 20px;text-decoration:none;color:inherit;border-left:4px solid #059669;background:linear-gradient(135deg,#f0fdf4,#ffffff);margin:12px 0 0;">
         <span style="flex-shrink:0;width:40px;height:40px;border-radius:10px;background:rgba(5,150,105,0.12);color:#059669;display:flex;align-items:center;justify-content:center;">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg>
         </span>
@@ -375,6 +394,283 @@
   } else {
     loadBirthdays();
   }
+})();
+</script>
+
+<script>
+(function() {
+  const container = document.getElementById('planner-events');
+  const tabsEl     = document.getElementById('planner-tabs');
+  const pillsEl    = document.getElementById('planner-pills');
+  if (!container || !tabsEl || !pillsEl) return;
+
+  // Published straight from Google Sheets — Share > General access > "Anyone
+  // with the link" (Viewer) must be turned on for the spreadsheet, no Netlify
+  // function or backend involved. gid is the "2026 - OVERVIEW" tab.
+  const SHEET_ID   = '1VMcwMqWxRDnLZ6QTGel33aNVHLlNtqZf_HnwtCanALA';
+  const SHEET_GID  = '324796546';
+  const CSV_URL    = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&gid=${SHEET_GID}`;
+  const PLANNER_YEAR = 2026;
+
+  const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const DAYS   = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const MONTH_NAMES_FULL = ['january','february','march','april','may','june','july','august','september','october','november','december'];
+  const TAG_LABELS = { LA: 'Leadership Academy', BN: 'Business Network', GUEST: 'Guests', MISSION: 'Mission Team' };
+
+  // ---- CSV grid parsing (mirrors the sheet's month-block layout) ----
+  function parseCSV(text) {
+    const rows = [];
+    let row = [], field = '', inQuotes = false;
+    for (let i = 0; i < text.length; i++) {
+      const c = text[i];
+      if (inQuotes) {
+        if (c === '"') { if (text[i + 1] === '"') { field += '"'; i++; } else { inQuotes = false; } }
+        else field += c;
+        continue;
+      }
+      if (c === '"') { inQuotes = true; continue; }
+      if (c === ',') { row.push(field); field = ''; continue; }
+      if (c === '\r') continue;
+      if (c === '\n') { row.push(field); rows.push(row); row = []; field = ''; continue; }
+      field += c;
+    }
+    if (field.length || row.length) { row.push(field); rows.push(row); }
+    return rows;
+  }
+
+  function cellAt(rows, r, c) {
+    if (r < 0 || r >= rows.length) return '';
+    const row = rows[r];
+    if (c < 0 || c >= row.length) return '';
+    return (row[c] || '').trim();
+  }
+
+  // Month names aren't in a dedicated row — Google's CSV export for this sheet
+  // packs the title/legend/month text into whichever row the category headers
+  // land on, and which cell it ends up in (day column vs. the header cell
+  // itself) varies month to month. Search both candidate cells as one blob.
+  function findMonthInText(text) {
+    const lower = text.toLowerCase();
+    for (let i = 0; i < MONTH_NAMES_FULL.length; i++) {
+      if (new RegExp('\\b' + MONTH_NAMES_FULL[i] + '\\b', 'i').test(lower)) return i;
+    }
+    return -1;
+  }
+
+  function parsePlannerCSV(csvText) {
+    const rows = parseCSV(csvText);
+
+    let headerRowIdx = -1;
+    const anchorCols = [];
+    for (let r = 0; r < rows.length; r++) {
+      const cols = [];
+      for (let c = 0; c < rows[r].length; c++) {
+        if ((rows[r][c] || '').trim().toUpperCase().includes('ALL STAFF/PUBLIC HOLIDAY')) cols.push(c);
+      }
+      if (cols.length) { headerRowIdx = r; anchorCols.push(...cols); break; }
+    }
+    if (headerRowIdx === -1) throw new Error('Could not locate category header row in sheet');
+
+    const rawEntries = [];
+
+    for (const anchor of anchorCols) {
+      const dayCol = anchor - 2, wdayCol = anchor - 1, allStaffCol = anchor, churchCol = anchor + 1, socialCol = anchor + 2, othersCol = anchor + 3;
+
+      const headerBlob = [cellAt(rows, headerRowIdx, dayCol), cellAt(rows, headerRowIdx, wdayCol), cellAt(rows, headerRowIdx, allStaffCol)].join(' ');
+      const monthIndex = findMonthInText(headerBlob);
+      if (monthIndex === -1) continue;
+
+      const daysInMonth = new Date(PLANNER_YEAR, monthIndex + 1, 0).getDate();
+
+      for (let d = 1; d <= daysInMonth; d++) {
+        const rowIdx = headerRowIdx + d;
+        const date = new Date(Date.UTC(PLANNER_YEAR, monthIndex, d));
+
+        const allStaffText = cellAt(rows, rowIdx, allStaffCol);
+        const churchText    = cellAt(rows, rowIdx, churchCol);
+        const socialText    = cellAt(rows, rowIdx, socialCol);
+        const othersText    = cellAt(rows, rowIdx, othersCol);
+
+        if (allStaffText) rawEntries.push({ date, category: 'all-staff', subCategory: null, text: allStaffText });
+        if (churchText)    rawEntries.push({ date, category: 'church',    subCategory: null, text: churchText });
+        if (socialText)    rawEntries.push({ date, category: 'social',    subCategory: null, text: socialText });
+
+        if (othersText) {
+          const match = othersText.match(/^\[(LA|BN|GUEST|MISSION)\]\s*(.*)$/i);
+          if (match) {
+            const key = match[1].toUpperCase();
+            const title = match[2].trim();
+            rawEntries.push({ date, category: 'others', subCategory: key, text: title || othersText });
+          } else {
+            rawEntries.push({ date, category: 'others', subCategory: 'OTHER', text: othersText });
+          }
+        }
+      }
+    }
+
+    const groups = new Map();
+    for (const entry of rawEntries) {
+      const key = `${entry.category}|${entry.subCategory || ''}|${entry.text.toLowerCase()}`;
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key).push(entry);
+    }
+
+    // Same-text entries only merge into one spanning event if they're close
+    // together in time (start-day / blank / end-day convention). Recurring
+    // programs like a weekly "Youth Gathering" share a name across many
+    // separate weeks — without a gap limit those would wrongly collapse into
+    // one multi-month "event". A 14-day gap comfortably covers real spans
+    // (e.g. a 9-day outreach week) while keeping week/month-apart repeats separate.
+    const MAX_SPAN_GAP_DAYS = 14;
+
+    function toEvent(first, last) {
+      return {
+        start: first.date.toISOString().slice(0, 10),
+        end:   last.date.toISOString().slice(0, 10),
+        category: first.category,
+        subCategory: first.subCategory,
+        subCategoryLabel: first.subCategory ? (TAG_LABELS[first.subCategory] || 'Other') : null,
+        title: first.text,
+      };
+    }
+
+    const events = [];
+    for (const [, entries] of groups) {
+      entries.sort((a, b) => a.date - b.date);
+      let runFirst = entries[0], runLast = entries[0];
+      for (let i = 1; i < entries.length; i++) {
+        const gapDays = (entries[i].date - runLast.date) / 86400000;
+        if (gapDays <= MAX_SPAN_GAP_DAYS) {
+          runLast = entries[i];
+        } else {
+          events.push(toEvent(runFirst, runLast));
+          runFirst = entries[i];
+          runLast = entries[i];
+        }
+      }
+      events.push(toEvent(runFirst, runLast));
+    }
+
+    events.sort((a, b) => (a.start < b.start ? -1 : a.start > b.start ? 1 : 0));
+    return events;
+  }
+
+  // Category + sub-category display metadata — colors match the pill dots above.
+  const CAT_META = {
+    'all-staff': { label: 'All staff / holiday', color: '#2563EB', bg: '#EFF6FF' },
+    'church':    { label: 'Church',               color: '#9333EA', bg: '#FAF5FF' },
+    'social':    { label: 'Social',                color: '#059669', bg: '#ECFDF5' },
+  };
+  const SUBCAT_META = {
+    LA:      { label: 'Leadership Academy', color: '#0891B2', bg: '#ECFEFF' },
+    BN:      { label: 'Business Network',   color: '#475569', bg: '#F1F5F9' },
+    GUEST:   { label: 'Guests',             color: '#DB2777', bg: '#FDF2F8' },
+    MISSION: { label: 'Mission Team',       color: '#D97706', bg: '#FFFBEB' },
+    OTHER:   { label: 'Other',              color: '#64748B', bg: '#F1F5F9' },
+  };
+
+  function metaFor(ev) {
+    if (ev.category === 'others') return SUBCAT_META[ev.subCategory] || SUBCAT_META.OTHER;
+    return CAT_META[ev.category] || SUBCAT_META.OTHER;
+  }
+
+  // The pill filter value: top-level category name, or the sub-category code for "others".
+  function pillKeyFor(ev) {
+    return ev.category === 'others' ? (ev.subCategory || 'OTHER') : ev.category;
+  }
+
+  function parseISODate(s) { const [y, m, d] = s.split('-').map(Number); return new Date(Date.UTC(y, m - 1, d)); }
+  function addDays(d, n) { const r = new Date(d); r.setUTCDate(r.getUTCDate() + n); return r; }
+  function todayUTC() { const n = new Date(); return new Date(Date.UTC(n.getFullYear(), n.getMonth(), n.getDate())); }
+
+  function rangeFor(key) {
+    const start = todayUTC();
+    if (key === 'week')    return { start, end: addDays(start, 7) };
+    if (key === 'month')   return { start, end: addDays(start, 30) };
+    return { start, end: addDays(start, 60) }; // 2months
+  }
+
+  function fmtDateBadge(startISO, endISO) {
+    const s = parseISODate(startISO), e = parseISODate(endISO);
+    if (startISO === endISO) return { top: String(s.getUTCDate()), sub: MONTHS[s.getUTCMonth()] };
+    if (s.getUTCMonth() === e.getUTCMonth()) return { top: `${s.getUTCDate()}–${e.getUTCDate()}`, sub: MONTHS[s.getUTCMonth()] };
+    return { top: `${MONTHS[s.getUTCMonth()]} ${s.getUTCDate()} – ${MONTHS[e.getUTCMonth()]} ${e.getUTCDate()}`, sub: '' };
+  }
+
+  function render(events, rangeKey, catKey) {
+    const { start, end } = rangeFor(rangeKey);
+    const filtered = events.filter(ev => {
+      const evStart = parseISODate(ev.start), evEnd = parseISODate(ev.end);
+      const inRange = evEnd >= start && evStart <= end;
+      const inCat   = catKey === 'all' || pillKeyFor(ev) === catKey;
+      return inRange && inCat;
+    });
+
+    if (filtered.length === 0) {
+      container.innerHTML = '<div class="gcal-loading">No events in this range.</div>';
+      return;
+    }
+
+    let lastMonthLabel = '';
+    const html = filtered.map(ev => {
+      const meta  = metaFor(ev);
+      const badge = fmtDateBadge(ev.start, ev.end);
+      const s     = parseISODate(ev.start);
+      const monthLabel = `${['January','February','March','April','May','June','July','August','September','October','November','December'][s.getUTCMonth()]} ${s.getUTCFullYear()}`;
+      let monthHtml = '';
+      if (monthLabel !== lastMonthLabel) { monthHtml = `<p class="planner-month">${monthLabel}</p>`; lastMonthLabel = monthLabel; }
+
+      return `${monthHtml}<div class="planner-card">
+        <div class="planner-card__date"><strong>${badge.top}</strong><span>${badge.sub}</span></div>
+        <div class="planner-card__bar" style="background:${meta.color}"></div>
+        <div class="planner-card__body">
+          <p class="planner-card__title">${ev.title}</p>
+          <span class="planner-card__cat" style="background:${meta.bg};color:${meta.color}">${meta.label}</span>
+        </div>
+      </div>`;
+    }).join('');
+
+    container.innerHTML = html;
+  }
+
+  let allEvents = [];
+  let currentRange = 'week';
+  let currentCat   = 'all';
+
+  tabsEl.addEventListener('click', (e) => {
+    const btn = e.target.closest('.planner-tab');
+    if (!btn) return;
+    tabsEl.querySelectorAll('.planner-tab').forEach(b => b.classList.remove('is-active'));
+    btn.classList.add('is-active');
+    currentRange = btn.dataset.range;
+    render(allEvents, currentRange, currentCat);
+  });
+
+  pillsEl.addEventListener('click', (e) => {
+    const btn = e.target.closest('.planner-pill');
+    if (!btn) return;
+    pillsEl.querySelectorAll('.planner-pill').forEach(b => b.classList.remove('is-active'));
+    btn.classList.add('is-active');
+    currentCat = btn.dataset.cat;
+    render(allEvents, currentRange, currentCat);
+  });
+
+  async function loadPlanner() {
+    try {
+      const ctrl = new AbortController();
+      const tid  = setTimeout(() => ctrl.abort(), 8000);
+      const resp = await fetch(CSV_URL, { cache: 'no-cache', signal: ctrl.signal });
+      clearTimeout(tid);
+      if (!resp.ok) throw new Error('fetch failed ' + resp.status);
+      const csvText = await resp.text();
+      allEvents = parsePlannerCSV(csvText);
+      render(allEvents, currentRange, currentCat);
+    } catch (e) {
+      container.innerHTML = '<div class="gcal-error">Could not load the year planner. Make sure the sheet is shared as "Anyone with the link".</div>';
+    }
+  }
+
+  loadPlanner();
 })();
 </script>
 </body>
