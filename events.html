@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" sizes="192x192" href="/assets/icons/icon-192.png" />
 <title>Events &amp; Year Topics · Staff Hub</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=20260717i" />
+<link rel="stylesheet" href="assets/styles.css?v=20260717j" />
 </head>
 <body>
 <div class="app">
@@ -714,10 +714,10 @@
 
           const chips = dayEvents.map(ev => {
             const meta = metaFor(ev);
-            const timePart = ev.startTime ? `${ev.startTime}${ev.endTime ? '–' + ev.endTime : ''}` : '';
+            const timePart = ev.startTime ? `${ev.startTime}${ev.endTime ? '–' + ev.endTime : ''} · ` : '';
             return `<div class="planner-year-chip" style="border-left-color:${meta.color}">
               <span class="planner-year-chip__title">${ev.title}</span>
-              ${timePart ? `<span class="planner-year-chip__time">${timePart}</span>` : ''}
+              <span class="planner-year-chip__meta" style="color:${meta.color}">${timePart}${meta.label}</span>
             </div>`;
           }).join('');
 
@@ -737,10 +737,6 @@
       }).join('');
     }).join('');
 
-    const legendItems = [...Object.values(CAT_META), ...Object.values(SUBCAT_META)]
-      .map(meta => `<span><span class="planner-year-legend__dot" style="background:${meta.color}"></span>${meta.label}</span>`)
-      .join('');
-
     return `<div class="planner-year">
       <div class="planner-year-nav">
         <button type="button" class="planner-year-nav-btn" data-dir="-1" aria-label="Previous month">
@@ -751,7 +747,6 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
         </button>
       </div>
-      <div class="planner-year-legend">${legendItems}</div>
       <div class="planner-year-scroller" id="planner-year-scroller">${monthCards}</div>
     </div>`;
   }
