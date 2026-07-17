@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" sizes="192x192" href="/assets/icons/icon-192.png" />
 <title>Events &amp; Year Topics · Staff Hub</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=20260717v" />
+<link rel="stylesheet" href="assets/styles.css?v=20260717w" />
 </head>
 <body>
 <div class="app">
@@ -639,7 +639,7 @@
 
   // Category + sub-category display metadata — colors match the pill dots above.
   const CAT_META = {
-    'all-staff': { label: 'All staff / holiday', color: '#2563EB', bg: '#EFF6FF' },
+    'all-staff': { label: 'All staff', color: '#2563EB', bg: '#EFF6FF' },
     'church':    { label: 'Church',               color: '#9333EA', bg: '#FAF5FF' },
     'social':    { label: 'Social',                color: '#059669', bg: '#ECFDF5' },
   };
@@ -987,9 +987,12 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
         </button>
       </div>
-      <div class="planner-week-header-row">${headers}</div>
-      ${spansHtml}
-      <div class="planner-week-grid">${cols}</div>
+      <div class="planner-week-body">
+        <div class="planner-week-dividers"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        <div class="planner-week-header-row">${headers}</div>
+        ${spansHtml}
+        <div class="planner-week-grid">${cols}</div>
+      </div>
     </div>`;
   }
 
