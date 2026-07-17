@@ -1192,9 +1192,13 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   border-radius: 12px;
   box-shadow: var(--shadow-xs);
   padding: 6px;
-  display: flex; flex-direction: column; gap: 1px;
+  display: none;
+  flex-direction: column; gap: 1px;
   max-height: 320px;
   overflow-y: auto;
+}
+.planner-filter__menu:not([hidden]) {
+  display: flex;
 }
 .planner-filter__option {
   display: flex; align-items: center; gap: 8px;
