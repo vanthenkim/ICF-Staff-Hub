@@ -64,7 +64,6 @@
         </div>
         <div class="page-header__actions">
           <a class="btn" href="tools.html" target="_blank" rel="noopener">Event support →</a>
-          <a class="btn btn--primary" href="#event-planner">New event</a>
         </div>
       </div>
 
@@ -89,7 +88,7 @@
         </div>
         <a href="https://docs.google.com/spreadsheets/d/1VMcwMqWxRDnLZ6QTGel33aNVHLlNtqZf_HnwtCanALA/edit?gid=324796546#gid=324796546" target="_blank" rel="noopener" class="btn btn--sm">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-          Full year
+          Full calendar
         </a>
       </div>
       <div class="planner-pills" id="planner-pills">
@@ -720,8 +719,8 @@
           ? (ev.startTime ? `${badge.top} ${badge.sub} · ${timePart} · ${meta.label}` : `${badge.top} ${badge.sub} · ${meta.label}`)
           : `${timePart} · ${meta.label}`;
 
-        return `<div class="planner-row" style="background:${meta.bg}">
-          <p class="planner-row__title" style="color:${meta.color}">${ev.title}</p>
+        return `<div class="planner-row" style="border-left-color:${meta.color}">
+          <p class="planner-row__title">${ev.title}</p>
           <p class="planner-row__meta" style="color:${meta.color}">${metaLine}</p>
         </div>`;
       }).join('');

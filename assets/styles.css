@@ -1194,11 +1194,12 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 
 .planner-row {
   padding: 10px 14px;
-  border-radius: 10px;
+  border-radius: 6px;
+  border-left: 3px solid var(--border);
   margin-bottom: 8px;
 }
 .planner-row:last-child { margin-bottom: 0; }
-.planner-row__title { margin: 0; font-size: 15px; font-weight: 500; }
+.planner-row__title { margin: 0; font-size: 15px; font-weight: 500; color: var(--text); }
 .planner-row__meta { margin: 2px 0 0; font-size: 13px; font-weight: 500; opacity: 0.8; }
 
 /* ---------- Emergency contacts footer strip ---------- */
