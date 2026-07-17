@@ -1403,7 +1403,7 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   background: var(--blue-600);
   color: #fff;
 }
-.planner-week-day-col { display: flex; flex-direction: column; gap: 8px; padding-top: 10px; }
+.planner-week-day-col { display: flex; flex-direction: column; gap: 8px; padding-top: 10px; min-height: 300px; }
 
 .planner-week-card {
   border-left: 2px solid var(--border);
