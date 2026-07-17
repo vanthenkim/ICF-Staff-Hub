@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" sizes="192x192" href="/assets/icons/icon-192.png" />
 <title>Events &amp; Year Topics · Staff Hub</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=20260717b" />
+<link rel="stylesheet" href="assets/styles.css?v=20260717c" />
 </head>
 <body>
 <div class="app">
@@ -130,9 +130,12 @@
         <button type="button" class="planner-pill" data-cat="church"><span class="planner-pill__dot" style="background:#9333EA"></span>Church</button>
         <button type="button" class="planner-pill" data-cat="social"><span class="planner-pill__dot" style="background:#059669"></span>Social</button>
         <button type="button" class="planner-pill" data-cat="LA"><span class="planner-pill__dot" style="background:#0891B2"></span>Leadership Academy</button>
+        <button type="button" class="planner-pill" data-cat="BA"><span class="planner-pill__dot" style="background:#6366F1"></span>Business Academy</button>
+        <button type="button" class="planner-pill" data-cat="AC"><span class="planner-pill__dot" style="background:#EA580C"></span>Learning Center</button>
         <button type="button" class="planner-pill" data-cat="BN"><span class="planner-pill__dot" style="background:#475569"></span>Business Network</button>
-        <button type="button" class="planner-pill" data-cat="GUEST"><span class="planner-pill__dot" style="background:#DB2777"></span>Guests</button>
-        <button type="button" class="planner-pill" data-cat="MISSION"><span class="planner-pill__dot" style="background:#D97706"></span>Mission Team</button>
+        <button type="button" class="planner-pill" data-cat="MT"><span class="planner-pill__dot" style="background:#D97706"></span>Mission Team</button>
+        <button type="button" class="planner-pill" data-cat="GU"><span class="planner-pill__dot" style="background:#DB2777"></span>Guests</button>
+        <button type="button" class="planner-pill" data-cat="OT"><span class="planner-pill__dot" style="background:#64748B"></span>Other</button>
       </div>
       <div id="planner-events">
         <div class="gcal-loading">Loading planner…</div>
@@ -406,16 +409,35 @@
 
   // Published straight from Google Sheets — Share > General access > "Anyone
   // with the link" (Viewer) must be turned on for the spreadsheet, no Netlify
-  // function or backend involved. gid is the "2026 - OVERVIEW" tab.
-  const SHEET_ID   = '1VMcwMqWxRDnLZ6QTGel33aNVHLlNtqZf_HnwtCanALA';
-  const SHEET_GID  = '324796546';
-  const CSV_URL    = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&gid=${SHEET_GID}`;
-  const PLANNER_YEAR = 2026;
+  // function or backend involved. Each tab (hidden or not — hiding a tab
+  // doesn't block CSV export access, only its gid matters) gets its own
+  // entry here. Add a row once a new year's tab exists; find its gid in the
+  // sheet's URL (…?gid=XXXXXXX#gid=XXXXXXX) when that tab is open.
+  const SHEET_ID = '1VMcwMqWxRDnLZ6QTGel33aNVHLlNtqZf_HnwtCanALA';
+  const PLANNER_TABS = [
+    { year: 2026, gid: '324796546' },
+    // { year: 2027, gid: 'PASTE_GID_HERE' },
+    // { year: 2028, gid: 'PASTE_GID_HERE' },
+  ];
+  function csvUrlFor(gid) {
+    return `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&gid=${gid}`;
+  }
 
   const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   const DAYS   = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
   const MONTH_NAMES_FULL = ['january','february','march','april','may','june','july','august','september','october','november','december'];
-  const TAG_LABELS = { LA: 'Leadership Academy', BN: 'Business Network', GUEST: 'Guests', MISSION: 'Mission Team' };
+  const TAG_LABELS = {
+    LA: 'Leadership Academy',
+    BA: 'Business Academy',
+    AC: 'Learning Center',
+    BN: 'Business Network',
+    MT: 'Mission Team',
+    GU: 'Guests',
+    OT: 'Other',
+  };
+  // The "Others Type" dropdown column holds the code directly (LA, BA, AC,
+  // BN, MT, GU, OT) — no name-to-code lookup needed, just validate it.
+  const VALID_OTHER_CODES = ['LA', 'BA', 'AC', 'BN', 'MT', 'GU', 'OT'];
 
   // ---- CSV grid parsing (mirrors the sheet's month-block layout) ----
   function parseCSV(text) {
@@ -445,18 +467,41 @@
     return (row[c] || '').trim();
   }
 
-  // Month names aren't in a dedicated row — Google's CSV export for this sheet
-  // packs the title/legend/month text into whichever row the category headers
-  // land on, and which cell it ends up in (day column vs. the header cell
-  // itself) varies month to month. Search both candidate cells as one blob.
-  // Entries can lead with a time (or time range) before the event name, e.g.
-  // "17:00-20:30 Oneighty" or just "17:00 Oneighty". No time prefix = all-day.
+  // Time entry: type the event name, press Cmd+Return (Mac) / Alt+Enter
+  // (Windows) inside the cell to add a second line, then type the time
+  // there — e.g. "Oneighty" \n "17:00-20:30". Order doesn't matter; whichever
+  // line looks like a time is treated as the time, the rest is the title.
+  // A single-line "17:00-20:30 Oneighty" prefix also still works. No time
+  // anywhere in the cell = all-day.
+  const TIME_RANGE_RE  = /^(\d{1,2}:\d{2}\s?(?:AM|PM|am|pm)?)\s*[-–]\s*(\d{1,2}:\d{2}\s?(?:AM|PM|am|pm)?)$/;
+  const TIME_SINGLE_RE = /^(\d{1,2}:\d{2}\s?(?:AM|PM|am|pm)?)$/;
+
   function extractTime(text) {
-    const range = text.match(/^(\d{1,2}:\d{2}\s?(?:AM|PM|am|pm)?)\s*[-–]\s*(\d{1,2}:\d{2}\s?(?:AM|PM|am|pm)?)\s+(.*)$/);
-    if (range) return { startTime: range[1].trim(), endTime: range[2].trim(), title: range[3].trim() };
-    const single = text.match(/^(\d{1,2}:\d{2}\s?(?:AM|PM|am|pm)?)\s+(.*)$/);
-    if (single) return { startTime: single[1].trim(), endTime: null, title: single[2].trim() };
-    return { startTime: null, endTime: null, title: text.trim() };
+    const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
+
+    if (lines.length >= 2) {
+      for (let i = 0; i < lines.length; i++) {
+        const rangeMatch = lines[i].match(TIME_RANGE_RE);
+        if (rangeMatch) {
+          const title = lines.filter((_, idx) => idx !== i).join(' ').trim();
+          return { startTime: rangeMatch[1].trim(), endTime: rangeMatch[2].trim(), title };
+        }
+        const singleMatch = lines[i].match(TIME_SINGLE_RE);
+        if (singleMatch) {
+          const title = lines.filter((_, idx) => idx !== i).join(' ').trim();
+          return { startTime: singleMatch[1].trim(), endTime: null, title };
+        }
+      }
+    }
+
+    // Fallback: single-line "17:00-20:30 Event name" prefix convention.
+    const joined = lines.join(' ');
+    const rangePrefix = joined.match(/^(\d{1,2}:\d{2}\s?(?:AM|PM|am|pm)?)\s*[-–]\s*(\d{1,2}:\d{2}\s?(?:AM|PM|am|pm)?)\s+(.*)$/);
+    if (rangePrefix) return { startTime: rangePrefix[1].trim(), endTime: rangePrefix[2].trim(), title: rangePrefix[3].trim() };
+    const singlePrefix = joined.match(/^(\d{1,2}:\d{2}\s?(?:AM|PM|am|pm)?)\s+(.*)$/);
+    if (singlePrefix) return { startTime: singlePrefix[1].trim(), endTime: null, title: singlePrefix[2].trim() };
+
+    return { startTime: null, endTime: null, title: joined };
   }
 
   function timeToMinutes(t) {
@@ -479,7 +524,7 @@
     return -1;
   }
 
-  function parsePlannerCSV(csvText) {
+  function parsePlannerCSV(csvText, year) {
     const rows = parseCSV(csvText);
 
     let headerRowIdx = -1;
@@ -496,22 +541,23 @@
     const rawEntries = [];
 
     for (const anchor of anchorCols) {
-      const dayCol = anchor - 2, wdayCol = anchor - 1, allStaffCol = anchor, churchCol = anchor + 1, socialCol = anchor + 2, othersCol = anchor + 3;
+      const dayCol = anchor - 2, wdayCol = anchor - 1, allStaffCol = anchor, churchCol = anchor + 1, socialCol = anchor + 2, othersCol = anchor + 3, othersTagCol = anchor + 4;
 
       const headerBlob = [cellAt(rows, headerRowIdx, dayCol), cellAt(rows, headerRowIdx, wdayCol), cellAt(rows, headerRowIdx, allStaffCol)].join(' ');
       const monthIndex = findMonthInText(headerBlob);
       if (monthIndex === -1) continue;
 
-      const daysInMonth = new Date(PLANNER_YEAR, monthIndex + 1, 0).getDate();
+      const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
 
       for (let d = 1; d <= daysInMonth; d++) {
         const rowIdx = headerRowIdx + d;
-        const date = new Date(Date.UTC(PLANNER_YEAR, monthIndex, d));
+        const date = new Date(Date.UTC(year, monthIndex, d));
 
         const allStaffText = cellAt(rows, rowIdx, allStaffCol);
         const churchText    = cellAt(rows, rowIdx, churchCol);
         const socialText    = cellAt(rows, rowIdx, socialCol);
         const othersText    = cellAt(rows, rowIdx, othersCol);
+        const othersTagText = cellAt(rows, rowIdx, othersTagCol);
 
         if (allStaffText) {
           const t = extractTime(allStaffText);
@@ -527,9 +573,17 @@
         }
 
         if (othersText) {
-          const match = othersText.match(/^\[(LA|BN|GUEST|MISSION)\]\s*(.*)$/i);
-          const key  = match ? match[1].toUpperCase() : 'OTHER';
-          const rest = match ? (match[2].trim() || othersText) : othersText;
+          // Prefer the dropdown column if it's filled in with a recognized
+          // code; fall back to a typed [LA]/[BN]/etc. prefix for anything
+          // entered before the dropdown existed; otherwise it's "OT".
+          const tagRaw = othersTagText.trim().toUpperCase();
+          let key  = VALID_OTHER_CODES.includes(tagRaw) ? tagRaw : null;
+          let rest = othersText;
+          if (!key) {
+            const match = othersText.match(/^\[(LA|BA|AC|BN|MT|GU|OT)\]\s*([\s\S]*)$/i);
+            if (match) { key = match[1].toUpperCase(); rest = match[2].trim() || othersText; }
+          }
+          if (!key) key = 'OT';
           const t = extractTime(rest);
           rawEntries.push({ date, category: 'others', subCategory: key, text: rest, title: t.title, startTime: t.startTime, endTime: t.endTime });
         }
@@ -592,21 +646,23 @@
     'social':    { label: 'Social',                color: '#059669', bg: '#ECFDF5' },
   };
   const SUBCAT_META = {
-    LA:      { label: 'Leadership Academy', color: '#0891B2', bg: '#ECFEFF' },
-    BN:      { label: 'Business Network',   color: '#475569', bg: '#F1F5F9' },
-    GUEST:   { label: 'Guests',             color: '#DB2777', bg: '#FDF2F8' },
-    MISSION: { label: 'Mission Team',       color: '#D97706', bg: '#FFFBEB' },
-    OTHER:   { label: 'Other',              color: '#64748B', bg: '#F1F5F9' },
+    LA: { label: 'Leadership Academy', color: '#0891B2', bg: '#ECFEFF' },
+    BA: { label: 'Business Academy',   color: '#6366F1', bg: '#EEF2FF' },
+    AC: { label: 'Learning Center',    color: '#EA580C', bg: '#FFF7ED' },
+    BN: { label: 'Business Network',   color: '#475569', bg: '#F1F5F9' },
+    MT: { label: 'Mission Team',       color: '#D97706', bg: '#FFFBEB' },
+    GU: { label: 'Guests',             color: '#DB2777', bg: '#FDF2F8' },
+    OT: { label: 'Other',              color: '#64748B', bg: '#F1F5F9' },
   };
 
   function metaFor(ev) {
-    if (ev.category === 'others') return SUBCAT_META[ev.subCategory] || SUBCAT_META.OTHER;
-    return CAT_META[ev.category] || SUBCAT_META.OTHER;
+    if (ev.category === 'others') return SUBCAT_META[ev.subCategory] || SUBCAT_META.OT;
+    return CAT_META[ev.category] || SUBCAT_META.OT;
   }
 
   // The pill filter value: top-level category name, or the sub-category code for "others".
   function pillKeyFor(ev) {
-    return ev.category === 'others' ? (ev.subCategory || 'OTHER') : ev.category;
+    return ev.category === 'others' ? (ev.subCategory || 'OT') : ev.category;
   }
 
   function parseISODate(s) { const [y, m, d] = s.split('-').map(Number); return new Date(Date.UTC(y, m - 1, d)); }
@@ -664,25 +720,21 @@
         const meta   = metaFor(ev);
         const isSpan = ev.start !== ev.end;
         const badge  = isSpan ? fmtDateBadge(ev.start, ev.end) : null;
-        const sub    = isSpan ? `${badge.top} ${badge.sub} · ${meta.label}` : meta.label;
 
-        const timeHtml = ev.startTime
-          ? `<span class="planner-row__time-start">${ev.startTime}</span>${ev.endTime ? `<span class="planner-row__time-end">${ev.endTime}</span>` : ''}`
-          : `<span class="planner-row__time-allday">All day</span>`;
+        const timePart = ev.startTime
+          ? `${ev.startTime}${ev.endTime ? '–' + ev.endTime : ''}`
+          : 'All day';
+        const metaLine = isSpan ? `${badge.top} ${badge.sub} · ${meta.label}` : `${timePart} · ${meta.label}`;
 
-        return `<div class="planner-row">
-          <div class="planner-row__bar" style="background:${meta.color}"></div>
-          <div class="planner-row__body">
-            <p class="planner-row__title">${ev.title}</p>
-            <p class="planner-row__sub">${sub}</p>
-          </div>
-          <div class="planner-row__time">${timeHtml}</div>
+        return `<div class="planner-row" style="background:${meta.color}">
+          <p class="planner-row__title">${ev.title}</p>
+          <p class="planner-row__meta">${metaLine}</p>
         </div>`;
       }).join('');
 
       return `<div class="planner-daygroup">
         <div class="planner-day-header"><p class="planner-day-header__title${isToday ? ' is-today' : ''}">${dayLabel}</p></div>
-        <div class="planner-row-list">${rows}</div>
+        ${rows}
       </div>`;
     }).join('');
 
@@ -711,15 +763,27 @@
     render(allEvents, currentRange, currentCat);
   });
 
-  async function loadPlanner() {
+  async function loadOneTab(tab) {
+    const ctrl = new AbortController();
+    const tid  = setTimeout(() => ctrl.abort(), 8000);
     try {
-      const ctrl = new AbortController();
-      const tid  = setTimeout(() => ctrl.abort(), 8000);
-      const resp = await fetch(CSV_URL, { cache: 'no-cache', signal: ctrl.signal });
+      const resp = await fetch(csvUrlFor(tab.gid), { cache: 'no-cache', signal: ctrl.signal });
       clearTimeout(tid);
       if (!resp.ok) throw new Error('fetch failed ' + resp.status);
       const csvText = await resp.text();
-      allEvents = parsePlannerCSV(csvText);
+      return parsePlannerCSV(csvText, tab.year);
+    } catch (e) {
+      clearTimeout(tid);
+      console.error('Year Planner: failed to load', tab.year, 'tab', e);
+      return [];
+    }
+  }
+
+  async function loadPlanner() {
+    try {
+      const results = await Promise.all(PLANNER_TABS.map(loadOneTab));
+      allEvents = results.flat();
+      if (allEvents.length === 0) throw new Error('no events loaded from any tab');
       render(allEvents, currentRange, currentCat);
     } catch (e) {
       container.innerHTML = '<div class="gcal-error">Could not load the year planner. Make sure the sheet is shared as "Anyone with the link".</div>';
