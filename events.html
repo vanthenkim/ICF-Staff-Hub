@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" sizes="192x192" href="/assets/icons/icon-192.png" />
 <title>Events &amp; Year Topics · Staff Hub</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=20260717ab" />
+<link rel="stylesheet" href="assets/styles.css?v=20260717ac" />
 </head>
 <body>
 <div class="app">
@@ -835,10 +835,11 @@
             </div>`;
           }).join('');
 
+          const isWeekend = dateObj.getUTCDay() === 0 || dateObj.getUTCDay() === 6;
           return `<div class="planner-year-day-row${isToday ? ' is-today' : ''}">
             <div class="planner-year-day-row__date">
-              <span class="planner-year-day-row__num">${d}</span>
-              <span class="planner-year-day-row__dow">${DAYS[dateObj.getUTCDay()].slice(0, 2)}</span>
+              <span class="planner-year-day-row__num${isWeekend ? ' is-weekend' : ''}">${d}</span>
+              <span class="planner-year-day-row__dow${isWeekend ? ' is-weekend' : ''}">${DAYS[dateObj.getUTCDay()].slice(0, 2)}</span>
             </div>
             <div class="planner-year-day-row__events">${chips}</div>
           </div>`;
@@ -897,7 +898,7 @@
     const todayISO = todayUTC().toISOString().slice(0, 10);
     const WEEKDAY_LABELS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
-    const dowHtml = WEEKDAY_LABELS.map(l => `<div class="planner-month-dow">${l}</div>`).join('');
+    const dowHtml = WEEKDAY_LABELS.map((l, i) => `<div class="planner-month-dow${i >= 5 ? ' is-weekend' : ''}">${l}</div>`).join('');
 
     const allCellDates = Array.from({ length: totalCells }, (_, i) => new Date(Date.UTC(year, month, i - leading + 1)));
 
@@ -912,17 +913,19 @@
       // Day number sits above the span bars, chips sit below — same
       // bordered box, just split so the bar can slot in "under the date".
       const numCells = weekDays.map(cellDate => {
-        const iso     = cellDate.toISOString().slice(0, 10);
-        const inMonth = cellDate.getUTCMonth() === month;
-        const isToday = iso === todayISO;
-        return `<div class="planner-month-num-cell${inMonth ? '' : ' is-outside'}">
+        const iso       = cellDate.toISOString().slice(0, 10);
+        const inMonth   = cellDate.getUTCMonth() === month;
+        const isToday   = iso === todayISO;
+        const isWeekend = cellDate.getUTCDay() === 0 || cellDate.getUTCDay() === 6;
+        return `<div class="planner-month-num-cell${inMonth ? '' : ' is-outside'}${isWeekend ? ' is-weekend' : ''}">
           <span class="planner-month-cell__num${isToday ? ' is-today' : ''}">${cellDate.getUTCDate()}</span>
         </div>`;
       }).join('');
 
       const dayCells = weekDays.map(cellDate => {
-        const iso     = cellDate.toISOString().slice(0, 10);
-        const inMonth = cellDate.getUTCMonth() === month;
+        const iso       = cellDate.toISOString().slice(0, 10);
+        const inMonth   = cellDate.getUTCMonth() === month;
+        const isWeekend = cellDate.getUTCDay() === 0 || cellDate.getUTCDay() === 6;
 
         const dayEvents = (dayMap.get(iso) || []).slice()
           .sort((a, b) => timeToMinutes(a.startTime) - timeToMinutes(b.startTime));
@@ -942,7 +945,7 @@
         }).join('');
         const moreHtml = extra > 0 ? `<div class="planner-month-more">+${extra} more</div>` : '';
 
-        return `<div class="planner-month-cell${inMonth ? '' : ' is-outside'}">
+        return `<div class="planner-month-cell${inMonth ? '' : ' is-outside'}${isWeekend ? ' is-weekend' : ''}">
           <div class="planner-month-cell__events">${chips}${moreHtml}</div>
         </div>`;
       }).join('');
@@ -1000,10 +1003,11 @@
 
     const headers = days.map((d, i) => {
       const iso = d.toISOString().slice(0, 10);
-      const isToday = iso === todayISO;
+      const isToday   = iso === todayISO;
+      const isWeekend = d.getUTCDay() === 0 || d.getUTCDay() === 6;
       return `<div class="planner-week-day-header">
-        <span class="planner-week-day-header__dow">${WEEKDAY_LABELS[i]}</span>
-        <span class="planner-week-day-header__num${isToday ? ' is-today' : ''}">${d.getUTCDate()}</span>
+        <span class="planner-week-day-header__dow${isWeekend ? ' is-weekend' : ''}">${WEEKDAY_LABELS[i]}</span>
+        <span class="planner-week-day-header__num${isToday ? ' is-today' : (isWeekend ? ' is-weekend' : '')}">${d.getUTCDate()}</span>
       </div>`;
     }).join('');
 
@@ -1018,7 +1022,8 @@
     // in each day lines up at the same height across the whole week —
     // whether or not that particular day has a span.
     const cols = days.map(d => {
-      const iso = d.toISOString().slice(0, 10);
+      const iso       = d.toISOString().slice(0, 10);
+      const isWeekend = d.getUTCDay() === 0 || d.getUTCDay() === 6;
       const dayEvents = (dayMap.get(iso) || []).slice()
         .sort((a, b) => timeToMinutes(a.startTime) - timeToMinutes(b.startTime));
 
@@ -1034,7 +1039,7 @@
         </div>`;
       }).join('');
 
-      return `<div class="planner-week-day-col">${cards}</div>`;
+      return `<div class="planner-week-day-col${isWeekend ? ' is-weekend' : ''}">${cards}</div>`;
     }).join('');
 
     return `<div class="planner-week">
@@ -1091,7 +1096,7 @@
       : `${s.getUTCDate()} ${monthLabel(s.getUTCMonth())} – ${e.getUTCDate()} ${monthLabel(e.getUTCMonth())} ${e.getUTCFullYear()}`;
 
     const headerRow = `<div class="planner-2weeks-header-row"><div class="planner-2weeks-gutter"></div>` +
-      WEEKDAY_LABELS.map(l => `<div class="planner-month-dow">${l}</div>`).join('') + `</div>`;
+      WEEKDAY_LABELS.map((l, i) => `<div class="planner-month-dow${i >= 5 ? ' is-weekend' : ''}">${l}</div>`).join('') + `</div>`;
 
     const weekRows = [0, 1].map(w => {
       const weekDays = days.slice(w * 7, w * 7 + 7);
@@ -1102,15 +1107,17 @@
       ).join('');
 
       const numCells = weekDays.map(d => {
-        const iso = d.toISOString().slice(0, 10);
-        const isToday = iso === todayISO;
-        return `<div class="planner-month-num-cell">
+        const iso       = d.toISOString().slice(0, 10);
+        const isToday   = iso === todayISO;
+        const isWeekend = d.getUTCDay() === 0 || d.getUTCDay() === 6;
+        return `<div class="planner-month-num-cell${isWeekend ? ' is-weekend' : ''}">
           <span class="planner-month-cell__num${isToday ? ' is-today' : ''}">${d.getUTCDate()}</span>
         </div>`;
       }).join('');
 
       const cells = weekDays.map(d => {
-        const iso = d.toISOString().slice(0, 10);
+        const iso       = d.toISOString().slice(0, 10);
+        const isWeekend = d.getUTCDay() === 0 || d.getUTCDay() === 6;
         const dayEvents = (dayMap.get(iso) || []).slice()
           .sort((a, b) => timeToMinutes(a.startTime) - timeToMinutes(b.startTime));
         const visible = dayEvents.slice(0, 3);
@@ -1129,7 +1136,7 @@
         }).join('');
         const moreHtml = extra > 0 ? `<div class="planner-month-more">+${extra} more</div>` : '';
 
-        return `<div class="planner-month-cell">
+        return `<div class="planner-month-cell${isWeekend ? ' is-weekend' : ''}">
           <div class="planner-month-cell__events">${chips}${moreHtml}</div>
         </div>`;
       }).join('');
