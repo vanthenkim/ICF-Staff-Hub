@@ -718,7 +718,12 @@
         const timePart = ev.startTime
           ? `${ev.startTime}${ev.endTime ? '–' + ev.endTime : ''}`
           : 'All day';
-        const metaLine = isSpan ? `${badge.top} ${badge.sub} · ${meta.label}` : `${timePart} · ${meta.label}`;
+        // Spanning events show their date range; if a time was also given
+        // (e.g. a departure time on a multi-day trip), keep it alongside
+        // the range instead of letting the range hide it.
+        const metaLine = isSpan
+          ? (ev.startTime ? `${badge.top} ${badge.sub} · ${timePart} · ${meta.label}` : `${badge.top} ${badge.sub} · ${meta.label}`)
+          : `${timePart} · ${meta.label}`;
 
         return `<div class="planner-row" style="background:${meta.bg}">
           <p class="planner-row__title" style="color:${meta.color}">${ev.title}</p>
