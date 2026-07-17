@@ -1186,10 +1186,10 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
    row) but with soft tinted blocks instead of solid fills, matching the
    pastel backgrounds already used elsewhere on this site (.resource,
    .qa__icon, etc.) rather than heavy solid color. */
-.planner-daygroup { margin-bottom: 20px; }
-.planner-day-header { padding: 14px 2px 8px; }
+.planner-daygroup { margin-bottom: 28px; }
+.planner-day-header { padding: 18px 2px 10px; }
 .planner-day-header:first-child { padding-top: 0; }
-.planner-day-header__title { margin: 0; font-size: 15px; font-weight: 500; color: var(--text); }
+.planner-day-header__title { margin: 0; font-size: 17px; font-weight: 500; color: var(--text); }
 .planner-day-header__title.is-today { color: var(--red-600); }
 
 .planner-row {
