@@ -1372,7 +1372,7 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 
 /* Week view — day columns with prev/next navigation, cards stacked
    kanban-style underneath each date. */
-.planner-week-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.planner-week-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
 .planner-week-nav__label { margin: 0; font-size: 15px; font-weight: 500; color: var(--text); }
 .planner-week-nav-btn {
   width: 32px; height: 32px;
@@ -1384,15 +1384,15 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 }
 .planner-week-nav-btn:hover { background: var(--surface-2); }
 
-.planner-week-grid {
+.planner-week-header-row {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 10px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 10px;
 }
 .planner-week-day-header {
   display: flex; flex-direction: column; align-items: center; gap: 6px;
   padding-bottom: 10px;
-  border-bottom: 1px solid var(--border);
 }
 .planner-week-day-header__dow { font-size: 11px; font-weight: 500; color: var(--text-muted); letter-spacing: 0.02em; }
 .planner-week-day-header__num { font-size: 20px; font-weight: 500; color: var(--text); }
@@ -1403,7 +1403,13 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   background: var(--blue-600);
   color: #fff;
 }
-.planner-week-day-col { display: flex; flex-direction: column; gap: 8px; padding-top: 10px; min-height: 300px; }
+
+.planner-week-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+}
+.planner-week-day-col { display: flex; flex-direction: column; gap: 8px; min-height: 300px; }
 
 .planner-week-card {
   border-left: 2px solid var(--border);
@@ -1415,6 +1421,7 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 .planner-week-card__meta { display: block; font-size: 11.5px; font-weight: 500; opacity: 0.85; margin-top: 2px; }
 
 @media (max-width: 768px) {
+  .planner-week-header-row,
   .planner-week-grid { grid-template-columns: repeat(7, minmax(90px, 1fr)); overflow-x: auto; }
 }
 
