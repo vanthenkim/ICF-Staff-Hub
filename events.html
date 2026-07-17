@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" sizes="192x192" href="/assets/icons/icon-192.png" />
 <title>Events &amp; Year Topics · Staff Hub</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=20260717x" />
+<link rel="stylesheet" href="assets/styles.css?v=20260717y" />
 </head>
 <body>
 <div class="app">
@@ -954,39 +954,17 @@
     }).join('');
 
     const lanes = computeSpanLanes(days, filtered);
+    const spansHtml = lanes.length
+      ? `<div class="planner-week-spans">${lanes.map(lane =>
+          `<div class="planner-span-lane">${lane.map(item => spanBarHtml(item, 0)).join('')}</div>`
+        ).join('')}</div>`
+      : '';
 
-    // Spans render inline at the top of each day's own column, not as a
-    // shared row above every column — a day untouched by any span skips
-    // straight to its cards instead of being pushed down to match days
-    // that do have one. Days that DO share a lane still get a blank
-    // placeholder there so same-lane segments line up into one bar.
-    const cols = days.map((d, dayIndex) => {
+    // Spans sit in one shared row above every column, so the first card
+    // in each day lines up at the same height across the whole week —
+    // whether or not that particular day has a span.
+    const cols = days.map(d => {
       const iso = d.toISOString().slice(0, 10);
-
-      let lastTouchingLane = -1;
-      lanes.forEach((lane, laneIdx) => {
-        if (lane.some(it => it.startCol <= dayIndex && it.endCol >= dayIndex)) lastTouchingLane = laneIdx;
-      });
-
-      const segments = [];
-      for (let li = 0; li <= lastTouchingLane; li++) {
-        const item = lanes[li].find(it => it.startCol <= dayIndex && it.endCol >= dayIndex);
-        if (!item) { segments.push('<div class="planner-week-span-seg is-empty"></div>'); continue; }
-
-        const meta = metaFor(item.ev);
-        const isStartDay = iso === item.ev.start;
-        const isEndDay   = iso === item.ev.end;
-        const roundLeft  = isStartDay ? '4px' : '0';
-        const roundRight = isEndDay ? '4px' : '0';
-        const borderLeft = isStartDay ? `2px solid ${meta.color}` : 'none';
-        const timePart = item.ev.startTime ? `${item.ev.startTime}${item.ev.endTime ? '–' + item.ev.endTime : ''} · ` : 'All day · ';
-
-        const inner = isStartDay
-          ? `<span class="planner-week-span-seg__title">${item.ev.title}</span><span class="planner-week-span-seg__meta" style="color:${meta.color}">${timePart}${meta.label}</span>`
-          : '';
-        segments.push(`<div class="planner-week-span-seg" style="background:${meta.color}1f; border-left:${borderLeft}; border-radius:${roundLeft} ${roundRight} ${roundRight} ${roundLeft};">${inner}</div>`);
-      }
-
       const dayEvents = (dayMap.get(iso) || []).slice()
         .sort((a, b) => timeToMinutes(a.startTime) - timeToMinutes(b.startTime));
 
@@ -999,7 +977,7 @@
         </div>`;
       }).join('');
 
-      return `<div class="planner-week-day-col">${segments.join('')}${cards}</div>`;
+      return `<div class="planner-week-day-col">${cards}</div>`;
     }).join('');
 
     return `<div class="planner-week">
@@ -1015,6 +993,7 @@
       <div class="planner-week-body">
         <div class="planner-week-dividers"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
         <div class="planner-week-header-row">${headers}</div>
+        ${spansHtml}
         <div class="planner-week-grid">${cols}</div>
       </div>
     </div>`;
