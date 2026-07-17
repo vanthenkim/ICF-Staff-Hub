@@ -1177,8 +1177,10 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 .planner-pill.is-active { border-color: var(--border-strong); color: var(--text); background: var(--surface-2); }
 .planner-pill__dot { width: 7px; height: 7px; border-radius: 50%; flex: none; }
 
-/* Google Calendar-style list: date header per day, solid colored blocks
-   per event with the time built into the block — no separate time column. */
+/* Google Calendar list layout (date header per day, time built into each
+   row) but with soft tinted blocks instead of solid fills, matching the
+   pastel backgrounds already used elsewhere on this site (.resource,
+   .qa__icon, etc.) rather than heavy solid color. */
 .planner-daygroup { margin-bottom: 20px; }
 .planner-day-header { padding: 14px 2px 8px; }
 .planner-day-header:first-child { padding-top: 0; }
@@ -1191,8 +1193,8 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   margin-bottom: 8px;
 }
 .planner-row:last-child { margin-bottom: 0; }
-.planner-row__title { margin: 0; font-size: 15px; font-weight: 600; color: #fff; }
-.planner-row__meta { margin: 2px 0 0; font-size: 13px; color: rgba(255,255,255,0.85); }
+.planner-row__title { margin: 0; font-size: 15px; font-weight: 600; }
+.planner-row__meta { margin: 2px 0 0; font-size: 13px; font-weight: 500; opacity: 0.8; }
 
 /* ---------- Emergency contacts footer strip ---------- */
 /* Home page two-column layout */
