@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" sizes="192x192" href="/assets/icons/icon-192.png" />
 <title>Events &amp; Year Topics · Staff Hub</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=20260717t" />
+<link rel="stylesheet" href="assets/styles.css?v=20260717u" />
 </head>
 <body>
 <div class="app">
@@ -726,7 +726,6 @@
     const roundLeft  = item.openStart ? '0' : '6px';
     const roundRight = item.openEnd ? '0' : '6px';
     return `<div class="planner-span-bar" style="grid-column:${colStart} / ${colEnd}; background:${meta.color}1f; color:${meta.color}; border-radius:${roundLeft} ${roundRight} ${roundRight} ${roundLeft};">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
       <span class="planner-span-bar__title">${item.ev.title}</span>
     </div>`;
   }
@@ -849,10 +848,20 @@
         `<div class="planner-span-lane">${lane.map(item => spanBarHtml(item, 0)).join('')}</div>`
       ).join('');
 
-      const cellsHtml = weekDays.map(cellDate => {
+      // Day number sits above the span bars, chips sit below — same
+      // bordered box, just split so the bar can slot in "under the date".
+      const numCells = weekDays.map(cellDate => {
         const iso     = cellDate.toISOString().slice(0, 10);
         const inMonth = cellDate.getUTCMonth() === month;
         const isToday = iso === todayISO;
+        return `<div class="planner-month-num-cell${inMonth ? '' : ' is-outside'}">
+          <span class="planner-month-cell__num${isToday ? ' is-today' : ''}">${cellDate.getUTCDate()}</span>
+        </div>`;
+      }).join('');
+
+      const dayCells = weekDays.map(cellDate => {
+        const iso     = cellDate.toISOString().slice(0, 10);
+        const inMonth = cellDate.getUTCMonth() === month;
 
         const dayEvents = (dayMap.get(iso) || []).slice()
           .sort((a, b) => timeToMinutes(a.startTime) - timeToMinutes(b.startTime));
@@ -869,13 +878,16 @@
         }).join('');
         const moreHtml = extra > 0 ? `<div class="planner-month-more">+${extra} more</div>` : '';
 
-        return `<div class="planner-month-cell${inMonth ? '' : ' is-outside'}${isToday ? ' is-today' : ''}">
-          <span class="planner-month-cell__num">${cellDate.getUTCDate()}</span>
+        return `<div class="planner-month-cell${inMonth ? '' : ' is-outside'}">
           <div class="planner-month-cell__events">${chips}${moreHtml}</div>
         </div>`;
       }).join('');
 
-      weeksHtml.push(`<div class="planner-month-week">${laneRows}<div class="planner-month-week-days">${cellsHtml}</div></div>`);
+      weeksHtml.push(`<div class="planner-month-week">
+        <div class="planner-month-week-nums">${numCells}</div>
+        ${laneRows}
+        <div class="planner-month-week-days">${dayCells}</div>
+      </div>`);
     }
 
     return `<div class="planner-month">
@@ -1016,9 +1028,16 @@
         `<div class="planner-2weeks-span-lane">${lane.map(item => spanBarHtml(item, 1)).join('')}</div>`
       ).join('');
 
-      const cells = weekDays.map(d => {
+      const numCells = weekDays.map(d => {
         const iso = d.toISOString().slice(0, 10);
         const isToday = iso === todayISO;
+        return `<div class="planner-month-num-cell">
+          <span class="planner-month-cell__num${isToday ? ' is-today' : ''}">${d.getUTCDate()}</span>
+        </div>`;
+      }).join('');
+
+      const cells = weekDays.map(d => {
+        const iso = d.toISOString().slice(0, 10);
         const dayEvents = (dayMap.get(iso) || []).slice()
           .sort((a, b) => timeToMinutes(a.startTime) - timeToMinutes(b.startTime));
         const visible = dayEvents.slice(0, 3);
@@ -1034,13 +1053,16 @@
         }).join('');
         const moreHtml = extra > 0 ? `<div class="planner-month-more">+${extra} more</div>` : '';
 
-        return `<div class="planner-month-cell${isToday ? ' is-today' : ''}">
-          <span class="planner-month-cell__num">${d.getUTCDate()}</span>
+        return `<div class="planner-month-cell">
           <div class="planner-month-cell__events">${chips}${moreHtml}</div>
         </div>`;
       }).join('');
 
-      return `<div class="planner-2weeks-week">${laneRows}<div class="planner-2weeks-week-days"><div class="planner-2weeks-weeknum">${weekNum}</div>${cells}</div></div>`;
+      return `<div class="planner-2weeks-week">
+        <div class="planner-2weeks-week-nums"><div class="planner-2weeks-weeknum">${weekNum}</div>${numCells}</div>
+        ${laneRows}
+        <div class="planner-2weeks-week-days"><div class="planner-2weeks-gutter"></div>${cells}</div>
+      </div>`;
     }).join('');
 
     return `<div class="planner-2weeks">
