@@ -1307,12 +1307,15 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 .planner-month-nav-btn:hover { background: var(--surface-2); }
 
 .planner-month-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
   border-top: 1px solid var(--border);
   border-left: 1px solid var(--border);
   border-radius: 10px;
   overflow: hidden;
+}
+.planner-month-dow-row,
+.planner-month-week-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
 }
 .planner-month-dow {
   font-size: 11px; font-weight: 500;
@@ -1363,6 +1366,24 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 }
 .planner-month-more { font-size: 11px; color: var(--text-muted); padding-left: 4px; }
 
+/* Multi-day events render once as a bar spanning the days they cover,
+   instead of repeating in every day cell — shared across Week, 2 weeks
+   and Month views. */
+.planner-span-lane {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  padding: 3px 6px;
+}
+.planner-span-bar {
+  display: flex; align-items: center; gap: 5px;
+  padding: 4px 8px;
+  margin: 0 2px;
+  font-size: 12px; font-weight: 500;
+  overflow: hidden;
+}
+.planner-span-bar svg { flex: none; opacity: 0.8; }
+.planner-span-bar__title { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
 @media (max-width: 640px) {
   .planner-month-cell { min-height: 110px; padding: 5px; }
   .planner-month-dow { font-size: 10px; padding: 6px 2px; }
@@ -1390,6 +1411,8 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   border-bottom: 1px solid var(--border);
   margin-bottom: 10px;
 }
+.planner-week-spans { margin-bottom: 6px; }
+.planner-week-spans .planner-span-lane { padding: 3px 0; }
 .planner-week-day-header {
   display: flex; flex-direction: column; align-items: center; gap: 6px;
   padding-bottom: 10px;
@@ -1440,13 +1463,18 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 .planner-2weeks-nav-btn:hover { background: var(--surface-2); }
 
 .planner-2weeks-grid {
-  display: grid;
-  grid-template-columns: 26px repeat(7, 1fr);
   border-top: 1px solid var(--border);
   border-left: 1px solid var(--border);
   border-radius: 10px;
   overflow: hidden;
 }
+.planner-2weeks-header-row,
+.planner-2weeks-span-lane,
+.planner-2weeks-week-days {
+  display: grid;
+  grid-template-columns: 26px repeat(7, 1fr);
+}
+.planner-2weeks-span-lane { padding: 3px 6px; }
 .planner-2weeks-gutter { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--surface-2); }
 .planner-2weeks-weeknum {
   display: flex; align-items: flex-start; justify-content: center;
@@ -1458,7 +1486,9 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 }
 
 @media (max-width: 768px) {
-  .planner-2weeks-grid { grid-template-columns: 22px repeat(7, minmax(90px, 1fr)); overflow-x: auto; }
+  .planner-2weeks-header-row,
+  .planner-2weeks-span-lane,
+  .planner-2weeks-week-days { grid-template-columns: 22px repeat(7, minmax(90px, 1fr)); overflow-x: auto; }
 }
 
 /* ---------- Emergency contacts footer strip ---------- */
