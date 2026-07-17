@@ -1330,14 +1330,16 @@
                 <div style="font-weight:700;font-size:12px;margin-top:2px;">Martin Strupler</div>
               </div>
               <div style="display:flex;align-items:center;gap:5px;margin:8px 0 4px;align-self:flex-start;"><div style="background:#fffbeb;border-radius:5px;padding:2px 8px;font-size:9px;font-weight:700;color:#d97706;text-transform:uppercase;letter-spacing:.06em;">Property Management</div><a href="department-property.html#open-orgchart" onclick="event.preventDefault();openChartPopup('department-property.html#open-orgchart')" style="display:inline-flex;align-items:center;padding:2px 6px;border-radius:5px;background:#fffbeb;border:1px solid #fcd34d;color:#d97706;font-size:9px;font-weight:600;text-decoration:none;" onmouseover="this.style.background='#fef3c7'" onmouseout="this.style.background='#fffbeb'">chart →</a></div>
-              <div data-org-name="Sarath Sok" style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:8px;padding:5px 7px;width:100%;box-sizing:border-box;text-align:center;">
+              <div data-org-name="Sarath Sok" style="position:relative;background:#f0fdf4;border:1.5px solid #86efac;border-radius:8px;padding:5px 7px;width:100%;box-sizing:border-box;text-align:center;">
+                <button onclick="event.stopPropagation();var f=document.getElementById('fg-sarath');f.style.display=f.style.display==='none'?'flex':'none'" style="position:absolute;top:3px;right:3px;background:#dcfce7;border:1px solid #86efac;border-radius:5px;cursor:pointer;font-size:13px;color:#16a34a;padding:1px 5px;line-height:1.4;">▸</button>
                 <div style="font-weight:700;font-size:10.5px;color:#166534;">Sarath Sok</div>
                 <div style="font-size:9.5px;color:#16a34a;margin-top:1px;line-height:1.3;">Facility Manager</div>
               </div>
-              <div onclick="var f=document.getElementById('fg-security');f.style.display=f.style.display==='none'?'flex':'none'" style="background:#fffbeb;border-radius:5px;padding:2px 8px;font-size:9px;font-weight:700;color:#d97706;text-transform:uppercase;letter-spacing:.06em;margin:8px 0 4px;align-self:flex-start;cursor:pointer;">Security ▸</div>
-              <div data-org-name="Hing Hoeun" style="background:#f0fdf4;border:1.5px solid #86efac;border-left:3px solid #16a34a;border-radius:8px;padding:5px 7px;width:calc(100% - 8px);box-sizing:border-box;text-align:center;margin-left:8px;">
-                <div style="font-weight:700;font-size:10.5px;color:#166534;">Hing Hoeun</div>
-                <div style="font-size:9.5px;color:#16a34a;margin-top:1px;line-height:1.3;">Security Leader</div>
+              <div id="fg-sarath" style="display:none;flex-direction:column;gap:5px;width:100%;align-items:center;">
+              <div onclick="var f=document.getElementById('fg-security');f.style.display=f.style.display==='none'?'flex':'none'" style="background:#fffbeb;border-radius:5px;padding:2px 8px;font-size:9px;font-weight:700;color:#d97706;text-transform:uppercase;letter-spacing:.06em;margin:4px 0 2px;align-self:flex-start;cursor:pointer;margin-left:8px;">Security ▸</div>
+              <div data-org-name="Hing Hoeun" style="background:#fff;border:1.5px solid #e2e8f0;border-left:3px solid #86efac;border-radius:8px;padding:5px 7px;width:calc(100% - 8px);box-sizing:border-box;text-align:center;margin-left:8px;">
+                <div style="font-weight:700;font-size:10.5px;">Hing Hoeun</div>
+                <div style="font-size:9.5px;color:#6b7a8d;margin-top:1px;line-height:1.3;">Security Leader</div>
               </div>
               <div id="fg-security" style="display:none;flex-direction:column;gap:5px;width:100%;align-items:center;">
               <div data-org-name="Hin Loeb" style="background:#fff;border:1.5px solid #e2e8f0;border-left:3px solid #86efac;border-radius:8px;padding:5px 7px;width:calc(100% - 16px);box-sizing:border-box;text-align:center;margin-left:16px;">
@@ -1357,10 +1359,10 @@
                 <div style="font-size:9.5px;color:#6b7a8d;margin-top:1px;line-height:1.3;">Security Guard</div>
               </div>
               </div>
-              <div onclick="var f=document.getElementById('fg-cleaning');f.style.display=f.style.display==='none'?'flex':'none'" style="background:#fffbeb;border-radius:5px;padding:2px 8px;font-size:9px;font-weight:700;color:#d97706;text-transform:uppercase;letter-spacing:.06em;margin:8px 0 4px;align-self:flex-start;cursor:pointer;">Cleaning ▸</div>
+              <div onclick="var f=document.getElementById('fg-cleaning');f.style.display=f.style.display==='none'?'flex':'none'" style="background:#fffbeb;border-radius:5px;padding:2px 8px;font-size:9px;font-weight:700;color:#d97706;text-transform:uppercase;letter-spacing:.06em;margin:4px 0 2px;align-self:flex-start;cursor:pointer;margin-left:8px;">Cleaning ▸</div>
               <div data-org-name="Sila Kun" style="background:#fff;border:1.5px solid #e2e8f0;border-left:3px solid #86efac;border-radius:8px;padding:5px 7px;width:calc(100% - 8px);box-sizing:border-box;text-align:center;margin-left:8px;">
-                <div style="font-weight:700;font-size:10.5px;color:#166534;">Sila Kun</div>
-                <div style="font-size:9.5px;color:#16a34a;margin-top:1px;line-height:1.3;">Cleaning Leader</div>
+                <div style="font-weight:700;font-size:10.5px;">Sila Kun</div>
+                <div style="font-size:9.5px;color:#6b7a8d;margin-top:1px;line-height:1.3;">Cleaning Leader</div>
               </div>
               <div id="fg-cleaning" style="display:none;flex-direction:column;gap:5px;width:100%;align-items:center;">
               <div data-org-name="Hou Sokcheat" style="background:#fff;border:1.5px solid #e2e8f0;border-left:3px solid #86efac;border-radius:8px;padding:5px 7px;width:calc(100% - 16px);box-sizing:border-box;text-align:center;margin-left:16px;">
@@ -1372,10 +1374,10 @@
                 <div style="font-size:9.5px;color:#6b7a8d;margin-top:1px;line-height:1.3;">Cleaner</div>
               </div>
               </div>
-              <div onclick="var f=document.getElementById('fg-gardening');f.style.display=f.style.display==='none'?'flex':'none'" style="background:#fffbeb;border-radius:5px;padding:2px 8px;font-size:9px;font-weight:700;color:#d97706;text-transform:uppercase;letter-spacing:.06em;margin:8px 0 4px;align-self:flex-start;cursor:pointer;">Gardening ▸</div>
-              <div data-org-name="Nan Houn" style="background:#f0fdf4;border:1.5px solid #86efac;border-left:3px solid #16a34a;border-radius:8px;padding:5px 7px;width:calc(100% - 8px);box-sizing:border-box;text-align:center;margin-left:8px;">
-                <div style="font-weight:700;font-size:10.5px;color:#166534;">Nan Houn</div>
-                <div style="font-size:9.5px;color:#16a34a;margin-top:1px;line-height:1.3;">Gardening Leader</div>
+              <div onclick="var f=document.getElementById('fg-gardening');f.style.display=f.style.display==='none'?'flex':'none'" style="background:#fffbeb;border-radius:5px;padding:2px 8px;font-size:9px;font-weight:700;color:#d97706;text-transform:uppercase;letter-spacing:.06em;margin:4px 0 2px;align-self:flex-start;cursor:pointer;margin-left:8px;">Gardening ▸</div>
+              <div data-org-name="Nan Houn" style="background:#fff;border:1.5px solid #e2e8f0;border-left:3px solid #86efac;border-radius:8px;padding:5px 7px;width:calc(100% - 8px);box-sizing:border-box;text-align:center;margin-left:8px;">
+                <div style="font-weight:700;font-size:10.5px;">Nan Houn</div>
+                <div style="font-size:9.5px;color:#6b7a8d;margin-top:1px;line-height:1.3;">Gardening Leader</div>
               </div>
               <div id="fg-gardening" style="display:none;flex-direction:column;gap:5px;width:100%;align-items:center;">
               <div data-org-name="Hean Luos" style="background:#fff;border:1.5px solid #e2e8f0;border-left:3px solid #86efac;border-radius:8px;padding:5px 7px;width:calc(100% - 16px);box-sizing:border-box;text-align:center;margin-left:16px;">
@@ -1387,10 +1389,10 @@
                 <div style="font-size:9.5px;color:#6b7a8d;margin-top:1px;line-height:1.3;">Gardener</div>
               </div>
               </div>
-              <div onclick="var f=document.getElementById('fg-engineering');f.style.display=f.style.display==='none'?'flex':'none'" style="background:#fffbeb;border-radius:5px;padding:2px 8px;font-size:9px;font-weight:700;color:#d97706;text-transform:uppercase;letter-spacing:.06em;margin:8px 0 4px;align-self:flex-start;cursor:pointer;">Engineering ▸</div>
+              <div onclick="var f=document.getElementById('fg-engineering');f.style.display=f.style.display==='none'?'flex':'none'" style="background:#fffbeb;border-radius:5px;padding:2px 8px;font-size:9px;font-weight:700;color:#d97706;text-transform:uppercase;letter-spacing:.06em;margin:4px 0 2px;align-self:flex-start;cursor:pointer;margin-left:8px;">Engineering ▸</div>
               <div data-org-name="Kim Sorn Soeuth" style="background:#fff;border:1.5px solid #e2e8f0;border-left:3px solid #86efac;border-radius:8px;padding:5px 7px;width:calc(100% - 8px);box-sizing:border-box;text-align:center;margin-left:8px;">
-                <div style="font-weight:700;font-size:10.5px;color:#166534;">Kim Sorn Soeuth</div>
-                <div style="font-size:9.5px;color:#16a34a;margin-top:1px;line-height:1.3;">Senior Electrician</div>
+                <div style="font-weight:700;font-size:10.5px;">Kim Sorn Soeuth</div>
+                <div style="font-size:9.5px;color:#6b7a8d;margin-top:1px;line-height:1.3;">Senior Electrician</div>
               </div>
               <div id="fg-engineering" style="display:none;flex-direction:column;gap:5px;width:100%;align-items:center;">
               <div data-org-name="Chrach Chen" style="background:#fff;border:1.5px solid #e2e8f0;border-left:3px solid #86efac;border-radius:8px;padding:5px 7px;width:calc(100% - 16px);box-sizing:border-box;text-align:center;margin-left:16px;">
@@ -1398,10 +1400,10 @@
                 <div style="font-size:9.5px;color:#6b7a8d;margin-top:1px;line-height:1.3;">Electrician</div>
               </div>
               </div>
-              <div onclick="var f=document.getElementById('fg-maintenance');f.style.display=f.style.display==='none'?'flex':'none'" style="background:#fffbeb;border-radius:5px;padding:2px 8px;font-size:9px;font-weight:700;color:#d97706;text-transform:uppercase;letter-spacing:.06em;margin:8px 0 4px;align-self:flex-start;cursor:pointer;">Maintenance ▸</div>
-              <div data-org-name="Barang Soeurm" style="background:#f0fdf4;border:1.5px solid #86efac;border-left:3px solid #16a34a;border-radius:8px;padding:5px 7px;width:calc(100% - 8px);box-sizing:border-box;text-align:center;margin-left:8px;">
-                <div style="font-weight:700;font-size:10.5px;color:#166534;">Barang Soeurm</div>
-                <div style="font-size:9.5px;color:#16a34a;margin-top:1px;line-height:1.3;">Maintenance Leader</div>
+              <div onclick="var f=document.getElementById('fg-maintenance');f.style.display=f.style.display==='none'?'flex':'none'" style="background:#fffbeb;border-radius:5px;padding:2px 8px;font-size:9px;font-weight:700;color:#d97706;text-transform:uppercase;letter-spacing:.06em;margin:4px 0 2px;align-self:flex-start;cursor:pointer;margin-left:8px;">Maintenance ▸</div>
+              <div data-org-name="Barang Soeurm" style="background:#fff;border:1.5px solid #e2e8f0;border-left:3px solid #86efac;border-radius:8px;padding:5px 7px;width:calc(100% - 8px);box-sizing:border-box;text-align:center;margin-left:8px;">
+                <div style="font-weight:700;font-size:10.5px;">Barang Soeurm</div>
+                <div style="font-size:9.5px;color:#6b7a8d;margin-top:1px;line-height:1.3;">Maintenance Leader</div>
               </div>
               <div id="fg-maintenance" style="display:none;flex-direction:column;gap:5px;width:100%;align-items:center;">
               <div data-org-name="Sopheap Puth" style="background:#fff;border:1.5px solid #e2e8f0;border-left:3px solid #86efac;border-radius:8px;padding:5px 7px;width:calc(100% - 16px);box-sizing:border-box;text-align:center;margin-left:16px;">
@@ -1415,6 +1417,7 @@
               <div data-org-name="Nhoem David" style="background:#fff;border:1.5px solid #e2e8f0;border-left:3px solid #86efac;border-radius:8px;padding:5px 7px;width:calc(100% - 16px);box-sizing:border-box;text-align:center;margin-left:16px;">
                 <div style="font-weight:700;font-size:10.5px;">Nhoem David</div>
                 <div style="font-size:9.5px;color:#6b7a8d;margin-top:1px;line-height:1.3;">Maintenance</div>
+              </div>
               </div>
               </div>
               </div>
