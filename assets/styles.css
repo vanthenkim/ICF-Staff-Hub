@@ -1386,7 +1386,6 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 .planner-span-bar {
   display: flex; flex-direction: column;
   padding: 4px 8px;
-  margin: 0 2px;
   overflow: hidden;
 }
 .planner-span-bar__title {

@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" sizes="192x192" href="/assets/icons/icon-192.png" />
 <title>Events &amp; Year Topics · Staff Hub</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=20260717z" />
+<link rel="stylesheet" href="assets/styles.css?v=20260717aa" />
 </head>
 <body>
 <div class="app">
@@ -720,7 +720,7 @@
     return lanes.map(l => l.items);
   }
 
-  function spanBarHtml(item, colOffset) {
+  function spanBarHtml(item, colOffset, insetPx) {
     const ev = item.ev;
     const meta = metaFor(ev);
     const colStart = item.startCol + 1 + colOffset;
@@ -734,8 +734,12 @@
     // look like a new event starting here.
     const borderLeft = item.openStart ? 'none' : `2px solid ${meta.color}`;
     const timePart = ev.startTime ? `${ev.startTime}${ev.endTime ? '–' + ev.endTime : ''} · ` : 'All day · ';
+    // Inset the bar's start/end edges to match the horizontal padding the
+    // regular cards sit inside of, so a bar's edge lines up exactly with
+    // the card beneath it instead of looking wider or narrower.
+    const inset = insetPx || 0;
 
-    return `<div class="planner-span-bar" style="grid-column:${colStart} / ${colEnd}; background:${meta.color}1f; border-left:${borderLeft}; border-radius:0 ${roundRight} ${roundRight} 0;">
+    return `<div class="planner-span-bar" style="grid-column:${colStart} / ${colEnd}; margin:0 ${inset}px; background:${meta.color}1f; border-left:${borderLeft}; border-radius:0 ${roundRight} ${roundRight} 0;">
       <span class="planner-span-bar__title">${ev.title}</span>
       <span class="planner-span-bar__meta" style="color:${meta.color}">${timePart}${meta.label}</span>
     </div>`;
@@ -856,7 +860,7 @@
       const weekDays = allCellDates.slice(w, w + 7);
       const lanes = computeSpanLanes(weekDays, filtered);
       const laneRows = lanes.map(lane =>
-        `<div class="planner-span-lane">${lane.map(item => spanBarHtml(item, 0)).join('')}</div>`
+        `<div class="planner-span-lane">${lane.map(item => spanBarHtml(item, 0, 8)).join('')}</div>`
       ).join('');
 
       // Day number sits above the span bars, chips sit below — same
@@ -1042,7 +1046,7 @@
       const weekNum  = getISOWeek(weekDays[0]);
       const lanes    = computeSpanLanes(weekDays, filtered);
       const laneRows = lanes.map(lane =>
-        `<div class="planner-2weeks-span-lane">${lane.map(item => spanBarHtml(item, 1)).join('')}</div>`
+        `<div class="planner-2weeks-span-lane">${lane.map(item => spanBarHtml(item, 1, 8)).join('')}</div>`
       ).join('');
 
       const numCells = weekDays.map(d => {
