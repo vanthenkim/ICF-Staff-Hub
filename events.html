@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" sizes="192x192" href="/assets/icons/icon-192.png" />
 <title>Events &amp; Year Topics · Staff Hub</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=20260717k" />
+<link rel="stylesheet" href="assets/styles.css?v=20260717l" />
 </head>
 <body>
 <div class="app">
@@ -81,6 +81,25 @@
       <!-- Year planner — live from Google Sheet -->
       <div class="section-title"><h2>Year Planner</h2></div>
       <div class="planner-toolbar">
+        <div class="planner-filter" id="planner-filter">
+          <button type="button" class="planner-filter__toggle" id="planner-filter-toggle" aria-haspopup="listbox" aria-expanded="false">
+            <span class="planner-filter__label" id="planner-filter-label">All events</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="planner-filter__menu" id="planner-filter-menu" role="listbox" hidden>
+            <button type="button" class="planner-filter__option is-active" data-cat="all" data-label="All events" role="option" aria-selected="true">All events</button>
+            <button type="button" class="planner-filter__option" data-cat="all-staff" data-label="All staff / holiday" role="option"><span class="planner-filter__dot" style="background:#2563EB"></span>All staff / holiday</button>
+            <button type="button" class="planner-filter__option" data-cat="church" data-label="Church" role="option"><span class="planner-filter__dot" style="background:#9333EA"></span>Church</button>
+            <button type="button" class="planner-filter__option" data-cat="social" data-label="Social" role="option"><span class="planner-filter__dot" style="background:#059669"></span>Social</button>
+            <button type="button" class="planner-filter__option" data-cat="LA" data-label="Leadership Academy" role="option"><span class="planner-filter__dot" style="background:#0891B2"></span>Leadership Academy</button>
+            <button type="button" class="planner-filter__option" data-cat="BA" data-label="Business Academy" role="option"><span class="planner-filter__dot" style="background:#6366F1"></span>Business Academy</button>
+            <button type="button" class="planner-filter__option" data-cat="AC" data-label="Learning Center" role="option"><span class="planner-filter__dot" style="background:#EA580C"></span>Learning Center</button>
+            <button type="button" class="planner-filter__option" data-cat="BN" data-label="Business Network" role="option"><span class="planner-filter__dot" style="background:#475569"></span>Business Network</button>
+            <button type="button" class="planner-filter__option" data-cat="MT" data-label="Mission Team" role="option"><span class="planner-filter__dot" style="background:#D97706"></span>Mission Team</button>
+            <button type="button" class="planner-filter__option" data-cat="GU" data-label="Guests" role="option"><span class="planner-filter__dot" style="background:#DB2777"></span>Guests</button>
+            <button type="button" class="planner-filter__option" data-cat="OT" data-label="Other" role="option"><span class="planner-filter__dot" style="background:#64748B"></span>Other</button>
+          </div>
+        </div>
         <div class="planner-tabs" id="planner-tabs">
           <button type="button" class="planner-tab" data-range="week">This week</button>
           <button type="button" class="planner-tab is-active" data-range="month">This month</button>
@@ -91,25 +110,6 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
           Full calendar
         </a>
-      </div>
-      <div class="planner-filter" id="planner-filter">
-        <button type="button" class="planner-filter__toggle" id="planner-filter-toggle" aria-haspopup="listbox" aria-expanded="false">
-          <span class="planner-filter__label" id="planner-filter-label">All events</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="planner-filter__menu" id="planner-filter-menu" role="listbox" hidden>
-          <button type="button" class="planner-filter__option is-active" data-cat="all" data-label="All events" role="option" aria-selected="true">All events</button>
-          <button type="button" class="planner-filter__option" data-cat="all-staff" data-label="All staff / holiday" role="option"><span class="planner-filter__dot" style="background:#2563EB"></span>All staff / holiday</button>
-          <button type="button" class="planner-filter__option" data-cat="church" data-label="Church" role="option"><span class="planner-filter__dot" style="background:#9333EA"></span>Church</button>
-          <button type="button" class="planner-filter__option" data-cat="social" data-label="Social" role="option"><span class="planner-filter__dot" style="background:#059669"></span>Social</button>
-          <button type="button" class="planner-filter__option" data-cat="LA" data-label="Leadership Academy" role="option"><span class="planner-filter__dot" style="background:#0891B2"></span>Leadership Academy</button>
-          <button type="button" class="planner-filter__option" data-cat="BA" data-label="Business Academy" role="option"><span class="planner-filter__dot" style="background:#6366F1"></span>Business Academy</button>
-          <button type="button" class="planner-filter__option" data-cat="AC" data-label="Learning Center" role="option"><span class="planner-filter__dot" style="background:#EA580C"></span>Learning Center</button>
-          <button type="button" class="planner-filter__option" data-cat="BN" data-label="Business Network" role="option"><span class="planner-filter__dot" style="background:#475569"></span>Business Network</button>
-          <button type="button" class="planner-filter__option" data-cat="MT" data-label="Mission Team" role="option"><span class="planner-filter__dot" style="background:#D97706"></span>Mission Team</button>
-          <button type="button" class="planner-filter__option" data-cat="GU" data-label="Guests" role="option"><span class="planner-filter__dot" style="background:#DB2777"></span>Guests</button>
-          <button type="button" class="planner-filter__option" data-cat="OT" data-label="Other" role="option"><span class="planner-filter__dot" style="background:#64748B"></span>Other</button>
-        </div>
       </div>
       <div id="planner-events">
         <div class="gcal-loading">Loading planner…</div>
