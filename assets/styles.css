@@ -1151,7 +1151,12 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 }
 
 /* ---------- Year Planner (events page) ---------- */
-.planner-tabs { display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
+.planner-toolbar {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 10px; flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+.planner-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
 .planner-tab {
   border: 1px solid var(--border);
   background: var(--white);
