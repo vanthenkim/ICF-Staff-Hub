@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" sizes="192x192" href="/assets/icons/icon-192.png" />
 <title>Events &amp; Year Topics · Staff Hub</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=20260717" />
+<link rel="stylesheet" href="assets/styles.css?v=20260717b" />
 </head>
 <body>
 <div class="app">
@@ -449,6 +449,28 @@
   // packs the title/legend/month text into whichever row the category headers
   // land on, and which cell it ends up in (day column vs. the header cell
   // itself) varies month to month. Search both candidate cells as one blob.
+  // Entries can lead with a time (or time range) before the event name, e.g.
+  // "17:00-20:30 Oneighty" or just "17:00 Oneighty". No time prefix = all-day.
+  function extractTime(text) {
+    const range = text.match(/^(\d{1,2}:\d{2}\s?(?:AM|PM|am|pm)?)\s*[-–]\s*(\d{1,2}:\d{2}\s?(?:AM|PM|am|pm)?)\s+(.*)$/);
+    if (range) return { startTime: range[1].trim(), endTime: range[2].trim(), title: range[3].trim() };
+    const single = text.match(/^(\d{1,2}:\d{2}\s?(?:AM|PM|am|pm)?)\s+(.*)$/);
+    if (single) return { startTime: single[1].trim(), endTime: null, title: single[2].trim() };
+    return { startTime: null, endTime: null, title: text.trim() };
+  }
+
+  function timeToMinutes(t) {
+    if (!t) return -1;
+    const m = t.match(/^(\d{1,2}):(\d{2})\s?(AM|PM|am|pm)?$/);
+    if (!m) return -1;
+    let h = parseInt(m[1], 10);
+    const min = parseInt(m[2], 10);
+    const ap = m[3] ? m[3].toUpperCase() : null;
+    if (ap === 'PM' && h < 12) h += 12;
+    if (ap === 'AM' && h === 12) h = 0;
+    return h * 60 + min;
+  }
+
   function findMonthInText(text) {
     const lower = text.toLowerCase();
     for (let i = 0; i < MONTH_NAMES_FULL.length; i++) {
@@ -491,19 +513,25 @@
         const socialText    = cellAt(rows, rowIdx, socialCol);
         const othersText    = cellAt(rows, rowIdx, othersCol);
 
-        if (allStaffText) rawEntries.push({ date, category: 'all-staff', subCategory: null, text: allStaffText });
-        if (churchText)    rawEntries.push({ date, category: 'church',    subCategory: null, text: churchText });
-        if (socialText)    rawEntries.push({ date, category: 'social',    subCategory: null, text: socialText });
+        if (allStaffText) {
+          const t = extractTime(allStaffText);
+          rawEntries.push({ date, category: 'all-staff', subCategory: null, text: allStaffText, title: t.title, startTime: t.startTime, endTime: t.endTime });
+        }
+        if (churchText) {
+          const t = extractTime(churchText);
+          rawEntries.push({ date, category: 'church', subCategory: null, text: churchText, title: t.title, startTime: t.startTime, endTime: t.endTime });
+        }
+        if (socialText) {
+          const t = extractTime(socialText);
+          rawEntries.push({ date, category: 'social', subCategory: null, text: socialText, title: t.title, startTime: t.startTime, endTime: t.endTime });
+        }
 
         if (othersText) {
           const match = othersText.match(/^\[(LA|BN|GUEST|MISSION)\]\s*(.*)$/i);
-          if (match) {
-            const key = match[1].toUpperCase();
-            const title = match[2].trim();
-            rawEntries.push({ date, category: 'others', subCategory: key, text: title || othersText });
-          } else {
-            rawEntries.push({ date, category: 'others', subCategory: 'OTHER', text: othersText });
-          }
+          const key  = match ? match[1].toUpperCase() : 'OTHER';
+          const rest = match ? (match[2].trim() || othersText) : othersText;
+          const t = extractTime(rest);
+          rawEntries.push({ date, category: 'others', subCategory: key, text: rest, title: t.title, startTime: t.startTime, endTime: t.endTime });
         }
       }
     }
@@ -530,7 +558,9 @@
         category: first.category,
         subCategory: first.subCategory,
         subCategoryLabel: first.subCategory ? (TAG_LABELS[first.subCategory] || 'Other') : null,
-        title: first.text,
+        title: first.title,
+        startTime: first.startTime,
+        endTime: first.endTime,
       };
     }
 
@@ -611,22 +641,48 @@
       return;
     }
 
-    let lastMonthLabel = '';
-    const html = filtered.map(ev => {
-      const meta  = metaFor(ev);
-      const badge = fmtDateBadge(ev.start, ev.end);
-      const s     = parseISODate(ev.start);
-      const monthLabel = `${['January','February','March','April','May','June','July','August','September','October','November','December'][s.getUTCMonth()]} ${s.getUTCFullYear()}`;
-      let monthHtml = '';
-      if (monthLabel !== lastMonthLabel) { monthHtml = `<p class="planner-month">${monthLabel}</p>`; lastMonthLabel = monthLabel; }
+    // Group by the calendar day each event starts on — Apple Calendar's
+    // List view groups this way too (one date header, rows underneath).
+    const byDate = new Map();
+    filtered.forEach(ev => {
+      if (!byDate.has(ev.start)) byDate.set(ev.start, []);
+      byDate.get(ev.start).push(ev);
+    });
+    const sortedDates = Array.from(byDate.keys()).sort();
+    const todayISO = todayUTC().toISOString().slice(0, 10);
+    const WEEKDAYS_FULL = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 
-      return `${monthHtml}<div class="planner-card">
-        <div class="planner-card__date"><strong>${badge.top}</strong><span>${badge.sub}</span></div>
-        <div class="planner-card__bar" style="background:${meta.color}"></div>
-        <div class="planner-card__body">
-          <p class="planner-card__title">${ev.title}</p>
-          <span class="planner-card__cat" style="background:${meta.bg};color:${meta.color}">${meta.label}</span>
-        </div>
+    const html = sortedDates.map(dateStr => {
+      const d = parseISODate(dateStr);
+      const dayLabel = `${WEEKDAYS_FULL[d.getUTCDay()]} · ${d.getUTCDate()} ${MONTHS[d.getUTCMonth()]}`;
+      const isToday  = dateStr === todayISO;
+
+      const dayEvents = byDate.get(dateStr).slice()
+        .sort((a, b) => timeToMinutes(a.startTime) - timeToMinutes(b.startTime));
+
+      const rows = dayEvents.map(ev => {
+        const meta   = metaFor(ev);
+        const isSpan = ev.start !== ev.end;
+        const badge  = isSpan ? fmtDateBadge(ev.start, ev.end) : null;
+        const sub    = isSpan ? `${badge.top} ${badge.sub} · ${meta.label}` : meta.label;
+
+        const timeHtml = ev.startTime
+          ? `<span class="planner-row__time-start">${ev.startTime}</span>${ev.endTime ? `<span class="planner-row__time-end">${ev.endTime}</span>` : ''}`
+          : `<span class="planner-row__time-allday">All day</span>`;
+
+        return `<div class="planner-row">
+          <div class="planner-row__bar" style="background:${meta.color}"></div>
+          <div class="planner-row__body">
+            <p class="planner-row__title">${ev.title}</p>
+            <p class="planner-row__sub">${sub}</p>
+          </div>
+          <div class="planner-row__time">${timeHtml}</div>
+        </div>`;
+      }).join('');
+
+      return `<div class="planner-daygroup">
+        <div class="planner-day-header"><p class="planner-day-header__title${isToday ? ' is-today' : ''}">${dayLabel}</p></div>
+        <div class="planner-row-list">${rows}</div>
       </div>`;
     }).join('');
 

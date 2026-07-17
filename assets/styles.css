@@ -1177,32 +1177,29 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 .planner-pill.is-active { border-color: var(--border-strong); color: var(--text); background: var(--surface-2); }
 .planner-pill__dot { width: 7px; height: 7px; border-radius: 50%; flex: none; }
 
-.planner-month {
-  font-size: 12px; font-weight: 600;
-  text-transform: uppercase; letter-spacing: 0.06em;
-  color: var(--text-soft);
-  margin: 16px 0 8px;
-}
-.planner-month:first-child { margin-top: 0; }
+/* Apple Calendar-style list: date header per day, flat rows with a
+   colored bar and a bottom divider — no boxed cards, no shadows. */
+.planner-daygroup { margin-bottom: 4px; }
+.planner-day-header { padding: 14px 2px 6px; }
+.planner-day-header:first-child { padding-top: 0; }
+.planner-day-header__title { margin: 0; font-size: 15px; font-weight: 600; color: var(--text); }
+.planner-day-header__title.is-today { color: var(--red-600); }
 
-.planner-card {
-  display: flex; align-items: center; gap: 14px;
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 12px 14px;
-  margin-bottom: 8px;
-  box-shadow: var(--shadow-xs);
-  transition: border-color .15s, box-shadow .15s;
+.planner-row-list { border-top: 1px solid var(--border); }
+.planner-row {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 12px 2px;
+  border-bottom: 1px solid var(--border);
 }
-.planner-card:hover { border-color: var(--border-strong); box-shadow: var(--shadow-sm); }
-.planner-card__date { flex: none; min-width: 44px; text-align: center; }
-.planner-card__date strong { display: block; font-size: 17px; font-weight: 600; line-height: 1.2; white-space: nowrap; }
-.planner-card__date span { display: block; font-size: 10px; font-weight: 600; text-transform: uppercase; color: var(--text-soft); margin-top: 2px; }
-.planner-card__bar { width: 3px; align-self: stretch; border-radius: 0; flex: none; }
-.planner-card__body { flex: 1; min-width: 0; }
-.planner-card__title { margin: 0 0 4px; font-size: 15px; font-weight: 600; }
-.planner-card__cat { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 999px; }
+.planner-row:last-child { border-bottom: none; }
+.planner-row__bar { width: 3px; align-self: stretch; min-height: 32px; border-radius: 2px; flex: none; }
+.planner-row__body { flex: 1; min-width: 0; }
+.planner-row__title { margin: 0; font-size: 15px; font-weight: 600; color: var(--text); }
+.planner-row__sub { margin: 2px 0 0; font-size: 13px; color: var(--text-muted); }
+.planner-row__time { flex: none; text-align: right; min-width: 56px; }
+.planner-row__time-start { display: block; font-size: 15px; font-weight: 500; color: var(--text); }
+.planner-row__time-end { display: block; font-size: 13px; color: var(--text-soft); margin-top: 2px; }
+.planner-row__time-allday { display: block; font-size: 13px; font-weight: 500; color: var(--text-soft); }
 
 /* ---------- Emergency contacts footer strip ---------- */
 /* Home page two-column layout */
