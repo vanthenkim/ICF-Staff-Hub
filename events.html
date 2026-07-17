@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" sizes="192x192" href="/assets/icons/icon-192.png" />
 <title>Events &amp; Year Topics · Staff Hub</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=20260717y" />
+<link rel="stylesheet" href="assets/styles.css?v=20260717z" />
 </head>
 <body>
 <div class="app">
@@ -597,11 +597,12 @@
 
     // Same-text entries only merge into one spanning event if they're close
     // together in time (start-day / blank / end-day convention). Recurring
-    // programs like a weekly "Youth Gathering" share a name across many
-    // separate weeks — without a gap limit those would wrongly collapse into
-    // one multi-month "event". A 14-day gap comfortably covers real spans
-    // (e.g. a 9-day outreach week) while keeping week/month-apart repeats separate.
-    const MAX_SPAN_GAP_DAYS = 14;
+    // items that share an exact name — a weekly "Youth Gathering", a
+    // fortnightly "All Hands Meeting" (~14 days apart) — must NOT collapse
+    // into one fake multi-week "event". A 9-day gap comfortably covers real
+    // trip spans (e.g. a 9-day outreach week) while staying safely under
+    // the ~14-day gap of a twice-a-month recurring item.
+    const MAX_SPAN_GAP_DAYS = 9;
 
     function toEvent(first, last) {
       return {
