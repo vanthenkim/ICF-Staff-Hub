@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" sizes="192x192" href="/assets/icons/icon-192.png" />
 <title>Events &amp; Year Topics · Staff Hub</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=20260717h" />
+<link rel="stylesheet" href="assets/styles.css?v=20260717i" />
 </head>
 <body>
 <div class="app">
@@ -677,8 +677,6 @@
     return s.charAt(0).toUpperCase() + s.slice(1);
   }
 
-  let yearViewDayMap = new Map();
-
   function renderYearView(events, catKey) {
     const filtered = events.filter(ev => catKey === 'all' || pillKeyFor(ev) === catKey);
 
@@ -695,37 +693,46 @@
         d = addDays(d, 1);
       }
     });
-    yearViewDayMap = dayMap;
 
     const todayISO = todayUTC().toISOString().slice(0, 10);
-    const DOW_MIN = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
 
+    // Spreadsheet-style layout: each month is a column running day 1 to
+    // the end of the month top-to-bottom, with events shown inline on
+    // their day row. Months sit side by side so scrolling right moves
+    // through the year — the same shape as the source sheet.
     const monthCards = PLANNER_TABS.map(tab => {
       return Array.from({ length: 12 }, (_, mi) => {
-        const first = new Date(Date.UTC(tab.year, mi, 1));
         const daysInMonth = new Date(Date.UTC(tab.year, mi + 1, 0)).getUTCDate();
-        let offset = first.getUTCDay() - 1;
-        if (offset < 0) offset = 6;
 
-        const dowHtml = DOW_MIN.map(l => `<span class="planner-year-dow">${l}</span>`).join('');
-        const blanks  = Array.from({ length: offset }, () => '<span></span>').join('');
-
-        const dayCells = Array.from({ length: daysInMonth }, (_, i) => {
+        const dayRows = Array.from({ length: daysInMonth }, (_, i) => {
           const d   = i + 1;
+          const dateObj = new Date(Date.UTC(tab.year, mi, d));
           const iso = `${tab.year}-${String(mi + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
-          const dayEvents = dayMap.get(iso) || [];
-          const colors = [...new Set(dayEvents.map(ev => metaFor(ev).color))].slice(0, 3);
-          const dots   = colors.map(c => `<span style="background:${c}"></span>`).join('');
+          const dayEvents = (dayMap.get(iso) || []).slice()
+            .sort((a, b) => timeToMinutes(a.startTime) - timeToMinutes(b.startTime));
           const isToday = iso === todayISO;
-          return `<button type="button" class="planner-daycell${isToday ? ' is-today' : ''}" data-date="${iso}">
-            <span class="planner-daycell__num">${d}</span>
-            <span class="planner-daycell__dots">${dots}</span>
-          </button>`;
+
+          const chips = dayEvents.map(ev => {
+            const meta = metaFor(ev);
+            const timePart = ev.startTime ? `${ev.startTime}${ev.endTime ? '–' + ev.endTime : ''}` : '';
+            return `<div class="planner-year-chip" style="border-left-color:${meta.color}">
+              <span class="planner-year-chip__title">${ev.title}</span>
+              ${timePart ? `<span class="planner-year-chip__time">${timePart}</span>` : ''}
+            </div>`;
+          }).join('');
+
+          return `<div class="planner-year-day-row${isToday ? ' is-today' : ''}">
+            <div class="planner-year-day-row__date">
+              <span class="planner-year-day-row__num">${d}</span>
+              <span class="planner-year-day-row__dow">${DAYS[dateObj.getUTCDay()].slice(0, 2)}</span>
+            </div>
+            <div class="planner-year-day-row__events">${chips}</div>
+          </div>`;
         }).join('');
 
         return `<div class="planner-year-card" data-year="${tab.year}" data-month="${mi}">
           <p class="planner-year-card__title">${monthLabel(mi)} ${tab.year}</p>
-          <div class="planner-year-grid">${dowHtml}${blanks}${dayCells}</div>
+          <div class="planner-year-days">${dayRows}</div>
         </div>`;
       }).join('');
     }).join('');
@@ -744,9 +751,8 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
         </button>
       </div>
-      <div class="planner-year-scroller" id="planner-year-scroller">${monthCards}</div>
       <div class="planner-year-legend">${legendItems}</div>
-      <div class="planner-year-detail" id="planner-year-detail"><p class="planner-year-detail__empty">Tap a day to see what's on.</p></div>
+      <div class="planner-year-scroller" id="planner-year-scroller">${monthCards}</div>
     </div>`;
   }
 
@@ -756,36 +762,6 @@
     const now  = new Date();
     const card = scroller.querySelector(`.planner-year-card[data-year="${now.getFullYear()}"][data-month="${now.getMonth()}"]`);
     if (card) card.scrollIntoView({ block: 'nearest', inline: 'start' });
-  }
-
-  function renderYearDayDetail(iso) {
-    const detail = document.getElementById('planner-year-detail');
-    if (!detail) return;
-    const dayEvents = (yearViewDayMap.get(iso) || []).slice()
-      .sort((a, b) => timeToMinutes(a.startTime) - timeToMinutes(b.startTime));
-
-    if (dayEvents.length === 0) {
-      detail.innerHTML = '<p class="planner-year-detail__empty">Nothing on this day.</p>';
-      return;
-    }
-
-    const d = parseISODate(iso);
-    const WEEKDAYS_FULL = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-    const label = `${WEEKDAYS_FULL[d.getUTCDay()]} · ${d.getUTCDate()} ${MONTHS[d.getUTCMonth()]}`;
-
-    const rows = dayEvents.map(ev => {
-      const meta = metaFor(ev);
-      const timePart = ev.startTime ? `${ev.startTime}${ev.endTime ? '–' + ev.endTime : ''}` : 'All day';
-      return `<div class="planner-row" style="border-left-color:${meta.color}">
-        <p class="planner-row__title">${ev.title}</p>
-        <p class="planner-row__meta" style="color:${meta.color}">${timePart} · ${meta.label}</p>
-      </div>`;
-    }).join('');
-
-    detail.innerHTML = `<div class="planner-daygroup">
-      <div class="planner-day-header"><p class="planner-day-header__title">${label}</p></div>
-      ${rows}
-    </div>`;
   }
 
   function render(events, rangeKey, catKey) {
@@ -871,13 +847,6 @@
   });
 
   container.addEventListener('click', (e) => {
-    const dayBtn = e.target.closest('.planner-daycell');
-    if (dayBtn) {
-      container.querySelectorAll('.planner-daycell.is-selected').forEach(b => b.classList.remove('is-selected'));
-      dayBtn.classList.add('is-selected');
-      renderYearDayDetail(dayBtn.dataset.date);
-      return;
-    }
     const navBtn = e.target.closest('.planner-year-nav-btn');
     if (navBtn) {
       const scroller = document.getElementById('planner-year-scroller');
