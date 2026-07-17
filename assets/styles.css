@@ -1285,11 +1285,13 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 .planner-year-day-row__events { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; padding-top: 2px; }
 
 .planner-year-chip {
+  display: flex; align-items: center; justify-content: space-between; gap: 6px;
   border-left: 2px solid var(--border);
   border-radius: 0 4px 4px 0;
   padding: 4px 8px;
   background: var(--surface-2);
 }
+.planner-year-chip__body { min-width: 0; }
 .planner-year-chip__title { display: block; font-size: 13px; font-weight: 500; color: var(--text); line-height: 1.35; }
 .planner-year-chip__meta { display: block; font-size: 11.5px; font-weight: 500; opacity: 0.85; margin-top: 1px; }
 
@@ -1354,11 +1356,13 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 .planner-month-cell.is-outside { background: var(--surface-2); }
 .planner-month-cell__events { display: flex; flex-direction: column; gap: 5px; }
 .planner-month-chip {
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 4px;
   border-left: 2px solid var(--border);
   border-radius: 0 4px 4px 0;
   background: var(--surface-2);
   padding: 4px 7px;
 }
+.planner-month-chip__body { min-width: 0; }
 .planner-month-chip__title {
   display: block;
   font-size: 12px; font-weight: 500;
@@ -1384,10 +1388,11 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   padding: 3px 0;
 }
 .planner-span-bar {
-  display: flex; flex-direction: column;
+  display: flex; align-items: center; justify-content: space-between; gap: 6px;
   padding: 4px 8px;
   overflow: hidden;
 }
+.planner-span-bar__body { min-width: 0; overflow: hidden; }
 .planner-span-bar__title {
   font-size: 12px; font-weight: 500;
   color: var(--text);
@@ -1398,6 +1403,19 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   margin-top: 1px;
 }
+
+/* "Add to Google Calendar" icon button — appears on every event card,
+   chip and span bar across all views. */
+.planner-addcal {
+  flex: none;
+  width: 22px; height: 22px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted);
+}
+.planner-addcal:hover { background: var(--surface-2); color: var(--text); }
 
 @media (max-width: 640px) {
   .planner-month-cell { min-height: 80px; padding: 0 5px 5px; }
@@ -1458,11 +1476,13 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 .planner-week-day-col { display: flex; flex-direction: column; gap: 8px; min-height: 300px; }
 
 .planner-week-card {
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 6px;
   border-left: 2px solid var(--border);
   border-radius: 0 8px 8px 0;
   background: var(--surface-2);
   padding: 8px 10px;
 }
+.planner-week-card__body { min-width: 0; }
 .planner-week-card__title { display: block; font-size: 13px; font-weight: 500; color: var(--text); line-height: 1.35; }
 .planner-week-card__meta { display: block; font-size: 11.5px; font-weight: 500; opacity: 0.85; margin-top: 2px; }
 
