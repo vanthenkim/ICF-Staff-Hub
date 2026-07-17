@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" sizes="192x192" href="/assets/icons/icon-192.png" />
 <title>Events &amp; Year Topics · Staff Hub</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=20260717o" />
+<link rel="stylesheet" href="assets/styles.css?v=20260717p" />
 </head>
 <body>
 <div class="app">
@@ -103,7 +103,6 @@
         <div class="planner-tabs" id="planner-tabs">
           <button type="button" class="planner-tab" data-range="week">This week</button>
           <button type="button" class="planner-tab is-active" data-range="month">Month</button>
-          <button type="button" class="planner-tab" data-range="2months">Next 2 months</button>
           <button type="button" class="planner-tab" data-range="year">Year overview</button>
         </div>
         <a href="https://docs.google.com/spreadsheets/d/1VMcwMqWxRDnLZ6QTGel33aNVHLlNtqZf_HnwtCanALA/edit?gid=324796546#gid=324796546" target="_blank" rel="noopener" class="btn btn--sm">
@@ -840,6 +839,77 @@
     </div>`;
   }
 
+  let weekViewDate = (function () {
+    const t = todayUTC();
+    const dow = t.getUTCDay(); // 0=Sun..6=Sat
+    const diffToMonday = dow === 0 ? -6 : 1 - dow;
+    return addDays(t, diffToMonday);
+  })();
+
+  function renderWeekView(events, catKey) {
+    const filtered = events.filter(ev => catKey === 'all' || pillKeyFor(ev) === catKey);
+
+    const dayMap = new Map();
+    filtered.forEach(ev => {
+      let d = parseISODate(ev.start);
+      const end = parseISODate(ev.end);
+      while (d <= end) {
+        const iso = d.toISOString().slice(0, 10);
+        if (!dayMap.has(iso)) dayMap.set(iso, []);
+        dayMap.get(iso).push(ev);
+        d = addDays(d, 1);
+      }
+    });
+
+    const todayISO = todayUTC().toISOString().slice(0, 10);
+    const WEEKDAY_LABELS = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
+    const days = Array.from({ length: 7 }, (_, i) => addDays(weekViewDate, i));
+
+    const s = days[0], e = days[6];
+    const rangeLabel = s.getUTCMonth() === e.getUTCMonth()
+      ? `${s.getUTCDate()}–${e.getUTCDate()} ${monthLabel(s.getUTCMonth())} ${s.getUTCFullYear()}`
+      : `${s.getUTCDate()} ${monthLabel(s.getUTCMonth())} – ${e.getUTCDate()} ${monthLabel(e.getUTCMonth())} ${e.getUTCFullYear()}`;
+
+    const headers = days.map((d, i) => {
+      const iso = d.toISOString().slice(0, 10);
+      const isToday = iso === todayISO;
+      return `<div class="planner-week-day-header">
+        <span class="planner-week-day-header__dow">${WEEKDAY_LABELS[i]}</span>
+        <span class="planner-week-day-header__num${isToday ? ' is-today' : ''}">${d.getUTCDate()}</span>
+      </div>`;
+    }).join('');
+
+    const cols = days.map(d => {
+      const iso = d.toISOString().slice(0, 10);
+      const dayEvents = (dayMap.get(iso) || []).slice()
+        .sort((a, b) => timeToMinutes(a.startTime) - timeToMinutes(b.startTime));
+
+      const cards = dayEvents.map(ev => {
+        const meta = metaFor(ev);
+        const timePart = ev.startTime ? `${ev.startTime}${ev.endTime ? '–' + ev.endTime : ''} · ` : '';
+        return `<div class="planner-week-card" style="border-left-color:${meta.color}">
+          <span class="planner-week-card__title">${ev.title}</span>
+          <span class="planner-week-card__meta" style="color:${meta.color}">${timePart}${meta.label}</span>
+        </div>`;
+      }).join('');
+
+      return `<div class="planner-week-day-col">${cards}</div>`;
+    }).join('');
+
+    return `<div class="planner-week">
+      <div class="planner-week-nav">
+        <button type="button" class="planner-week-nav-btn" data-dir="-1" aria-label="Previous week">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <p class="planner-week-nav__label">${rangeLabel}</p>
+        <button type="button" class="planner-week-nav-btn" data-dir="1" aria-label="Next week">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+      <div class="planner-week-grid">${headers}${cols}</div>
+    </div>`;
+  }
+
   function render(events, rangeKey, catKey) {
     if (rangeKey === 'year') {
       container.innerHTML = renderYearView(events, catKey);
@@ -852,66 +922,7 @@
       return;
     }
 
-    const { start, end } = rangeFor(rangeKey);
-    const filtered = events.filter(ev => {
-      const evStart = parseISODate(ev.start), evEnd = parseISODate(ev.end);
-      const inRange = evEnd >= start && evStart <= end;
-      const inCat   = catKey === 'all' || pillKeyFor(ev) === catKey;
-      return inRange && inCat;
-    });
-
-    if (filtered.length === 0) {
-      container.innerHTML = '<div class="gcal-loading">No events in this range.</div>';
-      return;
-    }
-
-    // Group by the calendar day each event starts on — Apple Calendar's
-    // List view groups this way too (one date header, rows underneath).
-    const byDate = new Map();
-    filtered.forEach(ev => {
-      if (!byDate.has(ev.start)) byDate.set(ev.start, []);
-      byDate.get(ev.start).push(ev);
-    });
-    const sortedDates = Array.from(byDate.keys()).sort();
-    const todayISO = todayUTC().toISOString().slice(0, 10);
-    const WEEKDAYS_FULL = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-
-    const html = sortedDates.map(dateStr => {
-      const d = parseISODate(dateStr);
-      const dayLabel = `${WEEKDAYS_FULL[d.getUTCDay()]} · ${d.getUTCDate()} ${MONTHS[d.getUTCMonth()]}`;
-      const isToday  = dateStr === todayISO;
-
-      const dayEvents = byDate.get(dateStr).slice()
-        .sort((a, b) => timeToMinutes(a.startTime) - timeToMinutes(b.startTime));
-
-      const rows = dayEvents.map(ev => {
-        const meta   = metaFor(ev);
-        const isSpan = ev.start !== ev.end;
-        const badge  = isSpan ? fmtDateBadge(ev.start, ev.end) : null;
-
-        const timePart = ev.startTime
-          ? `${ev.startTime}${ev.endTime ? '–' + ev.endTime : ''}`
-          : 'All day';
-        // Spanning events show their date range; if a time was also given
-        // (e.g. a departure time on a multi-day trip), keep it alongside
-        // the range instead of letting the range hide it.
-        const metaLine = isSpan
-          ? (ev.startTime ? `${badge.top} ${badge.sub} · ${timePart} · ${meta.label}` : `${badge.top} ${badge.sub} · ${meta.label}`)
-          : `${timePart} · ${meta.label}`;
-
-        return `<div class="planner-row" style="border-left-color:${meta.color}">
-          <p class="planner-row__title">${ev.title}</p>
-          <p class="planner-row__meta" style="color:${meta.color}">${metaLine}</p>
-        </div>`;
-      }).join('');
-
-      return `<div class="planner-daygroup">
-        <div class="planner-day-header"><p class="planner-day-header__title${isToday ? ' is-today' : ''}">${dayLabel}</p></div>
-        ${rows}
-      </div>`;
-    }).join('');
-
-    container.innerHTML = html;
+    container.innerHTML = renderWeekView(events, catKey);
   }
 
   let allEvents = [];
@@ -926,6 +937,11 @@
     currentRange = btn.dataset.range;
     if (currentRange === 'month') {
       monthViewDate = new Date(Date.UTC(todayUTC().getUTCFullYear(), todayUTC().getUTCMonth(), 1));
+    }
+    if (currentRange === 'week') {
+      const t = todayUTC();
+      const dow = t.getUTCDay();
+      weekViewDate = addDays(t, dow === 0 ? -6 : 1 - dow);
     }
     render(allEvents, currentRange, currentCat);
   });
@@ -945,6 +961,14 @@
     if (monthNavBtn) {
       const dir = Number(monthNavBtn.dataset.dir);
       monthViewDate = new Date(Date.UTC(monthViewDate.getUTCFullYear(), monthViewDate.getUTCMonth() + dir, 1));
+      render(allEvents, currentRange, currentCat);
+      return;
+    }
+
+    const weekNavBtn = e.target.closest('.planner-week-nav-btn');
+    if (weekNavBtn) {
+      const dir = Number(weekNavBtn.dataset.dir);
+      weekViewDate = addDays(weekViewDate, dir * 7);
       render(allEvents, currentRange, currentCat);
     }
   });

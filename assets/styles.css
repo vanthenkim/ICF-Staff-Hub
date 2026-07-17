@@ -1370,6 +1370,54 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   .planner-month-chip__meta { font-size: 10px; }
 }
 
+/* Week view — day columns with prev/next navigation, cards stacked
+   kanban-style underneath each date. */
+.planner-week-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.planner-week-nav__label { margin: 0; font-size: 15px; font-weight: 500; color: var(--text); }
+.planner-week-nav-btn {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted);
+}
+.planner-week-nav-btn:hover { background: var(--surface-2); }
+
+.planner-week-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+}
+.planner-week-day-header {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.planner-week-day-header__dow { font-size: 11px; font-weight: 500; color: var(--text-muted); letter-spacing: 0.02em; }
+.planner-week-day-header__num { font-size: 20px; font-weight: 500; color: var(--text); }
+.planner-week-day-header__num.is-today {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: var(--blue-600);
+  color: #fff;
+}
+.planner-week-day-col { display: flex; flex-direction: column; gap: 8px; padding-top: 10px; }
+
+.planner-week-card {
+  border-left: 2px solid var(--border);
+  border-radius: 0 8px 8px 0;
+  background: var(--surface-2);
+  padding: 8px 10px;
+}
+.planner-week-card__title { display: block; font-size: 13px; font-weight: 500; color: var(--text); line-height: 1.35; }
+.planner-week-card__meta { display: block; font-size: 11.5px; font-weight: 500; opacity: 0.85; margin-top: 2px; }
+
+@media (max-width: 768px) {
+  .planner-week-grid { grid-template-columns: repeat(7, minmax(90px, 1fr)); overflow-x: auto; }
+}
+
 /* ---------- Emergency contacts footer strip ---------- */
 /* Home page two-column layout */
 .home-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
