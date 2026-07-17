@@ -1384,13 +1384,21 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   padding: 3px 6px;
 }
 .planner-span-bar {
-  display: flex; align-items: center; gap: 5px;
+  display: flex; flex-direction: column;
   padding: 4px 8px;
   margin: 0 2px;
-  font-size: 12px; font-weight: 500;
   overflow: hidden;
 }
-.planner-span-bar__title { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.planner-span-bar__title {
+  font-size: 12px; font-weight: 500;
+  color: var(--text);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.planner-span-bar__meta {
+  font-size: 11px; font-weight: 500;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  margin-top: 1px;
+}
 
 @media (max-width: 640px) {
   .planner-month-cell { min-height: 80px; padding: 0 5px 5px; }

@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" sizes="192x192" href="/assets/icons/icon-192.png" />
 <title>Events &amp; Year Topics · Staff Hub</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=20260717u" />
+<link rel="stylesheet" href="assets/styles.css?v=20260717v" />
 </head>
 <body>
 <div class="app">
@@ -720,13 +720,21 @@
   }
 
   function spanBarHtml(item, colOffset) {
-    const meta = metaFor(item.ev);
+    const ev = item.ev;
+    const meta = metaFor(ev);
     const colStart = item.startCol + 1 + colOffset;
     const colEnd   = item.endCol + 2 + colOffset;
     const roundLeft  = item.openStart ? '0' : '6px';
     const roundRight = item.openEnd ? '0' : '6px';
-    return `<div class="planner-span-bar" style="grid-column:${colStart} / ${colEnd}; background:${meta.color}1f; color:${meta.color}; border-radius:${roundLeft} ${roundRight} ${roundRight} ${roundLeft};">
-      <span class="planner-span-bar__title">${item.ev.title}</span>
+    // Only draw the accent border on the segment where the event actually
+    // begins — a bar that's continuing in from an earlier week shouldn't
+    // look like a new event starting here.
+    const borderLeft = item.openStart ? 'none' : `2px solid ${meta.color}`;
+    const timePart = ev.startTime ? `${ev.startTime}${ev.endTime ? '–' + ev.endTime : ''} · ` : 'All day · ';
+
+    return `<div class="planner-span-bar" style="grid-column:${colStart} / ${colEnd}; background:${meta.color}1f; border-left:${borderLeft}; border-radius:${roundLeft} ${roundRight} ${roundRight} ${roundLeft};">
+      <span class="planner-span-bar__title">${ev.title}</span>
+      <span class="planner-span-bar__meta" style="color:${meta.color}">${timePart}${meta.label}</span>
     </div>`;
   }
 
