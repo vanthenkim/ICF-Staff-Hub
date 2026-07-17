@@ -1410,6 +1410,14 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 
 /* Week view — day columns with prev/next navigation, cards stacked
    kanban-style underneath each date. */
+.planner-week-body { position: relative; }
+.planner-week-dividers {
+  position: absolute; inset: 0;
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  pointer-events: none;
+}
+.planner-week-dividers span { border-right: 1px solid var(--border); }
+.planner-week-dividers span:last-child { border-right: none; }
 .planner-week-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
 .planner-week-nav__label { margin: 0; font-size: 15px; font-weight: 500; color: var(--text); }
 .planner-week-nav-btn {
