@@ -1184,7 +1184,7 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 .planner-daygroup { margin-bottom: 20px; }
 .planner-day-header { padding: 14px 2px 8px; }
 .planner-day-header:first-child { padding-top: 0; }
-.planner-day-header__title { margin: 0; font-size: 15px; font-weight: 600; color: var(--text); }
+.planner-day-header__title { margin: 0; font-size: 15px; font-weight: 500; color: var(--text); }
 .planner-day-header__title.is-today { color: var(--red-600); }
 
 .planner-row {
@@ -1193,7 +1193,7 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   margin-bottom: 8px;
 }
 .planner-row:last-child { margin-bottom: 0; }
-.planner-row__title { margin: 0; font-size: 15px; font-weight: 600; }
+.planner-row__title { margin: 0; font-size: 15px; font-weight: 500; }
 .planner-row__meta { margin: 2px 0 0; font-size: 13px; font-weight: 500; opacity: 0.8; }
 
 /* ---------- Emergency contacts footer strip ---------- */
