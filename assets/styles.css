@@ -1418,6 +1418,42 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   .planner-week-grid { grid-template-columns: repeat(7, minmax(90px, 1fr)); overflow-x: auto; }
 }
 
+/* 2 weeks view — bordered grid like Month, but only two rows, with a
+   slim week-number gutter on the left (Google Calendar style). */
+.planner-2weeks-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.planner-2weeks-nav__label { margin: 0; font-size: 15px; font-weight: 500; color: var(--text); }
+.planner-2weeks-nav-btn {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted);
+}
+.planner-2weeks-nav-btn:hover { background: var(--surface-2); }
+
+.planner-2weeks-grid {
+  display: grid;
+  grid-template-columns: 26px repeat(7, 1fr);
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.planner-2weeks-gutter { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--surface-2); }
+.planner-2weeks-weeknum {
+  display: flex; align-items: flex-start; justify-content: center;
+  padding-top: 8px;
+  font-size: 10px; color: var(--text-muted);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-2);
+}
+
+@media (max-width: 768px) {
+  .planner-2weeks-grid { grid-template-columns: 22px repeat(7, minmax(90px, 1fr)); overflow-x: auto; }
+}
+
 /* ---------- Emergency contacts footer strip ---------- */
 /* Home page two-column layout */
 .home-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }

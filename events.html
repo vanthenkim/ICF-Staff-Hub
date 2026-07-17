@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" sizes="192x192" href="/assets/icons/icon-192.png" />
 <title>Events &amp; Year Topics · Staff Hub</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=20260717p" />
+<link rel="stylesheet" href="assets/styles.css?v=20260717q" />
 </head>
 <body>
 <div class="app">
@@ -102,6 +102,7 @@
         </div>
         <div class="planner-tabs" id="planner-tabs">
           <button type="button" class="planner-tab" data-range="week">This week</button>
+          <button type="button" class="planner-tab" data-range="2weeks">2 weeks</button>
           <button type="button" class="planner-tab is-active" data-range="month">Month</button>
           <button type="button" class="planner-tab" data-range="year">Year overview</button>
         </div>
@@ -910,6 +911,92 @@
     </div>`;
   }
 
+  let twoWeekViewDate = (function () {
+    const t = todayUTC();
+    const dow = t.getUTCDay();
+    return addDays(t, dow === 0 ? -6 : 1 - dow);
+  })();
+
+  function getISOWeek(d) {
+    const date = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()));
+    const dayNum = date.getUTCDay() || 7;
+    date.setUTCDate(date.getUTCDate() + 4 - dayNum);
+    const yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
+    return Math.ceil((((date - yearStart) / 86400000) + 1) / 7);
+  }
+
+  function renderTwoWeekView(events, catKey) {
+    const filtered = events.filter(ev => catKey === 'all' || pillKeyFor(ev) === catKey);
+
+    const dayMap = new Map();
+    filtered.forEach(ev => {
+      let d = parseISODate(ev.start);
+      const end = parseISODate(ev.end);
+      while (d <= end) {
+        const iso = d.toISOString().slice(0, 10);
+        if (!dayMap.has(iso)) dayMap.set(iso, []);
+        dayMap.get(iso).push(ev);
+        d = addDays(d, 1);
+      }
+    });
+
+    const todayISO = todayUTC().toISOString().slice(0, 10);
+    const WEEKDAY_LABELS = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
+    const days = Array.from({ length: 14 }, (_, i) => addDays(twoWeekViewDate, i));
+
+    const s = days[0], e = days[13];
+    const rangeLabel = s.getUTCMonth() === e.getUTCMonth()
+      ? `${s.getUTCDate()}–${e.getUTCDate()} ${monthLabel(s.getUTCMonth())} ${s.getUTCFullYear()}`
+      : `${s.getUTCDate()} ${monthLabel(s.getUTCMonth())} – ${e.getUTCDate()} ${monthLabel(e.getUTCMonth())} ${e.getUTCFullYear()}`;
+
+    const headerRow = `<div class="planner-2weeks-gutter"></div>` +
+      WEEKDAY_LABELS.map(l => `<div class="planner-month-dow">${l}</div>`).join('');
+
+    const weekRows = [0, 1].map(w => {
+      const weekDays = days.slice(w * 7, w * 7 + 7);
+      const weekNum  = getISOWeek(weekDays[0]);
+
+      const cells = weekDays.map(d => {
+        const iso = d.toISOString().slice(0, 10);
+        const isToday = iso === todayISO;
+        const dayEvents = (dayMap.get(iso) || []).slice()
+          .sort((a, b) => timeToMinutes(a.startTime) - timeToMinutes(b.startTime));
+        const visible = dayEvents.slice(0, 3);
+        const extra   = dayEvents.length - visible.length;
+
+        const chips = visible.map(ev => {
+          const meta = metaFor(ev);
+          const timePart = ev.startTime ? `${ev.startTime}${ev.endTime ? '–' + ev.endTime : ''} · ` : '';
+          return `<div class="planner-month-chip" style="border-left-color:${meta.color}">
+            <span class="planner-month-chip__title">${ev.title}</span>
+            <span class="planner-month-chip__meta" style="color:${meta.color}">${timePart}${meta.label}</span>
+          </div>`;
+        }).join('');
+        const moreHtml = extra > 0 ? `<div class="planner-month-more">+${extra} more</div>` : '';
+
+        return `<div class="planner-month-cell${isToday ? ' is-today' : ''}">
+          <span class="planner-month-cell__num">${d.getUTCDate()}</span>
+          <div class="planner-month-cell__events">${chips}${moreHtml}</div>
+        </div>`;
+      }).join('');
+
+      return `<div class="planner-2weeks-weeknum">${weekNum}</div>${cells}`;
+    }).join('');
+
+    return `<div class="planner-2weeks">
+      <div class="planner-2weeks-nav">
+        <button type="button" class="planner-2weeks-nav-btn" data-dir="-1" aria-label="Previous 2 weeks">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <p class="planner-2weeks-nav__label">${rangeLabel}</p>
+        <button type="button" class="planner-2weeks-nav-btn" data-dir="1" aria-label="Next 2 weeks">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+      <div class="planner-2weeks-grid">${headerRow}${weekRows}</div>
+    </div>`;
+  }
+
   function render(events, rangeKey, catKey) {
     if (rangeKey === 'year') {
       container.innerHTML = renderYearView(events, catKey);
@@ -919,6 +1006,11 @@
 
     if (rangeKey === 'month') {
       container.innerHTML = renderMonthView(events, catKey);
+      return;
+    }
+
+    if (rangeKey === '2weeks') {
+      container.innerHTML = renderTwoWeekView(events, catKey);
       return;
     }
 
@@ -942,6 +1034,11 @@
       const t = todayUTC();
       const dow = t.getUTCDay();
       weekViewDate = addDays(t, dow === 0 ? -6 : 1 - dow);
+    }
+    if (currentRange === '2weeks') {
+      const t = todayUTC();
+      const dow = t.getUTCDay();
+      twoWeekViewDate = addDays(t, dow === 0 ? -6 : 1 - dow);
     }
     render(allEvents, currentRange, currentCat);
   });
@@ -969,6 +1066,14 @@
     if (weekNavBtn) {
       const dir = Number(weekNavBtn.dataset.dir);
       weekViewDate = addDays(weekViewDate, dir * 7);
+      render(allEvents, currentRange, currentCat);
+      return;
+    }
+
+    const twoWeeksNavBtn = e.target.closest('.planner-2weeks-nav-btn');
+    if (twoWeeksNavBtn) {
+      const dir = Number(twoWeeksNavBtn.dataset.dir);
+      twoWeekViewDate = addDays(twoWeekViewDate, dir * 14);
       render(allEvents, currentRange, currentCat);
     }
   });
