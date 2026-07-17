@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" sizes="192x192" href="/assets/icons/icon-192.png" />
 <title>Events &amp; Year Topics · Staff Hub</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=20260717j" />
+<link rel="stylesheet" href="assets/styles.css?v=20260717k" />
 </head>
 <body>
 <div class="app">
@@ -92,18 +92,24 @@
           Full calendar
         </a>
       </div>
-      <div class="planner-pills" id="planner-pills">
-        <button type="button" class="planner-pill is-active" data-cat="all">All</button>
-        <button type="button" class="planner-pill" data-cat="all-staff"><span class="planner-pill__dot" style="background:#2563EB"></span>All staff / holiday</button>
-        <button type="button" class="planner-pill" data-cat="church"><span class="planner-pill__dot" style="background:#9333EA"></span>Church</button>
-        <button type="button" class="planner-pill" data-cat="social"><span class="planner-pill__dot" style="background:#059669"></span>Social</button>
-        <button type="button" class="planner-pill" data-cat="LA"><span class="planner-pill__dot" style="background:#0891B2"></span>Leadership Academy</button>
-        <button type="button" class="planner-pill" data-cat="BA"><span class="planner-pill__dot" style="background:#6366F1"></span>Business Academy</button>
-        <button type="button" class="planner-pill" data-cat="AC"><span class="planner-pill__dot" style="background:#EA580C"></span>Learning Center</button>
-        <button type="button" class="planner-pill" data-cat="BN"><span class="planner-pill__dot" style="background:#475569"></span>Business Network</button>
-        <button type="button" class="planner-pill" data-cat="MT"><span class="planner-pill__dot" style="background:#D97706"></span>Mission Team</button>
-        <button type="button" class="planner-pill" data-cat="GU"><span class="planner-pill__dot" style="background:#DB2777"></span>Guests</button>
-        <button type="button" class="planner-pill" data-cat="OT"><span class="planner-pill__dot" style="background:#64748B"></span>Other</button>
+      <div class="planner-filter" id="planner-filter">
+        <button type="button" class="planner-filter__toggle" id="planner-filter-toggle" aria-haspopup="listbox" aria-expanded="false">
+          <span class="planner-filter__label" id="planner-filter-label">All events</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="planner-filter__menu" id="planner-filter-menu" role="listbox" hidden>
+          <button type="button" class="planner-filter__option is-active" data-cat="all" data-label="All events" role="option" aria-selected="true">All events</button>
+          <button type="button" class="planner-filter__option" data-cat="all-staff" data-label="All staff / holiday" role="option"><span class="planner-filter__dot" style="background:#2563EB"></span>All staff / holiday</button>
+          <button type="button" class="planner-filter__option" data-cat="church" data-label="Church" role="option"><span class="planner-filter__dot" style="background:#9333EA"></span>Church</button>
+          <button type="button" class="planner-filter__option" data-cat="social" data-label="Social" role="option"><span class="planner-filter__dot" style="background:#059669"></span>Social</button>
+          <button type="button" class="planner-filter__option" data-cat="LA" data-label="Leadership Academy" role="option"><span class="planner-filter__dot" style="background:#0891B2"></span>Leadership Academy</button>
+          <button type="button" class="planner-filter__option" data-cat="BA" data-label="Business Academy" role="option"><span class="planner-filter__dot" style="background:#6366F1"></span>Business Academy</button>
+          <button type="button" class="planner-filter__option" data-cat="AC" data-label="Learning Center" role="option"><span class="planner-filter__dot" style="background:#EA580C"></span>Learning Center</button>
+          <button type="button" class="planner-filter__option" data-cat="BN" data-label="Business Network" role="option"><span class="planner-filter__dot" style="background:#475569"></span>Business Network</button>
+          <button type="button" class="planner-filter__option" data-cat="MT" data-label="Mission Team" role="option"><span class="planner-filter__dot" style="background:#D97706"></span>Mission Team</button>
+          <button type="button" class="planner-filter__option" data-cat="GU" data-label="Guests" role="option"><span class="planner-filter__dot" style="background:#DB2777"></span>Guests</button>
+          <button type="button" class="planner-filter__option" data-cat="OT" data-label="Other" role="option"><span class="planner-filter__dot" style="background:#64748B"></span>Other</button>
+        </div>
       </div>
       <div id="planner-events">
         <div class="gcal-loading">Loading planner…</div>
@@ -393,8 +399,11 @@
 (function() {
   const container = document.getElementById('planner-events');
   const tabsEl     = document.getElementById('planner-tabs');
-  const pillsEl    = document.getElementById('planner-pills');
-  if (!container || !tabsEl || !pillsEl) return;
+  const filterEl        = document.getElementById('planner-filter');
+  const filterToggle     = document.getElementById('planner-filter-toggle');
+  const filterMenu       = document.getElementById('planner-filter-menu');
+  const filterLabel      = document.getElementById('planner-filter-label');
+  if (!container || !tabsEl || !filterEl) return;
 
   // Published straight from Google Sheets — Share > General access > "Anyone
   // with the link" (Viewer) must be turned on for the spreadsheet, no Netlify
@@ -852,13 +861,35 @@
     }
   });
 
-  pillsEl.addEventListener('click', (e) => {
-    const btn = e.target.closest('.planner-pill');
+  function closeFilterMenu() {
+    filterMenu.hidden = true;
+    filterToggle.setAttribute('aria-expanded', 'false');
+  }
+
+  filterToggle.addEventListener('click', () => {
+    const isOpen = !filterMenu.hidden;
+    if (isOpen) { closeFilterMenu(); return; }
+    filterMenu.hidden = false;
+    filterToggle.setAttribute('aria-expanded', 'true');
+  });
+
+  filterMenu.addEventListener('click', (e) => {
+    const btn = e.target.closest('.planner-filter__option');
     if (!btn) return;
-    pillsEl.querySelectorAll('.planner-pill').forEach(b => b.classList.remove('is-active'));
+    filterMenu.querySelectorAll('.planner-filter__option').forEach(b => {
+      b.classList.remove('is-active');
+      b.setAttribute('aria-selected', 'false');
+    });
     btn.classList.add('is-active');
+    btn.setAttribute('aria-selected', 'true');
+    filterLabel.textContent = btn.dataset.label;
     currentCat = btn.dataset.cat;
+    closeFilterMenu();
     render(allEvents, currentRange, currentCat);
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!filterEl.contains(e.target)) closeFilterMenu();
   });
 
   async function loadOneTab(tab) {
