@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" sizes="192x192" href="/assets/icons/icon-192.png" />
 <title>Events &amp; Year Topics · Staff Hub</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=20260717g" />
+<link rel="stylesheet" href="assets/styles.css?v=20260717h" />
 </head>
 <body>
 <div class="app">
@@ -85,6 +85,7 @@
           <button type="button" class="planner-tab" data-range="week">This week</button>
           <button type="button" class="planner-tab is-active" data-range="month">This month</button>
           <button type="button" class="planner-tab" data-range="2months">Next 2 months</button>
+          <button type="button" class="planner-tab" data-range="year">Year overview</button>
         </div>
         <a href="https://docs.google.com/spreadsheets/d/1VMcwMqWxRDnLZ6QTGel33aNVHLlNtqZf_HnwtCanALA/edit?gid=324796546#gid=324796546" target="_blank" rel="noopener" class="btn btn--sm">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
@@ -671,7 +672,129 @@
     return { top: `${MONTHS[s.getUTCMonth()]} ${s.getUTCDate()} – ${MONTHS[e.getUTCMonth()]} ${e.getUTCDate()}`, sub: '' };
   }
 
+  function monthLabel(mi) {
+    const s = MONTH_NAMES_FULL[mi];
+    return s.charAt(0).toUpperCase() + s.slice(1);
+  }
+
+  let yearViewDayMap = new Map();
+
+  function renderYearView(events, catKey) {
+    const filtered = events.filter(ev => catKey === 'all' || pillKeyFor(ev) === catKey);
+
+    // Map every calendar day (ISO string) to the events touching it —
+    // multi-day spans get an entry on each day they cover.
+    const dayMap = new Map();
+    filtered.forEach(ev => {
+      let d = parseISODate(ev.start);
+      const end = parseISODate(ev.end);
+      while (d <= end) {
+        const iso = d.toISOString().slice(0, 10);
+        if (!dayMap.has(iso)) dayMap.set(iso, []);
+        dayMap.get(iso).push(ev);
+        d = addDays(d, 1);
+      }
+    });
+    yearViewDayMap = dayMap;
+
+    const todayISO = todayUTC().toISOString().slice(0, 10);
+    const DOW_MIN = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+
+    const monthCards = PLANNER_TABS.map(tab => {
+      return Array.from({ length: 12 }, (_, mi) => {
+        const first = new Date(Date.UTC(tab.year, mi, 1));
+        const daysInMonth = new Date(Date.UTC(tab.year, mi + 1, 0)).getUTCDate();
+        let offset = first.getUTCDay() - 1;
+        if (offset < 0) offset = 6;
+
+        const dowHtml = DOW_MIN.map(l => `<span class="planner-year-dow">${l}</span>`).join('');
+        const blanks  = Array.from({ length: offset }, () => '<span></span>').join('');
+
+        const dayCells = Array.from({ length: daysInMonth }, (_, i) => {
+          const d   = i + 1;
+          const iso = `${tab.year}-${String(mi + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+          const dayEvents = dayMap.get(iso) || [];
+          const colors = [...new Set(dayEvents.map(ev => metaFor(ev).color))].slice(0, 3);
+          const dots   = colors.map(c => `<span style="background:${c}"></span>`).join('');
+          const isToday = iso === todayISO;
+          return `<button type="button" class="planner-daycell${isToday ? ' is-today' : ''}" data-date="${iso}">
+            <span class="planner-daycell__num">${d}</span>
+            <span class="planner-daycell__dots">${dots}</span>
+          </button>`;
+        }).join('');
+
+        return `<div class="planner-year-card" data-year="${tab.year}" data-month="${mi}">
+          <p class="planner-year-card__title">${monthLabel(mi)} ${tab.year}</p>
+          <div class="planner-year-grid">${dowHtml}${blanks}${dayCells}</div>
+        </div>`;
+      }).join('');
+    }).join('');
+
+    const legendItems = [...Object.values(CAT_META), ...Object.values(SUBCAT_META)]
+      .map(meta => `<span><span class="planner-year-legend__dot" style="background:${meta.color}"></span>${meta.label}</span>`)
+      .join('');
+
+    return `<div class="planner-year">
+      <div class="planner-year-nav">
+        <button type="button" class="planner-year-nav-btn" data-dir="-1" aria-label="Previous month">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <p class="planner-year-nav__label">Scroll to browse the year</p>
+        <button type="button" class="planner-year-nav-btn" data-dir="1" aria-label="Next month">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+      <div class="planner-year-scroller" id="planner-year-scroller">${monthCards}</div>
+      <div class="planner-year-legend">${legendItems}</div>
+      <div class="planner-year-detail" id="planner-year-detail"><p class="planner-year-detail__empty">Tap a day to see what's on.</p></div>
+    </div>`;
+  }
+
+  function scrollYearViewToCurrentMonth() {
+    const scroller = document.getElementById('planner-year-scroller');
+    if (!scroller) return;
+    const now  = new Date();
+    const card = scroller.querySelector(`.planner-year-card[data-year="${now.getFullYear()}"][data-month="${now.getMonth()}"]`);
+    if (card) card.scrollIntoView({ block: 'nearest', inline: 'start' });
+  }
+
+  function renderYearDayDetail(iso) {
+    const detail = document.getElementById('planner-year-detail');
+    if (!detail) return;
+    const dayEvents = (yearViewDayMap.get(iso) || []).slice()
+      .sort((a, b) => timeToMinutes(a.startTime) - timeToMinutes(b.startTime));
+
+    if (dayEvents.length === 0) {
+      detail.innerHTML = '<p class="planner-year-detail__empty">Nothing on this day.</p>';
+      return;
+    }
+
+    const d = parseISODate(iso);
+    const WEEKDAYS_FULL = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    const label = `${WEEKDAYS_FULL[d.getUTCDay()]} · ${d.getUTCDate()} ${MONTHS[d.getUTCMonth()]}`;
+
+    const rows = dayEvents.map(ev => {
+      const meta = metaFor(ev);
+      const timePart = ev.startTime ? `${ev.startTime}${ev.endTime ? '–' + ev.endTime : ''}` : 'All day';
+      return `<div class="planner-row" style="border-left-color:${meta.color}">
+        <p class="planner-row__title">${ev.title}</p>
+        <p class="planner-row__meta" style="color:${meta.color}">${timePart} · ${meta.label}</p>
+      </div>`;
+    }).join('');
+
+    detail.innerHTML = `<div class="planner-daygroup">
+      <div class="planner-day-header"><p class="planner-day-header__title">${label}</p></div>
+      ${rows}
+    </div>`;
+  }
+
   function render(events, rangeKey, catKey) {
+    if (rangeKey === 'year') {
+      container.innerHTML = renderYearView(events, catKey);
+      scrollYearViewToCurrentMonth();
+      return;
+    }
+
     const { start, end } = rangeFor(rangeKey);
     const filtered = events.filter(ev => {
       const evStart = parseISODate(ev.start), evEnd = parseISODate(ev.end);
@@ -745,6 +868,24 @@
     btn.classList.add('is-active');
     currentRange = btn.dataset.range;
     render(allEvents, currentRange, currentCat);
+  });
+
+  container.addEventListener('click', (e) => {
+    const dayBtn = e.target.closest('.planner-daycell');
+    if (dayBtn) {
+      container.querySelectorAll('.planner-daycell.is-selected').forEach(b => b.classList.remove('is-selected'));
+      dayBtn.classList.add('is-selected');
+      renderYearDayDetail(dayBtn.dataset.date);
+      return;
+    }
+    const navBtn = e.target.closest('.planner-year-nav-btn');
+    if (navBtn) {
+      const scroller = document.getElementById('planner-year-scroller');
+      if (!scroller) return;
+      const card = scroller.querySelector('.planner-year-card');
+      const step = card ? card.getBoundingClientRect().width + 14 : 254;
+      scroller.scrollBy({ left: Number(navBtn.dataset.dir) * step, behavior: 'smooth' });
+    }
   });
 
   pillsEl.addEventListener('click', (e) => {
