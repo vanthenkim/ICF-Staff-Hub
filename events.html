@@ -82,8 +82,8 @@
       <!-- Year planner — live from Google Sheet -->
       <div class="section-title"><h2>Year Planner</h2></div>
       <div class="planner-tabs" id="planner-tabs">
-        <button type="button" class="planner-tab is-active" data-range="week">This week</button>
-        <button type="button" class="planner-tab" data-range="month">This month</button>
+        <button type="button" class="planner-tab" data-range="week">This week</button>
+        <button type="button" class="planner-tab is-active" data-range="month">This month</button>
         <button type="button" class="planner-tab" data-range="2months">Next 2 months</button>
       </div>
       <div class="planner-pills" id="planner-pills">
@@ -736,7 +736,7 @@
   }
 
   let allEvents = [];
-  let currentRange = 'week';
+  let currentRange = 'month';
   let currentCat   = 'all';
 
   tabsEl.addEventListener('click', (e) => {
