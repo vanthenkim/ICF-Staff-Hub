@@ -1151,7 +1151,12 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 }
 
 /* ---------- Year Planner (events page) ---------- */
-.planner-tabs { display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
+.planner-toolbar {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 10px; flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+.planner-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
 .planner-tab {
   border: 1px solid var(--border);
   background: var(--white);
@@ -1163,46 +1168,346 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 .planner-tab:hover { background: var(--surface-2); }
 .planner-tab.is-active { background: var(--blue-600); border-color: var(--blue-600); color: #fff; }
 
-.planner-pills { display: flex; gap: 6px; flex-wrap: wrap; margin: 0 0 16px; }
-.planner-pill {
-  display: flex; align-items: center; gap: 6px;
+.planner-filter { position: relative; display: inline-block; }
+.planner-filter__toggle {
+  display: flex; align-items: center; gap: 8px;
   border: 1px solid var(--border);
   background: var(--white);
-  padding: 6px 12px;
+  padding: 7px 12px;
   font-size: 13px; font-weight: 500;
   border-radius: 999px;
-  color: var(--text-muted);
+  color: var(--text);
 }
-.planner-pill:hover { background: var(--surface-2); }
-.planner-pill.is-active { border-color: var(--border-strong); color: var(--text); background: var(--surface-2); }
-.planner-pill__dot { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+.planner-filter__toggle:hover { background: var(--surface-2); }
+.planner-filter__toggle svg { color: var(--text-muted); flex: none; }
 
-.planner-month {
-  font-size: 12px; font-weight: 600;
-  text-transform: uppercase; letter-spacing: 0.06em;
-  color: var(--text-soft);
-  margin: 16px 0 8px;
-}
-.planner-month:first-child { margin-top: 0; }
-
-.planner-card {
-  display: flex; align-items: center; gap: 14px;
+.planner-filter__menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 20;
+  min-width: 220px;
   background: var(--white);
   border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 12px 14px;
-  margin-bottom: 8px;
+  border-radius: 12px;
   box-shadow: var(--shadow-xs);
-  transition: border-color .15s, box-shadow .15s;
+  padding: 6px;
+  display: none;
+  flex-direction: column; gap: 1px;
+  max-height: 320px;
+  overflow-y: auto;
 }
-.planner-card:hover { border-color: var(--border-strong); box-shadow: var(--shadow-sm); }
-.planner-card__date { flex: none; min-width: 44px; text-align: center; }
-.planner-card__date strong { display: block; font-size: 17px; font-weight: 600; line-height: 1.2; white-space: nowrap; }
-.planner-card__date span { display: block; font-size: 10px; font-weight: 600; text-transform: uppercase; color: var(--text-soft); margin-top: 2px; }
-.planner-card__bar { width: 3px; align-self: stretch; border-radius: 0; flex: none; }
-.planner-card__body { flex: 1; min-width: 0; }
-.planner-card__title { margin: 0 0 4px; font-size: 15px; font-weight: 600; }
-.planner-card__cat { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 999px; }
+.planner-filter__menu:not([hidden]) {
+  display: flex;
+}
+.planner-filter__option {
+  display: flex; align-items: center; gap: 8px;
+  width: 100%;
+  border: none;
+  background: none;
+  padding: 8px 10px;
+  font-size: 13px; font-weight: 500;
+  border-radius: 8px;
+  color: var(--text-muted);
+  text-align: left;
+}
+.planner-filter__option:hover { background: var(--surface-2); }
+.planner-filter__option.is-active { color: var(--text); background: var(--surface-2); }
+.planner-filter__dot { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+
+/* Google Calendar list layout (date header per day, time built into each
+   row) but with soft tinted blocks instead of solid fills, matching the
+   pastel backgrounds already used elsewhere on this site (.resource,
+   .qa__icon, etc.) rather than heavy solid color. */
+.planner-daygroup { margin-bottom: 28px; }
+.planner-day-header { padding: 18px 2px 10px; }
+.planner-day-header:first-child { padding-top: 0; }
+.planner-day-header__title { margin: 0; font-size: 17px; font-weight: 500; color: var(--text); }
+.planner-day-header__title.is-today { color: var(--red-600); }
+
+.planner-row {
+  padding: 10px 14px;
+  border-radius: 6px;
+  border-left: 3px solid var(--border);
+  margin-bottom: 8px;
+}
+.planner-row:last-child { margin-bottom: 0; }
+.planner-row__title { margin: 0; font-size: 15px; font-weight: 500; color: var(--text); }
+.planner-row__meta { margin: 2px 0 0; font-size: 13px; font-weight: 500; opacity: 0.8; }
+
+/* Year overview — scrollable month-by-month calendar */
+.planner-year-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.planner-year-nav__label { margin: 0; font-size: 13px; color: var(--text-soft); }
+.planner-year-nav-btn {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted);
+}
+.planner-year-nav-btn:hover { background: var(--surface-2); }
+
+/* Months run side by side, scroll horizontally; each is a straight day
+   1 → end-of-month list top to bottom, matching the source sheet. */
+.planner-year-scroller {
+  display: flex; gap: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  align-items: flex-start;
+  padding-bottom: 8px;
+}
+.planner-year-card {
+  flex: 0 0 300px;
+  scroll-snap-align: start;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  background: var(--white);
+}
+.planner-year-card__title { margin: 0 0 10px; font-size: 15px; font-weight: 500; color: var(--text); }
+
+.planner-year-days { display: flex; flex-direction: column; }
+.planner-year-day-row {
+  display: flex; gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+.planner-year-day-row:last-child { border-bottom: none; }
+.planner-year-day-row.is-today .planner-year-day-row__num { color: var(--red-600); font-weight: 600; }
+.planner-year-day-row__date {
+  flex: 0 0 34px;
+  display: flex; flex-direction: column; align-items: center;
+  padding-top: 2px;
+}
+.planner-year-day-row__num { font-size: 13px; font-weight: 500; color: var(--text); line-height: 1.2; }
+.planner-year-day-row__dow { font-size: 11px; color: var(--text-muted); }
+.planner-year-day-row__events { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; padding-top: 2px; }
+
+.planner-year-chip {
+  border-left: 2px solid var(--border);
+  border-radius: 0 4px 4px 0;
+  padding: 4px 8px;
+  background: var(--surface-2);
+}
+.planner-year-chip__title { display: block; font-size: 13px; font-weight: 500; color: var(--text); line-height: 1.35; }
+.planner-year-chip__meta { display: block; font-size: 11.5px; font-weight: 500; opacity: 0.85; margin-top: 1px; }
+
+/* Month view — full grid with prev/next navigation, Google Calendar style */
+.planner-month-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.planner-month-nav__label { margin: 0; font-size: 15px; font-weight: 500; color: var(--text); }
+.planner-month-nav-btn {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted);
+}
+.planner-month-nav-btn:hover { background: var(--surface-2); }
+
+.planner-month-grid {
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.planner-month-dow-row,
+.planner-month-week-nums,
+.planner-month-week-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+.planner-month-dow {
+  font-size: 11px; font-weight: 500;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 8px 4px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-2);
+}
+/* Day number sits in its own row (top of the box), chips in another
+   (bottom of the box) — no border between them, so span-bar lanes can
+   slot in between while the box still reads as one continuous cell. */
+.planner-month-num-cell {
+  padding: 8px 8px 2px;
+  border-right: 1px solid var(--border);
+}
+.planner-month-num-cell.is-outside { background: var(--surface-2); }
+.planner-month-num-cell.is-outside .planner-month-cell__num { color: var(--text-muted); }
+.planner-month-cell__num { font-size: 13px; font-weight: 500; color: var(--text); }
+.planner-month-cell__num.is-today {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--blue-600);
+  color: #fff;
+}
+.planner-month-cell {
+  min-height: 110px;
+  padding: 0 8px 8px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  display: flex; flex-direction: column; gap: 6px;
+}
+.planner-month-cell.is-outside { background: var(--surface-2); }
+.planner-month-cell__events { display: flex; flex-direction: column; gap: 5px; }
+.planner-month-chip {
+  border-left: 2px solid var(--border);
+  border-radius: 0 4px 4px 0;
+  background: var(--surface-2);
+  padding: 4px 7px;
+}
+.planner-month-chip__title {
+  display: block;
+  font-size: 12px; font-weight: 500;
+  color: var(--text);
+  line-height: 1.3;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+.planner-month-chip__meta {
+  display: block;
+  font-size: 11px; font-weight: 500;
+  opacity: 0.85;
+  margin-top: 1px;
+}
+.planner-month-more { font-size: 11px; color: var(--text-muted); padding-left: 4px; }
+
+/* Multi-day events render once as a bar spanning the days they cover,
+   instead of repeating in every day cell — shared across Week, 2 weeks
+   and Month views. */
+.planner-span-lane {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  padding: 3px 6px;
+}
+.planner-span-bar {
+  display: flex; flex-direction: column;
+  padding: 4px 8px;
+  margin: 0 2px;
+  overflow: hidden;
+}
+.planner-span-bar__title {
+  font-size: 12px; font-weight: 500;
+  color: var(--text);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.planner-span-bar__meta {
+  font-size: 11px; font-weight: 500;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  margin-top: 1px;
+}
+
+@media (max-width: 640px) {
+  .planner-month-cell { min-height: 80px; padding: 0 5px 5px; }
+  .planner-month-num-cell { padding: 5px 5px 2px; }
+  .planner-month-dow { font-size: 10px; padding: 6px 2px; }
+  .planner-month-chip__title { font-size: 11px; }
+  .planner-month-chip__meta { font-size: 10px; }
+}
+
+/* Week view — day columns with prev/next navigation, cards stacked
+   kanban-style underneath each date. */
+.planner-week-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.planner-week-nav__label { margin: 0; font-size: 15px; font-weight: 500; color: var(--text); }
+.planner-week-nav-btn {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted);
+}
+.planner-week-nav-btn:hover { background: var(--surface-2); }
+
+.planner-week-header-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 10px;
+}
+.planner-week-spans { margin-bottom: 6px; }
+.planner-week-spans .planner-span-lane { padding: 3px 0; }
+.planner-week-day-header {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding-bottom: 10px;
+}
+.planner-week-day-header__dow { font-size: 11px; font-weight: 500; color: var(--text-muted); letter-spacing: 0.02em; }
+.planner-week-day-header__num { font-size: 20px; font-weight: 500; color: var(--text); }
+.planner-week-day-header__num.is-today {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: var(--blue-600);
+  color: #fff;
+}
+
+.planner-week-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+}
+.planner-week-day-col { display: flex; flex-direction: column; gap: 8px; min-height: 300px; }
+
+.planner-week-card {
+  border-left: 2px solid var(--border);
+  border-radius: 0 8px 8px 0;
+  background: var(--surface-2);
+  padding: 8px 10px;
+}
+.planner-week-card__title { display: block; font-size: 13px; font-weight: 500; color: var(--text); line-height: 1.35; }
+.planner-week-card__meta { display: block; font-size: 11.5px; font-weight: 500; opacity: 0.85; margin-top: 2px; }
+
+@media (max-width: 768px) {
+  .planner-week-header-row,
+  .planner-week-grid { grid-template-columns: repeat(7, minmax(90px, 1fr)); overflow-x: auto; }
+}
+
+/* 2 weeks view — bordered grid like Month, but only two rows, with a
+   slim week-number gutter on the left (Google Calendar style). */
+.planner-2weeks-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.planner-2weeks-nav__label { margin: 0; font-size: 15px; font-weight: 500; color: var(--text); }
+.planner-2weeks-nav-btn {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted);
+}
+.planner-2weeks-nav-btn:hover { background: var(--surface-2); }
+
+.planner-2weeks-grid {
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.planner-2weeks-header-row,
+.planner-2weeks-week-nums,
+.planner-2weeks-span-lane,
+.planner-2weeks-week-days {
+  display: grid;
+  grid-template-columns: 26px repeat(7, 1fr);
+}
+.planner-2weeks-span-lane { padding: 3px 6px; }
+.planner-2weeks-gutter { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--surface-2); }
+.planner-2weeks-weeknum {
+  display: flex; align-items: flex-start; justify-content: center;
+  padding-top: 8px;
+  font-size: 10px; color: var(--text-muted);
+  border-right: 1px solid var(--border);
+  background: var(--surface-2);
+}
+
+@media (max-width: 768px) {
+  .planner-2weeks-header-row,
+  .planner-2weeks-week-nums,
+  .planner-2weeks-span-lane,
+  .planner-2weeks-week-days { grid-template-columns: 22px repeat(7, minmax(90px, 1fr)); overflow-x: auto; }
+}
 
 /* ---------- Emergency contacts footer strip ---------- */
 /* Home page two-column layout */

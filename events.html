@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" sizes="192x192" href="/assets/icons/icon-192.png" />
 <title>Events &amp; Year Topics · Staff Hub</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=20260717" />
+<link rel="stylesheet" href="assets/styles.css?v=20260717v" />
 </head>
 <body>
 <div class="app">
@@ -64,7 +64,6 @@
         </div>
         <div class="page-header__actions">
           <a class="btn" href="tools.html" target="_blank" rel="noopener">Event support →</a>
-          <a class="btn btn--primary" href="#event-planner">New event</a>
         </div>
       </div>
 
@@ -79,10 +78,41 @@
         </div>
       </section>
 
-      <!-- Upcoming events — live from Google Calendar -->
-      <div class="section-title"><h2>Upcoming Events</h2></div>
-      <div id="gcal-events" class="gcal-list" data-max="12">
-        <div class="gcal-loading">Loading events…</div>
+      <!-- Year planner — live from Google Sheet -->
+      <div class="section-title"><h2>Year Planner</h2></div>
+      <div class="planner-toolbar">
+        <div class="planner-filter" id="planner-filter">
+          <button type="button" class="planner-filter__toggle" id="planner-filter-toggle" aria-haspopup="listbox" aria-expanded="false">
+            <span class="planner-filter__label" id="planner-filter-label">All events</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="planner-filter__menu" id="planner-filter-menu" role="listbox" hidden>
+            <button type="button" class="planner-filter__option is-active" data-cat="all" data-label="All events" role="option" aria-selected="true">All events</button>
+            <button type="button" class="planner-filter__option" data-cat="all-staff" data-label="All staff / holiday" role="option"><span class="planner-filter__dot" style="background:#2563EB"></span>All staff / holiday</button>
+            <button type="button" class="planner-filter__option" data-cat="church" data-label="Church" role="option"><span class="planner-filter__dot" style="background:#9333EA"></span>Church</button>
+            <button type="button" class="planner-filter__option" data-cat="social" data-label="Social" role="option"><span class="planner-filter__dot" style="background:#059669"></span>Social</button>
+            <button type="button" class="planner-filter__option" data-cat="LA" data-label="Leadership Academy" role="option"><span class="planner-filter__dot" style="background:#0891B2"></span>Leadership Academy</button>
+            <button type="button" class="planner-filter__option" data-cat="BA" data-label="Business Academy" role="option"><span class="planner-filter__dot" style="background:#6366F1"></span>Business Academy</button>
+            <button type="button" class="planner-filter__option" data-cat="AC" data-label="Learning Center" role="option"><span class="planner-filter__dot" style="background:#EA580C"></span>Learning Center</button>
+            <button type="button" class="planner-filter__option" data-cat="BN" data-label="Business Network" role="option"><span class="planner-filter__dot" style="background:#475569"></span>Business Network</button>
+            <button type="button" class="planner-filter__option" data-cat="MT" data-label="Mission Team" role="option"><span class="planner-filter__dot" style="background:#D97706"></span>Mission Team</button>
+            <button type="button" class="planner-filter__option" data-cat="GU" data-label="Guests" role="option"><span class="planner-filter__dot" style="background:#DB2777"></span>Guests</button>
+            <button type="button" class="planner-filter__option" data-cat="OT" data-label="Other" role="option"><span class="planner-filter__dot" style="background:#64748B"></span>Other</button>
+          </div>
+        </div>
+        <div class="planner-tabs" id="planner-tabs">
+          <button type="button" class="planner-tab" data-range="week">Week</button>
+          <button type="button" class="planner-tab" data-range="2weeks">2 weeks</button>
+          <button type="button" class="planner-tab is-active" data-range="month">Month</button>
+          <button type="button" class="planner-tab" data-range="year">Year overview</button>
+        </div>
+        <a href="https://docs.google.com/spreadsheets/d/1VMcwMqWxRDnLZ6QTGel33aNVHLlNtqZf_HnwtCanALA/edit?gid=324796546#gid=324796546" target="_blank" rel="noopener" class="btn btn--sm">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          Full calendar
+        </a>
+      </div>
+      <div id="planner-events">
+        <div class="gcal-loading">Loading planner…</div>
       </div>
 
       <!-- Today's Lunch -->
@@ -116,38 +146,6 @@
           View Full Birthday Calendar
         </a>
       </div>
-
-      <!-- Year planner — live from Google Sheet -->
-      <div class="section-title" style="margin-top:28px;"><h2>Year Planner</h2></div>
-      <div class="planner-tabs" id="planner-tabs">
-        <button type="button" class="planner-tab is-active" data-range="week">This week</button>
-        <button type="button" class="planner-tab" data-range="month">This month</button>
-        <button type="button" class="planner-tab" data-range="2months">Next 2 months</button>
-      </div>
-      <div class="planner-pills" id="planner-pills">
-        <button type="button" class="planner-pill is-active" data-cat="all">All</button>
-        <button type="button" class="planner-pill" data-cat="all-staff"><span class="planner-pill__dot" style="background:#2563EB"></span>All staff / holiday</button>
-        <button type="button" class="planner-pill" data-cat="church"><span class="planner-pill__dot" style="background:#9333EA"></span>Church</button>
-        <button type="button" class="planner-pill" data-cat="social"><span class="planner-pill__dot" style="background:#059669"></span>Social</button>
-        <button type="button" class="planner-pill" data-cat="LA"><span class="planner-pill__dot" style="background:#0891B2"></span>Leadership Academy</button>
-        <button type="button" class="planner-pill" data-cat="BN"><span class="planner-pill__dot" style="background:#475569"></span>Business Network</button>
-        <button type="button" class="planner-pill" data-cat="GUEST"><span class="planner-pill__dot" style="background:#DB2777"></span>Guests</button>
-        <button type="button" class="planner-pill" data-cat="MISSION"><span class="planner-pill__dot" style="background:#D97706"></span>Mission Team</button>
-      </div>
-      <div id="planner-events">
-        <div class="gcal-loading">Loading planner…</div>
-      </div>
-
-      <a href="https://docs.google.com/spreadsheets/d/1VMcwMqWxRDnLZ6QTGel33aNVHLlNtqZf_HnwtCanALA/edit?gid=324796546#gid=324796546" target="_blank" rel="noopener" class="card" style="display:flex;align-items:center;gap:16px;padding:18px 20px;text-decoration:none;color:inherit;border-left:4px solid #059669;background:linear-gradient(135deg,#f0fdf4,#ffffff);margin:12px 0 0;">
-        <span style="flex-shrink:0;width:40px;height:40px;border-radius:10px;background:rgba(5,150,105,0.12);color:#059669;display:flex;align-items:center;justify-content:center;">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg>
-        </span>
-        <div style="flex:1;">
-          <div style="font-weight:600;font-size:15px;color:#111827;">ICF Year Planner 2026</div>
-          <div style="font-size:13px;color:#6b7280;margin-top:2px;">Full calendar overview · Open in Google Sheets</div>
-        </div>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-      </a>
 
       <div class="section-title" style="margin-top:28px;"><h2>Year Topics Archive</h2></div>
       <div class="res-grid">
@@ -401,21 +399,43 @@
 (function() {
   const container = document.getElementById('planner-events');
   const tabsEl     = document.getElementById('planner-tabs');
-  const pillsEl    = document.getElementById('planner-pills');
-  if (!container || !tabsEl || !pillsEl) return;
+  const filterEl        = document.getElementById('planner-filter');
+  const filterToggle     = document.getElementById('planner-filter-toggle');
+  const filterMenu       = document.getElementById('planner-filter-menu');
+  const filterLabel      = document.getElementById('planner-filter-label');
+  if (!container || !tabsEl || !filterEl) return;
 
   // Published straight from Google Sheets — Share > General access > "Anyone
   // with the link" (Viewer) must be turned on for the spreadsheet, no Netlify
-  // function or backend involved. gid is the "2026 - OVERVIEW" tab.
-  const SHEET_ID   = '1VMcwMqWxRDnLZ6QTGel33aNVHLlNtqZf_HnwtCanALA';
-  const SHEET_GID  = '324796546';
-  const CSV_URL    = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&gid=${SHEET_GID}`;
-  const PLANNER_YEAR = 2026;
+  // function or backend involved. Each tab (hidden or not — hiding a tab
+  // doesn't block CSV export access, only its gid matters) gets its own
+  // entry here. Add a row once a new year's tab exists; find its gid in the
+  // sheet's URL (…?gid=XXXXXXX#gid=XXXXXXX) when that tab is open.
+  const SHEET_ID = '1VMcwMqWxRDnLZ6QTGel33aNVHLlNtqZf_HnwtCanALA';
+  const PLANNER_TABS = [
+    { year: 2026, gid: '324796546' },
+    // { year: 2027, gid: 'PASTE_GID_HERE' },
+    // { year: 2028, gid: 'PASTE_GID_HERE' },
+  ];
+  function csvUrlFor(gid) {
+    return `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&gid=${gid}`;
+  }
 
   const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   const DAYS   = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
   const MONTH_NAMES_FULL = ['january','february','march','april','may','june','july','august','september','october','november','december'];
-  const TAG_LABELS = { LA: 'Leadership Academy', BN: 'Business Network', GUEST: 'Guests', MISSION: 'Mission Team' };
+  const TAG_LABELS = {
+    LA: 'Leadership Academy',
+    BA: 'Business Academy',
+    AC: 'Learning Center',
+    BN: 'Business Network',
+    MT: 'Mission Team',
+    GU: 'Guests',
+    OT: 'Other',
+  };
+  // The "Others Type" dropdown column holds the code directly (LA, BA, AC,
+  // BN, MT, GU, OT) — no name-to-code lookup needed, just validate it.
+  const VALID_OTHER_CODES = ['LA', 'BA', 'AC', 'BN', 'MT', 'GU', 'OT'];
 
   // ---- CSV grid parsing (mirrors the sheet's month-block layout) ----
   function parseCSV(text) {
@@ -445,10 +465,55 @@
     return (row[c] || '').trim();
   }
 
-  // Month names aren't in a dedicated row — Google's CSV export for this sheet
-  // packs the title/legend/month text into whichever row the category headers
-  // land on, and which cell it ends up in (day column vs. the header cell
-  // itself) varies month to month. Search both candidate cells as one blob.
+  // Time entry: type the event name, press Cmd+Return (Mac) / Alt+Enter
+  // (Windows) inside the cell to add a second line, then type the time
+  // there — e.g. "Oneighty" \n "17:00-20:30". Order doesn't matter; whichever
+  // line looks like a time is treated as the time, the rest is the title.
+  // A single-line "17:00-20:30 Oneighty" prefix also still works. No time
+  // anywhere in the cell = all-day.
+  const TIME_RANGE_RE  = /^(\d{1,2}:\d{2}\s?(?:AM|PM|am|pm)?)\s*[-–]\s*(\d{1,2}:\d{2}\s?(?:AM|PM|am|pm)?)$/;
+  const TIME_SINGLE_RE = /^(\d{1,2}:\d{2}\s?(?:AM|PM|am|pm)?)$/;
+
+  function extractTime(text) {
+    const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
+
+    if (lines.length >= 2) {
+      for (let i = 0; i < lines.length; i++) {
+        const rangeMatch = lines[i].match(TIME_RANGE_RE);
+        if (rangeMatch) {
+          const title = lines.filter((_, idx) => idx !== i).join(' ').trim();
+          return { startTime: rangeMatch[1].trim(), endTime: rangeMatch[2].trim(), title };
+        }
+        const singleMatch = lines[i].match(TIME_SINGLE_RE);
+        if (singleMatch) {
+          const title = lines.filter((_, idx) => idx !== i).join(' ').trim();
+          return { startTime: singleMatch[1].trim(), endTime: null, title };
+        }
+      }
+    }
+
+    // Fallback: single-line "17:00-20:30 Event name" prefix convention.
+    const joined = lines.join(' ');
+    const rangePrefix = joined.match(/^(\d{1,2}:\d{2}\s?(?:AM|PM|am|pm)?)\s*[-–]\s*(\d{1,2}:\d{2}\s?(?:AM|PM|am|pm)?)\s+(.*)$/);
+    if (rangePrefix) return { startTime: rangePrefix[1].trim(), endTime: rangePrefix[2].trim(), title: rangePrefix[3].trim() };
+    const singlePrefix = joined.match(/^(\d{1,2}:\d{2}\s?(?:AM|PM|am|pm)?)\s+(.*)$/);
+    if (singlePrefix) return { startTime: singlePrefix[1].trim(), endTime: null, title: singlePrefix[2].trim() };
+
+    return { startTime: null, endTime: null, title: joined };
+  }
+
+  function timeToMinutes(t) {
+    if (!t) return -1;
+    const m = t.match(/^(\d{1,2}):(\d{2})\s?(AM|PM|am|pm)?$/);
+    if (!m) return -1;
+    let h = parseInt(m[1], 10);
+    const min = parseInt(m[2], 10);
+    const ap = m[3] ? m[3].toUpperCase() : null;
+    if (ap === 'PM' && h < 12) h += 12;
+    if (ap === 'AM' && h === 12) h = 0;
+    return h * 60 + min;
+  }
+
   function findMonthInText(text) {
     const lower = text.toLowerCase();
     for (let i = 0; i < MONTH_NAMES_FULL.length; i++) {
@@ -457,7 +522,7 @@
     return -1;
   }
 
-  function parsePlannerCSV(csvText) {
+  function parsePlannerCSV(csvText, year) {
     const rows = parseCSV(csvText);
 
     let headerRowIdx = -1;
@@ -474,36 +539,51 @@
     const rawEntries = [];
 
     for (const anchor of anchorCols) {
-      const dayCol = anchor - 2, wdayCol = anchor - 1, allStaffCol = anchor, churchCol = anchor + 1, socialCol = anchor + 2, othersCol = anchor + 3;
+      const dayCol = anchor - 2, wdayCol = anchor - 1, allStaffCol = anchor, churchCol = anchor + 1, socialCol = anchor + 2, othersCol = anchor + 3, othersTagCol = anchor + 4;
 
       const headerBlob = [cellAt(rows, headerRowIdx, dayCol), cellAt(rows, headerRowIdx, wdayCol), cellAt(rows, headerRowIdx, allStaffCol)].join(' ');
       const monthIndex = findMonthInText(headerBlob);
       if (monthIndex === -1) continue;
 
-      const daysInMonth = new Date(PLANNER_YEAR, monthIndex + 1, 0).getDate();
+      const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
 
       for (let d = 1; d <= daysInMonth; d++) {
         const rowIdx = headerRowIdx + d;
-        const date = new Date(Date.UTC(PLANNER_YEAR, monthIndex, d));
+        const date = new Date(Date.UTC(year, monthIndex, d));
 
         const allStaffText = cellAt(rows, rowIdx, allStaffCol);
         const churchText    = cellAt(rows, rowIdx, churchCol);
         const socialText    = cellAt(rows, rowIdx, socialCol);
         const othersText    = cellAt(rows, rowIdx, othersCol);
+        const othersTagText = cellAt(rows, rowIdx, othersTagCol);
 
-        if (allStaffText) rawEntries.push({ date, category: 'all-staff', subCategory: null, text: allStaffText });
-        if (churchText)    rawEntries.push({ date, category: 'church',    subCategory: null, text: churchText });
-        if (socialText)    rawEntries.push({ date, category: 'social',    subCategory: null, text: socialText });
+        if (allStaffText) {
+          const t = extractTime(allStaffText);
+          rawEntries.push({ date, category: 'all-staff', subCategory: null, text: allStaffText, title: t.title, startTime: t.startTime, endTime: t.endTime });
+        }
+        if (churchText) {
+          const t = extractTime(churchText);
+          rawEntries.push({ date, category: 'church', subCategory: null, text: churchText, title: t.title, startTime: t.startTime, endTime: t.endTime });
+        }
+        if (socialText) {
+          const t = extractTime(socialText);
+          rawEntries.push({ date, category: 'social', subCategory: null, text: socialText, title: t.title, startTime: t.startTime, endTime: t.endTime });
+        }
 
         if (othersText) {
-          const match = othersText.match(/^\[(LA|BN|GUEST|MISSION)\]\s*(.*)$/i);
-          if (match) {
-            const key = match[1].toUpperCase();
-            const title = match[2].trim();
-            rawEntries.push({ date, category: 'others', subCategory: key, text: title || othersText });
-          } else {
-            rawEntries.push({ date, category: 'others', subCategory: 'OTHER', text: othersText });
+          // Prefer the dropdown column if it's filled in with a recognized
+          // code; fall back to a typed [LA]/[BN]/etc. prefix for anything
+          // entered before the dropdown existed; otherwise it's "OT".
+          const tagRaw = othersTagText.trim().toUpperCase();
+          let key  = VALID_OTHER_CODES.includes(tagRaw) ? tagRaw : null;
+          let rest = othersText;
+          if (!key) {
+            const match = othersText.match(/^\[(LA|BA|AC|BN|MT|GU|OT)\]\s*([\s\S]*)$/i);
+            if (match) { key = match[1].toUpperCase(); rest = match[2].trim() || othersText; }
           }
+          if (!key) key = 'OT';
+          const t = extractTime(rest);
+          rawEntries.push({ date, category: 'others', subCategory: key, text: rest, title: t.title, startTime: t.startTime, endTime: t.endTime });
         }
       }
     }
@@ -530,7 +610,9 @@
         category: first.category,
         subCategory: first.subCategory,
         subCategoryLabel: first.subCategory ? (TAG_LABELS[first.subCategory] || 'Other') : null,
-        title: first.text,
+        title: first.title,
+        startTime: first.startTime,
+        endTime: first.endTime,
       };
     }
 
@@ -562,21 +644,23 @@
     'social':    { label: 'Social',                color: '#059669', bg: '#ECFDF5' },
   };
   const SUBCAT_META = {
-    LA:      { label: 'Leadership Academy', color: '#0891B2', bg: '#ECFEFF' },
-    BN:      { label: 'Business Network',   color: '#475569', bg: '#F1F5F9' },
-    GUEST:   { label: 'Guests',             color: '#DB2777', bg: '#FDF2F8' },
-    MISSION: { label: 'Mission Team',       color: '#D97706', bg: '#FFFBEB' },
-    OTHER:   { label: 'Other',              color: '#64748B', bg: '#F1F5F9' },
+    LA: { label: 'Leadership Academy', color: '#0891B2', bg: '#ECFEFF' },
+    BA: { label: 'Business Academy',   color: '#6366F1', bg: '#EEF2FF' },
+    AC: { label: 'Learning Center',    color: '#EA580C', bg: '#FFF7ED' },
+    BN: { label: 'Business Network',   color: '#475569', bg: '#F1F5F9' },
+    MT: { label: 'Mission Team',       color: '#D97706', bg: '#FFFBEB' },
+    GU: { label: 'Guests',             color: '#DB2777', bg: '#FDF2F8' },
+    OT: { label: 'Other',              color: '#64748B', bg: '#F1F5F9' },
   };
 
   function metaFor(ev) {
-    if (ev.category === 'others') return SUBCAT_META[ev.subCategory] || SUBCAT_META.OTHER;
-    return CAT_META[ev.category] || SUBCAT_META.OTHER;
+    if (ev.category === 'others') return SUBCAT_META[ev.subCategory] || SUBCAT_META.OT;
+    return CAT_META[ev.category] || SUBCAT_META.OT;
   }
 
   // The pill filter value: top-level category name, or the sub-category code for "others".
   function pillKeyFor(ev) {
-    return ev.category === 'others' ? (ev.subCategory || 'OTHER') : ev.category;
+    return ev.category === 'others' ? (ev.subCategory || 'OT') : ev.category;
   }
 
   function parseISODate(s) { const [y, m, d] = s.split('-').map(Number); return new Date(Date.UTC(y, m - 1, d)); }
@@ -597,44 +681,437 @@
     return { top: `${MONTHS[s.getUTCMonth()]} ${s.getUTCDate()} – ${MONTHS[e.getUTCMonth()]} ${e.getUTCDate()}`, sub: '' };
   }
 
-  function render(events, rangeKey, catKey) {
-    const { start, end } = rangeFor(rangeKey);
-    const filtered = events.filter(ev => {
-      const evStart = parseISODate(ev.start), evEnd = parseISODate(ev.end);
-      const inRange = evEnd >= start && evStart <= end;
-      const inCat   = catKey === 'all' || pillKeyFor(ev) === catKey;
-      return inRange && inCat;
+  function monthLabel(mi) {
+    const s = MONTH_NAMES_FULL[mi];
+    return s.charAt(0).toUpperCase() + s.slice(1);
+  }
+
+  // Groups multi-day events touching a given run of days (a week row)
+  // into "lanes" so overlapping spans stack instead of colliding — each
+  // lane renders as one continuous bar across the days it covers.
+  function computeSpanLanes(weekDays, events) {
+    const weekStart = weekDays[0];
+    const weekEnd   = weekDays[weekDays.length - 1];
+    const weekStartISO = weekStart.toISOString().slice(0, 10);
+    const weekEndISO   = weekEnd.toISOString().slice(0, 10);
+
+    const items = events
+      .filter(ev => ev.start !== ev.end && ev.end >= weekStartISO && ev.start <= weekEndISO)
+      .map(ev => {
+        const evStart = parseISODate(ev.start);
+        const evEnd   = parseISODate(ev.end);
+        const openStart = evStart < weekStart;
+        const openEnd   = evEnd > weekEnd;
+        const startCol = openStart ? 0 : Math.round((evStart - weekStart) / 86400000);
+        const endCol   = openEnd ? (weekDays.length - 1) : Math.round((evEnd - weekStart) / 86400000);
+        return { ev, startCol, endCol, openStart, openEnd };
+      })
+      .sort((a, b) => a.startCol - b.startCol || a.endCol - b.endCol);
+
+    const lanes = [];
+    items.forEach(item => {
+      let lane = lanes.find(l => l.lastEndCol < item.startCol);
+      if (!lane) { lane = { lastEndCol: -1, items: [] }; lanes.push(lane); }
+      lane.items.push(item);
+      lane.lastEndCol = item.endCol;
     });
 
-    if (filtered.length === 0) {
-      container.innerHTML = '<div class="gcal-loading">No events in this range.</div>';
-      return;
+    return lanes.map(l => l.items);
+  }
+
+  function spanBarHtml(item, colOffset) {
+    const ev = item.ev;
+    const meta = metaFor(ev);
+    const colStart = item.startCol + 1 + colOffset;
+    const colEnd   = item.endCol + 2 + colOffset;
+    // Square left edge, rounded right edge — same "straight" treatment as
+    // the regular cards. Only round the right corner where the event
+    // actually ends; leave it square if it keeps going past this view.
+    const roundRight = item.openEnd ? '0' : '4px';
+    // Only draw the accent border on the segment where the event actually
+    // begins — a bar that's continuing in from an earlier week shouldn't
+    // look like a new event starting here.
+    const borderLeft = item.openStart ? 'none' : `2px solid ${meta.color}`;
+    const timePart = ev.startTime ? `${ev.startTime}${ev.endTime ? '–' + ev.endTime : ''} · ` : 'All day · ';
+
+    return `<div class="planner-span-bar" style="grid-column:${colStart} / ${colEnd}; background:${meta.color}1f; border-left:${borderLeft}; border-radius:0 ${roundRight} ${roundRight} 0;">
+      <span class="planner-span-bar__title">${ev.title}</span>
+      <span class="planner-span-bar__meta" style="color:${meta.color}">${timePart}${meta.label}</span>
+    </div>`;
+  }
+
+  function renderYearView(events, catKey) {
+    const filtered = events.filter(ev => catKey === 'all' || pillKeyFor(ev) === catKey);
+
+    // Map every calendar day (ISO string) to the events touching it —
+    // multi-day spans get an entry on each day they cover.
+    const dayMap = new Map();
+    filtered.forEach(ev => {
+      let d = parseISODate(ev.start);
+      const end = parseISODate(ev.end);
+      while (d <= end) {
+        const iso = d.toISOString().slice(0, 10);
+        if (!dayMap.has(iso)) dayMap.set(iso, []);
+        dayMap.get(iso).push(ev);
+        d = addDays(d, 1);
+      }
+    });
+
+    const todayISO = todayUTC().toISOString().slice(0, 10);
+
+    // Spreadsheet-style layout: each month is a column running day 1 to
+    // the end of the month top-to-bottom, with events shown inline on
+    // their day row. Months sit side by side so scrolling right moves
+    // through the year — the same shape as the source sheet.
+    const monthCards = PLANNER_TABS.map(tab => {
+      return Array.from({ length: 12 }, (_, mi) => {
+        const daysInMonth = new Date(Date.UTC(tab.year, mi + 1, 0)).getUTCDate();
+
+        const dayRows = Array.from({ length: daysInMonth }, (_, i) => {
+          const d   = i + 1;
+          const dateObj = new Date(Date.UTC(tab.year, mi, d));
+          const iso = `${tab.year}-${String(mi + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+          const dayEvents = (dayMap.get(iso) || []).slice()
+            .sort((a, b) => timeToMinutes(a.startTime) - timeToMinutes(b.startTime));
+          const isToday = iso === todayISO;
+
+          const chips = dayEvents.map(ev => {
+            const meta = metaFor(ev);
+            const timePart = ev.startTime ? `${ev.startTime}${ev.endTime ? '–' + ev.endTime : ''} · ` : 'All day · ';
+            return `<div class="planner-year-chip" style="border-left-color:${meta.color}">
+              <span class="planner-year-chip__title">${ev.title}</span>
+              <span class="planner-year-chip__meta" style="color:${meta.color}">${timePart}${meta.label}</span>
+            </div>`;
+          }).join('');
+
+          return `<div class="planner-year-day-row${isToday ? ' is-today' : ''}">
+            <div class="planner-year-day-row__date">
+              <span class="planner-year-day-row__num">${d}</span>
+              <span class="planner-year-day-row__dow">${DAYS[dateObj.getUTCDay()].slice(0, 2)}</span>
+            </div>
+            <div class="planner-year-day-row__events">${chips}</div>
+          </div>`;
+        }).join('');
+
+        return `<div class="planner-year-card" data-year="${tab.year}" data-month="${mi}">
+          <p class="planner-year-card__title">${monthLabel(mi)} ${tab.year}</p>
+          <div class="planner-year-days">${dayRows}</div>
+        </div>`;
+      }).join('');
+    }).join('');
+
+    return `<div class="planner-year">
+      <div class="planner-year-nav">
+        <button type="button" class="planner-year-nav-btn" data-dir="-1" aria-label="Previous month">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <p class="planner-year-nav__label">Scroll to browse the year</p>
+        <button type="button" class="planner-year-nav-btn" data-dir="1" aria-label="Next month">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+      <div class="planner-year-scroller" id="planner-year-scroller">${monthCards}</div>
+    </div>`;
+  }
+
+  function scrollYearViewToCurrentMonth() {
+    const scroller = document.getElementById('planner-year-scroller');
+    if (!scroller) return;
+    const now  = new Date();
+    const card = scroller.querySelector(`.planner-year-card[data-year="${now.getFullYear()}"][data-month="${now.getMonth()}"]`);
+    if (card) card.scrollIntoView({ block: 'nearest', inline: 'start' });
+  }
+
+  let monthViewDate = new Date(Date.UTC(todayUTC().getUTCFullYear(), todayUTC().getUTCMonth(), 1));
+
+  function renderMonthView(events, catKey) {
+    const filtered = events.filter(ev => catKey === 'all' || pillKeyFor(ev) === catKey);
+
+    // Only single-day events go into the per-day chip list — multi-day
+    // events render once as a spanning bar across the days they cover.
+    const dayMap = new Map();
+    filtered.filter(ev => ev.start === ev.end).forEach(ev => {
+      if (!dayMap.has(ev.start)) dayMap.set(ev.start, []);
+      dayMap.get(ev.start).push(ev);
+    });
+
+    const year  = monthViewDate.getUTCFullYear();
+    const month = monthViewDate.getUTCMonth();
+    const first = new Date(Date.UTC(year, month, 1));
+    const daysInMonth = new Date(Date.UTC(year, month + 1, 0)).getUTCDate();
+    let leading = first.getUTCDay() - 1;
+    if (leading < 0) leading = 6;
+    const totalCells = Math.ceil((leading + daysInMonth) / 7) * 7;
+
+    const todayISO = todayUTC().toISOString().slice(0, 10);
+    const WEEKDAY_LABELS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+    const dowHtml = WEEKDAY_LABELS.map(l => `<div class="planner-month-dow">${l}</div>`).join('');
+
+    const allCellDates = Array.from({ length: totalCells }, (_, i) => new Date(Date.UTC(year, month, i - leading + 1)));
+
+    const weeksHtml = [];
+    for (let w = 0; w < allCellDates.length; w += 7) {
+      const weekDays = allCellDates.slice(w, w + 7);
+      const lanes = computeSpanLanes(weekDays, filtered);
+      const laneRows = lanes.map(lane =>
+        `<div class="planner-span-lane">${lane.map(item => spanBarHtml(item, 0)).join('')}</div>`
+      ).join('');
+
+      // Day number sits above the span bars, chips sit below — same
+      // bordered box, just split so the bar can slot in "under the date".
+      const numCells = weekDays.map(cellDate => {
+        const iso     = cellDate.toISOString().slice(0, 10);
+        const inMonth = cellDate.getUTCMonth() === month;
+        const isToday = iso === todayISO;
+        return `<div class="planner-month-num-cell${inMonth ? '' : ' is-outside'}">
+          <span class="planner-month-cell__num${isToday ? ' is-today' : ''}">${cellDate.getUTCDate()}</span>
+        </div>`;
+      }).join('');
+
+      const dayCells = weekDays.map(cellDate => {
+        const iso     = cellDate.toISOString().slice(0, 10);
+        const inMonth = cellDate.getUTCMonth() === month;
+
+        const dayEvents = (dayMap.get(iso) || []).slice()
+          .sort((a, b) => timeToMinutes(a.startTime) - timeToMinutes(b.startTime));
+        const visible = dayEvents.slice(0, 3);
+        const extra   = dayEvents.length - visible.length;
+
+        const chips = visible.map(ev => {
+          const meta = metaFor(ev);
+          const timePart = ev.startTime ? `${ev.startTime}${ev.endTime ? '–' + ev.endTime : ''} · ` : 'All day · ';
+          return `<div class="planner-month-chip" style="border-left-color:${meta.color}">
+            <span class="planner-month-chip__title">${ev.title}</span>
+            <span class="planner-month-chip__meta" style="color:${meta.color}">${timePart}${meta.label}</span>
+          </div>`;
+        }).join('');
+        const moreHtml = extra > 0 ? `<div class="planner-month-more">+${extra} more</div>` : '';
+
+        return `<div class="planner-month-cell${inMonth ? '' : ' is-outside'}">
+          <div class="planner-month-cell__events">${chips}${moreHtml}</div>
+        </div>`;
+      }).join('');
+
+      weeksHtml.push(`<div class="planner-month-week">
+        <div class="planner-month-week-nums">${numCells}</div>
+        ${laneRows}
+        <div class="planner-month-week-days">${dayCells}</div>
+      </div>`);
     }
 
-    let lastMonthLabel = '';
-    const html = filtered.map(ev => {
-      const meta  = metaFor(ev);
-      const badge = fmtDateBadge(ev.start, ev.end);
-      const s     = parseISODate(ev.start);
-      const monthLabel = `${['January','February','March','April','May','June','July','August','September','October','November','December'][s.getUTCMonth()]} ${s.getUTCFullYear()}`;
-      let monthHtml = '';
-      if (monthLabel !== lastMonthLabel) { monthHtml = `<p class="planner-month">${monthLabel}</p>`; lastMonthLabel = monthLabel; }
+    return `<div class="planner-month">
+      <div class="planner-month-nav">
+        <button type="button" class="planner-month-nav-btn" data-dir="-1" aria-label="Previous month">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <p class="planner-month-nav__label">${monthLabel(month)} ${year}</p>
+        <button type="button" class="planner-month-nav-btn" data-dir="1" aria-label="Next month">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+      <div class="planner-month-grid">
+        <div class="planner-month-dow-row">${dowHtml}</div>
+        ${weeksHtml.join('')}
+      </div>
+    </div>`;
+  }
 
-      return `${monthHtml}<div class="planner-card">
-        <div class="planner-card__date"><strong>${badge.top}</strong><span>${badge.sub}</span></div>
-        <div class="planner-card__bar" style="background:${meta.color}"></div>
-        <div class="planner-card__body">
-          <p class="planner-card__title">${ev.title}</p>
-          <span class="planner-card__cat" style="background:${meta.bg};color:${meta.color}">${meta.label}</span>
-        </div>
+  let weekViewDate = (function () {
+    const t = todayUTC();
+    const dow = t.getUTCDay(); // 0=Sun..6=Sat
+    const diffToMonday = dow === 0 ? -6 : 1 - dow;
+    return addDays(t, diffToMonday);
+  })();
+
+  function renderWeekView(events, catKey) {
+    const filtered = events.filter(ev => catKey === 'all' || pillKeyFor(ev) === catKey);
+
+    // Only single-day events go into the per-day kanban cards — multi-day
+    // events render once as a spanning bar above the columns.
+    const dayMap = new Map();
+    filtered.filter(ev => ev.start === ev.end).forEach(ev => {
+      if (!dayMap.has(ev.start)) dayMap.set(ev.start, []);
+      dayMap.get(ev.start).push(ev);
+    });
+
+    const todayISO = todayUTC().toISOString().slice(0, 10);
+    const WEEKDAY_LABELS = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
+    const days = Array.from({ length: 7 }, (_, i) => addDays(weekViewDate, i));
+
+    const s = days[0], e = days[6];
+    const rangeLabel = s.getUTCMonth() === e.getUTCMonth()
+      ? `${s.getUTCDate()}–${e.getUTCDate()} ${monthLabel(s.getUTCMonth())} ${s.getUTCFullYear()}`
+      : `${s.getUTCDate()} ${monthLabel(s.getUTCMonth())} – ${e.getUTCDate()} ${monthLabel(e.getUTCMonth())} ${e.getUTCFullYear()}`;
+
+    const headers = days.map((d, i) => {
+      const iso = d.toISOString().slice(0, 10);
+      const isToday = iso === todayISO;
+      return `<div class="planner-week-day-header">
+        <span class="planner-week-day-header__dow">${WEEKDAY_LABELS[i]}</span>
+        <span class="planner-week-day-header__num${isToday ? ' is-today' : ''}">${d.getUTCDate()}</span>
       </div>`;
     }).join('');
 
-    container.innerHTML = html;
+    const lanes = computeSpanLanes(days, filtered);
+    const spansHtml = lanes.length
+      ? `<div class="planner-week-spans">${lanes.map(lane =>
+          `<div class="planner-span-lane">${lane.map(item => spanBarHtml(item, 0)).join('')}</div>`
+        ).join('')}</div>`
+      : '';
+
+    const cols = days.map(d => {
+      const iso = d.toISOString().slice(0, 10);
+      const dayEvents = (dayMap.get(iso) || []).slice()
+        .sort((a, b) => timeToMinutes(a.startTime) - timeToMinutes(b.startTime));
+
+      const cards = dayEvents.map(ev => {
+        const meta = metaFor(ev);
+        const timePart = ev.startTime ? `${ev.startTime}${ev.endTime ? '–' + ev.endTime : ''} · ` : 'All day · ';
+        return `<div class="planner-week-card" style="border-left-color:${meta.color}">
+          <span class="planner-week-card__title">${ev.title}</span>
+          <span class="planner-week-card__meta" style="color:${meta.color}">${timePart}${meta.label}</span>
+        </div>`;
+      }).join('');
+
+      return `<div class="planner-week-day-col">${cards}</div>`;
+    }).join('');
+
+    return `<div class="planner-week">
+      <div class="planner-week-nav">
+        <button type="button" class="planner-week-nav-btn" data-dir="-1" aria-label="Previous week">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <p class="planner-week-nav__label">${rangeLabel}</p>
+        <button type="button" class="planner-week-nav-btn" data-dir="1" aria-label="Next week">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+      <div class="planner-week-header-row">${headers}</div>
+      ${spansHtml}
+      <div class="planner-week-grid">${cols}</div>
+    </div>`;
+  }
+
+  let twoWeekViewDate = (function () {
+    const t = todayUTC();
+    const dow = t.getUTCDay();
+    return addDays(t, dow === 0 ? -6 : 1 - dow);
+  })();
+
+  function getISOWeek(d) {
+    const date = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()));
+    const dayNum = date.getUTCDay() || 7;
+    date.setUTCDate(date.getUTCDate() + 4 - dayNum);
+    const yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
+    return Math.ceil((((date - yearStart) / 86400000) + 1) / 7);
+  }
+
+  function renderTwoWeekView(events, catKey) {
+    const filtered = events.filter(ev => catKey === 'all' || pillKeyFor(ev) === catKey);
+
+    // Only single-day events go into the per-day chip list — multi-day
+    // events render once as a spanning bar across the days they cover.
+    const dayMap = new Map();
+    filtered.filter(ev => ev.start === ev.end).forEach(ev => {
+      if (!dayMap.has(ev.start)) dayMap.set(ev.start, []);
+      dayMap.get(ev.start).push(ev);
+    });
+
+    const todayISO = todayUTC().toISOString().slice(0, 10);
+    const WEEKDAY_LABELS = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
+    const days = Array.from({ length: 14 }, (_, i) => addDays(twoWeekViewDate, i));
+
+    const s = days[0], e = days[13];
+    const rangeLabel = s.getUTCMonth() === e.getUTCMonth()
+      ? `${s.getUTCDate()}–${e.getUTCDate()} ${monthLabel(s.getUTCMonth())} ${s.getUTCFullYear()}`
+      : `${s.getUTCDate()} ${monthLabel(s.getUTCMonth())} – ${e.getUTCDate()} ${monthLabel(e.getUTCMonth())} ${e.getUTCFullYear()}`;
+
+    const headerRow = `<div class="planner-2weeks-header-row"><div class="planner-2weeks-gutter"></div>` +
+      WEEKDAY_LABELS.map(l => `<div class="planner-month-dow">${l}</div>`).join('') + `</div>`;
+
+    const weekRows = [0, 1].map(w => {
+      const weekDays = days.slice(w * 7, w * 7 + 7);
+      const weekNum  = getISOWeek(weekDays[0]);
+      const lanes    = computeSpanLanes(weekDays, filtered);
+      const laneRows = lanes.map(lane =>
+        `<div class="planner-2weeks-span-lane">${lane.map(item => spanBarHtml(item, 1)).join('')}</div>`
+      ).join('');
+
+      const numCells = weekDays.map(d => {
+        const iso = d.toISOString().slice(0, 10);
+        const isToday = iso === todayISO;
+        return `<div class="planner-month-num-cell">
+          <span class="planner-month-cell__num${isToday ? ' is-today' : ''}">${d.getUTCDate()}</span>
+        </div>`;
+      }).join('');
+
+      const cells = weekDays.map(d => {
+        const iso = d.toISOString().slice(0, 10);
+        const dayEvents = (dayMap.get(iso) || []).slice()
+          .sort((a, b) => timeToMinutes(a.startTime) - timeToMinutes(b.startTime));
+        const visible = dayEvents.slice(0, 3);
+        const extra   = dayEvents.length - visible.length;
+
+        const chips = visible.map(ev => {
+          const meta = metaFor(ev);
+          const timePart = ev.startTime ? `${ev.startTime}${ev.endTime ? '–' + ev.endTime : ''} · ` : 'All day · ';
+          return `<div class="planner-month-chip" style="border-left-color:${meta.color}">
+            <span class="planner-month-chip__title">${ev.title}</span>
+            <span class="planner-month-chip__meta" style="color:${meta.color}">${timePart}${meta.label}</span>
+          </div>`;
+        }).join('');
+        const moreHtml = extra > 0 ? `<div class="planner-month-more">+${extra} more</div>` : '';
+
+        return `<div class="planner-month-cell">
+          <div class="planner-month-cell__events">${chips}${moreHtml}</div>
+        </div>`;
+      }).join('');
+
+      return `<div class="planner-2weeks-week">
+        <div class="planner-2weeks-week-nums"><div class="planner-2weeks-weeknum">${weekNum}</div>${numCells}</div>
+        ${laneRows}
+        <div class="planner-2weeks-week-days"><div class="planner-2weeks-gutter"></div>${cells}</div>
+      </div>`;
+    }).join('');
+
+    return `<div class="planner-2weeks">
+      <div class="planner-2weeks-nav">
+        <button type="button" class="planner-2weeks-nav-btn" data-dir="-1" aria-label="Previous 2 weeks">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <p class="planner-2weeks-nav__label">${rangeLabel}</p>
+        <button type="button" class="planner-2weeks-nav-btn" data-dir="1" aria-label="Next 2 weeks">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+      <div class="planner-2weeks-grid">${headerRow}${weekRows}</div>
+    </div>`;
+  }
+
+
+  function render(events, rangeKey, catKey) {
+    if (rangeKey === 'year') {
+      container.innerHTML = renderYearView(events, catKey);
+      scrollYearViewToCurrentMonth();
+      return;
+    }
+
+    if (rangeKey === 'month') {
+      container.innerHTML = renderMonthView(events, catKey);
+      return;
+    }
+
+    if (rangeKey === '2weeks') {
+      container.innerHTML = renderTwoWeekView(events, catKey);
+      return;
+    }
+
+    container.innerHTML = renderWeekView(events, catKey);
   }
 
   let allEvents = [];
-  let currentRange = 'week';
+  let currentRange = 'month';
   let currentCat   = 'all';
 
   tabsEl.addEventListener('click', (e) => {
@@ -643,27 +1120,109 @@
     tabsEl.querySelectorAll('.planner-tab').forEach(b => b.classList.remove('is-active'));
     btn.classList.add('is-active');
     currentRange = btn.dataset.range;
+    if (currentRange === 'month') {
+      monthViewDate = new Date(Date.UTC(todayUTC().getUTCFullYear(), todayUTC().getUTCMonth(), 1));
+    }
+    if (currentRange === 'week') {
+      const t = todayUTC();
+      const dow = t.getUTCDay();
+      weekViewDate = addDays(t, dow === 0 ? -6 : 1 - dow);
+    }
+    if (currentRange === '2weeks') {
+      const t = todayUTC();
+      const dow = t.getUTCDay();
+      twoWeekViewDate = addDays(t, dow === 0 ? -6 : 1 - dow);
+    }
     render(allEvents, currentRange, currentCat);
   });
 
-  pillsEl.addEventListener('click', (e) => {
-    const btn = e.target.closest('.planner-pill');
+  container.addEventListener('click', (e) => {
+    const yearNavBtn = e.target.closest('.planner-year-nav-btn');
+    if (yearNavBtn) {
+      const scroller = document.getElementById('planner-year-scroller');
+      if (!scroller) return;
+      const card = scroller.querySelector('.planner-year-card');
+      const step = card ? card.getBoundingClientRect().width + 14 : 254;
+      scroller.scrollBy({ left: Number(yearNavBtn.dataset.dir) * step, behavior: 'smooth' });
+      return;
+    }
+
+    const monthNavBtn = e.target.closest('.planner-month-nav-btn');
+    if (monthNavBtn) {
+      const dir = Number(monthNavBtn.dataset.dir);
+      monthViewDate = new Date(Date.UTC(monthViewDate.getUTCFullYear(), monthViewDate.getUTCMonth() + dir, 1));
+      render(allEvents, currentRange, currentCat);
+      return;
+    }
+
+    const weekNavBtn = e.target.closest('.planner-week-nav-btn');
+    if (weekNavBtn) {
+      const dir = Number(weekNavBtn.dataset.dir);
+      weekViewDate = addDays(weekViewDate, dir * 7);
+      render(allEvents, currentRange, currentCat);
+      return;
+    }
+
+    const twoWeeksNavBtn = e.target.closest('.planner-2weeks-nav-btn');
+    if (twoWeeksNavBtn) {
+      const dir = Number(twoWeeksNavBtn.dataset.dir);
+      twoWeekViewDate = addDays(twoWeekViewDate, dir * 14);
+      render(allEvents, currentRange, currentCat);
+    }
+  });
+
+  function closeFilterMenu() {
+    filterMenu.hidden = true;
+    filterToggle.setAttribute('aria-expanded', 'false');
+  }
+
+  filterToggle.addEventListener('click', () => {
+    const isOpen = !filterMenu.hidden;
+    if (isOpen) { closeFilterMenu(); return; }
+    filterMenu.hidden = false;
+    filterToggle.setAttribute('aria-expanded', 'true');
+  });
+
+  filterMenu.addEventListener('click', (e) => {
+    const btn = e.target.closest('.planner-filter__option');
     if (!btn) return;
-    pillsEl.querySelectorAll('.planner-pill').forEach(b => b.classList.remove('is-active'));
+    filterMenu.querySelectorAll('.planner-filter__option').forEach(b => {
+      b.classList.remove('is-active');
+      b.setAttribute('aria-selected', 'false');
+    });
     btn.classList.add('is-active');
+    btn.setAttribute('aria-selected', 'true');
+    filterLabel.textContent = btn.dataset.label;
     currentCat = btn.dataset.cat;
+    closeFilterMenu();
     render(allEvents, currentRange, currentCat);
   });
 
-  async function loadPlanner() {
+  document.addEventListener('click', (e) => {
+    if (!filterEl.contains(e.target)) closeFilterMenu();
+  });
+
+  async function loadOneTab(tab) {
+    const ctrl = new AbortController();
+    const tid  = setTimeout(() => ctrl.abort(), 8000);
     try {
-      const ctrl = new AbortController();
-      const tid  = setTimeout(() => ctrl.abort(), 8000);
-      const resp = await fetch(CSV_URL, { cache: 'no-cache', signal: ctrl.signal });
+      const resp = await fetch(csvUrlFor(tab.gid), { cache: 'no-cache', signal: ctrl.signal });
       clearTimeout(tid);
       if (!resp.ok) throw new Error('fetch failed ' + resp.status);
       const csvText = await resp.text();
-      allEvents = parsePlannerCSV(csvText);
+      return parsePlannerCSV(csvText, tab.year);
+    } catch (e) {
+      clearTimeout(tid);
+      console.error('Year Planner: failed to load', tab.year, 'tab', e);
+      return [];
+    }
+  }
+
+  async function loadPlanner() {
+    try {
+      const results = await Promise.all(PLANNER_TABS.map(loadOneTab));
+      allEvents = results.flat();
+      if (allEvents.length === 0) throw new Error('no events loaded from any tab');
       render(allEvents, currentRange, currentCat);
     } catch (e) {
       container.innerHTML = '<div class="gcal-error">Could not load the year planner. Make sure the sheet is shared as "Anyone with the link".</div>';
