@@ -1324,40 +1324,50 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   background: var(--surface-2);
 }
 .planner-month-cell {
-  min-height: 92px;
-  padding: 6px;
+  min-height: 150px;
+  padding: 8px;
   border-right: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  display: flex; flex-direction: column; gap: 3px;
+  display: flex; flex-direction: column; gap: 6px;
 }
 .planner-month-cell.is-outside { background: var(--surface-2); }
 .planner-month-cell.is-outside .planner-month-cell__num { color: var(--text-muted); }
-.planner-month-cell__num { font-size: 12px; font-weight: 500; color: var(--text); }
+.planner-month-cell__num { font-size: 13px; font-weight: 500; color: var(--text); }
 .planner-month-cell.is-today .planner-month-cell__num {
   display: inline-flex; align-items: center; justify-content: center;
-  width: 20px; height: 20px;
+  width: 22px; height: 22px;
   border-radius: 50%;
   background: var(--blue-600);
   color: #fff;
 }
-.planner-month-cell__events { display: flex; flex-direction: column; gap: 2px; }
+.planner-month-cell__events { display: flex; flex-direction: column; gap: 5px; }
 .planner-month-chip {
-  font-size: 11px; font-weight: 500;
-  color: var(--text);
   border-left: 2px solid var(--border);
-  border-radius: 0 3px 3px 0;
+  border-radius: 0 4px 4px 0;
   background: var(--surface-2);
-  padding: 1px 4px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  padding: 4px 7px;
 }
-.planner-month-more { font-size: 10.5px; color: var(--text-muted); padding-left: 4px; }
+.planner-month-chip__title {
+  display: block;
+  font-size: 12px; font-weight: 500;
+  color: var(--text);
+  line-height: 1.3;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+.planner-month-chip__meta {
+  display: block;
+  font-size: 11px; font-weight: 500;
+  opacity: 0.85;
+  margin-top: 1px;
+}
+.planner-month-more { font-size: 11px; color: var(--text-muted); padding-left: 4px; }
 
 @media (max-width: 640px) {
-  .planner-month-cell { min-height: 64px; padding: 4px; }
+  .planner-month-cell { min-height: 110px; padding: 5px; }
   .planner-month-dow { font-size: 10px; padding: 6px 2px; }
-  .planner-month-chip { font-size: 10px; }
+  .planner-month-chip__title { font-size: 11px; }
+  .planner-month-chip__meta { font-size: 10px; }
 }
 
 /* ---------- Emergency contacts footer strip ---------- */

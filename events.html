@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" sizes="192x192" href="/assets/icons/icon-192.png" />
 <title>Events &amp; Year Topics · Staff Hub</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=20260717n" />
+<link rel="stylesheet" href="assets/styles.css?v=20260717o" />
 </head>
 <body>
 <div class="app">
@@ -812,8 +812,11 @@
 
       const chips = visible.map(ev => {
         const meta = metaFor(ev);
-        const timePart = ev.startTime ? `${ev.startTime} ` : '';
-        return `<div class="planner-month-chip" style="border-left-color:${meta.color}">${timePart}${ev.title}</div>`;
+        const timePart = ev.startTime ? `${ev.startTime}${ev.endTime ? '–' + ev.endTime : ''} · ` : '';
+        return `<div class="planner-month-chip" style="border-left-color:${meta.color}">
+          <span class="planner-month-chip__title">${ev.title}</span>
+          <span class="planner-month-chip__meta" style="color:${meta.color}">${timePart}${meta.label}</span>
+        </div>`;
       }).join('');
       const moreHtml = extra > 0 ? `<div class="planner-month-more">+${extra} more</div>` : '';
 
