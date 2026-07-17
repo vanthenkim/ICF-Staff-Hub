@@ -1293,6 +1293,73 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 .planner-year-chip__title { display: block; font-size: 13px; font-weight: 500; color: var(--text); line-height: 1.35; }
 .planner-year-chip__meta { display: block; font-size: 11.5px; font-weight: 500; opacity: 0.85; margin-top: 1px; }
 
+/* Month view — full grid with prev/next navigation, Google Calendar style */
+.planner-month-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.planner-month-nav__label { margin: 0; font-size: 15px; font-weight: 500; color: var(--text); }
+.planner-month-nav-btn {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted);
+}
+.planner-month-nav-btn:hover { background: var(--surface-2); }
+
+.planner-month-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.planner-month-dow {
+  font-size: 11px; font-weight: 500;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 8px 4px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-2);
+}
+.planner-month-cell {
+  min-height: 92px;
+  padding: 6px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  display: flex; flex-direction: column; gap: 3px;
+}
+.planner-month-cell.is-outside { background: var(--surface-2); }
+.planner-month-cell.is-outside .planner-month-cell__num { color: var(--text-muted); }
+.planner-month-cell__num { font-size: 12px; font-weight: 500; color: var(--text); }
+.planner-month-cell.is-today .planner-month-cell__num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: var(--blue-600);
+  color: #fff;
+}
+.planner-month-cell__events { display: flex; flex-direction: column; gap: 2px; }
+.planner-month-chip {
+  font-size: 11px; font-weight: 500;
+  color: var(--text);
+  border-left: 2px solid var(--border);
+  border-radius: 0 3px 3px 0;
+  background: var(--surface-2);
+  padding: 1px 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.planner-month-more { font-size: 10.5px; color: var(--text-muted); padding-left: 4px; }
+
+@media (max-width: 640px) {
+  .planner-month-cell { min-height: 64px; padding: 4px; }
+  .planner-month-dow { font-size: 10px; padding: 6px 2px; }
+  .planner-month-chip { font-size: 10px; }
+}
+
 /* ---------- Emergency contacts footer strip ---------- */
 /* Home page two-column layout */
 .home-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }

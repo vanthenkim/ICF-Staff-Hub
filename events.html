@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" sizes="192x192" href="/assets/icons/icon-192.png" />
 <title>Events &amp; Year Topics · Staff Hub</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=20260717m" />
+<link rel="stylesheet" href="assets/styles.css?v=20260717n" />
 </head>
 <body>
 <div class="app">
@@ -102,7 +102,7 @@
         </div>
         <div class="planner-tabs" id="planner-tabs">
           <button type="button" class="planner-tab" data-range="week">This week</button>
-          <button type="button" class="planner-tab is-active" data-range="month">This month</button>
+          <button type="button" class="planner-tab is-active" data-range="month">Month</button>
           <button type="button" class="planner-tab" data-range="2months">Next 2 months</button>
           <button type="button" class="planner-tab" data-range="year">Year overview</button>
         </div>
@@ -768,10 +768,84 @@
     if (card) card.scrollIntoView({ block: 'nearest', inline: 'start' });
   }
 
+  let monthViewDate = new Date(Date.UTC(todayUTC().getUTCFullYear(), todayUTC().getUTCMonth(), 1));
+
+  function renderMonthView(events, catKey) {
+    const filtered = events.filter(ev => catKey === 'all' || pillKeyFor(ev) === catKey);
+
+    const dayMap = new Map();
+    filtered.forEach(ev => {
+      let d = parseISODate(ev.start);
+      const end = parseISODate(ev.end);
+      while (d <= end) {
+        const iso = d.toISOString().slice(0, 10);
+        if (!dayMap.has(iso)) dayMap.set(iso, []);
+        dayMap.get(iso).push(ev);
+        d = addDays(d, 1);
+      }
+    });
+
+    const year  = monthViewDate.getUTCFullYear();
+    const month = monthViewDate.getUTCMonth();
+    const first = new Date(Date.UTC(year, month, 1));
+    const daysInMonth = new Date(Date.UTC(year, month + 1, 0)).getUTCDate();
+    let leading = first.getUTCDay() - 1;
+    if (leading < 0) leading = 6;
+    const totalCells = Math.ceil((leading + daysInMonth) / 7) * 7;
+
+    const todayISO = todayUTC().toISOString().slice(0, 10);
+    const WEEKDAY_LABELS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+    const dowHtml = WEEKDAY_LABELS.map(l => `<div class="planner-month-dow">${l}</div>`).join('');
+
+    const cellsHtml = Array.from({ length: totalCells }, (_, i) => {
+      const dayNum   = i - leading + 1;
+      const cellDate = new Date(Date.UTC(year, month, dayNum)); // rolls into prev/next month automatically
+      const iso      = cellDate.toISOString().slice(0, 10);
+      const inMonth  = cellDate.getUTCMonth() === month;
+      const isToday  = iso === todayISO;
+
+      const dayEvents = (dayMap.get(iso) || []).slice()
+        .sort((a, b) => timeToMinutes(a.startTime) - timeToMinutes(b.startTime));
+      const visible = dayEvents.slice(0, 3);
+      const extra   = dayEvents.length - visible.length;
+
+      const chips = visible.map(ev => {
+        const meta = metaFor(ev);
+        const timePart = ev.startTime ? `${ev.startTime} ` : '';
+        return `<div class="planner-month-chip" style="border-left-color:${meta.color}">${timePart}${ev.title}</div>`;
+      }).join('');
+      const moreHtml = extra > 0 ? `<div class="planner-month-more">+${extra} more</div>` : '';
+
+      return `<div class="planner-month-cell${inMonth ? '' : ' is-outside'}${isToday ? ' is-today' : ''}">
+        <span class="planner-month-cell__num">${cellDate.getUTCDate()}</span>
+        <div class="planner-month-cell__events">${chips}${moreHtml}</div>
+      </div>`;
+    }).join('');
+
+    return `<div class="planner-month">
+      <div class="planner-month-nav">
+        <button type="button" class="planner-month-nav-btn" data-dir="-1" aria-label="Previous month">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <p class="planner-month-nav__label">${monthLabel(month)} ${year}</p>
+        <button type="button" class="planner-month-nav-btn" data-dir="1" aria-label="Next month">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+      <div class="planner-month-grid">${dowHtml}${cellsHtml}</div>
+    </div>`;
+  }
+
   function render(events, rangeKey, catKey) {
     if (rangeKey === 'year') {
       container.innerHTML = renderYearView(events, catKey);
       scrollYearViewToCurrentMonth();
+      return;
+    }
+
+    if (rangeKey === 'month') {
+      container.innerHTML = renderMonthView(events, catKey);
       return;
     }
 
@@ -847,17 +921,28 @@
     tabsEl.querySelectorAll('.planner-tab').forEach(b => b.classList.remove('is-active'));
     btn.classList.add('is-active');
     currentRange = btn.dataset.range;
+    if (currentRange === 'month') {
+      monthViewDate = new Date(Date.UTC(todayUTC().getUTCFullYear(), todayUTC().getUTCMonth(), 1));
+    }
     render(allEvents, currentRange, currentCat);
   });
 
   container.addEventListener('click', (e) => {
-    const navBtn = e.target.closest('.planner-year-nav-btn');
-    if (navBtn) {
+    const yearNavBtn = e.target.closest('.planner-year-nav-btn');
+    if (yearNavBtn) {
       const scroller = document.getElementById('planner-year-scroller');
       if (!scroller) return;
       const card = scroller.querySelector('.planner-year-card');
       const step = card ? card.getBoundingClientRect().width + 14 : 254;
-      scroller.scrollBy({ left: Number(navBtn.dataset.dir) * step, behavior: 'smooth' });
+      scroller.scrollBy({ left: Number(yearNavBtn.dataset.dir) * step, behavior: 'smooth' });
+      return;
+    }
+
+    const monthNavBtn = e.target.closest('.planner-month-nav-btn');
+    if (monthNavBtn) {
+      const dir = Number(monthNavBtn.dataset.dir);
+      monthViewDate = new Date(Date.UTC(monthViewDate.getUTCFullYear(), monthViewDate.getUTCMonth() + dir, 1));
+      render(allEvents, currentRange, currentCat);
     }
   });
 
