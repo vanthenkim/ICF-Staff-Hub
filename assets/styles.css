@@ -1331,7 +1331,7 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   border-bottom: 1px solid var(--border);
   background: var(--surface-2);
 }
-.planner-month-dow.is-weekend { color: var(--red-600); background: var(--red-50); }
+.planner-month-dow.is-weekend { color: var(--red-600); }
 /* Day number sits in its own row (top of the box), chips in another
    (bottom of the box) — no border between them, so span-bar lanes can
    slot in between while the box still reads as one continuous cell. */
@@ -1341,7 +1341,6 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 }
 .planner-month-num-cell.is-outside { background: var(--surface-2); }
 .planner-month-num-cell.is-outside .planner-month-cell__num { color: var(--text-muted); }
-.planner-month-num-cell.is-weekend { background: var(--red-50); }
 .planner-month-num-cell.is-weekend .planner-month-cell__num { color: var(--red-600); }
 .planner-month-cell__num { font-size: 13px; font-weight: 500; color: var(--text); }
 .planner-month-cell__num.is-today {
@@ -1359,7 +1358,6 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   display: flex; flex-direction: column; gap: 6px;
 }
 .planner-month-cell.is-outside { background: var(--surface-2); }
-.planner-month-cell.is-weekend { background: var(--red-50); }
 .planner-month-cell__events { display: flex; flex-direction: column; gap: 5px; }
 .planner-month-chip {
   display: flex; align-items: flex-start; justify-content: space-between; gap: 4px;
@@ -1482,7 +1480,6 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   gap: 10px;
 }
 .planner-week-day-col { display: flex; flex-direction: column; gap: 8px; min-height: 300px; }
-.planner-week-day-col.is-weekend { background: var(--red-50); border-radius: 6px; }
 
 .planner-week-card {
   display: flex; align-items: flex-start; justify-content: space-between; gap: 6px;
