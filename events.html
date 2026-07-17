@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" sizes="192x192" href="/assets/icons/icon-192.png" />
 <title>Events &amp; Year Topics · Staff Hub</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=20260717ad" />
+<link rel="stylesheet" href="assets/styles.css?v=20260717ae" />
 </head>
 <body>
 <div class="app">
@@ -82,22 +82,25 @@
       <div class="section-title"><h2>Year Planner</h2></div>
       <div class="planner-toolbar">
         <div class="planner-filter" id="planner-filter">
-          <button type="button" class="planner-filter__toggle" id="planner-filter-toggle" aria-haspopup="listbox" aria-expanded="false">
+          <button type="button" class="planner-filter__toggle" id="planner-filter-toggle" aria-haspopup="true" aria-expanded="false">
             <span class="planner-filter__label" id="planner-filter-label">All events</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <div class="planner-filter__menu" id="planner-filter-menu" role="listbox" hidden>
-            <button type="button" class="planner-filter__option is-active" data-cat="all" data-label="All events" role="option" aria-selected="true">All events</button>
-            <button type="button" class="planner-filter__option" data-cat="all-staff" data-label="All staff / holiday" role="option"><span class="planner-filter__dot" style="background:#2563EB"></span>All staff / holiday</button>
-            <button type="button" class="planner-filter__option" data-cat="church" data-label="Church" role="option"><span class="planner-filter__dot" style="background:#9333EA"></span>Church</button>
-            <button type="button" class="planner-filter__option" data-cat="social" data-label="Social" role="option"><span class="planner-filter__dot" style="background:#059669"></span>Social</button>
-            <button type="button" class="planner-filter__option" data-cat="LA" data-label="Leadership Academy" role="option"><span class="planner-filter__dot" style="background:#0891B2"></span>Leadership Academy</button>
-            <button type="button" class="planner-filter__option" data-cat="BA" data-label="Business Academy" role="option"><span class="planner-filter__dot" style="background:#6366F1"></span>Business Academy</button>
-            <button type="button" class="planner-filter__option" data-cat="AC" data-label="Learning Center" role="option"><span class="planner-filter__dot" style="background:#EA580C"></span>Learning Center</button>
-            <button type="button" class="planner-filter__option" data-cat="BN" data-label="Business Network" role="option"><span class="planner-filter__dot" style="background:#475569"></span>Business Network</button>
-            <button type="button" class="planner-filter__option" data-cat="MT" data-label="Mission Team" role="option"><span class="planner-filter__dot" style="background:#D97706"></span>Mission Team</button>
-            <button type="button" class="planner-filter__option" data-cat="GU" data-label="Guests" role="option"><span class="planner-filter__dot" style="background:#DB2777"></span>Guests</button>
-            <button type="button" class="planner-filter__option" data-cat="OT" data-label="Other" role="option"><span class="planner-filter__dot" style="background:#64748B"></span>Other</button>
+          <div class="planner-filter__menu" id="planner-filter-menu" hidden>
+            <div class="planner-filter__actions">
+              <button type="button" class="planner-filter__action" id="planner-filter-selectall">Select all</button>
+              <button type="button" class="planner-filter__action" id="planner-filter-deselectall">Deselect all</button>
+            </div>
+            <label class="planner-filter__option"><input type="checkbox" class="planner-filter__checkbox" data-cat="all-staff" data-label="All staff" checked><span class="planner-filter__dot" style="background:#2563EB"></span>All staff</label>
+            <label class="planner-filter__option"><input type="checkbox" class="planner-filter__checkbox" data-cat="church" data-label="Church" checked><span class="planner-filter__dot" style="background:#9333EA"></span>Church</label>
+            <label class="planner-filter__option"><input type="checkbox" class="planner-filter__checkbox" data-cat="social" data-label="Social" checked><span class="planner-filter__dot" style="background:#059669"></span>Social</label>
+            <label class="planner-filter__option"><input type="checkbox" class="planner-filter__checkbox" data-cat="LA" data-label="Leadership Academy" checked><span class="planner-filter__dot" style="background:#0891B2"></span>Leadership Academy</label>
+            <label class="planner-filter__option"><input type="checkbox" class="planner-filter__checkbox" data-cat="BA" data-label="Business Academy" checked><span class="planner-filter__dot" style="background:#6366F1"></span>Business Academy</label>
+            <label class="planner-filter__option"><input type="checkbox" class="planner-filter__checkbox" data-cat="AC" data-label="Learning Center" checked><span class="planner-filter__dot" style="background:#EA580C"></span>Learning Center</label>
+            <label class="planner-filter__option"><input type="checkbox" class="planner-filter__checkbox" data-cat="BN" data-label="Business Network" checked><span class="planner-filter__dot" style="background:#475569"></span>Business Network</label>
+            <label class="planner-filter__option"><input type="checkbox" class="planner-filter__checkbox" data-cat="MT" data-label="Mission Team" checked><span class="planner-filter__dot" style="background:#D97706"></span>Mission Team</label>
+            <label class="planner-filter__option"><input type="checkbox" class="planner-filter__checkbox" data-cat="GU" data-label="Guests" checked><span class="planner-filter__dot" style="background:#DB2777"></span>Guests</label>
+            <label class="planner-filter__option"><input type="checkbox" class="planner-filter__checkbox" data-cat="OT" data-label="Other" checked><span class="planner-filter__dot" style="background:#64748B"></span>Other</label>
           </div>
         </div>
         <div class="planner-tabs" id="planner-tabs">
@@ -789,7 +792,7 @@
   }
 
   function renderYearView(events, catKey) {
-    const filtered = events.filter(ev => catKey === 'all' || pillKeyFor(ev) === catKey);
+    const filtered = events.filter(ev => catKey.has(pillKeyFor(ev)));
 
     // Map every calendar day (ISO string) to the events touching it —
     // multi-day spans get an entry on each day they cover.
@@ -877,7 +880,7 @@
   let monthViewDate = new Date(Date.UTC(todayUTC().getUTCFullYear(), todayUTC().getUTCMonth(), 1));
 
   function renderMonthView(events, catKey) {
-    const filtered = events.filter(ev => catKey === 'all' || pillKeyFor(ev) === catKey);
+    const filtered = events.filter(ev => catKey.has(pillKeyFor(ev)));
 
     // Only single-day events go into the per-day chip list — multi-day
     // events render once as a spanning bar across the days they cover.
@@ -982,7 +985,7 @@
   })();
 
   function renderWeekView(events, catKey) {
-    const filtered = events.filter(ev => catKey === 'all' || pillKeyFor(ev) === catKey);
+    const filtered = events.filter(ev => catKey.has(pillKeyFor(ev)));
 
     // Only single-day events go into the per-day kanban cards — multi-day
     // events render once as a spanning bar above the columns.
@@ -1076,7 +1079,7 @@
   }
 
   function renderTwoWeekView(events, catKey) {
-    const filtered = events.filter(ev => catKey === 'all' || pillKeyFor(ev) === catKey);
+    const filtered = events.filter(ev => catKey.has(pillKeyFor(ev)));
 
     // Only single-day events go into the per-day chip list — multi-day
     // events render once as a spanning bar across the days they cover.
@@ -1185,7 +1188,8 @@
 
   let allEvents = [];
   let currentRange = 'month';
-  let currentCat   = 'all';
+  const ALL_CATS = ['all-staff', 'church', 'social', 'LA', 'BA', 'AC', 'BN', 'MT', 'GU', 'OT'];
+  let selectedCats = new Set(ALL_CATS);
 
   tabsEl.addEventListener('click', (e) => {
     const btn = e.target.closest('.planner-tab');
@@ -1206,7 +1210,7 @@
       const dow = t.getUTCDay();
       twoWeekViewDate = addDays(t, dow === 0 ? -6 : 1 - dow);
     }
-    render(allEvents, currentRange, currentCat);
+    render(allEvents, currentRange, selectedCats);
   });
 
   container.addEventListener('click', (e) => {
@@ -1224,7 +1228,7 @@
     if (monthNavBtn) {
       const dir = Number(monthNavBtn.dataset.dir);
       monthViewDate = new Date(Date.UTC(monthViewDate.getUTCFullYear(), monthViewDate.getUTCMonth() + dir, 1));
-      render(allEvents, currentRange, currentCat);
+      render(allEvents, currentRange, selectedCats);
       return;
     }
 
@@ -1232,7 +1236,7 @@
     if (weekNavBtn) {
       const dir = Number(weekNavBtn.dataset.dir);
       weekViewDate = addDays(weekViewDate, dir * 7);
-      render(allEvents, currentRange, currentCat);
+      render(allEvents, currentRange, selectedCats);
       return;
     }
 
@@ -1240,7 +1244,7 @@
     if (twoWeeksNavBtn) {
       const dir = Number(twoWeeksNavBtn.dataset.dir);
       twoWeekViewDate = addDays(twoWeekViewDate, dir * 14);
-      render(allEvents, currentRange, currentCat);
+      render(allEvents, currentRange, selectedCats);
     }
   });
 
@@ -1256,19 +1260,41 @@
     filterToggle.setAttribute('aria-expanded', 'true');
   });
 
-  filterMenu.addEventListener('click', (e) => {
-    const btn = e.target.closest('.planner-filter__option');
-    if (!btn) return;
-    filterMenu.querySelectorAll('.planner-filter__option').forEach(b => {
-      b.classList.remove('is-active');
-      b.setAttribute('aria-selected', 'false');
-    });
-    btn.classList.add('is-active');
-    btn.setAttribute('aria-selected', 'true');
-    filterLabel.textContent = btn.dataset.label;
-    currentCat = btn.dataset.cat;
-    closeFilterMenu();
-    render(allEvents, currentRange, currentCat);
+  function updateFilterLabel() {
+    const n = selectedCats.size;
+    if (n === ALL_CATS.length) {
+      filterLabel.textContent = 'All events';
+    } else if (n === 0) {
+      filterLabel.textContent = 'No events';
+    } else if (n === 1) {
+      const only = filterMenu.querySelector('.planner-filter__checkbox[data-cat="' + [...selectedCats][0] + '"]');
+      filterLabel.textContent = only ? only.dataset.label : n + ' selected';
+    } else {
+      filterLabel.textContent = n + ' selected';
+    }
+  }
+
+  filterMenu.addEventListener('change', (e) => {
+    const cb = e.target.closest('.planner-filter__checkbox');
+    if (!cb) return;
+    if (cb.checked) selectedCats.add(cb.dataset.cat);
+    else selectedCats.delete(cb.dataset.cat);
+    updateFilterLabel();
+    render(allEvents, currentRange, selectedCats);
+  });
+
+  document.getElementById('planner-filter-selectall').addEventListener('click', () => {
+    selectedCats = new Set(ALL_CATS);
+    filterMenu.querySelectorAll('.planner-filter__checkbox').forEach(cb => { cb.checked = true; });
+    updateFilterLabel();
+    render(allEvents, currentRange, selectedCats);
+  });
+
+  document.getElementById('planner-filter-deselectall').addEventListener('click', () => {
+    selectedCats = new Set();
+    filterMenu.querySelectorAll('.planner-filter__checkbox').forEach(cb => { cb.checked = false; });
+    updateFilterLabel();
+    render(allEvents, currentRange, selectedCats);
   });
 
   document.addEventListener('click', (e) => {
@@ -1296,7 +1322,7 @@
       const results = await Promise.all(PLANNER_TABS.map(loadOneTab));
       allEvents = results.flat();
       if (allEvents.length === 0) throw new Error('no events loaded from any tab');
-      render(allEvents, currentRange, currentCat);
+      render(allEvents, currentRange, selectedCats);
     } catch (e) {
       container.innerHTML = '<div class="gcal-error">Could not load the year planner. Make sure the sheet is shared as "Anyone with the link".</div>';
     }
