@@ -211,17 +211,18 @@ input, select, textarea { font: inherit; }
   background: #2B2B2B;
   border-bottom: 1px solid rgba(255,255,255,0.1);
   height: var(--header-h);
-  display: flex;
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr) auto;
   align-items: center;
   padding: 0 var(--space-6);
-  gap: var(--space-4);
+  column-gap: var(--space-4);
   color: #fff;
 }
 .topbar__brand {
+  grid-column: 2;
   display: flex;
   align-items: center;
   gap: 10px;
-  flex: none;
 }
 .topbar__brand .sidebar__logo { height: 30px; }
 .topbar__brand span {
@@ -233,6 +234,7 @@ input, select, textarea { font: inherit; }
   white-space: nowrap;
 }
 .topbar__menu {
+  grid-column: 1;
   display: none;
   width: 40px; height: 40px;
   border-radius: 10px;
@@ -240,14 +242,12 @@ input, select, textarea { font: inherit; }
   align-items: center; justify-content: center;
   background: transparent;
   color: #fff;
-  flex: none;
 }
 .topbar__search {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 50%;
+  grid-column: 3;
+  position: relative;
+  justify-self: center;
+  width: 100%;
   max-width: 480px;
   cursor: pointer;
 }
@@ -271,7 +271,7 @@ input, select, textarea { font: inherit; }
   color: var(--text-soft);
   pointer-events: none;
 }
-.topbar__right { margin-left: auto; display: flex; align-items: center; gap: 10px; flex: none; }
+.topbar__right { grid-column: 4; display: flex; align-items: center; gap: 10px; }
 .topbar__btn {
   width: 40px; height: 40px;
   border-radius: 10px;
@@ -308,18 +308,12 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 }
 
 @media (max-width: 960px) {
-  .topbar { padding: 0 var(--space-4); gap: var(--space-3); }
+  .topbar { padding: 0 var(--space-4); column-gap: var(--space-3); }
   .topbar__menu { display: flex; }
-  .topbar__search {
-    position: static;
-    transform: none;
-    width: auto;
-    max-width: none;
-    flex: 1;
-  }
 }
 @media (max-width: 640px) {
   .topbar__brand span { display: none; }
+  .topbar__search { max-width: none; }
   .topbar__search input { height: 38px; font-size: 14px; }
 }
 
