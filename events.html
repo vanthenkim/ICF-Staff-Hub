@@ -1188,7 +1188,10 @@
     const todayISO = todayUTC().toISOString().slice(0, 10);
     const WEEKDAY_FULL = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
-    const groupsHtml = days.map(d => {
+    // Skip days that have already passed — the agenda starts at today.
+    const upcomingDays = days.filter(d => d.toISOString().slice(0, 10) >= todayISO);
+
+    const groupsHtml = upcomingDays.length ? upcomingDays.map(d => {
       const iso = d.toISOString().slice(0, 10);
       const isToday   = iso === todayISO;
       const isWeekend = d.getUTCDay() === 0 || d.getUTCDay() === 6;
@@ -1216,7 +1219,7 @@
         <div class="planner-agenda-day__label${isWeekend ? ' is-weekend' : ''}">${dow}, ${d.getUTCDate()} ${monthLabel(d.getUTCMonth())}${isToday ? ' <span class="planner-agenda-today-badge">Today</span>' : ''}</div>
         <div class="planner-agenda-day__items">${itemsHtml}</div>
       </div>`;
-    }).join('');
+    }).join('') : `<p class="planner-agenda-empty">No upcoming events in this range</p>`;
 
     return `<div class="planner-agenda">
       <div class="${opts.navContainerClass}">
