@@ -895,32 +895,23 @@ if ('serviceWorker' in navigator) {
     });
   }
 
-  // ---------- Search modal ----------
-  const searchBtn = document.querySelectorAll('[data-action="open-search"]');
-  const searchModal = document.querySelector('#search-modal');
-  const searchInput = document.querySelector('#search-modal input');
-  const searchResults = document.querySelector('#search-results');
-
-  function openSearch() {
-    if (!searchModal) return;
-    searchModal.classList.add('is-open');
-    setTimeout(() => searchInput && searchInput.focus(), 50);
+  // ---------- Jump-to-search (⌘K, mobile "Search" button) ----------
+  // Search now lives inline in the top bar (live results as you type),
+  // so these just get you there and drop the cursor in.
+  function focusTopbarSearch() {
+    const input = document.getElementById('topbar-search-input');
+    if (!input) return;
+    input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    input.focus();
   }
-  function closeSearch() {
-    searchModal && searchModal.classList.remove('is-open');
-  }
-  searchBtn.forEach(b => b.addEventListener('click', openSearch));
-  if (searchModal) {
-    searchModal.addEventListener('click', (e) => {
-      if (e.target === searchModal) closeSearch();
-    });
-  }
+  document.querySelectorAll('[data-action="open-search"]').forEach(b => {
+    b.addEventListener('click', focusTopbarSearch);
+  });
   document.addEventListener('keydown', (e) => {
     if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
       e.preventDefault();
-      openSearch();
+      focusTopbarSearch();
     }
-    if (e.key === 'Escape') closeSearch();
   });
 
   // ---------- Search index (real docs from Resources Public + Webhubs) ----------
@@ -1139,65 +1130,14 @@ if ('serviceWorker' in navigator) {
     return ic[name] || ic.file;
   }
 
-  function render(query) {
-    if (!searchResults) return;
-    const q = (query || '').trim();
-    const hits = q ? searchIndex(q) : INDEX.slice(0, 8);
 
-    const groups = {};
-    hits.forEach(h => {
-      groups[h.g] = groups[h.g] || [];
-      groups[h.g].push(h);
-    });
-
-    let html = '';
-    if (hits.length === 0) {
-      html = `<div class="search-modal__group-label">No matches</div>
-              <div style="padding:14px;color:var(--text-muted);font-size:13.5px;">Try “leave”, “logo”, “budget”, “SOP”, or “medical”.</div>`;
-    } else {
-      Object.keys(groups).forEach(g => {
-        html += `<div class="search-modal__group-label">${g}</div>`;
-        groups[g].forEach(item => {
-          // Open external docs / folders in a new tab; keep hub pages in same window.
-          const isExternal = /^(Resources%20Public|Training%20%26%20Development%20Webhub|Medical%20Webhub)/.test(item.h);
-          const tgt = isExternal ? ' target="_blank" rel="noopener"' : '';
-          html += `<a class="search-modal__hit" href="${item.h}"${tgt}>
-            <span class="icon">${iconFor(item.i)}</span>
-            <span>
-              <p class="search-modal__hit__title">${item.t}</p>
-              <p class="search-modal__hit__sub">${item.g}</p>
-            </span>
-          </a>`;
-        });
-      });
-    }
-    searchResults.innerHTML = html;
-  }
-
-  if (searchInput) {
-    render('');
-    searchInput.addEventListener('input', e => render(e.target.value));
-  }
-
-  // ---------- Inline hero search (no modal) ----------
-  (function initInlineSearch() {
-    const input   = document.getElementById('inline-search-input');
-    const results = document.getElementById('inline-search-results');
+  // ---------- Live inline search (top bar — no modal) ----------
+  // Same behavior everywhere it's used: type, see grouped results appear
+  // right below the field, click outside or Esc to dismiss.
+  function initInlineSearch(inputId, resultsId) {
+    const input   = document.getElementById(inputId);
+    const results = document.getElementById(resultsId);
     if (!input || !results) return;
-
-    function iconFor(name) {
-      const ic = {
-        calendar: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>',
-        shield:   '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
-        dollar:   '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/></svg>',
-        graduation:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/></svg>',
-        file:     '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>',
-        users:    '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>',
-        image:    '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>',
-        medical:  '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.5-3 1.5-6 0-9-3 0-6 0-7.5 1.5C10 5 7 5 4 5c-1.5 3-1.5 6 0 9 3 0 6 0 7.5-1.5C13 14 16 14 19 14z"/></svg>',
-      };
-      return ic[name] || ic.file;
-    }
 
     function renderInline(q) {
       const query = q.trim();
@@ -1229,6 +1169,7 @@ if ('serviceWorker' in navigator) {
     }
 
     input.addEventListener('input', e => renderInline(e.target.value));
+    input.addEventListener('focus', e => { if (e.target.value.trim()) renderInline(e.target.value); });
 
     // Close when clicking outside
     document.addEventListener('click', e => {
@@ -1240,7 +1181,9 @@ if ('serviceWorker' in navigator) {
     input.addEventListener('keydown', e => {
       if (e.key === 'Escape') { results.hidden = true; input.blur(); }
     });
-  })();
+  }
+
+  initInlineSearch('topbar-search-input', 'topbar-search-results');
 
   // Quick action filter pills (resources & departments)
   document.querySelectorAll('[data-filter-group]').forEach(group => {

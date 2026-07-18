@@ -24,9 +24,10 @@
         <div class="sidebar__logo"><img src="assets/icf-logo-white.png" alt="ICF Cambodia" /></div>
         <span>Staff Hub</span>
       </div>
-      <div class="topbar__search" data-action="open-search">
+      <div class="topbar__search" id="topbar-search-wrap">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input type="text" placeholder="Find resources, contacts, forms…" readonly />
+        <input type="text" id="topbar-search-input" placeholder="Find resources, contacts, forms…" autocomplete="off" />
+        <div class="inline-results" id="topbar-search-results" hidden></div>
       </div>
       <div class="topbar__right">
         <button class="topbar__btn lang-toggle" data-action="toggle-lang" aria-label="Language" title="Toggle language EN / KH"><span class="lang-toggle__label">EN</span></button>
@@ -271,18 +272,7 @@
       <button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScskJ0UijIWOWdoLFYQTE8J1jNYmpveZ32rU-BmOtprbFXxvg/viewform','_blank')" style="display:flex;align-items:center;gap:10px;width:100%;border:none;cursor:pointer;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:10px;padding:9px 12px;font-size:14px;font-weight:500;font-family:inherit;margin-top:10px;text-align:left;"><span style="font-size:17px;line-height:1;">&#x1F3C6;</span>Honor a Colleague</button>
     </nav>
   </div>
-</div>
-<div class="search-modal" id="search-modal">
-  <div class="search-modal__panel">
-    <div class="search-modal__input">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <input type="search" placeholder="Search the Staff Hub&hellip;" />
-    </div>
-    <div class="search-modal__results" id="search-results"></div>
-    <div class="search-modal__footer"><span><kbd>&crarr;</kbd> open</span><span><kbd>&uarr;</kbd><kbd>&darr;</kbd> navigate</span><span><kbd>esc</kbd> close</span></div>
-  </div>
-</div>
-<script src="assets/app.js?v=20260715"></script>
+</div><script src="assets/app.js?v=20260715"></script>
 <div id="person-modal" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.45);z-index:9999;align-items:center;justify-content:center;" onclick="if(event.target===this)this.style.display='none'">
   <div style="background:#fff;border-radius:16px;padding:28px 24px;max-width:320px;width:90%;box-shadow:0 8px 40px rgba(0,0,0,0.18);position:relative;text-align:center;">
     <button onclick="document.getElementById('person-modal').style.display='none'" style="position:absolute;top:10px;right:14px;background:none;border:none;font-size:22px;cursor:pointer;color:#94a3b8;line-height:1;">&times;</button>

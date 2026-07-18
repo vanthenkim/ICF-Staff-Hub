@@ -249,7 +249,6 @@ input, select, textarea { font: inherit; }
   justify-self: center;
   width: 100%;
   max-width: 480px;
-  cursor: pointer;
 }
 .topbar__search input {
   width: 100%;
@@ -260,7 +259,6 @@ input, select, textarea { font: inherit; }
   padding: 0 16px 0 44px;
   font-size: 15px;
   color: var(--text);
-  cursor: pointer;
 }
 .topbar__search input:focus {
   outline: none;
