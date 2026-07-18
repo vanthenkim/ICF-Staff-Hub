@@ -243,9 +243,12 @@ input, select, textarea { font: inherit; }
   flex: none;
 }
 .topbar__search {
-  flex: 1;
-  max-width: 50%;
-  position: relative;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  max-width: 480px;
   cursor: pointer;
 }
 .topbar__search input {
@@ -307,6 +310,13 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 @media (max-width: 960px) {
   .topbar { padding: 0 var(--space-4); gap: var(--space-3); }
   .topbar__menu { display: flex; }
+  .topbar__search {
+    position: static;
+    transform: none;
+    width: auto;
+    max-width: none;
+    flex: 1;
+  }
 }
 @media (max-width: 640px) {
   .topbar__brand span { display: none; }

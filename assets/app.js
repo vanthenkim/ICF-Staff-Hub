@@ -1054,6 +1054,68 @@ if ('serviceWorker' in navigator) {
     { t: 'HR Department',                          g: 'Hub pages', h: 'department-hr.html', i: 'users' },
   ];
 
+  // ---------- Search matching / ranking ----------
+  // Broad match: a hit can come from anywhere in the title or group text,
+  // but results are scored so the closest match (exact title, then
+  // starts-with, then whole-word, then plain substring) rises to the top.
+  function normalizeSearchText(s) {
+    return (s || '')
+      .toLowerCase()
+      .normalize('NFKD')
+      .replace(/[̀-ͯ]/g, '');
+  }
+
+  function escapeRegExp(s) {
+    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  function scoreSearchHit(item, query) {
+    const title = normalizeSearchText(item.t);
+    const group = normalizeSearchText(item.g);
+    const haystack = title + ' ' + group;
+    const q = normalizeSearchText(query).trim();
+    if (!q) return 0;
+
+    if (title === q) return 100;
+    if (title.startsWith(q)) return 90;
+
+    const wb = new RegExp('\\b' + escapeRegExp(q) + '\\b');
+    if (wb.test(title)) return 80;
+    if (title.includes(q)) return 65;
+    if (group.startsWith(q)) return 55;
+    if (wb.test(group)) return 50;
+    if (group.includes(q)) return 40;
+
+    // Multi-word queries: broad match anywhere, ranked by how many words hit
+    // and whether they land on whole words rather than mid-word fragments.
+    const words = q.split(/\s+/).filter(Boolean);
+    if (words.length > 1) {
+      const foundCount = words.filter(w => haystack.includes(w)).length;
+      if (foundCount === words.length) {
+        let bonus = 0;
+        words.forEach(w => {
+          const wwb = new RegExp('\\b' + escapeRegExp(w) + '\\b');
+          if (wwb.test(haystack)) bonus += 3;
+        });
+        return 25 + bonus;
+      }
+      if (foundCount > 0) return 10 + foundCount * 3;
+    }
+
+    return 0;
+  }
+
+  function searchIndex(query, limit) {
+    const q = (query || '').trim();
+    if (!q) return limit ? INDEX.slice(0, limit) : INDEX.slice();
+    const ranked = INDEX
+      .map(item => ({ item, score: scoreSearchHit(item, q) }))
+      .filter(x => x.score > 0)
+      .sort((a, b) => b.score - a.score || a.item.t.localeCompare(b.item.t))
+      .map(x => x.item);
+    return limit ? ranked.slice(0, limit) : ranked;
+  }
+
   function iconFor(name) {
     const ic = {
       calendar: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>',
@@ -1079,12 +1141,8 @@ if ('serviceWorker' in navigator) {
 
   function render(query) {
     if (!searchResults) return;
-    const q = (query || '').trim().toLowerCase();
-    const hits = q
-      ? INDEX.filter(x =>
-          x.t.toLowerCase().includes(q) ||
-          x.g.toLowerCase().includes(q))
-      : INDEX.slice(0, 8);
+    const q = (query || '').trim();
+    const hits = q ? searchIndex(q) : INDEX.slice(0, 8);
 
     const groups = {};
     hits.forEach(h => {
@@ -1142,12 +1200,10 @@ if ('serviceWorker' in navigator) {
     }
 
     function renderInline(q) {
-      const query = q.trim().toLowerCase();
+      const query = q.trim();
       if (!query) { results.hidden = true; return; }
 
-      const hits = INDEX.filter(x =>
-        x.t.toLowerCase().includes(query) || x.g.toLowerCase().includes(query)
-      ).slice(0, 12);
+      const hits = searchIndex(query, 12);
 
       if (hits.length === 0) {
         results.innerHTML = `<div class="inline-results__empty">No results for "<strong>${q}</strong>"</div>`;
