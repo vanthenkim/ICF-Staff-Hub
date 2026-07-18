@@ -109,6 +109,14 @@
           <button type="button" class="planner-tab" data-range="month">Month</button>
           <button type="button" class="planner-tab" data-range="year">Year overview</button>
         </div>
+        <div class="planner-view-toggle" id="planner-view-toggle">
+          <button type="button" class="planner-view-toggle__btn is-active" data-view="calendar" aria-label="Calendar view" title="Calendar view">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          </button>
+          <button type="button" class="planner-view-toggle__btn" data-view="list" aria-label="List view" title="List view">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          </button>
+        </div>
         <a href="https://docs.google.com/spreadsheets/d/1VMcwMqWxRDnLZ6QTGel33aNVHLlNtqZf_HnwtCanALA/edit?gid=324796546#gid=324796546" target="_blank" rel="noopener" class="btn btn--sm">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
           Full calendar
@@ -1166,6 +1174,88 @@
   }
 
 
+  function rangeLabelFor(s, e) {
+    return s.getUTCMonth() === e.getUTCMonth()
+      ? `${s.getUTCDate()}–${e.getUTCDate()} ${monthLabel(s.getUTCMonth())} ${s.getUTCFullYear()}`
+      : `${s.getUTCDate()} ${monthLabel(s.getUTCMonth())} – ${e.getUTCDate()} ${monthLabel(e.getUTCMonth())} ${e.getUTCFullYear()}`;
+  }
+
+  // Agenda (list) view — a day-by-day rundown, shared by Week + 2 weeks.
+  // Reuses the same nav button classes as the calendar views so the existing
+  // prev/next click handlers keep working without changes.
+  function renderAgendaView(days, events, catKey, rangeLabel, opts) {
+    const filtered = events.filter(ev => catKey.has(pillKeyFor(ev)));
+    const todayISO = todayUTC().toISOString().slice(0, 10);
+    const WEEKDAY_FULL = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
+    const groupsHtml = days.map(d => {
+      const iso = d.toISOString().slice(0, 10);
+      const isToday   = iso === todayISO;
+      const isWeekend = d.getUTCDay() === 0 || d.getUTCDay() === 6;
+      const dow = WEEKDAY_FULL[(d.getUTCDay() + 6) % 7];
+
+      const dayEvents = filtered
+        .filter(ev => ev.start <= iso && ev.end >= iso)
+        .sort((a, b) => timeToMinutes(a.startTime) - timeToMinutes(b.startTime));
+
+      const itemsHtml = dayEvents.length
+        ? dayEvents.map(ev => {
+            const meta = metaFor(ev);
+            const timePart = ev.startTime ? `${ev.startTime}${ev.endTime ? '–' + ev.endTime : ''}` : 'All day';
+            return `<div class="planner-agenda-item" style="border-left-color:${meta.color}">
+              <div class="planner-agenda-item__body">
+                <span class="planner-agenda-item__title">${ev.title}</span>
+                <span class="planner-agenda-item__meta" style="color:${meta.color}">${timePart} · ${meta.label}</span>
+              </div>
+              ${addToCalBtnHtml(ev)}
+            </div>`;
+          }).join('')
+        : `<p class="planner-agenda-empty">No events</p>`;
+
+      return `<div class="planner-agenda-day${isToday ? ' is-today' : ''}">
+        <div class="planner-agenda-day__label${isWeekend ? ' is-weekend' : ''}">${dow}, ${d.getUTCDate()} ${monthLabel(d.getUTCMonth())}${isToday ? ' <span class="planner-agenda-today-badge">Today</span>' : ''}</div>
+        <div class="planner-agenda-day__items">${itemsHtml}</div>
+      </div>`;
+    }).join('');
+
+    return `<div class="planner-agenda">
+      <div class="${opts.navContainerClass}">
+        <button type="button" class="${opts.navBtnClass}" data-dir="-1" aria-label="${opts.prevLabel}">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <p class="${opts.navLabelClass}">${rangeLabel}</p>
+        <button type="button" class="${opts.navBtnClass}" data-dir="1" aria-label="${opts.nextLabel}">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+      <div class="planner-agenda-list">${groupsHtml}</div>
+    </div>`;
+  }
+
+  function renderWeekAgendaView(events, catKey) {
+    const days = Array.from({ length: 7 }, (_, i) => addDays(weekViewDate, i));
+    const rangeLabel = rangeLabelFor(days[0], days[6]);
+    return renderAgendaView(days, events, catKey, rangeLabel, {
+      navContainerClass: 'planner-week-nav',
+      navBtnClass: 'planner-week-nav-btn',
+      navLabelClass: 'planner-week-nav__label',
+      prevLabel: 'Previous week',
+      nextLabel: 'Next week',
+    });
+  }
+
+  function renderTwoWeekAgendaView(events, catKey) {
+    const days = Array.from({ length: 14 }, (_, i) => addDays(twoWeekViewDate, i));
+    const rangeLabel = rangeLabelFor(days[0], days[13]);
+    return renderAgendaView(days, events, catKey, rangeLabel, {
+      navContainerClass: 'planner-2weeks-nav',
+      navBtnClass: 'planner-2weeks-nav-btn',
+      navLabelClass: 'planner-2weeks-nav__label',
+      prevLabel: 'Previous 2 weeks',
+      nextLabel: 'Next 2 weeks',
+    });
+  }
+
   function render(events, rangeKey, catKey) {
     if (rangeKey === 'year') {
       container.innerHTML = renderYearView(events, catKey);
@@ -1179,17 +1269,23 @@
     }
 
     if (rangeKey === '2weeks') {
-      container.innerHTML = renderTwoWeekView(events, catKey);
+      container.innerHTML = viewMode === 'list'
+        ? renderTwoWeekAgendaView(events, catKey)
+        : renderTwoWeekView(events, catKey);
       return;
     }
 
-    container.innerHTML = renderWeekView(events, catKey);
+    container.innerHTML = viewMode === 'list'
+      ? renderWeekAgendaView(events, catKey)
+      : renderWeekView(events, catKey);
   }
 
   let allEvents = [];
   let currentRange = 'week';
+  let viewMode = 'calendar'; // 'calendar' | 'list' — Week + 2 weeks only
   const ALL_CATS = ['all-staff', 'church', 'social', 'LA', 'BA', 'AC', 'BN', 'MT', 'GU', 'OT'];
   let selectedCats = new Set(ALL_CATS);
+  const viewToggleEl = document.getElementById('planner-view-toggle');
 
   tabsEl.addEventListener('click', (e) => {
     const btn = e.target.closest('.planner-tab');
@@ -1210,8 +1306,22 @@
       const dow = t.getUTCDay();
       twoWeekViewDate = addDays(t, dow === 0 ? -6 : 1 - dow);
     }
+    if (viewToggleEl) {
+      viewToggleEl.classList.toggle('is-hidden', currentRange !== 'week' && currentRange !== '2weeks');
+    }
     render(allEvents, currentRange, selectedCats);
   });
+
+  if (viewToggleEl) {
+    viewToggleEl.addEventListener('click', (e) => {
+      const btn = e.target.closest('.planner-view-toggle__btn');
+      if (!btn || btn.classList.contains('is-active')) return;
+      viewMode = btn.dataset.view;
+      viewToggleEl.querySelectorAll('.planner-view-toggle__btn').forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      render(allEvents, currentRange, selectedCats);
+    });
+  }
 
   container.addEventListener('click', (e) => {
     const yearNavBtn = e.target.closest('.planner-year-nav-btn');
