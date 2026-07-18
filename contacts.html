@@ -44,7 +44,7 @@
       <a class="nav__item" href="https://t.me/+KU4xqUNc6lNmZjU1" target="_blank" rel="noopener"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>Staff Group Telegram</a>
       <a class="nav__item" href="https://drive.google.com/drive/u/0/home" target="_blank" rel="noopener"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span>Google Drive</a>
       <!-- HONOR_A_COLLEAGUE: remove the display:none div to reactivate -->
-      <div style="display:none"><button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScskJ0UijIWOWdoLFYQTE8J1jNYmpveZ32rU-BmOtprbFXxvg/viewform','_blank')" style="display:flex;align-items:center;gap:10px;width:100%;border:none;cursor:pointer;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:10px;padding:9px 12px;font-size:14px;font-weight:600;font-family:inherit;margin-top:10px;text-align:left;"><span style="font-size:17px;line-height:1;">🏆</span>Honor a Colleague</button></div>
+      <div style="display:none"><button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScskJ0UijIWOWdoLFYQTE8J1jNYmpveZ32rU-BmOtprbFXxvg/viewform','_blank')" style="display:flex;align-items:center;gap:10px;width:100%;border:none;cursor:pointer;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:10px;padding:9px 12px;font-size:14px;font-weight:500;font-family:inherit;margin-top:10px;text-align:left;"><span style="font-size:17px;line-height:1;">🏆</span>Honor a Colleague</button></div>
     </nav>
   </aside>
 
@@ -150,7 +150,7 @@
 <div id="cov" onclick="if(event.target===this)closeContact()">
   <div id="cpanel">
     <div style="display:flex;align-items:center;justify-content:space-between;padding:18px 20px 0;position:sticky;top:0;background:#fff;z-index:1;border-bottom:1.5px solid #f1f5f9;padding-bottom:14px;">
-      <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#94a3b8;">Staff Profile</span>
+      <span style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.1em;color:#94a3b8;">Staff Profile</span>
       <button onclick="closeContact()" style="background:none;border:none;cursor:pointer;color:#94a3b8;font-size:24px;line-height:1;padding:2px 6px;" aria-label="Close">&times;</button>
     </div>
     <div id="cpbody"></div>
@@ -256,7 +256,7 @@ function renderList(staff) {
       onmouseenter="this.style.background='#eff6ff'" onmouseleave="this.style.background='${bg}'">
       <td style="padding:8px 12px;">
         <div style="display:flex;align-items:center;gap:8px;">
-          ${p.photo ? `<img src="${p.photo}" alt="${p.name}" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;" onerror="this.outerHTML='<div style=\\'width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;\\'>${initials(p.name)}</div>'">` : `<div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">${initials(p.name)}</div>`}
+          ${p.photo ? `<img src="${p.photo}" alt="${p.name}" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;" onerror="this.outerHTML='<div style=\\'width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;\\'>${initials(p.name)}</div>'">` : `<div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;">${initials(p.name)}</div>`}
           <div>
             <div style="font-weight:400;font-size:15px;">${p.name}</div>
             ${p.khmerName ? `<div style="font-size:11px;color:#94a3b8;">${p.khmerName}</div>` : ''}
@@ -283,8 +283,8 @@ function renderGallery(staff) {
       const s = DEPT_STYLES[p.department] || ['#f1f5f9','#374151','#e2e8f0'];
       const srch = [p.name, p.alias, p.khmerName, p.department, p.email, p.telegram].join(' ').toLowerCase();
       const avatar = p.photo
-        ? `<img src="${p.photo}" alt="${p.name}" style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.12);" onerror="this.outerHTML='<div style=\\'width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:24px;font-weight:700;display:flex;align-items:center;justify-content:center;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.12);\\'>${initials(p.name)}</div>'">`
-        : `<div style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:24px;font-weight:700;display:flex;align-items:center;justify-content:center;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.12);">${initials(p.name)}</div>`;
+        ? `<img src="${p.photo}" alt="${p.name}" style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.12);" onerror="this.outerHTML='<div style=\\'width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:24px;font-weight:500;display:flex;align-items:center;justify-content:center;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.12);\\'>${initials(p.name)}</div>'">`
+        : `<div style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:24px;font-weight:500;display:flex;align-items:center;justify-content:center;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.12);">${initials(p.name)}</div>`;
       return `<div data-dept="${p.department}" data-search="${srch}" data-n="${p.name.replace(/"/g,'&quot;')}" onclick="openContactByName(this.dataset.n)" style="background:#fff;border:1.5px solid #e2e8f0;border-radius:16px;overflow:hidden;transition:box-shadow .15s;text-align:center;cursor:pointer;" onmouseenter="this.style.boxShadow='0 4px 20px rgba(37,99,235,.12)'" onmouseleave="this.style.boxShadow=''">
         <div style="padding:28px 20px 16px;display:flex;flex-direction:column;align-items:center;">
           ${avatar}
@@ -920,7 +920,7 @@ const staffByName = {};
 // Safe image fallback — avoids quoting issues in onerror attributes
 function _imgErr(el, ini, size, big) {
   var d = document.createElement('div');
-  d.style.cssText = 'width:'+size+'px;height:'+size+'px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:'+Math.round(size*0.33)+'px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;'+(big?'border:3px solid #fff;box-shadow:0 4px 16px rgba(0,0,0,.12);':'');
+  d.style.cssText = 'width:'+size+'px;height:'+size+'px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:'+Math.round(size*0.33)+'px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;'+(big?'border:3px solid #fff;box-shadow:0 4px 16px rgba(0,0,0,.12);':'');
   d.textContent = ini;
   el.replaceWith(d);
 }
@@ -929,7 +929,7 @@ function _miniAvatar(p, size) {
   const s = size || 36;
   const fs = Math.round(s * 0.33);
   const ini = initials(p ? p.name : '?');
-  const fallback = `<div style="width:${s}px;height:${s}px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:${fs}px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">${ini}</div>`;
+  const fallback = `<div style="width:${s}px;height:${s}px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:${fs}px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;">${ini}</div>`;
   if (p && p.photo) {
     return `<img src="${p.photo}" alt="${p.name}" style="width:${s}px;height:${s}px;border-radius:50%;object-fit:cover;flex-shrink:0;" onerror="_imgErr(this,'${ini}',${s})">`;
   }
@@ -947,7 +947,7 @@ function _orgNode(name, isSelf) {
   return `<div ${click} ${hover} style="${bg}border-radius:10px;padding:9px 13px;display:flex;align-items:center;gap:12px;margin-bottom:4px;transition:background .12s;">
     ${_miniAvatar(sp, 36)}
     <div style="min-width:0;">
-      <div style="font-size:13px;font-weight:600;color:#1e293b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${sp.name}</div>
+      <div style="font-size:13px;font-weight:500;color:#1e293b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${sp.name}</div>
       ${role ? `<div style="font-size:11px;color:#64748b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${role}</div>` : ''}
     </div>
   </div>`;
@@ -963,7 +963,7 @@ function openContact(p) {
 
   // Big avatar
   const ini = initials(p.name);
-  const bigFallback = `<div style="width:88px;height:88px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:26px;font-weight:700;display:flex;align-items:center;justify-content:center;border:3px solid #fff;box-shadow:0 4px 16px rgba(0,0,0,.12);">${ini}</div>`;
+  const bigFallback = `<div style="width:88px;height:88px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:26px;font-weight:500;display:flex;align-items:center;justify-content:center;border:3px solid #fff;box-shadow:0 4px 16px rgba(0,0,0,.12);">${ini}</div>`;
   const bigAvatar = p.photo
     ? `<img src="${p.photo}" alt="${p.name}" style="width:88px;height:88px;border-radius:50%;object-fit:cover;border:3px solid #fff;box-shadow:0 4px 16px rgba(0,0,0,.12);" onerror="_imgErr(this,'${ini}',88,1)">`
     : bigFallback;
@@ -1003,14 +1003,14 @@ function openContact(p) {
     }
     const ancestorHtml = ancestors.filter(n => !REPORTING_LINE_HIDDEN.has(n)).map(n => _orgNode(n, false) + arrow).join('');
     const mentorHtml = mentorName ? `<div style="margin-top:12px;padding-top:12px;border-top:1px dashed #e2e8f0;">
-      <div style="font-size:11px;font-weight:600;color:#94a3b8;margin-bottom:6px;letter-spacing:.04em;">Mentor</div>
+      <div style="font-size:11px;font-weight:500;color:#94a3b8;margin-bottom:6px;letter-spacing:.04em;">Mentor</div>
       ${_orgNode(mentorName, false)}
     </div>` : '';
     orgHtml = `<div style="margin-top:24px;padding-top:20px;border-top:1.5px solid #f1f5f9;">
-      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#94a3b8;margin-bottom:12px;">Reporting Line</div>
+      <div style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.1em;color:#94a3b8;margin-bottom:12px;">Reporting Line</div>
       ${ancestorHtml}
       ${_orgNode(p.name, true)}
-      ${reportNames.length ? arrow + `<div style="font-size:11px;font-weight:600;color:#64748b;margin:4px 0 8px;">${reportNames.length} direct report${reportNames.length !== 1 ? 's' : ''}</div>` + reportNames.map(n => _orgNode(n, false)).join('') : ''}
+      ${reportNames.length ? arrow + `<div style="font-size:11px;font-weight:500;color:#64748b;margin:4px 0 8px;">${reportNames.length} direct report${reportNames.length !== 1 ? 's' : ''}</div>` + reportNames.map(n => _orgNode(n, false)).join('') : ''}
       ${mentorHtml}
     </div>`;
   }
@@ -1018,7 +1018,7 @@ function openContact(p) {
   body.innerHTML = `
     <div style="text-align:center;padding:28px 24px 20px;">
       <div style="display:flex;justify-content:center;">${bigAvatar}</div>
-      <div style="font-size:20px;font-weight:700;color:#1e293b;margin-top:14px;line-height:1.25;">${p.name}</div>
+      <div style="font-size:20px;font-weight:500;color:#1e293b;margin-top:14px;line-height:1.25;">${p.name}</div>
       ${p.role ? `<div style="font-size:14px;color:#64748b;margin-top:5px;">${p.role}</div>` : ''}
       <div style="margin-top:10px;">${deptBadge(p.department)}</div>
     </div>

@@ -41,6 +41,7 @@ body {
 }
 img, svg { display: block; max-width: 100%; }
 h1, h2, h3, h4, h5, h6 { font-weight: 500; }
+strong, b { font-weight: 500; } /* FlamaKH has no bold face — cap at Medium (500) so browsers don't fake-bold it */
 button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
 a { color: inherit; text-decoration: none; }
 input, select, textarea { font: inherit; }
@@ -498,7 +499,7 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   padding: 2px 7px;
   border-radius: 999px;
   font-size: 10px;
-  font-weight: 600;
+  font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -1043,7 +1044,7 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   background: #EF4444;
   color: #fff;
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 500;
   min-width: 18px;
   height: 18px;
   padding: 0 5px;
@@ -1212,7 +1213,7 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   border: none;
   background: none;
   padding: 5px 8px;
-  font-size: 12px; font-weight: 600;
+  font-size: 12px; font-weight: 500;
   border-radius: 6px;
   color: var(--blue-600);
   cursor: pointer;
@@ -1292,7 +1293,7 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   border-bottom: 1px solid var(--border);
 }
 .planner-year-day-row:last-child { border-bottom: none; }
-.planner-year-day-row.is-today .planner-year-day-row__num { color: var(--red-600); font-weight: 600; }
+.planner-year-day-row.is-today .planner-year-day-row__num { color: var(--red-600); font-weight: 500; }
 .planner-year-day-row__date {
   flex: 0 0 34px;
   display: flex; flex-direction: column; align-items: center;

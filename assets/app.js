@@ -872,7 +872,7 @@ if ('serviceWorker' in navigator) {
     function makeBtn() {
       const btn = document.createElement('button');
       btn.onclick = () => window.open(FORM_URL, '_blank');
-      btn.style.cssText = 'display:flex;align-items:center;gap:10px;width:100%;border:none;cursor:pointer;background:linear-gradient(135deg,#2563EB,#1d4ed8);color:#fff;border-radius:10px;padding:9px 12px;font-size:14px;font-weight:600;font-family:inherit;margin-top:10px;text-align:left;box-sizing:border-box;';
+      btn.style.cssText = 'display:flex;align-items:center;gap:10px;width:100%;border:none;cursor:pointer;background:linear-gradient(135deg,#2563EB,#1d4ed8);color:#fff;border-radius:10px;padding:9px 12px;font-size:14px;font-weight:500;font-family:inherit;margin-top:10px;text-align:left;box-sizing:border-box;';
       btn.innerHTML = `<span style="display:flex;">${ICON}</span>Feedback &amp; Support`;
       return btn;
     }
