@@ -1169,12 +1169,27 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 .planner-tab:hover { background: var(--surface-2); }
 .planner-tab.is-active { background: var(--blue-600); border-color: var(--blue-600); color: #fff; }
 
+.planner-toolbar__left { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+.planner-nav { display: flex; align-items: center; gap: 4px; }
+.planner-nav__label { margin: 0; font-size: 13.5px; font-weight: 500; color: var(--text); white-space: nowrap; padding: 0 2px; }
+.planner-nav-btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px;
+  border: 1px solid var(--border);
+  background: var(--white);
+  border-radius: 999px;
+  color: var(--text);
+}
+.planner-nav-btn:hover { background: var(--surface-2); }
+
 .planner-view-toggle {
   display: flex; gap: 2px;
   border: 1px solid var(--border);
   background: var(--white);
   border-radius: 999px;
   padding: 2px;
+  margin-left: auto;
 }
 .planner-view-toggle.is-hidden { display: none; }
 .planner-view-toggle__btn {
@@ -1216,6 +1231,9 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 .planner-agenda-item__title { display: block; font-size: 13.5px; font-weight: 500; color: var(--text); line-height: 1.35; }
 .planner-agenda-item__meta { display: block; font-size: 11.5px; font-weight: 500; opacity: 0.85; margin-top: 2px; }
 .planner-agenda-empty { margin: 0; font-size: 13px; color: var(--text-soft); font-style: italic; }
+.planner-agenda-month { margin-bottom: 22px; }
+.planner-agenda-month:last-child { margin-bottom: 0; }
+.planner-agenda-month__label { margin: 0 0 10px; font-size: 14.5px; font-weight: 600; color: var(--text); }
 
 .planner-filter { position: relative; display: inline-block; }
 .planner-filter__toggle {
