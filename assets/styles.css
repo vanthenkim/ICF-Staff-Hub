@@ -117,7 +117,7 @@ input, select, textarea { font: inherit; }
 .app {
   display: grid;
   grid-template-columns: var(--sidebar-w) 1fr;
-  min-height: 100vh;
+  min-height: calc(100vh - var(--header-h));
 }
 .main {
   min-width: 0;
@@ -139,17 +139,9 @@ input, select, textarea { font: inherit; }
   border-right: 1px solid var(--border);
   padding: var(--space-5);
   position: sticky;
-  top: 0;
-  height: 100vh;
+  top: var(--header-h);
+  height: calc(100vh - var(--header-h));
   overflow-y: auto;
-}
-.sidebar__brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 6px 8px 16px;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 14px;
 }
 .sidebar__logo {
   height: 34px;
@@ -162,11 +154,6 @@ input, select, textarea { font: inherit; }
   object-fit: contain;
   display: block;
 }
-/* The logo image is the "ICF" mark only — keep the "ICF Cambodia / Staff Hub"
-   title text alongside it. */
-.sidebar__brand .sidebar__title { line-height: 1.2; }
-.sidebar__brand .sidebar__title strong { font-size: 17px; }
-.sidebar__brand .sidebar__title span { font-size: 13px; color: var(--text-muted); font-weight: 500; }
 .sidebar__title {
   display: flex; flex-direction: column; line-height: 1.15;
 }
@@ -257,7 +244,7 @@ input, select, textarea { font: inherit; }
 }
 .topbar__search {
   flex: 1;
-  max-width: none;
+  max-width: 50%;
   position: relative;
   cursor: pointer;
 }
