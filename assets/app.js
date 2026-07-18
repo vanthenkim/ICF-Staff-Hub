@@ -402,62 +402,241 @@ if ('serviceWorker' in navigator) {
     }
   })();
 
-  // ---------- Google Calendar — Upcoming Events ----------
-  (function loadCalendarEvents() {
+  // ---------- Year Planner — Upcoming Events (list view, next 2 weeks) ----------
+  // Pulls from the same published Google Sheet as the Year Planner's "2 weeks"
+  // tab on events.html, filtered to the same date window (Monday of this week
+  // through the following Sunday), just rendered as a flat list instead of a
+  // grid. Keep PLANNER_TABS in sync with events.html when a new year's tab
+  // is added there.
+  (function loadUpcomingEvents() {
     const container = document.getElementById('gcal-events');
     if (!container) return;
 
-    const CAL_ID     = 'c_7d85r5jnut8ish3elr9er8ji0k@group.calendar.google.com';
-    const API_KEY    = 'AIzaSyBmEJXC-jKF9jSup7cRKF23XKOC1mdUK60';
-    const maxResults = container.dataset.max || 6;
-    const now        = new Date().toISOString();
-    const url        = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(CAL_ID)}/events`
-                     + `?key=${API_KEY}&timeMin=${now}&maxResults=${maxResults}&singleEvents=true&orderBy=startTime`;
-
-    const MONTHS  = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    const DAYS    = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-    const CAL_SVG = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><line x1="12" y1="14" x2="12" y2="18"/><line x1="10" y1="16" x2="14" y2="16"/></svg>`;
-
-    function addUrl(event) {
-      const start    = event.start.dateTime || event.start.date;
-      const isAllDay = !event.start.dateTime;
-      const sp = isAllDay
-        ? (event.start.date || '').replace(/-/g,'')
-        : new Date(start).toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z';
-      const endRaw = event.end && (event.end.dateTime || event.end.date);
-      const ep = endRaw
-        ? (event.end.dateTime
-            ? new Date(event.end.dateTime).toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z'
-            : (event.end.date || '').replace(/-/g,''))
-        : sp;
-      return `https://calendar.google.com/calendar/render?action=TEMPLATE`
-        + `&text=${encodeURIComponent(event.summary || '')}`
-        + `&dates=${sp}/${ep}`
-        + (event.location    ? `&location=${encodeURIComponent(event.location)}`       : '')
-        + (event.description ? `&details=${encodeURIComponent(event.description)}`     : '');
+    const SHEET_ID = '1VMcwMqWxRDnLZ6QTGel33aNVHLlNtqZf_HnwtCanALA';
+    const PLANNER_TABS = [
+      { year: 2026, gid: '324796546' },
+    ];
+    function csvUrlFor(gid) {
+      return `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&gid=${gid}`;
     }
 
-    function dateKey(event) {
-      return (event.start.date || (event.start.dateTime || '').slice(0, 10));
+    const MONTHS           = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const DAYS             = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    const MONTH_NAMES_FULL = ['january','february','march','april','may','june','july','august','september','october','november','december'];
+    const VALID_OTHER_CODES = ['LA', 'BA', 'AC', 'BN', 'MT', 'GU', 'OT'];
+    const CAL_SVG = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><line x1="12" y1="14" x2="12" y2="18"/><line x1="10" y1="16" x2="14" y2="16"/></svg>`;
+
+    const CAT_META = {
+      'all-staff': { label: 'All staff', color: '#2563EB' },
+      'church':    { label: 'Church',    color: '#9333EA' },
+      'social':    { label: 'Social',    color: '#059669' },
+    };
+    const SUBCAT_META = {
+      LA: { label: 'Leadership Academy', color: '#0891B2' },
+      BA: { label: 'Business Academy',   color: '#6366F1' },
+      AC: { label: 'Learning Center',    color: '#EA580C' },
+      BN: { label: 'Business Network',   color: '#475569' },
+      MT: { label: 'Mission Team',       color: '#D97706' },
+      GU: { label: 'Guests',             color: '#DB2777' },
+      OT: { label: 'Other',              color: '#64748B' },
+    };
+    function metaFor(ev) {
+      if (ev.category === 'others') return SUBCAT_META[ev.subCategory] || SUBCAT_META.OT;
+      return CAT_META[ev.category] || SUBCAT_META.OT;
+    }
+
+    // ---- CSV grid parsing (mirrors the Year Planner's month-block layout on events.html) ----
+    function parseCSV(text) {
+      const rows = [];
+      let row = [], field = '', inQuotes = false;
+      for (let i = 0; i < text.length; i++) {
+        const c = text[i];
+        if (inQuotes) {
+          if (c === '"') { if (text[i + 1] === '"') { field += '"'; i++; } else { inQuotes = false; } }
+          else field += c;
+          continue;
+        }
+        if (c === '"') { inQuotes = true; continue; }
+        if (c === ',') { row.push(field); field = ''; continue; }
+        if (c === '\r') continue;
+        if (c === '\n') { row.push(field); rows.push(row); row = []; field = ''; continue; }
+        field += c;
+      }
+      if (field.length || row.length) { row.push(field); rows.push(row); }
+      return rows;
+    }
+    function cellAt(rows, r, c) {
+      if (r < 0 || r >= rows.length) return '';
+      const row = rows[r];
+      if (c < 0 || c >= row.length) return '';
+      return (row[c] || '').trim();
+    }
+
+    const TIME_RANGE_RE  = /^(\d{1,2}:\d{2}\s?(?:AM|PM|am|pm)?)\s*[-–]\s*(\d{1,2}:\d{2}\s?(?:AM|PM|am|pm)?)$/;
+    const TIME_SINGLE_RE = /^(\d{1,2}:\d{2}\s?(?:AM|PM|am|pm)?)$/;
+    function extractTime(text) {
+      const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
+      if (lines.length >= 2) {
+        for (let i = 0; i < lines.length; i++) {
+          const rangeMatch = lines[i].match(TIME_RANGE_RE);
+          if (rangeMatch) {
+            const title = lines.filter((_, idx) => idx !== i).join(' ').trim();
+            return { startTime: rangeMatch[1].trim(), endTime: rangeMatch[2].trim(), title };
+          }
+          const singleMatch = lines[i].match(TIME_SINGLE_RE);
+          if (singleMatch) {
+            const title = lines.filter((_, idx) => idx !== i).join(' ').trim();
+            return { startTime: singleMatch[1].trim(), endTime: null, title };
+          }
+        }
+      }
+      const joined = lines.join(' ');
+      const rangePrefix = joined.match(/^(\d{1,2}:\d{2}\s?(?:AM|PM|am|pm)?)\s*[-–]\s*(\d{1,2}:\d{2}\s?(?:AM|PM|am|pm)?)\s+(.*)$/);
+      if (rangePrefix) return { startTime: rangePrefix[1].trim(), endTime: rangePrefix[2].trim(), title: rangePrefix[3].trim() };
+      const singlePrefix = joined.match(/^(\d{1,2}:\d{2}\s?(?:AM|PM|am|pm)?)\s+(.*)$/);
+      if (singlePrefix) return { startTime: singlePrefix[1].trim(), endTime: null, title: singlePrefix[2].trim() };
+      return { startTime: null, endTime: null, title: joined };
+    }
+
+    function findMonthInText(text) {
+      const lower = text.toLowerCase();
+      for (let i = 0; i < MONTH_NAMES_FULL.length; i++) {
+        if (new RegExp('\\b' + MONTH_NAMES_FULL[i] + '\\b', 'i').test(lower)) return i;
+      }
+      return -1;
+    }
+
+    function parsePlannerCSV(csvText, year) {
+      const rows = parseCSV(csvText);
+      let headerRowIdx = -1;
+      const anchorCols = [];
+      for (let r = 0; r < rows.length; r++) {
+        const cols = [];
+        for (let c = 0; c < rows[r].length; c++) {
+          if ((rows[r][c] || '').trim().toUpperCase().includes('ALL STAFF/PUBLIC HOLIDAY')) cols.push(c);
+        }
+        if (cols.length) { headerRowIdx = r; anchorCols.push(...cols); break; }
+      }
+      if (headerRowIdx === -1) throw new Error('Could not locate category header row in sheet');
+
+      const rawEntries = [];
+      for (const anchor of anchorCols) {
+        const dayCol = anchor - 2, wdayCol = anchor - 1, allStaffCol = anchor, churchCol = anchor + 1, socialCol = anchor + 2, othersCol = anchor + 3, othersTagCol = anchor + 4;
+        const headerBlob = [cellAt(rows, headerRowIdx, dayCol), cellAt(rows, headerRowIdx, wdayCol), cellAt(rows, headerRowIdx, allStaffCol)].join(' ');
+        const monthIndex = findMonthInText(headerBlob);
+        if (monthIndex === -1) continue;
+        const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
+
+        for (let d = 1; d <= daysInMonth; d++) {
+          const rowIdx = headerRowIdx + d;
+          const date = new Date(Date.UTC(year, monthIndex, d));
+          const allStaffText = cellAt(rows, rowIdx, allStaffCol);
+          const churchText    = cellAt(rows, rowIdx, churchCol);
+          const socialText    = cellAt(rows, rowIdx, socialCol);
+          const othersText    = cellAt(rows, rowIdx, othersCol);
+          const othersTagText = cellAt(rows, rowIdx, othersTagCol);
+
+          if (allStaffText) { const t = extractTime(allStaffText); rawEntries.push({ date, category: 'all-staff', subCategory: null, text: allStaffText, title: t.title, startTime: t.startTime, endTime: t.endTime }); }
+          if (churchText)    { const t = extractTime(churchText);    rawEntries.push({ date, category: 'church',    subCategory: null, text: churchText,    title: t.title, startTime: t.startTime, endTime: t.endTime }); }
+          if (socialText)    { const t = extractTime(socialText);    rawEntries.push({ date, category: 'social',    subCategory: null, text: socialText,    title: t.title, startTime: t.startTime, endTime: t.endTime }); }
+
+          if (othersText) {
+            const tagRaw = othersTagText.trim().toUpperCase();
+            let key  = VALID_OTHER_CODES.includes(tagRaw) ? tagRaw : null;
+            let rest = othersText;
+            if (!key) {
+              const match = othersText.match(/^\[(LA|BA|AC|BN|MT|GU|OT)\]\s*([\s\S]*)$/i);
+              if (match) { key = match[1].toUpperCase(); rest = match[2].trim() || othersText; }
+            }
+            if (!key) key = 'OT';
+            const t = extractTime(rest);
+            rawEntries.push({ date, category: 'others', subCategory: key, text: rest, title: t.title, startTime: t.startTime, endTime: t.endTime });
+          }
+        }
+      }
+
+      const groups = new Map();
+      for (const entry of rawEntries) {
+        const key = `${entry.category}|${entry.subCategory || ''}|${entry.text.toLowerCase()}`;
+        if (!groups.has(key)) groups.set(key, []);
+        groups.get(key).push(entry);
+      }
+
+      // Same-text entries only merge into one spanning event if they're close
+      // together in time — mirrors the Year Planner's own merge rule so the
+      // two views never disagree about what counts as "one event".
+      const MAX_SPAN_GAP_DAYS = 9;
+      function toEvent(first, last) {
+        return {
+          start: first.date.toISOString().slice(0, 10),
+          end:   last.date.toISOString().slice(0, 10),
+          category: first.category,
+          subCategory: first.subCategory,
+          title: first.title,
+          startTime: first.startTime,
+          endTime: first.endTime,
+        };
+      }
+      const events = [];
+      for (const [, entries] of groups) {
+        entries.sort((a, b) => a.date - b.date);
+        let runFirst = entries[0], runLast = entries[0];
+        for (let i = 1; i < entries.length; i++) {
+          const gapDays = (entries[i].date - runLast.date) / 86400000;
+          if (gapDays <= MAX_SPAN_GAP_DAYS) { runLast = entries[i]; }
+          else { events.push(toEvent(runFirst, runLast)); runFirst = entries[i]; runLast = entries[i]; }
+        }
+        events.push(toEvent(runFirst, runLast));
+      }
+      events.sort((a, b) => (a.start < b.start ? -1 : a.start > b.start ? 1 : 0));
+      return events;
+    }
+
+    function parseISODate(s) { const [y, m, d] = s.split('-').map(Number); return new Date(Date.UTC(y, m - 1, d)); }
+    function addDays(d, n) { const r = new Date(d); r.setUTCDate(r.getUTCDate() + n); return r; }
+    function todayUTC() { const n = new Date(); return new Date(Date.UTC(n.getFullYear(), n.getMonth(), n.getDate())); }
+
+    // Same "Add to calendar" quick-add link the planner uses.
+    function gcalUrl(ev) {
+      const meta = metaFor(ev);
+      const title = encodeURIComponent(ev.title);
+      const details = encodeURIComponent(meta.label);
+      const startCompact = ev.start.replace(/-/g, '');
+      const toCompactTime = t => { const [h, m] = t.split(':'); return `${(h || '0').padStart(2, '0')}${(m || '0').padStart(2, '0')}00`; };
+      let dates;
+      if (ev.startTime) {
+        const startHM = toCompactTime(ev.startTime);
+        let endDateCompact = ev.end.replace(/-/g, '');
+        let endHM = ev.endTime ? toCompactTime(ev.endTime) : null;
+        if (!endHM) {
+          const [h, m] = ev.startTime.split(':').map(Number);
+          endHM = `${String((h + 1) % 24).padStart(2, '0')}${String(m).padStart(2, '0')}00`;
+          if (h === 23) endDateCompact = addDays(parseISODate(ev.end), 1).toISOString().slice(0, 10).replace(/-/g, '');
+        }
+        dates = `${startCompact}T${startHM}/${endDateCompact}T${endHM}`;
+      } else {
+        const endPlusOne = addDays(parseISODate(ev.end), 1).toISOString().slice(0, 10).replace(/-/g, '');
+        dates = `${startCompact}/${endPlusOne}`;
+      }
+      return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&ctz=Asia%2FPhnom_Penh`;
     }
 
     function renderGroup(dateStr, events) {
-      const d       = new Date(dateStr + 'T00:00:00');
-      const day     = d.getDate();
-      const mon     = MONTHS[d.getMonth()];
-      const weekday = DAYS[d.getDay()];
+      const d       = parseISODate(dateStr);
+      const day     = d.getUTCDate();
+      const mon     = MONTHS[d.getUTCMonth()];
+      const weekday = DAYS[d.getUTCDay()];
 
       const rows = events.map(ev => {
-        const isAllDay = !ev.start.dateTime;
-        let time = isAllDay ? 'All day' : new Date(ev.start.dateTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        if (ev.location) time += ' · ' + ev.location;
+        const meta = metaFor(ev);
+        const time = ev.startTime ? `${ev.startTime}${ev.endTime ? '–' + ev.endTime : ''}` : 'All day';
 
         return `<div class="gcal-event-row">
           <div class="gcal-event-row__info">
-            <span class="gcal-event-row__title">${ev.summary || '(No title)'}</span>
-            <span class="gcal-event-row__time">${time}</span>
+            <span class="gcal-event-row__title">${ev.title || '(No title)'}</span>
+            <span class="gcal-event-row__time"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:${meta.color};margin-right:6px;"></span>${time} · ${meta.label}</span>
           </div>
-          <a class="gcal-add-btn" href="${addUrl(ev)}" target="_blank" rel="noopener" title="Add to your calendar">
+          <a class="gcal-add-btn" href="${gcalUrl(ev)}" target="_blank" rel="noopener" title="Add to your calendar">
             ${CAL_SVG} Add to calendar
           </a>
         </div>`;
@@ -476,25 +655,59 @@ if ('serviceWorker' in navigator) {
       </div>`;
     }
 
-    fetch(url)
-      .then(r => r.json())
-      .then(data => {
-        if (!data.items || data.items.length === 0) {
-          container.innerHTML = '<div class="gcal-loading">No upcoming events found.</div>';
+    async function loadOneTab(tab) {
+      const ctrl = new AbortController();
+      const tid  = setTimeout(() => ctrl.abort(), 8000);
+      try {
+        const resp = await fetch(csvUrlFor(tab.gid), { cache: 'no-cache', signal: ctrl.signal });
+        clearTimeout(tid);
+        if (!resp.ok) throw new Error('fetch failed ' + resp.status);
+        const csvText = await resp.text();
+        return parsePlannerCSV(csvText, tab.year);
+      } catch (e) {
+        clearTimeout(tid);
+        console.error('Upcoming Events: failed to load', tab.year, 'tab', e);
+        return [];
+      }
+    }
+
+    (async function load() {
+      try {
+        const results = await Promise.all(PLANNER_TABS.map(loadOneTab));
+        const allEvents = results.flat();
+        if (allEvents.length === 0) throw new Error('no events loaded from any tab');
+
+        // Same window as the Year Planner's "2 weeks" tab: Monday of the
+        // current week through the following Sunday (14 days total).
+        const today     = todayUTC();
+        const dow       = today.getUTCDay();
+        const start     = addDays(today, dow === 0 ? -6 : 1 - dow);
+        const end       = addDays(start, 13);
+        const startISO  = start.toISOString().slice(0, 10);
+        const endISO    = end.toISOString().slice(0, 10);
+
+        const upcoming = allEvents
+          .filter(ev => ev.end >= startISO && ev.start <= endISO)
+          .sort((a, b) => {
+            if (a.start !== b.start) return a.start < b.start ? -1 : 1;
+            return (a.startTime || '').localeCompare(b.startTime || '');
+          });
+
+        if (upcoming.length === 0) {
+          container.innerHTML = '<div class="gcal-loading">No events in the next 2 weeks.</div>';
           return;
         }
-        // Group by date
+
         const groups = {};
-        data.items.forEach(ev => {
-          const key = dateKey(ev);
-          groups[key] = groups[key] || [];
-          groups[key].push(ev);
+        upcoming.forEach(ev => {
+          groups[ev.start] = groups[ev.start] || [];
+          groups[ev.start].push(ev);
         });
         container.innerHTML = Object.keys(groups).sort().map(k => renderGroup(k, groups[k])).join('');
-      })
-      .catch(() => {
-        container.innerHTML = '<div class="gcal-error">Could not load events. Make sure the calendar is public and the API key is valid.</div>';
-      });
+      } catch (e) {
+        container.innerHTML = '<div class="gcal-error">Could not load events. Make sure the Year Planner sheet is shared as "Anyone with the link".</div>';
+      }
+    })();
   })();
 
   // ---------- Favorites ----------
