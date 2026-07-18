@@ -1153,9 +1153,15 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 
 /* ---------- Year Planner (events page) ---------- */
 .planner-toolbar {
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 10px; flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
   margin-bottom: 10px;
+}
+@media (max-width: 720px) {
+  .planner-toolbar { grid-template-columns: 1fr; row-gap: 10px; }
+  .planner-nav { justify-self: center; }
 }
 .planner-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
 .planner-tab {
@@ -1171,7 +1177,7 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 
 .planner-toolbar__left { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 
-.planner-nav { display: flex; align-items: center; gap: 4px; }
+.planner-nav { display: flex; align-items: center; gap: 4px; justify-self: center; }
 .planner-nav__label {
   margin: 0; font-size: 13.5px; font-weight: 500; color: var(--text);
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
@@ -1194,7 +1200,6 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   background: var(--white);
   border-radius: 999px;
   padding: 2px;
-  margin-left: auto;
 }
 .planner-view-toggle.is-hidden { display: none; }
 .planner-view-toggle__btn {
