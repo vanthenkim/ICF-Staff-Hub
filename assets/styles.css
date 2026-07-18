@@ -337,8 +337,8 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 /* ---------- Buttons ---------- */
 .btn {
   display: inline-flex; align-items: center; gap: 8px;
-  padding: 10px 16px;
-  border-radius: 12px;
+  padding: 10px 18px;
+  border-radius: 999px;
   font-size: 16px; font-weight: 500;
   background: var(--white);
   border: 1px solid var(--border);
@@ -361,7 +361,7 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 .btn--green:hover { background: var(--green-500); }
 .btn--ghost { background: transparent; border-color: transparent; }
 .btn--ghost:hover { background: var(--surface-2); }
-.btn--sm { padding: 7px 12px; font-size: 15px; border-radius: 10px; }
+.btn--sm { padding: 7px 14px; font-size: 15px; border-radius: 999px; }
 
 /* ---------- Hero / Welcome ---------- */
 .hero {
