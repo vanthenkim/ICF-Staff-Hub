@@ -383,16 +383,19 @@
   // with the link" (Viewer) must be turned on for the spreadsheet, no Netlify
   // function or backend involved. Each tab (hidden or not — hiding a tab
   // doesn't block CSV export access, only its gid matters) gets its own
-  // entry here. Add a row once a new year's tab exists; find its gid in the
-  // sheet's URL (…?gid=XXXXXXX#gid=XXXXXXX) when that tab is open.
+  // entry here. Add a row once a new year's tab exists — either its gid
+  // from the sheet's URL (…?gid=XXXXXXX#gid=XXXXXXX) when that tab is
+  // open, or its exact tab name (Google's gviz endpoint accepts a `sheet`
+  // name in place of a gid, so you don't have to go hunting for the id).
   const SHEET_ID = '1VMcwMqWxRDnLZ6QTGel33aNVHLlNtqZf_HnwtCanALA';
   const PLANNER_TABS = [
     { year: 2026, gid: '324796546' },
-    // { year: 2027, gid: 'PASTE_GID_HERE' },
+    { year: 2027, sheet: '2027 - OVERVIEW' },
     // { year: 2028, gid: 'PASTE_GID_HERE' },
   ];
-  function csvUrlFor(gid) {
-    return `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&gid=${gid}`;
+  function csvUrlFor(tab) {
+    const q = tab.gid ? `gid=${tab.gid}` : `sheet=${encodeURIComponent(tab.sheet)}`;
+    return `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&${q}`;
   }
 
   const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -1411,7 +1414,7 @@
     const ctrl = new AbortController();
     const tid  = setTimeout(() => ctrl.abort(), 8000);
     try {
-      const resp = await fetch(csvUrlFor(tab.gid), { cache: 'no-cache', signal: ctrl.signal });
+      const resp = await fetch(csvUrlFor(tab), { cache: 'no-cache', signal: ctrl.signal });
       clearTimeout(tid);
       if (!resp.ok) throw new Error('fetch failed ' + resp.status);
       const csvText = await resp.text();
