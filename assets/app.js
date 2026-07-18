@@ -390,9 +390,9 @@ if ('serviceWorker' in navigator) {
       }
     } catch(e) {}
 
-    const greet = hour < 5 ? '🌙 Good evening' : hour < 12 ? '☀️ Good morning' : hour < 17 ? '🌤️ Good afternoon' : '🌙 Good evening';
+    const greet = hour < 5 ? 'Good evening' : hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
     const greetEl = document.getElementById('hero-greeting');
-    if (greetEl) greetEl.textContent = `${greet}, ${name}!`;
+    if (greetEl) greetEl.textContent = `${greet}, ${name} 👋`;
 
     const dateEl = document.getElementById('hero-date');
     if (dateEl) {
