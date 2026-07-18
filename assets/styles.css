@@ -1172,10 +1172,15 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 .planner-toolbar__left { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 
 .planner-nav { display: flex; align-items: center; gap: 4px; }
-.planner-nav__label { margin: 0; font-size: 13.5px; font-weight: 500; color: var(--text); white-space: nowrap; padding: 0 2px; }
+.planner-nav__label {
+  margin: 0; font-size: 13.5px; font-weight: 500; color: var(--text);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  text-align: center;
+  width: 168px; flex: none;
+}
 .planner-nav-btn {
   display: flex; align-items: center; justify-content: center;
-  width: 26px; height: 26px;
+  width: 26px; height: 26px; flex: none;
   border: 1px solid var(--border);
   background: var(--white);
   border-radius: 999px;
