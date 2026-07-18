@@ -1209,7 +1209,7 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 /* Agenda (list) view — shared by Week + 2 weeks */
 .planner-agenda-list { display: flex; flex-direction: column; gap: 14px; }
 .planner-agenda-day__label {
-  font-size: 12.5px; font-weight: 600; color: var(--text-muted);
+  font-size: 12.5px; font-weight: 500; color: var(--text-muted);
   text-transform: uppercase; letter-spacing: 0.03em;
   padding-bottom: 6px; margin-bottom: 8px;
   border-bottom: 1px solid var(--border);
@@ -1219,7 +1219,7 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 .planner-agenda-day.is-today .planner-agenda-day__label { color: var(--blue-600); }
 .planner-agenda-today-badge {
   background: var(--blue-600); color: #fff;
-  font-size: 10px; font-weight: 600; text-transform: none;
+  font-size: 10px; font-weight: 500; text-transform: none;
   letter-spacing: normal;
   padding: 1px 7px; border-radius: 999px;
 }
@@ -1237,7 +1237,7 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 .planner-agenda-empty { margin: 0; font-size: 13px; color: var(--text-soft); font-style: italic; }
 .planner-agenda-month { margin-bottom: 22px; }
 .planner-agenda-month:last-child { margin-bottom: 0; }
-.planner-agenda-month__label { margin: 0 0 10px; font-size: 14.5px; font-weight: 600; color: var(--text); }
+.planner-agenda-month__label { margin: 0 0 10px; font-size: 14.5px; font-weight: 500; color: var(--text); }
 
 .planner-filter { position: relative; display: inline-block; }
 .planner-filter__toggle {
@@ -1714,8 +1714,6 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 
 /* ---------- Help Center–style hero ---------- */
 .hero-hc {
-  background: #F0F2F5;
-  border-radius: var(--radius-lg);
   padding: 56px 28px 48px;
   margin-bottom: var(--space-6);
   text-align: center;
