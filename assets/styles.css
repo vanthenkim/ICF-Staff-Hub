@@ -223,16 +223,18 @@ input, select, textarea { font: inherit; }
   display: flex;
   align-items: center;
   gap: 10px;
+  text-decoration: none;
 }
 .topbar__brand .sidebar__logo { height: 30px; }
 .topbar__brand span {
-  font-size: 18px;
+  font-size: 26px;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: #fff;
   white-space: nowrap;
 }
+.topbar__brand:hover span { color: rgba(255,255,255,0.85); }
 .topbar__menu {
   grid-column: 1;
   display: none;
