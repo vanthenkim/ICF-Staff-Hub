@@ -665,8 +665,8 @@ if ('serviceWorker' in navigator) {
             <span class="gcal-event-row__title">${ev.title || '(No title)'}</span>
             <span class="gcal-event-row__time"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:${meta.color};margin-right:6px;"></span>${time} · ${meta.label}</span>
           </div>
-          <a class="gcal-add-btn" href="${gcalUrl(ev)}" target="_blank" rel="noopener" title="Add to your calendar">
-            ${CAL_SVG} Add to calendar
+          <a class="gcal-add-btn" href="${gcalUrl(ev)}" target="_blank" rel="noopener" title="Add to your calendar" aria-label="Add to calendar">
+            ${CAL_SVG}<span class="gcal-add-btn__label">Add to calendar</span>
           </a>
         </div>`;
       }).join('');

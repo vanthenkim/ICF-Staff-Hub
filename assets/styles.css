@@ -1276,6 +1276,30 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 .gcal-event-row__title { font-size: 16px; font-weight: 500; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .gcal-event-row__time { font-size: 13px; color: var(--text-soft); }
 
+@media (max-width: 640px) {
+  .gcal-item { gap: 10px; padding: 10px 12px; }
+  .gcal-date { width: 44px; }
+  .gcal-date__mon { font-size: 10px; margin-bottom: 4px; }
+  .gcal-date__day { font-size: 20px; }
+  .gcal-date__wday { font-size: 10px; }
+  .gcal-divider { min-height: 28px; }
+  .gcal-info__title { font-size: 14px; }
+  .gcal-info__meta { font-size: 12px; }
+  .gcal-event-row { gap: 8px; }
+  .gcal-event-row__title { font-size: 14px; }
+  .gcal-event-row__time { font-size: 12px; }
+
+  .gcal-add-btn {
+    gap: 0;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    justify-content: center;
+    border-radius: 8px;
+  }
+  .gcal-add-btn__label { display: none; }
+}
+
 .gcal-loading, .gcal-error {
   padding: 20px;
   color: var(--text-muted);
@@ -2328,5 +2352,14 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   .main {
     /* Extra bottom clearance so content isn't hidden behind mobilenav */
     padding-bottom: calc(80px + env(safe-area-inset-bottom));
+  }
+}
+
+/* Disable the iOS pull-to-refresh / rubber-band bounce, but only once
+   installed via "Add to Home Screen" — regular Safari tabs keep the
+   normal browser behavior. */
+@media (display-mode: standalone) {
+  html, body {
+    overscroll-behavior-y: contain;
   }
 }
