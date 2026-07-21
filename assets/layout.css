@@ -130,20 +130,38 @@
 .l-cards--md    { display: grid; gap: var(--gutter); grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr)); }
 .l-cards--lg    { display: grid; gap: var(--gutter); grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); }
 
-/* Safety net: any fixed-column grid still in the HTML gets a
-   floor so it degrades to a wrap rather than 6 unreadable slivers. */
-@media (max-width: 733px) {
-  [style*="repeat(4,1fr)"],
-  [style*="repeat(4, 1fr)"],
-  [style*="repeat(5,1fr)"],
-  [style*="repeat(5, 1fr)"],
-  [style*="repeat(6,1fr)"],
-  [style*="repeat(6, 1fr)"],
-  [style*="repeat(7,1fr)"],
-  [style*="repeat(7, 1fr)"] {
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 140px), 1fr)) !important;
-  }
+/* Fixed-column grids left inline in the HTML.
+   Targeted, not blanket — a global attribute-selector override also hits
+   grids that were already handled correctly (.stat-grid has its own 720px
+   rule) and grids meant to stay on one scrolling row (the org chart).
+
+   .l-scroll-row  keeps a single row and scrolls sideways — for org charts
+                  and anything where row position carries meaning.
+   .l-wrap-row    lets cards wrap onto multiple lines. */
+
+.l-scroll-row {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x proximity;
+  padding-bottom: 4px;
 }
+.l-scroll-row > * { scroll-snap-align: start; }
+@media (max-width: 1067px) {
+  .l-scroll-row { grid-template-columns: repeat(var(--row-count, 6), minmax(132px, 1fr)) !important; }
+}
+@media (max-width: 733px) {
+  .l-scroll-row { grid-template-columns: repeat(var(--row-count, 6), minmax(116px, 1fr)) !important; }
+}
+
+/* auto-fit, not auto-fill — auto-fill leaves empty tracks and shrinks the
+   real cards; auto-fit collapses them so 4 cards fill the row properly. */
+.l-wrap-row { grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr)) !important; }
+
+/* Grids with a fixed item count need column counts that divide evenly,
+   or the last row orphans. Six items go 6 / 3 / 2, never 5 + 1. */
+.values-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+@media (max-width: 1439px) { .values-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 733px)  { .values-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 
 /* ----------------------------------------------------------

@@ -41,7 +41,26 @@ Three problems account for almost all the layout inconsistency:
 
 **H1. Fixed-column grids with no fallback**
 `about.html` (6 instances) and `medical.html` (1) use inline `grid-template-columns: repeat(4–7, 1fr)` with no media query. On a 320px screen that produces columns roughly 45px wide — unreadable slivers.
-*Fixed:* `layout.css` §4 includes an attribute-selector safety net that forces these to wrap below 734px. **This is a patch, not a fix** — replace the inline styles with `.l-cards` when you next touch those pages.
+
+The first attempt used a blanket `[style*="repeat(N, 1fr)"]` attribute selector with `!important`. **That was wrong and it regressed `about.html`.** A blanket override can't tell the difference between a grid that needs help and one that was already handled. It hit four elements it shouldn't have:
+
+- **Impact stats** (2 grids) — `.stat-grid` already had a `720px → repeat(2, 1fr)` rule giving a clean 2×2 on phones. The override replaced it with a ragged auto-fill wrap.
+- **Board and DLT org rows** — these are meant to stay on one horizontally scrolling row, since row position carries hierarchy. Wrapping them turned the org chart into an undifferentiated blob. (Their existing `overflow-x: auto` never fired, because `1fr` columns always shrink to fit — so they *were* broken, just not in the way the blanket rule assumed.)
+
+*Now fixed properly*, per element:
+
+| Element | Treatment |
+|---|---|
+| Board of Directors row (6) | `.l-scroll-row` — one row, 116px column floor, scrolls sideways below 778px |
+| DLT row (7) | `.l-scroll-row` — same, scrolls below 904px |
+| Culture cards (4) | `.l-wrap-row` — `auto-fit`, wraps 4 → 1, no orphans |
+| Values grid (6) | Explicit 6 / 3 / 2 columns — all divide 6 evenly |
+| Impact stats (2 grids) | Left alone. Its own 720px rule was already correct. |
+| `#hcat-grid` in medical.html | `.l-wrap-row` |
+
+Column counts were recomputed at all four widths — no grid orphans a last row, no card falls below its floor.
+
+**Lesson worth keeping:** `!important` attribute selectors that pattern-match on inline styles are a bad idea in a codebase that already has considered responsive rules. They override the good along with the bad.
 
 **H2. Contacts table had no overflow treatment**
 `contacts.html` list view is a 5-column table at `width:100%`. Below about 600px the columns collapse and text wraps to one word per line.
