@@ -1011,12 +1011,18 @@ if ('serviceWorker' in navigator) {
     const wrap  = document.getElementById('topbar-search-wrap');
     const input = document.getElementById('topbar-search-input');
     if (!wrap || !input) return;
-    wrap.addEventListener('click', (e) => {
+    function openIfClosed(e) {
       if (!wrap.classList.contains('is-open')) {
         e.preventDefault();
         focusTopbarSearch();
       }
-    });
+    }
+    // Bind both touchend and click: iOS can be inconsistent about firing
+    // a synthetic click after a tap on a plain <div>, so touchend covers
+    // it directly. preventDefault on touchend stops the duplicate click
+    // that would otherwise follow.
+    wrap.addEventListener('touchend', openIfClosed, { passive: false });
+    wrap.addEventListener('click', openIfClosed);
     document.addEventListener('click', (e) => {
       if (wrap.classList.contains('is-open') && !wrap.contains(e.target)) {
         wrap.classList.remove('is-open');
