@@ -420,9 +420,19 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
     position: static;
     color: #fff;
   }
+  /* Full-screen scrim behind the search, like iOS's own Spotlight search */
+  #search-scrim {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15,15,15,0.97);
+    z-index: 48;
+  }
+  #search-scrim.is-open { display: block; }
+
   .topbar__search.is-open {
     position: fixed;
-    left: 12px; right: 12px;
+    left: 12px; right: 64px;
     /* JS sets --kb-offset to the live keyboard height via visualViewport
        so the bar sits docked right above the keyboard, not at a fixed
        spot on screen. Falls back to bottom: 12px before JS runs. */
@@ -446,16 +456,44 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   }
   .topbar__search-close {
     display: none;
-    flex: none;
-    width: 32px; height: 32px;
-    margin-right: 4px;
-    border-radius: 50%;
+  }
+  .topbar__search.is-open .topbar__search-close {
+    display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--text-muted);
-    background: var(--surface-2);
+    position: fixed;
+    right: 12px;
+    bottom: calc(12px + var(--kb-offset, 0px));
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    color: #fff;
+    background: rgba(255,255,255,0.16);
+    z-index: 51;
   }
-  .topbar__search.is-open .topbar__search-close { display: flex; }
+
+  /* Results take over the full screen above the docked bar, dark to
+     match the scrim, instead of a small dropdown under the pill */
+  .topbar__search.is-open .inline-results:not([hidden]) {
+    position: fixed;
+    left: 0; right: 0;
+    top: 0;
+    bottom: calc(76px + var(--kb-offset, 0px));
+    display: block;
+    overflow-y: auto;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    padding: calc(env(safe-area-inset-top) + 20px) 16px 16px;
+    z-index: 49;
+  }
+  .topbar__search.is-open .inline-results__group { color: rgba(255,255,255,0.45); }
+  .topbar__search.is-open .inline-results__hit__title { color: #fff; }
+  .topbar__search.is-open .inline-results__hit__sub { color: rgba(255,255,255,0.55); }
+  .topbar__search.is-open .inline-results__hit:hover,
+  .topbar__search.is-open .inline-results__hit:active { background: rgba(255,255,255,0.08); }
+  .topbar__search.is-open .inline-results__hit__icon { background: rgba(255,255,255,0.1); color: #fff; }
+  .topbar__search.is-open .inline-results__empty { color: rgba(255,255,255,0.55); }
 }
 @media (min-width: 961px) {
   .topbar__search-close { display: none; }

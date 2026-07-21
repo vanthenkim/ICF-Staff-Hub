@@ -54,7 +54,7 @@ if ('serviceWorker' in navigator) {
   }
 
   document.addEventListener('touchstart', (e) => {
-    if (refreshing || e.target.closest('.topbar, .mobilenav, .sidesheet')) { pulling = false; return; }
+    if (refreshing || e.target.closest('.topbar, .mobilenav, .sidesheet, #search-scrim, .inline-results, #topbar-search-wrap')) { pulling = false; return; }
     pulling = scrollTop() <= 0;
     startY  = pulling ? e.touches[0].clientY : 0;
     ready   = false;
@@ -1014,11 +1014,24 @@ if ('serviceWorker' in navigator) {
   // ---------- Jump-to-search (⌘K, mobile "Search" button) ----------
   // Search now lives inline in the top bar (live results as you type),
   // so these just get you there and drop the cursor in.
+  // Full-screen dark scrim behind the mobile search (see #search-scrim
+  // in styles.css) — created once, lazily, only when search first opens.
+  function getSearchScrim() {
+    let scrim = document.getElementById('search-scrim');
+    if (!scrim) {
+      scrim = document.createElement('div');
+      scrim.id = 'search-scrim';
+      document.body.appendChild(scrim);
+    }
+    return scrim;
+  }
+
   function focusTopbarSearch() {
     const input = document.getElementById('topbar-search-input');
     const wrap  = document.getElementById('topbar-search-wrap');
     if (!input) return;
     if (wrap) wrap.classList.add('is-open');
+    getSearchScrim().classList.add('is-open');
     input.scrollIntoView({ behavior: 'smooth', block: 'center' });
     input.focus();
   }
@@ -1042,6 +1055,8 @@ if ('serviceWorker' in navigator) {
     }
     function closeSearch() {
       wrap.classList.remove('is-open');
+      const scrim = document.getElementById('search-scrim');
+      if (scrim) scrim.classList.remove('is-open');
       input.blur();
     }
     // Bind both touchend and click: iOS can be inconsistent about firing
