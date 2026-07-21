@@ -1054,15 +1054,26 @@ if ('serviceWorker' in navigator) {
     // a sibling of <body> — the whole topbar subtree stacks as one unit
     // behind it. Re-parenting to <body> while open sidesteps that trap
     // entirely; moving it back on close restores the normal desktop layout.
-    let homeParent = null, homeNext = null;
+    let homeParent = null, homeNext = null, closeBtnNext = null;
     function isMobile() { return window.matchMedia('(max-width: 960px)').matches; }
     function detachToBody() {
       if (!isMobile() || wrap.parentNode === document.body) return;
       homeParent = wrap.parentNode;
       homeNext = wrap.nextSibling;
       document.body.appendChild(wrap);
+      // Move the close button out to be wrap's own sibling too — as a
+      // nested child it inherited wrap's flex sizing/box context, which
+      // was pushing its fixed-position box past the right edge instead
+      // of sitting flush against it.
+      if (closeBtn && closeBtn.parentNode === wrap) {
+        closeBtnNext = closeBtn.nextSibling;
+        document.body.appendChild(closeBtn);
+      }
     }
     function reattachHome() {
+      if (closeBtn && closeBtn.parentNode === document.body) {
+        wrap.insertBefore(closeBtn, closeBtnNext);
+      }
       if (homeParent) {
         homeParent.insertBefore(wrap, homeNext);
         homeParent = null; homeNext = null;
@@ -1073,11 +1084,13 @@ if ('serviceWorker' in navigator) {
       if (!wrap.classList.contains('is-open')) {
         e.preventDefault();
         detachToBody();
+        if (closeBtn) closeBtn.classList.add('is-open');
         focusTopbarSearch();
       }
     }
     function closeSearch() {
       wrap.classList.remove('is-open');
+      if (closeBtn) closeBtn.classList.remove('is-open');
       const scrim = document.getElementById('search-scrim');
       if (scrim) scrim.classList.remove('is-open');
       input.blur();

@@ -418,7 +418,12 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   }
   .topbar__search:not(.is-open) svg {
     position: static;
+    left: auto;
+    top: auto;
+    transform: none;
     color: #fff;
+    margin: 0;
+    display: block;
   }
   /* Full-screen scrim behind the search, like iOS's own Spotlight search */
   #search-scrim {
@@ -459,12 +464,15 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   .topbar__search-close {
     display: none;
   }
-  .topbar__search.is-open .topbar__search-close {
+  /* Targets the button directly (it's moved to be a sibling of <body>
+     while open, not a descendant of .topbar__search — see app.js —
+     so this can't be a descendant selector off .topbar__search.is-open). */
+  .topbar__search-close.is-open {
     display: flex;
     align-items: center;
     justify-content: center;
     position: fixed;
-    right: 12px;
+    right: 16px;
     top: calc(env(safe-area-inset-top) + 10px);
     width: 44px; height: 44px;
     border-radius: 50%;
@@ -496,7 +504,8 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   .topbar__search.is-open .inline-results__hit__sub { color: rgba(255,255,255,0.55); }
   .topbar__search.is-open .inline-results__hit:hover,
   .topbar__search.is-open .inline-results__hit:active { background: rgba(255,255,255,0.08); }
-  .topbar__search.is-open .inline-results__hit__icon { background: rgba(255,255,255,0.1); color: #fff; }
+  .topbar__search.is-open .inline-results__hit__icon { background: rgba(255,255,255,0.16); color: #fff; }
+  .topbar__search.is-open .inline-results__hit__icon svg { stroke-width: 2.25; }
   .topbar__search.is-open .inline-results__empty { color: rgba(255,255,255,0.55); }
 }
 @media (min-width: 961px) {
