@@ -8,145 +8,159 @@
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="apple-mobile-web-app-title" content="Staff Hub" />
+<link rel="icon" href="/assets/icons/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png" />
 <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
 <link rel="apple-touch-icon" sizes="192x192" href="/assets/icons/icon-192.png" />
-<title>Events &amp; Year Topics · Staff Hub</title>
+<title>Year Planner Overview · Staff Hub</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=20260717ac" />
+<link rel="stylesheet" href="assets/styles.css?v=20260721e" />
 </head>
 <body>
-<div class="app">
-  <aside class="sidebar">
-    <div class="sidebar__brand"><div class="sidebar__logo"><img src="assets/icf-logo.png" alt="ICF Cambodia" /></div><div class="sidebar__title"><strong>ICF Cambodia</strong><span>Staff Hub</span></div></div>
-    <nav class="nav">
-      <a class="nav__item" href="index.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>Home</a>
-      <a class="nav__item" href="about.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></span>About ICF</a>
-      <a class="nav__item" href="guidelines.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span>Staff Guidelines</a>
-      <a class="nav__item" href="resources.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>Staff Resources</a>
-      <a class="nav__item" href="training.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/></svg></span>Training &amp; Development</a>
-      <a class="nav__item" href="medical.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.5-3 1.5-6 0-9-3 0-6 0-7.5 1.5C10 5 7 5 4 5c-1.5 3-1.5 6 0 9 3 0 6 0 7.5-1.5C13 14 16 14 19 14z"/></svg></span>Medical Hub</a>
-      <a class="nav__item" href="departments.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>Departments</a>
-      <a class="nav__item is-active" href="events.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>Events &amp; Year Topics</a>
-      <div class="nav__group-label" style="margin-top:12px;">Quick Links</div>
-      <a class="nav__item" href="about.html#open-fullchart"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><line x1="17" y1="17" x2="17" y2="21"/><line x1="17" y1="17" x2="21" y2="17"/></svg></span>Org Chart</a>
-      <a class="nav__item" href="contacts.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Staff Contacts</a>
-      <a class="nav__item" href="https://t.me/+KU4xqUNc6lNmZjU1" target="_blank" rel="noopener"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>Staff Group Telegram</a>
-      <a class="nav__item" href="https://drive.google.com/drive/u/0/home" target="_blank" rel="noopener"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span>Google Drive</a>
-      <!-- HONOR_A_COLLEAGUE: remove the display:none div to reactivate -->
-      <div style="display:none"><button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScskJ0UijIWOWdoLFYQTE8J1jNYmpveZ32rU-BmOtprbFXxvg/viewform','_blank')" style="display:flex;align-items:center;gap:10px;width:100%;border:none;cursor:pointer;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:10px;padding:9px 12px;font-size:14px;font-weight:600;font-family:inherit;margin-top:10px;text-align:left;"><span style="font-size:17px;line-height:1;">🏆</span>Honor a Colleague</button></div>
-    </nav>
-  </aside>
+<script>(function(){try{if(localStorage.getItem("icf-sidebar-collapsed")==="1")document.documentElement.classList.add("sidebar-collapsed");}catch(e){}})();</script>
 
-  <main class="main">
         <header class="topbar">
       <button class="topbar__menu" data-action="open-menu" aria-label="Menu">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
-      <div class="topbar__mobile-brand">
-        <div class="sidebar__logo"><img src="assets/icf-logo.png" alt="ICF Cambodia" /></div>
-        <span>Events & Year Topics</span>
+      <a class="topbar__brand" href="index.html">
+        <div class="sidebar__logo"><img src="assets/icf-logo-white.png" alt="ICF Cambodia" /></div>
+        <span>Staff Hub</span>
+      </a>
+      <div class="topbar__search" id="topbar-search-wrap">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="topbar-search-input" placeholder="Find resources, contacts, forms…" autocomplete="off" />
+        <div class="inline-results" id="topbar-search-results" hidden></div>
       </div>
       <div class="topbar__right">
-        <button class="topbar__btn" data-action="open-search" aria-label="Search">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        </button>
         <button class="topbar__btn lang-toggle" data-action="toggle-lang" aria-label="Language" title="Toggle language EN / KH"><span class="lang-toggle__label">EN</span></button>
         <div class="avatar" id="user-avatar"></div>
       </div>
     </header>
+<div class="app">
+  <aside class="sidebar">
+    <div class="sidebar__scroll">
+    <nav class="nav">
+      <a class="nav__item" href="index.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span><span class="nav__item-label">Home</span></a>
+      <a class="nav__item" href="about.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></span><span class="nav__item-label">About ICF</span></a>
+      <a class="nav__item" href="guidelines.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span><span class="nav__item-label">Staff Guidelines</span></a>
+      <a class="nav__item" href="resources.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span><span class="nav__item-label">Staff Resources</span></a>
+      <a class="nav__item" href="training.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/></svg></span><span class="nav__item-label">Training &amp; Development</span></a>
+      <a class="nav__item" href="medical.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.5-3 1.5-6 0-9-3 0-6 0-7.5 1.5C10 5 7 5 4 5c-1.5 3-1.5 6 0 9 3 0 6 0 7.5-1.5C13 14 16 14 19 14z"/></svg></span><span class="nav__item-label">Medical Hub</span></a>
+      <a class="nav__item" href="departments.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span><span class="nav__item-label">Departments</span></a>
+      <a class="nav__item is-active" href="events.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span><span class="nav__item-label">Year Planner Overview</span></a>
+      <div class="nav__group-label" style="margin-top:12px;">Quick Links</div>
+      <a class="nav__item" href="about.html#open-fullchart"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><line x1="17" y1="17" x2="17" y2="21"/><line x1="17" y1="17" x2="21" y2="17"/></svg></span><span class="nav__item-label">Org Chart</span></a>
+      <a class="nav__item" href="contacts.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><span class="nav__item-label">Staff Contacts</span></a>
+      <a class="nav__item" href="https://t.me/+KU4xqUNc6lNmZjU1" target="_blank" rel="noopener"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span><span class="nav__item-label">Staff Group Telegram</span></a>
+      <a class="nav__item" href="https://drive.google.com/drive/u/0/home" target="_blank" rel="noopener"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span><span class="nav__item-label">Google Drive</span></a>
+      <!-- HONOR_A_COLLEAGUE: remove the display:none div to reactivate -->
+      <div style="display:none"><button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScskJ0UijIWOWdoLFYQTE8J1jNYmpveZ32rU-BmOtprbFXxvg/viewform','_blank')" style="display:flex;align-items:center;gap:10px;width:100%;border:none;cursor:pointer;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:10px;padding:9px 12px;font-size:14px;font-weight:500;font-family:inherit;margin-top:10px;text-align:left;"><span style="font-size:17px;line-height:1;">🏆</span>Honor a Colleague</button></div>
+    </nav>
+    </div>
+    <button class="sidebar__toggle" data-action="toggle-sidebar" aria-label="Collapse sidebar" title="Collapse sidebar"><span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg></span><span class="nav__item-label">Collapse sidebar</span></button>
+  </aside>
+
+  <main class="main">
 
     <div class="container">
-      <div class="crumbs"><a href="index.html">Home</a><span class="sep">/</span><span>Events &amp; Year Topics</span></div>
+      <div class="crumbs"><a href="index.html">Home</a><span class="sep">/</span><span>Year Planner Overview</span></div>
       <div class="page-header">
         <div>
-          <h1>Events &amp; Year Topics</h1>
-          <p>Plan, run, and look back on the moments that shape our year — together.</p>
-        </div>
-        <div class="page-header__actions">
-          <a class="btn" href="tools.html" target="_blank" rel="noopener">Event support →</a>
+          <h1>Year Planner Overview</h1>
+          <p>All our events for the year — plan ahead or look back, in one place.</p>
         </div>
       </div>
 
-      <!-- Year topic banner -->
-      <section class="hero" style="background: url('assets/grateful-bg.jpg') center/cover no-repeat; margin-bottom: 24px;">
-        <p class="hero__greeting">Year Topic 2026</p>
-        <h1 class="hero__title">Grateful</h1>
-        <p class="hero__sub">Always be joyful. Never stop praying. Be thankful in all circumstances, for this is God's will for you who belong to Christ Jesus.</p>
-        <div class="hero__chips">
-          <a class="hero__chip" href="https://drive.google.com/drive/u/0/folders/17_o6ATJX193kfm6SYJPdF0uwy4wsTj6J" target="_blank" rel="noopener">Brand assets</a>
-          <a class="hero__chip" href="https://www.youtube.com/playlist?list=PLYlSPKufA1tmJE9XJWJkIzMBin2q5-0SM" target="_blank" rel="noopener">Sermon series</a>
+      <!-- Next up spotlight — filled in by the planner script once events load -->
+      <div id="next-up-card" class="card" style="display:none;padding:14px 18px;flex-direction:row;align-items:center;gap:14px;background:linear-gradient(135deg,#EFF6FF,#ffffff);border-left:4px solid var(--blue-600);margin-bottom:24px;">
+        <div id="next-up-date" style="flex:none;width:50px;height:50px;border-radius:12px;background:#fff;border:1px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1;"></div>
+        <div style="flex:1;min-width:0;">
+          <p style="margin:0 0 2px;font-size:10px;font-weight:500;color:var(--blue-700);text-transform:uppercase;letter-spacing:.06em;" id="next-up-eyebrow">Next up</p>
+          <p style="margin:0;font-size:15px;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" id="next-up-title"></p>
+          <p style="margin:2px 0 0;font-size:13px;color:var(--text-muted);" id="next-up-meta"></p>
         </div>
-      </section>
+        <a id="next-up-addcal" class="btn btn--sm" target="_blank" rel="noopener" style="flex:none;">Add to calendar</a>
+      </div>
 
       <!-- Year planner — live from Google Sheet -->
       <div class="section-title"><h2>Year Planner</h2></div>
       <div class="planner-toolbar">
-        <div class="planner-filter" id="planner-filter">
-          <button type="button" class="planner-filter__toggle" id="planner-filter-toggle" aria-haspopup="listbox" aria-expanded="false">
-            <span class="planner-filter__label" id="planner-filter-label">All events</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
-          <div class="planner-filter__menu" id="planner-filter-menu" role="listbox" hidden>
-            <button type="button" class="planner-filter__option is-active" data-cat="all" data-label="All events" role="option" aria-selected="true">All events</button>
-            <button type="button" class="planner-filter__option" data-cat="all-staff" data-label="All staff / holiday" role="option"><span class="planner-filter__dot" style="background:#2563EB"></span>All staff / holiday</button>
-            <button type="button" class="planner-filter__option" data-cat="church" data-label="Church" role="option"><span class="planner-filter__dot" style="background:#9333EA"></span>Church</button>
-            <button type="button" class="planner-filter__option" data-cat="social" data-label="Social" role="option"><span class="planner-filter__dot" style="background:#059669"></span>Social</button>
-            <button type="button" class="planner-filter__option" data-cat="LA" data-label="Leadership Academy" role="option"><span class="planner-filter__dot" style="background:#0891B2"></span>Leadership Academy</button>
-            <button type="button" class="planner-filter__option" data-cat="BA" data-label="Business Academy" role="option"><span class="planner-filter__dot" style="background:#6366F1"></span>Business Academy</button>
-            <button type="button" class="planner-filter__option" data-cat="AC" data-label="Learning Center" role="option"><span class="planner-filter__dot" style="background:#EA580C"></span>Learning Center</button>
-            <button type="button" class="planner-filter__option" data-cat="BN" data-label="Business Network" role="option"><span class="planner-filter__dot" style="background:#475569"></span>Business Network</button>
-            <button type="button" class="planner-filter__option" data-cat="MT" data-label="Mission Team" role="option"><span class="planner-filter__dot" style="background:#D97706"></span>Mission Team</button>
-            <button type="button" class="planner-filter__option" data-cat="GU" data-label="Guests" role="option"><span class="planner-filter__dot" style="background:#DB2777"></span>Guests</button>
-            <button type="button" class="planner-filter__option" data-cat="OT" data-label="Other" role="option"><span class="planner-filter__dot" style="background:#64748B"></span>Other</button>
+        <div class="planner-toolbar__left">
+          <div class="planner-filter" id="planner-filter">
+            <button type="button" class="planner-filter__toggle" id="planner-filter-toggle" aria-haspopup="true" aria-expanded="false">
+              <span class="planner-filter__label" id="planner-filter-label">All events</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="planner-filter__menu" id="planner-filter-menu" hidden>
+              <div class="planner-filter__actions">
+                <button type="button" class="planner-filter__action" id="planner-filter-selectall">Select all</button>
+                <button type="button" class="planner-filter__action" id="planner-filter-deselectall">Deselect all</button>
+              </div>
+              <label class="planner-filter__option"><input type="checkbox" class="planner-filter__checkbox" data-cat="all-staff" data-label="All staff" checked><span class="planner-filter__dot" style="background:#2563EB"></span>All staff</label>
+              <label class="planner-filter__option"><input type="checkbox" class="planner-filter__checkbox" data-cat="church" data-label="Church" checked><span class="planner-filter__dot" style="background:#9333EA"></span>Church</label>
+              <label class="planner-filter__option"><input type="checkbox" class="planner-filter__checkbox" data-cat="social" data-label="Social" checked><span class="planner-filter__dot" style="background:#059669"></span>Social</label>
+              <label class="planner-filter__option"><input type="checkbox" class="planner-filter__checkbox" data-cat="LA" data-label="Leadership Academy" checked><span class="planner-filter__dot" style="background:#0891B2"></span>Leadership Academy</label>
+              <label class="planner-filter__option"><input type="checkbox" class="planner-filter__checkbox" data-cat="BA" data-label="Business Academy" checked><span class="planner-filter__dot" style="background:#6366F1"></span>Business Academy</label>
+              <label class="planner-filter__option"><input type="checkbox" class="planner-filter__checkbox" data-cat="AC" data-label="Learning Center" checked><span class="planner-filter__dot" style="background:#EA580C"></span>Learning Center</label>
+              <label class="planner-filter__option"><input type="checkbox" class="planner-filter__checkbox" data-cat="BN" data-label="Business Network" checked><span class="planner-filter__dot" style="background:#475569"></span>Business Network</label>
+              <label class="planner-filter__option"><input type="checkbox" class="planner-filter__checkbox" data-cat="MT" data-label="Mission Team" checked><span class="planner-filter__dot" style="background:#D97706"></span>Mission Team</label>
+              <label class="planner-filter__option"><input type="checkbox" class="planner-filter__checkbox" data-cat="GU" data-label="Guests" checked><span class="planner-filter__dot" style="background:#DB2777"></span>Guests</label>
+              <label class="planner-filter__option"><input type="checkbox" class="planner-filter__checkbox" data-cat="OT" data-label="Other" checked><span class="planner-filter__dot" style="background:#64748B"></span>Other</label>
+            </div>
+          </div>
+          <div class="planner-tabs" id="planner-tabs">
+            <button type="button" class="planner-tab" data-range="week">Week</button>
+            <button type="button" class="planner-tab is-active" data-range="2weeks">2 weeks</button>
+            <button type="button" class="planner-tab" data-range="month">Month</button>
+            <button type="button" class="planner-tab" data-range="year">Year overview</button>
           </div>
         </div>
-        <div class="planner-tabs" id="planner-tabs">
-          <button type="button" class="planner-tab" data-range="week">Week</button>
-          <button type="button" class="planner-tab" data-range="2weeks">2 weeks</button>
-          <button type="button" class="planner-tab is-active" data-range="month">Month</button>
-          <button type="button" class="planner-tab" data-range="year">Year overview</button>
+        <div class="planner-nav" id="planner-nav">
+          <button type="button" class="planner-nav-btn" id="planner-nav-prev" aria-label="Previous">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <p class="planner-nav__label" id="planner-nav-label"></p>
+          <button type="button" class="planner-nav-btn" id="planner-nav-next" aria-label="Next">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
         </div>
-        <a href="https://docs.google.com/spreadsheets/d/1VMcwMqWxRDnLZ6QTGel33aNVHLlNtqZf_HnwtCanALA/edit?gid=324796546#gid=324796546" target="_blank" rel="noopener" class="btn btn--sm">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-          Full calendar
-        </a>
+        <div class="planner-view-toggle" id="planner-view-toggle">
+          <button type="button" class="planner-view-toggle__btn is-active" data-view="calendar" aria-label="Calendar view" title="Calendar view">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          </button>
+          <button type="button" class="planner-view-toggle__btn" data-view="list" aria-label="List view" title="List view">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          </button>
+        </div>
       </div>
       <div id="planner-events">
         <div class="gcal-loading">Loading planner…</div>
       </div>
 
-      <!-- Today's Lunch -->
-      <div class="section-title" style="margin-top:28px;"><h2>Staff Lunch Menu</h2></div>
-      <div style="display:flex;gap:12px;align-items:stretch;">
-        <div id="today-lunch-card" class="card" style="flex:1;padding:14px 18px;display:flex;align-items:center;gap:12px;background:linear-gradient(135deg,#fff7ed,#ffffff);border-left:4px solid #f59e0b;">
-          <div style="font-size:24px;line-height:1;">🍽️</div>
+      <!-- Today: Lunch + Birthdays — merged into one clickable card each -->
+      <div class="section-title" style="margin-top:28px;"><h2>Today</h2></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <a href="https://calendar.google.com/calendar/embed?src=c_16d101edc06a072b283e851d543b6a024cada259be1b6be3dfd098272aa56fb9%40group.calendar.google.com&ctz=Asia%2FBangkok" target="_blank" rel="noopener" id="today-lunch-card" class="card" style="padding:14px 16px;flex-direction:row;align-items:center;gap:12px;text-decoration:none;color:inherit;background:linear-gradient(135deg,#fff7ed,#ffffff);border-left:4px solid #f59e0b;">
+          <div style="font-size:22px;line-height:1;flex:none;">🍽️</div>
           <div style="flex:1;min-width:0;">
-            <p style="margin:0 0 2px;font-size:10px;font-weight:600;color:#b45309;text-transform:uppercase;letter-spacing:.06em;" id="today-lunch-date">Loading…</p>
-            <p style="margin:0;font-size:14px;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" id="today-lunch-text">Checking today's menu…</p>
+            <p style="margin:0 0 2px;font-size:10px;font-weight:500;color:#b45309;text-transform:uppercase;letter-spacing:.06em;" id="today-lunch-date">Loading…</p>
+            <p style="margin:0;font-size:14px;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" id="today-lunch-text">Checking today's menu…</p>
           </div>
-        </div>
-        <a href="https://calendar.google.com/calendar/embed?src=c_16d101edc06a072b283e851d543b6a024cada259be1b6be3dfd098272aa56fb9%40group.calendar.google.com&ctz=Asia%2FBangkok" target="_blank" class="card btn--primary" style="flex:1;padding:14px 18px;display:flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;color:#fff;background:var(--primary,#2563eb);border-radius:12px;font-size:14px;font-weight:600;">
-          <span style="font-size:20px;">&#128197;</span>
-          View Full Lunch Menu
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;color:#b45309;" aria-label="View full lunch menu"><path d="M11 7H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-5"/><path d="M10 14L20 4"/><path d="M15 4h5v5"/></svg>
+        </a>
+        <a href="https://calendar.google.com/calendar/embed?src=icf-campus.com_fm6n628u1trm8b0evais34neu8%40group.calendar.google.com&ctz=Asia%2FBangkok" target="_blank" rel="noopener" id="today-birthday-card" class="card" style="padding:14px 16px;flex-direction:row;align-items:center;gap:12px;text-decoration:none;color:inherit;background:linear-gradient(135deg,#fdf2f8,#ffffff);border-left:4px solid #ec4899;">
+          <div style="font-size:22px;line-height:1;flex:none;">🎂</div>
+          <div style="flex:1;min-width:0;">
+            <p style="margin:0 0 2px;font-size:10px;font-weight:500;color:#be185d;text-transform:uppercase;letter-spacing:.06em;" id="today-birthday-date">Loading…</p>
+            <p style="margin:0;font-size:14px;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" id="today-birthday-text">Checking today's birthdays…</p>
+          </div>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;color:#be185d;" aria-label="View full birthday calendar"><path d="M11 7H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-5"/><path d="M10 14L20 4"/><path d="M15 4h5v5"/></svg>
         </a>
       </div>
 
-      <!-- Staff Birthdays -->
-      <div class="section-title" style="margin-top:28px;"><h2>Staff Birthdays</h2></div>
-      <div style="display:flex;gap:12px;align-items:stretch;">
-        <div id="today-birthday-card" class="card" style="flex:1;padding:14px 18px;display:flex;align-items:center;gap:12px;background:linear-gradient(135deg,#fdf2f8,#ffffff);border-left:4px solid #ec4899;">
-          <div style="font-size:24px;line-height:1;">🎂</div>
-          <div style="flex:1;min-width:0;">
-            <p style="margin:0 0 2px;font-size:10px;font-weight:600;color:#be185d;text-transform:uppercase;letter-spacing:.06em;" id="today-birthday-date">Loading…</p>
-            <p style="margin:0;font-size:14px;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" id="today-birthday-text">Checking today's birthdays…</p>
-          </div>
-        </div>
-        <a href="https://calendar.google.com/calendar/embed?src=icf-campus.com_fm6n628u1trm8b0evais34neu8%40group.calendar.google.com&ctz=Asia%2FBangkok" target="_blank" class="card" style="flex:1;padding:14px 18px;display:flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;color:#fff;background:#ec4899;border-radius:12px;font-size:14px;font-weight:600;">
-          <span style="font-size:20px;">&#127881;</span>
-          View Full Birthday Calendar
-        </a>
-      </div>
-
+<<<<<<< HEAD
       <!-- Event Planner -->
       <div class="section-title" id="event-planner" style="margin-top:28px;"><h2>Event Planner</h2><a href="resources.html#events">Templates →</a></div>
       <div class="card" style="padding:0;overflow:hidden;">
@@ -172,6 +186,8 @@
         </div>
       </div>
 
+=======
+>>>>>>> 3289beba9df635a1b33b851027cefdcaa46a8846
     </div>
   </main>
 </div>
@@ -197,7 +213,6 @@
 <div class="sidesheet" id="sidesheet">
   <div class="sidesheet__panel">
     <button class="sidesheet__close" data-action="close-menu" aria-label="Close">&times;</button>
-    <div class="sidebar__brand"><div class="sidebar__logo"><img src="assets/icf-logo.png" alt="ICF Cambodia" /></div><div class="sidebar__title"><strong>ICF Cambodia</strong><span>Staff Hub</span></div></div>
     <nav class="nav">
       <a class="nav__item" href="index.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>Home</a>
       <a class="nav__item" href="about.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></span>About ICF</a>
@@ -206,7 +221,7 @@
       <a class="nav__item" href="training.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/></svg></span>Training &amp; Development</a>
       <a class="nav__item" href="medical.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.5-3 1.5-6 0-9-3 0-6 0-7.5 1.5C10 5 7 5 4 5c-1.5 3-1.5 6 0 9 3 0 6 0 7.5-1.5C13 14 16 14 19 14z"/></svg></span>Medical Hub</a>
       <a class="nav__item" href="departments.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>Departments</a>
-      <a class="nav__item" href="events.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>Events &amp; Year Topics</a>
+      <a class="nav__item" href="events.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>Year Planner Overview</a>
       <div class="nav__group-label" style="margin-top:12px;">My Favorites</div>
       <div id="sidesheet-favs"><p style="font-size:13px;color:var(--text-soft);font-style:italic;padding:6px 12px;">Tap &#x2661; on any card to save it here</p></div>
       <div class="nav__group-label" style="margin-top:12px;">Quick Links</div>
@@ -214,22 +229,10 @@
       <a class="nav__item" href="contacts.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Staff Contacts</a>
       <a class="nav__item" href="https://t.me/+KU4xqUNc6lNmZjU1" target="_blank" rel="noopener"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>Staff Group Telegram</a>
       <a class="nav__item" href="https://drive.google.com/drive/u/0/home" target="_blank" rel="noopener"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span>Google Drive</a>
-      <button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScskJ0UijIWOWdoLFYQTE8J1jNYmpveZ32rU-BmOtprbFXxvg/viewform','_blank')" style="display:flex;align-items:center;gap:10px;width:100%;border:none;cursor:pointer;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:10px;padding:9px 12px;font-size:14px;font-weight:600;font-family:inherit;margin-top:10px;text-align:left;"><span style="font-size:17px;line-height:1;">&#x1F3C6;</span>Honor a Colleague</button>
+      <button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScskJ0UijIWOWdoLFYQTE8J1jNYmpveZ32rU-BmOtprbFXxvg/viewform','_blank')" style="display:flex;align-items:center;gap:10px;width:100%;border:none;cursor:pointer;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:10px;padding:9px 12px;font-size:14px;font-weight:500;font-family:inherit;margin-top:10px;text-align:left;"><span style="font-size:17px;line-height:1;">&#x1F3C6;</span>Honor a Colleague</button>
     </nav>
   </div>
-</div>
-
-<div class="search-modal" id="search-modal">
-  <div class="search-modal__panel">
-    <div class="search-modal__input">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <input type="search" placeholder="Search the Staff Hub…" />
-    </div>
-    <div class="search-modal__results" id="search-results"></div>
-    <div class="search-modal__footer"><span><kbd>↵</kbd> open</span><span><kbd>↑</kbd><kbd>↓</kbd> navigate</span><span><kbd>esc</kbd> close</span></div>
-  </div>
-</div>
-<script src="assets/app.js?v=20260715"></script>
+</div><script src="assets/app.js?v=20260721e"></script>
 
 
 <script>
@@ -393,16 +396,19 @@
   // with the link" (Viewer) must be turned on for the spreadsheet, no Netlify
   // function or backend involved. Each tab (hidden or not — hiding a tab
   // doesn't block CSV export access, only its gid matters) gets its own
-  // entry here. Add a row once a new year's tab exists; find its gid in the
-  // sheet's URL (…?gid=XXXXXXX#gid=XXXXXXX) when that tab is open.
+  // entry here. Add a row once a new year's tab exists — either its gid
+  // from the sheet's URL (…?gid=XXXXXXX#gid=XXXXXXX) when that tab is
+  // open, or its exact tab name (Google's gviz endpoint accepts a `sheet`
+  // name in place of a gid, so you don't have to go hunting for the id).
   const SHEET_ID = '1VMcwMqWxRDnLZ6QTGel33aNVHLlNtqZf_HnwtCanALA';
   const PLANNER_TABS = [
     { year: 2026, gid: '324796546' },
-    // { year: 2027, gid: 'PASTE_GID_HERE' },
+    { year: 2027, sheet: '2027 - OVERVIEW' },
     // { year: 2028, gid: 'PASTE_GID_HERE' },
   ];
-  function csvUrlFor(gid) {
-    return `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&gid=${gid}`;
+  function csvUrlFor(tab) {
+    const q = tab.gid ? `gid=${tab.gid}` : `sheet=${encodeURIComponent(tab.sheet)}`;
+    return `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&${q}`;
   }
 
   const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -773,7 +779,7 @@
   }
 
   function renderYearView(events, catKey) {
-    const filtered = events.filter(ev => catKey === 'all' || pillKeyFor(ev) === catKey);
+    const filtered = events.filter(ev => catKey.has(pillKeyFor(ev)));
 
     // Map every calendar day (ISO string) to the events touching it —
     // multi-day spans get an entry on each day they cover.
@@ -837,15 +843,6 @@
     }).join('');
 
     return `<div class="planner-year">
-      <div class="planner-year-nav">
-        <button type="button" class="planner-year-nav-btn" data-dir="-1" aria-label="Previous month">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-        </button>
-        <p class="planner-year-nav__label">Scroll to browse the year</p>
-        <button type="button" class="planner-year-nav-btn" data-dir="1" aria-label="Next month">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-        </button>
-      </div>
       <div class="planner-year-scroller" id="planner-year-scroller">${monthCards}</div>
     </div>`;
   }
@@ -861,7 +858,7 @@
   let monthViewDate = new Date(Date.UTC(todayUTC().getUTCFullYear(), todayUTC().getUTCMonth(), 1));
 
   function renderMonthView(events, catKey) {
-    const filtered = events.filter(ev => catKey === 'all' || pillKeyFor(ev) === catKey);
+    const filtered = events.filter(ev => catKey.has(pillKeyFor(ev)));
 
     // Only single-day events go into the per-day chip list — multi-day
     // events render once as a spanning bar across the days they cover.
@@ -942,15 +939,6 @@
     }
 
     return `<div class="planner-month">
-      <div class="planner-month-nav">
-        <button type="button" class="planner-month-nav-btn" data-dir="-1" aria-label="Previous month">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-        </button>
-        <p class="planner-month-nav__label">${monthLabel(month)} ${year}</p>
-        <button type="button" class="planner-month-nav-btn" data-dir="1" aria-label="Next month">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-        </button>
-      </div>
       <div class="planner-month-grid">
         <div class="planner-month-dow-row">${dowHtml}</div>
         ${weeksHtml.join('')}
@@ -966,7 +954,7 @@
   })();
 
   function renderWeekView(events, catKey) {
-    const filtered = events.filter(ev => catKey === 'all' || pillKeyFor(ev) === catKey);
+    const filtered = events.filter(ev => catKey.has(pillKeyFor(ev)));
 
     // Only single-day events go into the per-day kanban cards — multi-day
     // events render once as a spanning bar above the columns.
@@ -979,11 +967,6 @@
     const todayISO = todayUTC().toISOString().slice(0, 10);
     const WEEKDAY_LABELS = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
     const days = Array.from({ length: 7 }, (_, i) => addDays(weekViewDate, i));
-
-    const s = days[0], e = days[6];
-    const rangeLabel = s.getUTCMonth() === e.getUTCMonth()
-      ? `${s.getUTCDate()}–${e.getUTCDate()} ${monthLabel(s.getUTCMonth())} ${s.getUTCFullYear()}`
-      : `${s.getUTCDate()} ${monthLabel(s.getUTCMonth())} – ${e.getUTCDate()} ${monthLabel(e.getUTCMonth())} ${e.getUTCFullYear()}`;
 
     const headers = days.map((d, i) => {
       const iso = d.toISOString().slice(0, 10);
@@ -1027,15 +1010,6 @@
     }).join('');
 
     return `<div class="planner-week">
-      <div class="planner-week-nav">
-        <button type="button" class="planner-week-nav-btn" data-dir="-1" aria-label="Previous week">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-        </button>
-        <p class="planner-week-nav__label">${rangeLabel}</p>
-        <button type="button" class="planner-week-nav-btn" data-dir="1" aria-label="Next week">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-        </button>
-      </div>
       <div class="planner-week-body">
         <div class="planner-week-dividers"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
         <div class="planner-week-header-row">${headers}</div>
@@ -1060,7 +1034,7 @@
   }
 
   function renderTwoWeekView(events, catKey) {
-    const filtered = events.filter(ev => catKey === 'all' || pillKeyFor(ev) === catKey);
+    const filtered = events.filter(ev => catKey.has(pillKeyFor(ev)));
 
     // Only single-day events go into the per-day chip list — multi-day
     // events render once as a spanning bar across the days they cover.
@@ -1073,11 +1047,6 @@
     const todayISO = todayUTC().toISOString().slice(0, 10);
     const WEEKDAY_LABELS = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
     const days = Array.from({ length: 14 }, (_, i) => addDays(twoWeekViewDate, i));
-
-    const s = days[0], e = days[13];
-    const rangeLabel = s.getUTCMonth() === e.getUTCMonth()
-      ? `${s.getUTCDate()}–${e.getUTCDate()} ${monthLabel(s.getUTCMonth())} ${s.getUTCFullYear()}`
-      : `${s.getUTCDate()} ${monthLabel(s.getUTCMonth())} – ${e.getUTCDate()} ${monthLabel(e.getUTCMonth())} ${e.getUTCFullYear()}`;
 
     const headerRow = `<div class="planner-2weeks-header-row"><div class="planner-2weeks-gutter"></div>` +
       WEEKDAY_LABELS.map((l, i) => `<div class="planner-month-dow${i >= 5 ? ' is-weekend' : ''}">${l}</div>`).join('') + `</div>`;
@@ -1133,43 +1102,214 @@
     }).join('');
 
     return `<div class="planner-2weeks">
-      <div class="planner-2weeks-nav">
-        <button type="button" class="planner-2weeks-nav-btn" data-dir="-1" aria-label="Previous 2 weeks">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-        </button>
-        <p class="planner-2weeks-nav__label">${rangeLabel}</p>
-        <button type="button" class="planner-2weeks-nav-btn" data-dir="1" aria-label="Next 2 weeks">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-        </button>
-      </div>
       <div class="planner-2weeks-grid">${headerRow}${weekRows}</div>
     </div>`;
   }
 
 
+  function rangeLabelFor(s, e) {
+    const sMon = MONTHS[s.getUTCMonth()].toUpperCase();
+    const eMon = MONTHS[e.getUTCMonth()].toUpperCase();
+    if (s.getUTCFullYear() !== e.getUTCFullYear()) {
+      return `${sMon} ${s.getUTCDate()}, ${s.getUTCFullYear()} – ${eMon} ${e.getUTCDate()}, ${e.getUTCFullYear()}`;
+    }
+    if (s.getUTCMonth() === e.getUTCMonth()) {
+      return `${sMon} ${s.getUTCDate()} – ${e.getUTCDate()}, ${e.getUTCFullYear()}`;
+    }
+    return `${sMon} ${s.getUTCDate()} – ${eMon} ${e.getUTCDate()}, ${e.getUTCFullYear()}`;
+  }
+
+  // Agenda (list) view — a day-by-day rundown, shared by Week, 2 weeks and
+  // Month. Nav lives in the shared toolbar now, so this just returns the
+  // list markup for a given run of days.
+  function renderAgendaView(days, events, catKey) {
+    const filtered = events.filter(ev => catKey.has(pillKeyFor(ev)));
+    const todayISO = todayUTC().toISOString().slice(0, 10);
+    const WEEKDAY_FULL = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
+    // Skip days that have already passed — the agenda starts at today.
+    const upcomingDays = days.filter(d => d.toISOString().slice(0, 10) >= todayISO);
+    if (!upcomingDays.length) return `<p class="planner-agenda-empty">No upcoming events in this range</p>`;
+
+    const groupsHtml = upcomingDays.map(d => {
+      const iso = d.toISOString().slice(0, 10);
+      const isToday   = iso === todayISO;
+      const isWeekend = d.getUTCDay() === 0 || d.getUTCDay() === 6;
+      const dow = WEEKDAY_FULL[(d.getUTCDay() + 6) % 7];
+
+      const dayEvents = filtered
+        .filter(ev => ev.start <= iso && ev.end >= iso)
+        .sort((a, b) => timeToMinutes(a.startTime) - timeToMinutes(b.startTime));
+
+      const itemsHtml = dayEvents.length
+        ? dayEvents.map(ev => {
+            const meta = metaFor(ev);
+            const timePart = ev.startTime ? `${ev.startTime}${ev.endTime ? '–' + ev.endTime : ''}` : 'All day';
+            return `<div class="planner-agenda-item" style="border-left-color:${meta.color}">
+              <div class="planner-agenda-item__body">
+                <span class="planner-agenda-item__title">${ev.title}</span>
+                <span class="planner-agenda-item__meta" style="color:${meta.color}">${timePart} · ${meta.label}</span>
+              </div>
+              ${addToCalBtnHtml(ev)}
+            </div>`;
+          }).join('')
+        : `<p class="planner-agenda-empty">No events</p>`;
+
+      return `<div class="planner-agenda-day${isToday ? ' is-today' : ''}">
+        <div class="planner-agenda-day__label${isWeekend ? ' is-weekend' : ''}">${dow}, ${d.getUTCDate()} ${monthLabel(d.getUTCMonth())}${isToday ? ' <span class="planner-agenda-today-badge">Today</span>' : ''}</div>
+        <div class="planner-agenda-day__items">${itemsHtml}</div>
+      </div>`;
+    }).join('');
+
+    return `<div class="planner-agenda-list">${groupsHtml}</div>`;
+  }
+
+  function renderWeekAgendaView(events, catKey) {
+    const days = Array.from({ length: 7 }, (_, i) => addDays(weekViewDate, i));
+    return renderAgendaView(days, events, catKey);
+  }
+
+  function renderTwoWeekAgendaView(events, catKey) {
+    const days = Array.from({ length: 14 }, (_, i) => addDays(twoWeekViewDate, i));
+    return renderAgendaView(days, events, catKey);
+  }
+
+  function renderMonthAgendaView(events, catKey) {
+    const year  = monthViewDate.getUTCFullYear();
+    const month = monthViewDate.getUTCMonth();
+    const daysInMonth = new Date(Date.UTC(year, month + 1, 0)).getUTCDate();
+    const days = Array.from({ length: daysInMonth }, (_, i) => new Date(Date.UTC(year, month, i + 1)));
+    return renderAgendaView(days, events, catKey);
+  }
+
+  // Year list view is grouped by month, one flat run of events per month —
+  // no per-day "No events" rows, since a year of empty days would swamp it.
+  // Past months (and past days within the current month) are skipped.
+  function renderYearAgendaView(events, catKey) {
+    const filtered = events.filter(ev => catKey.has(pillKeyFor(ev)));
+    const todayISO = todayUTC().toISOString().slice(0, 10);
+    const WEEKDAY_SHORT = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    const sections = [];
+
+    PLANNER_TABS.forEach(tab => {
+      for (let mi = 0; mi < 12; mi++) {
+        const daysInMonth = new Date(Date.UTC(tab.year, mi + 1, 0)).getUTCDate();
+        const itemsHtml = [];
+
+        for (let d = 1; d <= daysInMonth; d++) {
+          const dateObj = new Date(Date.UTC(tab.year, mi, d));
+          const iso = dateObj.toISOString().slice(0, 10);
+          if (iso < todayISO) continue;
+
+          const dayEvents = filtered
+            .filter(ev => ev.start <= iso && ev.end >= iso)
+            .sort((a, b) => timeToMinutes(a.startTime) - timeToMinutes(b.startTime));
+
+          dayEvents.forEach(ev => {
+            const meta = metaFor(ev);
+            const timePart = ev.startTime ? `${ev.startTime}${ev.endTime ? '–' + ev.endTime : ''}` : 'All day';
+            const dateLabel = `${WEEKDAY_SHORT[(dateObj.getUTCDay() + 6) % 7]}, ${d} ${monthLabel(mi)}`;
+            itemsHtml.push(`<div class="planner-agenda-item" style="border-left-color:${meta.color}">
+              <div class="planner-agenda-item__body">
+                <span class="planner-agenda-item__title">${ev.title}</span>
+                <span class="planner-agenda-item__meta" style="color:${meta.color}">${dateLabel} · ${timePart} · ${meta.label}</span>
+              </div>
+              ${addToCalBtnHtml(ev)}
+            </div>`);
+          });
+        }
+
+        if (!itemsHtml.length) continue;
+        sections.push(`<div class="planner-agenda-month">
+          <p class="planner-agenda-month__label">${monthLabel(mi)} ${tab.year}</p>
+          <div class="planner-agenda-list">${itemsHtml.join('')}</div>
+        </div>`);
+      }
+    });
+
+    return sections.length ? sections.join('') : `<p class="planner-agenda-empty">No upcoming events</p>`;
+  }
+
   function render(events, rangeKey, catKey) {
     if (rangeKey === 'year') {
-      container.innerHTML = renderYearView(events, catKey);
-      scrollYearViewToCurrentMonth();
+      container.innerHTML = viewMode === 'list'
+        ? renderYearAgendaView(events, catKey)
+        : renderYearView(events, catKey);
+      if (viewMode !== 'list') scrollYearViewToCurrentMonth();
+      updateNavLabel();
       return;
     }
 
     if (rangeKey === 'month') {
-      container.innerHTML = renderMonthView(events, catKey);
+      container.innerHTML = viewMode === 'list'
+        ? renderMonthAgendaView(events, catKey)
+        : renderMonthView(events, catKey);
+      updateNavLabel();
       return;
     }
 
     if (rangeKey === '2weeks') {
-      container.innerHTML = renderTwoWeekView(events, catKey);
+      container.innerHTML = viewMode === 'list'
+        ? renderTwoWeekAgendaView(events, catKey)
+        : renderTwoWeekView(events, catKey);
+      updateNavLabel();
       return;
     }
 
-    container.innerHTML = renderWeekView(events, catKey);
+    container.innerHTML = viewMode === 'list'
+      ? renderWeekAgendaView(events, catKey)
+      : renderWeekView(events, catKey);
+    updateNavLabel();
   }
 
   let allEvents = [];
-  let currentRange = 'month';
-  let currentCat   = 'all';
+  let currentRange = '2weeks';
+  let viewMode = 'calendar'; // 'calendar' | 'list' — Week + 2 weeks only
+  const ALL_CATS = ['all-staff', 'church', 'social', 'LA', 'BA', 'AC', 'BN', 'MT', 'GU', 'OT'];
+  let selectedCats = new Set(ALL_CATS);
+  const viewToggleEl  = document.getElementById('planner-view-toggle');
+  const navLabelEl    = document.getElementById('planner-nav-label');
+  const navPrevBtn    = document.getElementById('planner-nav-prev');
+  const navNextBtn    = document.getElementById('planner-nav-next');
+
+  // One shared prev/next + label control in the toolbar drives whichever
+  // range tab is active — Week, 2 weeks, Month or Year all read/write it.
+  function updateNavLabel() {
+    if (!navLabelEl) return;
+    if (currentRange === 'week') {
+      const days = Array.from({ length: 7 }, (_, i) => addDays(weekViewDate, i));
+      navLabelEl.textContent = rangeLabelFor(days[0], days[6]);
+    } else if (currentRange === '2weeks') {
+      const days = Array.from({ length: 14 }, (_, i) => addDays(twoWeekViewDate, i));
+      navLabelEl.textContent = rangeLabelFor(days[0], days[13]);
+    } else if (currentRange === 'month') {
+      navLabelEl.textContent = `${MONTHS[monthViewDate.getUTCMonth()].toUpperCase()} ${monthViewDate.getUTCFullYear()}`;
+    } else {
+      navLabelEl.textContent = 'YEAR OVERVIEW';
+    }
+  }
+
+  function navStep(dir) {
+    if (currentRange === 'week') {
+      weekViewDate = addDays(weekViewDate, dir * 7);
+    } else if (currentRange === '2weeks') {
+      twoWeekViewDate = addDays(twoWeekViewDate, dir * 14);
+    } else if (currentRange === 'month') {
+      monthViewDate = new Date(Date.UTC(monthViewDate.getUTCFullYear(), monthViewDate.getUTCMonth() + dir, 1));
+    } else if (currentRange === 'year') {
+      const scroller = document.getElementById('planner-year-scroller');
+      if (scroller) {
+        const card = scroller.querySelector('.planner-year-card');
+        const step = card ? card.getBoundingClientRect().width + 14 : 254;
+        scroller.scrollBy({ left: dir * step, behavior: 'smooth' });
+      }
+      return; // scrolling only — no re-render needed
+    }
+    render(allEvents, currentRange, selectedCats);
+  }
+
+  if (navPrevBtn) navPrevBtn.addEventListener('click', () => navStep(-1));
+  if (navNextBtn) navNextBtn.addEventListener('click', () => navStep(1));
 
   tabsEl.addEventListener('click', (e) => {
     const btn = e.target.closest('.planner-tab');
@@ -1190,43 +1330,19 @@
       const dow = t.getUTCDay();
       twoWeekViewDate = addDays(t, dow === 0 ? -6 : 1 - dow);
     }
-    render(allEvents, currentRange, currentCat);
+    render(allEvents, currentRange, selectedCats);
   });
 
-  container.addEventListener('click', (e) => {
-    const yearNavBtn = e.target.closest('.planner-year-nav-btn');
-    if (yearNavBtn) {
-      const scroller = document.getElementById('planner-year-scroller');
-      if (!scroller) return;
-      const card = scroller.querySelector('.planner-year-card');
-      const step = card ? card.getBoundingClientRect().width + 14 : 254;
-      scroller.scrollBy({ left: Number(yearNavBtn.dataset.dir) * step, behavior: 'smooth' });
-      return;
-    }
-
-    const monthNavBtn = e.target.closest('.planner-month-nav-btn');
-    if (monthNavBtn) {
-      const dir = Number(monthNavBtn.dataset.dir);
-      monthViewDate = new Date(Date.UTC(monthViewDate.getUTCFullYear(), monthViewDate.getUTCMonth() + dir, 1));
-      render(allEvents, currentRange, currentCat);
-      return;
-    }
-
-    const weekNavBtn = e.target.closest('.planner-week-nav-btn');
-    if (weekNavBtn) {
-      const dir = Number(weekNavBtn.dataset.dir);
-      weekViewDate = addDays(weekViewDate, dir * 7);
-      render(allEvents, currentRange, currentCat);
-      return;
-    }
-
-    const twoWeeksNavBtn = e.target.closest('.planner-2weeks-nav-btn');
-    if (twoWeeksNavBtn) {
-      const dir = Number(twoWeeksNavBtn.dataset.dir);
-      twoWeekViewDate = addDays(twoWeekViewDate, dir * 14);
-      render(allEvents, currentRange, currentCat);
-    }
-  });
+  if (viewToggleEl) {
+    viewToggleEl.addEventListener('click', (e) => {
+      const btn = e.target.closest('.planner-view-toggle__btn');
+      if (!btn || btn.classList.contains('is-active')) return;
+      viewMode = btn.dataset.view;
+      viewToggleEl.querySelectorAll('.planner-view-toggle__btn').forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      render(allEvents, currentRange, selectedCats);
+    });
+  }
 
   function closeFilterMenu() {
     filterMenu.hidden = true;
@@ -1240,30 +1356,78 @@
     filterToggle.setAttribute('aria-expanded', 'true');
   });
 
-  filterMenu.addEventListener('click', (e) => {
-    const btn = e.target.closest('.planner-filter__option');
-    if (!btn) return;
-    filterMenu.querySelectorAll('.planner-filter__option').forEach(b => {
-      b.classList.remove('is-active');
-      b.setAttribute('aria-selected', 'false');
-    });
-    btn.classList.add('is-active');
-    btn.setAttribute('aria-selected', 'true');
-    filterLabel.textContent = btn.dataset.label;
-    currentCat = btn.dataset.cat;
-    closeFilterMenu();
-    render(allEvents, currentRange, currentCat);
+  function updateFilterLabel() {
+    const n = selectedCats.size;
+    if (n === ALL_CATS.length) {
+      filterLabel.textContent = 'All events';
+    } else if (n === 0) {
+      filterLabel.textContent = 'No events';
+    } else if (n === 1) {
+      const only = filterMenu.querySelector('.planner-filter__checkbox[data-cat="' + [...selectedCats][0] + '"]');
+      filterLabel.textContent = only ? only.dataset.label : n + ' selected';
+    } else {
+      filterLabel.textContent = n + ' selected';
+    }
+  }
+
+  filterMenu.addEventListener('change', (e) => {
+    const cb = e.target.closest('.planner-filter__checkbox');
+    if (!cb) return;
+    if (cb.checked) selectedCats.add(cb.dataset.cat);
+    else selectedCats.delete(cb.dataset.cat);
+    updateFilterLabel();
+    render(allEvents, currentRange, selectedCats);
+  });
+
+  document.getElementById('planner-filter-selectall').addEventListener('click', () => {
+    selectedCats = new Set(ALL_CATS);
+    filterMenu.querySelectorAll('.planner-filter__checkbox').forEach(cb => { cb.checked = true; });
+    updateFilterLabel();
+    render(allEvents, currentRange, selectedCats);
+  });
+
+  document.getElementById('planner-filter-deselectall').addEventListener('click', () => {
+    selectedCats = new Set();
+    filterMenu.querySelectorAll('.planner-filter__checkbox').forEach(cb => { cb.checked = false; });
+    updateFilterLabel();
+    render(allEvents, currentRange, selectedCats);
   });
 
   document.addEventListener('click', (e) => {
     if (!filterEl.contains(e.target)) closeFilterMenu();
   });
 
+  function renderNextUp(events) {
+    const card = document.getElementById('next-up-card');
+    if (!card) return;
+    const todayISO = todayUTC().toISOString().slice(0, 10);
+    const upcoming = events
+      .filter(ev => ev.end >= todayISO)
+      .sort((a, b) => (a.start < b.start ? -1 : a.start > b.start ? 1 : 0));
+    if (upcoming.length === 0) { card.style.display = 'none'; return; }
+
+    const ev = upcoming[0];
+    const meta = metaFor(ev);
+    const start = parseISODate(ev.start);
+    const daysUntil = Math.round((start - todayUTC()) / 86400000);
+    const whenLabel = daysUntil <= 0 ? 'Today' : daysUntil === 1 ? 'Tomorrow' : `In ${daysUntil} days`;
+
+    document.getElementById('next-up-date').innerHTML =
+      `<span style="font-size:10px;font-weight:500;color:var(--blue-700);">${MONTHS[start.getUTCMonth()]}</span>` +
+      `<span style="font-size:17px;font-weight:500;color:var(--text);">${start.getUTCDate()}</span>`;
+    document.getElementById('next-up-eyebrow').textContent = `Next up · ${whenLabel}`;
+    document.getElementById('next-up-title').textContent = ev.title;
+    const timePart = ev.startTime ? `${ev.startTime}${ev.endTime ? '–' + ev.endTime : ''} · ` : '';
+    document.getElementById('next-up-meta').textContent = `${timePart}${meta.label}`;
+    document.getElementById('next-up-addcal').href = gcalUrl(ev);
+    card.style.display = 'flex';
+  }
+
   async function loadOneTab(tab) {
     const ctrl = new AbortController();
     const tid  = setTimeout(() => ctrl.abort(), 8000);
     try {
-      const resp = await fetch(csvUrlFor(tab.gid), { cache: 'no-cache', signal: ctrl.signal });
+      const resp = await fetch(csvUrlFor(tab), { cache: 'no-cache', signal: ctrl.signal });
       clearTimeout(tid);
       if (!resp.ok) throw new Error('fetch failed ' + resp.status);
       const csvText = await resp.text();
@@ -1280,7 +1444,8 @@
       const results = await Promise.all(PLANNER_TABS.map(loadOneTab));
       allEvents = results.flat();
       if (allEvents.length === 0) throw new Error('no events loaded from any tab');
-      render(allEvents, currentRange, currentCat);
+      renderNextUp(allEvents);
+      render(allEvents, currentRange, selectedCats);
     } catch (e) {
       container.innerHTML = '<div class="gcal-error">Could not load the year planner. Make sure the sheet is shared as "Anyone with the link".</div>';
     }

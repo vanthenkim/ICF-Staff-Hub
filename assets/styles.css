@@ -41,6 +41,7 @@ body {
 }
 img, svg { display: block; max-width: 100%; }
 h1, h2, h3, h4, h5, h6 { font-weight: 500; }
+strong, b { font-weight: 500; } /* FlamaKH has no bold face — cap at Medium (500) so browsers don't fake-bold it */
 button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
 a { color: inherit; text-decoration: none; }
 input, select, textarea { font: inherit; }
@@ -116,7 +117,7 @@ input, select, textarea { font: inherit; }
 .app {
   display: grid;
   grid-template-columns: var(--sidebar-w) 1fr;
-  min-height: 100vh;
+  min-height: calc(100vh - var(--header-h));
 }
 .main {
   min-width: 0;
@@ -138,17 +139,9 @@ input, select, textarea { font: inherit; }
   border-right: 1px solid var(--border);
   padding: var(--space-5);
   position: sticky;
-  top: 0;
-  height: 100vh;
+  top: var(--header-h);
+  height: calc(100vh - var(--header-h));
   overflow-y: auto;
-}
-.sidebar__brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 6px 8px 16px;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 14px;
 }
 .sidebar__logo {
   height: 34px;
@@ -161,13 +154,6 @@ input, select, textarea { font: inherit; }
   object-fit: contain;
   display: block;
 }
-/* The logo image is the "ICF" mark only — keep the "ICF Cambodia / Staff Hub"
-   title text alongside it. */
-.sidebar__brand .sidebar__title { line-height: 1.2; }
-.sidebar__brand .sidebar__title strong { font-size: 17px; }
-.sidebar__brand .sidebar__title span { font-size: 13px; color: var(--text-muted); font-weight: 500; }
-.topbar__mobile-brand .sidebar__logo { height: 28px; }
-.topbar__mobile-brand .sidebar__title { display: none; }
 .sidebar__title {
   display: flex; flex-direction: column; line-height: 1.15;
 }
@@ -217,85 +203,163 @@ input, select, textarea { font: inherit; }
   .sidebar { display: none; }
 }
 
+/* ---------- Sidebar collapse (icon rail) ---------- */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: padding .18s ease;
+}
+.sidebar__scroll {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin: 0 calc(var(--space-5) * -1);
+  padding: 0 var(--space-5);
+}
+.sidebar .sidebar__toggle {
+  flex: none;
+  display: flex; align-items: center; gap: 12px;
+  width: 100%;
+  margin-top: var(--space-4);
+  padding: 10px 12px;
+  border-top: 1px solid var(--border);
+  border-radius: 0;
+  background: none;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+.sidebar .sidebar__toggle:hover { color: var(--text); }
+.sidebar .sidebar__toggle:focus-visible { outline: 2px solid var(--blue-600); outline-offset: -2px; }
+.sidebar .sidebar__toggle .icon {
+  width: 20px; height: 20px;
+  display: grid; place-items: center;
+  flex: none;
+}
+.sidebar .sidebar__toggle svg { transition: transform .18s ease; }
+
+html.sidebar-collapsed .app { grid-template-columns: 76px 1fr; }
+html.sidebar-collapsed .sidebar { padding-left: 10px; padding-right: 10px; }
+html.sidebar-collapsed .sidebar__scroll { margin-left: -10px; margin-right: -10px; padding-left: 10px; padding-right: 10px; }
+html.sidebar-collapsed .sidebar__toggle svg { transform: rotate(180deg); }
+html.sidebar-collapsed .sidebar .nav__item,
+html.sidebar-collapsed .sidebar .sidebar-support-btn,
+html.sidebar-collapsed .sidebar .sidebar__toggle {
+  justify-content: center !important;
+  gap: 0 !important;
+  padding: 10px !important;
+  width: auto !important;
+}
+html.sidebar-collapsed .sidebar .nav__item-label,
+html.sidebar-collapsed .sidebar .nav__group-label {
+  display: none;
+}
+@media (max-width: 960px) {
+  html.sidebar-collapsed .app { grid-template-columns: 1fr; }
+}
+
+/* Sidebar collapse (icon rail) block above re-declares `.sidebar{display:flex}`
+   unconditionally, which overrides the earlier mobile `.sidebar{display:none}`
+   rule due to cascade order. Re-assert it here, after that block, so the
+   desktop icon-rail sidebar stays hidden on mobile (bottom nav takes over). */
+@media (max-width: 960px) {
+  .sidebar { display: none; }
+}
+
 /* ---------- Top bar ---------- */
 .topbar {
   position: sticky;
   top: 0;
   z-index: 30;
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: saturate(140%) blur(10px);
-  border-bottom: 1px solid var(--border);
+  background: #2B2B2B;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
   height: var(--header-h);
-  display: flex;
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr) auto;
   align-items: center;
   padding: 0 var(--space-6);
-  gap: var(--space-4);
+  column-gap: var(--space-4);
+  color: #fff;
 }
-.topbar__mobile-brand {
-  display: none;
+.topbar__brand {
+  grid-column: 2;
+  display: flex;
   align-items: center;
   gap: 10px;
-  font-weight: 500;
+  text-decoration: none;
 }
-.topbar__mobile-brand .sidebar__logo { width: 32px; height: 32px; font-size: 15px; }
+.topbar__brand .sidebar__logo { height: 30px; }
+.topbar__brand span {
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+  color: #fff;
+  white-space: nowrap;
+}
+.topbar__brand:hover span { color: rgba(255,255,255,0.85); }
 .topbar__menu {
+  grid-column: 1;
   display: none;
   width: 40px; height: 40px;
   border-radius: 10px;
-  border: 1px solid var(--border);
+  border: 1px solid rgba(255,255,255,0.2);
   align-items: center; justify-content: center;
-  background: var(--white);
+  background: transparent;
+  color: #fff;
 }
 .topbar__search {
-  flex: 1;
-  max-width: 780px;
+  grid-column: 3;
   position: relative;
-  margin-left: auto;
-  margin-right: auto;
+  justify-self: center;
+  width: 100%;
+  max-width: 480px;
 }
 .topbar__search input {
   width: 100%;
-  height: 44px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
+  height: 42px;
+  border-radius: 21px;
+  border: none;
   background: var(--white);
   padding: 0 16px 0 44px;
-  font-size: 16px;
-  transition: border-color .15s ease, box-shadow .15s ease;
+  font-size: 15px;
+  color: var(--text);
 }
 .topbar__search input:focus {
   outline: none;
-  border-color: var(--blue-500);
-  box-shadow: 0 0 0 4px var(--blue-50);
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.35);
 }
 .topbar__search svg {
   position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
   color: var(--text-soft);
+  pointer-events: none;
 }
-.topbar__right { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+.topbar__right { grid-column: 4; display: flex; align-items: center; gap: 10px; }
 .topbar__btn {
   width: 40px; height: 40px;
   border-radius: 10px;
-  border: 1px solid var(--border);
-  background: var(--white);
+  border: 1px solid rgba(255,255,255,0.2);
+  background: transparent;
   display: grid; place-items: center;
-  color: var(--text-muted);
+  color: #fff;
   position: relative;
 }
 .topbar__btn .dot {
   position: absolute; top: 9px; right: 10px;
   width: 8px; height: 8px; border-radius: 50%;
   background: var(--red-500);
-  border: 2px solid var(--white);
+  border: 2px solid #2B2B2B;
 }
 .lang-toggle {
   width: auto;
   padding: 0 12px;
   font-weight: 500;
   font-size: 15px;
-  color: var(--text);
+  color: #fff;
 }
-.lang-toggle:hover { background: var(--surface-2); }
+.lang-toggle:hover { background: rgba(255,255,255,0.1); }
 .lang-toggle__label { display: inline-block; min-width: 22px; text-align: center; }
 html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-system, sans-serif; }
 .avatar {
@@ -305,21 +369,17 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   color: white; font-weight: 500;
   display: grid; place-items: center;
   font-size: 16px;
+  flex: none;
 }
 
 @media (max-width: 960px) {
-  .topbar { padding: 0 var(--space-4); }
-  .topbar__mobile-brand { display: flex; }
+  .topbar { padding: 0 var(--space-4); column-gap: var(--space-3); }
   .topbar__menu { display: flex; }
-  .topbar__search { display: none; }
-  .topbar__search.is-open {
-    display: block;
-    position: fixed; left: 0; right: 0; top: 0;
-    padding: 12px 16px; background: var(--white);
-    max-width: none; height: var(--header-h);
-    border-bottom: 1px solid var(--border);
-    z-index: 50;
-  }
+}
+@media (max-width: 640px) {
+  .topbar__brand span { display: none; }
+  .topbar__search { max-width: none; }
+  .topbar__search input { height: 38px; font-size: 14px; }
 }
 
 /* ---------- Page header ---------- */
@@ -342,8 +402,8 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 /* ---------- Buttons ---------- */
 .btn {
   display: inline-flex; align-items: center; gap: 8px;
-  padding: 10px 16px;
-  border-radius: 12px;
+  padding: 10px 18px;
+  border-radius: 999px;
   font-size: 16px; font-weight: 500;
   background: var(--white);
   border: 1px solid var(--border);
@@ -366,7 +426,7 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 .btn--green:hover { background: var(--green-500); }
 .btn--ghost { background: transparent; border-color: transparent; }
 .btn--ghost:hover { background: var(--surface-2); }
-.btn--sm { padding: 7px 12px; font-size: 15px; border-radius: 10px; }
+.btn--sm { padding: 7px 14px; font-size: 15px; border-radius: 999px; }
 
 /* ---------- Hero / Welcome ---------- */
 .hero {
@@ -498,7 +558,7 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   padding: 2px 7px;
   border-radius: 999px;
   font-size: 10px;
-  font-weight: 600;
+  font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -1043,7 +1103,7 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   background: #EF4444;
   color: #fff;
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 500;
   min-width: 18px;
   height: 18px;
   padding: 0 5px;
@@ -1152,9 +1212,15 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 
 /* ---------- Year Planner (events page) ---------- */
 .planner-toolbar {
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 10px; flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
   margin-bottom: 10px;
+}
+@media (max-width: 720px) {
+  .planner-toolbar { grid-template-columns: 1fr; row-gap: 10px; }
+  .planner-nav { justify-self: center; }
 }
 .planner-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
 .planner-tab {
@@ -1167,6 +1233,76 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 }
 .planner-tab:hover { background: var(--surface-2); }
 .planner-tab.is-active { background: var(--blue-600); border-color: var(--blue-600); color: #fff; }
+
+.planner-toolbar__left { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+.planner-nav { display: flex; align-items: center; gap: 4px; justify-self: center; }
+.planner-nav__label {
+  margin: 0; font-size: 13.5px; font-weight: 500; color: var(--text);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  text-align: center;
+  width: 168px; flex: none;
+}
+.planner-nav-btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; flex: none;
+  border: 1px solid var(--border);
+  background: var(--white);
+  border-radius: 999px;
+  color: var(--text);
+}
+.planner-nav-btn:hover { background: var(--surface-2); }
+
+.planner-view-toggle {
+  display: flex; gap: 2px;
+  border: 1px solid var(--border);
+  background: var(--white);
+  border-radius: 999px;
+  padding: 2px;
+}
+.planner-view-toggle.is-hidden { display: none; }
+.planner-view-toggle__btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 30px; height: 28px;
+  border: none; background: transparent;
+  border-radius: 999px;
+  color: var(--text-muted);
+}
+.planner-view-toggle__btn:hover { background: var(--surface-2); }
+.planner-view-toggle__btn.is-active { background: var(--blue-600); color: #fff; }
+
+/* Agenda (list) view — shared by Week + 2 weeks */
+.planner-agenda-list { display: flex; flex-direction: column; gap: 14px; }
+.planner-agenda-day__label {
+  font-size: 12.5px; font-weight: 500; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.03em;
+  padding-bottom: 6px; margin-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 8px;
+}
+.planner-agenda-day__label.is-weekend { color: var(--red-600); }
+.planner-agenda-day.is-today .planner-agenda-day__label { color: var(--blue-600); }
+.planner-agenda-today-badge {
+  background: var(--blue-600); color: #fff;
+  font-size: 10px; font-weight: 500; text-transform: none;
+  letter-spacing: normal;
+  padding: 1px 7px; border-radius: 999px;
+}
+.planner-agenda-day__items { display: flex; flex-direction: column; gap: 8px; }
+.planner-agenda-item {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  background: var(--surface-2);
+  border-left: 3px solid;
+  border-radius: 8px;
+  padding: 9px 12px;
+}
+.planner-agenda-item__body { min-width: 0; }
+.planner-agenda-item__title { display: block; font-size: 13.5px; font-weight: 500; color: var(--text); line-height: 1.35; }
+.planner-agenda-item__meta { display: block; font-size: 11.5px; font-weight: 500; opacity: 0.85; margin-top: 2px; }
+.planner-agenda-empty { margin: 0; font-size: 13px; color: var(--text-soft); font-style: italic; }
+.planner-agenda-month { margin-bottom: 22px; }
+.planner-agenda-month:last-child { margin-bottom: 0; }
+.planner-agenda-month__label { margin: 0 0 10px; font-size: 14.5px; font-weight: 500; color: var(--text); }
 
 .planner-filter { position: relative; display: inline-block; }
 .planner-filter__toggle {
@@ -1200,19 +1336,37 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 .planner-filter__menu:not([hidden]) {
   display: flex;
 }
+.planner-filter__actions {
+  display: flex; align-items: center; gap: 4px;
+  padding: 2px 4px 6px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; z-index: 1;
+  background: var(--white);
+}
+.planner-filter__action {
+  border: none;
+  background: none;
+  padding: 5px 8px;
+  font-size: 12px; font-weight: 500;
+  border-radius: 6px;
+  color: var(--blue-600);
+  cursor: pointer;
+}
+.planner-filter__action:hover { background: var(--surface-2); }
+
 .planner-filter__option {
   display: flex; align-items: center; gap: 8px;
   width: 100%;
-  border: none;
-  background: none;
   padding: 8px 10px;
   font-size: 13px; font-weight: 500;
   border-radius: 8px;
-  color: var(--text-muted);
+  color: var(--text);
   text-align: left;
+  cursor: pointer;
 }
 .planner-filter__option:hover { background: var(--surface-2); }
-.planner-filter__option.is-active { color: var(--text); background: var(--surface-2); }
+.planner-filter__checkbox { flex: none; width: 15px; height: 15px; accent-color: var(--blue-600); cursor: pointer; }
 .planner-filter__dot { width: 7px; height: 7px; border-radius: 50%; flex: none; }
 
 /* Google Calendar list layout (date header per day, time built into each
@@ -1274,7 +1428,7 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   border-bottom: 1px solid var(--border);
 }
 .planner-year-day-row:last-child { border-bottom: none; }
-.planner-year-day-row.is-today .planner-year-day-row__num { color: var(--red-600); font-weight: 600; }
+.planner-year-day-row.is-today .planner-year-day-row__num { color: var(--red-600); font-weight: 500; }
 .planner-year-day-row__date {
   flex: 0 0 34px;
   display: flex; flex-direction: column; align-items: center;
@@ -1331,7 +1485,7 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   border-bottom: 1px solid var(--border);
   background: var(--surface-2);
 }
-.planner-month-dow.is-weekend { color: var(--red-600); background: var(--red-50); }
+.planner-month-dow.is-weekend { color: var(--red-600); }
 /* Day number sits in its own row (top of the box), chips in another
    (bottom of the box) — no border between them, so span-bar lanes can
    slot in between while the box still reads as one continuous cell. */
@@ -1341,7 +1495,6 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 }
 .planner-month-num-cell.is-outside { background: var(--surface-2); }
 .planner-month-num-cell.is-outside .planner-month-cell__num { color: var(--text-muted); }
-.planner-month-num-cell.is-weekend { background: var(--red-50); }
 .planner-month-num-cell.is-weekend .planner-month-cell__num { color: var(--red-600); }
 .planner-month-cell__num { font-size: 13px; font-weight: 500; color: var(--text); }
 .planner-month-cell__num.is-today {
@@ -1359,7 +1512,6 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   display: flex; flex-direction: column; gap: 6px;
 }
 .planner-month-cell.is-outside { background: var(--surface-2); }
-.planner-month-cell.is-weekend { background: var(--red-50); }
 .planner-month-cell__events { display: flex; flex-direction: column; gap: 5px; }
 .planner-month-chip {
   display: flex; align-items: flex-start; justify-content: space-between; gap: 4px;
@@ -1482,7 +1634,6 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   gap: 10px;
 }
 .planner-week-day-col { display: flex; flex-direction: column; gap: 8px; min-height: 300px; }
-.planner-week-day-col.is-weekend { background: var(--red-50); border-radius: 6px; }
 
 .planner-week-card {
   display: flex; align-items: flex-start; justify-content: space-between; gap: 6px;
@@ -1628,8 +1779,6 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 
 /* ---------- Help Center–style hero ---------- */
 .hero-hc {
-  background: #F0F2F5;
-  border-radius: var(--radius-lg);
   padding: 56px 28px 48px;
   margin-bottom: var(--space-6);
   text-align: center;

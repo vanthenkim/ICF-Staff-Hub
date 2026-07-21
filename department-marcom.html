@@ -8,52 +8,61 @@
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="apple-mobile-web-app-title" content="Staff Hub" />
+<link rel="icon" href="/assets/icons/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png" />
 <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
 <link rel="apple-touch-icon" sizes="192x192" href="/assets/icons/icon-192.png" />
 <title>MarCom · Staff Hub</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css" />
+<link rel="stylesheet" href="assets/styles.css?v=20260721e" />
 </head>
 <body>
-<div class="app">
-  <aside class="sidebar">
-    <div class="sidebar__brand"><div class="sidebar__logo"><img src="assets/icf-logo.png" alt="ICF Cambodia" /></div><div class="sidebar__title"><strong>ICF Cambodia</strong><span>Staff Hub</span></div></div>
-    <nav class="nav">
-      <a class="nav__item" href="index.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>Home</a>
-      <a class="nav__item" href="about.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></span>About ICF</a>
-      <a class="nav__item" href="guidelines.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span>Staff Guidelines</a>
-      <a class="nav__item" href="resources.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>Staff Resources</a>
-      <a class="nav__item" href="training.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/></svg></span>Training &amp; Development</a>
-      <a class="nav__item" href="medical.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.5-3 1.5-6 0-9-3 0-6 0-7.5 1.5C10 5 7 5 4 5c-1.5 3-1.5 6 0 9 3 0 6 0 7.5-1.5C13 14 16 14 19 14z"/></svg></span>Medical Hub</a>
-      <a class="nav__item is-active" href="departments.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>Departments</a>
-      <a class="nav__item" href="events.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>Events &amp; Year Topics</a>
-      <div class="nav__group-label" style="margin-top:12px;">Quick Links</div>
-      <a class="nav__item" href="about.html#open-fullchart"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><line x1="17" y1="17" x2="17" y2="21"/><line x1="17" y1="17" x2="21" y2="17"/></svg></span>Org Chart</a>
-      <a class="nav__item" href="contacts.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Staff Contacts</a>
-      <a class="nav__item" href="https://t.me/+KU4xqUNc6lNmZjU1" target="_blank" rel="noopener"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>Staff Group Telegram</a>
-      <a class="nav__item" href="https://drive.google.com/drive/u/0/home" target="_blank" rel="noopener"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span>Google Drive</a>
-      <!-- HONOR_A_COLLEAGUE: remove the display:none div to reactivate -->
-      <div style="display:none"><button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScskJ0UijIWOWdoLFYQTE8J1jNYmpveZ32rU-BmOtprbFXxvg/viewform','_blank')" style="display:flex;align-items:center;gap:10px;width:100%;border:none;cursor:pointer;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:10px;padding:9px 12px;font-size:14px;font-weight:600;font-family:inherit;margin-top:10px;text-align:left;"><span style="font-size:17px;line-height:1;">🏆</span>Honor a Colleague</button></div>
-    </nav>
-  </aside>
+<script>(function(){try{if(localStorage.getItem("icf-sidebar-collapsed")==="1")document.documentElement.classList.add("sidebar-collapsed");}catch(e){}})();</script>
 
-  <main class="main">
         <header class="topbar">
       <button class="topbar__menu" data-action="open-menu" aria-label="Menu">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
-      <div class="topbar__mobile-brand">
-        <div class="sidebar__logo"><img src="assets/icf-logo.png" alt="ICF Cambodia" /></div>
-        <span>MarCom Department</span>
+      <a class="topbar__brand" href="index.html">
+        <div class="sidebar__logo"><img src="assets/icf-logo-white.png" alt="ICF Cambodia" /></div>
+        <span>Staff Hub</span>
+      </a>
+      <div class="topbar__search" id="topbar-search-wrap">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="topbar-search-input" placeholder="Find resources, contacts, forms…" autocomplete="off" />
+        <div class="inline-results" id="topbar-search-results" hidden></div>
       </div>
       <div class="topbar__right">
-        <button class="topbar__btn" data-action="open-search" aria-label="Search">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        </button>
         <button class="topbar__btn lang-toggle" data-action="toggle-lang" aria-label="Language" title="Toggle language EN / KH"><span class="lang-toggle__label">EN</span></button>
         <div class="avatar" id="user-avatar"></div>
       </div>
     </header>
+<div class="app">
+  <aside class="sidebar">
+    <div class="sidebar__scroll">
+    <nav class="nav">
+      <a class="nav__item" href="index.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span><span class="nav__item-label">Home</span></a>
+      <a class="nav__item" href="about.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></span><span class="nav__item-label">About ICF</span></a>
+      <a class="nav__item" href="guidelines.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span><span class="nav__item-label">Staff Guidelines</span></a>
+      <a class="nav__item" href="resources.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span><span class="nav__item-label">Staff Resources</span></a>
+      <a class="nav__item" href="training.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/></svg></span><span class="nav__item-label">Training &amp; Development</span></a>
+      <a class="nav__item" href="medical.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.5-3 1.5-6 0-9-3 0-6 0-7.5 1.5C10 5 7 5 4 5c-1.5 3-1.5 6 0 9 3 0 6 0 7.5-1.5C13 14 16 14 19 14z"/></svg></span><span class="nav__item-label">Medical Hub</span></a>
+      <a class="nav__item is-active" href="departments.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span><span class="nav__item-label">Departments</span></a>
+      <a class="nav__item" href="events.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span><span class="nav__item-label">Year Planner Overview</span></a>
+      <div class="nav__group-label" style="margin-top:12px;">Quick Links</div>
+      <a class="nav__item" href="about.html#open-fullchart"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><line x1="17" y1="17" x2="17" y2="21"/><line x1="17" y1="17" x2="21" y2="17"/></svg></span><span class="nav__item-label">Org Chart</span></a>
+      <a class="nav__item" href="contacts.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><span class="nav__item-label">Staff Contacts</span></a>
+      <a class="nav__item" href="https://t.me/+KU4xqUNc6lNmZjU1" target="_blank" rel="noopener"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span><span class="nav__item-label">Staff Group Telegram</span></a>
+      <a class="nav__item" href="https://drive.google.com/drive/u/0/home" target="_blank" rel="noopener"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span><span class="nav__item-label">Google Drive</span></a>
+      <!-- HONOR_A_COLLEAGUE: remove the display:none div to reactivate -->
+      <div style="display:none"><button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScskJ0UijIWOWdoLFYQTE8J1jNYmpveZ32rU-BmOtprbFXxvg/viewform','_blank')" style="display:flex;align-items:center;gap:10px;width:100%;border:none;cursor:pointer;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:10px;padding:9px 12px;font-size:14px;font-weight:500;font-family:inherit;margin-top:10px;text-align:left;"><span style="font-size:17px;line-height:1;">🏆</span>Honor a Colleague</button></div>
+    </nav>
+    </div>
+    <button class="sidebar__toggle" data-action="toggle-sidebar" aria-label="Collapse sidebar" title="Collapse sidebar"><span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg></span><span class="nav__item-label">Collapse sidebar</span></button>
+  </aside>
+
+  <main class="main">
 
     <div class="container">
       <div class="crumbs"><a href="index.html">Home</a><span class="sep">/</span><a href="departments.html">Departments</a><span class="sep">/</span><span>MarCom</span></div>
@@ -67,7 +76,7 @@
           <h1>MarCom</h1>
           <p>We shape how ICF Cambodia looks, sounds and tells its story — through design, photography, video, translation, social media and the Learning Center.</p>
         </div>
-        <a href="#" onclick="event.preventDefault();document.getElementById('marcom-org-chart').style.display='flex';" style="flex-shrink:0;display:inline-flex;align-items:center;gap:8px;padding:9px 16px;background:rgba(255,255,255,0.15);border:1.5px solid rgba(255,255,255,0.3);border-radius:10px;color:#fff;font-size:13px;font-weight:600;text-decoration:none;backdrop-filter:blur(4px);">
+        <a href="#" onclick="event.preventDefault();document.getElementById('marcom-org-chart').style.display='flex';" style="flex-shrink:0;display:inline-flex;align-items:center;gap:8px;padding:9px 16px;background:rgba(255,255,255,0.15);border:1.5px solid rgba(255,255,255,0.3);border-radius:10px;color:#fff;font-size:13px;font-weight:500;text-decoration:none;backdrop-filter:blur(4px);">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><line x1="17" y1="17" x2="17" y2="21"/><line x1="17" y1="17" x2="21" y2="17"/></svg>
           Org Chart
         </a>
@@ -82,27 +91,27 @@
             <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;border-bottom:0.5px solid var(--border);">
               <div style="width:32px;height:32px;border-radius:8px;background:#ecfeff;color:#0891b2;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg></div>
               <div style="flex:1;min-width:0;"><div style="font-weight:500;font-size:14px;margin:0 0 2px;">Graphic Design &amp; Print</div><div style="font-size:12.5px;color:var(--text-muted);line-height:1.4;">Flyers, banners, posters, certificates, social graphics. Submit via Media Request with brief and deadline.</div></div>
-              <span data-owner-chip="Sengly Muol" style="align-self:center;flex-shrink:0;display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#ecfeff;border:1.5px solid #67e8f9;border-radius:8px;color:#0891b2;font-weight:600;font-size:12px;cursor:pointer;white-space:nowrap;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>Sengly</span>
+              <span data-owner-chip="Sengly Muol" style="align-self:center;flex-shrink:0;display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#ecfeff;border:1.5px solid #67e8f9;border-radius:8px;color:#0891b2;font-weight:500;font-size:12px;cursor:pointer;white-space:nowrap;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>Sengly</span>
             </div>
             <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;border-bottom:0.5px solid var(--border);">
               <div style="width:32px;height:32px;border-radius:8px;background:#ecfeff;color:#0891b2;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
               <div style="flex:1;min-width:0;"><div style="font-weight:500;font-size:14px;margin:0 0 2px;">Photography &amp; Video</div><div style="font-size:12.5px;color:var(--text-muted);line-height:1.4;">Event coverage, staff portraits, promo videos. Book at least 2 weeks in advance.</div></div>
-              <span data-owner-chip="Piseth Noun" style="align-self:center;flex-shrink:0;display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#ecfeff;border:1.5px solid #67e8f9;border-radius:8px;color:#0891b2;font-weight:600;font-size:12px;cursor:pointer;white-space:nowrap;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>Piseth</span>
+              <span data-owner-chip="Piseth Noun" style="align-self:center;flex-shrink:0;display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#ecfeff;border:1.5px solid #67e8f9;border-radius:8px;color:#0891b2;font-weight:500;font-size:12px;cursor:pointer;white-space:nowrap;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>Piseth</span>
             </div>
             <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;border-bottom:0.5px solid var(--border);">
               <div style="width:32px;height:32px;border-radius:8px;background:#ecfeff;color:#0891b2;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3l14 9-14 9V3z"/></svg></div>
               <div style="flex:1;min-width:0;"><div style="font-weight:500;font-size:14px;margin:0 0 2px;">Social Media &amp; Content</div><div style="font-size:12.5px;color:var(--text-muted);line-height:1.4;">Facebook, Instagram, YouTube posts and campaigns. Share content brief 5 days before posting date.</div></div>
-              <span data-owner-chip="Savann Sun" style="align-self:center;flex-shrink:0;display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#ecfeff;border:1.5px solid #67e8f9;border-radius:8px;color:#0891b2;font-weight:600;font-size:12px;cursor:pointer;white-space:nowrap;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>Savann</span>
+              <span data-owner-chip="Savann Sun" style="align-self:center;flex-shrink:0;display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#ecfeff;border:1.5px solid #67e8f9;border-radius:8px;color:#0891b2;font-weight:500;font-size:12px;cursor:pointer;white-space:nowrap;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>Savann</span>
             </div>
             <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;border-bottom:0.5px solid var(--border);">
               <div style="width:32px;height:32px;border-radius:8px;background:#ecfeff;color:#0891b2;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
               <div style="flex:1;min-width:0;"><div style="font-weight:500;font-size:14px;margin:0 0 2px;">Website &amp; Newsletters</div><div style="font-size:12.5px;color:var(--text-muted);line-height:1.4;">Staff Hub website updates and internal/donor newsletters. Share content and links at least 3 days before publishing.</div></div>
-              <span data-owner-chip="Ratana Khy" style="align-self:center;flex-shrink:0;display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#ecfeff;border:1.5px solid #67e8f9;border-radius:8px;color:#0891b2;font-weight:600;font-size:12px;cursor:pointer;white-space:nowrap;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>Ratana</span>
+              <span data-owner-chip="Ratana Khy" style="align-self:center;flex-shrink:0;display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#ecfeff;border:1.5px solid #67e8f9;border-radius:8px;color:#0891b2;font-weight:500;font-size:12px;cursor:pointer;white-space:nowrap;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>Ratana</span>
             </div>
             <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;">
               <div style="width:32px;height:32px;border-radius:8px;background:#ecfeff;color:#0891b2;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/></svg></div>
               <div style="flex:1;min-width:0;"><div style="font-weight:500;font-size:14px;margin:0 0 2px;">Learning Center</div><div style="font-size:12.5px;color:var(--text-muted);line-height:1.4;">Staff learning resources, training materials and development content.</div></div>
-              <span data-owner-chip="Makara Ne" style="align-self:center;flex-shrink:0;display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#ecfeff;border:1.5px solid #67e8f9;border-radius:8px;color:#0891b2;font-weight:600;font-size:12px;cursor:pointer;white-space:nowrap;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>Makara</span>
+              <span data-owner-chip="Makara Ne" style="align-self:center;flex-shrink:0;display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#ecfeff;border:1.5px solid #67e8f9;border-radius:8px;color:#0891b2;font-weight:500;font-size:12px;cursor:pointer;white-space:nowrap;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>Makara</span>
             </div>
           </div>
 
@@ -126,24 +135,24 @@
           <div class="card" style="margin-bottom:14px;">
             <h3 style="margin:0 0 10px;font-size:15px;">Team</h3>
             <div style="display:flex;flex-direction:column;gap:10px;">
-              <div style="font-size:11px;font-weight:700;color:#0891b2;text-transform:uppercase;letter-spacing:.06em;padding:2px 0 4px;">Executive Director</div>
+              <div style="font-size:11px;font-weight:500;color:#0891b2;text-transform:uppercase;letter-spacing:.06em;padding:2px 0 4px;">Executive Director</div>
               <div data-person="Stephanie Shelow" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:6px 8px;border-radius:8px;background:#cffafe;border:1px solid #22d3ee;transition:background .15s;" onmouseover="this.style.background='#a5f3fc'" onmouseout="this.style.background='#cffafe'">
                 <img src="assets/people/stephanie-shelow.jpg" alt="Stephanie Shelow" style="width:38px;height:38px;border-radius:50%;object-fit:cover;flex-shrink:0;" />
-                <div><div style="font-weight:700;font-size:13.5px;">Stephanie Shelow</div><div class="muted" style="font-size:12px;">Executive Director · stephanie.shelow@icf-cambodia.com</div></div>
+                <div><div style="font-weight:500;font-size:13.5px;">Stephanie Shelow</div><div class="muted" style="font-size:12px;">Executive Director · stephanie.shelow@icf-cambodia.com</div></div>
               </div>
-              <div style="font-size:11px;font-weight:700;color:#0891b2;text-transform:uppercase;letter-spacing:.06em;padding:6px 0 2px;border-top:1px solid var(--border);">Learning Center</div>
-              <div data-person="Makara Ne" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#ecfeff'" onmouseout="this.style.background=''"><div style="width:36px;height:36px;border-radius:50%;background:#e0f2fe;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:#0891b2;flex-shrink:0;">MN</div><div><div style="font-weight:600;font-size:13.5px;">Makara Ne</div><div class="muted" style="font-size:12px;">Learning Center Coordinator · makara.ne@icf-cambodia.com</div></div></div>
-              <div style="font-size:11px;font-weight:700;color:#0891b2;text-transform:uppercase;letter-spacing:.06em;padding:6px 0 2px;border-top:1px solid var(--border);">Management</div>
-              <div data-person="Ratana Khy" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:6px 8px;border-radius:8px;background:#ecfeff;border:1px solid #67e8f9;transition:background .15s;" onmouseover="this.style.background='#cffafe'" onmouseout="this.style.background='#ecfeff'"><img src="assets/people/ratana-khy.jpg" alt="Ratana Khy" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;" /><div><div style="font-weight:600;font-size:13.5px;">Ratana Khy</div><div class="muted" style="font-size:12px;">Creative Media Manager · ratana.khy@icf-cambodia.com</div></div></div>
-              <div style="font-size:11px;font-weight:700;color:#0891b2;text-transform:uppercase;letter-spacing:.06em;padding:6px 0 2px;border-top:1px solid var(--border);">Team</div>
-              <div data-person="Piseth Noun" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#ecfeff'" onmouseout="this.style.background=''"><div style="width:36px;height:36px;border-radius:50%;background:#e0f2fe;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:#0891b2;flex-shrink:0;">PN</div><div><div style="font-weight:600;font-size:13.5px;">Piseth Noun</div><div class="muted" style="font-size:12px;">Visual Specialist Coordinator · piseth.noun@icf-cambodia.com</div></div></div>
-              <div data-person="Florin Flammer" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#ecfeff'" onmouseout="this.style.background=''"><img src="assets/people/florin-flammer.jpg" alt="Florin Flammer" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;" /><div><div style="font-weight:600;font-size:13.5px;">Florin Flammer</div><div class="muted" style="font-size:12px;">Digital Media Assistant · florin.flammer@icf-cambodia.com</div></div></div>
-              <div data-person="Sengly Muol" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#ecfeff'" onmouseout="this.style.background=''"><img src="assets/people/sengly-muol.jpg" alt="Sengly Muol" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;"><div><div style="font-weight:600;font-size:13.5px;">Sengly Muol</div><div class="muted" style="font-size:12px;">Graphic Designer · sengly.muol@icf-cambodia.com</div></div></div>
-              <div data-person="Soktheavy Tann" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#ecfeff'" onmouseout="this.style.background=''"><img src="assets/people/soktheavy-tann.jpg" alt="Soktheavy Tann" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;" /><div><div style="font-weight:600;font-size:13.5px;">Soktheavy Tann</div><div class="muted" style="font-size:12px;">Jr. Graphic Designer · soktheavy.tann@icf-cambodia.com</div></div></div>
-              <div data-person="Savann Sun" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#ecfeff'" onmouseout="this.style.background=''"><img src="assets/people/savann-sun.jpg" alt="Savann Sun" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;" /><div><div style="font-weight:600;font-size:13.5px;">Savann Sun</div><div class="muted" style="font-size:12px;">Social Media Coordinator · savann.sun@icf-cambodia.com</div></div></div>
-              <div data-person="Rayu Roeun" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#ecfeff'" onmouseout="this.style.background=''"><img src="assets/people/rayu-roeun.jpg" alt="Rayu Roeun" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;" /><div><div style="font-weight:600;font-size:13.5px;">Rayu Roeun</div><div class="muted" style="font-size:12px;">Visual Specialist · rayu.roeun@icf-cambodia.com</div></div></div>
-              <div data-person="Vutha Kry" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#ecfeff'" onmouseout="this.style.background=''"><img src="assets/people/vutha-kry.jpg" alt="Vutha Kry" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;" /><div><div style="font-weight:600;font-size:13.5px;">Vutha Kry</div><div class="muted" style="font-size:12px;">Digital Media Trainee · vutha.kry@icf-cambodia.com</div></div></div>
-              <div data-person="Malin Toy" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#ecfeff'" onmouseout="this.style.background=''"><div style="width:36px;height:36px;border-radius:50%;background:#e0f2fe;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:#0891b2;flex-shrink:0;">MT</div><div><div style="font-weight:600;font-size:13.5px;">Malin Toy</div><div class="muted" style="font-size:12px;">MarCom Assistant · malin.toy@icf-cambodia.com</div></div></div>
+              <div style="font-size:11px;font-weight:500;color:#0891b2;text-transform:uppercase;letter-spacing:.06em;padding:6px 0 2px;border-top:1px solid var(--border);">Learning Center</div>
+              <div data-person="Makara Ne" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#ecfeff'" onmouseout="this.style.background=''"><div style="width:36px;height:36px;border-radius:50%;background:#e0f2fe;display:flex;align-items:center;justify-content:center;font-weight:500;font-size:13px;color:#0891b2;flex-shrink:0;">MN</div><div><div style="font-weight:500;font-size:13.5px;">Makara Ne</div><div class="muted" style="font-size:12px;">Learning Center Coordinator · makara.ne@icf-cambodia.com</div></div></div>
+              <div style="font-size:11px;font-weight:500;color:#0891b2;text-transform:uppercase;letter-spacing:.06em;padding:6px 0 2px;border-top:1px solid var(--border);">Management</div>
+              <div data-person="Ratana Khy" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:6px 8px;border-radius:8px;background:#ecfeff;border:1px solid #67e8f9;transition:background .15s;" onmouseover="this.style.background='#cffafe'" onmouseout="this.style.background='#ecfeff'"><img src="assets/people/ratana-khy.jpg" alt="Ratana Khy" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;" /><div><div style="font-weight:500;font-size:13.5px;">Ratana Khy</div><div class="muted" style="font-size:12px;">Creative Media Manager · ratana.khy@icf-cambodia.com</div></div></div>
+              <div style="font-size:11px;font-weight:500;color:#0891b2;text-transform:uppercase;letter-spacing:.06em;padding:6px 0 2px;border-top:1px solid var(--border);">Team</div>
+              <div data-person="Piseth Noun" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#ecfeff'" onmouseout="this.style.background=''"><div style="width:36px;height:36px;border-radius:50%;background:#e0f2fe;display:flex;align-items:center;justify-content:center;font-weight:500;font-size:13px;color:#0891b2;flex-shrink:0;">PN</div><div><div style="font-weight:500;font-size:13.5px;">Piseth Noun</div><div class="muted" style="font-size:12px;">Visual Specialist Coordinator · piseth.noun@icf-cambodia.com</div></div></div>
+              <div data-person="Florin Flammer" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#ecfeff'" onmouseout="this.style.background=''"><img src="assets/people/florin-flammer.jpg" alt="Florin Flammer" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;" /><div><div style="font-weight:500;font-size:13.5px;">Florin Flammer</div><div class="muted" style="font-size:12px;">Digital Media Assistant · florin.flammer@icf-cambodia.com</div></div></div>
+              <div data-person="Sengly Muol" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#ecfeff'" onmouseout="this.style.background=''"><img src="assets/people/sengly-muol.jpg" alt="Sengly Muol" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;"><div><div style="font-weight:500;font-size:13.5px;">Sengly Muol</div><div class="muted" style="font-size:12px;">Graphic Designer · sengly.muol@icf-cambodia.com</div></div></div>
+              <div data-person="Soktheavy Tann" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#ecfeff'" onmouseout="this.style.background=''"><img src="assets/people/soktheavy-tann.jpg" alt="Soktheavy Tann" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;" /><div><div style="font-weight:500;font-size:13.5px;">Soktheavy Tann</div><div class="muted" style="font-size:12px;">Jr. Graphic Designer · soktheavy.tann@icf-cambodia.com</div></div></div>
+              <div data-person="Savann Sun" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#ecfeff'" onmouseout="this.style.background=''"><img src="assets/people/savann-sun.jpg" alt="Savann Sun" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;" /><div><div style="font-weight:500;font-size:13.5px;">Savann Sun</div><div class="muted" style="font-size:12px;">Social Media Coordinator · savann.sun@icf-cambodia.com</div></div></div>
+              <div data-person="Rayu Roeun" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#ecfeff'" onmouseout="this.style.background=''"><img src="assets/people/rayu-roeun.jpg" alt="Rayu Roeun" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;" /><div><div style="font-weight:500;font-size:13.5px;">Rayu Roeun</div><div class="muted" style="font-size:12px;">Visual Specialist · rayu.roeun@icf-cambodia.com</div></div></div>
+              <div data-person="Vutha Kry" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#ecfeff'" onmouseout="this.style.background=''"><img src="assets/people/vutha-kry.jpg" alt="Vutha Kry" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;" /><div><div style="font-weight:500;font-size:13.5px;">Vutha Kry</div><div class="muted" style="font-size:12px;">Digital Media Trainee · vutha.kry@icf-cambodia.com</div></div></div>
+              <div data-person="Malin Toy" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#ecfeff'" onmouseout="this.style.background=''"><div style="width:36px;height:36px;border-radius:50%;background:#e0f2fe;display:flex;align-items:center;justify-content:center;font-weight:500;font-size:13px;color:#0891b2;flex-shrink:0;">MT</div><div><div style="font-weight:500;font-size:13.5px;">Malin Toy</div><div class="muted" style="font-size:12px;">MarCom Assistant · malin.toy@icf-cambodia.com</div></div></div>
 
             </div>
           </div>
@@ -157,7 +166,7 @@
         <div id="marcom-org-section" style="display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:24px 16px;min-height:100%;" onclick="event.stopPropagation()">
           <div style="background:#f8fafc;border-radius:20px;padding:24px 28px;max-width:1400px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.25);">
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
-              <div style="font-weight:700;font-size:18px;color:#1a2332;">MarCom · Org Chart</div>
+              <div style="font-weight:500;font-size:18px;color:#1a2332;">MarCom · Org Chart</div>
               <button onclick="document.getElementById('marcom-org-chart').style.display='none';if(window.parent!==window)window.parent.closeChartPopup&&window.parent.closeChartPopup();" style="background:none;border:none;font-size:28px;cursor:pointer;color:#94a3b8;line-height:1;">&times;</button>
             </div>
             <div style="overflow-x:auto;padding-bottom:8px;">
@@ -168,7 +177,7 @@
               <img src="assets/people/stephanie-shelow.jpg" style="width:56px;height:56px;border-radius:50%;object-fit:cover;border:2.5px solid rgba(255,255,255,.35);flex-shrink:0;">
               <div>
                 <div style="font-size:9.5px;opacity:.75;text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px;">Executive Director · MarCom</div>
-                <div style="font-weight:700;font-size:17px;line-height:1.2;">Stephanie Shelow</div>
+                <div style="font-weight:500;font-size:17px;line-height:1.2;">Stephanie Shelow</div>
               </div>
             </div>
 
@@ -186,10 +195,10 @@
               <div class="mc-col-wrap">
                 <div class="mc-col-drop"></div>
                 <div style="display:flex;flex-direction:column;gap:0;background:#fff;border:1.5px solid #e2e8f0;border-top:3px solid #0891b2;border-radius:10px;padding:12px 10px;width:180px;box-sizing:border-box;">
-                  <div style="font-size:9px;font-weight:700;color:#0891b2;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;">Learning Center</div>
+                  <div style="font-size:9px;font-weight:500;color:#0891b2;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;">Learning Center</div>
                   <div data-person="Makara Ne" style="display:flex;align-items:center;gap:10px;cursor:pointer;background:#ecfeff;border-radius:10px;padding:10px 12px;transition:background .15s,box-shadow .15s;margin-bottom:6px;" onmouseover="this.style.background='#cffafe';this.style.boxShadow='0 2px 10px rgba(8,145,178,.15)'" onmouseout="this.style.background='#ecfeff';this.style.boxShadow='none'">
-                    <div style="width:44px;height:44px;border-radius:50%;background:#e0f2fe;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:#0891b2;flex-shrink:0;">MN</div>
-                    <div><div style="font-weight:700;font-size:12.5px;color:#164e63;">Makara Ne</div><div style="font-size:11px;color:#0891b2;">LC Coordinator</div></div>
+                    <div style="width:44px;height:44px;border-radius:50%;background:#e0f2fe;display:flex;align-items:center;justify-content:center;font-weight:500;font-size:14px;color:#0891b2;flex-shrink:0;">MN</div>
+                    <div><div style="font-weight:500;font-size:12.5px;color:#164e63;">Makara Ne</div><div style="font-size:11px;color:#0891b2;">LC Coordinator</div></div>
                   </div>
                 </div>
               </div>
@@ -198,43 +207,43 @@
               <div class="mc-col-wrap">
                 <div class="mc-col-drop"></div>
                 <div style="display:flex;flex-direction:column;gap:0;background:#fff;border:1.5px solid #e2e8f0;border-top:3px solid #0891b2;border-radius:10px;padding:12px 10px;width:180px;box-sizing:border-box;">
-                  <div style="font-size:9px;font-weight:700;color:#0891b2;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;">Marcom</div>
+                  <div style="font-size:9px;font-weight:500;color:#0891b2;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;">Marcom</div>
                   <div data-person="Ratana Khy" style="display:flex;align-items:center;gap:10px;cursor:pointer;background:#ecfeff;border-radius:10px;padding:10px 12px;transition:background .15s,box-shadow .15s;margin-bottom:6px;" onmouseover="this.style.background='#cffafe';this.style.boxShadow='0 2px 10px rgba(8,145,178,.15)'" onmouseout="this.style.background='#ecfeff';this.style.boxShadow='none'">
                     <img src="assets/people/ratana-khy.jpg" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;">
-                    <div><div style="font-weight:700;font-size:12.5px;color:#164e63;">Ratana Khy</div><div style="font-size:11px;color:#0891b2;">Creative Media Manager</div></div>
+                    <div><div style="font-weight:500;font-size:12.5px;color:#164e63;">Ratana Khy</div><div style="font-size:11px;color:#0891b2;">Creative Media Manager</div></div>
                   </div>
                   <div style="margin-left:18px;border-left:2px solid #67e8f9;padding-left:10px;display:flex;flex-direction:column;gap:5px;">
                     <div data-person="Piseth Noun" style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#fff;border:1px solid #e0f2fe;border-left:3px solid #67e8f9;border-radius:8px;padding:7px 10px;transition:background .15s;" onmouseover="this.style.background='#ecfeff'" onmouseout="this.style.background='#fff'">
-                      <div style="width:32px;height:32px;border-radius:50%;background:#e0f2fe;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#0891b2;flex-shrink:0;">PN</div>
-                      <div><div style="font-weight:600;font-size:11.5px;color:#1f2937;">Piseth Noun</div><div style="font-size:10.5px;color:#6b7280;">Visual Specialist Coord.</div></div>
+                      <div style="width:32px;height:32px;border-radius:50%;background:#e0f2fe;display:flex;align-items:center;justify-content:center;font-weight:500;font-size:12px;color:#0891b2;flex-shrink:0;">PN</div>
+                      <div><div style="font-weight:500;font-size:11.5px;color:#1f2937;">Piseth Noun</div><div style="font-size:10.5px;color:#6b7280;">Visual Specialist Coord.</div></div>
                     </div>
                     <div data-person="Florin Flammer" style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#fff;border:1px solid #e0f2fe;border-left:3px solid #67e8f9;border-radius:8px;padding:7px 10px;transition:background .15s;" onmouseover="this.style.background='#ecfeff'" onmouseout="this.style.background='#fff'">
                       <img src="assets/people/florin-flammer.jpg" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;">
-                      <div><div style="font-weight:600;font-size:11.5px;color:#1f2937;">Florin Flammer</div><div style="font-size:10.5px;color:#6b7280;">Digital Media Asst.</div></div>
+                      <div><div style="font-weight:500;font-size:11.5px;color:#1f2937;">Florin Flammer</div><div style="font-size:10.5px;color:#6b7280;">Digital Media Asst.</div></div>
                     </div>
                     <div data-person="Sengly Muol" style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#fff;border:1px solid #e0f2fe;border-left:3px solid #67e8f9;border-radius:8px;padding:7px 10px;transition:background .15s;" onmouseover="this.style.background='#ecfeff'" onmouseout="this.style.background='#fff'">
                       <img src="assets/people/sengly-muol.jpg" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;">
-                      <div><div style="font-weight:600;font-size:11.5px;color:#1f2937;">Sengly Muol</div><div style="font-size:10.5px;color:#6b7280;">Graphic Designer</div></div>
+                      <div><div style="font-weight:500;font-size:11.5px;color:#1f2937;">Sengly Muol</div><div style="font-size:10.5px;color:#6b7280;">Graphic Designer</div></div>
                     </div>
                     <div data-person="Soktheavy Tann" style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#fff;border:1px solid #e0f2fe;border-left:3px solid #67e8f9;border-radius:8px;padding:7px 10px;transition:background .15s;" onmouseover="this.style.background='#ecfeff'" onmouseout="this.style.background='#fff'">
                       <img src="assets/people/soktheavy-tann.jpg" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;">
-                      <div><div style="font-weight:600;font-size:11.5px;color:#1f2937;">Soktheavy Tann</div><div style="font-size:10.5px;color:#6b7280;">Jr. Graphic Designer</div></div>
+                      <div><div style="font-weight:500;font-size:11.5px;color:#1f2937;">Soktheavy Tann</div><div style="font-size:10.5px;color:#6b7280;">Jr. Graphic Designer</div></div>
                     </div>
                     <div data-person="Savann Sun" style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#fff;border:1px solid #e0f2fe;border-left:3px solid #67e8f9;border-radius:8px;padding:7px 10px;transition:background .15s;" onmouseover="this.style.background='#ecfeff'" onmouseout="this.style.background='#fff'">
                       <img src="assets/people/savann-sun.jpg" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;">
-                      <div><div style="font-weight:600;font-size:11.5px;color:#1f2937;">Savann Sun</div><div style="font-size:10.5px;color:#6b7280;">Social Media Coord.</div></div>
+                      <div><div style="font-weight:500;font-size:11.5px;color:#1f2937;">Savann Sun</div><div style="font-size:10.5px;color:#6b7280;">Social Media Coord.</div></div>
                     </div>
                     <div data-person="Rayu Roeun" style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#fff;border:1px solid #e0f2fe;border-left:3px solid #67e8f9;border-radius:8px;padding:7px 10px;transition:background .15s;" onmouseover="this.style.background='#ecfeff'" onmouseout="this.style.background='#fff'">
                       <img src="assets/people/rayu-roeun.jpg" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;">
-                      <div><div style="font-weight:600;font-size:11.5px;color:#1f2937;">Rayu Roeun</div><div style="font-size:10.5px;color:#6b7280;">Visual Specialist</div></div>
+                      <div><div style="font-weight:500;font-size:11.5px;color:#1f2937;">Rayu Roeun</div><div style="font-size:10.5px;color:#6b7280;">Visual Specialist</div></div>
                     </div>
                     <div data-person="Vutha Kry" style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#fff;border:1px solid #e0f2fe;border-left:3px solid #67e8f9;border-radius:8px;padding:7px 10px;transition:background .15s;" onmouseover="this.style.background='#ecfeff'" onmouseout="this.style.background='#fff'">
                       <img src="assets/people/vutha-kry.jpg" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;">
-                      <div><div style="font-weight:600;font-size:11.5px;color:#1f2937;">Vutha Kry</div><div style="font-size:10.5px;color:#6b7280;">Digital Media Trainee</div></div>
+                      <div><div style="font-weight:500;font-size:11.5px;color:#1f2937;">Vutha Kry</div><div style="font-size:10.5px;color:#6b7280;">Digital Media Trainee</div></div>
                     </div>
                     <div data-person="Malin Toy" style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#fff;border:1px solid #e0f2fe;border-left:3px solid #67e8f9;border-radius:8px;padding:7px 10px;transition:background .15s;" onmouseover="this.style.background='#ecfeff'" onmouseout="this.style.background='#fff'">
-                      <div style="width:32px;height:32px;border-radius:50%;background:#e0f2fe;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;color:#0891b2;flex-shrink:0;">MT</div>
-                      <div><div style="font-weight:600;font-size:11.5px;color:#1f2937;">Malin Toy</div><div style="font-size:10.5px;color:#6b7280;">MarCom Assistant</div></div>
+                      <div style="width:32px;height:32px;border-radius:50%;background:#e0f2fe;display:flex;align-items:center;justify-content:center;font-weight:500;font-size:11px;color:#0891b2;flex-shrink:0;">MT</div>
+                      <div><div style="font-weight:500;font-size:11.5px;color:#1f2937;">Malin Toy</div><div style="font-size:10.5px;color:#6b7280;">MarCom Assistant</div></div>
                     </div>
                   </div>
                 </div>
@@ -272,7 +281,6 @@
 <div class="sidesheet" id="sidesheet">
   <div class="sidesheet__panel">
     <button class="sidesheet__close" data-action="close-menu" aria-label="Close">&times;</button>
-    <div class="sidebar__brand"><div class="sidebar__logo"><img src="assets/icf-logo.png" alt="ICF Cambodia" /></div><div class="sidebar__title"><strong>ICF Cambodia</strong><span>Staff Hub</span></div></div>
     <nav class="nav">
       <a class="nav__item" href="index.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>Home</a>
       <a class="nav__item" href="about.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></span>About ICF</a>
@@ -281,7 +289,7 @@
       <a class="nav__item" href="training.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/></svg></span>Training &amp; Development</a>
       <a class="nav__item" href="medical.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.5-3 1.5-6 0-9-3 0-6 0-7.5 1.5C10 5 7 5 4 5c-1.5 3-1.5 6 0 9 3 0 6 0 7.5-1.5C13 14 16 14 19 14z"/></svg></span>Medical Hub</a>
       <a class="nav__item" href="departments.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>Departments</a>
-      <a class="nav__item" href="events.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>Events &amp; Year Topics</a>
+      <a class="nav__item" href="events.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>Year Planner Overview</a>
       <div class="nav__group-label" style="margin-top:12px;">My Favorites</div>
       <div id="sidesheet-favs"><p style="font-size:13px;color:var(--text-soft);font-style:italic;padding:6px 12px;">Tap &#x2661; on any card to save it here</p></div>
       <div class="nav__group-label" style="margin-top:12px;">Quick Links</div>
@@ -289,30 +297,18 @@
       <a class="nav__item" href="contacts.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Staff Contacts</a>
       <a class="nav__item" href="https://t.me/+KU4xqUNc6lNmZjU1" target="_blank" rel="noopener"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>Staff Group Telegram</a>
       <a class="nav__item" href="https://drive.google.com/drive/u/0/home" target="_blank" rel="noopener"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span>Google Drive</a>
-      <button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScskJ0UijIWOWdoLFYQTE8J1jNYmpveZ32rU-BmOtprbFXxvg/viewform','_blank')" style="display:flex;align-items:center;gap:10px;width:100%;border:none;cursor:pointer;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:10px;padding:9px 12px;font-size:14px;font-weight:600;font-family:inherit;margin-top:10px;text-align:left;"><span style="font-size:17px;line-height:1;">&#x1F3C6;</span>Honor a Colleague</button>
+      <button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScskJ0UijIWOWdoLFYQTE8J1jNYmpveZ32rU-BmOtprbFXxvg/viewform','_blank')" style="display:flex;align-items:center;gap:10px;width:100%;border:none;cursor:pointer;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:10px;padding:9px 12px;font-size:14px;font-weight:500;font-family:inherit;margin-top:10px;text-align:left;"><span style="font-size:17px;line-height:1;">&#x1F3C6;</span>Honor a Colleague</button>
     </nav>
   </div>
-</div>
-
-<div class="search-modal" id="search-modal">
-  <div class="search-modal__panel">
-    <div class="search-modal__input">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <input type="search" placeholder="Search the Staff Hub…" />
-    </div>
-    <div class="search-modal__results" id="search-results"></div>
-    <div class="search-modal__footer"><span><kbd>↵</kbd> open</span><span><kbd>↑</kbd><kbd>↓</kbd> navigate</span><span><kbd>esc</kbd> close</span></div>
-  </div>
-</div>
-<script src="assets/app.js?v=20260715"></script>
+</div><script src="assets/app.js?v=20260721e"></script>
 
 <!-- Contact popup -->
 <div id="person-modal" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.45);z-index:9999;align-items:center;justify-content:center;" onclick="if(event.target===this)this.style.display='none'">
   <div style="background:#fff;border-radius:16px;padding:28px 24px;max-width:320px;width:90%;box-shadow:0 8px 40px rgba(0,0,0,0.18);position:relative;text-align:center;">
     <button onclick="document.getElementById('person-modal').style.display='none'" style="position:absolute;top:10px;right:14px;background:none;border:none;font-size:22px;cursor:pointer;color:#94a3b8;line-height:1;">&times;</button>
     <img id="pm-photo" src="" alt="" style="width:80px;height:80px;border-radius:50%;object-fit:cover;margin-bottom:12px;display:none;border:2px solid #67e8f9;" />
-    <div id="pm-initials" style="width:80px;height:80px;border-radius:50%;background:#ecfeff;border:2px solid #67e8f9;color:#0891b2;font-size:26px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;"></div>
-    <div id="pm-name" style="font-weight:700;font-size:17px;color:#1a2332;margin-bottom:3px;"></div>
+    <div id="pm-initials" style="width:80px;height:80px;border-radius:50%;background:#ecfeff;border:2px solid #67e8f9;color:#0891b2;font-size:26px;font-weight:500;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;"></div>
+    <div id="pm-name" style="font-weight:500;font-size:17px;color:#1a2332;margin-bottom:3px;"></div>
     <div id="pm-role" style="color:#6b7a8d;font-size:13px;margin-bottom:18px;"></div>
     <div id="pm-contacts" style="display:flex;flex-direction:column;gap:8px;text-align:left;"></div>
   </div>
@@ -525,7 +521,7 @@ if(window.location.hash==='#open-orgchart'){var _m=document.getElementById('marc
     // full contact card if they have no Telegram on file. No need to
     // re-enter email/phone/telegram here — just the name.
     var ownerChip = row.owner
-      ? '<span data-owner-chip="' + esc(row.owner) + '" style="display:inline-flex;align-items:center;gap:6px;padding:7px 14px;background:#ecfeff;border:1.5px solid #67e8f9;border-radius:20px;color:#0891b2;font-weight:700;font-size:13px;cursor:pointer;white-space:nowrap;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>' + esc(row.owner) + '</span>'
+      ? '<span data-owner-chip="' + esc(row.owner) + '" style="display:inline-flex;align-items:center;gap:6px;padding:7px 14px;background:#ecfeff;border:1.5px solid #67e8f9;border-radius:20px;color:#0891b2;font-weight:500;font-size:13px;cursor:pointer;white-space:nowrap;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>' + esc(row.owner) + '</span>'
       : '';
     var rightSide = '<div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">' + ownerChip + '<span class="chip">' + esc(row.status || '') + '</span></div>';
     return '<div class="list__item"><span class="list__icon" style="background:#ecfeff;color:#0891b2;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">' + CHECK_ICON + '</svg></span><div class="list__text"><p class="list__title">' + titleHtml + '</p><p class="list__sub">' + esc(row.description) + '</p></div>' + rightSide + '</div>';
