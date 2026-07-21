@@ -203,6 +203,45 @@ input, select, textarea { font: inherit; }
   .sidebar { display: none; }
 }
 
+/* ---------- Sidebar collapse (icon rail) ---------- */
+.sidebar { position: relative; transition: padding .18s ease; }
+.sidebar__toggle {
+  position: absolute;
+  top: 18px;
+  right: -13px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-muted);
+  box-shadow: 0 1px 3px rgba(0,0,0,.10);
+  z-index: 5;
+  padding: 0;
+}
+.sidebar__toggle:hover { background: var(--surface-2); color: var(--text); }
+.sidebar__toggle svg { transition: transform .18s ease; }
+
+html.sidebar-collapsed .app { grid-template-columns: 76px 1fr; }
+html.sidebar-collapsed .sidebar { padding-left: 10px; padding-right: 10px; }
+html.sidebar-collapsed .sidebar__toggle svg { transform: rotate(180deg); }
+html.sidebar-collapsed .nav__item {
+  justify-content: center;
+  gap: 0;
+  padding: 10px;
+}
+html.sidebar-collapsed .nav__item-label,
+html.sidebar-collapsed .nav__group-label {
+  display: none;
+}
+@media (max-width: 960px) {
+  html.sidebar-collapsed .app { grid-template-columns: 1fr; }
+}
+
 /* ---------- Top bar ---------- */
 .topbar {
   position: sticky;

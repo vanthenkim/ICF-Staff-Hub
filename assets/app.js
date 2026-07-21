@@ -6,6 +6,34 @@ if ('serviceWorker' in navigator) {
   });
 }
 
+(function initSidebarCollapse() {
+  const KEY = 'icf-sidebar-collapsed';
+  const toggle = document.querySelector('.sidebar__toggle');
+  const sidebar = document.querySelector('.sidebar');
+  if (!sidebar) return;
+
+  // Tooltips so labels are still readable when collapsed
+  sidebar.querySelectorAll('.nav__item').forEach((item) => {
+    const label = item.querySelector('.nav__item-label');
+    if (label && !item.title) item.title = label.textContent.trim();
+  });
+
+  if (!toggle) return;
+
+  toggle.addEventListener('click', () => {
+    const collapsed = document.documentElement.classList.toggle('sidebar-collapsed');
+    toggle.setAttribute('aria-label', collapsed ? 'Expand sidebar' : 'Collapse sidebar');
+    toggle.title = collapsed ? 'Expand sidebar' : 'Collapse sidebar';
+    try { localStorage.setItem(KEY, collapsed ? '1' : '0'); } catch (e) {}
+  });
+
+  // Sync button state/tooltip with whatever the anti-flash inline script already applied
+  if (document.documentElement.classList.contains('sidebar-collapsed')) {
+    toggle.setAttribute('aria-label', 'Expand sidebar');
+    toggle.title = 'Expand sidebar';
+  }
+})();
+
 (function () {
   // ---------- Language toggle (EN ↔ KH) ----------
   // Dictionary of EN → KH for common chrome / nav labels.
