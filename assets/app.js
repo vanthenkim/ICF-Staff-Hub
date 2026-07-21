@@ -672,8 +672,8 @@ if ('serviceWorker' in navigator) {
 
       return `<div class="gcal-item gcal-item--group">
         <div class="gcal-date">
-          <div class="gcal-date__day">${day}</div>
           <div class="gcal-date__mon">${mon}</div>
+          <div class="gcal-date__day">${day}</div>
           <div class="gcal-date__wday">${weekday.slice(0,3)}</div>
         </div>
         <div class="gcal-divider"></div>
