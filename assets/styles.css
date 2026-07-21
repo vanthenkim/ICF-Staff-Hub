@@ -1173,6 +1173,7 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   margin-bottom: 6px;
 }
 .gcal-date__day  { font-size: 26px; font-weight: 500; color: var(--text); letter-spacing: -0.02em; line-height: 1; }
+.gcal-date--weekend .gcal-date__mon { color: var(--red-600); background: var(--red-50); }
 
 .gcal-divider { width: 1px; min-height: 36px; align-self: stretch; background: var(--border); flex: none; }
 

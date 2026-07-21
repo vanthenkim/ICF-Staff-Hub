@@ -651,9 +651,10 @@ if ('serviceWorker' in navigator) {
 
     function renderGroup(dateStr, events) {
       const d       = parseISODate(dateStr);
-      const day     = d.getUTCDate();
-      const mon     = MONTHS[d.getUTCMonth()];
-      const weekday = DAYS[d.getUTCDay()];
+      const day       = d.getUTCDate();
+      const mon       = MONTHS[d.getUTCMonth()];
+      const weekday   = DAYS[d.getUTCDay()];
+      const isWeekend = d.getUTCDay() === 0 || d.getUTCDay() === 6;
 
       const rows = events.map(ev => {
         const meta = metaFor(ev);
@@ -671,7 +672,7 @@ if ('serviceWorker' in navigator) {
       }).join('');
 
       return `<div class="gcal-item gcal-item--group">
-        <div class="gcal-date">
+        <div class="gcal-date${isWeekend ? ' gcal-date--weekend' : ''}">
           <div class="gcal-date__mon">${mon}</div>
           <div class="gcal-date__day">${day}</div>
           <div class="gcal-date__wday">${weekday.slice(0,3)}</div>
