@@ -32,7 +32,7 @@ if ('serviceWorker' in navigator) {
   }
 
   document.addEventListener('touchstart', (e) => {
-    if (refreshing) return;
+    if (refreshing || e.target.closest('.topbar, .mobilenav, .sidesheet')) { pulling = false; return; }
     pulling = scrollTop() <= 0;
     startY  = pulling ? e.touches[0].clientY : 0;
     ready   = false;
