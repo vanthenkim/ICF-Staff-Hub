@@ -405,15 +405,15 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
     max-width: 40px;
     justify-self: auto;
   }
-  .topbar__search input,
-  .topbar__search .inline-results { display: none; }
-  .topbar__search.is-open input { display: block; }
+  .topbar__search:not(.is-open) input,
+  .topbar__search:not(.is-open) .inline-results { display: none; }
   .topbar__search:not(.is-open) {
     width: 40px; height: 40px;
     border-radius: 10px;
     border: 1px solid rgba(255,255,255,0.2);
     display: grid;
     place-items: center;
+    cursor: pointer;
   }
   .topbar__search:not(.is-open) svg {
     position: static;
@@ -424,6 +424,8 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
     left: 12px; right: 12px; top: 10px;
     width: auto; max-width: none;
     z-index: 50;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    border-radius: 21px;
   }
 }
 
@@ -582,7 +584,7 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 .qa--compact .qa__icon { width: 36px; height: 36px; border-radius: 10px; }
 .qa--compact .qa__label { font-size: 13px; }
 
-.yeartopic-row { align-items: stretch; }
+.yeartopic-row { align-items: stretch; grid-template-columns: 2fr 1fr; }
 .yeartopic-row > div { display: flex; flex-direction: column; }
 .yeartopic-row .hero { flex: 1; }
 .yeartopic-row .qa-grid { flex: 1; }
@@ -1884,6 +1886,12 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 .hero-hc__eyebrow-inline {
   font-weight: 400;
   color: var(--text-soft);
+}
+@media (max-width: 640px) {
+  .hero-hc { padding: 24px 16px 20px; margin-bottom: var(--space-4); }
+  .hero-hc__date { font-size: 12px; margin-bottom: 4px; }
+  .hero-hc__greeting { font-size: 19px; margin-bottom: 2px; }
+  .hero-hc__title { font-size: 21px; margin-bottom: 0; max-width: 100%; }
 }
 .hero-hc__date {
   font-size: 13px;
