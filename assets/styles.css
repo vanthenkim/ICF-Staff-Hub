@@ -532,6 +532,16 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 .qa__label { font-size: 16px; font-weight: 500; line-height: 1.25; }
 .qa__sub   { font-size: 13px; color: var(--text-muted); }
 
+.qa-grid--sm { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr); }
+.qa--compact { min-height: auto; padding: 14px 10px; gap: 10px; justify-content: center; }
+.qa--compact .qa__icon { width: 36px; height: 36px; border-radius: 10px; }
+.qa--compact .qa__label { font-size: 13px; }
+
+.yeartopic-row { align-items: stretch; }
+.yeartopic-row > div { display: flex; flex-direction: column; }
+.yeartopic-row .hero { flex: 1; }
+.yeartopic-row .qa-grid { flex: 1; }
+
 /* ---------- Two column dashboard rows ---------- */
 .row-2 {
   display: grid;
