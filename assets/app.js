@@ -784,7 +784,8 @@ if ('serviceWorker' in navigator) {
         const link = document.createElement('a');
         link.className = 'nav__item fav-section' + (isFavPage ? ' is-active' : '');
         link.href = 'favorites.html';
-        link.innerHTML = `<span class="icon">${FAV_HEART}</span>My Favorites${badge}`;
+        link.title = 'My Favorites';
+        link.innerHTML = `<span class="icon">${FAV_HEART}</span><span class="nav__item-label">My Favorites${badge}</span>`;
         const ql = Array.from(nav.querySelectorAll('.nav__group-label')).find(el => el.textContent.trim() === 'Quick Links');
         if (ql) nav.insertBefore(link, ql);
         else nav.appendChild(link);
@@ -799,7 +800,7 @@ if ('serviceWorker' in navigator) {
         const link = document.createElement('a');
         link.className = 'nav__item' + (isFavPage ? ' is-active' : '');
         link.href = 'favorites.html';
-        link.innerHTML = `<span class="icon">${FAV_HEART}</span>My Favorites${badge}`;
+        link.innerHTML = `<span class="icon">${FAV_HEART}</span><span class="nav__item-label">My Favorites${badge}</span>`;
         sidesheetFavs.appendChild(link);
       }
     }
@@ -899,9 +900,11 @@ if ('serviceWorker' in navigator) {
 
     function makeBtn() {
       const btn = document.createElement('button');
+      btn.className = 'sidebar-support-btn';
+      btn.title = 'Feedback & Support';
       btn.onclick = () => window.open(FORM_URL, '_blank');
       btn.style.cssText = 'display:flex;align-items:center;gap:10px;width:100%;border:none;cursor:pointer;background:linear-gradient(135deg,#2563EB,#1d4ed8);color:#fff;border-radius:10px;padding:9px 12px;font-size:14px;font-weight:500;font-family:inherit;margin-top:10px;text-align:left;box-sizing:border-box;';
-      btn.innerHTML = `<span style="display:flex;">${ICON}</span>Feedback &amp; Support`;
+      btn.innerHTML = `<span style="display:flex;flex:none;">${ICON}</span><span class="nav__item-label">Feedback &amp; Support</span>`;
       return btn;
     }
 
