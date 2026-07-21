@@ -1077,20 +1077,6 @@ if ('serviceWorker' in navigator) {
       closeBtn.addEventListener('click', (e) => { e.stopPropagation(); closeSearch(); });
     }
 
-    // Keep the expanded bar docked right above the on-screen keyboard
-    // (like iOS's own search fields) instead of sitting at a fixed spot
-    // on screen. visualViewport shrinks by the keyboard's height when
-    // it's up; --kb-offset feeds that into the CSS bottom offset.
-    if (window.visualViewport) {
-      const vv = window.visualViewport;
-      function updateKbOffset() {
-        const offset = Math.max(0, window.innerHeight - vv.height - vv.offsetTop);
-        document.documentElement.style.setProperty('--kb-offset', offset + 'px');
-      }
-      vv.addEventListener('resize', updateKbOffset);
-      vv.addEventListener('scroll', updateKbOffset);
-      input.addEventListener('focus', () => setTimeout(updateKbOffset, 50));
-    }
   })();
   document.addEventListener('keydown', (e) => {
     if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
