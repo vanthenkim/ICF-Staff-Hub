@@ -2363,3 +2363,26 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
     overscroll-behavior-y: contain;
   }
 }
+
+/* Custom pull-to-refresh spinner (installed home-screen app only) */
+#ptr-indicator {
+  position: fixed;
+  top: env(safe-area-inset-top);
+  left: 50%;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--white);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--blue-600);
+  opacity: 0;
+  z-index: 500;
+  pointer-events: none;
+  transform: translate(-50%, -60px);
+}
+#ptr-indicator.is-ready { color: var(--green-600); }
+#ptr-indicator.is-spinning svg { animation: ptr-spin .6s linear infinite; }
+@keyframes ptr-spin { to { transform: rotate(360deg); } }

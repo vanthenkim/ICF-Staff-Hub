@@ -6,6 +6,68 @@ if ('serviceWorker' in navigator) {
   });
 }
 
+/* ----------------------------------------------------------------
+   Pull-to-refresh (installed home-screen app only)
+   iOS suppresses its native bounce-to-refresh in standalone mode
+   (see the overscroll-behavior-y rule in styles.css), so this
+   recreates the same gesture with our own spinner + reload.
+   ---------------------------------------------------------------- */
+(function pullToRefresh() {
+  if (!window.matchMedia('(display-mode: standalone)').matches) return;
+
+  const THRESHOLD = 70;
+  const MAX_PULL  = 100;
+  let startY = 0, pulling = false, ready = false, refreshing = false;
+
+  const indicator = document.createElement('div');
+  indicator.id = 'ptr-indicator';
+  indicator.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><polyline points="21 3 21 9 15 9"/></svg>';
+  document.body.appendChild(indicator);
+
+  function scrollTop() {
+    return window.scrollY || document.documentElement.scrollTop || 0;
+  }
+  function setTransform(pull, rotate) {
+    indicator.style.transform = `translate(-50%, ${-60 + pull}px) rotate(${rotate}deg)`;
+  }
+
+  document.addEventListener('touchstart', (e) => {
+    if (refreshing) return;
+    pulling = scrollTop() <= 0;
+    startY  = pulling ? e.touches[0].clientY : 0;
+    ready   = false;
+  }, { passive: true });
+
+  document.addEventListener('touchmove', (e) => {
+    if (!pulling || refreshing) return;
+    const dy = e.touches[0].clientY - startY;
+    if (dy <= 0 || scrollTop() > 0) { pulling = false; setTransform(0, 0); indicator.style.opacity = 0; return; }
+    e.preventDefault();
+    const pull = Math.min(dy * 0.45, MAX_PULL);
+    ready = pull >= THRESHOLD;
+    indicator.classList.toggle('is-ready', ready);
+    indicator.style.opacity = Math.min(pull / THRESHOLD, 1);
+    setTransform(pull, pull * 2.5);
+  }, { passive: false });
+
+  document.addEventListener('touchend', () => {
+    if (!pulling || refreshing) { pulling = false; return; }
+    pulling = false;
+    if (ready) {
+      refreshing = true;
+      indicator.classList.add('is-spinning');
+      indicator.style.opacity = 1;
+      setTransform(THRESHOLD, 0);
+      setTimeout(() => location.reload(), 450);
+    } else {
+      indicator.style.transition = 'transform .25s ease, opacity .25s ease';
+      setTransform(0, 0);
+      indicator.style.opacity = 0;
+      setTimeout(() => { indicator.style.transition = ''; }, 260);
+    }
+  }, { passive: true });
+})();
+
 (function initSidebarCollapse() {
   const KEY = 'icf-sidebar-collapsed';
   const toggle = document.querySelector('.sidebar__toggle');
