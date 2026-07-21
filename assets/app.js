@@ -1047,9 +1047,32 @@ if ('serviceWorker' in navigator) {
     const input = document.getElementById('topbar-search-input');
     const closeBtn = document.getElementById('topbar-search-close');
     if (!wrap || !input) return;
+
+    // #topbar-search-wrap normally lives inside <header class="topbar">,
+    // which has its own z-index (stacking context). Once nested there,
+    // no z-index on the wrap itself can out-rank #search-scrim, which is
+    // a sibling of <body> — the whole topbar subtree stacks as one unit
+    // behind it. Re-parenting to <body> while open sidesteps that trap
+    // entirely; moving it back on close restores the normal desktop layout.
+    let homeParent = null, homeNext = null;
+    function isMobile() { return window.matchMedia('(max-width: 960px)').matches; }
+    function detachToBody() {
+      if (!isMobile() || wrap.parentNode === document.body) return;
+      homeParent = wrap.parentNode;
+      homeNext = wrap.nextSibling;
+      document.body.appendChild(wrap);
+    }
+    function reattachHome() {
+      if (homeParent) {
+        homeParent.insertBefore(wrap, homeNext);
+        homeParent = null; homeNext = null;
+      }
+    }
+
     function openIfClosed(e) {
       if (!wrap.classList.contains('is-open')) {
         e.preventDefault();
+        detachToBody();
         focusTopbarSearch();
       }
     }
@@ -1058,6 +1081,7 @@ if ('serviceWorker' in navigator) {
       const scrim = document.getElementById('search-scrim');
       if (scrim) scrim.classList.remove('is-open');
       input.blur();
+      reattachHome();
     }
     // Bind both touchend and click: iOS can be inconsistent about firing
     // a synthetic click after a tap on a plain <div>, so touchend covers
