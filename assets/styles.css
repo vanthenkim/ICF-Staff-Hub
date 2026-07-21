@@ -528,6 +528,7 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 .qa--red   .qa__icon { color: var(--red-600);   background: var(--red-50); }
 .qa--purple .qa__icon { color: var(--purple-600); background: var(--purple-50); }
 .qa--slate .qa__icon { color: #475569; background: #F1F5F9; }
+.qa--dark  .qa__icon { color: #0F172A; background: #F1F5F9; }
 .qa__label { font-size: 16px; font-weight: 500; line-height: 1.25; }
 .qa__sub   { font-size: 13px; color: var(--text-muted); }
 
