@@ -1,0 +1,251 @@
+/* ==========================================================
+   ICF CAMBODIA — STAFF HUB
+   Responsive Layout Layer v1
+   Load AFTER assets/styles.css:
+     <link rel="stylesheet" href="assets/styles.css">
+     <link rel="stylesheet" href="assets/layout.css">
+
+   Purpose: one shared grid + breakpoint + type system so every
+   page behaves the same at every screen size.
+   Additive only — does not restyle colours, cards or components.
+   ========================================================== */
+
+
+/* ----------------------------------------------------------
+   1. BREAKPOINT SYSTEM
+   Four sizes only. Everything snaps to these.
+
+     compact   0    – 733px   phones
+     medium    734  – 1067px  large phone landscape / small tablet
+     large     1068 – 1439px  tablet landscape / laptop
+     xlarge    1440px +       desktop
+
+   Existing CSS uses nine ad-hoc breakpoints (420/540/640/700/
+   720/760/768/960/1100). Migrate those to these four over time.
+   Media queries can't read CSS variables, so these live here as
+   documentation — copy the px values, don't invent new ones.
+   ---------------------------------------------------------- */
+:root {
+  --bp-medium: 734px;
+  --bp-large:  1068px;
+  --bp-xlarge: 1440px;
+
+  /* Container widths — one source of truth.
+     Replaces the competing 1240px token and inline 1400px blocks. */
+  --width-content: 1240px;   /* standard page content */
+  --width-wide:    1440px;   /* full-bleed feature bands */
+  --width-reading: 720px;    /* prose — keeps lines at 60-70 chars */
+
+  /* Gutters scale with the viewport, like Apple's margins */
+  --gutter: 16px;
+
+  /* Fluid type scale. Grows smoothly instead of jumping at
+     breakpoints — no more 32px headlines crushing a 320px phone. */
+  --fs-display: clamp(28px, 1.4rem + 2.4vw, 56px);
+  --fs-h1:      clamp(24px, 1.3rem + 1.6vw, 40px);
+  --fs-h2:      clamp(20px, 1.1rem + 0.9vw, 30px);
+  --fs-h3:      clamp(18px, 1.0rem + 0.4vw, 23px);
+  --fs-body:    clamp(16px, 0.95rem + 0.15vw, 18px);
+  --fs-small:   clamp(13px, 0.8rem + 0.1vw, 15px);
+
+  /* Vertical rhythm between sections */
+  --section-y: clamp(32px, 4vw, 72px);
+}
+
+@media (min-width: 734px)  { :root { --gutter: 24px; } }
+@media (min-width: 1068px) { :root { --gutter: 32px; } }
+@media (min-width: 1440px) { :root { --gutter: 40px; } }
+
+
+/* ----------------------------------------------------------
+   2. CONTAINERS
+   Content locks to a max width and centres. Margins collapse
+   on small screens. This is the single biggest reason Apple
+   pages feel correct on every device.
+   ---------------------------------------------------------- */
+.l-container,
+.l-container--wide,
+.l-container--reading {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.l-container         { max-width: calc(var(--width-content) + var(--gutter) * 2); }
+.l-container--wide   { max-width: calc(var(--width-wide)    + var(--gutter) * 2); }
+.l-container--reading{ max-width: calc(var(--width-reading) + var(--gutter) * 2); }
+
+/* Bring the existing .container in line with the same gutters */
+.container { padding-inline: var(--gutter); }
+
+/* Full-bleed band that still keeps its inner content aligned */
+.l-band {
+  padding-block: var(--section-y);
+}
+.l-band + .l-band { padding-top: 0; }
+
+
+/* ----------------------------------------------------------
+   3. GRID
+   12 columns. Use .l-grid on the parent, .l-col-* on children.
+   Columns auto-collapse: 12 cols at large, 8 at medium,
+   4 at compact — the Apple behaviour.
+   ---------------------------------------------------------- */
+.l-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--gutter);
+}
+.l-col-1  { grid-column: span 1; }
+.l-col-2  { grid-column: span 2; }
+.l-col-3  { grid-column: span 3; }
+.l-col-4  { grid-column: span 4; }
+.l-col-5  { grid-column: span 5; }
+.l-col-6  { grid-column: span 6; }
+.l-col-7  { grid-column: span 7; }
+.l-col-8  { grid-column: span 8; }
+.l-col-9  { grid-column: span 9; }
+.l-col-10 { grid-column: span 10; }
+.l-col-12 { grid-column: span 12; }
+
+@media (max-width: 1067px) {
+  /* medium — halve wide columns, everything ≥6 goes full width */
+  .l-col-6, .l-col-7, .l-col-8, .l-col-9, .l-col-10 { grid-column: span 12; }
+  .l-col-4, .l-col-5 { grid-column: span 6; }
+}
+@media (max-width: 733px) {
+  /* compact — single column, except deliberate 2-ups */
+  .l-grid > [class*="l-col-"] { grid-column: span 12; }
+  .l-col-half-compact { grid-column: span 6; }
+}
+
+
+/* ----------------------------------------------------------
+   4. AUTO CARD GRIDS
+   For repeating cards (people, departments, resources, tools).
+   Prefer these over hardcoded repeat(N, 1fr) — they never
+   squash, because the minmax floor forces a wrap instead.
+   ---------------------------------------------------------- */
+.l-cards        { display: grid; gap: var(--gutter); grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); }
+.l-cards--sm    { display: grid; gap: 12px;          grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 1fr)); }
+.l-cards--md    { display: grid; gap: var(--gutter); grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr)); }
+.l-cards--lg    { display: grid; gap: var(--gutter); grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); }
+
+/* Safety net: any fixed-column grid still in the HTML gets a
+   floor so it degrades to a wrap rather than 6 unreadable slivers. */
+@media (max-width: 733px) {
+  [style*="repeat(4,1fr)"],
+  [style*="repeat(4, 1fr)"],
+  [style*="repeat(5,1fr)"],
+  [style*="repeat(5, 1fr)"],
+  [style*="repeat(6,1fr)"],
+  [style*="repeat(6, 1fr)"],
+  [style*="repeat(7,1fr)"],
+  [style*="repeat(7, 1fr)"] {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 140px), 1fr)) !important;
+  }
+}
+
+
+/* ----------------------------------------------------------
+   5. TYPE
+   Opt-in classes so nothing existing breaks. Apply to new
+   markup and migrate old headings as you touch them.
+   ---------------------------------------------------------- */
+.l-display { font-size: var(--fs-display); line-height: 1.05; letter-spacing: -0.02em; font-weight: 500; margin: 0; }
+.l-h1      { font-size: var(--fs-h1);      line-height: 1.12; letter-spacing: -0.015em; font-weight: 500; margin: 0; }
+.l-h2      { font-size: var(--fs-h2);      line-height: 1.2;  letter-spacing: -0.01em;  font-weight: 500; margin: 0; }
+.l-h3      { font-size: var(--fs-h3);      line-height: 1.3;  font-weight: 500; margin: 0; }
+.l-body    { font-size: var(--fs-body);    line-height: 1.55; }
+.l-small   { font-size: var(--fs-small);   line-height: 1.45; color: var(--text-muted); }
+.l-measure { max-width: 68ch; }
+
+/* Make the existing hero/page headings fluid without renaming them.
+   .page-header h1 is specificity 0,1,1 so it needs the same weight here. */
+.hero__title,
+.dept-hero h1,
+.page-header h1 { font-size: var(--fs-h1); line-height: 1.12; }
+.page-header p,
+.dept-hero p { font-size: var(--fs-body); }
+
+
+/* ----------------------------------------------------------
+   6. TABLES
+   A wide table is the most common mobile overflow bug.
+   Wrap any table in <div class="l-table-scroll"> … </div>.
+   ---------------------------------------------------------- */
+.l-table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  margin-inline: calc(var(--gutter) * -1);
+  padding-inline: var(--gutter);
+}
+.l-table-scroll > table { min-width: 640px; }
+
+/* Sticky header row so column labels survive a long scroll */
+.l-table-sticky thead th {
+  position: sticky;
+  top: var(--header-h, 68px);
+  z-index: 2;
+  background: var(--surface-2, #F1F5F9);
+}
+
+
+/* ----------------------------------------------------------
+   7. UTILITY-FIRST DENSITY
+   A staff hub is a tool, not a marketing site. People arrive
+   wanting a phone number in under ten seconds. Keep the top of
+   every page tight and searchable rather than a tall hero.
+   ---------------------------------------------------------- */
+.l-page-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px var(--gutter);
+  padding-block: clamp(16px, 2vw, 28px);
+}
+.l-page-head > :first-child { margin-right: auto; }
+
+.l-stack       { display: flex; flex-direction: column; gap: var(--gutter); }
+.l-row         { display: flex; flex-wrap: wrap; gap: var(--gutter); align-items: center; }
+.l-row > .l-grow { flex: 1 1 220px; min-width: 0; }
+
+
+/* ----------------------------------------------------------
+   8. OVERFLOW GUARDS
+   Catches the long-email-address and wide-image problems that
+   cause horizontal scroll on phones.
+   ---------------------------------------------------------- */
+html, body { overflow-x: hidden; }
+.l-grid > *, .l-cards > *, .l-cards--sm > *, .l-cards--md > *, .l-cards--lg > * { min-width: 0; }
+img, video, iframe, canvas { max-width: 100%; height: auto; }
+.l-break { overflow-wrap: anywhere; word-break: break-word; }
+
+
+/* ----------------------------------------------------------
+   9. MOTION + TOUCH
+   ---------------------------------------------------------- */
+@media (hover: none) {
+  /* Minimum 44px tap target on touch devices */
+  a.nav__item, .l-touch { min-height: 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* ----------------------------------------------------------
+   10. PRINT
+   Staff print contact lists and policies. Drop the chrome.
+   ---------------------------------------------------------- */
+@media print {
+  .sidebar, .topbar, .mobilenav, .l-noprint { display: none !important; }
+  .app { grid-template-columns: 1fr !important; }
+  .container, .l-container { max-width: none; padding: 0; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 11px; color: #555; }
+}
