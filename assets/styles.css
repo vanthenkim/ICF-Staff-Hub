@@ -900,8 +900,8 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 .mobilenav__row {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px;
+  gap: 14px;
+  padding: 10px 14px;
   background: rgba(20,20,20,0.55);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -914,7 +914,7 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   align-items: center;
   gap: 0;
   flex: none;
-  width: 44px; height: 44px;
+  width: 48px; height: 48px;
   justify-content: center;
   border-radius: 999px;
   background: rgba(255,255,255,0.08);
@@ -2396,6 +2396,38 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   html, body {
     overscroll-behavior-y: contain;
   }
+}
+
+/* Launch splash (installed home-screen app only) — masks the initial
+   load with a branded black screen instead of a flash of raw content. */
+#app-splash {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #000;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  transition: opacity .35s ease;
+}
+html.is-pwa #app-splash { display: flex; }
+#app-splash.is-hidden { opacity: 0; pointer-events: none; }
+#app-splash__mark {
+  width: 88px;
+  height: 88px;
+  border-radius: 22px;
+  background: #fff;
+  padding: 14px;
+  box-sizing: border-box;
+}
+#app-splash__label {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 /* Custom pull-to-refresh spinner (installed home-screen app only) */

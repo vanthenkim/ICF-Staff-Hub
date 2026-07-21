@@ -7,6 +7,28 @@ if ('serviceWorker' in navigator) {
 }
 
 /* ----------------------------------------------------------------
+   Launch splash fade-out (installed home-screen app only)
+   The splash itself is plain HTML/CSS so it paints before any JS
+   runs (see #app-splash in styles.css + the markup at the top of
+   <body>) — this just times its exit.
+   ---------------------------------------------------------------- */
+(function hideSplash() {
+  const splash = document.getElementById('app-splash');
+  if (!splash) return;
+  const MIN_SHOW = 600;
+  const shownAt = Date.now();
+  function dismiss() {
+    const wait = Math.max(0, MIN_SHOW - (Date.now() - shownAt));
+    setTimeout(() => {
+      splash.classList.add('is-hidden');
+      setTimeout(() => splash.remove(), 400);
+    }, wait);
+  }
+  if (document.readyState === 'complete') dismiss();
+  else window.addEventListener('load', dismiss);
+})();
+
+/* ----------------------------------------------------------------
    Pull-to-refresh (installed home-screen app only)
    iOS suppresses its native bounce-to-refresh in standalone mode
    (see the overscroll-behavior-y rule in styles.css), so this

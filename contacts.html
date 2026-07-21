@@ -15,7 +15,7 @@
 <link rel="apple-touch-icon" sizes="192x192" href="/assets/icons/icon-192.png" />
 <title>Staff Contacts · ICF Cambodia Staff Hub</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=20260721n" />
+<link rel="stylesheet" href="assets/styles.css?v=20260721p" />
   <link rel="stylesheet" href="assets/layout.css?v=1" />
 <style>
 #cov{display:none;position:fixed;inset:0;z-index:1000;background:rgba(15,23,42,.48);backdrop-filter:blur(2px);}
@@ -30,6 +30,9 @@
 </style>
 </head>
 <body>
+<script>(function(){try{if(window.matchMedia('(display-mode: standalone)').matches)document.documentElement.classList.add('is-pwa');}catch(e){}})();</script>
+<div id="app-splash"><img id="app-splash__mark" src="assets/icons/icon-192.png" alt="" /><span id="app-splash__label">Staff Hub</span></div>
+
 <script>(function(){try{if(localStorage.getItem("icf-sidebar-collapsed")==="1")document.documentElement.classList.add("sidebar-collapsed");}catch(e){}})();</script>
 
     <header class="topbar">
@@ -181,7 +184,7 @@
   </div>
 </div>
 
-<script src="assets/app.js?v=20260721n"></script>
+<script src="assets/app.js?v=20260721p"></script>
 <script>
 // Staff removed from display (still in Google Sheet)
 const HIDDEN_STAFF = new Set([
