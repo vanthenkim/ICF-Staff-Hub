@@ -422,12 +422,43 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   }
   .topbar__search.is-open {
     position: fixed;
-    left: 12px; right: 12px; top: 10px;
+    left: 12px; right: 12px;
+    /* JS sets --kb-offset to the live keyboard height via visualViewport
+       so the bar sits docked right above the keyboard, not at a fixed
+       spot on screen. Falls back to bottom: 12px before JS runs. */
+    top: auto;
+    bottom: calc(12px + var(--kb-offset, 0px));
     width: auto; max-width: none;
     z-index: 50;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--white);
     box-shadow: 0 8px 24px rgba(0,0,0,0.25);
     border-radius: 21px;
+    transition: bottom .15s ease;
   }
+  .topbar__search.is-open input {
+    flex: 1;
+    min-width: 0;
+    background: transparent;
+    padding-right: 8px;
+  }
+  .topbar__search-close {
+    display: none;
+    flex: none;
+    width: 32px; height: 32px;
+    margin-right: 4px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    background: var(--surface-2);
+  }
+  .topbar__search.is-open .topbar__search-close { display: flex; }
+}
+@media (min-width: 961px) {
+  .topbar__search-close { display: none; }
 }
 
 /* ---------- Page header ---------- */
@@ -2415,12 +2446,8 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 html.is-pwa #app-splash { display: flex; }
 #app-splash.is-hidden { opacity: 0; pointer-events: none; }
 #app-splash__mark {
-  width: 88px;
-  height: 88px;
-  border-radius: 22px;
-  background: #fff;
-  padding: 14px;
-  box-sizing: border-box;
+  width: 120px;
+  height: 120px;
 }
 #app-splash__label {
   color: #fff;
@@ -2429,6 +2456,16 @@ html.is-pwa #app-splash { display: flex; }
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
+#app-splash__spinner {
+  width: 26px;
+  height: 26px;
+  margin-top: 8px;
+  border-radius: 50%;
+  border: 3px solid rgba(255,255,255,0.25);
+  border-top-color: #fff;
+  animation: app-splash-spin .8s linear infinite;
+}
+@keyframes app-splash-spin { to { transform: rotate(360deg); } }
 
 /* Custom pull-to-refresh spinner (installed home-screen app only) */
 #ptr-indicator {

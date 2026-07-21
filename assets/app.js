@@ -1032,12 +1032,17 @@ if ('serviceWorker' in navigator) {
   (function mobileSearchToggle() {
     const wrap  = document.getElementById('topbar-search-wrap');
     const input = document.getElementById('topbar-search-input');
+    const closeBtn = document.getElementById('topbar-search-close');
     if (!wrap || !input) return;
     function openIfClosed(e) {
       if (!wrap.classList.contains('is-open')) {
         e.preventDefault();
         focusTopbarSearch();
       }
+    }
+    function closeSearch() {
+      wrap.classList.remove('is-open');
+      input.blur();
     }
     // Bind both touchend and click: iOS can be inconsistent about firing
     // a synthetic click after a tap on a plain <div>, so touchend covers
@@ -1047,12 +1052,30 @@ if ('serviceWorker' in navigator) {
     wrap.addEventListener('click', openIfClosed);
     document.addEventListener('click', (e) => {
       if (wrap.classList.contains('is-open') && !wrap.contains(e.target)) {
-        wrap.classList.remove('is-open');
+        closeSearch();
       }
     });
     input.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') { wrap.classList.remove('is-open'); input.blur(); }
+      if (e.key === 'Escape') closeSearch();
     });
+    if (closeBtn) {
+      closeBtn.addEventListener('click', (e) => { e.stopPropagation(); closeSearch(); });
+    }
+
+    // Keep the expanded bar docked right above the on-screen keyboard
+    // (like iOS's own search fields) instead of sitting at a fixed spot
+    // on screen. visualViewport shrinks by the keyboard's height when
+    // it's up; --kb-offset feeds that into the CSS bottom offset.
+    if (window.visualViewport) {
+      const vv = window.visualViewport;
+      function updateKbOffset() {
+        const offset = Math.max(0, window.innerHeight - vv.height - vv.offsetTop);
+        document.documentElement.style.setProperty('--kb-offset', offset + 'px');
+      }
+      vv.addEventListener('resize', updateKbOffset);
+      vv.addEventListener('scroll', updateKbOffset);
+      input.addEventListener('focus', () => setTimeout(updateKbOffset, 50));
+    }
   })();
   document.addEventListener('keydown', (e) => {
     if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
