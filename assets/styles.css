@@ -204,36 +204,49 @@ input, select, textarea { font: inherit; }
 }
 
 /* ---------- Sidebar collapse (icon rail) ---------- */
-.sidebar { position: relative; transition: padding .18s ease; overflow-x: hidden; }
-.sidebar__toggle-row {
+.sidebar {
   display: flex;
-  justify-content: flex-end;
-  margin: -4px 0 10px;
+  flex-direction: column;
+  overflow: hidden;
+  transition: padding .18s ease;
 }
-.sidebar__toggle {
-  width: 28px;
-  height: 28px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: var(--white);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
+.sidebar__scroll {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin: 0 calc(var(--space-5) * -1);
+  padding: 0 var(--space-5);
+}
+.sidebar .sidebar__toggle {
+  flex: none;
+  display: flex; align-items: center; gap: 12px;
+  width: 100%;
+  margin-top: var(--space-4);
+  padding: 10px 12px;
+  border-top: 1px solid var(--border);
+  border-radius: 0;
+  background: none;
+  font-size: 15px;
+  font-weight: 500;
   color: var(--text-muted);
-  padding: 0;
+  cursor: pointer;
+}
+.sidebar .sidebar__toggle:hover { color: var(--text); }
+.sidebar .sidebar__toggle:focus-visible { outline: 2px solid var(--blue-600); outline-offset: -2px; }
+.sidebar .sidebar__toggle .icon {
+  width: 20px; height: 20px;
+  display: grid; place-items: center;
   flex: none;
 }
-.sidebar__toggle:hover { background: var(--surface-2); color: var(--text); }
-.sidebar__toggle:focus-visible { outline: 2px solid var(--blue-600); outline-offset: 2px; }
-.sidebar__toggle svg { transition: transform .18s ease; }
+.sidebar .sidebar__toggle svg { transition: transform .18s ease; }
 
 html.sidebar-collapsed .app { grid-template-columns: 76px 1fr; }
 html.sidebar-collapsed .sidebar { padding-left: 10px; padding-right: 10px; }
-html.sidebar-collapsed .sidebar__toggle-row { justify-content: center; }
+html.sidebar-collapsed .sidebar__scroll { margin-left: -10px; margin-right: -10px; padding-left: 10px; padding-right: 10px; }
 html.sidebar-collapsed .sidebar__toggle svg { transform: rotate(180deg); }
 html.sidebar-collapsed .sidebar .nav__item,
-html.sidebar-collapsed .sidebar .sidebar-support-btn {
+html.sidebar-collapsed .sidebar .sidebar-support-btn,
+html.sidebar-collapsed .sidebar .sidebar__toggle {
   justify-content: center !important;
   gap: 0 !important;
   padding: 10px !important;
