@@ -260,6 +260,14 @@ html.sidebar-collapsed .sidebar .nav__group-label {
   html.sidebar-collapsed .app { grid-template-columns: 1fr; }
 }
 
+/* Sidebar collapse (icon rail) block above re-declares `.sidebar{display:flex}`
+   unconditionally, which overrides the earlier mobile `.sidebar{display:none}`
+   rule due to cascade order. Re-assert it here, after that block, so the
+   desktop icon-rail sidebar stays hidden on mobile (bottom nav takes over). */
+@media (max-width: 960px) {
+  .sidebar { display: none; }
+}
+
 /* ---------- Top bar ---------- */
 .topbar {
   position: sticky;
