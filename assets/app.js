@@ -932,13 +932,38 @@ if ('serviceWorker' in navigator) {
   // so these just get you there and drop the cursor in.
   function focusTopbarSearch() {
     const input = document.getElementById('topbar-search-input');
+    const wrap  = document.getElementById('topbar-search-wrap');
     if (!input) return;
+    if (wrap) wrap.classList.add('is-open');
     input.scrollIntoView({ behavior: 'smooth', block: 'center' });
     input.focus();
   }
   document.querySelectorAll('[data-action="open-search"]').forEach(b => {
     b.addEventListener('click', focusTopbarSearch);
   });
+
+  // Mobile: the top bar search collapses to an icon-only button (see
+  // .topbar__search:not(.is-open) in styles.css). Tapping it expands the
+  // bar and focuses the input; tapping away or Escape collapses it again.
+  (function mobileSearchToggle() {
+    const wrap  = document.getElementById('topbar-search-wrap');
+    const input = document.getElementById('topbar-search-input');
+    if (!wrap || !input) return;
+    wrap.addEventListener('click', (e) => {
+      if (!wrap.classList.contains('is-open')) {
+        e.preventDefault();
+        focusTopbarSearch();
+      }
+    });
+    document.addEventListener('click', (e) => {
+      if (wrap.classList.contains('is-open') && !wrap.contains(e.target)) {
+        wrap.classList.remove('is-open');
+      }
+    });
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') { wrap.classList.remove('is-open'); input.blur(); }
+    });
+  })();
   document.addEventListener('keydown', (e) => {
     if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
       e.preventDefault();

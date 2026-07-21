@@ -373,13 +373,58 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 }
 
 @media (max-width: 960px) {
-  .topbar { padding: 0 var(--space-4); column-gap: var(--space-3); }
-  .topbar__menu { display: flex; }
-}
-@media (max-width: 640px) {
-  .topbar__brand span { display: none; }
-  .topbar__search { max-width: none; }
-  .topbar__search input { height: 38px; font-size: 14px; }
+  .topbar {
+    padding: 0 var(--space-4);
+    column-gap: var(--space-3);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: sticky;
+  }
+  .topbar__menu { display: none; }
+
+  .topbar__brand {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .avatar {
+    position: absolute;
+    left: var(--space-4);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .topbar__right { order: 1; }
+
+  .topbar__search {
+    order: 2;
+    width: 40px;
+    max-width: 40px;
+    justify-self: auto;
+  }
+  .topbar__search input,
+  .topbar__search .inline-results { display: none; }
+  .topbar__search.is-open input { display: block; }
+  .topbar__search:not(.is-open) {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.2);
+    display: grid;
+    place-items: center;
+  }
+  .topbar__search:not(.is-open) svg {
+    position: static;
+    color: #fff;
+  }
+  .topbar__search.is-open {
+    position: fixed;
+    left: 12px; right: 12px; top: 10px;
+    width: auto; max-width: none;
+    z-index: 50;
+  }
 }
 
 /* ---------- Page header ---------- */
@@ -541,6 +586,10 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 .yeartopic-row > div { display: flex; flex-direction: column; }
 .yeartopic-row .hero { flex: 1; }
 .yeartopic-row .qa-grid { flex: 1; }
+@media (max-width: 768px) {
+  .yeartopic-row > div:first-child { order: 2; }
+  .yeartopic-row > div:last-child  { order: 1; margin-bottom: 20px; }
+}
 
 /* ---------- Two column dashboard rows ---------- */
 .row-2 {
