@@ -389,6 +389,7 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
     top: 50%;
     transform: translate(-50%, -50%);
   }
+  .topbar__brand span { display: none; }
 
   .avatar {
     position: absolute;
