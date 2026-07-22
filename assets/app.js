@@ -823,6 +823,34 @@ if ('serviceWorker' in navigator) {
     })();
   })();
 
+  // ---------- Support / Feedback Button ----------
+  (function initSupportButton() {
+    const FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeohbdvZIaTm-UaTRCc1euMFMyRq_ppwks5CESQ_url3M7oDQ/viewform?usp=publish-editor';
+
+    const ICON = `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`;
+
+    function makeBtn() {
+      const btn = document.createElement('button');
+      btn.className = 'sidebar-support-btn';
+      btn.title = 'Feedback & Support';
+      btn.onclick = () => window.open(FORM_URL, '_blank');
+      btn.style.cssText = 'display:flex;align-items:center;gap:10px;width:100%;border:none;cursor:pointer;background:linear-gradient(135deg,#2563EB,#1d4ed8);color:#fff;border-radius:10px;padding:9px 12px;font-size:14px;font-weight:500;font-family:inherit;margin-top:10px;text-align:left;box-sizing:border-box;';
+      btn.innerHTML = `<span style="display:flex;flex:none;">${ICON}</span><span class="nav__item-label">Feedback &amp; Support</span>`;
+      return btn;
+    }
+
+    const nav = document.querySelector('.sidebar .nav');
+    if (nav) {
+      nav.appendChild(makeBtn());
+      const divider = document.createElement('div');
+      divider.className = 'nav__divider fav-anchor-divider';
+      divider.style.marginTop = '10px';
+      nav.appendChild(divider);
+    }
+    const ssNav = document.querySelector('.sidesheet .nav');
+    if (ssNav) ssNav.appendChild(makeBtn());
+  })();
+
   // ---------- Favorites ----------
   (function initFavorites() {
     const STORAGE_KEY = 'icf-favorites';
@@ -977,28 +1005,6 @@ if ('serviceWorker' in navigator) {
     };
   })();
 
-  // ---------- Support / Feedback Button ----------
-  (function initSupportButton() {
-    const FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeohbdvZIaTm-UaTRCc1euMFMyRq_ppwks5CESQ_url3M7oDQ/viewform?usp=publish-editor';
-
-    const ICON = `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`;
-
-    function makeBtn() {
-      const btn = document.createElement('button');
-      btn.className = 'sidebar-support-btn';
-      btn.title = 'Feedback & Support';
-      btn.onclick = () => window.open(FORM_URL, '_blank');
-      btn.style.cssText = 'display:flex;align-items:center;gap:10px;width:100%;border:none;cursor:pointer;background:linear-gradient(135deg,#2563EB,#1d4ed8);color:#fff;border-radius:10px;padding:9px 12px;font-size:14px;font-weight:500;font-family:inherit;margin-top:10px;text-align:left;box-sizing:border-box;';
-      btn.innerHTML = `<span style="display:flex;flex:none;">${ICON}</span><span class="nav__item-label">Feedback &amp; Support</span>`;
-      return btn;
-    }
-
-    const nav = document.querySelector('.sidebar .nav');
-    if (nav) nav.appendChild(makeBtn());
-    const ssNav = document.querySelector('.sidesheet .nav');
-    if (ssNav) ssNav.appendChild(makeBtn());
-  })();
-
   // ---------- Mobile sidesheet ----------
   const menuBtn = document.querySelector('[data-action="open-menu"]');
   const sheet = document.querySelector('#sidesheet');
@@ -1010,6 +1016,53 @@ if ('serviceWorker' in navigator) {
       }
     });
   }
+
+  // ---------- Mobile nav page-slide transitions ----------
+  (function initPageTransitions() {
+    const ORDER = ['index.html', 'events.html', 'contacts.html', 'resources.html'];
+    const STORAGE_KEY = 'pt-enter-dir';
+
+    function pageName(path) {
+      const seg = path.split('/').pop();
+      return seg === '' ? 'index.html' : seg;
+    }
+
+    const main = document.querySelector('.main');
+    if (!main) return;
+
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Play the entrance animation if the previous page queued a direction.
+    const enterDir = sessionStorage.getItem(STORAGE_KEY);
+    if (enterDir) {
+      sessionStorage.removeItem(STORAGE_KEY);
+      if (!reduceMotion && window.innerWidth <= 960) {
+        const cls = enterDir === 'right' ? 'pt-in-right' : 'pt-in-left';
+        main.classList.add(cls);
+        main.addEventListener('animationend', () => {
+          main.classList.remove('pt-in-right', 'pt-in-left');
+        }, { once: true });
+      }
+    }
+
+    const currentIdx = ORDER.indexOf(pageName(location.pathname));
+
+    document.querySelectorAll('.mobilenav__btn[href]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        if (reduceMotion || window.innerWidth > 960) return;
+        const href = btn.getAttribute('href');
+        if (!href || href.startsWith('http') || href.startsWith('#')) return;
+        const targetIdx = ORDER.indexOf(pageName(href));
+        if (currentIdx === -1 || targetIdx === -1 || targetIdx === currentIdx) return;
+
+        e.preventDefault();
+        const forward = targetIdx > currentIdx;
+        sessionStorage.setItem(STORAGE_KEY, forward ? 'right' : 'left');
+        main.classList.add(forward ? 'pt-out-left' : 'pt-out-right');
+        setTimeout(() => { window.location.href = href; }, 220);
+      });
+    });
+  })();
 
   // ---------- Jump-to-search (⌘K, mobile "Search" button) ----------
   // Search now lives inline in the top bar (live results as you type),
