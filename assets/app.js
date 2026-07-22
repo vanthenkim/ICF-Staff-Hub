@@ -6,6 +6,90 @@ if ('serviceWorker' in navigator) {
   });
 }
 
+/* ----------------------------------------------------------------
+   Launch splash fade-out (installed home-screen app only)
+   The splash itself is plain HTML/CSS so it paints before any JS
+   runs (see #app-splash in styles.css + the markup at the top of
+   <body>) — this just times its exit.
+   ---------------------------------------------------------------- */
+(function hideSplash() {
+  const splash = document.getElementById('app-splash');
+  if (!splash) return;
+  const MIN_SHOW = 600;
+  const shownAt = Date.now();
+  function dismiss() {
+    const wait = Math.max(0, MIN_SHOW - (Date.now() - shownAt));
+    setTimeout(() => {
+      splash.classList.add('is-hidden');
+      setTimeout(() => splash.remove(), 400);
+    }, wait);
+  }
+  if (document.readyState === 'complete') dismiss();
+  else window.addEventListener('load', dismiss);
+})();
+
+/* ----------------------------------------------------------------
+   Pull-to-refresh (installed home-screen app only)
+   iOS suppresses its native bounce-to-refresh in standalone mode
+   (see the overscroll-behavior-y rule in styles.css), so this
+   recreates the same gesture with our own spinner + reload.
+   ---------------------------------------------------------------- */
+(function pullToRefresh() {
+  if (!window.matchMedia('(display-mode: standalone)').matches) return;
+
+  const THRESHOLD = 70;
+  const MAX_PULL  = 100;
+  let startY = 0, pulling = false, ready = false, refreshing = false;
+
+  const indicator = document.createElement('div');
+  indicator.id = 'ptr-indicator';
+  indicator.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><polyline points="21 3 21 9 15 9"/></svg>';
+  document.body.appendChild(indicator);
+
+  function scrollTop() {
+    return window.scrollY || document.documentElement.scrollTop || 0;
+  }
+  function setTransform(pull, rotate) {
+    indicator.style.transform = `translate(-50%, ${-60 + pull}px) rotate(${rotate}deg)`;
+  }
+
+  document.addEventListener('touchstart', (e) => {
+    if (refreshing || e.target.closest('.topbar, .mobilenav, .sidesheet, #search-scrim, .inline-results, #topbar-search-wrap')) { pulling = false; return; }
+    pulling = scrollTop() <= 0;
+    startY  = pulling ? e.touches[0].clientY : 0;
+    ready   = false;
+  }, { passive: true });
+
+  document.addEventListener('touchmove', (e) => {
+    if (!pulling || refreshing) return;
+    const dy = e.touches[0].clientY - startY;
+    if (dy <= 0 || scrollTop() > 0) { pulling = false; setTransform(0, 0); indicator.style.opacity = 0; return; }
+    e.preventDefault();
+    const pull = Math.min(dy * 0.45, MAX_PULL);
+    ready = pull >= THRESHOLD;
+    indicator.classList.toggle('is-ready', ready);
+    indicator.style.opacity = Math.min(pull / THRESHOLD, 1);
+    setTransform(pull, pull * 2.5);
+  }, { passive: false });
+
+  document.addEventListener('touchend', () => {
+    if (!pulling || refreshing) { pulling = false; return; }
+    pulling = false;
+    if (ready) {
+      refreshing = true;
+      indicator.classList.add('is-spinning');
+      indicator.style.opacity = 1;
+      setTransform(THRESHOLD, 0);
+      setTimeout(() => location.reload(), 450);
+    } else {
+      indicator.style.transition = 'transform .25s ease, opacity .25s ease';
+      setTransform(0, 0);
+      indicator.style.opacity = 0;
+      setTimeout(() => { indicator.style.transition = ''; }, 260);
+    }
+  }, { passive: true });
+})();
+
 (function initSidebarCollapse() {
   const KEY = 'icf-sidebar-collapsed';
   const toggle = document.querySelector('.sidebar__toggle');
@@ -651,9 +735,10 @@ if ('serviceWorker' in navigator) {
 
     function renderGroup(dateStr, events) {
       const d       = parseISODate(dateStr);
-      const day     = d.getUTCDate();
-      const mon     = MONTHS[d.getUTCMonth()];
-      const weekday = DAYS[d.getUTCDay()];
+      const day       = d.getUTCDate();
+      const mon       = MONTHS[d.getUTCMonth()];
+      const weekday   = DAYS[d.getUTCDay()];
+      const isWeekend = d.getUTCDay() === 0 || d.getUTCDay() === 6;
 
       const rows = events.map(ev => {
         const meta = metaFor(ev);
@@ -664,16 +749,16 @@ if ('serviceWorker' in navigator) {
             <span class="gcal-event-row__title">${ev.title || '(No title)'}</span>
             <span class="gcal-event-row__time"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:${meta.color};margin-right:6px;"></span>${time} · ${meta.label}</span>
           </div>
-          <a class="gcal-add-btn" href="${gcalUrl(ev)}" target="_blank" rel="noopener" title="Add to your calendar">
-            ${CAL_SVG} Add to calendar
+          <a class="gcal-add-btn" href="${gcalUrl(ev)}" target="_blank" rel="noopener" title="Add to your calendar" aria-label="Add to calendar">
+            ${CAL_SVG}<span class="gcal-add-btn__label">Add to calendar</span>
           </a>
         </div>`;
       }).join('');
 
       return `<div class="gcal-item gcal-item--group">
-        <div class="gcal-date">
-          <div class="gcal-date__day">${day}</div>
+        <div class="gcal-date${isWeekend ? ' gcal-date--weekend' : ''}">
           <div class="gcal-date__mon">${mon}</div>
+          <div class="gcal-date__day">${day}</div>
           <div class="gcal-date__wday">${weekday.slice(0,3)}</div>
         </div>
         <div class="gcal-divider"></div>
@@ -929,15 +1014,107 @@ if ('serviceWorker' in navigator) {
   // ---------- Jump-to-search (⌘K, mobile "Search" button) ----------
   // Search now lives inline in the top bar (live results as you type),
   // so these just get you there and drop the cursor in.
+  // Full-screen dark scrim behind the mobile search (see #search-scrim
+  // in styles.css) — created once, lazily, only when search first opens.
+  function getSearchScrim() {
+    let scrim = document.getElementById('search-scrim');
+    if (!scrim) {
+      scrim = document.createElement('div');
+      scrim.id = 'search-scrim';
+      document.body.appendChild(scrim);
+    }
+    return scrim;
+  }
+
   function focusTopbarSearch() {
     const input = document.getElementById('topbar-search-input');
+    const wrap  = document.getElementById('topbar-search-wrap');
     if (!input) return;
+    if (wrap) wrap.classList.add('is-open');
+    getSearchScrim().classList.add('is-open');
     input.scrollIntoView({ behavior: 'smooth', block: 'center' });
     input.focus();
   }
   document.querySelectorAll('[data-action="open-search"]').forEach(b => {
     b.addEventListener('click', focusTopbarSearch);
   });
+
+  // Mobile: the top bar search collapses to an icon-only button (see
+  // .topbar__search:not(.is-open) in styles.css). Tapping it expands the
+  // bar and focuses the input; tapping away or Escape collapses it again.
+  (function mobileSearchToggle() {
+    const wrap  = document.getElementById('topbar-search-wrap');
+    const input = document.getElementById('topbar-search-input');
+    const closeBtn = document.getElementById('topbar-search-close');
+    if (!wrap || !input) return;
+
+    // #topbar-search-wrap normally lives inside <header class="topbar">,
+    // which has its own z-index (stacking context). Once nested there,
+    // no z-index on the wrap itself can out-rank #search-scrim, which is
+    // a sibling of <body> — the whole topbar subtree stacks as one unit
+    // behind it. Re-parenting to <body> while open sidesteps that trap
+    // entirely; moving it back on close restores the normal desktop layout.
+    let homeParent = null, homeNext = null, closeBtnNext = null;
+    function isMobile() { return window.matchMedia('(max-width: 960px)').matches; }
+    function detachToBody() {
+      if (!isMobile() || wrap.parentNode === document.body) return;
+      homeParent = wrap.parentNode;
+      homeNext = wrap.nextSibling;
+      document.body.appendChild(wrap);
+      // Move the close button out to be wrap's own sibling too — as a
+      // nested child it inherited wrap's flex sizing/box context, which
+      // was pushing its fixed-position box past the right edge instead
+      // of sitting flush against it.
+      if (closeBtn && closeBtn.parentNode === wrap) {
+        closeBtnNext = closeBtn.nextSibling;
+        document.body.appendChild(closeBtn);
+      }
+    }
+    function reattachHome() {
+      if (closeBtn && closeBtn.parentNode === document.body) {
+        wrap.insertBefore(closeBtn, closeBtnNext);
+      }
+      if (homeParent) {
+        homeParent.insertBefore(wrap, homeNext);
+        homeParent = null; homeNext = null;
+      }
+    }
+
+    function openIfClosed(e) {
+      if (!wrap.classList.contains('is-open')) {
+        e.preventDefault();
+        detachToBody();
+        if (closeBtn) closeBtn.classList.add('is-open');
+        focusTopbarSearch();
+      }
+    }
+    function closeSearch() {
+      wrap.classList.remove('is-open');
+      if (closeBtn) closeBtn.classList.remove('is-open');
+      const scrim = document.getElementById('search-scrim');
+      if (scrim) scrim.classList.remove('is-open');
+      input.blur();
+      reattachHome();
+    }
+    // Bind both touchend and click: iOS can be inconsistent about firing
+    // a synthetic click after a tap on a plain <div>, so touchend covers
+    // it directly. preventDefault on touchend stops the duplicate click
+    // that would otherwise follow.
+    wrap.addEventListener('touchend', openIfClosed, { passive: false });
+    wrap.addEventListener('click', openIfClosed);
+    document.addEventListener('click', (e) => {
+      if (wrap.classList.contains('is-open') && !wrap.contains(e.target)) {
+        closeSearch();
+      }
+    });
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeSearch();
+    });
+    if (closeBtn) {
+      closeBtn.addEventListener('click', (e) => { e.stopPropagation(); closeSearch(); });
+    }
+
+  })();
   document.addEventListener('keydown', (e) => {
     if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
       e.preventDefault();

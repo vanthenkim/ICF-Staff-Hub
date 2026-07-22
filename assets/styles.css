@@ -373,13 +373,143 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 }
 
 @media (max-width: 960px) {
-  .topbar { padding: 0 var(--space-4); column-gap: var(--space-3); }
-  .topbar__menu { display: flex; }
-}
-@media (max-width: 640px) {
+  .topbar {
+    padding: 0 var(--space-4);
+    column-gap: var(--space-3);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: sticky;
+  }
+  .topbar__menu { display: none; }
+
+  .topbar__brand {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
   .topbar__brand span { display: none; }
-  .topbar__search { max-width: none; }
-  .topbar__search input { height: 38px; font-size: 14px; }
+
+  .avatar {
+    position: absolute;
+    left: var(--space-4);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .topbar__right { order: 1; }
+
+  .topbar__search {
+    order: 2;
+    width: 40px;
+    max-width: 40px;
+    justify-self: auto;
+  }
+  .topbar__search:not(.is-open) input,
+  .topbar__search:not(.is-open) .inline-results { display: none; }
+  .topbar__search:not(.is-open) {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.2);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+  }
+  .topbar__search:not(.is-open) svg {
+    position: static;
+    left: auto;
+    top: auto;
+    transform: none;
+    color: #fff;
+    margin: 0;
+    display: block;
+  }
+  /* Full-screen scrim behind the search, like iOS's own Spotlight search */
+  #search-scrim {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15,15,15,0.97);
+    z-index: 300;
+  }
+  #search-scrim.is-open { display: block; }
+
+  /* Anchored just below the status bar — this stays reliably clear of
+     the keyboard on every iOS version, rather than trying to calculate
+     the keyboard's live height (which varies with the accessory bar and
+     was landing the pill half-hidden underneath it in testing). */
+  .topbar__search.is-open {
+    position: fixed;
+    left: 12px; right: 64px;
+    top: calc(env(safe-area-inset-top) + 10px);
+    width: auto; max-width: none;
+    height: 44px;
+    z-index: 302;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--white);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    border-radius: 22px;
+    box-sizing: border-box;
+  }
+  .topbar__search.is-open input {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    background: transparent;
+    padding-right: 8px;
+  }
+  .topbar__search-close {
+    display: none;
+  }
+  /* Targets the button directly (it's moved to be a sibling of <body>
+     while open, not a descendant of .topbar__search — see app.js —
+     so this can't be a descendant selector off .topbar__search.is-open). */
+  .topbar__search-close.is-open {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    right: 16px;
+    top: calc(env(safe-area-inset-top) + 10px);
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    color: #fff;
+    background: rgba(255,255,255,0.16);
+    z-index: 303;
+  }
+
+  /* Results fill the screen below the bar, dark to match the scrim.
+     The keyboard naturally covers the lower portion — same as any
+     native search — results scroll under it like normal. */
+  .topbar__search.is-open .inline-results:not([hidden]) {
+    position: fixed;
+    left: 0; right: 0;
+    top: calc(env(safe-area-inset-top) + 64px);
+    bottom: 0;
+    display: block;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 8px 16px 24px;
+    z-index: 301;
+  }
+  .topbar__search.is-open .inline-results__group { color: rgba(255,255,255,0.45); }
+  .topbar__search.is-open .inline-results__hit__title { color: #fff; }
+  .topbar__search.is-open .inline-results__hit__sub { color: rgba(255,255,255,0.55); }
+  .topbar__search.is-open .inline-results__hit:hover,
+  .topbar__search.is-open .inline-results__hit:active { background: rgba(255,255,255,0.08); }
+  .topbar__search.is-open .inline-results__hit__icon { background: rgba(255,255,255,0.16); color: #fff; }
+  .topbar__search.is-open .inline-results__hit__icon svg { stroke-width: 2.25; }
+  .topbar__search.is-open .inline-results__empty { color: rgba(255,255,255,0.55); }
+}
+@media (min-width: 961px) {
+  .topbar__search-close { display: none; }
 }
 
 /* ---------- Page header ---------- */
@@ -528,8 +658,23 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 .qa--red   .qa__icon { color: var(--red-600);   background: var(--red-50); }
 .qa--purple .qa__icon { color: var(--purple-600); background: var(--purple-50); }
 .qa--slate .qa__icon { color: #475569; background: #F1F5F9; }
+.qa--dark  .qa__icon { color: #0F172A; background: #F1F5F9; }
 .qa__label { font-size: 16px; font-weight: 500; line-height: 1.25; }
 .qa__sub   { font-size: 13px; color: var(--text-muted); }
+
+.qa-grid--sm { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr); }
+.qa--compact { min-height: auto; padding: 14px 10px; gap: 10px; justify-content: center; }
+.qa--compact .qa__icon { width: 36px; height: 36px; border-radius: 10px; }
+.qa--compact .qa__label { font-size: 13px; }
+
+.yeartopic-row { align-items: stretch; grid-template-columns: 2fr 1fr; }
+.yeartopic-row > div { display: flex; flex-direction: column; }
+.yeartopic-row .hero { flex: 1; }
+.yeartopic-row .qa-grid { flex: 1; }
+@media (max-width: 768px) {
+  .yeartopic-row > div:first-child { order: 2; }
+  .yeartopic-row > div:last-child  { order: 1; margin-bottom: 20px; }
+}
 
 /* ---------- Two column dashboard rows ---------- */
 .row-2 {
@@ -826,29 +971,63 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 .stat__value { font-size: 25px; font-weight: 500; margin-top: 4px; letter-spacing: -0.01em; }
 .stat__delta { font-size: 13px; color: var(--green-600); margin-top: 2px; }
 
-/* ---------- Mobile bottom nav ---------- */
+/* ---------- Mobile bottom nav (floating glass) ---------- */
 .mobilenav {
   display: none;
   position: fixed; bottom: 0; left: 0; right: 0;
-  background: rgba(255,255,255,0.96);
-  backdrop-filter: blur(10px);
-  border-top: 1px solid var(--border);
-  padding: 8px 6px calc(8px + env(safe-area-inset-bottom));
-  z-index: 40;
+  justify-content: center;
+  padding: 0 16px calc(14px + env(safe-area-inset-bottom));
+  z-index: 200;
 }
-.mobilenav__row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; }
+.mobilenav__row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 14px;
+  background: rgba(20,20,20,0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 999px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.28);
+}
 .mobilenav__btn {
-  display: flex; flex-direction: column; align-items: center; gap: 4px;
-  padding: 6px 4px;
-  font-size: 12px;
-  color: var(--text-muted);
-  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex: none;
+  width: 48px; height: 48px;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.75);
+  overflow: hidden;
+  white-space: nowrap;
+  transition: width .2s ease, padding .2s ease, background .2s ease, color .2s ease;
 }
-.mobilenav__btn.is-active { color: var(--blue-700); }
-.mobilenav__btn .icon { color: currentColor; }
+.mobilenav__btn .icon { flex: none; display: flex; color: currentColor; }
+.mobilenav__btn-label {
+  font-size: 14px;
+  font-weight: 500;
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-width .2s ease, opacity .15s ease, margin .2s ease;
+}
+.mobilenav__btn.is-active {
+  width: auto;
+  padding: 0 16px 0 12px;
+  background: rgba(255,255,255,0.18);
+  color: #fff;
+}
+.mobilenav__btn.is-active .mobilenav__btn-label {
+  max-width: 140px;
+  opacity: 1;
+  margin-left: 8px;
+}
 
 @media (max-width: 960px) {
-  .mobilenav { display: block; }
+  .mobilenav { display: flex; }
 }
 
 /* ---------- Sidesheet (mobile menu) ---------- */
@@ -1156,12 +1335,24 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 
 .gcal-date {
   flex: none;
-  width: 52px;
+  width: 60px;
   text-align: center;
   line-height: 1.2;
 }
-.gcal-date__day  { font-size: 25px; font-weight: 500; color: var(--text); letter-spacing: -0.02em; }
-.gcal-date__mon  { font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); }
+.gcal-date__mon  {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--green-600);
+  background: var(--green-100);
+  border-radius: 999px;
+  padding: 3px 0;
+  margin-bottom: 6px;
+}
+.gcal-date__day  { font-size: 26px; font-weight: 500; color: var(--text); letter-spacing: -0.02em; line-height: 1; }
+.gcal-date--weekend .gcal-date__mon { color: var(--red-600); background: var(--red-50); }
 
 .gcal-divider { width: 1px; min-height: 36px; align-self: stretch; background: var(--border); flex: none; }
 
@@ -1200,6 +1391,30 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 .gcal-event-row__info { flex: 1; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
 .gcal-event-row__title { font-size: 16px; font-weight: 500; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .gcal-event-row__time { font-size: 13px; color: var(--text-soft); }
+
+@media (max-width: 640px) {
+  .gcal-item { gap: 10px; padding: 10px 12px; }
+  .gcal-date { width: 44px; }
+  .gcal-date__mon { font-size: 10px; margin-bottom: 4px; }
+  .gcal-date__day { font-size: 20px; }
+  .gcal-date__wday { font-size: 10px; }
+  .gcal-divider { min-height: 28px; }
+  .gcal-info__title { font-size: 14px; }
+  .gcal-info__meta { font-size: 12px; }
+  .gcal-event-row { gap: 8px; }
+  .gcal-event-row__title { font-size: 14px; }
+  .gcal-event-row__time { font-size: 12px; }
+
+  .gcal-add-btn {
+    gap: 0;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    justify-content: center;
+    border-radius: 8px;
+  }
+  .gcal-add-btn__label { display: none; }
+}
 
 .gcal-loading, .gcal-error {
   padding: 20px;
@@ -1813,6 +2028,12 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   font-weight: 400;
   color: var(--text-soft);
 }
+@media (max-width: 640px) {
+  .hero-hc { padding: 24px 16px 20px; margin-bottom: var(--space-4); }
+  .hero-hc__date { font-size: 12px; margin-bottom: 4px; }
+  .hero-hc__greeting { font-size: 19px; margin-bottom: 2px; }
+  .hero-hc__title { font-size: 21px; margin-bottom: 0; max-width: 100%; }
+}
 .hero-hc__date {
   font-size: 13px;
   font-weight: 500;
@@ -2239,7 +2460,7 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   .mobilenav {
     z-index: 200;
     /* Reinforce bottom safe area padding */
-    padding-bottom: calc(8px + env(safe-area-inset-bottom));
+    padding-bottom: calc(14px + env(safe-area-inset-bottom));
   }
 
   /* Make the main content area fill available space without overscroll
@@ -2249,3 +2470,73 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
     padding-bottom: calc(80px + env(safe-area-inset-bottom));
   }
 }
+
+/* Disable the iOS pull-to-refresh / rubber-band bounce, but only once
+   installed via "Add to Home Screen" — regular Safari tabs keep the
+   normal browser behavior. */
+@media (display-mode: standalone) {
+  html, body {
+    overscroll-behavior-y: contain;
+  }
+}
+
+/* Launch splash (installed home-screen app only) — masks the initial
+   load with a branded black screen instead of a flash of raw content. */
+#app-splash {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #000;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  transition: opacity .35s ease;
+}
+html.is-pwa #app-splash { display: flex; }
+#app-splash.is-hidden { opacity: 0; pointer-events: none; }
+#app-splash__mark {
+  width: 120px;
+  height: 120px;
+}
+#app-splash__label {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+#app-splash__spinner {
+  width: 26px;
+  height: 26px;
+  margin-top: 8px;
+  border-radius: 50%;
+  border: 3px solid rgba(255,255,255,0.25);
+  border-top-color: #fff;
+  animation: app-splash-spin .8s linear infinite;
+}
+@keyframes app-splash-spin { to { transform: rotate(360deg); } }
+
+/* Custom pull-to-refresh spinner (installed home-screen app only) */
+#ptr-indicator {
+  position: fixed;
+  top: env(safe-area-inset-top);
+  left: 50%;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--white);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--blue-600);
+  opacity: 0;
+  z-index: 500;
+  pointer-events: none;
+  transform: translate(-50%, -60px);
+}
+#ptr-indicator.is-ready { color: var(--green-600); }
+#ptr-indicator.is-spinning svg { animation: ptr-spin .6s linear infinite; }
+@keyframes ptr-spin { to { transform: rotate(360deg); } }
