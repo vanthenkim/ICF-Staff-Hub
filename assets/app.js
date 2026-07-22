@@ -1271,7 +1271,8 @@ if ('serviceWorker' in navigator) {
   function scoreSearchHit(item, query) {
     const title = normalizeSearchText(item.t);
     const group = normalizeSearchText(item.g);
-    const haystack = title + ' ' + group;
+    const extra = normalizeSearchText(item.a || '');
+    const haystack = title + ' ' + group + (extra ? ' ' + extra : '');
     const q = normalizeSearchText(query).trim();
     if (!q) return 0;
 
@@ -1392,6 +1393,39 @@ if ('serviceWorker' in navigator) {
   }
 
   initInlineSearch('topbar-search-input', 'topbar-search-results');
+
+  // ---------- Dynamically index staff contacts ----------
+  (function loadStaffIndex() {
+    const SHEET_CSV = 'https://docs.google.com/spreadsheets/d/1H2PmW7TVWmhpzTMpOqNFK_wXpxenmfPFK49TgePHJxE/gviz/tq?tqx=out:csv&sheet=Staff+Contacts';
+    const EXTRA_ALIASES = { 'Longsamnieng Pol': 'Paul', 'Seava Han': 'Sophie' };
+    function parseCSVLine(line) {
+      const out = []; let cur = ''; let inQ = false;
+      for (let i = 0; i < line.length; i++) {
+        const c = line[i];
+        if (c === '"') { if (inQ && line[i+1] === '"') { cur += '"'; i++; } else inQ = !inQ; }
+        else if (c === ',' && !inQ) { out.push(cur); cur = ''; }
+        else cur += c;
+      }
+      out.push(cur); return out;
+    }
+    fetch(SHEET_CSV)
+      .then(r => r.text())
+      .then(csv => {
+        const lines = csv.trim().split('\n');
+        const headers = parseCSVLine(lines[0]).map(h => h.trim());
+        const ni = headers.indexOf('Name'), ri = headers.indexOf('Role'),
+              di = headers.indexOf('Department'), ai = headers.indexOf('Alias');
+        lines.slice(1).forEach(line => {
+          const f = parseCSVLine(line).map(s => s.trim());
+          const name = f[ni] || '';
+          if (!name || name.includes('·') || name.toLowerCase().includes('staff')) return;
+          const role = f[ri] || '', dept = f[di] || '';
+          const alias = (ai >= 0 ? f[ai] : '') || EXTRA_ALIASES[name] || '';
+          INDEX.push({ t: name, g: 'Staff', h: 'contacts.html', i: 'users', a: [role, dept, alias].filter(Boolean).join(' ') });
+        });
+      })
+      .catch(() => {});
+  })();
 
   // Quick action filter pills (resources & departments)
   document.querySelectorAll('[data-filter-group]').forEach(group => {
