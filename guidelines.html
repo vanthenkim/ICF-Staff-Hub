@@ -93,6 +93,14 @@
         <button class="cat-filter__btn" data-filter="campus"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14"/></svg> Campus</button>
       </div>
 
+      <!-- dynamic content injected here by sheet fetch -->
+      <div id="guidelines-loading" style="text-align:center;padding:32px 0 16px;color:var(--text-soft);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="animation:spin 1s linear infinite;display:inline-block;margin-bottom:6px;"><circle cx="12" cy="12" r="10" stroke-opacity=".2"/><path d="M21 12a9 9 0 0 0-9-9"/></svg>
+        <p style="margin:0;font-size:13.5px;">Loading guidelines…</p>
+      </div>
+      <div id="guidelines-content"></div>
+      <div id="guidelines-fallback" style="display:none;">
+
       <!-- Child Protection & Policies -->
       <div class="res-section" data-section="child-protection">
       <div class="section-title" id="child-protection"><h2>Child Protection &amp; Policies</h2></div>
@@ -222,6 +230,7 @@
       </div>
       </div><!-- /campus -->
 
+      </div><!-- /guidelines-fallback -->
     </div>
   </main>
 </div>
@@ -264,11 +273,129 @@
       <a class="nav__item" href="https://drive.google.com/drive/folders/0APPpb9f8ObGWUk9PVA" target="_blank" rel="noopener"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 3h7l6.5 11.5-3 5.5h-14l-3-5.5z"/><path d="M8.5 3 15 14.5M2 14.5h20"/></svg></span>ICF Public Shared Drives</a>
       <a class="nav__item" href="about.html#open-fullchart"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><line x1="17" y1="17" x2="17" y2="21"/><line x1="17" y1="17" x2="21" y2="17"/></svg></span>Org Chart</a>
       <a class="nav__item" href="contacts.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Staff Contacts</a>
-      <a class="nav__item" href="https://drive.google.com/drive/u/0/home" target="_blank" rel="noopener"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span>Google Drive</a>
-      <button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScskJ0UijIWOWdoLFYQTE8J1jNYmpveZ32rU-BmOtprbFXxvg/viewform','_blank')" style="display:flex;align-items:center;gap:10px;width:100%;border:none;cursor:pointer;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:10px;padding:9px 12px;font-size:14px;font-weight:500;font-family:inherit;margin-top:10px;text-align:left;"><span style="font-size:17px;line-height:1;">&#x1F3C6;</span>Honor a Colleague</button>
+      <a class="nav__item" href="https://drive.google.com/drive/u/0/home" target="_blank" rel="noopener"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span>Google Drive</a><!-- HONOR_A_COLLEAGUE: removed -->
     </nav>
   </div>
 </div><script src="assets/app.js?v=20260722b"></script>
+<style>
+@keyframes spin { to { transform: rotate(360deg); } }
+</style>
+<script>
+(function () {
+  var GUIDELINES_SHEET_URL = 'https://docs.google.com/spreadsheets/d/1fK-6H2lLGidMATOokZ3fNs1k2TQDDH5Mfw7TNNZc8_I/gviz/tq?tqx=out:json&gid=744621799';
+
+  // Map sheet section values → HTML section ids + display names
+  var SECTION_MAP = {
+    'child-protection':  { id: 'child-protection',  label: 'Child Protection & Policies',  color: 'resource--red' },
+    'guidelines':        { id: 'hr-guidelines',     label: 'Human Resources Guidelines',   color: '' },
+    'hr-guidelines':     { id: 'hr-guidelines',     label: 'Human Resources Guidelines',   color: '' },
+    'finance':           { id: 'finance-policies',  label: 'Finance Policies',             color: 'resource--amber' },
+    'finance-policies':  { id: 'finance-policies',  label: 'Finance Policies',             color: 'resource--amber' },
+    'campus':            { id: 'campus',            label: 'Campus & Kitchen Guidelines',  color: '' }
+  };
+
+  var ICONS = {
+    'child-protection': '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+    'hr-guidelines':    '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>',
+    'finance-policies': '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/></svg>',
+    'campus':           '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14"/></svg>'
+  };
+
+  function buildCard(row, sectionId, colorClass) {
+    var files = [];
+    for (var i = 1; i <= 3; i++) {
+      var lbl = (row['file' + i + '_label'] || '').trim();
+      var url = (row['file' + i + '_url'] || '').trim();
+      if (url) files.push({ label: lbl || 'Open', url: url });
+    }
+    var icon = ICONS[sectionId] || ICONS['hr-guidelines'];
+    var colorAttr = colorClass ? ' ' + colorClass : '';
+    var actions = files.map(function(f) {
+      return '<a class="btn btn--sm" href="' + f.url + '" target="_blank" rel="noopener">' + f.label + '</a>';
+    }).join('');
+    var desc = (row.description || '').trim();
+    return '<article class="resource' + colorAttr + '">'
+      + '<div class="resource__top"><span class="resource__icon">' + icon + '</span><span class="chip chip--active">Active</span></div>'
+      + '<h3 class="resource__title">' + (row.title || '').trim() + '</h3>'
+      + (desc ? '<p class="resource__desc">' + desc + '</p>' : '')
+      + (actions ? '<div class="resource__actions">' + actions + '</div>' : '')
+      + '</article>';
+  }
+
+  function renderGuidelines(rows) {
+    // Group by mapped section, preserving order
+    var ORDER = ['child-protection', 'hr-guidelines', 'finance-policies', 'campus'];
+    var groups = {};
+    ORDER.forEach(function(id) { groups[id] = []; });
+
+    rows.forEach(function(row) {
+      var raw = (row.section || '').toLowerCase().trim();
+      var info = SECTION_MAP[raw];
+      if (info && groups[info.id]) {
+        groups[info.id].push({ row: row, info: info });
+      }
+    });
+
+    var html = '';
+    ORDER.forEach(function(sectionId) {
+      var items = groups[sectionId];
+      if (!items.length) return;
+      var info = items[0].info;
+      html += '<div class="res-section" data-section="' + sectionId + '">';
+      html += '<div class="section-title" id="' + sectionId + '"><h2>' + info.label + '</h2></div>';
+      html += '<div class="res-grid">';
+      items.forEach(function(item) {
+        html += buildCard(item.row, sectionId, item.info.color);
+      });
+      html += '</div></div>';
+    });
+
+    document.getElementById('guidelines-content').innerHTML = html;
+    document.getElementById('guidelines-loading').style.display = 'none';
+    document.getElementById('guidelines-fallback').style.display = 'none';
+    // Re-apply current filter and view after dynamic content loads
+    var savedFilter = 'all';
+    try { savedFilter = localStorage.getItem('guidelines-filter') || 'all'; } catch(e) {}
+    document.querySelectorAll('.cat-filter__btn').forEach(function(b) {
+      b.classList.toggle('is-active', b.dataset.filter === savedFilter);
+    });
+    document.querySelectorAll('#guidelines-content .res-section').forEach(function(s) {
+      s.classList.toggle('is-hidden', savedFilter !== 'all' && s.dataset.section !== savedFilter);
+    });
+  }
+
+  fetch(GUIDELINES_SHEET_URL)
+    .then(function(r) { return r.text(); })
+    .then(function(text) {
+      var json = JSON.parse(text.replace(/^\/\*[^\*]*\*\/\s*[^(]*\(/, '').replace(/\)\s*;?\s*$/, ''));
+      var cols = json.table.cols.map(function(c) { return c.label || c.id || ''; });
+      var rows = json.table.rows
+        .filter(function(row) { return row && row.c; })
+        .map(function(row) {
+          var obj = {};
+          row.c.forEach(function(cell, i) {
+            obj[cols[i]] = (cell && cell.v !== null && cell.v !== undefined) ? String(cell.v) : '';
+          });
+          return obj;
+        })
+        .filter(function(r) {
+          return (r.status || '').toLowerCase().trim() === 'active';
+        });
+      renderGuidelines(rows);
+    })
+    .catch(function(e) {
+      console.error('Guidelines sheet fetch failed:', e);
+      document.getElementById('guidelines-loading').style.display = 'none';
+      document.getElementById('guidelines-fallback').style.display = 'block';
+      // Apply filter to static content too
+      var savedFilter = 'all';
+      try { savedFilter = localStorage.getItem('guidelines-filter') || 'all'; } catch(e2) {}
+      document.querySelectorAll('#guidelines-fallback .res-section').forEach(function(s) {
+        s.classList.toggle('is-hidden', savedFilter !== 'all' && s.dataset.section !== savedFilter);
+      });
+    });
+})();
+</script>
 <style>
 .cat-filter-bar {
   display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 0 14px;
