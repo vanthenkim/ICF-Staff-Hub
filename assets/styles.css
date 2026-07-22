@@ -1643,6 +1643,12 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   scroll-snap-type: x mandatory;
   align-items: flex-start;
   padding-bottom: 8px;
+  /* Break out to the screen edge, then re-add the same inset as padding —
+     otherwise the page's own right-hand margin gets clipped away once the
+     row scrolls, so the last card butts flush against the edge instead of
+     keeping a matching gutter like the left side. */
+  margin-inline: calc(var(--gutter, 16px) * -1);
+  padding-inline: var(--gutter, 16px);
 }
 .planner-year-card {
   flex: 0 0 300px;
