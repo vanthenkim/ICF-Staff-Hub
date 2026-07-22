@@ -969,7 +969,7 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 }
 .stat__label { font-size: 14px; color: var(--text-muted); }
 .stat__value { font-size: 25px; font-weight: 500; margin-top: 4px; letter-spacing: -0.01em; }
-.stat__delta { font-size: 13px; color: var(--green-600); margin-top: 2px; }
+.stat__delta { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
 
 /* ---------- Mobile bottom nav (floating glass) ---------- */
 .mobilenav {
