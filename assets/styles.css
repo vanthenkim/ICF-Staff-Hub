@@ -161,6 +161,7 @@ input, select, textarea { font: inherit; }
 .sidebar__title span { font-size: 13px; color: var(--text-muted); }
 
 .nav { display: flex; flex-direction: column; gap: 2px; }
+.nav__divider { height: 1px; background: var(--border); margin: 8px 12px; }
 .nav__group-label {
   font-size: 12px;
   text-transform: uppercase;
