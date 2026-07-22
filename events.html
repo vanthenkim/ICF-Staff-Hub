@@ -130,10 +130,10 @@
           </button>
         </div>
         <div class="planner-view-toggle" id="planner-view-toggle">
-          <button type="button" class="planner-view-toggle__btn is-active" data-view="calendar" aria-label="Calendar view" title="Calendar view">
+          <button type="button" class="planner-view-toggle__btn" data-view="calendar" aria-label="Calendar view" title="Calendar view">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
           </button>
-          <button type="button" class="planner-view-toggle__btn" data-view="list" aria-label="List view" title="List view">
+          <button type="button" class="planner-view-toggle__btn is-active" data-view="list" aria-label="List view" title="List view">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
           </button>
         </div>
@@ -988,7 +988,6 @@
 
     return `<div class="planner-week">
       <div class="planner-week-body">
-        <div class="planner-week-dividers"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
         <div class="planner-week-header-row">${headers}</div>
         ${spansHtml}
         <div class="planner-week-grid">${cols}</div>
@@ -1241,7 +1240,9 @@
 
   let allEvents = [];
   let currentRange = '2weeks';
-  let viewMode = 'calendar'; // 'calendar' | 'list' — Week + 2 weeks only
+  // Default view depends on screen size: List on phone, Calendar on desktop.
+  // Only sets the starting point — the toggle still switches freely either way.
+  let viewMode = window.innerWidth <= 768 ? 'list' : 'calendar'; // 'calendar' | 'list' — Week, 2 weeks, Month + Year
   const ALL_CATS = ['all-staff', 'church', 'social', 'LA', 'BA', 'AC', 'BN', 'MT', 'GU', 'OT'];
   let selectedCats = new Set(ALL_CATS);
   const viewToggleEl  = document.getElementById('planner-view-toggle');
@@ -1311,6 +1312,11 @@
   });
 
   if (viewToggleEl) {
+    // Reflect the screen-size-based default in the toggle's highlighted
+    // button, since the markup always ships with "List" pre-selected.
+    viewToggleEl.querySelectorAll('.planner-view-toggle__btn').forEach(b => {
+      b.classList.toggle('is-active', b.dataset.view === viewMode);
+    });
     viewToggleEl.addEventListener('click', (e) => {
       const btn = e.target.closest('.planner-view-toggle__btn');
       if (!btn || btn.classList.contains('is-active')) return;
