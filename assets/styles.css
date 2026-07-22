@@ -673,6 +673,7 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 .yeartopic-row .hero { flex: 1; margin-bottom: 0; }
 .yeartopic-row .qa-grid { flex: 1; }
 @media (max-width: 768px) {
+  .home-two-col.yeartopic-row { grid-template-columns: 1fr; }
   .yeartopic-row > div:first-child { order: 2; }
   .yeartopic-row > div:last-child  { order: 1; margin-bottom: 20px; }
 }
@@ -1029,6 +1030,22 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 
 @media (max-width: 960px) {
   .mobilenav { display: flex; }
+}
+
+/* ---------- Mobile nav page-slide transitions ---------- */
+@keyframes pageSlideOutToLeft   { to   { transform: translateX(-100%); opacity: .5; } }
+@keyframes pageSlideOutToRight  { to   { transform: translateX(100%);  opacity: .5; } }
+@keyframes pageSlideInFromRight { from { transform: translateX(100%);  opacity: .5; } to { transform: translateX(0); opacity: 1; } }
+@keyframes pageSlideInFromLeft  { from { transform: translateX(-100%); opacity: .5; } to { transform: translateX(0); opacity: 1; } }
+
+@media (max-width: 960px) {
+  .main.pt-out-left  { animation: pageSlideOutToLeft  .22s ease forwards; }
+  .main.pt-out-right { animation: pageSlideOutToRight .22s ease forwards; }
+  .main.pt-in-right   { animation: pageSlideInFromRight .28s ease; }
+  .main.pt-in-left    { animation: pageSlideInFromLeft  .28s ease; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .main.pt-out-left, .main.pt-out-right, .main.pt-in-right, .main.pt-in-left { animation: none; }
 }
 
 /* ---------- Sidesheet (mobile menu) ---------- */

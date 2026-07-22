@@ -1017,6 +1017,53 @@ if ('serviceWorker' in navigator) {
     });
   }
 
+  // ---------- Mobile nav page-slide transitions ----------
+  (function initPageTransitions() {
+    const ORDER = ['index.html', 'events.html', 'contacts.html', 'resources.html'];
+    const STORAGE_KEY = 'pt-enter-dir';
+
+    function pageName(path) {
+      const seg = path.split('/').pop();
+      return seg === '' ? 'index.html' : seg;
+    }
+
+    const main = document.querySelector('.main');
+    if (!main) return;
+
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Play the entrance animation if the previous page queued a direction.
+    const enterDir = sessionStorage.getItem(STORAGE_KEY);
+    if (enterDir) {
+      sessionStorage.removeItem(STORAGE_KEY);
+      if (!reduceMotion && window.innerWidth <= 960) {
+        const cls = enterDir === 'right' ? 'pt-in-right' : 'pt-in-left';
+        main.classList.add(cls);
+        main.addEventListener('animationend', () => {
+          main.classList.remove('pt-in-right', 'pt-in-left');
+        }, { once: true });
+      }
+    }
+
+    const currentIdx = ORDER.indexOf(pageName(location.pathname));
+
+    document.querySelectorAll('.mobilenav__btn[href]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        if (reduceMotion || window.innerWidth > 960) return;
+        const href = btn.getAttribute('href');
+        if (!href || href.startsWith('http') || href.startsWith('#')) return;
+        const targetIdx = ORDER.indexOf(pageName(href));
+        if (currentIdx === -1 || targetIdx === -1 || targetIdx === currentIdx) return;
+
+        e.preventDefault();
+        const forward = targetIdx > currentIdx;
+        sessionStorage.setItem(STORAGE_KEY, forward ? 'right' : 'left');
+        main.classList.add(forward ? 'pt-out-left' : 'pt-out-right');
+        setTimeout(() => { window.location.href = href; }, 220);
+      });
+    });
+  })();
+
   // ---------- Jump-to-search (⌘K, mobile "Search" button) ----------
   // Search now lives inline in the top bar (live results as you type),
   // so these just get you there and drop the cursor in.
