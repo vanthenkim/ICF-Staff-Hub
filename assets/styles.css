@@ -668,7 +668,7 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 .qa--compact .qa__icon { width: 36px; height: 36px; border-radius: 10px; }
 .qa--compact .qa__label { font-size: 13px; }
 
-.yeartopic-row { align-items: stretch; grid-template-columns: 2fr 1fr; }
+.home-two-col.yeartopic-row { align-items: stretch; grid-template-columns: 2fr 1fr; }
 .yeartopic-row > div { display: flex; flex-direction: column; }
 .yeartopic-row .hero { flex: 1; }
 .yeartopic-row .qa-grid { flex: 1; }
