@@ -823,6 +823,34 @@ if ('serviceWorker' in navigator) {
     })();
   })();
 
+  // ---------- Support / Feedback Button ----------
+  (function initSupportButton() {
+    const FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeohbdvZIaTm-UaTRCc1euMFMyRq_ppwks5CESQ_url3M7oDQ/viewform?usp=publish-editor';
+
+    const ICON = `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`;
+
+    function makeBtn() {
+      const btn = document.createElement('button');
+      btn.className = 'sidebar-support-btn';
+      btn.title = 'Feedback & Support';
+      btn.onclick = () => window.open(FORM_URL, '_blank');
+      btn.style.cssText = 'display:flex;align-items:center;gap:10px;width:100%;border:none;cursor:pointer;background:linear-gradient(135deg,#2563EB,#1d4ed8);color:#fff;border-radius:10px;padding:9px 12px;font-size:14px;font-weight:500;font-family:inherit;margin-top:10px;text-align:left;box-sizing:border-box;';
+      btn.innerHTML = `<span style="display:flex;flex:none;">${ICON}</span><span class="nav__item-label">Feedback &amp; Support</span>`;
+      return btn;
+    }
+
+    const nav = document.querySelector('.sidebar .nav');
+    if (nav) {
+      nav.appendChild(makeBtn());
+      const divider = document.createElement('div');
+      divider.className = 'nav__divider fav-anchor-divider';
+      divider.style.marginTop = '10px';
+      nav.appendChild(divider);
+    }
+    const ssNav = document.querySelector('.sidesheet .nav');
+    if (ssNav) ssNav.appendChild(makeBtn());
+  })();
+
   // ---------- Favorites ----------
   (function initFavorites() {
     const STORAGE_KEY = 'icf-favorites';
@@ -975,28 +1003,6 @@ if ('serviceWorker' in navigator) {
       renderSidebarFavs();
       initCardHearts();
     };
-  })();
-
-  // ---------- Support / Feedback Button ----------
-  (function initSupportButton() {
-    const FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeohbdvZIaTm-UaTRCc1euMFMyRq_ppwks5CESQ_url3M7oDQ/viewform?usp=publish-editor';
-
-    const ICON = `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`;
-
-    function makeBtn() {
-      const btn = document.createElement('button');
-      btn.className = 'sidebar-support-btn';
-      btn.title = 'Feedback & Support';
-      btn.onclick = () => window.open(FORM_URL, '_blank');
-      btn.style.cssText = 'display:flex;align-items:center;gap:10px;width:100%;border:none;cursor:pointer;background:linear-gradient(135deg,#2563EB,#1d4ed8);color:#fff;border-radius:10px;padding:9px 12px;font-size:14px;font-weight:500;font-family:inherit;margin-top:10px;text-align:left;box-sizing:border-box;';
-      btn.innerHTML = `<span style="display:flex;flex:none;">${ICON}</span><span class="nav__item-label">Feedback &amp; Support</span>`;
-      return btn;
-    }
-
-    const nav = document.querySelector('.sidebar .nav');
-    if (nav) nav.appendChild(makeBtn());
-    const ssNav = document.querySelector('.sidesheet .nav');
-    if (ssNav) ssNav.appendChild(makeBtn());
   })();
 
   // ---------- Mobile sidesheet ----------
