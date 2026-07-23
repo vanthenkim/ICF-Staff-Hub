@@ -68,7 +68,7 @@
   var url = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID
           + '/gviz/tq?tqx=out:json&gid=' + SHEET_GID;
 
-  feed.innerHTML = '<div style="padding:28px 0;text-align:center;color:#94a3b8;font-size:14px;">Lade Inhalte…</div>';
+  feed.innerHTML = '<div style="padding:28px 0;text-align:center;color:#94a3b8;font-size:14px;">Loading…</div>';
 
   fetch(url)
     .then(function(r) { return r.text(); })
@@ -105,7 +105,7 @@
             duration:     cell(r, I.Duration),
             availability: cell(r, I.Availability),
             link:         cell(r, I.Link),
-            linkLabel:    cell(r, I.Link_Label) || 'Öffnen →',
+            linkLabel:    cell(r, I.Link_Label) || 'Open →',
             tags:         cell(r, I.Tags),
             active:       cell(r, I.Active).toLowerCase()
           };
@@ -133,7 +133,7 @@
     })
     .catch(function(err) {
       console.error('[training-hub.js]', err);
-      feed.innerHTML = '<div class="card"><p style="color:#ef4444;font-size:13px;padding:4px 0;margin:0;">Inhalte konnten nicht geladen werden. Bitte Verbindung prüfen.</p></div>';
+      feed.innerHTML = '<div class="card"><p style="color:#ef4444;font-size:13px;padding:4px 0;margin:0;">Content could not be loaded. Please check your connection.</p></div>';
     });
 
   /* ── render ───────────────────────────────────────────────────────── */
@@ -160,7 +160,7 @@
       html += '<div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid ' + p.bd + ';">';
       html += '<span style="color:' + p.c + ';display:flex;align-items:center;">' + (icon(catKey) || '') + '</span>';
       html += '<h2 style="margin:0;font-size:16px;font-weight:700;color:#1e293b;">' + esc(catKey) + '</h2>';
-      html += '<span style="margin-left:auto;font-size:12px;color:#94a3b8;">' + filtered.length + ' ' + (filtered.length === 1 ? 'Eintrag' : 'Einträge') + '</span>';
+      html += '<span style="margin-left:auto;font-size:12px;color:#94a3b8;">' + filtered.length + ' ' + (filtered.length === 1 ? 'item' : 'items') + '</span>';
       html += '</div>';
 
       /* card grid */
@@ -173,13 +173,13 @@
 
     if (query && !total) {
       html = '<div class="card" style="text-align:center;padding:36px 20px;color:#94a3b8;">'
-           + 'Kein Ergebnis für „' + esc(query) + '"</div>';
+           + 'No results for "' + esc(query) + '"</div>';
     }
 
-    feed.innerHTML = html || '<div class="card" style="padding:24px;color:#94a3b8;font-size:14px;">Keine Inhalte gefunden.</div>';
+    feed.innerHTML = html || '<div class="card" style="padding:24px;color:#94a3b8;font-size:14px;">No content found.</div>';
 
     if (countEl) {
-      countEl.textContent = total + ' ' + (total === 1 ? 'Eintrag' : 'Einträge');
+      countEl.textContent = total + ' ' + (total === 1 ? 'item' : 'items');
     }
   }
 
@@ -216,10 +216,10 @@
     /* badges */
     if (isGuide) {
       if (item.steps) {
-        html += badge(item.steps + ' Schritte');
+        html += badge(item.steps + ' Steps');
       }
       if (item.resources) {
-        html += badge(item.resources + ' Dokumente');
+        html += badge(item.resources + ' Documents');
       }
     }
     if (isTraining && item.duration) {
