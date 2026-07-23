@@ -347,9 +347,7 @@
           </div>
 
         </section>
-        <aside>
-          <div id="dept-team-wrap"><div class="card" style="padding:14px;"><p style="color:#94a3b8;font-size:13px;margin:0;font-style:italic;">Loading team…</p></div></div>
-        </aside>
+        <aside><div id="dept-team-wrap"><div class="card" style="padding:14px;"><p style="color:#94a3b8;font-size:13px;margin:0;font-style:italic;">Loading team…</p></div></div></aside>
       </div>
 
       <!-- New Campus Org Chart -->
@@ -434,11 +432,12 @@
     </nav>
   </div>
 </div><script src="assets/app.js?v=20260722b"></script>
+
 <div id="person-modal" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.45);z-index:9999;align-items:center;justify-content:center;" onclick="if(event.target===this)this.style.display='none'">
   <div style="background:#fff;border-radius:16px;padding:28px 24px;max-width:320px;width:90%;box-shadow:0 8px 40px rgba(0,0,0,0.18);position:relative;text-align:center;">
     <button onclick="document.getElementById('person-modal').style.display='none'" style="position:absolute;top:10px;right:14px;background:none;border:none;font-size:22px;cursor:pointer;color:#94a3b8;line-height:1;">&times;</button>
     <img id="pm-photo" src="" alt="" style="width:80px;height:80px;border-radius:50%;object-fit:cover;margin-bottom:12px;display:none;border:2px solid #e2e8f0;" />
-    <div id="pm-initials" style="width:80px;height:80px;border-radius:50%;background:#f1f5f9;color:#475569;font-size:26px;font-weight:500;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;"></div>
+    <div id="pm-initials" style="width:80px;height:80px;border-radius:50%;background:#fef2f2;color:#475569;font-size:26px;font-weight:500;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;"></div>
     <div id="pm-name" style="font-weight:500;font-size:17px;color:#1a2332;margin-bottom:3px;"></div>
     <div id="pm-role" style="color:#6b7a8d;font-size:13px;margin-bottom:18px;"></div>
     <div id="pm-contacts" style="display:flex;flex-direction:column;gap:8px;text-align:left;"></div>
@@ -470,85 +469,8 @@
     if(t)openModal(t.getAttribute('data-person'));
   });
 })();
-if(window.location.hash==='#open-orgchart'){var _m=document.getElementById('new-campus-org-chart');if(_m)_m.style.display='flex';}
-
-  var outlets = {
-    mainhall: {
-      title: "Main Hall — Event Venue",
-      phase: "Phase 1",
-      phaseColor: "#059669",
-      phaseBg: "#f0fdf4",
-      phaseBorder: "#86efac",
-      img: "assets/campus/main-hall-exterior.jpg",
-      caption: "Main Hall — exterior view (PETRAM Design International)",
-      body: "<p>The Main Hall is the campus's flagship auditorium — a fully-equipped venue for ICF's own programmes as well as partner events, external conferences, and community gatherings.</p><ul style='margin-top:10px;padding-left:18px;display:flex;flex-direction:column;gap:5px;'><li><strong>~500 seats</strong> with tiered seating, stage, and broadcast-ready A/V</li><li>Full audio &amp; video recording, live streaming, interpreter booths</li><li>Professional kitchen on the first floor for catering</li><li>Outdoor balcony/dining terrace overlooking the campus</li><li>Available for external hire: conferences, seminars, graduations, civil society events</li></ul><p style='margin-top:10px;font-size:13px;color:#6b7280;'>Rental income from the Main Hall is one of three revenue pillars supporting long-term operational sustainability.</p>"
-    },
-    bistro: {
-      title: "Bistro & Café",
-      phase: "Phase 2",
-      phaseColor: "#059669",
-      phaseBg: "#f0fdf4",
-      phaseBorder: "#86efac",
-      img: "assets/campus/bistro.png",
-      caption: "Bistro — PETRAM Design International visualisation",
-      body: "<p>The Bistro is designed as the informal social hub of the campus — positioned at the entrance so it's easily accessible to families, visitors, and the wider community, not just ICF staff and programme participants.</p><ul style='margin-top:10px;padding-left:18px;display:flex;flex-direction:column;gap:5px;'><li>Café and snack bar with indoor and outdoor seating</li><li>Welcoming waiting area for parents during Daycare and Afterschool</li><li>Casual meeting space for staff and external guests</li><li>Generates moderate revenue to cross-fund campus operations</li></ul><p style='margin-top:10px;font-size:13px;color:#6b7280;'>The Bistro replaces the current Coffee Shop and expands it to match the scale and public accessibility of the new campus.</p>"
-    },
-    water: {
-      title: "Drink Water Station",
-      phase: "Phase 1",
-      phaseColor: "#059669",
-      phaseBg: "#f0fdf4",
-      phaseBorder: "#86efac",
-      img: null,
-      body: "<p>The Drink Water Station continues ICF Cambodia's existing role as the neighbourhood's clean water source — one of the most tangible daily services the organisation provides to the surrounding community.</p><ul style='margin-top:10px;padding-left:18px;display:flex;flex-direction:column;gap:5px;'><li>Currently delivers ~16,500 litres of clean water per day</li><li>New campus target: <strong>20,000+ litres per day</strong> at peak</li><li>Serves ICF staff, programme participants, and households in the quarter</li><li>Positioned at the campus perimeter for easy community access</li></ul>"
-    },
-    crematorium: {
-      title: "Community Crematorium",
-      phase: "Phase 2",
-      phaseColor: "#059669",
-      phaseBg: "#f0fdf4",
-      phaseBorder: "#86efac",
-      img: null,
-      body: "<p>The Crematorium is a socially-driven facility designed to reduce the financial burden that burial costs place on vulnerable families — a significant and often-overlooked crisis point for the communities ICF serves.</p><p style='margin-top:10px;'>In Cambodia, funeral and cremation costs can be financially devastating for low-income families already in fragile circumstances. By providing a locally accessible, cost-effective option, ICF ensures that loss doesn't push families further into poverty.</p><ul style='margin-top:10px;padding-left:18px;display:flex;flex-direction:column;gap:5px;'><li>Open to ICF-supported families and the wider community</li><li>Designed as a dignified, respectful space for end-of-life services</li><li>Complements ICF's Family Care and social support work</li></ul>"
-    }
-  };
-  function openOutlet(key) {
-    var o = outlets[key];
-    document.getElementById('outlet-title').textContent = o.title;
-    var ph = document.getElementById('outlet-phase');
-    ph.textContent = o.phase;
-    ph.style.color = o.phaseColor;
-    ph.style.background = o.phaseBg;
-    ph.style.border = '1px solid ' + o.phaseBorder;
-    document.getElementById('outlet-body').innerHTML = o.body;
-    var wrap = document.getElementById('outlet-img-wrap');
-    if (o.img) {
-      document.getElementById('outlet-img').src = o.img;
-      document.getElementById('outlet-img-caption').textContent = o.caption || '';
-      wrap.style.display = 'block';
-    } else {
-      wrap.style.display = 'none';
-    }
-    document.getElementById('outlet-modal').style.display = 'flex';
-  }
-  function closeOutlet() {
-    document.getElementById('outlet-modal').style.display = 'none';
-  }
-
-  function openLightbox(src, caption) {
-    document.getElementById('lightbox-img').src = src;
-    document.getElementById('lightbox-caption').textContent = caption;
-    document.getElementById('lightbox').style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-  }
-  function closeLightbox() {
-    document.getElementById('lightbox').style.display = 'none';
-    document.body.style.overflow = '';
-  }
-  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeLightbox(); });
 </script>
-
 <script>window.ICF_DEPT="New Campus";window.ICF_DEPT_COLOR="#065f46";</script>
-<script src="assets/dept-staff.js?v=1"></script>
+<script src="assets/dept-staff.js?v=2"></script>
 </body>
 </html>
