@@ -129,12 +129,13 @@
 
         people.forEach(function(p){
           var lv = p.level;
-          var sz       = (lv === 'Director') ? '40px' : '36px';
-          var pad      = (lv === 'Director') ? '6px 8px' : '4px 6px';
-          var margin   = (lv === 'Director') ? '0'        : '-4px -6px';
-          var bgNormal = (lv === 'Director') ? LIGHT      : '';
-          var bgHover  = (lv === 'Director') ? COLOR+'2a' : '#f8fafc';
-          var border   = (lv === 'Director') ? 'border:1px solid '+COLOR+'33;' : '';
+          var isLead   = (lv === 'Director' || lv === 'Manager' || lv === 'Leader');
+          var sz       = (lv === 'Director') ? '40px' : isLead ? '38px' : '36px';
+          var pad      = isLead ? '6px 8px' : '4px 6px';
+          var margin   = isLead ? '0'       : '-4px -6px';
+          var bgNormal = isLead ? LIGHT     : '';
+          var bgHover  = isLead ? COLOR+'2a': '#f8fafc';
+          var border   = isLead ? 'border:1px solid '+COLOR+'33;' : '';
 
             /* photo or initials fallback */
             var photoHtml;

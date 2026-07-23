@@ -8,7 +8,7 @@ git -C "$REPO" status --short 2>&1
 echo "Adding files..."
 git -C "$REPO" add -A 2>&1
 echo "Committing..."
-git -C "$REPO" commit -m "Fix dept-staff.js: normalise group keys to merge split groups across all departments" 2>&1
+git -C "$REPO" commit -m "Fix dept-staff.js: extend leader framing to Manager and Leader levels" 2>&1
 echo "Pushing..."
 git -C "$REPO" push origin main 2>&1
 echo ""
