@@ -311,6 +311,14 @@
   }
   window.ICF_OPEN_MODAL=openModal;
   document.addEventListener('click',function(e){
+    var chip=e.target.closest('[data-owner-chip]');
+    if(chip){
+      var name=chip.getAttribute('data-owner-chip');
+      var p=(window.ICF_PEOPLE||{})[name]||{};
+      if(p.telegram){window.open('https://t.me/'+p.telegram,'_blank','noopener');}
+      else{openModal(name);}
+      return;
+    }
     var t=e.target.closest('[data-person]');
     if(t)openModal(t.getAttribute('data-person'));
   });
@@ -318,5 +326,108 @@
 </script>
 <script>window.ICF_DEPT="MarCom";window.ICF_DEPT_COLOR="#0e7490";</script>
 <script src="assets/dept-staff.js?v=2"></script>
+<!-- Dynamic content: Creative Request Links, Brand & Media Resources, Guidelines -->
+<script>
+(function () {
+  var MARCOM_SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTvkaM1pNUSpAb_d493hb9luByk12cuuHwAchE5ngzO58bmPZDEkw83NjiVUiuODbLd7YgXG1iam0pm/pub?output=csv';
+
+  var ICONS = {
+    design:    '<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/>',
+    video:     '<polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/>',
+    social:    '<path d="M5 3l14 9-14 9V3z"/>',
+    translate: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
+    event:     '<path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/>',
+    learning:  '<path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/>',
+    circle:    '<circle cx="12" cy="12" r="10"/>',
+    palette:   '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>',
+    doc:       '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/>'
+  };
+  var CHECK_ICON = '<path d="M9 11l3 3L22 4"/>';
+
+  var FALLBACK_ROWS = [
+    { type:'service', order:1, icon:'design',    title:'Graphic Design & Print',   description:'Flyers, banners, posters, certificates, social graphics. Submit via Media Request with brief and deadline.', status:'Coming soon' },
+    { type:'service', order:2, icon:'video',     title:'Photography & Video',      description:'Event coverage, staff portraits, promo videos. Book at least 2 weeks in advance.', status:'Coming soon' },
+    { type:'service', order:3, icon:'social',    title:'Social Media & Content',   description:'Facebook, Instagram, YouTube posts and campaigns. Share content brief 5 days before posting date.', status:'Coming soon' },
+    { type:'service', order:4, icon:'translate', title:'Translation (EN ↔ KH)',    description:'Documents, emails, announcements. Allow 3–5 working days per document.', status:'Coming soon' },
+    { type:'service', order:5, icon:'event',     title:'Event Support',            description:'Stage design, livestreaming, AV setup for internal events and church services.', status:'Coming soon' },
+    { type:'service', order:6, icon:'learning',  title:'Learning Center',          description:'Staff learning resources, training materials and development content. Coordinator: Makara Ne.', status:'Active' },
+    { type:'brand', order:1, icon:'circle',  title:'ICF Cambodia Logo Pack',     description:'All logo variants — colour, white, black — in PNG and SVG.', status:'Active', meta:'Updated 2026', link_label:'Open in Media Center', link_url:'media.html' },
+    { type:'brand', order:2, icon:'palette', title:'Brand Colour & Font Guide',  description:'Official ICF Cambodia colours, typography and usage rules.', status:'Active', meta:'Updated Jan 2026', link_label:'Open in Media Center', link_url:'media.html' },
+    { type:'brand', order:3, icon:'doc',     title:'Communication Templates',    description:'Email headers, newsletter layout, announcement banners.', status:'Coming soon', meta:'In progress' },
+    { type:'sop', order:1, title:'SOP — Media Request Workflow',          description:'Submission, review timelines and file handover.', owner:'Ratana Khy', status:'Coming soon' },
+    { type:'sop', order:2, title:'SOP — Social Media Posting Guidelines', description:'Approval chain, tone of voice, content rules.', owner:'Savann Sun', status:'Coming soon' },
+    { type:'sop', order:3, title:'SOP — Translation Request Process',    description:'Submission, turnaround times and quality check.', owner:'MarCom', status:'Coming soon' },
+    { type:'sop', order:4, title:'Brand Usage Policy',                   description:"Do's and don'ts for using ICF logos and identity.", owner:'Ratana Khy', status:'Coming soon' }
+  ];
+
+  function esc(s) { return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  function byOrder(a,b){return (parseFloat(a.order)||0)-(parseFloat(b.order)||0);}
+  function isLive(row){var v=(row.live==null?'':String(row.live)).trim().toLowerCase();if(v==='')return true;return v==='true'||v==='yes'||v==='1';}
+
+  function parseCSV(text){
+    var lines=text.replace(/\r/g,'').split('\n');
+    var headers=splitCSVLine(lines[0]);
+    return lines.slice(1).filter(function(l){return l.trim();}).map(function(line){
+      var vals=splitCSVLine(line),obj={};
+      headers.forEach(function(h,i){obj[h.trim()]=(vals[i]||'').trim();});
+      return obj;
+    });
+  }
+  function splitCSVLine(line){
+    var result=[],cur='',inQ=false;
+    for(var i=0;i<line.length;i++){var c=line[i];if(c==='"'){inQ=!inQ;}else if(c===','&&!inQ){result.push(cur);cur='';}else{cur+=c;}}
+    result.push(cur);return result;
+  }
+
+  function buildServiceCard(row){
+    var iconPath=ICONS[row.icon]||ICONS.doc;
+    var activeCls=(row.status||'').toLowerCase()==='active'?' chip--active':'';
+    var chip=row.status?'<span class="chip'+activeCls+'">'+esc(row.status)+'</span>':'';
+    var action=row.link_url?'<div class="resource__actions"><a class="btn btn--primary btn--sm" href="'+esc(row.link_url)+'" target="_blank" rel="noopener">'+esc(row.link_label||'Request')+'</a></div>':'';
+    return '<article class="resource"><div class="resource__top"><span class="resource__icon" style="background:#ecfeff;color:#0891b2;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">'+iconPath+'</svg></span>'+chip+'</div><h3 class="resource__title">'+esc(row.title)+'</h3><p class="resource__desc">'+esc(row.description)+'</p>'+action+'</article>';
+  }
+  function buildBrandCard(row){
+    var iconPath=ICONS[row.icon]||ICONS.doc;
+    var activeCls=(row.status||'').toLowerCase()==='active'?' chip--active':'';
+    var action=row.link_url?'<a class="btn btn--primary btn--sm" href="'+esc(row.link_url)+'" target="_blank" rel="noopener">'+esc(row.link_label||'Open')+'</a>':'<span class="btn btn--sm" style="opacity:.5;cursor:default;">'+esc(row.status||'Coming soon')+'</span>';
+    return '<article class="resource"><div class="resource__top"><span class="resource__icon" style="background:#ecfeff;color:#0891b2;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">'+iconPath+'</svg></span><span class="chip'+activeCls+'">'+esc(row.status||'')+'</span></div><h3 class="resource__title">'+esc(row.title)+'</h3><p class="resource__desc">'+esc(row.description)+'</p><div class="resource__meta"><span>MarCom</span><span>'+esc(row.meta||'')+'</span></div><div class="resource__actions">'+action+'</div></article>';
+  }
+  function buildSopRow(row){
+    var titleHtml=row.link_url?'<a href="'+esc(row.link_url)+'" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">'+esc(row.title)+'</a>':esc(row.title);
+    var ownerChip=row.owner?'<span data-owner-chip="'+esc(row.owner)+'" style="display:inline-flex;align-items:center;gap:6px;padding:7px 14px;background:#ecfeff;border:1.5px solid #67e8f9;border-radius:20px;color:#0891b2;font-weight:500;font-size:13px;cursor:pointer;white-space:nowrap;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>'+esc(row.owner)+'</span>':'';
+    return '<div class="list__item"><span class="list__icon" style="background:#ecfeff;color:#0891b2;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">'+CHECK_ICON+'</svg></span><div class="list__text"><p class="list__title">'+titleHtml+'</p><p class="list__sub">'+esc(row.description)+'</p></div><div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">'+ownerChip+'<span class="chip">'+esc(row.status||'')+'</span></div></div>';
+  }
+
+  function render(rows){
+    rows=rows.filter(isLive);
+    var services=rows.filter(function(r){return r.type==='service';}).sort(byOrder);
+    var brand=rows.filter(function(r){return r.type==='brand';}).sort(byOrder);
+    var sops=rows.filter(function(r){return r.type==='sop';}).sort(byOrder);
+    var svcEl=document.getElementById('marcom-services');
+    if(svcEl)svcEl.innerHTML=services.map(buildServiceCard).join('');
+    var brandEl=document.getElementById('marcom-brand-resources');
+    if(brandEl)brandEl.innerHTML=brand.map(buildBrandCard).join('');
+    var sopEl=document.getElementById('marcom-sops');
+    if(sopEl)sopEl.innerHTML=sops.map(buildSopRow).join('');
+    if(window.initCards)window.initCards();
+  }
+
+  if(MARCOM_SHEET_URL){
+    var loadingHtml='<div style="padding:12px 16px;font-size:12.5px;color:var(--text-muted);">Loading…</div>';
+    ['marcom-services','marcom-brand-resources','marcom-sops'].forEach(function(id){var el=document.getElementById(id);if(el)el.innerHTML=loadingHtml;});
+    var bustedUrl=MARCOM_SHEET_URL+(MARCOM_SHEET_URL.indexOf('?')===-1?'?':'&')+'_='+Date.now();
+    fetch(bustedUrl,{cache:'no-store'})
+      .then(function(r){return r.text();})
+      .then(function(text){
+        var rows=parseCSV(text);
+        var hasKnownType=rows.some(function(r){return r.type==='service'||r.type==='brand'||r.type==='sop';});
+        if(rows.length&&hasKnownType){render(rows);}else{render(FALLBACK_ROWS);}
+      })
+      .catch(function(){render(FALLBACK_ROWS);});
+  } else {
+    render(FALLBACK_ROWS);
+  }
+})();
+</script>
 </body>
 </html>
