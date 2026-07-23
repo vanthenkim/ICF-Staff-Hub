@@ -41,7 +41,7 @@
 
       var I = {};
       ['Sort','Department','Name','Role','Group','Level',
-       'Manager','Email','Phone','Telegram','Active_Date','Left_Date','Notes','Photo_URL'
+       'Manager','Email','Phone','Telegram','Active_Date','Left_Date','Notes','Photo_URL','Alias'
       ].forEach(function(k){ I[k] = cols.indexOf(k); });
 
       var staff = (json.table.rows || [])
@@ -58,6 +58,7 @@
             phone:    cell(r, I.Phone),
             telegram: cell(r, I.Telegram).replace(/^@/,''),
             photo:    cell(r, I.Photo_URL),
+            alias:    cell(r, I.Alias),
             left:     cell(r, I.Left_Date),
           };
         })
@@ -71,19 +72,29 @@
       staff.forEach(function(p){
         window.ICF_PEOPLE[p.name] = {
           role: p.role, email: p.email, phone: p.phone,
-          telegram: p.telegram, photo: p.photo
+          telegram: p.telegram, photo: p.photo, alias: p.alias
         };
+        // also index by alias so search can find people by nickname
+        if (p.alias) window.ICF_PEOPLE[p.alias] = window.ICF_PEOPLE[p.name];
       });
 
-      /* ── group by level then group ──────────────────────────────────── */
+      /* ── group by group name only (level affects styling, not grouping) ── */
       var LEVEL_ORDER = ['Director','Manager','Leader','Team'];
-      var sections = {};   // level → { group → [people] }
-      LEVEL_ORDER.forEach(function(l){ sections[l] = {}; });
+      var groupMap   = {};   // group → [people]
+      var groupOrder = [];   // preserve first-seen order
 
       staff.forEach(function(p){
         var lv = LEVEL_ORDER.indexOf(p.level) >= 0 ? p.level : 'Team';
-        if (!sections[lv][p.group]) sections[lv][p.group] = [];
-        sections[lv][p.group].push(p);
+        p.level = lv; // normalise
+        if (!groupMap[p.group]) { groupMap[p.group] = []; groupOrder.push(p.group); }
+        groupMap[p.group].push(p);
+      });
+
+      // Within each group sort by level (Director first, then Manager, Leader, Team)
+      groupOrder.forEach(function(grp){
+        groupMap[grp].sort(function(a, b){
+          return LEVEL_ORDER.indexOf(a.level) - LEVEL_ORDER.indexOf(b.level);
+        });
       });
 
       /* ── render ─────────────────────────────────────────────────────── */
@@ -92,28 +103,31 @@
                + '<div style="display:flex;flex-direction:column;gap:8px;">';
 
       var firstSection = true;
-      LEVEL_ORDER.forEach(function(lv){
-        var groups = sections[lv];
-        Object.keys(groups).forEach(function(grp){
-          var people = groups[grp];
-          if (!people.length) return;
+      groupOrder.forEach(function(grp){
+        var people = groupMap[grp];
+        if (!people.length) return;
 
-          /* group label */
-          var topPad   = firstSection ? '2px' : '6px';
-          var topBorder = firstSection ? '' : 'border-top:1px solid var(--border);';
-          html += '<div style="font-size:11px;font-weight:500;color:'+ COLOR +';'
-                + 'text-transform:uppercase;letter-spacing:.06em;'
-                + 'padding:'+ topPad +' 0 4px;'+ topBorder +'">'
-                + esc(grp) + '</div>';
-          firstSection = false;
+        // Rename "Management" → "Executive Director" for Director-level groups
+        var displayGrp = grp;
+        if (grp.toLowerCase() === 'management') displayGrp = 'Executive Director';
 
-          people.forEach(function(p){
-            var sz       = (lv === 'Director') ? '40px' : '36px';
-            var pad      = (lv === 'Director') ? '6px 8px' : '4px 6px';
-            var margin   = (lv === 'Director') ? '0'        : '-4px -6px';
-            var bgNormal = (lv === 'Director') ? LIGHT      : '';
-            var bgHover  = (lv === 'Director') ? COLOR+'2a' : '#f8fafc';
-            var border   = (lv === 'Director') ? 'border:1px solid '+COLOR+'33;' : '';
+        /* group label */
+        var topPad   = firstSection ? '2px' : '6px';
+        var topBorder = firstSection ? '' : 'border-top:1px solid var(--border);';
+        html += '<div style="font-size:11px;font-weight:500;color:'+ COLOR +';'
+              + 'text-transform:uppercase;letter-spacing:.06em;'
+              + 'padding:'+ topPad +' 0 4px;'+ topBorder +'">'
+              + esc(displayGrp) + '</div>';
+        firstSection = false;
+
+        people.forEach(function(p){
+          var lv = p.level;
+          var sz       = (lv === 'Director') ? '40px' : '36px';
+          var pad      = (lv === 'Director') ? '6px 8px' : '4px 6px';
+          var margin   = (lv === 'Director') ? '0'        : '-4px -6px';
+          var bgNormal = (lv === 'Director') ? LIGHT      : '';
+          var bgHover  = (lv === 'Director') ? COLOR+'2a' : '#f8fafc';
+          var border   = (lv === 'Director') ? 'border:1px solid '+COLOR+'33;' : '';
 
             /* photo or initials fallback */
             var photoHtml;
@@ -146,7 +160,6 @@
                   + '<div class="muted" style="font-size:12px;">'+ esc(p.role)
                   + (p.email ? ' · '+ esc(p.email) : '') +'</div>'
                   + '</div></div>';
-          });
         });
       });
 
