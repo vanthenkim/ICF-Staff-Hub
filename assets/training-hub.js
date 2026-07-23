@@ -110,7 +110,7 @@
             active:       cell(r, I.Active).toLowerCase()
           };
         })
-        .filter(function(p) { return p.active === 'yes' && p.title && p.cat; })
+        .filter(function(p) { return p.active === 'yes' && p.title && p.cat && p.link; })
         .sort(function(a, b) { return a.sort - b.sort; });
 
       /* group by category, preserving first-seen order */
