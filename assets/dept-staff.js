@@ -80,19 +80,25 @@
 
       /* ── group by group name only (level affects styling, not grouping) ── */
       var LEVEL_ORDER = ['Director','Manager','Leader','Team'];
-      var groupMap   = {};   // group → [people]
+      var groupMap   = {};   // normalised key → [people]
+      var groupLabel = {};   // normalised key → first-seen display name
       var groupOrder = [];   // preserve first-seen order
 
       staff.forEach(function(p){
         var lv = LEVEL_ORDER.indexOf(p.level) >= 0 ? p.level : 'Team';
         p.level = lv; // normalise
-        if (!groupMap[p.group]) { groupMap[p.group] = []; groupOrder.push(p.group); }
-        groupMap[p.group].push(p);
+        var key = (p.group || '').trim().toLowerCase(); // normalise key to collapse case/space variants
+        if (!groupMap[key]) {
+          groupMap[key]   = [];
+          groupLabel[key] = (p.group || '').trim(); // keep first-seen display name
+          groupOrder.push(key);
+        }
+        groupMap[key].push(p);
       });
 
       // Within each group sort by level (Director first, then Manager, Leader, Team)
-      groupOrder.forEach(function(grp){
-        groupMap[grp].sort(function(a, b){
+      groupOrder.forEach(function(key){
+        groupMap[key].sort(function(a, b){
           return LEVEL_ORDER.indexOf(a.level) - LEVEL_ORDER.indexOf(b.level);
         });
       });
@@ -103,13 +109,14 @@
                + '<div style="display:flex;flex-direction:column;gap:8px;">';
 
       var firstSection = true;
-      groupOrder.forEach(function(grp){
-        var people = groupMap[grp];
+      groupOrder.forEach(function(key){
+        var people = groupMap[key];
         if (!people.length) return;
+        var grp = groupLabel[key];
 
         // Rename "Management" → "Executive Director" for Director-level groups
         var displayGrp = grp;
-        if (grp.toLowerCase() === 'management') displayGrp = 'Executive Director';
+        if (key === 'management') displayGrp = 'Executive Director';
 
         /* group label */
         var topPad   = firstSection ? '2px' : '6px';
