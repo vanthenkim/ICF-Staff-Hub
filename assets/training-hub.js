@@ -215,12 +215,8 @@
 
     /* badges */
     if (isGuide) {
-      if (item.steps) {
-        html += badge(item.steps + ' Steps');
-      }
-      if (item.resources) {
-        html += badge(item.resources + ' Documents');
-      }
+      if (item.steps)     html += badge(item.steps     + ' Steps');
+      if (item.resources) html += badge(item.resources + ' Documents');
     }
     if (isTraining && item.duration) {
       html += badge(item.duration);
