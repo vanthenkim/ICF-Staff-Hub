@@ -83,7 +83,7 @@
       });
       var I = {};
       ['Sort','Category','Type','Title','Description','Steps','Resources',
-       'Duration','Availability','Link','Link_Label','Tags','Color','Active'
+       'Duration','Availability','Link','Link_Label','Tags','Color','Active','Extra_Links'
       ].forEach(function(k) { I[k] = cols.indexOf(k); });
 
       function cell(row, idx) {
@@ -107,7 +107,8 @@
             link:         cell(r, I.Link),
             linkLabel:    cell(r, I.Link_Label) || 'Open →',
             tags:         cell(r, I.Tags),
-            active:       cell(r, I.Active).toLowerCase()
+            active:       cell(r, I.Active).toLowerCase(),
+            extraLinks:   cell(r, I.Extra_Links)
           };
         })
         .filter(function(p) { return p.active === 'yes' && p.title && p.cat && p.link; })
@@ -183,11 +184,36 @@
     }
   }
 
+  /* ── file type helper ────────────────────────────────────────────── */
+  function fileLabel(url, fallback) {
+    if (!url) return fallback;
+    var u = url.toLowerCase();
+    if (u.indexOf('.pptx') >= 0 || u.indexOf('.ppt') >= 0) return 'Download Presentation';
+    if (u.indexOf('.pdf')  >= 0) return 'Download PDF';
+    if (u.indexOf('.docx') >= 0 || u.indexOf('.doc') >= 0) return 'Download Document';
+    return fallback;
+  }
+
+  /* ── parse Extra_Links: "Label|URL||Label|URL" ────────────────────── */
+  function parseExtra(str) {
+    if (!str) return [];
+    return str.split('||').map(function(e) {
+      var i = e.indexOf('|');
+      if (i < 0) return null;
+      return { label: e.slice(0, i).trim(), url: e.slice(i + 1).trim() };
+    }).filter(function(e) { return e && e.label && e.url; });
+  }
+
   /* ── single card ──────────────────────────────────────────────────── */
   function card(item, p) {
     var isGuide    = item.type.toLowerCase() === 'guide';
     var isTraining = item.type.toLowerCase() === 'training';
-    var hasLink    = !!item.link;
+    var extras     = parseExtra(item.extraLinks);
+
+    /* auto-detect better download label */
+    var dlLabel = (item.linkLabel === 'Download Guide' || item.linkLabel === 'Open →')
+      ? fileLabel(item.link, item.linkLabel)
+      : item.linkLabel;
 
     var html = '<div style="background:#fff;border:1.5px solid ' + p.bd
              + ';border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;'
@@ -215,36 +241,58 @@
 
     /* badges */
     if (isGuide) {
-      if (item.steps)     html += badge(item.steps     + ' Steps');
+      if (item.steps)     html += badge(item.steps + ' Steps');
       if (item.resources) html += badge(item.resources + ' Documents');
     }
-    if (isTraining && item.duration) {
-      html += badge(item.duration);
-    }
+    if (isTraining && item.duration) html += badge(item.duration);
     if (item.availability) {
       var av  = item.availability.toLowerCase();
-      var avc = av === 'free' || av === 'kostenlos' ? p.c : av === 'paid' || av === 'kostenpflichtig' ? '#dc2626' : '#d97706';
-      var avb = av === 'free' || av === 'kostenlos' ? p.bg : av === 'paid' || av === 'kostenpflichtig' ? '#fef2f2' : '#fffbeb';
+      var avc = av === 'free' ? p.c : av === 'paid' ? '#dc2626' : '#d97706';
+      var avb = av === 'free' ? p.bg : av === 'paid' ? '#fef2f2' : '#fffbeb';
       html += '<span style="background:' + avb + ';color:' + avc + ';border:1px solid ' + p.bd
             + ';border-radius:6px;padding:2px 8px;font-size:11px;font-weight:600;">'
             + esc(item.availability) + '</span>';
     }
 
-    /* link button or coming soon */
+    /* primary download button */
     html += '<span style="margin-left:auto;">';
-    if (hasLink) {
-      html += '<a href="' + esc(item.link) + '" target="_blank" rel="noopener"'
-            + ' style="display:inline-flex;align-items:center;gap:4px;padding:5px 12px;'
-            + 'background:' + p.c + ';color:#fff;border-radius:8px;font-size:12px;font-weight:500;'
-            + 'text-decoration:none;white-space:nowrap;transition:opacity .15s;"'
-            + ' onmouseover="this.style.opacity=\'.82\'" onmouseout="this.style.opacity=\'1\'">'
-            + esc(item.linkLabel) + '</a>';
-    } else {
-      html += '<span style="font-size:11px;color:#94a3b8;font-style:italic;">Coming soon</span>';
-    }
+    html += '<a href="' + esc(item.link) + '" target="_blank" rel="noopener"'
+          + ' style="display:inline-flex;align-items:center;gap:4px;padding:5px 12px;'
+          + 'background:' + p.c + ';color:#fff;border-radius:8px;font-size:12px;font-weight:500;'
+          + 'text-decoration:none;white-space:nowrap;transition:opacity .15s;"'
+          + ' onmouseover="this.style.opacity=\'.82\'" onmouseout="this.style.opacity=\'1\'">'
+          + esc(dlLabel) + '</a>';
     html += '</span>';
 
-    html += '</div></div>';
+    html += '</div>';
+
+    /* ── extra links: collapsible ─────────────────────────────────── */
+    if (extras.length) {
+      html += '<details style="margin-top:2px;">'
+            + '<summary style="cursor:pointer;font-size:11.5px;font-weight:600;color:' + p.c
+            + ';list-style:none;display:flex;align-items:center;gap:5px;user-select:none;">'
+            + '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"'
+            + ' style="transition:transform .2s;" class="td-chevron"><polyline points="6 9 12 15 18 9"/></svg>'
+            + extras.length + ' more document' + (extras.length > 1 ? 's' : '') + '</summary>'
+            + '<div style="margin-top:8px;display:flex;flex-direction:column;gap:5px;">';
+      extras.forEach(function(e) {
+        var exLabel = fileLabel(e.url, e.label);
+        html += '<a href="' + esc(e.url) + '" target="_blank" rel="noopener"'
+              + ' style="display:flex;align-items:center;justify-content:space-between;'
+              + 'padding:6px 10px;background:' + p.bg + ';border:1px solid ' + p.bd
+              + ';border-radius:8px;font-size:12px;font-weight:500;color:' + p.c
+              + ';text-decoration:none;"'
+              + ' onmouseover="this.style.opacity=\'.75\'" onmouseout="this.style.opacity=\'1\'">'
+              + '<span>' + esc(exLabel) + '</span>'
+              + '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">'
+              + '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>'
+              + '<polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>'
+              + '</a>';
+      });
+      html += '</div></details>';
+    }
+
+    html += '</div>';
     return html;
   }
 
