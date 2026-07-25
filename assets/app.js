@@ -793,8 +793,9 @@ if ('serviceWorker' in navigator) {
         // Same window as the Year Planner's "2 weeks" tab: Monday of the
         // current week through the following Sunday (14 days total).
         const today     = todayUTC();
-        const start     = today;
-        const end       = addDays(today, 13);
+        const dow       = today.getUTCDay();
+        const start     = addDays(today, dow === 0 ? -6 : 1 - dow);
+        const end       = addDays(start, 13);
         const startISO  = start.toISOString().slice(0, 10);
         const endISO    = end.toISOString().slice(0, 10);
 
