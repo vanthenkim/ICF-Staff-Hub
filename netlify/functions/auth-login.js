@@ -14,7 +14,7 @@ exports.handler = async (event) => {
 
   const params = new URLSearchParams({
     client_id:    process.env.GOOGLE_CLIENT_ID,
-    redirect_uri: `${process.env.URL}/.netlify/functions/auth-callback`,
+    redirect_uri: `https://${event.headers.host}/.netlify/functions/auth-callback`,
     response_type: 'code',
     scope:        'email profile',
     hd:           'icf-cambodia.com',          // hosted-domain hint
