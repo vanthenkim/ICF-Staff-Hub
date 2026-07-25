@@ -45,7 +45,7 @@ exports.handler = async (event) => {
         code,
         client_id:     process.env.GOOGLE_CLIENT_ID,
         client_secret: process.env.GOOGLE_CLIENT_SECRET,
-        redirect_uri:  `https://${event.headers.host}/.netlify/functions/auth-callback`,
+        redirect_uri:  `${process.env.URL}/.netlify/functions/auth-callback`,
         grant_type:    'authorization_code',
       }),
     });
