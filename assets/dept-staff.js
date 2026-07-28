@@ -103,6 +103,49 @@
         });
       });
 
+      /* ── render helpers ─────────────────────────────────────────────── */
+      function renderPerson(p, indent) {
+        var lv = p.level;
+        var isLead   = !indent && (lv === 'Director' || lv === 'Manager' || lv === 'Leader');
+        var sz       = (lv === 'Director') ? '40px' : isLead ? '38px' : '36px';
+        var pad      = isLead ? '6px 8px' : '4px 6px';
+        var margin   = isLead ? '0'       : '-4px -6px';
+        var bgNormal = isLead ? LIGHT     : '';
+        var bgHover  = isLead ? COLOR+'2a': '#f8fafc';
+        var border   = isLead ? 'border:1px solid '+COLOR+'33;' : '';
+
+        var inits = esc(initials(p.name));
+        var fallback = '<div style="width:'+ sz +';height:'+ sz +';border-radius:50%;'
+                     + 'background:'+ LIGHT +';color:'+ COLOR +';font-size:14px;'
+                     + 'font-weight:500;display:flex;align-items:center;justify-content:center;'
+                     + 'flex-shrink:0;">'+ inits +'</div>';
+        var photoHtml;
+        if (p.photo) {
+          photoHtml = '<img src="'+ esc(p.photo) +'" alt="'+ esc(p.name) +'"'
+                    + ' style="width:'+ sz +';height:'+ sz +';border-radius:50%;'
+                    + 'object-fit:cover;flex-shrink:0;"'
+                    + ' onerror="this.outerHTML=\''
+                    + fallback.replace(/'/g,"\\'").replace(/"/g,'&quot;')
+                    + '\'">';
+        } else {
+          photoHtml = fallback;
+        }
+
+        return '<div data-person="'+ esc(p.name) +'"'
+             + ' style="display:flex;align-items:center;gap:10px;cursor:pointer;'
+             + 'padding:'+ pad +';margin:'+ margin +';border-radius:8px;'
+             + 'background:'+ bgNormal +';'+ border
+             + 'transition:background .15s;"'
+             + ' onmouseover="this.style.background=\''+ bgHover +'\'"'
+             + ' onmouseout="this.style.background=\''+ bgNormal +'\'">'
+             + photoHtml
+             + '<div>'
+             + '<div style="font-weight:500;font-size:13.5px;">'+ esc(p.name) +'</div>'
+             + '<div class="muted" style="font-size:12px;">'+ esc(p.role)
+             + (p.email ? ' · '+ esc(p.email) : '') +'</div>'
+             + '</div></div>';
+      }
+
       /* ── render ─────────────────────────────────────────────────────── */
       var html = '<div class="card" style="margin-bottom:14px;">'
                + '<h3 style="margin:0 0 10px;font-size:15px;">Team</h3>'
@@ -127,47 +170,38 @@
               + esc(displayGrp) + '</div>';
         firstSection = false;
 
+        /* render people, with Team members indented under their Leader/Manager if Manager column is set */
+        var rendered = {};
         people.forEach(function(p){
+          if (rendered[p.name]) return;
           var lv = p.level;
-          var isLead   = (lv === 'Director' || lv === 'Manager' || lv === 'Leader');
-          var sz       = (lv === 'Director') ? '40px' : isLead ? '38px' : '36px';
-          var pad      = isLead ? '6px 8px' : '4px 6px';
-          var margin   = isLead ? '0'       : '-4px -6px';
-          var bgNormal = isLead ? LIGHT     : '';
-          var bgHover  = isLead ? COLOR+'2a': '#f8fafc';
-          var border   = isLead ? 'border:1px solid '+COLOR+'33;' : '';
+          var isLead = (lv === 'Director' || lv === 'Manager' || lv === 'Leader');
 
-            /* photo or initials fallback */
-            var photoHtml;
-            var inits = esc(initials(p.name));
-            var fallback = '<div style="width:'+ sz +';height:'+ sz +';border-radius:50%;'
-                         + 'background:'+ LIGHT +';color:'+ COLOR +';font-size:14px;'
-                         + 'font-weight:500;display:flex;align-items:center;justify-content:center;'
-                         + 'flex-shrink:0;">'+ inits +'</div>';
-            if (p.photo) {
-              photoHtml = '<img src="'+ esc(p.photo) +'" alt="'+ esc(p.name) +'"'
-                        + ' style="width:'+ sz +';height:'+ sz +';border-radius:50%;'
-                        + 'object-fit:cover;flex-shrink:0;"'
-                        + ' onerror="this.outerHTML=\''
-                        + fallback.replace(/'/g,"\\'").replace(/"/g,'&quot;')
-                        + '\'">';
-            } else {
-              photoHtml = fallback;
+          html += renderPerson(p, false);
+          rendered[p.name] = true;
+
+          /* if this person is a lead, show direct reports indented below */
+          if (isLead) {
+            var reports = people.filter(function(sub){
+              return !rendered[sub.name] && sub.manager === p.name;
+            });
+            if (reports.length) {
+              html += '<div style="margin-left:16px;border-left:2px solid '+ COLOR +'33;padding-left:8px;display:flex;flex-direction:column;gap:4px;margin-top:2px;margin-bottom:2px;">';
+              reports.forEach(function(sub){
+                html += renderPerson(sub, true);
+                rendered[sub.name] = true;
+              });
+              html += '</div>';
             }
+          }
+        });
 
-            html += '<div data-person="'+ esc(p.name) +'"'
-                  + ' style="display:flex;align-items:center;gap:10px;cursor:pointer;'
-                  + 'padding:'+ pad +';margin:'+ margin +';border-radius:8px;'
-                  + 'background:'+ bgNormal +';'+ border
-                  + 'transition:background .15s;"'
-                  + ' onmouseover="this.style.background=\''+ bgHover +'\'"'
-                  + ' onmouseout="this.style.background=\''+ bgNormal +'\'">';
-            html += photoHtml;
-            html += '<div>'
-                  + '<div style="font-weight:500;font-size:13.5px;">'+ esc(p.name) +'</div>'
-                  + '<div class="muted" style="font-size:12px;">'+ esc(p.role)
-                  + (p.email ? ' · '+ esc(p.email) : '') +'</div>'
-                  + '</div></div>';
+        /* any remaining (no manager set or manager not in this group) */
+        people.forEach(function(p){
+          if (!rendered[p.name]) {
+            html += renderPerson(p, false);
+            rendered[p.name] = true;
+          }
         });
       });
 
