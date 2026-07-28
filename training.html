@@ -16,7 +16,7 @@
 <title>Training &amp; Development · Staff Hub</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css?v=20260722a" />
-  <link rel="stylesheet" href="assets/layout.css?v=1" />
+<link rel="stylesheet" href="assets/layout.css?v=1" />
 </head>
 <body>
 <script>(function(){try{if(window.matchMedia('(display-mode: standalone)').matches&&!sessionStorage.getItem('icf-splash-shown')){document.documentElement.classList.add('is-pwa');sessionStorage.setItem('icf-splash-shown','1');}}catch(e){}})();</script>
@@ -24,25 +24,26 @@
 
 <script>(function(){try{if(localStorage.getItem("icf-sidebar-collapsed")==="1")document.documentElement.classList.add("sidebar-collapsed");}catch(e){}})();</script>
 
-        <header class="topbar">
-      <button class="topbar__menu" data-action="open-menu" aria-label="Menu">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-      </button>
-      <a class="topbar__brand" href="index.html">
-        <div class="sidebar__logo"><img src="assets/icf-logo-white.png" alt="ICF Cambodia" /></div>
-        <span>Staff Hub</span>
-      </a>
-      <div class="topbar__search" id="topbar-search-wrap">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input type="text" id="topbar-search-input" placeholder="Find resources, contacts, forms…" autocomplete="off" />
-        <button type="button" class="topbar__search-close" id="topbar-search-close" aria-label="Close search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
-        <div class="inline-results" id="topbar-search-results" hidden></div>
-      </div>
-      <div class="topbar__right">
-        <button class="topbar__btn lang-toggle" data-action="toggle-lang" aria-label="Language" title="Toggle language EN / KH"><span class="lang-toggle__label">EN</span></button>
-        <div class="avatar" id="user-avatar"></div>
-      </div>
-    </header>
+<header class="topbar">
+  <button class="topbar__menu" data-action="open-menu" aria-label="Menu">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+  <a class="topbar__brand" href="index.html">
+    <div class="sidebar__logo"><img src="assets/icf-logo-white.png" alt="ICF Cambodia" /></div>
+    <span>Staff Hub</span>
+  </a>
+  <div class="topbar__search" id="topbar-search-wrap">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input type="text" id="topbar-search-input" placeholder="Find resources, contacts, forms…" autocomplete="off" />
+    <button type="button" class="topbar__search-close" id="topbar-search-close" aria-label="Close search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="inline-results" id="topbar-search-results" hidden></div>
+  </div>
+  <div class="topbar__right">
+    <button class="topbar__btn lang-toggle" data-action="toggle-lang" aria-label="Language" title="Toggle language EN / KH"><span class="lang-toggle__label">EN</span></button>
+    <div class="avatar" id="user-avatar"></div>
+  </div>
+</header>
+
 <div class="app">
   <aside class="sidebar">
     <div class="sidebar__scroll">
@@ -59,599 +60,122 @@
       <a class="nav__item" href="https://drive.google.com/drive/folders/0APPpb9f8ObGWUk9PVA" target="_blank" rel="noopener"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 3h7l6.5 11.5-3 5.5h-14l-3-5.5z"/><path d="M8.5 3 15 14.5M2 14.5h20"/></svg></span><span class="nav__item-label">ICF Public Shared Drives</span></a>
       <a class="nav__item" href="about.html#open-fullchart"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><line x1="17" y1="17" x2="17" y2="21"/><line x1="17" y1="17" x2="21" y2="17"/></svg></span><span class="nav__item-label">Org Chart</span></a>
       <a class="nav__item" href="contacts.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><span class="nav__item-label">Staff Contacts</span></a>
-            <!-- HONOR_A_COLLEAGUE: removed -->
     </nav>
     </div>
     <button class="sidebar__toggle" data-action="toggle-sidebar" aria-label="Collapse sidebar" title="Collapse sidebar"><span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg></span><span class="nav__item-label">Collapse sidebar</span></button>
   </aside>
 
   <main class="main">
-
     <div class="container">
+
       <div class="crumbs"><a href="index.html">Home</a><span class="sep">/</span><span>Training &amp; Development</span></div>
+
       <div class="page-header">
         <div>
           <h1>Training &amp; Development</h1>
-          <p>Grow in your role, your skills, and your leadership — at your own pace.</p>
+          <p>Guides, trainings and resources — for you, your team and your growth as a leader.</p>
         </div>
       </div>
 
-
+      <!-- ── Search bar ── -->
+      <div style="position:relative;margin-bottom:24px;">
+        <svg style="position:absolute;left:14px;top:50%;transform:translateY(-50%);pointer-events:none;" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input id="td-search" type="search"
+          placeholder="Search: Feedback, APR, Coaching, Delegation …"
+          style="width:100%;box-sizing:border-box;padding:11px 16px 11px 42px;border:1.5px solid #e2e8f0;border-radius:12px;font-size:14px;font-family:inherit;background:#fff;color:#1e293b;outline:none;transition:border-color .15s,box-shadow .15s;"
+          onfocus="this.style.borderColor='#0891b2';this.style.boxShadow='0 0 0 3px #cffafe'"
+          onblur="this.style.borderColor='#e2e8f0';this.style.boxShadow='none'" />
+        <span id="td-count" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:12px;color:#94a3b8;pointer-events:none;"></span>
+      </div>
 
       <div class="row-2">
+
+        <!-- ── Main: dynamic content from Google Sheet ── -->
         <section>
-
-          <!-- APR -->
-          <div class="section-title"><h2>Annual Performance Review</h2></div>
-          <div class="card" style="padding:0;">
-            <div class="list">
-              <div class="list__item"><span class="list__icon" style="background:var(--blue-50);color:var(--blue-700);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span><div class="list__text"><p class="list__title">6-Step Process</p><p class="list__sub">Schedule &rarr; Self-reflection &rarr; Leader review &rarr; Conversation &rarr; Plan &rarr; Monthly follow-up</p></div></div>
-              <a class="list__item" href="Resources%20Public/2_%20EMPLOYEE%20LIFE%20CYCLE/3_RETENTION%20FORM/Annual%20Performance%20Review/Guideline%20Performance%20Review.pdf" target="_blank"><span class="list__icon" style="background:#fef2f2;color:#dc2626;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span><div class="list__text"><p class="list__title">APR Guideline (PDF)</p></div><span class="list__arrow">&rarr;</span></a>
-              <div class="list__item"><span class="list__icon" style="background:var(--blue-50);color:var(--blue-700);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span><div class="list__text"><p class="list__title">APR Form</p></div><span class="chip" style="flex-shrink:0;font-size:11px;">Coming soon</span></div>
-              <div class="list__item"><span class="list__icon" style="background:var(--green-50);color:var(--green-600);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span><div class="list__text"><p class="list__title">Staff Self-Reflection</p></div><span class="chip" style="flex-shrink:0;font-size:11px;">Coming soon</span></div>
-              <div class="list__item"><span class="list__icon" style="background:#fffbeb;color:#d97706;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span><div class="list__text"><p class="list__title">Manager Review</p></div><span class="chip" style="flex-shrink:0;font-size:11px;">Coming soon</span></div>
-            </div>
-          </div>
-
-          <!-- Develop People -->
-          <div class="section-title" style="margin-top:24px;"><h2>Develop People</h2><span style="font-size:12px;color:var(--text-muted);">For leaders</span></div>
-          <div class="card" style="padding:0;">
-            <div class="list">
-              <a class="list__item" href="https://cheery-raindrop-4c8283.netlify.app/#/develop" target="_blank"><span class="list__icon" style="background:var(--blue-50);color:var(--blue-700);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></span><div class="list__text"><p class="list__title">Develop a staff member</p></div><span class="list__arrow">&rarr;</span></a>
-              <a class="list__item" href="https://cheery-raindrop-4c8283.netlify.app/#/develop" target="_blank"><span class="list__icon" style="background:var(--green-50);color:var(--green-600);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><div class="list__text"><p class="list__title">Coach a staff member</p></div><span class="list__arrow">&rarr;</span></a>
-              <a class="list__item" href="https://cheery-raindrop-4c8283.netlify.app/#/develop" target="_blank"><span class="list__icon" style="background:#fffbeb;color:#d97706;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span><div class="list__text"><p class="list__title">Give feedback</p></div><span class="list__arrow">&rarr;</span></a>
-              <a class="list__item" href="https://cheery-raindrop-4c8283.netlify.app/#/develop" target="_blank"><span class="list__icon" style="background:#fef2f2;color:#dc2626;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></span><div class="list__text"><p class="list__title">Handle a difficult conversation</p></div><span class="list__arrow">&rarr;</span></a>
-              <a class="list__item" href="https://cheery-raindrop-4c8283.netlify.app/#/develop" target="_blank"><span class="list__icon" style="background:#f5f3ff;color:#7c3aed;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><line x1="16" y1="13" x2="8" y2="13"/></svg></span><div class="list__text"><p class="list__title">Build a development plan</p></div><span class="list__arrow">&rarr;</span></a>
-            </div>
-          </div>
-
-          <!-- Leadership Training -->
-          <div class="section-title" style="margin-top:24px;"><h2>Leadership Training</h2><span style="font-size:12px;color:var(--text-muted);">Programs &amp; resources</span></div>
-          <div class="card" style="padding:0;">
-            <div class="list">
-              <a class="list__item" href="https://cheery-raindrop-4c8283.netlify.app/#/training" target="_blank"><span class="list__icon" style="background:#f5f3ff;color:#7c3aed;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></span><div class="list__text"><p class="list__title">Leadership Foundations</p><p class="list__sub">6-week course &middot; Free</p></div><span class="list__arrow">&rarr;</span></a>
-              <a class="list__item" href="https://cheery-raindrop-4c8283.netlify.app/#/training" target="_blank"><span class="list__icon" style="background:#eff6ff;color:#2563eb;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg></span><div class="list__text"><p class="list__title">Overseas Leadership Cohort</p><p class="list__sub">Intensive &middot; ICF-sponsored</p></div><span class="list__arrow">&rarr;</span></a>
-              <a class="list__item" href="https://cheery-raindrop-4c8283.netlify.app/#/training" target="_blank"><span class="list__icon" style="background:#f0fdf4;color:#059669;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><div class="list__text"><p class="list__title">Coaching Basics</p><p class="list__sub">Online &middot; ~6 hours &middot; Free</p></div><span class="list__arrow">&rarr;</span></a>
-              <a class="list__item" href="https://cheery-raindrop-4c8283.netlify.app/#/teaching" target="_blank"><span class="list__icon" style="background:#fef2f2;color:#dc2626;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span><div class="list__text"><p class="list__title">Teaching Library</p><p class="list__sub">Leadership &amp; culture sessions</p></div><span class="list__arrow">&rarr;</span></a>
-            </div>
-          </div>
-
-          <!-- Training Request Process -->
-          <div class="section-title" style="margin-top:24px;"><h2>Training Request Process</h2></div>
-          <p style="color:var(--text-soft);font-size:14px;margin:-4px 0 16px;">Want to join a course or external training? Follow the path that applies to you.</p>
-          <div id="training-process" class="card" style="padding:0;overflow:hidden;margin-bottom:28px;">
-            <div style="padding:16px;">
-              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;">
-
-                <!-- PATH A -->
-                <div>
-                  <div style="background:#fef2f2;border:1.5px solid #fca5a5;border-radius:10px;padding:7px 10px;margin-bottom:8px;text-align:center;">
-                    <div style="font-size:10px;font-weight:700;color:#dc2626;text-transform:uppercase;letter-spacing:.05em;">Path A</div>
-                    <div style="font-size:12px;font-weight:600;color:#991b1b;line-height:1.3;margin-top:2px;">Staff requests by himself</div>
-                  </div>
-                  <div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:8px 10px;display:flex;align-items:flex-start;gap:8px;">
-                    <div style="min-width:18px;height:18px;border-radius:50%;background:#fef2f2;border:1.5px solid #fca5a5;color:#dc2626;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">1</div>
-                    <div style="font-size:12px;color:var(--text);line-height:1.4;">Fill in Training Application Form</div>
-                  </div>
-                  <div style="width:2px;height:8px;background:#e2e8f0;margin:0 auto;"></div>
-                  <div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:8px 10px;display:flex;align-items:flex-start;gap:8px;">
-                    <div style="min-width:18px;height:18px;border-radius:50%;background:#fef2f2;border:1.5px solid #fca5a5;color:#dc2626;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">2</div>
-                    <div style="font-size:12px;color:var(--text);line-height:1.4;">Send to your Leader</div>
-                  </div>
-                  <div style="width:2px;height:8px;background:#e2e8f0;margin:0 auto;"></div>
-                  <div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:8px 10px;display:flex;align-items:flex-start;gap:8px;">
-                    <div style="min-width:18px;height:18px;border-radius:50%;background:#fef2f2;border:1.5px solid #fca5a5;color:#dc2626;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">3</div>
-                    <div style="font-size:12px;color:var(--text);line-height:1.4;">Leader sends to HR</div>
-                  </div>
-                  <div style="width:2px;height:8px;background:#e2e8f0;margin:0 auto;"></div>
-                  <div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:8px 10px;display:flex;align-items:flex-start;gap:8px;">
-                    <div style="min-width:18px;height:18px;border-radius:50%;background:#fef2f2;border:1.5px solid #fca5a5;color:#dc2626;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">4</div>
-                    <div style="font-size:12px;color:var(--text);line-height:1.4;">Fill Training Commitment Form</div>
-                  </div>
-                  <div style="width:2px;height:8px;background:#e2e8f0;margin:0 auto;"></div>
-                  <div style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:8px;padding:8px 10px;display:flex;align-items:center;gap:8px;">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/></svg>
-                    <div style="font-size:12px;color:#166534;font-weight:600;">Financial Process</div>
-                  </div>
-                </div>
-
-                <!-- PATH B -->
-                <div>
-                  <div style="background:#eff6ff;border:1.5px solid #bfdbfe;border-radius:10px;padding:7px 10px;margin-bottom:8px;text-align:center;">
-                    <div style="font-size:10px;font-weight:700;color:#2563eb;text-transform:uppercase;letter-spacing:.05em;">Path B</div>
-                    <div style="font-size:12px;font-weight:600;color:#1e40af;line-height:1.3;margin-top:2px;">ICF sends staff to training</div>
-                  </div>
-                  <div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:8px 10px;display:flex;align-items:flex-start;gap:8px;">
-                    <div style="min-width:18px;height:18px;border-radius:50%;background:#eff6ff;border:1.5px solid #bfdbfe;color:#2563eb;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">1</div>
-                    <div style="font-size:12px;color:var(--text);line-height:1.4;">Fill Training Commitment Form</div>
-                  </div>
-                  <div style="width:2px;height:8px;background:#e2e8f0;margin:0 auto;"></div>
-                  <div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:8px 10px;display:flex;align-items:flex-start;gap:8px;">
-                    <div style="min-width:18px;height:18px;border-radius:50%;background:#eff6ff;border:1.5px solid #bfdbfe;color:#2563eb;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">2</div>
-                    <div style="font-size:12px;color:var(--text);line-height:1.4;">Send to HR</div>
-                  </div>
-                  <div style="width:2px;height:8px;background:#e2e8f0;margin:0 auto;"></div>
-                  <div style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:8px;padding:8px 10px;display:flex;align-items:center;gap:8px;">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/></svg>
-                    <div style="font-size:12px;color:#166534;font-weight:600;">Financial Process</div>
-                  </div>
-                </div>
-
-              </div>
-              <div style="margin-top:14px;padding:10px 12px;background:#fffbeb;border:1px solid #fde68a;border-radius:8px;font-size:12.5px;color:#92400e;">
-                <strong>Questions?</strong> Contact <a href="https://t.me/thavytham" target="_blank" rel="noopener" style="color:#92400e;font-weight:600;text-decoration:underline;">Thavy</a> on Telegram.
-              </div>
-            </div>
-          </div>
-
+          <div id="td-feed"></div>
         </section>
 
+        <!-- ── Aside ── -->
         <aside>
 
-          <!-- Team -->
-          <div class="card" style="margin-bottom:14px;padding:0;">
-            <div style="padding:11px 16px;border-bottom:1px solid var(--border);background:#ecfeff;display:flex;align-items:center;gap:8px;">
-              <div style="width:8px;height:8px;border-radius:50%;background:#0891b2;flex-shrink:0;"></div>
-              <h3 style="margin:0;font-size:15px;color:#0e7490;">Learning Center Team</h3>
+          <!-- Request a Training: step-by-step -->
+          <div class="card" style="padding:0;overflow:hidden;">
+            <div style="padding:12px 16px;background:#f0fdf4;border-bottom:1px solid #86efac;display:flex;align-items:center;gap:8px;">
+              <div style="width:8px;height:8px;border-radius:50%;background:#059669;flex-shrink:0;"></div>
+              <h3 style="margin:0;font-size:15px;color:#065f46;">How to Request a Training</h3>
             </div>
-            <!-- Stephanie Shelow -->
-            <div style="padding:12px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border);">
-              <img src="assets/people/stephanie-shelow.jpg" alt="Stephanie Shelow" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;">
-              <div style="flex:1;min-width:0;">
-                <div style="font-weight:500;font-size:13.5px;">Stephanie Shelow</div>
-                <span style="background:#ecfeff;border:1.5px solid #a5f3fc;color:#0891b2;font-size:10px;font-weight:600;padding:2px 6px;border-radius:6px;white-space:nowrap;display:inline-block;margin-top:3px;">Learning Center Lead</span>
-              </div>
-              <a href="https://t.me/StephanieShelow" target="_blank" rel="noopener" style="flex-shrink:0;display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#fef2f2;border:1.5px solid #fca5a5;border-radius:8px;font-size:12px;font-weight:500;color:#dc2626;text-decoration:none;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></a>
-            </div>
-            <!-- Makara Ne -->
-            <div style="padding:12px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border);">
-              <img src="assets/people/makara-ne.jpg" alt="Makara Ne" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;">
-              <div style="flex:1;min-width:0;">
-                <div style="font-weight:500;font-size:13.5px;">Makara Ne</div>
-                <span style="background:#ecfeff;border:1.5px solid #a5f3fc;color:#0891b2;font-size:10px;font-weight:600;padding:2px 6px;border-radius:6px;white-space:nowrap;display:inline-block;margin-top:3px;">Learning Center</span>
-              </div>
-            </div>
-            <!-- Davit Mao dual role -->
-            <div style="position:relative;overflow:hidden;">
-              <div style="position:absolute;inset:0;background:linear-gradient(108deg,#f5f3ff 0%,#f5f3ff 44%,#ecfeff 56%,#ecfeff 100%);"></div>
-              <div style="position:absolute;top:12px;bottom:12px;left:50%;width:1.5px;background:linear-gradient(to bottom,transparent,#d1d5db 30%,#d1d5db 70%,transparent);"></div>
-              <div style="position:relative;padding:12px 16px;display:flex;align-items:flex-start;gap:10px;">
-                <div style="flex-shrink:0;width:40px;height:40px;border-radius:50%;background:conic-gradient(#7c3aed 0deg 180deg,#0891b2 180deg 360deg);padding:2px;">
-                  <img src="assets/people/davit-mao.jpg" alt="Davit Mao" style="width:100%;height:100%;border-radius:50%;object-fit:cover;outline:2px solid #fff;outline-offset:-1px;"/>
+
+            <!-- Path A -->
+            <div style="padding:10px 16px 6px;border-bottom:1px solid var(--border);">
+              <div style="font-size:10px;font-weight:700;color:#059669;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">Path A · Staff-initiated</div>
+              <div style="display:flex;flex-direction:column;gap:0;">
+                <div style="display:flex;align-items:flex-start;gap:8px;padding:5px 0;">
+                  <div style="width:20px;height:20px;border-radius:50%;background:#059669;color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">1</div>
+                  <span style="font-size:12px;color:#1e293b;line-height:1.5;">Submit a training request to your leader</span>
                 </div>
-                <div style="flex:1;min-width:0;">
-                  <div style="font-weight:500;font-size:13.5px;">Davit Mao</div>
-                  <div style="display:flex;gap:4px;margin-top:4px;flex-wrap:wrap;">
-                    <span style="background:#f5f3ff;border:1.5px solid #c4b5fd;color:#7c3aed;font-size:10px;font-weight:600;padding:2px 6px;border-radius:6px;white-space:nowrap;">Pastor Trainee</span>
-                    <span style="background:#ecfeff;border:1.5px solid #a5f3fc;color:#0891b2;font-size:10px;font-weight:600;padding:2px 6px;border-radius:6px;white-space:nowrap;">LC &middot; 12h/week</span>
-                  </div>
+                <div style="width:1px;height:8px;background:#86efac;margin-left:9px;"></div>
+                <div style="display:flex;align-items:flex-start;gap:8px;padding:5px 0;">
+                  <div style="width:20px;height:20px;border-radius:50%;background:#059669;color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">2</div>
+                  <span style="font-size:12px;color:#1e293b;line-height:1.5;">Leader forwards the request to HR</span>
                 </div>
-                <a href="https://t.me/davitmao" target="_blank" rel="noopener" style="flex-shrink:0;display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#fef2f2;border:1.5px solid #fca5a5;border-radius:8px;font-size:12px;font-weight:500;color:#dc2626;text-decoration:none;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></a>
+                <div style="width:1px;height:8px;background:#86efac;margin-left:9px;"></div>
+                <div style="display:flex;align-items:flex-start;gap:8px;padding:5px 0;">
+                  <div style="width:20px;height:20px;border-radius:50%;background:#059669;color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">3</div>
+                  <span style="font-size:12px;color:#1e293b;line-height:1.5;">Fill out the Commitment Form</span>
+                </div>
+                <div style="width:1px;height:8px;background:#86efac;margin-left:9px;"></div>
+                <div style="display:flex;align-items:flex-start;gap:8px;padding:5px 0;">
+                  <div style="width:20px;height:20px;border-radius:50%;background:#059669;color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">4</div>
+                  <span style="font-size:12px;color:#1e293b;line-height:1.5;">Finance process</span>
+                </div>
               </div>
+            </div>
+
+            <!-- Path B -->
+            <div style="padding:10px 16px 6px;border-bottom:1px solid var(--border);">
+              <div style="font-size:10px;font-weight:700;color:#059669;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">Path B · ICF-initiated</div>
+              <div style="display:flex;flex-direction:column;gap:0;">
+                <div style="display:flex;align-items:flex-start;gap:8px;padding:5px 0;">
+                  <div style="width:20px;height:20px;border-radius:50%;background:#059669;color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">1</div>
+                  <span style="font-size:12px;color:#1e293b;line-height:1.5;">ICF sponsors the training</span>
+                </div>
+                <div style="width:1px;height:8px;background:#86efac;margin-left:9px;"></div>
+                <div style="display:flex;align-items:flex-start;gap:8px;padding:5px 0;">
+                  <div style="width:20px;height:20px;border-radius:50%;background:#059669;color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">2</div>
+                  <span style="font-size:12px;color:#1e293b;line-height:1.5;">Fill out the Commitment Form &amp; send to HR</span>
+                </div>
+                <div style="width:1px;height:8px;background:#86efac;margin-left:9px;"></div>
+                <div style="display:flex;align-items:flex-start;gap:8px;padding:5px 0;">
+                  <div style="width:20px;height:20px;border-radius:50%;background:#059669;color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">3</div>
+                  <span style="font-size:12px;color:#1e293b;line-height:1.5;">Finance process</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Contact Thavy -->
+            <div style="padding:12px 16px;">
+              <div style="font-size:12px;color:#64748b;margin-bottom:10px;">Questions? Contact Thavy in HR.</div>
+              <a href="https://t.me/thavytham" target="_blank" rel="noopener"
+                 style="display:flex;align-items:center;justify-content:space-between;padding:7px 12px;background:#059669;color:#fff;border-radius:8px;font-size:12px;font-weight:500;text-decoration:none;margin-bottom:6px;">
+                <span>Thavy on Telegram</span>
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              </a>
+              <a href="mailto:thavy.tham@icf-cambodia.com"
+                 style="display:flex;align-items:center;justify-content:space-between;padding:7px 12px;background:#f1f5f9;color:#475569;border:1px solid #e2e8f0;border-radius:8px;font-size:12px;font-weight:500;text-decoration:none;">
+                <span>Send an Email</span><span>→</span>
+              </a>
             </div>
           </div>
 
-          <!-- Request a Training -->
-          <div class="card" style="margin-bottom:14px;">
-            <h3 style="margin:0 0 8px;font-size:15px;">Request a Training</h3>
-            <p class="muted" style="margin:0 0 12px;font-size:13px;">Want to join a course or external training? See the process below.</p>
-            <a href="#training-process" class="btn btn--sm" style="width:100%;justify-content:space-between;"><span>I would like a training</span><span>&rarr;</span></a>
-          </div>
-
-          <!-- Learning Center -->
-          <div class="card">
-            <h3 style="margin:0 0 8px;font-size:15px;">Learning Center</h3>
-            <p class="muted" style="margin:0 0 12px;font-size:13px;">Online resources, leadership guides, APR center and more.</p>
-            <a class="btn btn--sm" href="https://cheery-raindrop-4c8283.netlify.app/" target="_blank" rel="noopener" style="width:100%;justify-content:space-between;"><span>Open Learning Center</span><span>&rarr;</span></a>
-          </div>
 
         </aside>
-      </div>
+      </div><!-- /row-2 -->
 
-      <!-- ════════════════════════════════════════════════════════
-           HIDDEN CONTENT — set display:none to display:block to restore
-           ════════════════════════════════════════════════════════ -->
-      <div style="display:none;" id="hidden-td-content">
-
-      <!-- Direct entry points to the Webhub -->
-      <div class="section-title"><h2>Jump into the Webhub</h2><a href="https://cheery-raindrop-4c8283.netlify.app/" target="_blank">All sections →</a></div>
-      <div class="qa-grid">
-        <a class="qa" href="https://cheery-raindrop-4c8283.netlify.app/#/develop" target="_blank">
-          <span class="qa__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></span>
-          <span><div class="qa__label">Develop People</div><div class="qa__sub">5 leader guides</div></span>
-        </a>
-        <a class="qa qa--green" href="https://cheery-raindrop-4c8283.netlify.app/#/framework" target="_blank">
-          <span class="qa__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></span>
-          <span><div class="qa__label">Staff Development Framework</div><div class="qa__sub">Heart · Head · Hands</div></span>
-        </a>
-        <a class="qa qa--purple" href="https://cheery-raindrop-4c8283.netlify.app/#/training" target="_blank">
-          <span class="qa__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>
-          <span><div class="qa__label">Training Directory</div><div class="qa__sub">Searchable catalog</div></span>
-        </a>
-        <a class="qa qa--amber" href="https://cheery-raindrop-4c8283.netlify.app/#/teaching" target="_blank">
-          <span class="qa__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
-          <span><div class="qa__label">Teaching Directory</div><div class="qa__sub">Sermons &amp; reflections</div></span>
-        </a>
-        <a class="qa qa--red" href="https://cheery-raindrop-4c8283.netlify.app/#/apr" target="_blank">
-          <span class="qa__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
-          <span><div class="qa__label">APR Center</div><div class="qa__sub">Performance review</div></span>
-        </a>
-        <a class="qa qa--slate" href="https://cheery-raindrop-4c8283.netlify.app/#/request" target="_blank">
-          <span class="qa__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
-          <span><div class="qa__label">Training Request</div><div class="qa__sub">5-step process</div></span>
-        </a>
-        <a class="qa qa--green" href="https://cheery-raindrop-4c8283.netlify.app/#/templates" target="_blank">
-          <span class="qa__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></span>
-          <span><div class="qa__label">Templates &amp; Forms</div><div class="qa__sub">IDP · APR · Coaching</div></span>
-        </a>
-        <a class="qa" href="https://cheery-raindrop-4c8283.netlify.app/#/departments" target="_blank">
-          <span class="qa__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>
-          <span><div class="qa__label">Departments &amp; Teams</div><div class="qa__sub">Per-team paths</div></span>
-        </a>
-        <a class="qa qa--red" href="https://cheery-raindrop-4c8283.netlify.app/#/devotionals" target="_blank">
-          <span class="qa__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
-          <span><div class="qa__label">Devotionals</div><div class="qa__sub">Heart pillar</div></span>
-        </a>
-        <a class="qa qa--purple" href="https://cheery-raindrop-4c8283.netlify.app/#/ai-assistant" target="_blank">
-          <span class="qa__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg></span>
-          <span><div class="qa__label">AI Assistant</div><div class="qa__sub">Phase 2 preview</div></span>
-        </a>
-        <a class="qa qa--slate" href="https://cheery-raindrop-4c8283.netlify.app/#/help" target="_blank">
-          <span class="qa__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
-          <span><div class="qa__label">Help &amp; Contacts</div><div class="qa__sub">Human Resources &amp; Staff Dev</div></span>
-        </a>
-        <a class="qa qa--amber" href="Resources%20Public/2_%20EMPLOYEE%20LIFE%20CYCLE/3_RETENTION%20FORM/Annual%20Performance%20Review/Guideline%20Performance%20Review.pdf" target="_blank">
-          <span class="qa__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></span>
-          <span><div class="qa__label">APR Guideline (PDF)</div><div class="qa__sub">Direct file</div></span>
-        </a>
-      </div>
-
-      <!-- Pillars -->
-      <div class="section-title" style="margin-top:28px;"><h2>The Three Pillars</h2><a href="https://cheery-raindrop-4c8283.netlify.app/#/framework" target="_blank">Full framework →</a></div>
-      <div class="dept-grid">
-        <a class="dept dept--red" href="https://cheery-raindrop-4c8283.netlify.app/#/devotionals" target="_blank">
-          <span class="dept__band"></span>
-          <span class="dept__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
-          <h3 class="dept__name">Heart</h3>
-          <p class="dept__desc">Spiritual formation, character, identity, integrity.</p>
-          <div class="dept__meta"><span class="dept__contact">Devotionals · Reflections</span><span class="dept__arrow">→</span></div>
-        </a>
-        <a class="dept dept--green" href="https://cheery-raindrop-4c8283.netlify.app/#/training" target="_blank">
-          <span class="dept__band"></span>
-          <span class="dept__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/></svg></span>
-          <h3 class="dept__name">Head</h3>
-          <p class="dept__desc">Knowledge, theory, frameworks, professional skills.</p>
-          <div class="dept__meta"><span class="dept__contact">Trainings · Teachings</span><span class="dept__arrow">→</span></div>
-        </a>
-        <a class="dept dept--amber" href="https://cheery-raindrop-4c8283.netlify.app/#/develop" target="_blank">
-          <span class="dept__band"></span>
-          <span class="dept__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
-          <h3 class="dept__name">Hands</h3>
-          <p class="dept__desc">Practice, application, coaching, feedback in the work.</p>
-          <div class="dept__meta"><span class="dept__contact">Develop People · APR</span><span class="dept__arrow">→</span></div>
-        </a>
-      </div>
-
-
-      <!-- Develop People: for leaders -->
-      <div class="section-title" style="margin-top:28px;"><h2>Develop People</h2><a href="https://cheery-raindrop-4c8283.netlify.app/#/develop" target="_blank">Full guide →</a></div>
-      <p style="color:var(--text-soft);font-size:14px;margin:-4px 0 16px;">For leaders — practical guidance to develop your staff well at every stage.</p>
-      <div class="card" style="padding:0;">
-        <div class="list">
-          <a class="list__item" href="https://cheery-raindrop-4c8283.netlify.app/#/develop" target="_blank">
-            <span class="list__icon" style="background:var(--blue-50);color:var(--blue-700);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></span>
-            <div class="list__text"><p class="list__title">I want to develop a staff member</p><p class="list__sub">Where to start, how to assess, choose focus areas, build a plan and follow through.</p></div>
-            <span class="list__arrow">→</span>
-          </a>
-          <a class="list__item" href="https://cheery-raindrop-4c8283.netlify.app/#/develop" target="_blank">
-            <span class="list__icon" style="background:var(--green-50);color:var(--green-600);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
-            <div class="list__text"><p class="list__title">I want to coach a staff member</p><p class="list__sub">A simple coaching rhythm using listening, growth and accountability questions.</p></div>
-            <span class="list__arrow">→</span>
-          </a>
-          <a class="list__item" href="https://cheery-raindrop-4c8283.netlify.app/#/develop" target="_blank">
-            <span class="list__icon" style="background:#fffbeb;color:#d97706;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
-            <div class="list__text"><p class="list__title">I want to give feedback</p><p class="list__sub">Clear, kind, specific and forward-looking — feedback as a gift.</p></div>
-            <span class="list__arrow">→</span>
-          </a>
-          <a class="list__item" href="https://cheery-raindrop-4c8283.netlify.app/#/develop" target="_blank">
-            <span class="list__icon" style="background:#fef2f2;color:#dc2626;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
-            <div class="list__text"><p class="list__title">I want to handle a difficult conversation</p><p class="list__sub">Prepare well, stay respectful and clear, and follow up.</p></div>
-            <span class="list__arrow">→</span>
-          </a>
-          <a class="list__item" href="https://cheery-raindrop-4c8283.netlify.app/#/develop" target="_blank">
-            <span class="list__icon" style="background:#f5f3ff;color:#7c3aed;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span>
-            <div class="list__text"><p class="list__title">I want to build a development plan</p><p class="list__sub">A 6–12 month plan with focus areas, goals, action steps and a review rhythm.</p></div>
-            <span class="list__arrow">→</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- Training Directory: from T&D Webhub -->
-      <div class="section-title" style="margin-top:28px;"><h2>Training Directory</h2><a href="https://cheery-raindrop-4c8283.netlify.app/#/training" target="_blank">Browse all →</a></div>
-      <p style="color:var(--text-soft);font-size:14px;margin:-4px 0 16px;">Available and upcoming trainings for ICF Cambodia staff. Contact HR to register.</p>
-      <div class="res-grid">
-
-        <article class="resource resource--purple">
-          <div class="resource__top"><span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></span><span class="chip chip--active">Free</span></div>
-          <h3 class="resource__title">Leadership Foundations</h3>
-          <p class="resource__desc">Core leadership principles for team leaders and emerging leaders — faith, character, and practical skill.</p>
-          <div class="resource__tags"><span class="chip">Team Leaders</span><span class="chip">6 weeks</span><span class="chip">ICF Center</span></div>
-          <div class="resource__actions"><a class="btn btn--primary btn--sm" href="https://cheery-raindrop-4c8283.netlify.app/#/training" target="_blank">View in T&amp;D Hub</a></div>
-        </article>
-
-        <article class="resource resource--green">
-          <div class="resource__top"><span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg></span><span class="chip chip--active">Free</span></div>
-          <h3 class="resource__title">Staff English Conversation Circle</h3>
-          <p class="resource__desc">Ongoing English practice sessions to build confidence in everyday work communication.</p>
-          <div class="resource__tags"><span class="chip">All Staff</span><span class="chip">Ongoing</span><span class="chip">ICF Center</span></div>
-          <div class="resource__actions"><a class="btn btn--primary btn--sm" href="https://cheery-raindrop-4c8283.netlify.app/#/training" target="_blank">View in T&amp;D Hub</a></div>
-        </article>
-
-        <article class="resource">
-          <div class="resource__top"><span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg></span><span class="chip chip--active">Free</span></div>
-          <h3 class="resource__title">AI Tools for Everyday Staff Work</h3>
-          <p class="resource__desc">Practical introduction to AI tools that save time in daily tasks — writing, planning, summarising.</p>
-          <div class="resource__tags"><span class="chip">All Staff</span><span class="chip">1 day</span><span class="chip">ICF Center</span></div>
-          <div class="resource__actions"><a class="btn btn--primary btn--sm" href="https://cheery-raindrop-4c8283.netlify.app/#/training" target="_blank">View in T&amp;D Hub</a></div>
-        </article>
-
-        <article class="resource resource--red">
-          <div class="resource__top"><span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span><span class="chip">Paid</span></div>
-          <h3 class="resource__title">Basic First Aid Certification</h3>
-          <p class="resource__desc">Certified first aid training with practical scenarios — CPR, wound care, emergency response.</p>
-          <div class="resource__tags"><span class="chip">All Staff</span><span class="chip">1–2 days</span><span class="chip">Phnom Penh</span></div>
-          <div class="resource__actions"><a class="btn btn--primary btn--sm" href="https://cheery-raindrop-4c8283.netlify.app/#/training" target="_blank">View in T&amp;D Hub</a></div>
-        </article>
-
-        <article class="resource resource--green">
-          <div class="resource__top"><span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg></span><span class="chip chip--active">Free</span></div>
-          <h3 class="resource__title">Kitchen &amp; Food Safety Essentials</h3>
-          <p class="resource__desc">Safe food handling, hygiene, and kitchen safety standards for ICF kitchen staff.</p>
-          <div class="resource__tags"><span class="chip">Kitchen Team</span><span class="chip">Half day</span><span class="chip">ICF Kitchen</span></div>
-          <div class="resource__actions"><a class="btn btn--primary btn--sm" href="https://cheery-raindrop-4c8283.netlify.app/#/training" target="_blank">View in T&amp;D Hub</a></div>
-        </article>
-
-        <article class="resource resource--red">
-          <div class="resource__top"><span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><span class="chip chip--active">Free</span></div>
-          <h3 class="resource__title">Child Protection Fundamentals</h3>
-          <p class="resource__desc">Core training on keeping children safe — ICF policy, warning signs, reporting responsibilities.</p>
-          <div class="resource__tags"><span class="chip">All Staff</span><span class="chip">Half day</span><span class="chip">ICF Center</span></div>
-          <div class="resource__actions"><a class="btn btn--primary btn--sm" href="https://cheery-raindrop-4c8283.netlify.app/#/training" target="_blank">View in T&amp;D Hub</a></div>
-        </article>
-
-        <article class="resource resource--purple">
-          <div class="resource__top"><span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span class="chip chip--active">Free</span></div>
-          <h3 class="resource__title">Coaching Basics (Online Course)</h3>
-          <p class="resource__desc">Self-paced online course covering core coaching skills for team leaders — listening, questions, feedback.</p>
-          <div class="resource__tags"><span class="chip">Team Leaders</span><span class="chip">~6 hours</span><span class="chip">Online</span></div>
-          <div class="resource__actions"><a class="btn btn--primary btn--sm" href="https://cheery-raindrop-4c8283.netlify.app/#/training" target="_blank">View in T&amp;D Hub</a></div>
-        </article>
-
-        <article class="resource resource--amber">
-          <div class="resource__top"><span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/></svg></span><span class="chip">Paid</span></div>
-          <h3 class="resource__title">Finance Basics (Khmer)</h3>
-          <p class="resource__desc">Foundational personal and organisational finance training, taught in Khmer for all staff.</p>
-          <div class="resource__tags"><span class="chip">All Staff</span><span class="chip">4 weeks</span><span class="chip">Phnom Penh</span></div>
-          <div class="resource__actions"><a class="btn btn--primary btn--sm" href="https://cheery-raindrop-4c8283.netlify.app/#/training" target="_blank">View in T&amp;D Hub</a></div>
-        </article>
-
-        <article class="resource">
-          <div class="resource__top"><span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></span><span class="chip chip--active">Free</span></div>
-          <h3 class="resource__title">YouTube: Conflict Management Series</h3>
-          <p class="resource__desc">Curated YouTube series on managing conflict at work — practical, short-form, self-paced.</p>
-          <div class="resource__tags"><span class="chip">Team Leaders</span><span class="chip">2–3 hours</span><span class="chip">Online</span></div>
-          <div class="resource__actions"><a class="btn btn--primary btn--sm" href="https://cheery-raindrop-4c8283.netlify.app/#/training" target="_blank">View in T&amp;D Hub</a></div>
-        </article>
-
-        <article class="resource resource--amber">
-          <div class="resource__top"><span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg></span><span class="chip">Sponsored</span></div>
-          <h3 class="resource__title">Overseas Leadership Cohort</h3>
-          <p class="resource__desc">Intensive overseas leadership immersion program for department leaders — sponsored by ICF.</p>
-          <div class="resource__tags"><span class="chip">Dept Leaders</span><span class="chip">1–2 weeks</span><span class="chip">Overseas</span></div>
-          <div class="resource__actions"><a class="btn btn--primary btn--sm" href="https://cheery-raindrop-4c8283.netlify.app/#/training" target="_blank">View in T&amp;D Hub</a></div>
-        </article>
-
-        <article class="resource">
-          <div class="resource__top"><span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span><span class="chip chip--active">Free</span></div>
-          <h3 class="resource__title">Computer Skills — Basic</h3>
-          <p class="resource__desc">Foundational computer literacy — files, email, Google Workspace — for staff new to digital tools.</p>
-          <div class="resource__tags"><span class="chip">All Staff</span><span class="chip">4 sessions</span><span class="chip">ICF Center</span></div>
-          <div class="resource__actions"><a class="btn btn--primary btn--sm" href="https://cheery-raindrop-4c8283.netlify.app/#/training" target="_blank">View in T&amp;D Hub</a></div>
-        </article>
-
-        <article class="resource resource--red">
-          <div class="resource__top"><span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><span class="chip chip--active">Free</span></div>
-          <h3 class="resource__title">Security Awareness for Property Teams</h3>
-          <p class="resource__desc">Site security principles, threat awareness, and incident response for ICF property and security staff.</p>
-          <div class="resource__tags"><span class="chip">Security Team</span><span class="chip">Half day</span><span class="chip">ICF Center</span></div>
-          <div class="resource__actions"><a class="btn btn--primary btn--sm" href="https://cheery-raindrop-4c8283.netlify.app/#/training" target="_blank">View in T&amp;D Hub</a></div>
-        </article>
-
-      </div>
-
-      <!-- Teaching Library: from T&D Webhub -->
-      <div class="section-title" style="margin-top:28px;"><h2>Teaching Library</h2><a href="https://cheery-raindrop-4c8283.netlify.app/#/teaching" target="_blank">Browse all →</a></div>
-      <p style="color:var(--text-soft);font-size:14px;margin:-4px 0 16px;">Internal presentations and inputs used in staff sessions, organized by topic.</p>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;">
-
-        <div class="card" style="padding:14px 16px;">
-          <div style="font-size:11px;font-weight:500;color:var(--blue-600);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;">Communication Skills</div>
-          <div style="display:flex;flex-direction:column;gap:2px;">
-            <a href="https://cheery-raindrop-4c8283.netlify.app/#/teaching" target="_blank" style="font-size:13px;color:var(--text);text-decoration:none;display:flex;align-items:flex-start;gap:7px;padding:5px 0;border-bottom:1px solid var(--border);line-height:1.4;"><span style="width:5px;height:5px;min-width:5px;border-radius:50%;background:var(--blue-500);margin-top:5px;"></span>Communication Series — Master Deck</a>
-            <a href="https://cheery-raindrop-4c8283.netlify.app/#/teaching" target="_blank" style="font-size:13px;color:var(--text);text-decoration:none;display:flex;align-items:flex-start;gap:7px;padding:5px 0;border-bottom:1px solid var(--border);line-height:1.4;"><span style="width:5px;height:5px;min-width:5px;border-radius:50%;background:var(--blue-500);margin-top:5px;"></span>ICF Communication Tools</a>
-            <a href="https://cheery-raindrop-4c8283.netlify.app/#/teaching" target="_blank" style="font-size:13px;color:var(--text);text-decoration:none;display:flex;align-items:flex-start;gap:7px;padding:5px 0;border-bottom:1px solid var(--border);line-height:1.4;"><span style="width:5px;height:5px;min-width:5px;border-radius:50%;background:var(--blue-500);margin-top:5px;"></span>Diversity in Communication</a>
-            <a href="https://cheery-raindrop-4c8283.netlify.app/#/teaching" target="_blank" style="font-size:13px;color:var(--text);text-decoration:none;display:flex;align-items:flex-start;gap:7px;padding:5px 0;line-height:1.4;"><span style="width:5px;height:5px;min-width:5px;border-radius:50%;background:var(--blue-500);margin-top:5px;"></span>Conflict Resolution Basics</a>
-          </div>
-        </div>
-
-        <div class="card" style="padding:14px 16px;">
-          <div style="font-size:11px;font-weight:500;color:var(--green-600);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;">Workplace Culture</div>
-          <div style="display:flex;flex-direction:column;gap:2px;">
-            <a href="https://cheery-raindrop-4c8283.netlify.app/#/teaching" target="_blank" style="font-size:13px;color:var(--text);text-decoration:none;display:flex;align-items:flex-start;gap:7px;padding:5px 0;border-bottom:1px solid var(--border);line-height:1.4;"><span style="width:5px;height:5px;min-width:5px;border-radius:50%;background:var(--green-500);margin-top:5px;"></span>Happy@Work — Culture Series</a>
-            <a href="https://cheery-raindrop-4c8283.netlify.app/#/teaching" target="_blank" style="font-size:13px;color:var(--text);text-decoration:none;display:flex;align-items:flex-start;gap:7px;padding:5px 0;border-bottom:1px solid var(--border);line-height:1.4;"><span style="width:5px;height:5px;min-width:5px;border-radius:50%;background:var(--green-500);margin-top:5px;"></span>Trustful Relationships</a>
-            <a href="https://cheery-raindrop-4c8283.netlify.app/#/teaching" target="_blank" style="font-size:13px;color:var(--text);text-decoration:none;display:flex;align-items:flex-start;gap:7px;padding:5px 0;border-bottom:1px solid var(--border);line-height:1.4;"><span style="width:5px;height:5px;min-width:5px;border-radius:50%;background:var(--green-500);margin-top:5px;"></span>Authentic Honesty</a>
-            <a href="https://cheery-raindrop-4c8283.netlify.app/#/teaching" target="_blank" style="font-size:13px;color:var(--text);text-decoration:none;display:flex;align-items:flex-start;gap:7px;padding:5px 0;border-bottom:1px solid var(--border);line-height:1.4;"><span style="width:5px;height:5px;min-width:5px;border-radius:50%;background:var(--green-500);margin-top:5px;"></span>Confidentiality at Work</a>
-            <a href="https://cheery-raindrop-4c8283.netlify.app/#/teaching" target="_blank" style="font-size:13px;color:var(--text);text-decoration:none;display:flex;align-items:flex-start;gap:7px;padding:5px 0;line-height:1.4;"><span style="width:5px;height:5px;min-width:5px;border-radius:50%;background:var(--green-500);margin-top:5px;"></span>No Gossip — Choosing the High Road</a>
-          </div>
-        </div>
-
-        <div class="card" style="padding:14px 16px;">
-          <div style="font-size:11px;font-weight:500;color:var(--purple-600,#7c3aed);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;">Leadership Development</div>
-          <div style="display:flex;flex-direction:column;gap:2px;">
-            <a href="https://cheery-raindrop-4c8283.netlify.app/#/teaching" target="_blank" style="font-size:13px;color:var(--text);text-decoration:none;display:flex;align-items:flex-start;gap:7px;padding:5px 0;border-bottom:1px solid var(--border);line-height:1.4;"><span style="width:5px;height:5px;min-width:5px;border-radius:50%;background:#7c3aed;margin-top:5px;"></span>Value &amp; Respect One Another</a>
-            <a href="https://cheery-raindrop-4c8283.netlify.app/#/teaching" target="_blank" style="font-size:13px;color:var(--text);text-decoration:none;display:flex;align-items:flex-start;gap:7px;padding:5px 0;border-bottom:1px solid var(--border);line-height:1.4;"><span style="width:5px;height:5px;min-width:5px;border-radius:50%;background:#7c3aed;margin-top:5px;"></span>Leadership Styles — Classroom Part 2</a>
-            <a href="https://cheery-raindrop-4c8283.netlify.app/#/teaching" target="_blank" style="font-size:13px;color:var(--text);text-decoration:none;display:flex;align-items:flex-start;gap:7px;padding:5px 0;border-bottom:1px solid var(--border);line-height:1.4;"><span style="width:5px;height:5px;min-width:5px;border-radius:50%;background:#7c3aed;margin-top:5px;"></span>Leading by Example — Inspiring Leadership</a>
-            <a href="https://cheery-raindrop-4c8283.netlify.app/#/teaching" target="_blank" style="font-size:13px;color:var(--text);text-decoration:none;display:flex;align-items:flex-start;gap:7px;padding:5px 0;border-bottom:1px solid var(--border);line-height:1.4;"><span style="width:5px;height:5px;min-width:5px;border-radius:50%;background:#7c3aed;margin-top:5px;"></span>Delegate or Die</a>
-            <a href="https://cheery-raindrop-4c8283.netlify.app/#/teaching" target="_blank" style="font-size:13px;color:var(--text);text-decoration:none;display:flex;align-items:flex-start;gap:7px;padding:5px 0;line-height:1.4;"><span style="width:5px;height:5px;min-width:5px;border-radius:50%;background:#7c3aed;margin-top:5px;"></span>Trusting Teams — Script</a>
-          </div>
-        </div>
-
-        <div class="card" style="padding:14px 16px;">
-          <div style="font-size:11px;font-weight:500;color:var(--amber-600,#d97706);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;">Life Lessons &amp; Personal Growth</div>
-          <div style="display:flex;flex-direction:column;gap:2px;">
-            <a href="https://cheery-raindrop-4c8283.netlify.app/#/teaching" target="_blank" style="font-size:13px;color:var(--text);text-decoration:none;display:flex;align-items:flex-start;gap:7px;padding:5px 0;border-bottom:1px solid var(--border);line-height:1.4;"><span style="width:5px;height:5px;min-width:5px;border-radius:50%;background:#d97706;margin-top:5px;"></span>Problem Solving — Part 1</a>
-            <a href="https://cheery-raindrop-4c8283.netlify.app/#/teaching" target="_blank" style="font-size:13px;color:var(--text);text-decoration:none;display:flex;align-items:flex-start;gap:7px;padding:5px 0;border-bottom:1px solid var(--border);line-height:1.4;"><span style="width:5px;height:5px;min-width:5px;border-radius:50%;background:#d97706;margin-top:5px;"></span>Problem Solving — Part 2</a>
-            <a href="https://cheery-raindrop-4c8283.netlify.app/#/teaching" target="_blank" style="font-size:13px;color:var(--text);text-decoration:none;display:flex;align-items:flex-start;gap:7px;padding:5px 0;border-bottom:1px solid var(--border);line-height:1.4;"><span style="width:5px;height:5px;min-width:5px;border-radius:50%;background:#d97706;margin-top:5px;"></span>Money Boss for New Staff</a>
-            <a href="https://cheery-raindrop-4c8283.netlify.app/#/teaching" target="_blank" style="font-size:13px;color:var(--text);text-decoration:none;display:flex;align-items:flex-start;gap:7px;padding:5px 0;line-height:1.4;"><span style="width:5px;height:5px;min-width:5px;border-radius:50%;background:#d97706;margin-top:5px;"></span>Break the Silence — Hard Conversations</a>
-          </div>
-        </div>
-
-        <div class="card" style="padding:14px 16px;">
-          <div style="font-size:11px;font-weight:500;color:#dc2626;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;">Faith &amp; Spiritual</div>
-          <div style="display:flex;flex-direction:column;gap:2px;">
-            <a href="https://cheery-raindrop-4c8283.netlify.app/#/teaching" target="_blank" style="font-size:13px;color:var(--text);text-decoration:none;display:flex;align-items:flex-start;gap:7px;padding:5px 0;border-bottom:1px solid var(--border);line-height:1.4;"><span style="width:5px;height:5px;min-width:5px;border-radius:50%;background:#dc2626;margin-top:5px;"></span>Fearless and Faithful — Men's Discovery</a>
-            <a href="https://cheery-raindrop-4c8283.netlify.app/#/teaching" target="_blank" style="font-size:13px;color:var(--text);text-decoration:none;display:flex;align-items:flex-start;gap:7px;padding:5px 0;line-height:1.4;"><span style="width:5px;height:5px;min-width:5px;border-radius:50%;background:#dc2626;margin-top:5px;"></span>Light of the World — Input</a>
-          </div>
-        </div>
-
-        <div class="card" style="padding:14px 16px;">
-          <div style="font-size:11px;font-weight:500;color:var(--text-soft);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;">Organization &amp; Department Updates</div>
-          <div style="display:flex;flex-direction:column;gap:2px;">
-            <a href="https://cheery-raindrop-4c8283.netlify.app/#/teaching" target="_blank" style="font-size:13px;color:var(--text);text-decoration:none;display:flex;align-items:flex-start;gap:7px;padding:5px 0;border-bottom:1px solid var(--border);line-height:1.4;"><span style="width:5px;height:5px;min-width:5px;border-radius:50%;background:var(--text-soft);margin-top:5px;"></span>Social Strategy 2024 — All Hands</a>
-            <a href="https://cheery-raindrop-4c8283.netlify.app/#/teaching" target="_blank" style="font-size:13px;color:var(--text);text-decoration:none;display:flex;align-items:flex-start;gap:7px;padding:5px 0;border-bottom:1px solid var(--border);line-height:1.4;"><span style="width:5px;height:5px;min-width:5px;border-radius:50%;background:var(--text-soft);margin-top:5px;"></span>Leadership Transition — Social</a>
-            <a href="https://cheery-raindrop-4c8283.netlify.app/#/teaching" target="_blank" style="font-size:13px;color:var(--text);text-decoration:none;display:flex;align-items:flex-start;gap:7px;padding:5px 0;line-height:1.4;"><span style="width:5px;height:5px;min-width:5px;border-radius:50%;background:var(--text-soft);margin-top:5px;"></span>Developing the Next Generation through EDU</a>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- APR Center -->
-      <div class="section-title" style="margin-top:28px;"><h2>APR Center</h2><a href="https://cheery-raindrop-4c8283.netlify.app/#/apr" target="_blank">Full APR guide →</a></div>
-      <p style="color:var(--text-soft);font-size:14px;margin:-4px 0 16px;">The Annual Performance Review — a yearly conversation to celebrate progress, name growth, and plan the next season.</p>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;margin-bottom:16px;">
-        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:13px;display:flex;gap:10px;align-items:flex-start;"><span style="width:24px;height:24px;min-width:24px;border-radius:50%;background:#2563eb;color:#fff;font-size:12px;font-weight:500;display:flex;align-items:center;justify-content:center;">1</span><div><div style="font-weight:500;font-size:13px;margin-bottom:3px;">Schedule</div><div style="font-size:12px;color:var(--text-soft);line-height:1.4;">Leader schedules the APR conversation 2 weeks ahead.</div></div></div>
-        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:13px;display:flex;gap:10px;align-items:flex-start;"><span style="width:24px;height:24px;min-width:24px;border-radius:50%;background:#2563eb;color:#fff;font-size:12px;font-weight:500;display:flex;align-items:center;justify-content:center;">2</span><div><div style="font-weight:500;font-size:13px;margin-bottom:3px;">Self-reflection</div><div style="font-size:12px;color:var(--text-soft);line-height:1.4;">Staff fills the Self-Reflection sheet.</div></div></div>
-        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:13px;display:flex;gap:10px;align-items:flex-start;"><span style="width:24px;height:24px;min-width:24px;border-radius:50%;background:#2563eb;color:#fff;font-size:12px;font-weight:500;display:flex;align-items:center;justify-content:center;">3</span><div><div style="font-weight:500;font-size:13px;margin-bottom:3px;">Leader review</div><div style="font-size:12px;color:var(--text-soft);line-height:1.4;">Leader fills the Manager Review template.</div></div></div>
-        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:13px;display:flex;gap:10px;align-items:flex-start;"><span style="width:24px;height:24px;min-width:24px;border-radius:50%;background:#2563eb;color:#fff;font-size:12px;font-weight:500;display:flex;align-items:center;justify-content:center;">4</span><div><div style="font-weight:500;font-size:13px;margin-bottom:3px;">Conversation</div><div style="font-size:12px;color:var(--text-soft);line-height:1.4;">60–90 min: review the year, hear each other, set 2–3 goals.</div></div></div>
-        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:13px;display:flex;gap:10px;align-items:flex-start;"><span style="width:24px;height:24px;min-width:24px;border-radius:50%;background:#2563eb;color:#fff;font-size:12px;font-weight:500;display:flex;align-items:center;justify-content:center;">5</span><div><div style="font-weight:500;font-size:13px;margin-bottom:3px;">Plan</div><div style="font-size:12px;color:var(--text-soft);line-height:1.4;">Together, create or update the Individual Development Plan.</div></div></div>
-        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:13px;display:flex;gap:10px;align-items:flex-start;"><span style="width:24px;height:24px;min-width:24px;border-radius:50%;background:#2563eb;color:#fff;font-size:12px;font-weight:500;display:flex;align-items:center;justify-content:center;">6</span><div><div style="font-weight:500;font-size:13px;margin-bottom:3px;">Follow-up</div><div style="font-size:12px;color:var(--text-soft);line-height:1.4;">Monthly check-ins through the year.</div></div></div>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-bottom:16px;">
-        <div class="card" style="padding:14px 16px;">
-          <div style="font-size:11px;font-weight:500;color:var(--blue-600);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;">Leader Guide</div>
-          <ul style="margin:0;padding-left:16px;display:flex;flex-direction:column;gap:5px;font-size:13px;color:var(--text);line-height:1.4;">
-            <li>Read the staff's self-reflection beforehand.</li>
-            <li>Open with care and specific encouragement.</li>
-            <li>Be clear AND kind on areas to grow.</li>
-            <li>Listen more than you speak in the first half.</li>
-            <li>Agree on 2–3 focus areas, not 10.</li>
-            <li>End with prayer or blessing if appropriate.</li>
-          </ul>
-        </div>
-        <div class="card" style="padding:14px 16px;">
-          <div style="font-size:11px;font-weight:500;color:var(--green-600);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;">Staff Self-Reflection</div>
-          <ul style="margin:0;padding-left:16px;display:flex;flex-direction:column;gap:5px;font-size:13px;color:var(--text);line-height:1.4;">
-            <li>What am I most proud of this year?</li>
-            <li>Where did I grow most?</li>
-            <li>Where do I feel stuck?</li>
-            <li>What do I want to learn next?</li>
-            <li>What support would help me?</li>
-          </ul>
-        </div>
-      </div>
-      <div class="card" style="padding:0;">
-        <div class="list">
-          <a class="list__item" href="https://cheery-raindrop-4c8283.netlify.app/#/apr" target="_blank"><span class="list__icon" style="background:var(--blue-50);color:var(--blue-700);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span><div class="list__text"><p class="list__title">APR Form</p><p class="list__sub">Annual Performance Review form for staff &amp; leaders.</p></div><span class="list__arrow">→</span></a>
-          <a class="list__item" href="https://cheery-raindrop-4c8283.netlify.app/#/apr" target="_blank"><span class="list__icon" style="background:var(--green-50);color:var(--green-600);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span><div class="list__text"><p class="list__title">Staff Self-Reflection (APR)</p><p class="list__sub">Self-reflection sheet for staff before their APR.</p></div><span class="list__arrow">→</span></a>
-          <a class="list__item" href="https://cheery-raindrop-4c8283.netlify.app/#/apr" target="_blank"><span class="list__icon" style="background:#fffbeb;color:#d97706;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span><div class="list__text"><p class="list__title">Manager Review (APR)</p><p class="list__sub">Leader review template used in APR conversations.</p></div><span class="list__arrow">→</span></a>
-          <a class="list__item" href="https://cheery-raindrop-4c8283.netlify.app/#/apr" target="_blank"><span class="list__icon" style="background:#f5f3ff;color:#7c3aed;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span><div class="list__text"><p class="list__title">Goal Setting Template</p><p class="list__sub">Simple goal setting template using clear focus areas.</p></div><span class="list__arrow">→</span></a>
-        </div>
-      </div>
-
-      <!-- Training Request -->
-      <div class="section-title" style="margin-top:28px;"><h2>Training Request</h2><a href="https://cheery-raindrop-4c8283.netlify.app/#/request" target="_blank">Full guide →</a></div>
-      <p style="color:var(--text-soft);font-size:14px;margin:-4px 0 16px;">How to request training support — a simple 5-step process.</p>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;margin-bottom:16px;">
-        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:13px;display:flex;gap:10px;align-items:flex-start;"><span style="width:24px;height:24px;min-width:24px;border-radius:50%;background:#2563eb;color:#fff;font-size:12px;font-weight:500;display:flex;align-items:center;justify-content:center;">1</span><div><div style="font-weight:500;font-size:13px;margin-bottom:3px;">Talk to your Leader</div><div style="font-size:12px;color:var(--text-soft);line-height:1.4;">Discuss what you'd like to learn and why it matters for your work.</div></div></div>
-        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:13px;display:flex;gap:10px;align-items:flex-start;"><span style="width:24px;height:24px;min-width:24px;border-radius:50%;background:#2563eb;color:#fff;font-size:12px;font-weight:500;display:flex;align-items:center;justify-content:center;">2</span><div><div style="font-weight:500;font-size:13px;margin-bottom:3px;">Check Available Options</div><div style="font-size:12px;color:var(--text-soft);line-height:1.4;">Look in the Training Directory for matching options.</div></div></div>
-        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:13px;display:flex;gap:10px;align-items:flex-start;"><span style="width:24px;height:24px;min-width:24px;border-radius:50%;background:#2563eb;color:#fff;font-size:12px;font-weight:500;display:flex;align-items:center;justify-content:center;">3</span><div><div style="font-weight:500;font-size:13px;margin-bottom:3px;">Fill the Form</div><div style="font-size:12px;color:var(--text-soft);line-height:1.4;">Use the Training Request Form — include the cost, time and value.</div></div></div>
-        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:13px;display:flex;gap:10px;align-items:flex-start;"><span style="width:24px;height:24px;min-width:24px;border-radius:50%;background:#2563eb;color:#fff;font-size:12px;font-weight:500;display:flex;align-items:center;justify-content:center;">4</span><div><div style="font-weight:500;font-size:13px;margin-bottom:3px;">Wait for Approval</div><div style="font-size:12px;color:var(--text-soft);line-height:1.4;">Your leader and HR will review the request together.</div></div></div>
-        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:13px;display:flex;gap:10px;align-items:flex-start;"><span style="width:24px;height:24px;min-width:24px;border-radius:50%;background:#2563eb;color:#fff;font-size:12px;font-weight:500;display:flex;align-items:center;justify-content:center;">5</span><div><div style="font-weight:500;font-size:13px;margin-bottom:3px;">Prepare for Training</div><div style="font-size:12px;color:var(--text-soft);line-height:1.4;">Once approved, plan handovers and prepare to apply what you learn.</div></div></div>
-      </div>
-      <div style="margin-bottom:8px;"><a class="btn btn--primary" href="https://cheery-raindrop-4c8283.netlify.app/#/templates" target="_blank">Open Training Request Form →</a></div>
-
-      <!-- Templates & Forms -->
-      <div class="section-title" style="margin-top:28px;"><h2>Templates &amp; Forms</h2><a href="https://cheery-raindrop-4c8283.netlify.app/#/templates" target="_blank">Browse all →</a></div>
-      <p style="color:var(--text-soft);font-size:14px;margin:-4px 0 16px;">15 templates for development, APR, coaching, feedback, meetings, onboarding and HR.</p>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;">
-        <div class="card" style="padding:14px 16px;">
-          <div style="font-size:11px;font-weight:500;color:var(--blue-600);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;">Staff Development</div>
-          <a href="https://cheery-raindrop-4c8283.netlify.app/#/templates" target="_blank" style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--text);text-decoration:none;"><span style="font-size:10px;font-weight:500;background:#dbeafe;color:#1d4ed8;padding:2px 5px;border-radius:4px;flex-shrink:0;">DOCX</span>Individual Development Plan (IDP)</a>
-          <a href="https://cheery-raindrop-4c8283.netlify.app/#/templates" target="_blank" style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--text);text-decoration:none;"><span style="font-size:10px;font-weight:500;background:#fce7f3;color:#be185d;padding:2px 5px;border-radius:4px;flex-shrink:0;">PDF</span>Reflection Guide</a>
-          <a href="https://cheery-raindrop-4c8283.netlify.app/#/templates" target="_blank" style="display:flex;align-items:center;gap:8px;padding:6px 0;font-size:13px;color:var(--text);text-decoration:none;"><span style="font-size:10px;font-weight:500;background:#d1fae5;color:#065f46;padding:2px 5px;border-radius:4px;flex-shrink:0;">XLSX</span>Progress Tracker</a>
-        </div>
-        <div class="card" style="padding:14px 16px;">
-          <div style="font-size:11px;font-weight:500;color:#d97706;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;">APR</div>
-          <a href="https://cheery-raindrop-4c8283.netlify.app/#/templates" target="_blank" style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--text);text-decoration:none;"><span style="font-size:10px;font-weight:500;background:#dbeafe;color:#1d4ed8;padding:2px 5px;border-radius:4px;flex-shrink:0;">DOCX</span>APR Form</a>
-          <a href="https://cheery-raindrop-4c8283.netlify.app/#/templates" target="_blank" style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--text);text-decoration:none;"><span style="font-size:10px;font-weight:500;background:#dbeafe;color:#1d4ed8;padding:2px 5px;border-radius:4px;flex-shrink:0;">DOCX</span>Staff Self-Reflection (APR)</a>
-          <a href="https://cheery-raindrop-4c8283.netlify.app/#/templates" target="_blank" style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--text);text-decoration:none;"><span style="font-size:10px;font-weight:500;background:#dbeafe;color:#1d4ed8;padding:2px 5px;border-radius:4px;flex-shrink:0;">DOCX</span>Manager Review (APR)</a>
-          <a href="https://cheery-raindrop-4c8283.netlify.app/#/templates" target="_blank" style="display:flex;align-items:center;gap:8px;padding:6px 0;font-size:13px;color:var(--text);text-decoration:none;"><span style="font-size:10px;font-weight:500;background:#dbeafe;color:#1d4ed8;padding:2px 5px;border-radius:4px;flex-shrink:0;">DOCX</span>Goal Setting Template</a>
-        </div>
-        <div class="card" style="padding:14px 16px;">
-          <div style="font-size:11px;font-weight:500;color:var(--green-600);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;">Coaching &amp; Feedback</div>
-          <a href="https://cheery-raindrop-4c8283.netlify.app/#/templates" target="_blank" style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--text);text-decoration:none;"><span style="font-size:10px;font-weight:500;background:#fce7f3;color:#be185d;padding:2px 5px;border-radius:4px;flex-shrink:0;">PDF</span>Coaching Conversation Guide</a>
-          <a href="https://cheery-raindrop-4c8283.netlify.app/#/templates" target="_blank" style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--text);text-decoration:none;"><span style="font-size:10px;font-weight:500;background:#dbeafe;color:#1d4ed8;padding:2px 5px;border-radius:4px;flex-shrink:0;">DOCX</span>Feedback Template</a>
-          <a href="https://cheery-raindrop-4c8283.netlify.app/#/templates" target="_blank" style="display:flex;align-items:center;gap:8px;padding:6px 0;font-size:13px;color:var(--text);text-decoration:none;"><span style="font-size:10px;font-weight:500;background:#ede9fe;color:#6d28d9;padding:2px 5px;border-radius:4px;flex-shrink:0;">FORM</span>Training Request Form</a>
-        </div>
-        <div class="card" style="padding:14px 16px;">
-          <div style="font-size:11px;font-weight:500;color:var(--text-soft);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;">Meetings &amp; Onboarding</div>
-          <a href="https://cheery-raindrop-4c8283.netlify.app/#/templates" target="_blank" style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--text);text-decoration:none;"><span style="font-size:10px;font-weight:500;background:#dbeafe;color:#1d4ed8;padding:2px 5px;border-radius:4px;flex-shrink:0;">DOCX</span>Meeting Template</a>
-          <a href="https://cheery-raindrop-4c8283.netlify.app/#/templates" target="_blank" style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--text);text-decoration:none;"><span style="font-size:10px;font-weight:500;background:#dbeafe;color:#1d4ed8;padding:2px 5px;border-radius:4px;flex-shrink:0;">DOCX</span>Onboarding Checklist (30/60/90 days)</a>
-          <a href="https://cheery-raindrop-4c8283.netlify.app/#/templates" target="_blank" style="display:flex;align-items:center;gap:8px;padding:6px 0;font-size:13px;color:var(--text);text-decoration:none;"><span style="font-size:10px;font-weight:500;background:#dbeafe;color:#1d4ed8;padding:2px 5px;border-radius:4px;flex-shrink:0;">DOCX</span>Team Devotional Template</a>
-        </div>
-        <div class="card" style="padding:14px 16px;">
-          <div style="font-size:11px;font-weight:500;color:#dc2626;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;">HR &amp; Performance</div>
-          <a href="https://cheery-raindrop-4c8283.netlify.app/#/templates" target="_blank" style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--text);text-decoration:none;"><span style="font-size:10px;font-weight:500;background:#fce7f3;color:#be185d;padding:2px 5px;border-radius:4px;flex-shrink:0;">PDF</span>Warning Process Guide</a>
-          <a href="https://cheery-raindrop-4c8283.netlify.app/#/templates" target="_blank" style="display:flex;align-items:center;gap:8px;padding:6px 0;font-size:13px;color:var(--text);text-decoration:none;"><span style="font-size:10px;font-weight:500;background:#dbeafe;color:#1d4ed8;padding:2px 5px;border-radius:4px;flex-shrink:0;">DOCX</span>Performance Improvement Plan (PIP)</a>
-        </div>
-      </div>
-
-      <!-- AKAS HRIS -->
-      <div class="section-title" style="margin-top:28px;"><h2>AKAS HRIS · Onboarding Videos</h2></div>
-      <div class="card" style="padding:0;">
-        <div class="list">
-          <a class="list__item" href="Resources%20Public/5_AKAS-HRIS/Akas_Onboarding_Video_English.mov" target="_blank"><span class="list__icon" style="background:var(--blue-50);color:var(--blue-700);"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><div class="list__text"><p class="list__title">AKAS Onboarding · English</p><p class="list__sub">Video walkthrough of the HRIS system</p></div><span class="list__arrow">→</span></a>
-          <a class="list__item" href="Resources%20Public/5_AKAS-HRIS/Akas_Onboarding_Video_Khmer.mp4" target="_blank"><span class="list__icon" style="background:var(--green-50);color:var(--green-600);"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><div class="list__text"><p class="list__title">AKAS Onboarding · ភាសាខ្មែរ</p><p class="list__sub">Khmer-language video</p></div><span class="list__arrow">→</span></a>
-        </div>
-      </div>
-
-      <!-- English Class Program -->
-      <div class="section-title" style="margin-top:28px;"><h2>English Class Program</h2></div>
-      <div class="res-grid">
-        <article class="resource">
-          <div class="resource__top"><span class="resource__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg></span><span class="chip chip--active">Active</span></div>
-          <h3 class="resource__title">Staff Development · English Class Program</h3>
-          <p class="resource__desc">Internal English learning program for staff. Details, eligibility, sign-up.</p>
-          <div class="resource__actions"><a class="btn btn--primary btn--sm" href="Resources%20Public/8_ENGLSIH%20CLASS%20PROGRAM/HR_Staff%20Development_English%20Class%20Program.pdf" target="_blank">Open</a></div>
-        </article>
-      </div>
-
-      </div><!-- /hidden-td-content -->
-
-    </div>
+    </div><!-- /container -->
   </main>
 </div>
 
+<!-- Mobile nav -->
 <nav class="mobilenav">
   <div class="mobilenav__row">
     <a class="mobilenav__btn" href="index.html">
@@ -690,10 +214,26 @@
       <a class="nav__item" href="https://drive.google.com/drive/folders/0APPpb9f8ObGWUk9PVA" target="_blank" rel="noopener"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 3h7l6.5 11.5-3 5.5h-14l-3-5.5z"/><path d="M8.5 3 15 14.5M2 14.5h20"/></svg></span>ICF Public Shared Drives</a>
       <a class="nav__item" href="about.html#open-fullchart"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><line x1="17" y1="17" x2="17" y2="21"/><line x1="17" y1="17" x2="21" y2="17"/></svg></span>Org Chart</a>
       <a class="nav__item" href="contacts.html"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Staff Contacts</a>
-      <a class="nav__item" href="https://drive.google.com/drive/u/0/home" target="_blank" rel="noopener"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span>Google Drive</a><!-- HONOR_A_COLLEAGUE: removed -->
     </nav>
   </div>
-</div><script src="assets/app.js?v=20260722b"></script>
+</div>
+
+<script src="assets/app.js?v=20260722b"></script>
+
+<!-- ── Training Hub: Google Sheet config ───────────────────────────────────
+     Setup steps:
+     1. Create a new Google Sheet and import the training-content.csv file
+        (File → Import → Upload → Replace current sheet)
+     2. Make it public: Share → "Anyone with the link" → Viewer
+     3. Copy the Sheet ID from the URL:
+        docs.google.com/spreadsheets/d/ *** THIS PART *** /edit
+     4. Paste the Sheet ID below and remove the comment
+──────────────────────────────────────────────────────────────────────────── -->
+<script>
+  window.ICF_TD_SHEET_ID  = '1VnNul6Cfq5m2HU-uvAkQz8ddK1tgw2o8bUlBFs8J2GA';
+  window.ICF_TD_SHEET_GID = '694539807';
+</script>
+<script src="assets/training-hub.js"></script>
 
 </body>
 </html>

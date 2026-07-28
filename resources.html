@@ -641,7 +641,7 @@ body.list-view .res-grid .resource__body { flex: 1; min-width: 0; }
       .then(function(text) {
         // Strip gviz JSONP wrapper: /*O_o*/\ngoogle.visualization.Query.setResponse({...});
         var json = JSON.parse(text.replace(/^\/\*[^\*]*\*\/\s*[^(]*\(/, '').replace(/\)\s*;?\s*$/, ''));
-        var cols = json.table.cols.map(function(c) { return c.label || c.id || ''; });
+        var cols = json.table.cols.map(function(c) { return (c.label || c.id || '').trim().split(/\s+/)[0]; });
         var rows = json.table.rows
           .filter(function(row) { return row && row.c; })
           .map(function(row) {
