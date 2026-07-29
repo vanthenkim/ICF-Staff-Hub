@@ -77,19 +77,13 @@
         </div>
       </div>
 
-            <!-- Row layout: card grid left, aside right -->
-      <div style="display:grid;grid-template-columns:1fr 320px;gap:24px;align-items:start;">
-
         <!-- Leaders Guide dynamic feed -->
-        <div>
-          <section id="leaders-guide" style="padding:0 0 40px;">
+        <section id="leaders-guide" style="padding:0 0 40px;">
           <div id="lg-loading" style="color:#94a3b8;font-size:13px;font-style:italic;padding:16px 0;">Loading guides…</div>
           <div id="lg-feed"></div>
-          </section>
-        </div>
+        </section>
 
-        <!-- Aside: How to Request a Training -->
-        <aside style="position:sticky;top:72px;">
+        <!-- How to Request a Training (below guides) -->
           <!-- How to Request a Training -->
       <div class="card" style="padding:0;overflow:hidden;margin-bottom:32px;">
         <div style="padding:12px 16px;background:#f0fdf4;border-bottom:1px solid #86efac;display:flex;align-items:center;gap:8px;">
@@ -157,9 +151,7 @@
           </div>
         </div>
       </div>
-        </aside>
 
-      </div>
 </div><!-- /container -->
   </main>
 </div>
@@ -260,7 +252,7 @@
           var verse=g.verse?'<div style="font-size:11px;color:#94a3b8;font-style:italic;margin-top:2px;">'+esc(g.verse)+'</div>':'';
           var dlBtn=dlUrl?'<a href="'+dlUrl+'" target="_blank" rel="noopener" style="margin-left:auto;background:'+c+';color:#fff;font-size:11px;font-weight:600;padding:5px 12px;border-radius:6px;text-decoration:none;white-space:nowrap;flex-shrink:0;">Download Document</a>':'';
           html+='<div class="lg-card-wrap">'
-            +'<div style="background:#fff;border:1.5px solid #e2e8f0;border-left:4px solid '+c+';border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:8px;box-shadow:0 1px 4px rgba(0,0,0,.05);">'
+            +'<div style="background:#fff;border:1.5px solid #e2e8f0;border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:8px;box-shadow:0 1px 4px rgba(0,0,0,.05);">'
             +'<div style="font-size:10px;font-weight:700;color:'+c+';text-transform:uppercase;letter-spacing:.07em;">'+esc(name)+' &middot; GUIDE</div>'
             +'<div style="font-size:15px;font-weight:700;color:#1e293b;line-height:1.35;">'+esc(g.title)+'</div>'
             +'<div style="font-size:12px;color:#64748b;line-height:1.5;">'+esc(g.sub)+'</div>'
@@ -277,7 +269,7 @@
     })
     .catch(function(){if(loader) loader.textContent='Could not load guides.';});
 
-  function lgS(btn){var w=btn.closest('.lg-card-wrap'),s=w&&w.querySelector('.lg-card-steps');if(!s)return;var h=s.hasAttribute('hidden');if(h){s.removeAttribute('hidden');btn.innerHTML=btn.innerHTML.replace('&#9662;','&#9652;');}else{s.setAttribute('hidden','');btn.innerHTML=btn.innerHTML.replace('&#9652;','&#9662;');}}
+  window.lgS=function(btn){var w=btn.closest('.lg-card-wrap'),s=w&&w.querySelector('.lg-card-steps');if(!s)return;var h=s.hasAttribute('hidden');if(h){s.removeAttribute('hidden');btn.innerHTML=btn.innerHTML.replace('&#9662;','&#9652;');}else{s.setAttribute('hidden','');btn.innerHTML=btn.innerHTML.replace('&#9652;','&#9662;');}}
   function hexRgba(h,a){h=h.replace('#','');var r=parseInt(h.slice(0,2),16),g=parseInt(h.slice(2,4),16),b=parseInt(h.slice(4,6),16);return 'rgba('+r+','+g+','+b+','+a+')';}
   function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
   function parseCSV(t){var rows=[],re=/("(?:[^"]|"")*"|[^,\r\n]*)(,|\r?\n|$)/g,row=[],m;while((m=re.exec(t))!==null){var v=m[1];if(v[0]==='"')v=v.slice(1,-1).replace(/""/g,'"');row.push(v);if(m[2]!==','){rows.push(row);row=[];if(m[2]==='')break;}}return rows;}
