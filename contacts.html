@@ -379,8 +379,8 @@ function renderGallery(staff) {
   deptSel.addEventListener('change', applyFilters);
 
   // ─── Google Sheets data source ───────────────────────────────────────────
-  // Edit contacts at: https://docs.google.com/spreadsheets/d/1H2PmW7TVWmhpzTMpOqNFK_wXpxenmfPFK49TgePHJxE
-  const SHEET_CSV = 'https://docs.google.com/spreadsheets/d/1H2PmW7TVWmhpzTMpOqNFK_wXpxenmfPFK49TgePHJxE/gviz/tq?tqx=out:csv&sheet=Staff+Contacts';
+  // Edit contacts at: https://docs.google.com/spreadsheets/d/1TVyhqGjtqrKeiCfWZBVCdAnMRH34zwcvHILvMRaBCsk
+  const SHEET_CSV = 'https://docs.google.com/spreadsheets/d/1TVyhqGjtqrKeiCfWZBVCdAnMRH34zwcvHILvMRaBCsk/gviz/tq?tqx=out:csv&sheet=Master';
 
   // Photos already hosted on this site (assets/people/).
   // When a "Photo URL" column exists in the sheet, that takes priority.
@@ -687,6 +687,10 @@ function renderGallery(staff) {
   function resolvePhoto(name, sheetPhotoUrl) {
     if (sheetPhotoUrl && sheetPhotoUrl.trim()) {
       let url = sheetPhotoUrl.trim();
+      // Master Sheet photos: strip domain to get local-relative path
+      if (url.startsWith('https://staff-icf-cambodia.com/')) {
+        return url.replace('https://staff-icf-cambodia.com/', '');
+      }
       // Convert any Drive share/view link to the reliable lh3 thumbnail
       const driveMatch = url.match(/[?&]id=([^&]+)/) || url.match(/\/file\/d\/([^/]+)/);
       if (driveMatch) return driveThumb(driveMatch[1]);
@@ -728,15 +732,16 @@ function renderGallery(staff) {
 
       const header = rows[0].map(h => h.trim().toLowerCase());
       const col = {
-        num:      header.findIndex(h => h.includes('#')),
+        num:      header.findIndex(h => h === 'sort' || h.includes('#')),
         name:     header.findIndex(h => h === 'name'),
         role:     header.findIndex(h => h.includes('role')),
         dept:     header.findIndex(h => h === 'department' || h === 'dept'),
-        subdept:  header.findIndex(h => h.startsWith('sub')),
+        subdept:  header.findIndex(h => h === 'group' || h.startsWith('sub')),
         email:    header.findIndex(h => h.includes('email')),
         phone:    header.findIndex(h => h.includes('phone')),
         telegram: header.findIndex(h => h.includes('telegram')),
         photo:    header.findIndex(h => h.includes('photo')),
+        leftdate: header.findIndex(h => h.includes('left')),
         status:   header.findIndex(h => h.includes('status')),
         khmer:    header.findIndex(h => h.includes('khmer')),
       };
@@ -750,7 +755,9 @@ function renderGallery(staff) {
         const name = col.name >= 0 ? (r[col.name] || '').trim() : '';
         if (!name) continue;
         if (HIDDEN_STAFF.has(name)) continue;
-        // Status filter: skip if explicitly marked Left / Inactive (empty = treat as Active)
+        // Left_Date filter: skip if person has a departure date
+        if (col.leftdate >= 0 && (r[col.leftdate] || '').trim()) continue;
+        // Legacy status filter for old sheet format
         if (col.status >= 0) {
           const st = (r[col.status] || '').trim().toLowerCase();
           if (st === 'left' || st === 'inactive' || st === 'false') continue;
@@ -762,7 +769,7 @@ function renderGallery(staff) {
         contacts.push({
           name,
           role:       col.role >= 0     ? (r[col.role] || '').trim()     : '',
-          department: (() => { const d = DEPT_REMAP[name] || (col.dept >= 0 ? (r[col.dept] || '').trim() : ''); return DEPT_VALUE_REMAP[d] || d; })(),
+          department: (() => { const d = col.dept >= 0 ? (r[col.dept] || '').trim() : ''; return DEPT_VALUE_REMAP[d] || d; })(),
           subdept:    col.subdept >= 0  ? (r[col.subdept] || '').trim()  : '',
           khmerName:  col.khmer >= 0    ? (r[col.khmer] || '').trim()    : '',
           email:      col.email >= 0    ? (r[col.email] || '').trim()    : '',
