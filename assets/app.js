@@ -1416,8 +1416,11 @@ if ('serviceWorker' in navigator) {
           const items = groups[g].map(item => {
             const isExt = /^(Resources%20Public|Training%20%26|Medical%20Webhub)/.test(item.h);
             const tgt = isExt ? ' target="_blank" rel="noopener"' : '';
+            const iconHtml = item.p
+              ? `<img src="${item.p}" alt="" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;background:#e2e8f0;" onerror="this.style.background='#e2e8f0';this.src=''">`
+              : `<span class="inline-results__hit__icon">${iconFor(item.i)}</span>`;
             return `<a class="inline-results__hit" href="${item.h}"${tgt}>
-              <span class="inline-results__hit__icon">${iconFor(item.i)}</span>
+              ${iconHtml}
               <span>
                 <div class="inline-results__hit__title">${item.t}</div>
                 <div class="inline-results__hit__sub">${item.g}</div>
@@ -1474,7 +1477,8 @@ if ('serviceWorker' in navigator) {
           if (!name || name.includes('·') || name.toLowerCase().includes('staff')) return;
           const role = f[ri] || '', dept = f[di] || '';
           const alias = (ai >= 0 ? f[ai] : '') || EXTRA_ALIASES[name] || '';
-          INDEX.push({ t: name, g: 'Staff', h: 'contacts.html', i: 'users', a: [role, dept, alias].filter(Boolean).join(' ') });
+          const photo = 'assets/people/' + name.trim().toLowerCase().replace(/\s+/g, '-') + '.jpg';
+          INDEX.push({ t: name, g: 'Staff', h: 'contacts.html', i: 'users', a: [role, dept, alias].filter(Boolean).join(' '), p: photo });
         });
       })
       .catch(() => {});

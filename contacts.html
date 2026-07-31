@@ -230,6 +230,15 @@ const DEPT_VALUE_REMAP = {
   'Scholarship':   'Social',
 };
 
+// Per-person department overrides (for people listed as "Leadership" in sheet)
+const PERSON_DEPT_OVERRIDE = {
+  'Longsamnieng Pol': 'Donor Care',
+  'Martin Strupler':  'Property',
+  'Matthias Lendi':   'Human Resources',
+  'Vattey Chhun':     'Operations',
+  'Stephanie Shelow': 'MarCom',
+};
+
 // Role overrides — shown in reporting line nodes regardless of sheet data
 const ROLE_OVERRIDES = {
   'ND Strupler': 'Executive Director · Founder',
@@ -769,7 +778,7 @@ function renderGallery(staff) {
         contacts.push({
           name,
           role:       col.role >= 0     ? (r[col.role] || '').trim()     : '',
-          department: (() => { const d = col.dept >= 0 ? (r[col.dept] || '').trim() : ''; return DEPT_VALUE_REMAP[d] || d; })(),
+          department: (() => { const d = col.dept >= 0 ? (r[col.dept] || '').trim() : ''; return PERSON_DEPT_OVERRIDE[name] || DEPT_VALUE_REMAP[d] || d; })(),
           subdept:    col.subdept >= 0  ? (r[col.subdept] || '').trim()  : '',
           khmerName:  col.khmer >= 0    ? (r[col.khmer] || '').trim()    : '',
           email:      col.email >= 0    ? (r[col.email] || '').trim()    : '',
@@ -778,6 +787,14 @@ function renderGallery(staff) {
           photo:      resolvePhoto(name, photoUrl),
         });
       }
+
+      // Deduplicate by name (keep first occurrence)
+      const seen = new Set();
+      const deduped = [];
+      for (const p of contacts) {
+        if (!seen.has(p.name)) { seen.add(p.name); deduped.push(p); }
+      }
+      contacts.length = 0; deduped.forEach(p => contacts.push(p));
 
       // Merge in USS students (not in Google Sheet)
       const sheetNames = new Set(contacts.map(p => p.name));
