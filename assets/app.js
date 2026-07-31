@@ -1478,7 +1478,7 @@ if ('serviceWorker' in navigator) {
           const role = f[ri] || '', dept = f[di] || '';
           const alias = (ai >= 0 ? f[ai] : '') || EXTRA_ALIASES[name] || '';
           const photo = 'assets/people/' + name.trim().toLowerCase().replace(/\s+/g, '-') + '.jpg';
-          INDEX.push({ t: name, g: 'Staff', h: 'contacts.html', i: 'users', a: [role, dept, alias].filter(Boolean).join(' '), p: photo });
+          INDEX.push({ t: name, g: 'Staff', h: 'contacts.html?person=' + encodeURIComponent(name), i: 'users', a: [role, dept, alias].filter(Boolean).join(' '), p: photo });
         });
       })
       .catch(() => {});

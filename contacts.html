@@ -808,6 +808,9 @@ function renderGallery(staff) {
       };
       allStaff.forEach(p => { if (ALIASES[p.name]) p.alias = ALIASES[p.name]; });
       allStaff.forEach(p => { staffByName[p.name] = p; });
+      // Auto-open person modal if ?person= param is in URL
+      const _personParam = new URLSearchParams(location.search).get('person');
+      if (_personParam) setTimeout(() => openContactByName(_personParam), 50);
       const countEl = document.getElementById('staff-count-label');
       if (countEl) countEl.textContent = `Directory of ${allStaff.length} staff members · phone & Telegram where available`;
       const depts = ['Catering','Church','Donor Care','Human Resources','MarCom','New Campus','Operations','Property','Social','University'];
