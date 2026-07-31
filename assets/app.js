@@ -1520,7 +1520,9 @@ if ('serviceWorker' in navigator) {
         const lines = csv.trim().split('\n');
         const headers = parseCSVLine(lines[0]).map(h => h.trim());
         const ni = headers.indexOf('Name'), ri = headers.indexOf('Role'),
-              di = headers.indexOf('Department'), ai = headers.indexOf('Alias');
+              di = headers.indexOf('Department'), ai = headers.indexOf('Alias'),
+              ei = headers.indexOf('Email'), phi = headers.indexOf('Phone'),
+              tgi = headers.indexOf('Telegram');
         lines.slice(1).forEach(line => {
           const f = parseCSVLine(line).map(s => s.trim());
           const name = f[ni] || '';
@@ -1535,6 +1537,9 @@ if ('serviceWorker' in navigator) {
           INDEX.push(entry);
           (window._STAFF_MAP = window._STAFF_MAP || {})[name] = entry;
         });
+        // Re-trigger search if user already typed something while staff was loading
+        const inp = document.getElementById('topbar-search-input');
+        if (inp && inp.value.trim()) inp.dispatchEvent(new Event('input'));
       })
       .catch(() => {});
   })();
