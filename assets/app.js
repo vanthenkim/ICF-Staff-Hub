@@ -1416,10 +1416,9 @@ if ('serviceWorker' in navigator) {
           const items = groups[g].map(item => {
             const isExt = /^(Resources%20Public|Training%20%26|Medical%20Webhub)/.test(item.h);
             const tgt = isExt ? ' target="_blank" rel="noopener"' : '';
-<<<<<<< Updated upstream
-=======
+            const isStaff = item.g === 'Staff';
             const iconHtml = item.p
-              ? `<img src="${item.p}" alt="" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;background:#e2e8f0;" onerror="this.onerror=null;this.style.background='#e2e8f0';this.style.display='block';">`
+              ? `<img src="${item.p}" alt="" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;background:#e2e8f0;" onerror="this.onerror=null;this.style.background='#e2e8f0';">`
               : `<span class="inline-results__hit__icon">${iconFor(item.i)}</span>`;
             if (isStaff) {
               const sn = item.t.replace(/"/g,'&quot;');
@@ -1431,9 +1430,8 @@ if ('serviceWorker' in navigator) {
                 </span>
               </div>`;
             }
->>>>>>> Stashed changes
             return `<a class="inline-results__hit" href="${item.h}"${tgt}>
-              <span class="inline-results__hit__icon">${iconFor(item.i)}</span>
+              ${iconHtml}
               <span>
                 <div class="inline-results__hit__title">${item.t}</div>
                 <div class="inline-results__hit__sub">${item.g}</div>
@@ -1463,8 +1461,6 @@ if ('serviceWorker' in navigator) {
 
   initInlineSearch('topbar-search-input', 'topbar-search-results');
 
-<<<<<<< Updated upstream
-=======
   // ---------- Staff quick-view popup ----------
   (function() {
     const pop = document.createElement('div');
@@ -1504,7 +1500,6 @@ if ('serviceWorker' in navigator) {
     };
   })();
 
->>>>>>> Stashed changes
   // ---------- Dynamically index staff contacts ----------
   (function loadStaffIndex() {
     const SHEET_CSV = 'https://docs.google.com/spreadsheets/d/1H2PmW7TVWmhpzTMpOqNFK_wXpxenmfPFK49TgePHJxE/gviz/tq?tqx=out:csv&sheet=Staff+Contacts';
@@ -1532,9 +1527,6 @@ if ('serviceWorker' in navigator) {
           if (!name || name.includes('·') || name.toLowerCase().includes('staff')) return;
           const role = f[ri] || '', dept = f[di] || '';
           const alias = (ai >= 0 ? f[ai] : '') || EXTRA_ALIASES[name] || '';
-<<<<<<< Updated upstream
-          INDEX.push({ t: name, g: 'Staff', h: 'contacts.html', i: 'users', a: [role, dept, alias].filter(Boolean).join(' ') });
-=======
           const photo = 'assets/people/' + name.trim().toLowerCase().replace(/\s+/g, '-') + '.jpg';
           const entry = { t: name, g: 'Staff', h: 'contacts.html?person=' + encodeURIComponent(name), i: 'users',
             a: [role, dept, alias].filter(Boolean).join(' '), p: photo, role, dept,
@@ -1542,7 +1534,6 @@ if ('serviceWorker' in navigator) {
             telegram: (tgi >= 0 ? f[tgi] : '').replace(/^@/, '') };
           INDEX.push(entry);
           (window._STAFF_MAP = window._STAFF_MAP || {})[name] = entry;
->>>>>>> Stashed changes
         });
       })
       .catch(() => {});
