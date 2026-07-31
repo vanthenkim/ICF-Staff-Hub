@@ -1416,6 +1416,22 @@ if ('serviceWorker' in navigator) {
           const items = groups[g].map(item => {
             const isExt = /^(Resources%20Public|Training%20%26|Medical%20Webhub)/.test(item.h);
             const tgt = isExt ? ' target="_blank" rel="noopener"' : '';
+<<<<<<< Updated upstream
+=======
+            const iconHtml = item.p
+              ? `<img src="${item.p}" alt="" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;background:#e2e8f0;" onerror="this.onerror=null;this.style.background='#e2e8f0';this.style.display='block';">`
+              : `<span class="inline-results__hit__icon">${iconFor(item.i)}</span>`;
+            if (isStaff) {
+              const sn = item.t.replace(/"/g,'&quot;');
+              return `<div class="inline-results__hit" style="cursor:pointer;" data-sn="${sn}" onclick="window._showStaffPopup(this.dataset.sn)">
+                ${iconHtml}
+                <span>
+                  <div class="inline-results__hit__title">${item.t}</div>
+                  <div class="inline-results__hit__sub">${item.role||''}${item.dept?' · '+item.dept:''}</div>
+                </span>
+              </div>`;
+            }
+>>>>>>> Stashed changes
             return `<a class="inline-results__hit" href="${item.h}"${tgt}>
               <span class="inline-results__hit__icon">${iconFor(item.i)}</span>
               <span>
@@ -1447,6 +1463,48 @@ if ('serviceWorker' in navigator) {
 
   initInlineSearch('topbar-search-input', 'topbar-search-results');
 
+<<<<<<< Updated upstream
+=======
+  // ---------- Staff quick-view popup ----------
+  (function() {
+    const pop = document.createElement('div');
+    pop.id = 'staff-qpop';
+    pop.style.cssText = 'display:none;position:fixed;inset:0;z-index:10000;background:rgba(15,23,42,.45);align-items:center;justify-content:center;';
+    pop.innerHTML = `<div style="background:#fff;border-radius:20px;padding:28px 24px 24px;max-width:320px;width:90%;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.25);">
+      <button onclick="document.getElementById('staff-qpop').style.display='none'" style="position:absolute;top:12px;right:14px;background:none;border:none;font-size:22px;cursor:pointer;color:#94a3b8;line-height:1;">&times;</button>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;">
+        <div id="sqp-img" style="width:80px;height:80px;border-radius:50%;background:#e2e8f0;overflow:hidden;flex-shrink:0;"></div>
+        <div><div id="sqp-name" style="font-size:17px;font-weight:700;color:#0f172a;"></div><div id="sqp-role" style="font-size:13px;color:#64748b;margin-top:2px;"></div></div>
+        <div id="sqp-btns" style="display:flex;flex-direction:column;gap:7px;width:100%;margin-top:4px;"></div>
+      </div>
+    </div>`;
+    pop.addEventListener('click', e => { if (e.target === pop) pop.style.display = 'none'; });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') pop.style.display = 'none'; });
+    document.body.appendChild(pop);
+
+    window._showStaffPopup = function(name) {
+      const item = (window._STAFF_MAP || {})[name]; if (!item) return;
+      document.getElementById('topbar-search-results').hidden = true;
+      // Photo
+      const imgEl = document.getElementById('sqp-img');
+      if (item.p) { imgEl.innerHTML = `<img src="${item.p}" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentNode.innerHTML=''">`; }
+      else { imgEl.innerHTML = ''; }
+      document.getElementById('sqp-name').textContent = item.t;
+      document.getElementById('sqp-role').textContent = [item.role, item.dept].filter(Boolean).join(' · ');
+      // Buttons
+      const btns = document.getElementById('sqp-btns');
+      const btn = (href, label, bg, col) =>
+        `<a href="${href}" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:${bg};color:${col};border-radius:10px;font-size:13px;font-weight:500;text-decoration:none;">${label}<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>`;
+      let html = '';
+      if (item.email)    html += btn(`mailto:${item.email}`, item.email, '#f8fafc', '#0f172a');
+      if (item.phone)    html += btn(`tel:${item.phone}`, item.phone, '#f8fafc', '#0f172a');
+      if (item.telegram) html += btn(`https://t.me/${item.telegram}`, `@${item.telegram}`, '#e0f2fe', '#0369a1');
+      btns.innerHTML = html || '<p style="font-size:13px;color:#94a3b8;margin:0;">No contact details available.</p>';
+      pop.style.display = 'flex';
+    };
+  })();
+
+>>>>>>> Stashed changes
   // ---------- Dynamically index staff contacts ----------
   (function loadStaffIndex() {
     const SHEET_CSV = 'https://docs.google.com/spreadsheets/d/1H2PmW7TVWmhpzTMpOqNFK_wXpxenmfPFK49TgePHJxE/gviz/tq?tqx=out:csv&sheet=Staff+Contacts';
@@ -1474,7 +1532,17 @@ if ('serviceWorker' in navigator) {
           if (!name || name.includes('·') || name.toLowerCase().includes('staff')) return;
           const role = f[ri] || '', dept = f[di] || '';
           const alias = (ai >= 0 ? f[ai] : '') || EXTRA_ALIASES[name] || '';
+<<<<<<< Updated upstream
           INDEX.push({ t: name, g: 'Staff', h: 'contacts.html', i: 'users', a: [role, dept, alias].filter(Boolean).join(' ') });
+=======
+          const photo = 'assets/people/' + name.trim().toLowerCase().replace(/\s+/g, '-') + '.jpg';
+          const entry = { t: name, g: 'Staff', h: 'contacts.html?person=' + encodeURIComponent(name), i: 'users',
+            a: [role, dept, alias].filter(Boolean).join(' '), p: photo, role, dept,
+            email: ei >= 0 ? f[ei] : '', phone: phi >= 0 ? f[phi] : '',
+            telegram: (tgi >= 0 ? f[tgi] : '').replace(/^@/, '') };
+          INDEX.push(entry);
+          (window._STAFF_MAP = window._STAFF_MAP || {})[name] = entry;
+>>>>>>> Stashed changes
         });
       })
       .catch(() => {});
