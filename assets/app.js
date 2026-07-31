@@ -1414,15 +1414,15 @@ if ('serviceWorker' in navigator) {
         hits.forEach(h => { groups[h.g] = groups[h.g] || []; groups[h.g].push(h); });
         results.innerHTML = Object.keys(groups).map(g => {
           const items = groups[g].map(item => {
-            const isStaff = item.g === 'Staff';
             const isExt = /^(Resources%20Public|Training%20%26|Medical%20Webhub)/.test(item.h);
             const tgt = isExt ? ' target="_blank" rel="noopener"' : '';
+            const isStaff = item.g === 'Staff';
             const iconHtml = item.p
-              ? `<img src="${item.p}" alt="" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;background:#e2e8f0;" onerror="this.style.background='#e2e8f0';this.src=''">`
+              ? `<img src="${item.p}" alt="" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;background:#e2e8f0;" onerror="this.onerror=null;this.style.background='#e2e8f0';">`
               : `<span class="inline-results__hit__icon">${iconFor(item.i)}</span>`;
             if (isStaff) {
-              const idx = INDEX.indexOf(item);
-              return `<div class="inline-results__hit" style="cursor:pointer;" onclick="window._showStaffPopup(${idx})">
+              const sn = item.t.replace(/"/g,'&quot;');
+              return `<div class="inline-results__hit" style="cursor:pointer;" data-sn="${sn}" onclick="window._showStaffPopup(this.dataset.sn)">
                 ${iconHtml}
                 <span>
                   <div class="inline-results__hit__title">${item.t}</div>
@@ -1466,7 +1466,7 @@ if ('serviceWorker' in navigator) {
     const pop = document.createElement('div');
     pop.id = 'staff-qpop';
     pop.style.cssText = 'display:none;position:fixed;inset:0;z-index:10000;background:rgba(15,23,42,.45);align-items:center;justify-content:center;';
-    pop.innerHTML = `<div style="background:#fff;border-radius:20px;padding:28px 24px 24px;max-width:320px;width:90%;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.25);">
+    pop.innerHTML = `<div style="background:#fff;border-radius:20px;padding:28px 24px 24px;max-width:320px;width:90%;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.25);font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
       <button onclick="document.getElementById('staff-qpop').style.display='none'" style="position:absolute;top:12px;right:14px;background:none;border:none;font-size:22px;cursor:pointer;color:#94a3b8;line-height:1;">&times;</button>
       <div style="display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;">
         <div id="sqp-img" style="width:80px;height:80px;border-radius:50%;background:#e2e8f0;overflow:hidden;flex-shrink:0;"></div>
@@ -1478,8 +1478,8 @@ if ('serviceWorker' in navigator) {
     document.addEventListener('keydown', e => { if (e.key === 'Escape') pop.style.display = 'none'; });
     document.body.appendChild(pop);
 
-    window._showStaffPopup = function(idx) {
-      const item = INDEX[idx]; if (!item) return;
+    window._showStaffPopup = function(name) {
+      const item = (window._STAFF_MAP || {})[name]; if (!item) return;
       document.getElementById('topbar-search-results').hidden = true;
       // Photo
       const imgEl = document.getElementById('sqp-img');
@@ -1521,9 +1521,8 @@ if ('serviceWorker' in navigator) {
         const headers = parseCSVLine(lines[0]).map(h => h.trim());
         const ni = headers.indexOf('Name'), ri = headers.indexOf('Role'),
               di = headers.indexOf('Department'), ai = headers.indexOf('Alias'),
-              ei = headers.findIndex(h => h.toLowerCase().includes('email')),
-              phi = headers.findIndex(h => h.toLowerCase().includes('phone')),
-              tgi = headers.findIndex(h => h.toLowerCase().includes('telegram'));
+              ei = headers.indexOf('Email'), phi = headers.indexOf('Phone'),
+              tgi = headers.indexOf('Telegram');
         lines.slice(1).forEach(line => {
           const f = parseCSVLine(line).map(s => s.trim());
           const name = f[ni] || '';
@@ -1531,11 +1530,16 @@ if ('serviceWorker' in navigator) {
           const role = f[ri] || '', dept = f[di] || '';
           const alias = (ai >= 0 ? f[ai] : '') || EXTRA_ALIASES[name] || '';
           const photo = 'assets/people/' + name.trim().toLowerCase().replace(/\s+/g, '-') + '.jpg';
-          INDEX.push({ t: name, g: 'Staff', h: 'contacts.html?person=' + encodeURIComponent(name), i: 'users',
+          const entry = { t: name, g: 'Staff', h: 'contacts.html?person=' + encodeURIComponent(name), i: 'users',
             a: [role, dept, alias].filter(Boolean).join(' '), p: photo, role, dept,
             email: ei >= 0 ? f[ei] : '', phone: phi >= 0 ? f[phi] : '',
-            telegram: (tgi >= 0 ? f[tgi] : '').replace(/^@/, '') });
+            telegram: (tgi >= 0 ? f[tgi] : '').replace(/^@/, '') };
+          INDEX.push(entry);
+          (window._STAFF_MAP = window._STAFF_MAP || {})[name] = entry;
         });
+        // Re-trigger search if user already typed something while staff was loading
+        const inp = document.getElementById('topbar-search-input');
+        if (inp && inp.value.trim()) inp.dispatchEvent(new Event('input'));
       })
       .catch(() => {});
   })();

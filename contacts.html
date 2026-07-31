@@ -183,7 +183,7 @@
   </div>
 </div>
 
-<script src="assets/app.js?v=20260722b"></script>
+<script src="assets/app.js?v=20260731b"></script>
 <script>
 // Staff removed from display (still in Google Sheet)
 const HIDDEN_STAFF = new Set([
@@ -228,15 +228,6 @@ const DEPT_VALUE_REMAP = {
   'Daycare':       'Social',
   'After School':  'Social',
   'Scholarship':   'Social',
-};
-
-// Per-person department overrides (for people listed as "Leadership" in sheet)
-const PERSON_DEPT_OVERRIDE = {
-  'Longsamnieng Pol': 'Donor Care',
-  'Martin Strupler':  'Property',
-  'Matthias Lendi':   'Human Resources',
-  'Vattey Chhun':     'Operations',
-  'Stephanie Shelow': 'MarCom',
 };
 
 // Role overrides — shown in reporting line nodes regardless of sheet data
@@ -778,7 +769,7 @@ function renderGallery(staff) {
         contacts.push({
           name,
           role:       col.role >= 0     ? (r[col.role] || '').trim()     : '',
-          department: (() => { const d = col.dept >= 0 ? (r[col.dept] || '').trim() : ''; return PERSON_DEPT_OVERRIDE[name] || DEPT_VALUE_REMAP[d] || d; })(),
+          department: (() => { const d = col.dept >= 0 ? (r[col.dept] || '').trim() : ''; return DEPT_VALUE_REMAP[d] || d; })(),
           subdept:    col.subdept >= 0  ? (r[col.subdept] || '').trim()  : '',
           khmerName:  col.khmer >= 0    ? (r[col.khmer] || '').trim()    : '',
           email:      col.email >= 0    ? (r[col.email] || '').trim()    : '',
@@ -787,14 +778,6 @@ function renderGallery(staff) {
           photo:      resolvePhoto(name, photoUrl),
         });
       }
-
-      // Deduplicate by name (keep first occurrence)
-      const seen = new Set();
-      const deduped = [];
-      for (const p of contacts) {
-        if (!seen.has(p.name)) { seen.add(p.name); deduped.push(p); }
-      }
-      contacts.length = 0; deduped.forEach(p => contacts.push(p));
 
       // Merge in USS students (not in Google Sheet)
       const sheetNames = new Set(contacts.map(p => p.name));
@@ -808,9 +791,6 @@ function renderGallery(staff) {
       };
       allStaff.forEach(p => { if (ALIASES[p.name]) p.alias = ALIASES[p.name]; });
       allStaff.forEach(p => { staffByName[p.name] = p; });
-      // Auto-open person modal if ?person= param is in URL
-      const _personParam = new URLSearchParams(location.search).get('person');
-      if (_personParam) setTimeout(() => openContactByName(_personParam), 50);
       const countEl = document.getElementById('staff-count-label');
       if (countEl) countEl.textContent = `Directory of ${allStaff.length} staff members · phone & Telegram where available`;
       const depts = ['Catering','Church','Donor Care','Human Resources','MarCom','New Campus','Operations','Property','Social','University'];
