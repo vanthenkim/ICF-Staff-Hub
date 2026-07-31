@@ -1466,7 +1466,7 @@ if ('serviceWorker' in navigator) {
     const pop = document.createElement('div');
     pop.id = 'staff-qpop';
     pop.style.cssText = 'display:none;position:fixed;inset:0;z-index:10000;background:rgba(15,23,42,.45);align-items:center;justify-content:center;';
-    pop.innerHTML = `<div style="background:#fff;border-radius:20px;padding:28px 24px 24px;max-width:320px;width:90%;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.25);">
+    pop.innerHTML = `<div style="background:#fff;border-radius:20px;padding:28px 24px 24px;max-width:320px;width:90%;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.25);font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
       <button onclick="document.getElementById('staff-qpop').style.display='none'" style="position:absolute;top:12px;right:14px;background:none;border:none;font-size:22px;cursor:pointer;color:#94a3b8;line-height:1;">&times;</button>
       <div style="display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;">
         <div id="sqp-img" style="width:80px;height:80px;border-radius:50%;background:#e2e8f0;overflow:hidden;flex-shrink:0;"></div>
