@@ -170,7 +170,7 @@
               + 'padding:'+ topPad +' 0 4px;'+ topBorder
               + 'cursor:pointer;user-select:none;display:flex;justify-content:space-between;align-items:center;">'
               + '<span>'+ esc(displayGrp) + '</span>'
-              + '<span class="grp-ch" style="font-size:9px;color:'+ COLOR +';">▾</span>'
+              + '<span class="grp-ch" style="font-size:11px;color:'+ COLOR +';">▾</span>'
               + '</div>';
         firstSection = false;
 
