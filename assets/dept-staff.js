@@ -6,7 +6,8 @@
 (function () {
   var SHEET_ID  = '1TVyhqGjtqrKeiCfWZBVCdAnMRH34zwcvHILvMRaBCsk';
   var SHEET_GID = '609894648';
-  var DEPT  = window.ICF_DEPT;
+  var DEPT       = window.ICF_DEPT;
+  var EXTRA_DEPTS = window.ICF_DEPT_EXTRA || [];
   var COLOR = window.ICF_DEPT_COLOR || '#1e3a5f';
   var LIGHT = COLOR + '18';   // 10 % tint
 
@@ -63,7 +64,7 @@
           };
         })
         .filter(function(p){
-          return p.dept === DEPT && !p.left && p.name;
+          return (p.dept === DEPT || EXTRA_DEPTS.indexOf(p.dept) >= 0) && !p.left && p.name;
         })
         .sort(function(a,b){ return a.sort - b.sort; });
 
