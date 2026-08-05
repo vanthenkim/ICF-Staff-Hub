@@ -164,13 +164,13 @@
         /* group label — collapsible toggle */
         var topPad   = firstSection ? '2px' : '6px';
         var topBorder = firstSection ? '' : 'border-top:1px solid var(--border);';
-        html += '<div onclick="(function(btn){var body=btn.nextElementSibling;var ch=btn.querySelector(\'.grp-ch\');if(!body)return;var open=body.getAttribute(\'data-open\')!==\'0\';body.style.display=open?\'none\':\'flex\';body.setAttribute(\'data-open\',open?\'0\':\'1\');ch.textContent=open?\'▸\':\'▾\';})(this)"'
+        html += '<div onclick="(function(btn){var body=btn.nextElementSibling;var ch=btn.querySelector(\'.grp-ch\');if(!body)return;var open=body.getAttribute(\'data-open\')!==\'0\';body.style.display=open?\'none\':\'flex\';body.setAttribute(\'data-open\',open?\'0\':\'1\');ch.style.transform=open?\'rotate(-90deg)\':\'rotate(0deg)\';})(this)"'
               + ' style="font-size:11px;font-weight:500;color:'+ COLOR +';'
               + 'text-transform:uppercase;letter-spacing:.06em;'
               + 'padding:'+ topPad +' 0 4px;'+ topBorder
               + 'cursor:pointer;user-select:none;display:flex;justify-content:space-between;align-items:center;">'
               + '<span>'+ esc(displayGrp) + '</span>'
-              + '<span class="grp-ch" style="font-size:11px;color:'+ COLOR +';">▾</span>'
+              + '<span class="grp-ch" style="font-size:10px;color:'+ COLOR +';line-height:1;transition:transform .2s;display:inline-block;">▼</span>'
               + '</div>';
         firstSection = false;
 
