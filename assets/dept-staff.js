@@ -64,6 +64,8 @@
           };
         })
         .filter(function(p){
+          // Exclude Director-level staff from extra depts (they're already in the main Executive Director group)
+          if (EXTRA_DEPTS.indexOf(p.dept) >= 0 && p.level === 'Director') return false;
           return (p.dept === DEPT || EXTRA_DEPTS.indexOf(p.dept) >= 0) && !p.left && p.name;
         })
         .sort(function(a,b){ return a.sort - b.sort; });
@@ -88,10 +90,13 @@
       staff.forEach(function(p){
         var lv = LEVEL_ORDER.indexOf(p.level) >= 0 ? p.level : 'Team';
         p.level = lv; // normalise
-        var key = (p.group || '').trim().toLowerCase(); // normalise key to collapse case/space variants
+        // For extra-dept staff, group them all under their department name so they appear
+        // as one collapsible section (e.g. all Education staff under EDUCATION)
+        var groupValue = (EXTRA_DEPTS.indexOf(p.dept) >= 0) ? p.dept : (p.group || '');
+        var key = groupValue.trim().toLowerCase(); // normalise key to collapse case/space variants
         if (!groupMap[key]) {
           groupMap[key]   = [];
-          groupLabel[key] = (p.group || '').trim(); // keep first-seen display name
+          groupLabel[key] = groupValue.trim(); // keep first-seen display name
           groupOrder.push(key);
         }
         groupMap[key].push(p);
