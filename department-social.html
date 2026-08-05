@@ -340,5 +340,41 @@
 </script>
 <script>window.ICF_DEPT="Social";window.ICF_DEPT_COLOR="#991b1b";</script>
 <script src="assets/dept-staff.js?v=2"></script>
+<script>
+(function(){
+  document.querySelectorAll('.sc-wrap').forEach(function(wrap){
+    var card = Array.from(wrap.children).find(function(el){ return !el.classList.contains('sc-drop'); });
+    if (!card) return;
+    var header = card.firstElementChild;
+    if (!header) return;
+
+    // Style the header as a toggle
+    header.style.cursor = 'pointer';
+    header.style.userSelect = 'none';
+    header.style.display = 'flex';
+    header.style.justifyContent = 'space-between';
+    header.style.alignItems = 'center';
+    header.style.marginBottom = '0';
+
+    var chevron = document.createElement('span');
+    chevron.textContent = '▸';
+    chevron.style.cssText = 'font-size:9px;color:#dc2626;transition:transform .2s;display:inline-block;margin-left:4px;';
+    header.appendChild(chevron);
+
+    // Start collapsed
+    var collapsed = true;
+    Array.from(card.children).slice(1).forEach(function(el){ el.style.display = 'none'; });
+
+    header.addEventListener('click', function(){
+      collapsed = !collapsed;
+      Array.from(card.children).slice(1).forEach(function(el){
+        el.style.display = collapsed ? 'none' : '';
+      });
+      chevron.textContent = collapsed ? '▸' : '▾';
+      card.style.marginBottom = collapsed ? '' : '4px';
+    });
+  });
+})();
+</script>
 </body>
 </html>
