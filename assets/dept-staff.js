@@ -161,14 +161,21 @@
         var displayGrp = grp;
         if (key === 'management') displayGrp = 'Executive Director';
 
-        /* group label */
+        /* group label — collapsible toggle */
         var topPad   = firstSection ? '2px' : '6px';
         var topBorder = firstSection ? '' : 'border-top:1px solid var(--border);';
-        html += '<div style="font-size:11px;font-weight:500;color:'+ COLOR +';'
+        html += '<div onclick="(function(btn){var body=btn.nextElementSibling;var ch=btn.querySelector(\'.grp-ch\');if(!body)return;var open=body.getAttribute(\'data-open\')!==\'0\';body.style.display=open?\'none\':\'flex\';body.setAttribute(\'data-open\',open?\'0\':\'1\');ch.textContent=open?\'▸\':\'▾\';})(this)"'
+              + ' style="font-size:11px;font-weight:500;color:'+ COLOR +';'
               + 'text-transform:uppercase;letter-spacing:.06em;'
-              + 'padding:'+ topPad +' 0 4px;'+ topBorder +'">'
-              + esc(displayGrp) + '</div>';
+              + 'padding:'+ topPad +' 0 4px;'+ topBorder
+              + 'cursor:pointer;user-select:none;display:flex;justify-content:space-between;align-items:center;">'
+              + '<span>'+ esc(displayGrp) + '</span>'
+              + '<span class="grp-ch" style="font-size:9px;color:'+ COLOR +';">▾</span>'
+              + '</div>';
         firstSection = false;
+
+        /* people container — starts expanded */
+        html += '<div data-open="1" style="display:flex;flex-direction:column;gap:4px;">';
 
         /* render people, with Team members indented under their Leader/Manager if Manager column is set */
         var rendered = {};
@@ -203,6 +210,8 @@
             rendered[p.name] = true;
           }
         });
+
+        html += '</div>'; /* close people container */
       });
 
       html += '</div></div>';
