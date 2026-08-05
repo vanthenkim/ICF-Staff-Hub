@@ -6,7 +6,8 @@
 (function () {
   var SHEET_ID  = '1TVyhqGjtqrKeiCfWZBVCdAnMRH34zwcvHILvMRaBCsk';
   var SHEET_GID = '609894648';
-  var DEPT  = window.ICF_DEPT;
+  var DEPT       = window.ICF_DEPT;
+  var EXTRA_DEPTS = window.ICF_DEPT_EXTRA || [];
   var COLOR = window.ICF_DEPT_COLOR || '#1e3a5f';
   var LIGHT = COLOR + '18';   // 10 % tint
 
@@ -63,7 +64,9 @@
           };
         })
         .filter(function(p){
-          return p.dept === DEPT && !p.left && p.name;
+          // Exclude Director-level staff from extra depts (they're already in the main Executive Director group)
+          if (EXTRA_DEPTS.indexOf(p.dept) >= 0 && p.level === 'Director') return false;
+          return (p.dept === DEPT || EXTRA_DEPTS.indexOf(p.dept) >= 0) && !p.left && p.name;
         })
         .sort(function(a,b){ return a.sort - b.sort; });
 
@@ -87,10 +90,13 @@
       staff.forEach(function(p){
         var lv = LEVEL_ORDER.indexOf(p.level) >= 0 ? p.level : 'Team';
         p.level = lv; // normalise
-        var key = (p.group || '').trim().toLowerCase(); // normalise key to collapse case/space variants
+        // For extra-dept staff, group them all under their department name so they appear
+        // as one collapsible section (e.g. all Education staff under EDUCATION)
+        var groupValue = (EXTRA_DEPTS.indexOf(p.dept) >= 0) ? p.dept : (p.group || '');
+        var key = groupValue.trim().toLowerCase(); // normalise key to collapse case/space variants
         if (!groupMap[key]) {
           groupMap[key]   = [];
-          groupLabel[key] = (p.group || '').trim(); // keep first-seen display name
+          groupLabel[key] = groupValue.trim(); // keep first-seen display name
           groupOrder.push(key);
         }
         groupMap[key].push(p);
@@ -161,14 +167,21 @@
         var displayGrp = grp;
         if (key === 'management') displayGrp = 'Executive Director';
 
-        /* group label */
+        /* group label — collapsible toggle */
         var topPad   = firstSection ? '2px' : '6px';
         var topBorder = firstSection ? '' : 'border-top:1px solid var(--border);';
-        html += '<div style="font-size:11px;font-weight:500;color:'+ COLOR +';'
+        html += '<div onclick="(function(btn){var body=btn.nextElementSibling;var ch=btn.querySelector(\'.grp-ch\');if(!body)return;var open=body.getAttribute(\'data-open\')!==\'0\';body.style.display=open?\'none\':\'flex\';body.setAttribute(\'data-open\',open?\'0\':\'1\');ch.style.transform=open?\'rotate(-90deg)\':\'rotate(0deg)\';})(this)"'
+              + ' style="font-size:11px;font-weight:500;color:'+ COLOR +';'
               + 'text-transform:uppercase;letter-spacing:.06em;'
-              + 'padding:'+ topPad +' 0 4px;'+ topBorder +'">'
-              + esc(displayGrp) + '</div>';
+              + 'padding:'+ topPad +' 0 4px;'+ topBorder
+              + 'cursor:pointer;user-select:none;display:flex;justify-content:space-between;align-items:center;">'
+              + '<span>'+ esc(displayGrp) + '</span>'
+              + '<span class="grp-ch" style="font-size:10px;color:'+ COLOR +';line-height:1;transition:transform .2s;display:inline-block;">▼</span>'
+              + '</div>';
         firstSection = false;
+
+        /* people container — starts expanded */
+        html += '<div data-open="1" style="display:flex;flex-direction:column;gap:4px;">';
 
         /* render people, with Team members indented under their Leader/Manager if Manager column is set */
         var rendered = {};
@@ -203,6 +216,8 @@
             rendered[p.name] = true;
           }
         });
+
+        html += '</div>'; /* close people container */
       });
 
       html += '</div></div>';
