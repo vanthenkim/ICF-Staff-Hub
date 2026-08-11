@@ -24,6 +24,14 @@
   function cell(row, idx) {
     return (row.c && row.c[idx] && row.c[idx].v != null) ? String(row.c[idx].v) : '';
   }
+  function parseDate(s) {
+    if (!s) return null;
+    // Handle Google Sheets JSON date format: Date(year,month,day) where month is 0-indexed
+    var m = s.match(/^Date\((\d+),(\d+),(\d+)\)$/);
+    if (m) return new Date(+m[1], +m[2], +m[3]);
+    var d = new Date(s);
+    return isNaN(d) ? null : d;
+  }
 
   /* ── fetch & parse ────────────────────────────────────────────────────── */
   var url = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID
@@ -60,13 +68,27 @@
             telegram: cell(r, I.Telegram).replace(/^@/,''),
             photo:    cell(r, I.Photo_URL),
             alias:    cell(r, I.Alias),
-            left:     cell(r, I.Left_Date),
+            active_date: cell(r, I.Active_Date),
+            left:        cell(r, I.Left_Date),
           };
         })
         .filter(function(p){
           // Exclude Director-level staff from extra depts (they're already in the main Executive Director group)
           if (EXTRA_DEPTS.indexOf(p.dept) >= 0 && p.level === 'Director') return false;
-          return (p.dept === DEPT || EXTRA_DEPTS.indexOf(p.dept) >= 0) && !p.left && p.name;
+          if (!p.name) return false;
+          if (p.dept !== DEPT && EXTRA_DEPTS.indexOf(p.dept) < 0) return false;
+          var today = new Date(); today.setHours(0,0,0,0);
+          // Active_Date: hide if start date is in the future
+          if (p.active_date) {
+            var ad = parseDate(p.active_date);
+            if (ad && ad > today) return false;
+          }
+          // Left_Date: hide only if departure date is today or in the past
+          if (p.left) {
+            var ld = parseDate(p.left);
+            if (ld && ld <= today) return false;
+          }
+          return true;
         })
         .sort(function(a,b){ return a.sort - b.sort; });
 

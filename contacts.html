@@ -744,8 +744,9 @@ function renderGallery(staff) {
         phone:    header.findIndex(h => h.includes('phone')),
         telegram: header.findIndex(h => h.includes('telegram')),
         photo:    header.findIndex(h => h.includes('photo')),
-        leftdate: header.findIndex(h => h.includes('left')),
-        status:   header.findIndex(h => h.includes('status')),
+        leftdate:   header.findIndex(h => h.includes('left')),
+        activedate: header.findIndex(h => /active/i.test(h)),
+        status:     header.findIndex(h => h.includes('status')),
         khmer:    header.findIndex(h => h.includes('khmer')),
       };
 
@@ -761,8 +762,18 @@ function renderGallery(staff) {
         if (HIDDEN_STAFF.has(name)) continue;
         if (seenNames.has(name)) continue;
         seenNames.add(name);
-        // Left_Date filter: skip if person has a departure date
-        if (col.leftdate >= 0 && (r[col.leftdate] || '').trim()) continue;
+        // Date-based filtering: compare against today
+        const _today = new Date(); _today.setHours(0,0,0,0);
+        // Skip if already departed (left_date is today or in the past)
+        if (col.leftdate >= 0 && (r[col.leftdate] || '').trim()) {
+          const ld = new Date(r[col.leftdate].trim());
+          if (!isNaN(ld) && ld <= _today) continue;
+        }
+        // Skip if not yet started (active_date is in the future)
+        if (col.activedate >= 0 && (r[col.activedate] || '').trim()) {
+          const ad = new Date(r[col.activedate].trim());
+          if (!isNaN(ad) && ad > _today) continue;
+        }
         // Legacy status filter for old sheet format
         if (col.status >= 0) {
           const st = (r[col.status] || '').trim().toLowerCase();
