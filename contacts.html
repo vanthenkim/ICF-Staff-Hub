@@ -642,18 +642,21 @@ function renderGallery(staff) {
     'Kropumkannika Gnorng':  { phone:'+855716968338', telegram:'Kropumkannika' },
     'Ousaphea Lim':          { phone:'+85589483448',   telegram:'Ousaphealim' },
     'Rina Nov':              { phone:'+85592200184',   telegram:'NovRina' },
+    'Sibimol Pol':           { phone:'+85599527462' },
+    'Chakriya Nith':         {},
     'Simone Strupler':       { phone:'+85512542130',   telegram:'SimoneVivianneStrupler' },
     'Sothiery Un':           { phone:'+85581698902', telegram:'Sothiery' },
     'Sreyleak So':           { phone:'+85517760632',   telegram:'sreyleakso' },
     'Vann Rotha':            { phone:'+85592555130',   telegram:'vannrotha' },
     'Kimbuoy Pheng':         { telegram:'Kimbuoy_Pheng' },
     'Linet Un':              { phone:'+85598850485',   telegram:'Linet_un' },
-    'Makara Seng':           { phone:'+855962202122',  telegram:'Makara_SG' },
-    'Neaksen Sok':           { phone:'+85599267722',   telegram:'neksensok' },
   };
 
-  // University Scholarship Students — not in Google Sheet, injected statically
+  // Staff not currently in Google Sheet — injected statically
   const STATIC_STAFF = [
+    { name:'Sibimol Pol',    role:'Medical Coordinator',       department:'Social',     email:'sibimol.pol@icf-cambodia.com',    phone:'+85599527462', telegram:'',           photo:'assets/people/sibimol-pol.jpg' },
+    { name:'Chakriya Nith',  role:'Mental Health Coordinator', department:'Social',     email:'chakriya.nith@icf-cambodia.com',  phone:'',             telegram:'',           photo:'assets/people/chakriya-nith.jpg' },
+    // University Scholarship Students
     { name:'Sopheak Phol',   role:'University Scholarship Student', department:'University', email:'sopheak.phol@icf-cambodia.com',    phone:'+855967093178', telegram:'Sopheakphol',      photo:'' },
     { name:'Ry Rey',         role:'University Scholarship Student', department:'University', email:'ry.rey@icf-cambodia.com',           phone:'+855889314500', telegram:'',                 photo:'' },
     { name:'Sinat Hoem',     role:'University Scholarship Student', department:'University', email:'sinat.hoem@icf-cambodia.com',       phone:'',             telegram:'Sintna12345',       photo:'' },
@@ -741,12 +744,14 @@ function renderGallery(staff) {
         phone:    header.findIndex(h => h.includes('phone')),
         telegram: header.findIndex(h => h.includes('telegram')),
         photo:    header.findIndex(h => h.includes('photo')),
-        leftdate: header.findIndex(h => h.includes('left')),
-        status:   header.findIndex(h => h.includes('status')),
+        leftdate:   header.findIndex(h => h.includes('left')),
+        activedate: header.findIndex(h => /active/i.test(h)),
+        status:     header.findIndex(h => h.includes('status')),
         khmer:    header.findIndex(h => h.includes('khmer')),
       };
 
       const contacts = [];
+      const seenNames = new Set();
       for (let i = 1; i < rows.length; i++) {
         const r = rows[i];
         if (!r.length || r.every(c => !c.trim())) continue;
@@ -755,8 +760,20 @@ function renderGallery(staff) {
         const name = col.name >= 0 ? (r[col.name] || '').trim() : '';
         if (!name) continue;
         if (HIDDEN_STAFF.has(name)) continue;
-        // Left_Date filter: skip if person has a departure date
-        if (col.leftdate >= 0 && (r[col.leftdate] || '').trim()) continue;
+        if (seenNames.has(name)) continue;
+        seenNames.add(name);
+        // Date-based filtering: compare against today
+        const _today = new Date(); _today.setHours(0,0,0,0);
+        // Skip if already departed (left_date is today or in the past)
+        if (col.leftdate >= 0 && (r[col.leftdate] || '').trim()) {
+          const ld = new Date(r[col.leftdate].trim());
+          if (!isNaN(ld) && ld <= _today) continue;
+        }
+        // Skip if not yet started (active_date is in the future)
+        if (col.activedate >= 0 && (r[col.activedate] || '').trim()) {
+          const ad = new Date(r[col.activedate].trim());
+          if (!isNaN(ad) && ad > _today) continue;
+        }
         // Legacy status filter for old sheet format
         if (col.status >= 0) {
           const st = (r[col.status] || '').trim().toLowerCase();
@@ -812,7 +829,7 @@ function renderGallery(staff) {
 const ORG = {
   // Top
   "ND Strupler":           { manager: null,                 reports: ["Sophal Strupler","Longsamnieng Pol","Steffi Lendi","Annina Huembeli"] },
-  "Sophal Strupler":       { manager: "ND Strupler",        reports: ["Eddie Roach","Matthias Lendi","Karano Chhuon","Sibimol Pol","Simone Strupler","Vattey Chhun","Martin Strupler","Stephanie Shelow"] },
+  "Sophal Strupler":       { manager: "ND Strupler",        reports: ["Eddie Roach","Matthias Lendi","Karano Chhuon","Simone Strupler","Vattey Chhun","Martin Strupler","Stephanie Shelow"] },
   "Longsamnieng Pol":      { manager: "ND Strupler",        reports: ["Kongkea Kouk","Jane Meas","Sreyleak Orn"] },
   "Steffi Lendi":          { manager: "ND Strupler",        reports: ["Loy Sambo Hout","Seavva Hann"] },
   "Annina Huembeli":       { manager: "ND Strupler",        reports: [] },
@@ -846,7 +863,7 @@ const ORG = {
   "Vann Rotha":            { manager: "Simone Strupler",    reports: [] },
   "Kropumkannika Gnorng":  { manager: "Simone Strupler",    reports: [] },
   // Education
-  "Matthias Lendi":        { manager: null               ,    reports: ["Parigna Souem","Khunhy Thoeun","Phin Teb","Thavy Tham"] },
+  "Matthias Lendi":        { manager: null               ,    reports: ["Parigna Souem","Khunhy Thoeun","Phin Teb","Thavy Tham","Ousaphea Lim"] },
   "Parigna Souem":         { manager: "Matthias Lendi",     reports: [] },
   "Khunhy Thoeun":         { manager: "Matthias Lendi",     reports: ["Su Sey","Nirorn Sok","David Piseth","Sreynouch Khit","Sotheany Ngeun","Tola Khem","Vicheth Song","Seav Ey Khean"] },
   "Su Sey":                { manager: "Khunhy Thoeun",      reports: [] },
@@ -887,12 +904,12 @@ const ORG = {
   "Matthew Seng":          { manager: "Karano Chhuon",      reports: [] },
   "Sophy Chek":            { manager: "Karano Chhuon",      reports: [] },
   "Nam Seyla":             { manager: "Karano Chhuon",      reports: [] },
-  // Medical
-  "Sibimol Pol":           { manager: null               ,    reports: ["Chakriya Nith","Rina Nov","Sreyleak So","Ousaphea Lim"] },
-  "Chakriya Nith":         { manager: "Sibimol Pol",        reports: [] },
-  "Rina Nov":              { manager: "Sibimol Pol",        reports: [] },
-  "Sreyleak So":           { manager: "Sibimol Pol",        reports: [] },
-  "Ousaphea Lim":          { manager: "Sibimol Pol",        reports: [] },
+  // Social Administration (reports to Matthias Lendi via Ousaphea Lim)
+  "Ousaphea Lim":          { manager: "Matthias Lendi",     reports: ["Sibimol Pol","Chakriya Nith","Sreyleak So","Rina Nov"] },
+  "Sibimol Pol":           { manager: "Ousaphea Lim",       reports: [] },
+  "Chakriya Nith":         { manager: "Ousaphea Lim",       reports: [] },
+  "Rina Nov":              { manager: "Ousaphea Lim",       reports: [] },
+  "Sreyleak So":           { manager: "Ousaphea Lim",       reports: [] },
   // Human Resources & Catering
   "Thavy Tham":            { manager: "Matthias Lendi",     reports: ["Nuthida Han","Sodalin Thangham","Vivian Stumpf","Bopha Mom"] },
   "Nuthida Han":           { manager: "Thavy Tham",         reports: [] },
@@ -932,7 +949,8 @@ const ORG = {
   "Tola Khy":              { manager: "Panha Neang",        reports: [], mentor: "ND Strupler" },
   // Property
   "Martin Strupler":       { manager: null               ,    reports: ["Sarath Sok"] },
-  "Sarath Sok":            { manager: "Martin Strupler",    reports: ["Hing Hoeun","Sila Kun","Nan Houn","Kim Sorn Soeuth","Barang Soeurm"] },
+  "Sarath Sok":            { manager: "Martin Strupler",    reports: ["Hing Hoeun","Sila Kun","Nan Houn","Kim Sorn Soeuth","Barang Soeurm","Kim Sopheap"] },
+  "Kim Sopheap":           { manager: "Sarath Sok",         reports: [] },
   "Hing Hoeun":            { manager: "Sarath Sok",         reports: ["Hin Loeb","Ya Hoeun","Thon Tep","Saroeun Kim"] },
   "Hin Loeb":              { manager: "Hing Hoeun",         reports: [] },
   "Ya Hoeun":              { manager: "Hing Hoeun",         reports: [] },
