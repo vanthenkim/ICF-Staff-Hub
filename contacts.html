@@ -750,6 +750,7 @@ function renderGallery(staff) {
       };
 
       const contacts = [];
+      const seenNames = new Set();
       for (let i = 1; i < rows.length; i++) {
         const r = rows[i];
         if (!r.length || r.every(c => !c.trim())) continue;
@@ -758,6 +759,8 @@ function renderGallery(staff) {
         const name = col.name >= 0 ? (r[col.name] || '').trim() : '';
         if (!name) continue;
         if (HIDDEN_STAFF.has(name)) continue;
+        if (seenNames.has(name)) continue;
+        seenNames.add(name);
         // Left_Date filter: skip if person has a departure date
         if (col.leftdate >= 0 && (r[col.leftdate] || '').trim()) continue;
         // Legacy status filter for old sheet format
