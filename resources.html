@@ -104,8 +104,8 @@
         </div>
       </div>
 
-      <!-- KEEP below for fallback until sheet is published -->
-            <div id="resources-fallback" style="display:none">
+      <!-- Static resources — always visible; sheet adds more dynamically -->
+            <div id="resources-fallback">
 
       <!-- Child Protection Forms -->
       <div class="res-section" data-section="child-protection">
@@ -660,12 +660,10 @@ body.list-view .res-grid .resource__body { flex: 1; min-width: 0; }
       .catch(function(e) {
         console.error('Resources sheet fetch failed:', e);
         document.getElementById('res-loading').style.display = 'none';
-        document.getElementById('resources-fallback').style.display = 'block';
         applyFilter(currentFilter);
       });
   } else {
     document.getElementById('res-loading').style.display = 'none';
-    document.getElementById('resources-fallback').style.display = 'block';
     applyFilter(currentFilter);
   }
 })();
