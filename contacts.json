@@ -641,7 +641,7 @@
   },
   {
     "name": "ND Strupler",
-    "role": "Executive Director – Fundraising",
+    "role": "Executive Director \u2013 Fundraising",
     "department": "Fundraising",
     "email": "nd.strupler@icf-cambodia.com",
     "phone": "+85595888112",
@@ -750,7 +750,7 @@
   },
   {
     "name": "Martin Strupler",
-    "role": "Executive Director – Property",
+    "role": "Executive Director \u2013 Property",
     "department": "Leadership",
     "email": "martin.strupler@icf-cambodia.com",
     "phone": "+85512542190",
@@ -759,7 +759,7 @@
   },
   {
     "name": "Matthias Lendi",
-    "role": "Executive Director – Social & HR",
+    "role": "Executive Director \u2013 Social & HR",
     "department": "Leadership",
     "email": "matthias.lendi@icf-cambodia.com",
     "phone": "+85578395100",
@@ -777,7 +777,7 @@
   },
   {
     "name": "Stephanie Shelow",
-    "role": "Executive Director – MarCom",
+    "role": "Executive Director \u2013 MarCom",
     "department": "Leadership",
     "email": "stephanie.shelow@icf-cambodia.com",
     "phone": "+85592200562",
@@ -786,7 +786,7 @@
   },
   {
     "name": "Vattey Chhun",
-    "role": "Executive Director – Operations",
+    "role": "Executive Director \u2013 Operations",
     "department": "Leadership",
     "email": "vattey.chhun@icf-cambodia.com",
     "phone": "+85512275664",
@@ -813,12 +813,21 @@
   },
   {
     "name": "Ratana Khy",
-    "role": "Creative Media Manager",
+    "role": "Head of MarCom",
     "department": "MarCom",
     "email": "ratana.khy@icf-cambodia.com",
     "phone": "+855966931822",
     "telegram": "RatanaKhy",
     "photo": "assets/people/ratana-khy.jpg"
+  },
+  {
+    "name": "Piseth Nuon",
+    "role": "Visual Media Coordinator",
+    "department": "MarCom",
+    "email": "piseth.nuon@icf-cambodia.com",
+    "phone": "+855968133602",
+    "telegram": "Pisethnuon",
+    "photo": "assets/people/piseth-nuon.jpg"
   },
   {
     "name": "Rayu Roeun",

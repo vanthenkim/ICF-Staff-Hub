@@ -527,8 +527,7 @@ function renderGallery(staff) {
     'Martin Strupler':       { phone:'+85512542190',   telegram:'Martinstrupler' },
     'Matthias Lendi':        { phone:'+85578395100',   telegram:'matthiaslendi' },
     'Sophal Strupler':       { phone:'+85595888113',   telegram:'SophalStrupler' },
-    'Stephanie Shelow':      { phone:'+85592200562',   telegram:'StephanieShelow' },
-    'Vattey Chhun':          { phone:'+85512275664',   telegram:'Vatteychhun' },
+      'Vattey Chhun':          { phone:'+85512275664',   telegram:'Vatteychhun' },
     'Aline Barbosa':         { phone:'+855963633525',  telegram:'alinealvesbarbosa' },
     'Bethany Roach':         { phone:'+85578972421',   telegram:'BethanyRoach' },
     'Boromey Hom':           { phone:'+85578810325',   telegram:'Boromey_hom' },
@@ -829,7 +828,7 @@ function renderGallery(staff) {
 const ORG = {
   // Top
   "ND Strupler":           { manager: null,                 reports: ["Sophal Strupler","Longsamnieng Pol","Steffi Lendi","Annina Huembeli"] },
-  "Sophal Strupler":       { manager: "ND Strupler",        reports: ["Eddie Roach","Matthias Lendi","Karano Chhuon","Simone Strupler","Vattey Chhun","Martin Strupler","Stephanie Shelow"] },
+  "Sophal Strupler":       { manager: "ND Strupler",        reports: ["Eddie Roach","Matthias Lendi","Karano Chhuon","Simone Strupler","Vattey Chhun","Martin Strupler"] },
   "Longsamnieng Pol":      { manager: "ND Strupler",        reports: ["Kongkea Kouk","Jane Meas","Sreyleak Orn"] },
   "Steffi Lendi":          { manager: "ND Strupler",        reports: ["Loy Sambo Hout","Seavva Hann"] },
   "Annina Huembeli":       { manager: "ND Strupler",        reports: [] },
@@ -838,7 +837,7 @@ const ORG = {
   "Robson Barbosa":        { manager: "Eddie Roach",        reports: ["Aline Barbosa"] },
   "Aline Barbosa":         { manager: "Robson Barbosa",     reports: [] },
   "Rany Mom":              { manager: "Eddie Roach",        reports: ["Davit Mao"] },
-  "Mom Kalic":             { manager: "Eddie Roach",        reports: ["Kanal Tensok","Somun Yem","Elea Weber"] },
+  "Mom Kalic":             { manager: "Eddie Roach",        reports: ["Kanal Tensok","Somun Yem","Elea Weber","Boromey Hom"] },
   "Kanal Tensok":          { manager: "Mom Kalic",          reports: [] },
   "Somun Yem":             { manager: "Mom Kalic",          reports: [] },
   "Elea Weber":            { manager: "Mom Kalic",          reports: [] },
@@ -853,8 +852,8 @@ const ORG = {
   "Champa Vong":           { manager: "Bethany Roach",      reports: [] },
   "Rothana Ros":           { manager: "Bethany Roach",      reports: [] },
   "Sambath Song":          { manager: "Bethany Roach",      reports: [] },
-  "Panha Neang":           { manager: "Eddie Roach",        reports: ["Boromey Hom","Sreypich Chhean","Tola Khy"] },
-  "Boromey Hom":           { manager: "Panha Neang",        reports: [] },
+  "Panha Neang":           { manager: "Eddie Roach",        reports: ["Sreypich Chhean","Tola Khy"] },
+  "Boromey Hom":           { manager: "Mom Kalic",          reports: [] },
   "Sreypich Chhean":       { manager: "Panha Neang",        reports: ["Sotheavy Ngen"] },
   "Sotheavy Ngen":         { manager: "Sreypich Chhean",    reports: [] },
   // Women's Ministry
@@ -933,8 +932,7 @@ const ORG = {
   "Sreymom Lim":           { manager: "Sakorun Pok",        reports: [] },
   "Kimleang Lun":          { manager: "Sakorun Pok",        reports: [] },
   // MarCom & Learning Center
-  "Stephanie Shelow":      { manager: null               ,    reports: ["Ratana Khy","Makara Ne"] },
-  "Ratana Khy":            { manager: "Stephanie Shelow",   reports: ["Piseth Noun","Florin Flammer","Sengly Muol","Soktheavy Tann","Vutha Kry","Savann Sun","Rayu Roeun","Sorotha Oeun","Malin Toy"] },
+  "Ratana Khy":            { manager: "ND Strupler",        reports: ["Piseth Nuon","Florin Flammer","Sengly Muol","Soktheavy Tann","Vutha Kry","Savann Sun","Rayu Roeun","Sorotha Oeun","Malin Toy"] },
   "Piseth Noun":           { manager: "Ratana Khy",         reports: [] },
   "Florin Flammer":        { manager: "Ratana Khy",         reports: [] },
   "Sengly Muol":           { manager: "Ratana Khy",         reports: [] },
@@ -944,7 +942,7 @@ const ORG = {
   "Rayu Roeun":            { manager: "Ratana Khy",         reports: [] },
   "Sorotha Oeun":          { manager: "Ratana Khy",         reports: [] },
   "Malin Toy":             { manager: "Ratana Khy",         reports: [] },
-  "Makara Ne":             { manager: "Stephanie Shelow",   reports: [] },
+  "Makara Ne":             { manager: "Martin Strupler",    reports: [] },
   "Davit Mao":             { manager: "Rany Mom",           reports: [], mentor: "ND Strupler" },
   "Tola Khy":              { manager: "Panha Neang",        reports: [], mentor: "ND Strupler" },
   // Property
