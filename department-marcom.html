@@ -333,6 +333,27 @@
 </script>
 <script>window.ICF_DEPT="MarCom";window.ICF_DEPT_COLOR="#065f46";</script>
 <script src="assets/dept-staff.js?v=6"></script>
+<script>
+/* Recolor "Learning Center" group header to amber after team renders */
+(function(){
+  var wrap = document.getElementById('dept-team-wrap');
+  if (!wrap) return;
+  function applyLC(){
+    wrap.querySelectorAll('div').forEach(function(el){
+      if (el.children.length === 2 && el.querySelector('span.grp-ch')) {
+        var span = el.querySelector('span:first-child');
+        if (span && span.textContent.trim().toUpperCase() === 'LEARNING CENTER') {
+          el.style.color = '#d97706';
+          var ch = el.querySelector('.grp-ch');
+          if (ch) ch.style.color = '#d97706';
+        }
+      }
+    });
+  }
+  var obs = new MutationObserver(function(){ applyLC(); });
+  obs.observe(wrap, { childList: true, subtree: true });
+})();
+</script>
 <!-- Dynamic content: Creative Request Links, Brand & Media Resources, Guidelines -->
 <script>
 (function () {
