@@ -135,9 +135,9 @@
       function renderPerson(p, indent) {
         var lv = p.level;
         var isLead   = !indent && (lv === 'Director' || lv === 'Manager' || lv === 'Leader');
-        var sz       = (lv === 'Director') ? '40px' : isLead ? '38px' : '36px';
-        var pad      = isLead ? '6px 8px' : '4px 6px';
-        var margin   = isLead ? '0'       : '-4px -6px';
+        var sz       = isLead ? '38px' : '36px';
+        var pad      = isLead ? '6px 8px' : '4px 8px';
+        var margin   = isLead ? '0'       : '-4px 0';
         var bgNormal = isLead ? LIGHT     : '';
         var bgHover  = isLead ? COLOR+'2a': '#f8fafc';
         var border   = isLead ? 'border:1px solid '+COLOR+'33;' : '';
