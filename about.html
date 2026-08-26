@@ -651,6 +651,85 @@
     openOrgChartIfHash();
     window.addEventListener('hashchange', openOrgChartIfHash);
   });
+
+  // ── Refresh contact details + departed-staff greyout from Master Sheet ───────
+  (function(){
+    var SHEET_CSV = 'https://docs.google.com/spreadsheets/d/1TVyhqGjtqrKeiCfWZBVCdAnMRH34zwcvHILvMRaBCsk/gviz/tq?tqx=out:csv&sheet=Master';
+    fetch(SHEET_CSV)
+      .then(function(r){ return r.text(); })
+      .then(function(csv){
+        // Parse CSV
+        var rows=[]; var row=[]; var cur=''; var inQ=false;
+        for(var i=0;i<csv.length;i++){
+          var c=csv[i];
+          if(c==='"'){inQ=!inQ;continue;}
+          if(c===','&&!inQ){row.push(cur);cur='';continue;}
+          if((c==='\n'||c==='\r')&&!inQ){
+            if(c==='\r'&&csv[i+1]==='\n')i++;
+            row.push(cur);rows.push(row);row=[];cur='';continue;
+          }
+          cur+=c;
+        }
+        if(cur||row.length){row.push(cur);rows.push(row);}
+        if(rows.length<2)return;
+
+        var h=rows[0].map(function(x){return x.trim().toLowerCase();});
+        var iSort  = h.findIndex(function(x){return x==='sort'||x.includes('#');});
+        var iName  = h.indexOf('name');
+        var iEmail = h.findIndex(function(x){return x.includes('email');});
+        var iPhone = h.findIndex(function(x){return x.includes('phone');});
+        var iTg    = h.findIndex(function(x){return x.includes('telegram');});
+        var iPhoto = h.findIndex(function(x){return x.includes('photo');});
+        var iLeft  = h.findIndex(function(x){return x.includes('left');});
+        var iActive= h.findIndex(function(x){return /active/i.test(x);});
+        var today  = new Date(); today.setHours(0,0,0,0);
+
+        function resolvePhoto(url){
+          if(!url)return'';
+          if(url.startsWith('https://staff-icf-cambodia.com/'))return url.replace('https://staff-icf-cambodia.com/','');
+          var m=url.match(/[?&]id=([^&]+)/)||url.match(/\/file\/d\/([^/]+)/);
+          return m?'https://lh3.googleusercontent.com/d/'+m[1]+'=s400':url;
+        }
+
+        for(var i=1;i<rows.length;i++){
+          var r=rows[i];
+          if(!r.length||r.every(function(x){return!x.trim();}))continue;
+          if(iSort>=0){var n=(r[iSort]||'').trim();if(!n||isNaN(Number(n)))continue;}
+          var name=iName>=0?r[iName].trim():'';
+          if(!name)continue;
+
+          // Date checks
+          var isLeft=false,isNotStarted=false;
+          if(iLeft>=0&&(r[iLeft]||'').trim()){var ld=new Date(r[iLeft].trim());if(!isNaN(ld)&&ld<=today)isLeft=true;}
+          if(iActive>=0&&(r[iActive]||'').trim()){var ad=new Date(r[iActive].trim());if(!isNaN(ad)&&ad>today)isNotStarted=true;}
+
+          // Update people object with fresh contact data
+          var email   =iEmail>=0?(r[iEmail]||'').trim():'';
+          var phone   =iPhone>=0?(r[iPhone]||'').trim():'';
+          var telegram=iTg>=0?(r[iTg]||'').trim().replace(/^@/,''):'';
+          var photo   =resolvePhoto(iPhoto>=0?(r[iPhoto]||'').trim():'');
+          if(!photo&&people[name])photo=people[name].photo||'';
+
+          people[name]=people[name]||{};
+          if(email)   people[name].email   =email;
+          if(phone)   people[name].phone   =phone;
+          if(telegram)people[name].telegram=telegram;
+          if(photo)   people[name].photo   =photo;
+
+          // Grey out departed / not-yet-started cards in the org chart
+          if(isLeft||isNotStarted){
+            var esc=name.replace(/([!"#$%&'()*+,.\/:;<=>?@[\\\]^`{|}~])/g,'\\$1');
+            document.querySelectorAll('[data-org-name="'+name+'"]').forEach(function(card){
+              card.style.opacity='0.4';
+              card.style.filter='grayscale(0.6)';
+              var nameEl=card.querySelector('[style*="font-weight:500"]');
+              if(nameEl)nameEl.style.textDecoration='line-through';
+            });
+          }
+        }
+      })
+      .catch(function(){});  // fail silently — hardcoded data still works
+  })();
 })();
 </script>
 
