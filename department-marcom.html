@@ -157,27 +157,38 @@
               </div>
             </div>
 
-            <!-- Connector to Ratana -->
-            <div style="width:2px;height:20px;background:#6ee7b7;"></div>
-            <div data-person="Ratana Khy" style="display:flex;align-items:center;gap:12px;cursor:pointer;background:rgba(255,255,255,0.15);border:2px solid rgba(255,255,255,0.4);backdrop-filter:blur(4px);color:#fff;border-radius:12px;padding:10px 18px;min-width:220px;background:#f0fdf4;border:1.5px solid #6ee7b7;color:#065f46;border-radius:12px;transition:box-shadow .15s;" onmouseover="this.style.boxShadow='0 2px 12px rgba(5,150,105,.2)'" onmouseout="this.style.boxShadow='none'">
-              <img src="assets/people/ratana-khy.jpg" style="width:40px;height:40px;border-radius:50%;object-fit:cover;flex-shrink:0;">
-              <div>
-                <div style="font-size:9px;opacity:.7;text-transform:uppercase;letter-spacing:.07em;margin-bottom:2px;">Head of MarCom</div>
-                <div style="font-weight:500;font-size:14px;">Ratana Khy</div>
-              </div>
-            </div>
-
-            <!-- Connector from Ratana to columns -->
-            <div style="width:2px;height:20px;background:#6ee7b7;"></div>
-            <div style="width:188px;border-top:2px solid #6ee7b7;"></div>
-
             <style>
               .mc-col-wrap { display:flex;flex-direction:column;align-items:center; }
               .mc-col-drop { width:2px;height:16px;background:#6ee7b7;margin-bottom:0; }
             </style>
-            <div id="mc-chart-cols" style="display:flex;gap:8px;align-items:flex-start;">
-              <!-- columns rendered dynamically by script below -->
-            </div><!-- /columns -->
+
+            <!-- Two side-by-side branches: MarCom chain + Learning Center -->
+            <div style="display:flex;gap:24px;align-items:flex-start;margin-top:0;">
+
+              <!-- Left: ND → Ratana → MarCom Team -->
+              <div style="display:flex;flex-direction:column;align-items:center;">
+                <div style="width:2px;height:20px;background:#6ee7b7;"></div>
+                <div data-person="Ratana Khy" style="display:flex;align-items:center;gap:12px;cursor:pointer;background:#f0fdf4;border:1.5px solid #6ee7b7;color:#065f46;border-radius:12px;padding:10px 18px;min-width:200px;transition:box-shadow .15s;" onmouseover="this.style.boxShadow='0 2px 12px rgba(5,150,105,.2)'" onmouseout="this.style.boxShadow='none'">
+                  <img src="assets/people/ratana-khy.jpg" style="width:40px;height:40px;border-radius:50%;object-fit:cover;flex-shrink:0;">
+                  <div>
+                    <div style="font-size:9px;opacity:.7;text-transform:uppercase;letter-spacing:.07em;margin-bottom:2px;">Head of MarCom</div>
+                    <div style="font-weight:500;font-size:14px;">Ratana Khy</div>
+                  </div>
+                </div>
+                <div style="width:2px;height:16px;background:#6ee7b7;"></div>
+                <div id="mc-chart-cols" style="display:flex;gap:8px;align-items:flex-start;">
+                  <!-- MarCom team column rendered dynamically -->
+                </div>
+              </div>
+
+              <!-- Right: Learning Center (separate — reports to Martin Strupler) -->
+              <div style="display:flex;flex-direction:column;align-items:center;margin-top:56px;">
+                <div id="mc-lc-col">
+                  <!-- LC column rendered dynamically -->
+                </div>
+              </div>
+
+            </div><!-- /two branches -->
           </div><!-- /max-content wrapper -->
                     </div><!-- /scroll-wrapper -->
           </div><!-- /white-box -->
@@ -409,7 +420,8 @@
 (function(){
   var SHEET_CSV='https://docs.google.com/spreadsheets/d/1TVyhqGjtqrKeiCfWZBVCdAnMRH34zwcvHILvMRaBCsk/gviz/tq?tqx=out:csv&sheet=Master';
   var container=document.getElementById('mc-chart-cols');
-  if(!container)return;
+  var lcContainer=document.getElementById('mc-lc-col');
+  if(!container&&!lcContainer)return;
 
   function parseCSV(csv){
     var rows=[],row=[],cur='',inQ=false;
@@ -436,18 +448,49 @@
     return'<div style="width:'+sz+'px;height:'+sz+'px;border-radius:50%;background:'+bg+';display:flex;align-items:center;justify-content:center;font-weight:500;font-size:'+(sz<40?11:14)+'px;color:'+col+';flex-shrink:0;">'+inits(p.name)+'</div>';
   }
 
-  function renderTeamCard(p){
-    return'<div data-person="'+p.name.replace(/"/g,'&quot;')+'" style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#fff;border:1px solid #d1fae5;border-left:3px solid #6ee7b7;border-radius:8px;padding:7px 10px;transition:background .15s;" onmouseover="this.style.background=\'#f0fdf4\'" onmouseout="this.style.background=\'#fff\'">'
-      +avatar(p,32,'#d1fae5','#059669')
-      +'<div><div style="font-weight:500;font-size:11.5px;color:#1f2937;">'+p.name+'</div><div style="font-size:10.5px;color:#6b7280;">'+p.role+'</div></div></div>';
+  function cardHtml(p,indent){
+    var style=indent
+      ?'display:flex;align-items:center;gap:8px;cursor:pointer;background:#fff;border:1px solid #d1fae5;border-left:3px solid #6ee7b7;border-radius:8px;padding:6px 8px;transition:background .15s;'
+      :'display:flex;align-items:center;gap:8px;cursor:pointer;background:#f0fdf4;border:1px solid #6ee7b7;border-radius:8px;padding:7px 10px;transition:background .15s;';
+    var over=indent?"this.style.background='#f0fdf4'"  :"this.style.background='#d1fae5'";
+    var out =indent?"this.style.background='#fff'"     :"this.style.background='#f0fdf4'";
+    var sz=indent?28:32;
+    return'<div data-person="'+p.name.replace(/"/g,'&quot;')+'" style="'+style+'" onmouseover="'+over+'" onmouseout="'+out+'">'
+      +avatar(p,sz,'#d1fae5','#059669')
+      +'<div><div style="font-weight:500;font-size:'+(indent?10.5:11.5)+'px;color:#1f2937;">'+p.name+'</div>'
+      +'<div style="font-size:10px;color:#6b7280;">'+p.role+'</div></div></div>';
+  }
+
+  function renderPeopleTree(people){
+    // Build manager→reports map
+    var byName={};
+    people.forEach(function(p){byName[p.name]=p;});
+    var children={};
+    people.forEach(function(p){
+      if(p.manager&&byName[p.manager]){
+        children[p.manager]=children[p.manager]||[];
+        children[p.manager].push(p);
+      }
+    });
+    // Roots: no manager OR manager is Ratana Khy (top of this column)
+    var roots=people.filter(function(p){return!p.manager||!byName[p.manager];});
+    var html='';
+    roots.forEach(function(p){
+      html+=cardHtml(p,false);
+      if(children[p.name]&&children[p.name].length){
+        html+='<div style="margin-left:12px;border-left:2px solid #6ee7b7;padding-left:8px;display:flex;flex-direction:column;gap:4px;margin-top:3px;margin-bottom:3px;">';
+        children[p.name].forEach(function(sub){html+=cardHtml(sub,true);});
+        html+='</div>';
+      }
+    });
+    return html;
   }
 
   function buildCol(label,people,note){
-    var cards=people.map(renderTeamCard).join('');
     return'<div class="mc-col-wrap"><div class="mc-col-drop"></div>'
-      +'<div style="display:flex;flex-direction:column;gap:0;background:#fff;border:1.5px solid #e2e8f0;border-top:3px solid #059669;border-radius:10px;padding:12px 10px;width:180px;box-sizing:border-box;">'
+      +'<div style="display:flex;flex-direction:column;gap:0;background:#fff;border:1.5px solid #e2e8f0;border-top:3px solid #059669;border-radius:10px;padding:12px 10px;width:190px;box-sizing:border-box;">'
       +'<div style="font-size:9px;font-weight:500;color:#059669;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;">'+label+'</div>'
-      +'<div style="display:flex;flex-direction:column;gap:5px;">'+cards+'</div>'
+      +'<div style="display:flex;flex-direction:column;gap:5px;">'+renderPeopleTree(people)+'</div>'
       +(note?'<div style="font-size:10px;color:#94a3b8;text-align:center;padding:4px 0 0;">'+note+'</div>':'')
       +'</div></div>';
   }
@@ -458,16 +501,17 @@
       var rows=parseCSV(csv);
       if(rows.length<2)return;
       var h=rows[0].map(function(x){return x.trim().toLowerCase();});
-      var iSort=h.findIndex(function(x){return x==='sort'||x.includes('#');});
-      var iName=h.indexOf('name');
-      var iRole=h.findIndex(function(x){return x.includes('role');});
-      var iDept=h.findIndex(function(x){return x==='department'||x==='dept';});
-      var iGrp =h.findIndex(function(x){return x==='group'||x.startsWith('sub');});
-      var iPhoto=h.findIndex(function(x){return x.includes('photo');});
-      var iLeft=h.findIndex(function(x){return x.includes('left');});
+      var iSort  =h.findIndex(function(x){return x==='sort'||x.includes('#');});
+      var iName  =h.indexOf('name');
+      var iRole  =h.findIndex(function(x){return x.includes('role');});
+      var iDept  =h.findIndex(function(x){return x==='department'||x==='dept';});
+      var iGrp   =h.findIndex(function(x){return x==='group'||x.startsWith('sub');});
+      var iPhoto =h.findIndex(function(x){return x.includes('photo');});
+      var iLeft  =h.findIndex(function(x){return x.includes('left');});
       var iActive=h.findIndex(function(x){return/active/i.test(x);});
-      var iLevel=h.indexOf('level');
-      var today=new Date();today.setHours(0,0,0,0);
+      var iLevel =h.indexOf('level');
+      var iMgr   =h.indexOf('manager');
+      var today  =new Date();today.setHours(0,0,0,0);
 
       var lc=[],team=[];
       for(var i=1;i<rows.length;i++){
@@ -479,21 +523,20 @@
         var name=iName>=0?r[iName].trim():'';
         if(!name)continue;
         var level=iLevel>=0?(r[iLevel]||'').trim():'';
-        if(level==='Director')continue; // ND Strupler shown statically
-        // Skip Ratana Khy (shown statically as manager node)
-        if(name==='Ratana Khy')continue;
+        if(level==='Director')continue;
+        if(name==='Ratana Khy')continue; // shown statically
         if(iLeft>=0&&(r[iLeft]||'').trim()){var ld=new Date(r[iLeft].trim());if(!isNaN(ld)&&ld<=today)continue;}
         if(iActive>=0&&(r[iActive]||'').trim()){var ad=new Date(r[iActive].trim());if(!isNaN(ad)&&ad>today)continue;}
         var grp=iGrp>=0?(r[iGrp]||'').trim():'';
-        var p={name:name,role:iRole>=0?(r[iRole]||'').trim():'',photo:resolvePhoto(iPhoto>=0?(r[iPhoto]||''):'')};
+        var mgr=iMgr>=0?(r[iMgr]||'').trim():'';
+        // For MarCom Team members, store manager; for LC, omit (separate column)
+        var p={name:name,role:iRole>=0?(r[iRole]||'').trim():'',photo:resolvePhoto(iPhoto>=0?(r[iPhoto]||''):''),manager:mgr};
         if(grp.toLowerCase().includes('learning'))lc.push(p);
         else team.push(p);
       }
 
-      var html='';
-      if(lc.length)html+=buildCol('Learning Center',lc,'Reports to Martin Strupler');
-      if(team.length)html+=buildCol('MarCom',team,'');
-      container.innerHTML=html;
+      if(container&&team.length)container.innerHTML=buildCol('MarCom',team,'');
+      if(lcContainer&&lc.length)lcContainer.innerHTML=buildCol('Learning Center',lc,'Reports to Martin Strupler');
     })
     .catch(function(){
       // fallback: leave container empty — static content was removed, graceful silence
