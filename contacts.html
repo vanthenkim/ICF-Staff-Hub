@@ -235,6 +235,12 @@ const ROLE_OVERRIDES = {
   'ND Strupler': 'Executive Director · Founder',
 };
 
+// Mentor relationships (not manager — shown separately in the contact modal)
+const MENTOR_OVERRIDES = {
+  'Davit Mao': 'ND Strupler',
+  'Tola Khy':  'ND Strupler',
+};
+
 // Names hidden from the reporting line chain (chain still traverses through them)
 const REPORTING_LINE_HIDDEN = new Set(['Sophal Strupler']);
 
@@ -747,6 +753,7 @@ function renderGallery(staff) {
         activedate: header.findIndex(h => /active/i.test(h)),
         status:     header.findIndex(h => h.includes('status')),
         khmer:    header.findIndex(h => h.includes('khmer')),
+        manager:  header.findIndex(h => h === 'manager'),
       };
 
       const contacts = [];
@@ -792,6 +799,7 @@ function renderGallery(staff) {
           phone:      sheetPhone    || local.phone    || '',
           telegram:   sheetTelegram || local.telegram || '',
           photo:      resolvePhoto(name, photoUrl),
+          manager:    col.manager >= 0 ? (r[col.manager] || '').trim() : '',
         });
       }
 
@@ -800,6 +808,17 @@ function renderGallery(staff) {
       STATIC_STAFF.forEach(s => { if (!sheetNames.has(s.name)) contacts.push(s); });
 
       allStaff = contacts.slice().sort((a, b) => a.name.localeCompare(b.name));
+
+      // Build ORG dynamically from Sheet manager data
+      ORG = {};
+      allStaff.forEach(p => {
+        ORG[p.name] = { manager: p.manager || null, reports: [] };
+        if (MENTOR_OVERRIDES[p.name]) ORG[p.name].mentor = MENTOR_OVERRIDES[p.name];
+      });
+      allStaff.forEach(p => {
+        if (p.manager && ORG[p.manager]) ORG[p.manager].reports.push(p.name);
+      });
+
       // Nickname / alias overrides — add entries here as needed
       const ALIASES = {
         'Longsamnieng Pol': 'Paul',
@@ -824,155 +843,8 @@ function renderGallery(staff) {
     });
 })();
 
-// ── Org Hierarchy ─────────────────────────────────────────────────────────────
-const ORG = {
-  // Top
-  "ND Strupler":           { manager: null,                 reports: ["Sophal Strupler","Longsamnieng Pol","Steffi Lendi","Annina Huembeli"] },
-  "Sophal Strupler":       { manager: "ND Strupler",        reports: ["Eddie Roach","Matthias Lendi","Karano Chhuon","Simone Strupler","Vattey Chhun","Martin Strupler"] },
-  "Longsamnieng Pol":      { manager: "ND Strupler",        reports: ["Kongkea Kouk","Jane Meas","Sreyleak Orn"] },
-  "Steffi Lendi":          { manager: "ND Strupler",        reports: ["Loy Sambo Hout","Seavva Hann"] },
-  "Annina Huembeli":       { manager: "ND Strupler",        reports: [] },
-  // Church
-  "Eddie Roach":           { manager: null,                 reports: ["Robson Barbosa","Rany Mom","Mom Kalic","Sombo Ros","Bethany Roach","Panha Neang"] },
-  "Robson Barbosa":        { manager: "Eddie Roach",        reports: ["Aline Barbosa"] },
-  "Aline Barbosa":         { manager: "Robson Barbosa",     reports: [] },
-  "Rany Mom":              { manager: "Eddie Roach",        reports: ["Davit Mao"] },
-  "Mom Kalic":             { manager: "Eddie Roach",        reports: ["Kanal Tensok","Somun Yem","Elea Weber","Boromey Hom"] },
-  "Kanal Tensok":          { manager: "Mom Kalic",          reports: [] },
-  "Somun Yem":             { manager: "Mom Kalic",          reports: [] },
-  "Elea Weber":            { manager: "Mom Kalic",          reports: [] },
-  "Sombo Ros":             { manager: "Eddie Roach",        reports: ["Sreileak Rous","Dana Thy","Pichey Ken"] },
-  "Sreileak Rous":         { manager: "Sombo Ros",          reports: [] },
-  "Dana Thy":              { manager: "Sombo Ros",          reports: [] },
-  "Pichey Ken":            { manager: "Sombo Ros",          reports: [] },
-  "Bethany Roach":         { manager: "Eddie Roach",        reports: ["Ranaomi Heak","Noa Flammer","Seangly Leng","Champa Vong","Rothana Ros","Sambath Song"] },
-  "Ranaomi Heak":          { manager: "Bethany Roach",      reports: [] },
-  "Noa Flammer":           { manager: "Bethany Roach",      reports: [] },
-  "Seangly Leng":          { manager: "Bethany Roach",      reports: [] },
-  "Champa Vong":           { manager: "Bethany Roach",      reports: [] },
-  "Rothana Ros":           { manager: "Bethany Roach",      reports: [] },
-  "Sambath Song":          { manager: "Bethany Roach",      reports: [] },
-  "Panha Neang":           { manager: "Eddie Roach",        reports: ["Sreypich Chhean","Tola Khy"] },
-  "Boromey Hom":           { manager: "Mom Kalic",          reports: [] },
-  "Sreypich Chhean":       { manager: "Panha Neang",        reports: ["Sotheavy Ngen"] },
-  "Sotheavy Ngen":         { manager: "Sreypich Chhean",    reports: [] },
-  // Women's Ministry
-  "Simone Strupler":       { manager: null               ,    reports: ["Sothiery Un","Vann Rotha","Kropumkannika Gnorng"] },
-  "Sothiery Un":           { manager: "Simone Strupler",    reports: [] },
-  "Vann Rotha":            { manager: "Simone Strupler",    reports: [] },
-  "Kropumkannika Gnorng":  { manager: "Simone Strupler",    reports: [] },
-  // Education
-  "Matthias Lendi":        { manager: null               ,    reports: ["Parigna Souem","Khunhy Thoeun","Phin Teb","Thavy Tham","Ousaphea Lim"] },
-  "Parigna Souem":         { manager: "Matthias Lendi",     reports: [] },
-  "Khunhy Thoeun":         { manager: "Matthias Lendi",     reports: ["Su Sey","Nirorn Sok","David Piseth","Sreynouch Khit","Sotheany Ngeun","Tola Khem","Vicheth Song","Seav Ey Khean"] },
-  "Su Sey":                { manager: "Khunhy Thoeun",      reports: [] },
-  "Nirorn Sok":            { manager: "Khunhy Thoeun",      reports: [] },
-  "David Piseth":          { manager: "Khunhy Thoeun",      reports: [] },
-  "Sreynouch Khit":        { manager: "Khunhy Thoeun",      reports: [] },
-  "Sotheany Ngeun":        { manager: "Khunhy Thoeun",      reports: [] },
-  "Tola Khem":             { manager: "Khunhy Thoeun",      reports: [] },
-  "Vicheth Song":          { manager: "Khunhy Thoeun",      reports: [] },
-  "Seav Ey Khean":         { manager: "Khunhy Thoeun",      reports: [] },
-  "Phin Teb":              { manager: "Matthias Lendi",     reports: ["Makara Seng","Srytom Pogn"] },
-  "Makara Seng":           { manager: "Phin Teb",           reports: [] },
-  "Srytom Pogn":           { manager: "Phin Teb",           reports: [] },
-  // Family Care
-  "Karano Chhuon":         { manager: null               ,    reports: ["Sreymom Thorng","Sopheap Heang","Sreymom Touch","Seyla Nga","Kolap Touch","Vichea Khen","Chanthat Leat","Sotheavy Thea","Rongroeung Chamroeun","Champa Toch","Sreypeou Hout","Srey Roth Outh","Sopheaktra Mao","Sokuntheary Sim","Sideth Duch","Chamroeun Muon","Savry Klot","Sophea Mak","Noya Men","Thea Rith Keo","Sa Soueyvan","Bora Heang","Matthew Seng","Sophy Chek","Nam Seyla"] },
-  "Sreymom Thorng":        { manager: "Karano Chhuon",      reports: [] },
-  "Sopheap Heang":         { manager: "Karano Chhuon",      reports: [] },
-  "Sreymom Touch":         { manager: "Karano Chhuon",      reports: [] },
-  "Seyla Nga":             { manager: "Karano Chhuon",      reports: [] },
-  "Kolap Touch":           { manager: "Karano Chhuon",      reports: [] },
-  "Vichea Khen":           { manager: "Karano Chhuon",      reports: [] },
-  "Chanthat Leat":         { manager: "Karano Chhuon",      reports: [] },
-  "Sotheavy Thea":         { manager: "Karano Chhuon",      reports: [] },
-  "Rongroeung Chamroeun":  { manager: "Karano Chhuon",      reports: [] },
-  "Champa Toch":           { manager: "Karano Chhuon",      reports: [] },
-  "Sreypeou Hout":         { manager: "Karano Chhuon",      reports: [] },
-  "Srey Roth Outh":        { manager: "Karano Chhuon",      reports: [] },
-  "Sopheaktra Mao":        { manager: "Karano Chhuon",      reports: [] },
-  "Sokuntheary Sim":       { manager: "Karano Chhuon",      reports: [] },
-  "Sideth Duch":           { manager: "Karano Chhuon",      reports: [] },
-  "Chamroeun Muon":        { manager: "Karano Chhuon",      reports: [] },
-  "Savry Klot":            { manager: "Karano Chhuon",      reports: [] },
-  "Sophea Mak":            { manager: "Karano Chhuon",      reports: [] },
-  "Noya Men":              { manager: "Karano Chhuon",      reports: [] },
-  "Thea Rith Keo":         { manager: "Karano Chhuon",      reports: [] },
-  "Sa Soueyvan":           { manager: "Karano Chhuon",      reports: [] },
-  "Bora Heang":            { manager: "Karano Chhuon",      reports: [] },
-  "Matthew Seng":          { manager: "Karano Chhuon",      reports: [] },
-  "Sophy Chek":            { manager: "Karano Chhuon",      reports: [] },
-  "Nam Seyla":             { manager: "Karano Chhuon",      reports: [] },
-  // Social Administration (reports to Matthias Lendi via Ousaphea Lim)
-  "Ousaphea Lim":          { manager: "Matthias Lendi",     reports: ["Sibimol Pol","Chakriya Nith","Sreyleak So","Rina Nov"] },
-  "Sibimol Pol":           { manager: "Ousaphea Lim",       reports: [] },
-  "Chakriya Nith":         { manager: "Ousaphea Lim",       reports: [] },
-  "Rina Nov":              { manager: "Ousaphea Lim",       reports: [] },
-  "Sreyleak So":           { manager: "Ousaphea Lim",       reports: [] },
-  // Human Resources & Catering
-  "Thavy Tham":            { manager: "Matthias Lendi",     reports: ["Nuthida Han","Sodalin Thangham","Vivian Stumpf","Bopha Mom"] },
-  "Nuthida Han":           { manager: "Thavy Tham",         reports: [] },
-  "Sodalin Thangham":      { manager: "Thavy Tham",         reports: [] },
-  "Vivian Stumpf":         { manager: "Thavy Tham",         reports: [] },
-  "Bopha Mom":             { manager: "Thavy Tham",         reports: ["Lieng Huon","Som Chhang","Phat Sout","Pech Sang"] },
-  "Lieng Huon":            { manager: "Bopha Mom",          reports: [] },
-  "Som Chhang":            { manager: "Bopha Mom",          reports: [] },
-  "Phat Sout":             { manager: "Bopha Mom",          reports: [] },
-  "Pech Sang":             { manager: "Bopha Mom",          reports: [] },
-  // Operations
-  "Vattey Chhun":          { manager: null               ,    reports: ["Kanha Un","Linet Un","Vanthen Kim","Sakorun Pok"] },
-  "Kanha Un":              { manager: "Vattey Chhun",       reports: [] },
-  "Linet Un":              { manager: "Vattey Chhun",       reports: ["Rachana San","Kimbuoy Pheng"] },
-  "Rachana San":           { manager: "Linet Un",           reports: [] },
-  "Kimbuoy Pheng":         { manager: "Linet Un",           reports: [] },
-  "Vanthen Kim":           { manager: "Vattey Chhun",       reports: ["Makara Tes","Neaksen Sok"] },
-  "Makara Tes":            { manager: "Vanthen Kim",        reports: [] },
-  "Neaksen Sok":           { manager: "Vanthen Kim",        reports: [] },
-  "Sakorun Pok":           { manager: "Vattey Chhun",       reports: ["Sreymom Lim","Kimleang Lun"] },
-  "Sreymom Lim":           { manager: "Sakorun Pok",        reports: [] },
-  "Kimleang Lun":          { manager: "Sakorun Pok",        reports: [] },
-  // MarCom & Learning Center
-  "Ratana Khy":            { manager: "ND Strupler",        reports: ["Piseth Nuon","Sengly Muol","Savann Sun","Florin Flammer","Sorotha Oeun","Malin Toy"] },
-  "Piseth Nuon":           { manager: "Ratana Khy",         reports: ["Rayu Roeun"] },
-  "Rayu Roeun":            { manager: "Piseth Nuon",        reports: [] },
-  "Sengly Muol":           { manager: "Ratana Khy",         reports: ["Soktheavy Tann"] },
-  "Soktheavy Tann":        { manager: "Sengly Muol",        reports: [] },
-  "Savann Sun":            { manager: "Ratana Khy",         reports: ["Vutha Kry"] },
-  "Vutha Kry":             { manager: "Savann Sun",         reports: [] },
-  "Florin Flammer":        { manager: "Ratana Khy",         reports: [] },
-  "Sorotha Oeun":          { manager: "Ratana Khy",         reports: [] },
-  "Malin Toy":             { manager: "Ratana Khy",         reports: [] },
-  "Makara Ne":             { manager: "Martin Strupler",    reports: [] },
-  "Davit Mao":             { manager: "Rany Mom",           reports: [], mentor: "ND Strupler" },
-  "Tola Khy":              { manager: "Panha Neang",        reports: [], mentor: "ND Strupler" },
-  // Property
-  "Martin Strupler":       { manager: null               ,    reports: ["Sarath Sok"] },
-  "Sarath Sok":            { manager: "Martin Strupler",    reports: ["Hing Hoeun","Sila Kun","Nan Houn","Kim Sorn Soeuth","Barang Soeurm","Kim Sopheap"] },
-  "Kim Sopheap":           { manager: "Sarath Sok",         reports: [] },
-  "Hing Hoeun":            { manager: "Sarath Sok",         reports: ["Hin Loeb","Ya Hoeun","Thon Tep","Saroeun Kim"] },
-  "Hin Loeb":              { manager: "Hing Hoeun",         reports: [] },
-  "Ya Hoeun":              { manager: "Hing Hoeun",         reports: [] },
-  "Thon Tep":              { manager: "Hing Hoeun",         reports: [] },
-  "Saroeun Kim":           { manager: "Hing Hoeun",         reports: [] },
-  "Sila Kun":              { manager: "Sarath Sok",         reports: ["Hou Sokcheat","Rin Nga"] },
-  "Hou Sokcheat":          { manager: "Sila Kun",           reports: [] },
-  "Rin Nga":               { manager: "Sila Kun",           reports: [] },
-  "Nan Houn":              { manager: "Sarath Sok",         reports: ["Hean Luos","Minea Soy"] },
-  "Hean Luos":             { manager: "Nan Houn",           reports: [] },
-  "Minea Soy":             { manager: "Nan Houn",           reports: [] },
-  "Kim Sorn Soeuth":       { manager: "Sarath Sok",         reports: ["Chrach Chen"] },
-  "Chrach Chen":           { manager: "Kim Sorn Soeuth",    reports: [] },
-  "Barang Soeurm":         { manager: "Sarath Sok",         reports: ["Sopheap Puth","Sen Meta","Nhoem David"] },
-  "Sopheap Puth":          { manager: "Barang Soeurm",      reports: [] },
-  "Sen Meta":              { manager: "Barang Soeurm",      reports: [] },
-  "Nhoem David":           { manager: "Barang Soeurm",      reports: [] },
-  // Fundraising & Guest Relations
-  "Kongkea Kouk":          { manager: "Longsamnieng Pol",   reports: [] },
-  "Jane Meas":             { manager: "Longsamnieng Pol",   reports: [] },
-  "Sreyleak Orn":          { manager: "Longsamnieng Pol",   reports: [] },
-  "Loy Sambo Hout":        { manager: "Steffi Lendi",       reports: [] },
-  "Seavva Hann":           { manager: "Steffi Lendi",       reports: [] },
-};
+// ── Org Hierarchy — populated dynamically from Sheet in fetch callback above ──
+let ORG = {};
 
 // ── Contact Modal ─────────────────────────────────────────────────────────────
 const staffByName = {};
