@@ -135,6 +135,7 @@
           photo:resolvePhoto(iPhoto>=0?(r[iPhoto]||''):''),
           group:iGrp>=0?(r[iGrp]||'').trim():'',
           manager:iMgr>=0?(r[iMgr]||'').trim():'',
+          level:iLevel>=0?(r[iLevel]||'').trim():'',
         });
       }
       if(!people.length)return;
@@ -147,23 +148,27 @@
         groups[g].push(person);
       });
 
-      // Build a name lookup for the full dept people list
-      var nameSet={};
-      people.forEach(function(p){nameSet[p.name]=true;});
+      // Level rank: used to pick the group head (highest-ranked person = head)
+      function lvlRank(l){
+        if(l==='Manager')return 3;
+        if(l==='Leader')return 2;
+        if(l==='Team')return 1;
+        return 0;
+      }
 
       // Build columns HTML
       var colsHtml='';
       groupOrder.forEach(function(g){
         var members=groups[g];
-        // Head = person whose manager is not in this group (reports to ROOT or external)
-        var head=null,staff=[];
-        var groupNames={};
-        members.forEach(function(m){groupNames[m.name]=true;});
+        // Head = highest-level person in the group (Manager > Leader > Team)
+        // In case of tie, Sheet order wins (first occurrence is head)
+        var head=null,bestRank=-1;
         members.forEach(function(m){
-          if(!head&&(!m.manager||!groupNames[m.manager])){head=m;}
-          else{staff.push(m);}
+          var r=lvlRank(m.level);
+          if(r>bestRank){bestRank=r;head=m;}
         });
-        if(!head&&members.length){head=members[0];staff=members.slice(1);}
+        if(!head)head=members[0];
+        var staff=members.filter(function(m){return m!==head;});
         colsHtml+=buildCol(g,head,staff);
       });
 
