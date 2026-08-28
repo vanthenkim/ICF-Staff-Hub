@@ -216,25 +216,7 @@
               <div style="font-weight:500;font-size:17px;line-height:1.2;">Matthias Lendi</div>
             </div>
           </div>
-          <div style="width:2px;height:32px;background:#fca5a5;"></div>
-          <style>
-            .hr-wrap { display:flex;flex-direction:column;align-items:center; }
-            .hr-drop { display:none; }
-          </style>
-          <div style="display:flex;gap:8px;align-items:flex-start;">
-            <div class="hr-wrap">
-              <div class="hr-drop"></div>
-              <div style="width:200px;box-sizing:border-box;display:flex;flex-direction:column;gap:0;background:#fff;border:1.5px solid #e2e8f0;border-top:3px solid #dc2626;border-radius:10px;padding:12px 10px;">
-  <div style="font-size:9px;font-weight:500;color:#dc2626;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;">Human Resources Team</div>
-  <div data-person="Thavy Tham" style="display:flex;align-items:center;gap:10px;cursor:pointer;background:#fef2f2;border-radius:10px;padding:10px 12px;transition:background .15s,box-shadow .15s;margin-bottom:6px;" onmouseover="this.style.background='#fef2f2';this.style.boxShadow='0 2px 10px rgba(220,38,38,.15)'" onmouseout="this.style.background='#fef2f2';this.style.boxShadow='none'"><img src="assets/people/thavy-tham.jpg" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;"><div><div style="font-weight:500;font-size:12.5px;color:#7f1d1d;">Thavy Tham</div><div style="font-size:11px;color:#dc2626;">Head of Human Resources</div></div></div>
-  <div style="margin-left:18px;border-left:2px solid #fca5a5;padding-left:10px;display:flex;flex-direction:column;gap:5px;">
-  <div data-person="Nuthida Han" style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#fff;border:1px solid #f1f5f9;border-left:3px solid #fca5a5;border-radius:8px;padding:7px 10px;transition:background .15s;" onmouseover="this.style.background='#fef2f2'" onmouseout="this.style.background='#fff'"><img src="assets/people/nuthida-han.jpg" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;"><div><div style="font-weight:500;font-size:11.5px;color:#1f2937;">Nuthida Han</div><div style="font-size:10.5px;color:#6b7280;">Senior Human Resources Coordinator</div></div></div>
-  <div data-person="Sodalin Thangham" style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#fff;border:1px solid #f1f5f9;border-left:3px solid #fca5a5;border-radius:8px;padding:7px 10px;transition:background .15s;" onmouseover="this.style.background='#fef2f2'" onmouseout="this.style.background='#fff'"><img src="assets/people/sodalin-thangham.jpg" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;"><div><div style="font-weight:500;font-size:11.5px;color:#1f2937;">Sodalin Thangham</div><div style="font-size:10.5px;color:#6b7280;">Human Resources Administrator</div></div></div>
-  <div data-person="Vivian Stumpf" style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#fff;border:1px solid #f1f5f9;border-left:3px solid #fca5a5;border-radius:8px;padding:7px 10px;transition:background .15s;" onmouseover="this.style.background='#fef2f2'" onmouseout="this.style.background='#fff'"><img src="assets/people/vivian-stumpf.jpg" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;"><div><div style="font-weight:500;font-size:11.5px;color:#1f2937;">Vivian Stumpf</div><div style="font-size:10.5px;color:#6b7280;">Human Resources Expat</div></div></div>
-  </div>
-</div>
-            </div>
-          </div><!-- /columns -->
+          <div id="hr-chart-cols" style="display:flex;flex-direction:column;align-items:center;"></div>
           </div><!-- /max-content wrapper -->
                     </div><!-- /scroll-wrapper -->
           </div><!-- /white-box -->
@@ -325,8 +307,9 @@
   });
 })();
 </script>
-<script>window.ICF_DEPT="Human Resources";window.ICF_DEPT_COLOR="#991b1b";</script>
+<script>window.ICF_DEPT="Human Resources";window.ICF_DEPT_COLOR="#991b1b";window.ICF_ORG_ROOT='Matthias Lendi';</script>
 <script src="assets/dept-staff.js?v=6"></script>
+<script src="assets/dept-org-chart.js?v=1"></script>
 <script src="assets/org-chart-refresh.js?v=1"></script>
 </body>
 </html>
