@@ -486,6 +486,22 @@
     return html;
   }
 
+  function lcCardHtml(p){
+    return'<div data-person="'+p.name.replace(/"/g,'&quot;')+'" style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:9px 10px;transition:background .15s;" onmouseover="this.style.background=\'#fef3c7\'" onmouseout="this.style.background=\'#fffbeb\'">'
+      +avatar(p,36,'#fde68a','#92400e')
+      +'<div><div style="font-weight:500;font-size:11.5px;color:#78350f;">'+p.name+'</div>'
+      +'<div style="font-size:10px;color:#b45309;">'+p.role+'</div></div></div>';
+  }
+
+  function buildLcCol(people,manager){
+    var cards=people.map(lcCardHtml).join('');
+    return'<div style="display:flex;flex-direction:column;gap:0;background:#fff;border:1.5px solid #fde68a;border-top:3px solid #d97706;border-radius:10px;padding:12px 10px;width:180px;box-sizing:border-box;">'
+      +'<div style="font-size:9px;font-weight:500;color:#d97706;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;">Learning Center</div>'
+      +'<div style="display:flex;flex-direction:column;gap:5px;">'+cards+'</div>'
+      +(manager?'<div style="font-size:10px;color:#b45309;text-align:center;padding:5px 0 0;border-top:1px dashed #fde68a;margin-top:6px;">↑ Reports to '+manager+'</div>':'')
+      +'</div>';
+  }
+
   function buildCol(label,people,note){
     return'<div class="mc-col-wrap"><div class="mc-col-drop"></div>'
       +'<div style="display:flex;flex-direction:column;gap:0;background:#fff;border:1.5px solid #e2e8f0;border-top:3px solid #059669;border-radius:10px;padding:12px 10px;width:190px;box-sizing:border-box;">'
@@ -536,7 +552,7 @@
       }
 
       if(container&&team.length)container.innerHTML=buildCol('MarCom',team,'');
-      if(lcContainer&&lc.length)lcContainer.innerHTML=buildCol('Learning Center',lc,'Reports to Martin Strupler');
+      if(lcContainer&&lc.length)lcContainer.innerHTML=buildLcCol(lc,'Martin Strupler');
     })
     .catch(function(){
       // fallback: leave container empty — static content was removed, graceful silence
