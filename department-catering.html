@@ -219,59 +219,10 @@
   });
 })();
 </script>
-<script>window.ICF_DEPT="Catering";window.ICF_DEPT_COLOR="#991b1b";window.ICF_ORG_ROOT='Matthias Lendi';</script>
+<script>window.ICF_DEPT="Catering";window.ICF_DEPT_COLOR="#991b1b";window.ICF_ORG_ROOT='Matthias Lendi';window.ICF_RESOURCES_SHEET_ID='1FweQstFM6y-p7zzZ-gNgURn9ZvLivIjkmpZxmmi702c';window.ICF_RESOURCES_SHEET_TAB='';</script>
 <script src="assets/dept-staff.js?v=6"></script>
 <script src="assets/dept-org-chart.js?v=1"></script>
 <script src="assets/org-chart-refresh.js?v=1"></script>
-<script>
-(function(){
-  var SHEET_ID='1FweQstFM6y-p7zzZ-gNgURn9ZvLivIjkmpZxmmi702c';
-  var wrap=document.getElementById('catering-resources-list');
-  if(!wrap)return;
-  var url='https://docs.google.com/spreadsheets/d/'+SHEET_ID+'/gviz/tq?tqx=out:csv';
-  fetch(url).then(function(r){return r.text();}).then(function(csv){
-    var rows=parseCSV(csv);
-    if(rows.length<2){wrap.innerHTML='';return;}
-    var headers=rows[0].map(function(h){return h.trim().toLowerCase().replace(/\s+/g,'_');});
-    function col(row,name){var i=headers.indexOf(name);return i>=0?(row[i]||'').trim():'';}
-    var items=rows.slice(1).filter(function(r){
-      var live=col(r,'live').toUpperCase();
-      return live===''||live==='TRUE'||live==='YES';
-    });
-    if(!items.length){wrap.innerHTML='';return;}
-    items.sort(function(a,b){return(parseInt(col(a,'order'))||99)-(parseInt(col(b,'order'))||99);});
-    var html='';
-    items.forEach(function(row){
-      var title=col(row,'title');
-      var desc=col(row,'description');
-      var linkLabel=col(row,'link_label')||'Open';
-      var linkUrl=col(row,'link_url');
-      var status=col(row,'status').toLowerCase();
-      var comingSoon=(status==='coming soon'||status==='soon'||!linkUrl);
-      var btnHtml=comingSoon
-        ?'<span style="display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#fef2f2;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-weight:500;color:#94a3b8;cursor:not-allowed;flex-shrink:0;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Coming soon</span>'
-        :'<a href="'+linkUrl+'" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#dc2626;color:#fff;border-radius:8px;font-size:12px;font-weight:500;text-decoration:none;flex-shrink:0;">'+linkLabel+'</a>';
-      html+='<div style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:8px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 1px 2px rgba(0,0,0,.04);">'
-           +'<div style="min-width:0;"><div style="font-weight:500;font-size:13.5px;margin:0;">'+title+'</div>'
-           +(desc?'<div style="font-size:12px;color:var(--text-muted);margin:0;">'+desc+'</div>':'')
-           +'</div>'+btnHtml+'</div>';
-    });
-    wrap.innerHTML=html;
-  }).catch(function(){wrap.innerHTML='';});
-  function parseCSV(text){
-    var rows=[];var row=[];var cur='';var inQ=false;
-    for(var i=0;i<text.length;i++){
-      var c=text[i];
-      if(inQ){if(c==='"'&&text[i+1]==='"'){cur+='"';i++;}else if(c==='"'){inQ=false;}else{cur+=c;}}
-      else if(c==='"'){inQ=true;}
-      else if(c===','){row.push(cur);cur='';}
-      else if(c==='\n'||c==='\r'){if(c==='\r'&&text[i+1]==='\n')i++;if(row.length||cur){row.push(cur);rows.push(row);}row=[];cur='';}
-      else{cur+=c;}
-    }
-    if(cur||row.length){row.push(cur);rows.push(row);}
-    return rows;
-  }
-})();
-</script>
+<script src="assets/dept-resources.js?v=1"></script>
 </body>
 </html>
