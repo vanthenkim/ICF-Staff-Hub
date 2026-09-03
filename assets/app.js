@@ -790,11 +790,13 @@ if ('serviceWorker' in navigator) {
         const allEvents = results.flat();
         if (allEvents.length === 0) throw new Error('no events loaded from any tab');
 
-        // Same window as the Year Planner's "2 weeks" tab: Monday of the
-        // current week through the following Sunday (14 days total).
+        // Rolling 2-week window starting today — past events (even ones
+        // earlier in the current week) never show here. This differs from
+        // the Year Planner's fixed Monday-Sunday grid on events.html, which
+        // needs full weeks for its layout; this is a flat "what's coming up"
+        // list, so it always starts from today.
         const today     = todayUTC();
-        const dow       = today.getUTCDay();
-        const start     = addDays(today, dow === 0 ? -6 : 1 - dow);
+        const start     = today;
         const end       = addDays(start, 13);
         const startISO  = start.toISOString().slice(0, 10);
         const endISO    = end.toISOString().slice(0, 10);
