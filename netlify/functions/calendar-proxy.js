@@ -8,7 +8,9 @@
  * Usage:  /.netlify/functions/calendar-proxy?cal=lunch
  *         /.netlify/functions/calendar-proxy?cal=birthday
  *
- * Required env var:  AUTH_SECRET  (same secret used by auth-callback)
+ * Required env vars:
+ *   AUTH_SECRET         — same secret used by auth-callback
+ *   BIRTHDAY_ICS_URL    — (optional) override for the private birthday calendar ICS URL
  */
 
 const crypto = require('crypto');
@@ -87,8 +89,12 @@ exports.handler = async (event) => {
   }
 
   // 3. Fetch ICS from Google (server-side — no CORS issue)
+  // Birthday uses a private ICS URL so the calendar doesn't need to be public
+  const BIRTHDAY_ICS = 'https://calendar.google.com/calendar/ical/icf-campus.com_fm6n628u1trm8b0evais34neu8%40group.calendar.google.com/private-b96c00fd69705a9c6228279fcd8a7437/basic.ics';
   try {
-    const icsUrl = `https://calendar.google.com/calendar/ical/${calId}/public/basic.ics`;
+    const icsUrl = (cal === 'birthday')
+      ? (process.env.BIRTHDAY_ICS_URL || BIRTHDAY_ICS)
+      : `https://calendar.google.com/calendar/ical/${calId}/public/basic.ics`;
     const resp   = await fetch(icsUrl, { headers: { 'User-Agent': 'ICF-Staff-Hub/1.0' } });
 
     if (!resp.ok) {
