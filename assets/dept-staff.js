@@ -175,9 +175,11 @@
       }
 
       /* ── render ─────────────────────────────────────────────────────── */
+      var prepend = window.ICF_TEAM_PREPEND || '';
       var html = '<div class="card" style="margin-bottom:14px;">'
                + '<h3 style="margin:0 0 10px;font-size:15px;">Team</h3>'
-               + '<div style="display:flex;flex-direction:column;gap:8px;">';
+               + '<div style="display:flex;flex-direction:column;gap:8px;">'
+               + prepend;
 
       var firstSection = true;
       groupOrder.forEach(function(key){
