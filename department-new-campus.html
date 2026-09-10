@@ -103,9 +103,9 @@
                 <div>• Drink Water Station providing clean water to the community</div>
               </div>
             </div>
-            <div class="card" style="background:linear-gradient(135deg,#065f46,#059669);">
-              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;"><div style="font-weight:500;font-size:14px;color:#fff;">Phase 2 — Expansion &amp; Completion</div><span style="font-size:12px;font-weight:500;color:#065f46;background:rgba(255,255,255,0.9);border-radius:99px;padding:2px 9px;white-space:nowrap;">~USD 1.2M</span></div>
-              <div style="font-size:13px;color:rgba(255,255,255,0.9);display:flex;flex-direction:column;gap:4px;">
+            <div class="card" style="border-left:4px solid #059669;opacity:.85;">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;"><div style="font-weight:500;font-size:14px;color:#059669;">Phase 2 — Expansion &amp; Completion</div><span style="font-size:12px;font-weight:500;color:#059669;background:#f0fdf4;border-radius:99px;padding:2px 9px;white-space:nowrap;">~USD 1.2M</span></div>
+              <div style="font-size:13px;color:#374151;display:flex;flex-direction:column;gap:4px;">
                 <div>• Daycare expansion to 100 children</div>
                 <div>• Office building with meeting rooms</div>
                 <div>• Bistro &amp; entrance area — a place for community and encounters</div>
@@ -182,61 +182,35 @@
 
           <!-- ── Planned Outlets ───────────────────────────────────── -->
           <div class="section-title" style="margin-top:8px;"><h2>Planned Outlets</h2></div>
-          <div class="card" style="margin-bottom:16px;"><div style="display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;flex-direction:column;gap:0;border:0.5px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:16px;">
 
-            <!-- Main Hall -->
-            <div onclick="openOutlet('mainhall')" style="display:flex;gap:12px;align-items:flex-start;padding:12px;background:#f0fdf4;border:1.5px solid #86efac;border-radius:10px;cursor:pointer;transition:box-shadow .15s;" onmouseover="this.style.boxShadow='0 4px 16px rgba(5,150,105,.15)'" onmouseout="this.style.boxShadow=''">
-              <span style="width:34px;height:34px;border-radius:8px;background:#059669;color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14"/></svg></span>
-              <div style="flex:1;">
-                <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px;">
-                  <div style="font-weight:500;font-size:14px;">Main Hall — Event Venue</div>
-                  <span style="font-size:11px;font-weight:500;color:#059669;background:#f0fdf4;border:1px solid #86efac;border-radius:99px;padding:1px 7px;">Phase 1</span>
-                </div>
-                <div style="font-size:13px;color:#6b7280;">500-seat auditorium available for external conferences, partner events &amp; community gatherings.</div>
-              </div>
-              <span style="font-size:18px;color:#a7f3d0;align-self:center;flex-shrink:0;">›</span>
+            <!-- Phase 1 -->
+            <div style="padding:6px 16px;background:#f0fdf4;border-bottom:0.5px solid var(--border);font-size:11px;font-weight:600;color:#059669;text-transform:uppercase;letter-spacing:.06em;">Phase 1</div>
+            <div onclick="openOutlet('mainhall')" style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;border-bottom:0.5px solid var(--border);cursor:pointer;transition:background .15s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background=''">
+              <div style="width:32px;height:32px;border-radius:8px;background:#f0fdf4;color:#059669;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14"/></svg></div>
+              <div style="flex:1;"><div style="font-weight:500;font-size:14px;margin-bottom:2px;">Main Hall — Event Venue</div><div style="font-size:12.5px;color:var(--text-muted);">500-seat auditorium for conferences, partner events &amp; community gatherings.</div></div>
+              <span style="color:#cbd5e1;align-self:center;flex-shrink:0;">›</span>
+            </div>
+            <div onclick="openOutlet('water')" style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;border-bottom:0.5px solid var(--border);cursor:pointer;transition:background .15s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background=''">
+              <div style="width:32px;height:32px;border-radius:8px;background:#f0fdf4;color:#059669;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+              <div style="flex:1;"><div style="font-weight:500;font-size:14px;margin-bottom:2px;">Drink Water Station</div><div style="font-size:12.5px;color:var(--text-muted);">Continuing ICF's clean water service — 20,000+ litres per day at peak.</div></div>
+              <span style="color:#cbd5e1;align-self:center;flex-shrink:0;">›</span>
             </div>
 
-            <!-- Bistro -->
-            <div onclick="openOutlet('bistro')" style="display:flex;gap:12px;align-items:flex-start;padding:12px;background:#f0fdf4;border:1.5px solid #86efac;border-radius:10px;cursor:pointer;transition:box-shadow .15s;" onmouseover="this.style.boxShadow='0 4px 16px rgba(5,150,105,.15)'" onmouseout="this.style.boxShadow=''">
-              <span style="width:34px;height:34px;border-radius:8px;background:#059669;color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></span>
-              <div style="flex:1;">
-                <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px;">
-                  <div style="font-weight:500;font-size:14px;">Bistro &amp; Café</div>
-                  <span style="font-size:11px;font-weight:500;color:#059669;background:#f0fdf4;border:1px solid #86efac;border-radius:99px;padding:1px 7px;">Phase 2</span>
-                </div>
-                <div style="font-size:13px;color:#6b7280;">Café and snack bar at the campus entrance — open to staff, families &amp; visitors. Generates revenue to cross-fund operations.</div>
-              </div>
-              <span style="font-size:18px;color:#a7f3d0;align-self:center;flex-shrink:0;">›</span>
+            <!-- Phase 2 -->
+            <div style="padding:6px 16px;background:#f0fdf4;border-bottom:0.5px solid var(--border);font-size:11px;font-weight:600;color:#059669;text-transform:uppercase;letter-spacing:.06em;">Phase 2</div>
+            <div onclick="openOutlet('bistro')" style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;border-bottom:0.5px solid var(--border);cursor:pointer;transition:background .15s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background=''">
+              <div style="width:32px;height:32px;border-radius:8px;background:#f0fdf4;color:#059669;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
+              <div style="flex:1;"><div style="font-weight:500;font-size:14px;margin-bottom:2px;">Bistro &amp; Café</div><div style="font-size:12.5px;color:var(--text-muted);">Open to staff, families &amp; visitors. Generates revenue to cross-fund operations.</div></div>
+              <span style="color:#cbd5e1;align-self:center;flex-shrink:0;">›</span>
+            </div>
+            <div onclick="openOutlet('crematorium')" style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background=''">
+              <div style="width:32px;height:32px;border-radius:8px;background:#f0fdf4;color:#059669;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+              <div style="flex:1;"><div style="font-weight:500;font-size:14px;margin-bottom:2px;">Community Crematorium</div><div style="font-size:12.5px;color:var(--text-muted);">A socially responsible service reducing burial costs for families in crisis.</div></div>
+              <span style="color:#cbd5e1;align-self:center;flex-shrink:0;">›</span>
             </div>
 
-            <!-- Water Station -->
-            <div onclick="openOutlet('water')" style="display:flex;gap:12px;align-items:flex-start;padding:12px;background:#f0fdf4;border:1.5px solid #86efac;border-radius:10px;cursor:pointer;transition:box-shadow .15s;" onmouseover="this.style.boxShadow='0 4px 16px rgba(5,150,105,.15)'" onmouseout="this.style.boxShadow=''">
-              <span style="width:34px;height:34px;border-radius:8px;background:#059669;color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
-              <div style="flex:1;">
-                <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px;">
-                  <div style="font-weight:500;font-size:14px;">Drink Water Station</div>
-                  <span style="font-size:11px;font-weight:500;color:#059669;background:#f0fdf4;border:1px solid #86efac;border-radius:99px;padding:1px 7px;">Phase 1</span>
-                </div>
-                <div style="font-size:13px;color:#6b7280;">Continuing ICF's clean water service for the neighbourhood — 20,000+ litres per day at peak.</div>
-              </div>
-              <span style="font-size:18px;color:#a7f3d0;align-self:center;flex-shrink:0;">›</span>
-            </div>
-
-            <!-- Crematorium -->
-            <div onclick="openOutlet('crematorium')" style="display:flex;gap:12px;align-items:flex-start;padding:12px;background:#f0fdf4;border:1.5px solid #86efac;border-radius:10px;cursor:pointer;transition:box-shadow .15s;" onmouseover="this.style.boxShadow='0 4px 16px rgba(5,150,105,.15)'" onmouseout="this.style.boxShadow=''">
-              <span style="width:34px;height:34px;border-radius:8px;background:#059669;color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
-              <div style="flex:1;">
-                <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px;">
-                  <div style="font-weight:500;font-size:14px;">Community Crematorium</div>
-                  <span style="font-size:11px;font-weight:500;color:#059669;background:#f0fdf4;border:1px solid #86efac;border-radius:99px;padding:1px 7px;">Phase 2</span>
-                </div>
-                <div style="font-size:13px;color:#6b7280;">A socially responsible service reducing the financial burden of burial costs for families in crisis.</div>
-              </div>
-              <span style="font-size:18px;color:#a7f3d0;align-self:center;flex-shrink:0;">›</span>
-            </div>
-
-          </div></div>
+          </div>
 
           <!-- Outlet Modal -->
           <div id="outlet-modal" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,.5);z-index:9998;align-items:center;justify-content:center;padding:16px;" onclick="if(event.target===this)closeOutlet()">
@@ -272,7 +246,16 @@
           <div id="new-campus-resources-list" style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px;"></div>
 
         </section>
-        <aside><div id="dept-team-wrap"><div class="card" style="padding:14px;"><p style="color:#94a3b8;font-size:13px;margin:0;font-style:italic;">Loading team…</p></div></div></aside>
+        <aside>
+          <div class="card" style="margin-bottom:14px;">
+            <h3 style="margin:0 0 10px;font-size:15px;">Leadership</h3>
+            <div data-person="ND Strupler" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#f0fdf4'" onmouseout="this.style.background=''">
+              <img src="assets/people/nd-strupler.jpg" alt="ND Strupler" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;">
+              <div><div style="font-weight:500;font-size:13.5px;">ND Strupler</div><div class="muted" style="font-size:12px;">Founder &amp; Executive Director</div></div>
+            </div>
+          </div>
+          <div id="dept-team-wrap"><div class="card" style="padding:14px;"><p style="color:#94a3b8;font-size:13px;margin:0;font-style:italic;">Loading team…</p></div></div>
+        </aside>
       </div>
 
       <!-- New Campus Org Chart -->

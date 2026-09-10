@@ -172,11 +172,11 @@
         colsHtml+=buildCol(g,head,staff);
       });
 
-      // Horizontal bar spanning all columns: N*193 - 8
+      // Horizontal bar spanning all columns: only when >1 column
       var n=groupOrder.length;
       var barW=Math.max(n*193-8,193);
       var html='<div style="width:2px;height:16px;background:'+pl.c+';"></div>'
-              +'<div style="width:'+barW+'px;border-top:2px solid '+pl.c+';"></div>'
+              +(n>1?'<div style="width:'+barW+'px;border-top:2px solid '+pl.c+';"></div>':'')
               +'<div style="display:flex;gap:8px;align-items:flex-start;">'+colsHtml+'</div>';
       container.innerHTML=html;
     })
