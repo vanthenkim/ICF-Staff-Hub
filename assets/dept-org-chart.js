@@ -60,7 +60,7 @@
 
   function avatar(person,size){
     var esc=function(s){return s.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');};
-    if(person.photo)return'<img src="'+esc(person.photo)+'" style="width:'+size+'px;height:'+size+'px;border-radius:50%;object-fit:cover;flex-shrink:0;">';
+    if(person.photo)return'<img src="'+esc(person.photo)+'" style="width:'+size+'px;height:'+size+'px;border-radius:50%;object-fit:cover;object-position:top;flex-shrink:0;">';
     return'<div style="width:'+size+'px;height:'+size+'px;border-radius:50%;background:'+pl.m+';display:flex;align-items:center;justify-content:center;font-weight:500;font-size:'+(size<40?11:13)+'px;color:'+pl.a+';flex-shrink:0;">'+initials(person.name)+'</div>';
   }
 

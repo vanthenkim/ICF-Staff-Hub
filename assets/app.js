@@ -923,7 +923,7 @@ if ('serviceWorker' in navigator) {
     // ---- Add heart buttons to all card types ----
     const CARD_DEFS = [
       { sel: 'a.hc-card',        labelSel: '.hc-card__label' },
-      { sel: '.resource',         labelSel: '.resource__title', insertInto: '.resource__top' },
+      { sel: '.resource',         labelSel: '.resource__title' },
       { sel: 'a.dept',            labelSel: '.dept__name' },
       { sel: '.course',           labelSel: '.course__title' },
       { sel: '.tool',             labelSel: '.tool__title' },
@@ -1420,7 +1420,7 @@ if ('serviceWorker' in navigator) {
             const tgt = isExt ? ' target="_blank" rel="noopener"' : '';
             const isStaff = item.g === 'Staff';
             const iconHtml = item.p
-              ? `<img src="${item.p}" alt="" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;background:#e2e8f0;" onerror="this.onerror=null;this.style.background='#e2e8f0';">`
+              ? `<img src="${item.p}" alt="" style="width:32px;height:32px;border-radius:50%;object-fit:cover;object-position:top;flex-shrink:0;background:#e2e8f0;" onerror="this.onerror=null;this.style.background='#e2e8f0';">`
               : `<span class="inline-results__hit__icon">${iconFor(item.i)}</span>`;
             if (isStaff) {
               const sn = item.t.replace(/"/g,'&quot;');

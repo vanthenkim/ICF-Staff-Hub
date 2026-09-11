@@ -27,6 +27,8 @@
   #cpanel{width:100vw;height:92dvh;border-radius:18px 18px 0 0;transform:translateY(110%);}
   #cov.open #cpanel{transform:translateY(0);}
 }
+/* Sticky header: offset 0 inside scroll container, not viewport */
+#contact-table thead th { top: 0; }
 </style>
 </head>
 <body>
@@ -208,6 +210,9 @@ const DEPT_REMAP = {
   'Sakorun Pok':    'Operations',
   'Sreymom Lim':    'Operations',
   'Kimleang Lun':   'Operations',
+  // University Scholarship Students — connect to their actual working departments
+  'Chintha Pav':    'After School',
+  'Rebecca Vey':    'Donor Care',
 };
 
 // Department value remaps — normalises sheet values to display names
@@ -235,10 +240,30 @@ const ROLE_OVERRIDES = {
   'ND Strupler': 'Executive Director · Founder',
 };
 
-// Mentor relationships (not manager — shown separately in the contact modal)
+// Responsible Leader / Mentor relationships — shown separately in the contact modal
 const MENTOR_OVERRIDES = {
-  'Davit Mao': 'ND Strupler',
-  'Tola Khy':  'ND Strupler',
+  'Davit Mao':      'ND Strupler',
+  'Tola Khy':       'ND Strupler',
+  // University Scholarship Students — Responsible Leader
+  'Sopheak Phol':   'Phin Teb',
+  'Ry Rey':         'Phin Teb',
+  'Sinat Hoem':     'Phin Teb',
+  'Sreynuch Phuk':  'Phin Teb',
+  'Prerk Sey':      'Phin Teb',
+  'Kanha Vat':      'Phin Teb',
+  'Sreylin Nan':    'Phin Teb',
+  'Makara Chy':     'Phin Teb',
+  'Sriydav Nak':    'Phin Teb',
+  'Monyroth Ev':    'Phin Teb',
+  'Sreyleak Houn':  'Phin Teb',
+  'Sary Sarin':     'Phin Teb',
+  'Sothea Thov':    'Phin Teb',
+  'Chintha Pav':    'Parigna',
+  'Chhaivorn Vin':  'Phin Teb',
+  'Naroth Roth':    'Phin Teb',
+  'Hun Hub':        'Phin Teb',
+  'Rebecca Vey':    'Steffi Lendi',
+  'Sovann Choeut':  'Phin Teb',
 };
 
 // Names hidden from the reporting line chain (chain still traverses through them)
@@ -289,7 +314,7 @@ function renderList(staff) {
       onmouseenter="this.style.background='#eff6ff'" onmouseleave="this.style.background='${bg}'">
       <td style="padding:8px 12px;">
         <div style="display:flex;align-items:center;gap:8px;">
-          ${p.photo ? `<img src="${p.photo}" alt="${p.name}" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;" onerror="this.outerHTML='<div style=\\'width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;\\'>${initials(p.name)}</div>'">` : `<div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;">${initials(p.name)}</div>`}
+          ${p.photo ? `<img src="${p.photo}" alt="${p.name}" style="width:32px;height:32px;border-radius:50%;object-fit:cover;object-position:top;flex-shrink:0;" onerror="this.outerHTML='<div style=\\'width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;\\'>${initials(p.name)}</div>'">` : `<div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;">${initials(p.name)}</div>`}
           <div>
             <div style="font-weight:400;font-size:15px;">${p.name}</div>
             ${p.khmerName ? `<div style="font-size:11px;color:#94a3b8;">${p.khmerName}</div>` : ''}
@@ -316,7 +341,7 @@ function renderGallery(staff) {
       const s = DEPT_STYLES[p.department] || ['#f1f5f9','#374151','#e2e8f0'];
       const srch = [p.name, p.alias, p.khmerName, p.department, p.email, p.telegram].join(' ').toLowerCase();
       const avatar = p.photo
-        ? `<img src="${p.photo}" alt="${p.name}" style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.12);" onerror="this.outerHTML='<div style=\\'width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:24px;font-weight:500;display:flex;align-items:center;justify-content:center;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.12);\\'>${initials(p.name)}</div>'">`
+        ? `<img src="${p.photo}" alt="${p.name}" style="width:80px;height:80px;border-radius:50%;object-fit:cover;object-position:top;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.12);" onerror="this.outerHTML='<div style=\\'width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:24px;font-weight:500;display:flex;align-items:center;justify-content:center;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.12);\\'>${initials(p.name)}</div>'">`
         : `<div style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:24px;font-weight:500;display:flex;align-items:center;justify-content:center;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.12);">${initials(p.name)}</div>`;
       return `<div data-dept="${p.department}" data-search="${srch}" data-n="${p.name.replace(/"/g,'&quot;')}" onclick="openContactByName(this.dataset.n)" style="background:#fff;border:1.5px solid #e2e8f0;border-radius:16px;overflow:hidden;transition:box-shadow .15s;text-align:center;cursor:pointer;" onmouseenter="this.style.boxShadow='0 4px 20px rgba(37,99,235,.12)'" onmouseleave="this.style.boxShadow=''">
         <div style="padding:28px 20px 16px;display:flex;flex-direction:column;align-items:center;">
@@ -787,7 +812,9 @@ function renderGallery(staff) {
         }
         const photoUrl = col.photo >= 0 ? (r[col.photo] || '').trim() : '';
         const local = LOCAL_CONTACTS[name] || {};
-        const sheetPhone    = col.phone    >= 0 ? (r[col.phone]    || '').trim() : '';
+        const _rawPhone = col.phone >= 0 ? (r[col.phone] || '').trim() : '';
+        // Normalize: add + to Cambodian numbers stored as digits (e.g. 85512345678 → +85512345678)
+        const sheetPhone = _rawPhone && !_rawPhone.startsWith('+') && /^855\d{7,10}$/.test(_rawPhone) ? '+' + _rawPhone : _rawPhone;
         const sheetTelegram = col.telegram >= 0 ? (r[col.telegram] || '').trim().replace(/^@/, '') : '';
         contacts.push({
           name,
@@ -863,7 +890,7 @@ function _miniAvatar(p, size) {
   const ini = initials(p ? p.name : '?');
   const fallback = `<div style="width:${s}px;height:${s}px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:${fs}px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;">${ini}</div>`;
   if (p && p.photo) {
-    return `<img src="${p.photo}" alt="${p.name}" style="width:${s}px;height:${s}px;border-radius:50%;object-fit:cover;flex-shrink:0;" onerror="_imgErr(this,'${ini}',${s})">`;
+    return `<img src="${p.photo}" alt="${p.name}" style="width:${s}px;height:${s}px;border-radius:50%;object-fit:cover;object-position:top;flex-shrink:0;" onerror="_imgErr(this,'${ini}',${s})">`;
   }
   return fallback;
 }
@@ -897,7 +924,7 @@ function openContact(p) {
   const ini = initials(p.name);
   const bigFallback = `<div style="width:88px;height:88px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:26px;font-weight:500;display:flex;align-items:center;justify-content:center;border:3px solid #fff;box-shadow:0 4px 16px rgba(0,0,0,.12);">${ini}</div>`;
   const bigAvatar = p.photo
-    ? `<img src="${p.photo}" alt="${p.name}" style="width:88px;height:88px;border-radius:50%;object-fit:cover;border:3px solid #fff;box-shadow:0 4px 16px rgba(0,0,0,.12);" onerror="_imgErr(this,'${ini}',88,1)">`
+    ? `<img src="${p.photo}" alt="${p.name}" style="width:88px;height:88px;border-radius:50%;object-fit:cover;object-position:top;border:3px solid #fff;box-shadow:0 4px 16px rgba(0,0,0,.12);" onerror="_imgErr(this,'${ini}',88,1)">`
     : bigFallback;
 
   // Contact rows
@@ -935,7 +962,7 @@ function openContact(p) {
     }
     const ancestorHtml = ancestors.filter(n => !REPORTING_LINE_HIDDEN.has(n)).map(n => _orgNode(n, false) + arrow).join('');
     const mentorHtml = mentorName ? `<div style="margin-top:12px;padding-top:12px;border-top:1px dashed #e2e8f0;">
-      <div style="font-size:11px;font-weight:500;color:#94a3b8;margin-bottom:6px;letter-spacing:.04em;">Mentor</div>
+      <div style="font-size:11px;font-weight:500;color:#94a3b8;margin-bottom:6px;letter-spacing:.04em;">Responsible Leader</div>
       ${_orgNode(mentorName, false)}
     </div>` : '';
     orgHtml = `<div style="margin-top:24px;padding-top:20px;border-top:1.5px solid #f1f5f9;">

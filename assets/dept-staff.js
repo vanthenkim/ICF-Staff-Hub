@@ -151,7 +151,7 @@
         if (p.photo) {
           photoHtml = '<img src="'+ esc(p.photo) +'" alt="'+ esc(p.name) +'"'
                     + ' style="width:'+ sz +';height:'+ sz +';border-radius:50%;'
-                    + 'object-fit:cover;flex-shrink:0;"'
+                    + 'object-fit:cover;object-position:top;flex-shrink:0;"'
                     + ' onerror="this.outerHTML=\''
                     + fallback.replace(/'/g,"\\'").replace(/"/g,'&quot;')
                     + '\'">';
