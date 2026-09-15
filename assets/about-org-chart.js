@@ -77,11 +77,12 @@
       +'</div>';
   }
 
-  function sectionLabel(section, col){
+  function sectionLabel(section, col, sid){
     var url = section.page+'#open-orgchart';
+    var bg = col.lc.replace('ddd6fe','f5f3ff').replace('fca5a5','fef2f2').replace('bfdbfe','eff6ff').replace('fcd34d','fffbeb').replace('6ee7b7','f0fdf4');
     return '<div style="display:flex;align-items:center;gap:5px;margin:8px 0 4px;align-self:flex-start;">'
-      +'<div style="background:'+col.lc.replace('ddd6fe','f5f3ff').replace('fca5a5','fef2f2').replace('bfdbfe','eff6ff').replace('fcd34d','fffbeb').replace('6ee7b7','f0fdf4')+';border-radius:5px;padding:2px 8px;font-size:9px;font-weight:500;color:'+col.color+';text-transform:uppercase;letter-spacing:.06em;">'+esc(section.label)+'</div>'
-      +'<a href="'+esc(url)+'" onclick="event.preventDefault();if(window.openChartPopup)openChartPopup(\''+url+'\')" style="display:inline-flex;align-items:center;padding:2px 6px;border-radius:5px;font-size:9px;font-weight:500;text-decoration:none;background:'+col.lc.replace('ddd6fe','f5f3ff').replace('fca5a5','fef2f2').replace('bfdbfe','eff6ff').replace('fcd34d','fffbeb').replace('6ee7b7','f0fdf4')+';border:1px solid '+col.lc+';color:'+col.color+';" onmouseover="this.style.opacity=\'0.7\'" onmouseout="this.style.opacity=\'1\'">chart →</a>'
+      +'<button onclick="var s=document.getElementById(\''+sid+'\');var open=s.style.display!==\'none\';s.style.display=open?\'none\':\'flex\';this.textContent=open?\''+esc(section.label)+' ▸\':\''+esc(section.label)+' ▾\'" style="background:'+bg+';border:1px solid '+col.lc+';border-radius:5px;padding:2px 8px;font-size:9px;font-weight:500;color:'+col.color+';text-transform:uppercase;letter-spacing:.06em;cursor:pointer;font-family:inherit;">'+esc(section.label)+' ▸</button>'
+      +'<a href="'+esc(url)+'" onclick="event.preventDefault();if(window.openChartPopup)openChartPopup(\''+url+'\')" style="display:inline-flex;align-items:center;padding:2px 6px;border-radius:5px;font-size:9px;font-weight:500;text-decoration:none;background:'+bg+';border:1px solid '+col.lc+';color:'+col.color+';" onmouseover="this.style.opacity=\'0.7\'" onmouseout="this.style.opacity=\'1\'">chart →</a>'
       +'</div>';
   }
 
@@ -191,7 +192,9 @@
       if(director) col += directorCard(director, colCfg);
 
       colCfg.sections.forEach(function(sec){
-        col += sectionLabel(sec, colCfg);
+        var sid = uid();
+        col += sectionLabel(sec, colCfg, sid);
+        col += '<div id="'+sid+'" style="display:none;flex-direction:column;gap:5px;width:100%;align-items:center;">';
 
         // Collect all non-director people for this section's depts
         var secPeople = [];
@@ -230,6 +233,8 @@
             col += teamCard(p);
           }
         });
+
+        col += '</div>'; // close section collapse div
       });
 
       col += '</div>';

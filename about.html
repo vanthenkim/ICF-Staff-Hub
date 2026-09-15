@@ -207,6 +207,9 @@
       <!-- Leadership -->
       <div class="section-title" id="leadership" style="margin-top:28px;"><h2>Leadership</h2></div>
 
+      <style>
+        #leadership .person > div:nth-child(2) { align-items:center; text-align:center; }
+      </style>
       <h3 style="margin:8px 0 8px;font-size:16px;">Board of Directors (BOD)</h3>
       <p class="muted" style="margin: 0 0 14px; font-size: 14px;">Provides strategic leadership and oversees budget, staffing, and legal matters.</p>
       <div>
@@ -451,6 +454,8 @@
   function getRoleFromCard(card) {
     var r = card.querySelector('[style*="font-size:9.5px"]');
     if (r) return r.textContent.trim();
+    var r9 = card.querySelector('[style*="font-size:9px"]');
+    if (r9) return r9.textContent.trim();
     var r11 = card.querySelector('[style*="font-size:11px"]');
     if (r11) return r11.textContent.trim();
     return '';
