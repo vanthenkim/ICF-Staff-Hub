@@ -454,6 +454,19 @@ body.list-view .res-grid .resource__tags,
 body.list-view .res-grid .resource__meta { display: none; }
 body.list-view .res-grid .resource__actions { margin-top: 0; flex-shrink: 0; margin-left: auto; }
 body.list-view .res-grid .resource__body { flex: 1; min-width: 0; }
+
+/* Favourite heart button */
+.resource { position: relative; }
+.gl-fav-btn {
+  position: absolute; top: 10px; right: 10px;
+  background: none; border: none; cursor: pointer;
+  font-size: 18px; line-height: 1; padding: 2px 4px; color: #d1d5db;
+  z-index: 1;
+}
+body.list-view .res-grid .gl-fav-btn {
+  position: static; flex-shrink: 0; align-self: center;
+  padding: 0 6px 0 0;
+}
 </style>
 <script>
 (function () {
@@ -461,7 +474,7 @@ body.list-view .res-grid .resource__body { flex: 1; min-width: 0; }
      CONFIG — paste your published CSV URL here
      Steps: File → Share → Publish to web → CSV → Copy link
   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  var SHEET_URL = 'https://docs.google.com/spreadsheets/d/1fK-6H2lLGidMATOokZ3fNs1k2TQDDH5Mfw7TNNZc8_I/gviz/tq?tqx=out:json&gid=1547898715';
+  var SHEET_URL = 'https://docs.google.com/spreadsheets/d/1fK-6H2lLGidMATOokZ3fNs1k2TQDDH5Mfw7TNNZc8_I/gviz/tq?tqx=out:json&headers=1&gid=1547898715';
 
   var SECTION_LABELS = {
     'child-protection': 'Child Protection Forms',
@@ -541,8 +554,11 @@ body.list-view .res-grid .resource__body { flex: 1; min-width: 0; }
       }
     }
 
+    var favId  = 'rs-' + (row.title || '').replace(/\W+/g,'-').toLowerCase().slice(0,35);
+    var favUrl = btns.match(/href="([^"]+)"/)?.[1] || '';
+    var heart  = '<button class="gl-fav-btn" data-fav-id="' + favId + '" data-fav-title="' + esc(row.title) + '" data-fav-url="' + favUrl.replace(/"/g,'&quot;') + '" onclick="icfToggleFav(this)" title="Save">♡</button>';
     return '<article class="resource' + color + '">' +
-      '<div class="resource__top"></div>' +
+      heart +
       '<div class="resource__body">' +
         '<h3 class="resource__title">' + esc(row.title) + '</h3>' +
         '<p class="resource__desc">' + esc(row.description) + '</p>' +
@@ -595,8 +611,13 @@ body.list-view .res-grid .resource__body { flex: 1; min-width: 0; }
     var content = document.getElementById('resources-content');
     content.innerHTML = html;
 
+    // Hide the static fallback — sheet data loaded successfully
+    var fb = document.getElementById('resources-fallback');
+    if (fb) fb.style.display = 'none';
+
     // Wire up app.js card behaviours (favorites etc) if available
     if (window.initCards) window.initCards();
+    if (window.icfInitFavBtns) window.icfInitFavBtns();
 
     applyFilter(currentFilter);
   }
@@ -670,6 +691,7 @@ body.list-view .res-grid .resource__body { flex: 1; min-width: 0; }
   }
 })();
 </script>
+<script src="assets/icf-fav.js?v=1"></script>
 
 </body>
 </html>

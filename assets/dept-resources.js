@@ -86,7 +86,7 @@
 
     var pal = PALETTES[COLOR] || {bg:'#f8fafc',border:'#e2e8f0',text:COLOR};
 
-    var url = 'https://docs.google.com/spreadsheets/d/'+SHEET_ID+'/gviz/tq?tqx=out:csv'
+    var url = 'https://docs.google.com/spreadsheets/d/'+SHEET_ID+'/gviz/tq?tqx=out:csv&headers=1'
             + (TAB ? '&sheet='+encodeURIComponent(TAB) : '');
 
     fetch(url).then(function(r){return r.text();}).then(function(csv){
@@ -97,7 +97,10 @@
 
       var items = rows.slice(1).filter(function(r){
         var live = col(r,'live').toUpperCase();
-        return live===''||live==='TRUE'||live==='YES';
+        if(live!==''&&live!=='TRUE'&&live!=='YES') return false;
+        var status = col(r,'status').toLowerCase().trim();
+        if(status==='coming soon'||status==='soon') return false;
+        return true;
       });
       if(!items.length) return;
       items.sort(function(a,b){return(parseInt(col(a,'order'))||99)-(parseInt(col(b,'order'))||99);});
@@ -113,8 +116,8 @@
         var status    = col(row,'status').toLowerCase();
 
         var btn = '';
-        if(status==='coming soon'||status==='soon'||(!linkUrl&&!contUrl)){
-          btn = '<span style="'+bStyle('#f8fafc','#e2e8f0','#94a3b8')+'cursor:not-allowed;">'+ICON_SOON+'Coming soon</span>';
+        if(!linkUrl&&!contUrl){
+          btn = '';
         } else if(status==='contact'&&linkUrl){
           btn = '<button onclick="(window.ICF_OPEN_MODAL||openModal)(\''+raw(linkUrl).replace(/\\/g,'\\\\').replace(/'/g,"\\'")+'\')" style="'+bStyle(pal.bg,pal.border,pal.text)+'cursor:pointer;">'+ICON_SEND+esc(linkLabel)+'</button>';
         } else {
@@ -122,7 +125,7 @@
           if(linkUrl){
             var isFile=/\.(pdf|doc|docx|xls|xlsx|png|jpg|jpeg|gif)(\b|$)/i.test(linkUrl)||linkUrl.includes('/export?format=');
             var icon = isFile ? ICON_FILE : ICON_LINK;
-            btns+='<a href="'+esc(linkUrl)+'" target="_blank" rel="noopener" style="'+bStyle(COLOR,'transparent','#fff')+'">'+icon+esc(linkLabel)+'</a>';
+            btns+='<a href="'+esc(linkUrl)+'" target="_blank" rel="noopener" style="'+bStyle(pal.bg,pal.border,pal.text)+'">'+icon+esc(linkLabel)+'</a>';
           }
           if(contUrl&&contLabel){
             btns+='<a href="'+esc(contUrl)+'" target="_blank" rel="noopener" style="'+bStyle(pal.bg,pal.border,pal.text)+'">'+ICON_SEND+esc(contLabel)+'</a>';
@@ -130,13 +133,35 @@
           btn = btns ? '<div style="display:flex;gap:6px;flex-shrink:0;">'+btns+'</div>' : '';
         }
 
+        var favId  = 'res-'+slug+'-'+title.replace(/\W+/g,'-').toLowerCase().slice(0,35);
+        var favUrl = linkUrl || contUrl || '';
+        var heart  = '<button data-fav-id="'+esc(favId)+'" data-fav-title="'+esc(title)+'" data-fav-url="'+esc(favUrl)+'" onclick="icfToggleFav(this)" title="Save" style="background:none;border:none;cursor:pointer;font-size:16px;line-height:1;padding:2px 4px;flex-shrink:0;color:#d1d5db;">♡</button>';
+
         html+='<div style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:8px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 1px 2px rgba(0,0,0,.04);">'
-             +'<div style="min-width:0;"><div style="font-weight:500;font-size:13.5px;margin:0;">'+esc(title)+'</div>'
+             +heart
+             +'<div style="min-width:0;flex:1;"><div style="font-weight:500;font-size:13.5px;margin:0;">'+esc(title)+'</div>'
              +(desc?'<div style="font-size:12px;color:var(--text-muted);margin:0;">'+esc(desc)+'</div>':'')
              +'</div>'+btn+'</div>\n';
       });
-      if(html) wrap.innerHTML = html;
+      if(html){
+        wrap.innerHTML = html;
+        if(window.icfInitFavBtns) window.icfInitFavBtns();
+      }
     }).catch(function(){});
+  }
+
+  // Inject icf-fav.js once if not already loaded
+  if(!window._icfFavLoaded){
+    window._icfFavLoaded = true;
+    var s = document.createElement('script');
+    s.src = (document.querySelector('base[href]')||{href:''}).href + 'assets/icf-fav.js?v=1';
+    // resolve relative path based on script location
+    var scripts = document.querySelectorAll('script[src*="dept-resources"]');
+    if(scripts.length){
+      var base = scripts[scripts.length-1].src.replace(/assets\/dept-resources\.js[^/]*$/,'');
+      s.src = base + 'assets/icf-fav.js?v=1';
+    }
+    document.head.appendChild(s);
   }
 
   // Expose for explicit calls (e.g. second section on same page)

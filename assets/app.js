@@ -957,7 +957,7 @@ if ('serviceWorker' in navigator) {
 
       CARD_DEFS.forEach(({ sel, labelSel, insertInto }) => {
         document.querySelectorAll(sel).forEach(card => {
-          if (card.querySelector('.card-fav-btn')) return;
+          if (card.querySelector('.card-fav-btn, .gl-fav-btn')) return;
 
           const labelEl   = card.querySelector(labelSel);
           const labelText = labelEl ? labelEl.textContent.trim() : '';

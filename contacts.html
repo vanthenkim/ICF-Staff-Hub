@@ -86,7 +86,7 @@
       <div class="page-header">
         <div>
           <h1>Staff Contacts</h1>
-          <p id="staff-count-label">Directory of staff members · phone &amp; Telegram where available</p>
+          <p id="staff-count-label">Directory of staff members</p>
         </div>
       </div>
 
@@ -131,7 +131,7 @@
       <div id="gallery-view"></div>
 
       <div id="no-results" style="display:none;padding:40px;text-align:center;color:#94a3b8;font-size:14px;">No staff found matching your search.</div>
-      <p style="font-size:12px;color:#94a3b8;margin-top:10px;">Contact details are updated as staff add them. Missing details? Ask your department admin.</p>
+      <p style="font-size:12px;color:#94a3b8;margin-top:10px;">Missing your details? Set your Telegram username to public, then use the feedback button to let us know.</p>
     </div><!-- /content -->
 
     <!-- Mobile nav -->
@@ -273,7 +273,7 @@ const DEPT_STYLES = {
   Leadership:        ['#dbeafe','#1e40af','#bfdbfe'],
   Church:            ['#f5f3ff','#7c3aed','#ddd6fe'],
   Social:            ['#fee2e2','#991b1b','#fca5a5'],
-  MarCom:            ['#cffafe','#155e75','#67e8f9'],
+  MarCom:            ['#f0fdf4','#059669','#6ee7b7'],
   Fundraising:       ['#dcfce7','#14532d','#86efac'],
   'Donor Care':      ['#dcfce7','#14532d','#86efac'],
   'Human Resources': ['#fee2e2','#991b1b','#fca5a5'],
@@ -287,15 +287,21 @@ const DEPT_STYLES = {
   'Guest Relations': ['#cffafe','#155e75','#67e8f9'],
   'New Campus':      ['#dcfce7','#166534','#86efac'],
   Property:          ['#fef3c7','#92400e','#fcd34d'],
+  'Learning Center': ['#fef3c7','#92400e','#fcd34d'],
+};
+
+const PERSON_BADGE_OVERRIDE = {
+  'Makara Ne': 'Learning Center',
 };
 
 function initials(name) {
   return name.split(' ').map(w => w[0]).join('').slice(0,2).toUpperCase();
 }
 
-function deptBadge(dept) {
-  const s = DEPT_STYLES[dept] || ['#f1f5f9','#374151','#e2e8f0'];
-  return `<span style="background:${s[0]};color:${s[1]};font-size:11px;font-weight:400;padding:2px 8px;border-radius:99px;white-space:nowrap;">${dept||'—'}</span>`;
+function deptBadge(dept, name) {
+  const label = (name && PERSON_BADGE_OVERRIDE[name]) || dept;
+  const s = DEPT_STYLES[label] || ['#f1f5f9','#374151','#e2e8f0'];
+  return `<span style="background:${s[0]};color:${s[1]};font-size:11px;font-weight:400;padding:2px 8px;border-radius:99px;white-space:nowrap;">${label||'—'}</span>`;
 }
 
 function renderList(staff) {
@@ -322,7 +328,7 @@ function renderList(staff) {
           </div>
         </div>
       </td>
-      <td style="padding:8px 12px;">${deptBadge(p.department)}</td>
+      <td style="padding:8px 12px;">${deptBadge(p.department, p.name)}</td>
       <td style="padding:8px 12px;">${p.email ? `<a href="mailto:${p.email}" style="color:#2563eb;font-size:12px;text-decoration:none;">${p.email}</a>` : '<span style="color:#cbd5e1;font-size:12px;">—</span>'}</td>
       <td style="padding:8px 12px;">${phoneLink}</td>
       <td style="padding:8px 12px;">${tgLink}</td>
@@ -854,7 +860,7 @@ function renderGallery(staff) {
       allStaff.forEach(p => { if (ALIASES[p.name]) p.alias = ALIASES[p.name]; });
       allStaff.forEach(p => { staffByName[p.name] = p; });
       const countEl = document.getElementById('staff-count-label');
-      if (countEl) countEl.textContent = `Directory of ${allStaff.length} staff members · phone & Telegram where available`;
+      if (countEl) countEl.textContent = `Directory of ${allStaff.length} staff members`;
       const depts = ['Catering','Church','Donor Care','Human Resources','MarCom','New Campus','Operations','Property','Social','University'];
       depts.forEach(dept => {
         const opt = document.createElement('option');
@@ -981,7 +987,7 @@ function openContact(p) {
       ${p.khmerName ? `<div style="font-size:13px;color:#94a3b8;margin-top:2px;">${p.khmerName}</div>` : ''}
       ${p.role ? `<div style="font-size:14px;color:#64748b;margin-top:5px;">${p.role}</div>` : ''}
       ${p.subdept ? `<div style="font-size:12px;color:#94a3b8;margin-top:2px;">${p.subdept}</div>` : ''}
-      <div style="margin-top:10px;">${deptBadge(p.department)}</div>
+      <div style="margin-top:10px;">${deptBadge(p.department, p.name)}</div>
     </div>
     ${emailRow || phoneRow || tgRow ? `<div style="padding:0 20px 4px;">${emailRow}${phoneRow}${tgRow}</div>` : ''}
     ${orgHtml ? `<div style="padding:0 20px 36px;">${orgHtml}</div>` : '<div style="height:24px;"></div>'}
