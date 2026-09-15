@@ -311,12 +311,17 @@ body.list-view .res-grid .resource__meta { display: none; }
 body.list-view .res-grid .resource__actions { margin-top: 0; flex-shrink: 0; margin-left: auto; }
 body.list-view .res-grid .resource__body { flex: 1; min-width: 0; }
 
-/* Favourite heart — only visible in list-view */
-.gl-fav-btn { display: none; }
+/* Favourite heart button */
+.resource { position: relative; }
+.gl-fav-btn {
+  position: absolute; top: 10px; right: 10px;
+  background: none; border: none; cursor: pointer;
+  font-size: 18px; line-height: 1; padding: 2px 4px; color: #d1d5db;
+  z-index: 1;
+}
 body.list-view .res-grid .gl-fav-btn {
-  display: block; background: none; border: none; cursor: pointer;
-  font-size: 18px; line-height: 1; padding: 0 6px 0 0; color: #d1d5db;
-  flex-shrink: 0; align-self: center;
+  position: static; flex-shrink: 0; align-self: center;
+  padding: 0 6px 0 0;
 }
 </style>
 <script>
