@@ -541,8 +541,11 @@ body.list-view .res-grid .resource__body { flex: 1; min-width: 0; }
       }
     }
 
+    var favId  = 'rs-' + (row.title || '').replace(/\W+/g,'-').toLowerCase().slice(0,35);
+    var favUrl = btns.match(/href="([^"]+)"/)?.[1] || '';
+    var heart  = '<button data-fav-id="' + favId + '" data-fav-title="' + esc(row.title) + '" data-fav-url="' + favUrl.replace(/"/g,'&quot;') + '" onclick="icfToggleFav(this)" title="Save" style="background:none;border:none;cursor:pointer;font-size:16px;line-height:1;padding:2px 4px;color:#d1d5db;margin-left:auto;">♡</button>';
     return '<article class="resource' + color + '">' +
-      '<div class="resource__top"></div>' +
+      '<div class="resource__top">' + heart + '</div>' +
       '<div class="resource__body">' +
         '<h3 class="resource__title">' + esc(row.title) + '</h3>' +
         '<p class="resource__desc">' + esc(row.description) + '</p>' +
@@ -601,6 +604,7 @@ body.list-view .res-grid .resource__body { flex: 1; min-width: 0; }
 
     // Wire up app.js card behaviours (favorites etc) if available
     if (window.initCards) window.initCards();
+    if (window.icfInitFavBtns) window.icfInitFavBtns();
 
     applyFilter(currentFilter);
   }
@@ -674,6 +678,7 @@ body.list-view .res-grid .resource__body { flex: 1; min-width: 0; }
   }
 })();
 </script>
+<script src="assets/icf-fav.js?v=1"></script>
 
 </body>
 </html>
