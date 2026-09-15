@@ -213,7 +213,7 @@
       <h3 style="margin:8px 0 8px;font-size:16px;">Board of Directors (BOD)</h3>
       <p class="muted" style="margin: 0 0 14px; font-size: 14px;">Provides strategic leadership and oversees budget, staffing, and legal matters.</p>
       <div>
-        <div class="l-scroll-row" style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;--row-count:5;">
+        <div id="about-bod-grid" class="l-scroll-row" style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;--row-count:5;">
         <article class="person person--green" style="min-width:0;">
           <img class="person__photo" src="assets/people/andreas-strupler.jpg" alt="ND Strupler" loading="lazy" />
           <div style="padding:8px 10px 6px;display:flex;flex-direction:column;gap:2px;">
@@ -280,7 +280,7 @@
       <h3 style="margin:24px 0 0;font-size:16px;">Directional Leadership Team (DLT)</h3>
       <div>
         <p class="muted" style="margin: 10px 0 14px; font-size: 14px;">Finds solutions for daily operational challenges across all departments.</p>
-        <div class="l-scroll-row" style="display:grid;grid-template-columns:repeat(7,1fr);gap:10px;--row-count:7;">
+        <div id="about-dlt-grid" class="l-scroll-row" style="display:grid;grid-template-columns:repeat(7,1fr);gap:10px;--row-count:7;">
         <article class="person person--purple" style="min-width:0;">
           <img class="person__photo" src="assets/people/rany-mom.jpg" alt="Rany Mom" loading="lazy" />
           <div style="padding:8px 10px 6px;display:flex;flex-direction:column;gap:2px;">
@@ -619,6 +619,6 @@ function closeChartPopup(){
 }
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeChartPopup();});
 </script>
-<script src="assets/about-org-chart.js?v=1"></script>
+<script src="assets/about-org-chart.js?v=2"></script>
 </body>
 </html>

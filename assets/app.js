@@ -1396,14 +1396,27 @@ if ('serviceWorker' in navigator) {
 
 
   // ---------- Live inline search (top bar — no modal) ----------
-  // Same behavior everywhere it's used: type, see grouped results appear
-  // right below the field, click outside or Esc to dismiss.
+  // Type → grouped results appear below the field.
+  // Arrow ↓/↑ to navigate, Enter to open, Esc to dismiss, click outside to close.
   function initInlineSearch(inputId, resultsId) {
     const input   = document.getElementById(inputId);
     const results = document.getElementById(resultsId);
     if (!input || !results) return;
 
+    let focusedIdx = -1;
+
+    function getFocusableHits() {
+      return Array.from(results.querySelectorAll('.inline-results__hit'));
+    }
+    function setFocused(idx) {
+      const hits = getFocusableHits();
+      hits.forEach((h, i) => h.classList.toggle('is-focused', i === idx));
+      focusedIdx = idx;
+      if (idx >= 0 && hits[idx]) hits[idx].scrollIntoView({ block: 'nearest' });
+    }
+
     function renderInline(q) {
+      focusedIdx = -1;
       const query = q.trim();
       if (!query) { results.hidden = true; return; }
 
@@ -1449,15 +1462,33 @@ if ('serviceWorker' in navigator) {
     input.addEventListener('input', e => renderInline(e.target.value));
     input.addEventListener('focus', e => { if (e.target.value.trim()) renderInline(e.target.value); });
 
-    // Close when clicking outside
-    document.addEventListener('click', e => {
+    // Prevent input blur when mousedown-ing on a result so the click can register
+    results.addEventListener('mousedown', e => e.preventDefault());
+
+    // Close on mousedown outside (fires before blur, more reliable than click)
+    document.addEventListener('mousedown', e => {
       if (!input.contains(e.target) && !results.contains(e.target)) {
         results.hidden = true;
+        focusedIdx = -1;
       }
     });
 
+    // Keyboard navigation: ↓/↑ move focus, Enter activates, Esc closes
     input.addEventListener('keydown', e => {
-      if (e.key === 'Escape') { results.hidden = true; input.blur(); }
+      if (e.key === 'Escape') { results.hidden = true; input.blur(); focusedIdx = -1; return; }
+      if (results.hidden) return;
+      const hits = getFocusableHits();
+      if (!hits.length) return;
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        setFocused(Math.min(focusedIdx + 1, hits.length - 1));
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        setFocused(Math.max(focusedIdx - 1, 0));
+      } else if (e.key === 'Enter' && focusedIdx >= 0) {
+        e.preventDefault();
+        hits[focusedIdx].click();
+      }
     });
   }
 

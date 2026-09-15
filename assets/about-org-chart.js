@@ -1,4 +1,4 @@
-/* about-org-chart.js v1
+/* about-org-chart.js v2
    Fetches Master Sheet, builds hierarchy, renders department columns
    into <div id="about-dept-cols"> in about.html.
 
@@ -14,6 +14,46 @@
   if(!WRAP) return;
 
   var SHEET = 'https://docs.google.com/spreadsheets/d/1TVyhqGjtqrKeiCfWZBVCdAnMRH34zwcvHILvMRaBCsk/gviz/tq?tqx=out:csv&sheet=Master';
+
+  // ── BOD configuration (display order; contact info pulled from Sheet) ──────
+  var BOD_CONFIG = [
+    { name: 'ND Strupler',    chip: 'Founder',            colorClass: 'green',
+      links: [
+        { label: 'Donor Care', page: 'department-donor-care.html', color: '#059669', bg: '#f0fdf4', border: '#86efac' },
+        { label: 'New Campus',  page: 'department-new-campus.html', color: '#059669', bg: '#f0fdf4', border: '#86efac' },
+        { label: 'MarCom',      page: 'department-marcom.html',     color: '#059669', bg: '#f0fdf4', border: '#86efac' }
+      ]},
+    { name: 'Matthias Lendi', chip: 'Executive Director', colorClass: 'red',
+      links: [
+        { label: 'Human Resources', page: 'department-hr.html',       color: '#dc2626', bg: '#fef2f2', border: '#fca5a5' },
+        { label: 'Social',          page: 'department-social.html',    color: '#dc2626', bg: '#fef2f2', border: '#fca5a5' },
+        { label: 'Catering',        page: 'department-catering.html',  color: '#dc2626', bg: '#fef2f2', border: '#fca5a5' }
+      ]},
+    { name: 'Martin Strupler', chip: 'Executive Director', colorClass: 'amber',
+      links: [
+        { label: 'Property',        page: 'department-property.html', color: '#d97706', bg: '#fffbeb', border: '#fcd34d' },
+        { label: 'Learning Center', page: 'department-marcom.html',   color: '#d97706', bg: '#fffbeb', border: '#fcd34d' }
+      ]},
+    { name: 'Eddie Roach',    chip: 'Executive Director', colorClass: 'purple',
+      links: [
+        { label: 'Church', page: 'department-church.html', color: '#7c3aed', bg: '#f5f3ff', border: '#c4b5fd' }
+      ]},
+    { name: 'Vattey Chhun',   chip: 'Executive Director', colorClass: 'blue',
+      links: [
+        { label: 'Operations', page: 'department-operations.html', color: '#2563eb', bg: '#eff6ff', border: '#bfdbfe' }
+      ]}
+  ];
+
+  // ── DLT configuration (display order; contact info pulled from Sheet) ───────
+  var DLT_CONFIG = [
+    { name: 'Rany Mom',         chip: 'Location Pastor', colorClass: 'purple' },
+    { name: 'Karano Chhuon',    chip: 'Family Care',     colorClass: 'red'    },
+    { name: 'Parigna Souem',    chip: 'Education',       colorClass: 'red'    },
+    { name: 'Longsamnieng Pol', chip: 'Fundraising',     colorClass: 'green'  },
+    { name: 'Ratana Khy',       chip: 'MarCom',          colorClass: 'green'  },
+    { name: 'Thavy Tham',       chip: 'Human Resources', colorClass: 'red'    },
+    { name: 'Linet Un',         chip: 'Finance',         colorClass: 'blue'   }
+  ];
 
   // ── Column configuration ─────────────────────────────────────────────────
   // edDept: dept name to pull the Director-level card from (top of column)
@@ -116,6 +156,35 @@
       +'</div>';
   }
 
+  // ── Leader card helpers ───────────────────────────────────────────────────
+  function svgEmail(){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>'; }
+  function svgPhone(){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13 1.05.37 2.07.7 3.07a2 2 0 0 1-.45 2.11L8.09 10.91a16 16 0 0 0 6 6l2-1.27a2 2 0 0 1 2.11-.45c1 .33 2 .57 3.07.7A2 2 0 0 1 22 16.92z"/></svg>'; }
+  function svgTelegram(){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>'; }
+  function svgChevronR(){ return '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'; }
+
+  function renderLeaderCard(p, chip, colorClass, links) {
+    if (!p) return '';
+    var bs = 'flex:1;padding:6px 4px;display:flex;align-items:center;justify-content:center;border-radius:8px;border:1px solid var(--border);background:#fff;color:var(--text-muted);transition:background .15s,color .15s;';
+    var html = '<article class="person person--'+esc(colorClass)+'" style="min-width:0;">';
+    if (p.photo) html += '<img class="person__photo" src="'+esc(p.photo)+'" alt="'+esc(p.name)+'" loading="lazy" />';
+    html += '<div style="padding:8px 10px 6px;display:flex;flex-direction:column;gap:2px;">';
+    html += '<span class="person__chip" style="font-size:10px;padding:2px 6px;margin-bottom:2px;">'+esc(chip)+'</span>';
+    html += '<h4 class="person__name" style="font-size:12px;line-height:1.3;">'+esc(p.name)+'</h4>';
+    html += '<p class="person__role" style="font-size:10.5px;line-height:1.3;">'+esc(p.role)+'</p>';
+    html += '</div><div style="margin-top:auto;display:flex;flex-direction:column;gap:4px;padding:0 8px 8px;">';
+    html += '<div style="display:flex;gap:4px;">';
+    if (p.email) html += '<a class="person__btn person__btn--email" href="mailto:'+esc(p.email)+'" title="Email" style="'+bs+'">'+svgEmail()+'</a>';
+    var ph = (p.phone||'').replace(/\D/g,'');
+    if (ph) html += '<a class="person__btn person__btn--phone" href="tel:+'+ph+'" title="Phone" style="'+bs+'">'+svgPhone()+'</a>';
+    if (p.telegram) html += '<a class="person__btn person__btn--telegram" href="https://t.me/'+esc(p.telegram)+'" target="_blank" rel="noopener" title="Telegram" style="'+bs+'">'+svgTelegram()+'</a>';
+    html += '</div>';
+    if (links) links.forEach(function(lnk){
+      html += '<div><a href="'+esc(lnk.page)+'" style="display:flex;align-items:center;justify-content:center;gap:4px;padding:5px 4px;border-radius:8px;background:'+lnk.bg+';border:1px solid '+lnk.border+';color:'+lnk.color+';font-size:10px;font-weight:500;text-decoration:none;transition:background .15s;" onmouseover="this.style.background=\''+lnk.border+'\'" onmouseout="this.style.background=\''+lnk.bg+'\'">'+esc(lnk.label)+' '+svgChevronR()+'</a></div>';
+    });
+    html += '</div></article>';
+    return html;
+  }
+
   // ── Main fetch + render ───────────────────────────────────────────────────
   fetch(SHEET).then(function(r){return r.text();}).then(function(csv){
     var rows = parseCSV(csv);
@@ -144,7 +213,7 @@
 
       var p = {
         name: name, dept: dept, role: col(r,'role'),
-        level: level, manager: manager,
+        group: col(r,'group'), level: level, manager: manager,
         sort: +sort, isLeft:!!isLeft, isNotStarted:!!isNotStarted,
         email: col(r,'email'), phone: col(r,'phone'),
         telegram: col(r,'telegram').replace(/^@/,''), photo: photo
@@ -162,6 +231,40 @@
         if(p.photo)    window.ICF_PEOPLE[name].photo    = p.photo;
       }
     });
+
+    // ── Render BOD ────────────────────────────────────────────────────────────
+    var bodWrap = document.getElementById('about-bod-grid');
+    if (bodWrap) {
+      var bodHtml = ''; var bodCount = 0;
+      BOD_CONFIG.forEach(function(cfg){
+        var p = byName[cfg.name];
+        if (!p || p.isLeft || p.isNotStarted) return;
+        bodHtml += renderLeaderCard(p, cfg.chip, cfg.colorClass, cfg.links);
+        bodCount++;
+      });
+      if (bodHtml) {
+        bodWrap.innerHTML = bodHtml;
+        bodWrap.style.gridTemplateColumns = 'repeat('+bodCount+',1fr)';
+        bodWrap.style.setProperty('--row-count', bodCount);
+      }
+    }
+
+    // ── Render DLT ────────────────────────────────────────────────────────────
+    var dltWrap = document.getElementById('about-dlt-grid');
+    if (dltWrap) {
+      var dltHtml = ''; var dltCount = 0;
+      DLT_CONFIG.forEach(function(cfg){
+        var p = byName[cfg.name];
+        if (!p || p.isLeft || p.isNotStarted) return;
+        dltHtml += renderLeaderCard(p, cfg.chip, cfg.colorClass, []);
+        dltCount++;
+      });
+      if (dltHtml) {
+        dltWrap.innerHTML = dltHtml;
+        dltWrap.style.gridTemplateColumns = 'repeat('+dltCount+',1fr)';
+        dltWrap.style.setProperty('--row-count', dltCount);
+      }
+    }
 
     // Build children map: managerName → [direct reports]
     var children = {};
