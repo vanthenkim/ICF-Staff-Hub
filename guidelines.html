@@ -193,9 +193,10 @@
     var title = (row.title || '').trim();
     var favUrl = (files.length ? files[0].url : '');
     var favId  = 'gl-' + title.replace(/\W+/g,'-').toLowerCase().slice(0,35);
-    var heart  = '<button data-fav-id="' + favId + '" data-fav-title="' + title.replace(/"/g,'&quot;') + '" data-fav-url="' + favUrl.replace(/"/g,'&quot;') + '" onclick="icfToggleFav(this)" title="Save" style="background:none;border:none;cursor:pointer;font-size:16px;line-height:1;padding:2px 4px;color:#d1d5db;margin-left:auto;">♡</button>';
+    var heart  = '<button class="gl-fav-btn" data-fav-id="' + favId + '" data-fav-title="' + title.replace(/"/g,'&quot;') + '" data-fav-url="' + favUrl.replace(/"/g,'&quot;') + '" onclick="icfToggleFav(this)" title="Save">♡</button>';
     return '<article class="resource' + colorAttr + '">'
-      + '<div class="resource__top"><span class="resource__icon">' + icon + '</span><span class="chip chip--active">Active</span>' + heart + '</div>'
+      + heart
+      + '<div class="resource__top"><span class="resource__icon">' + icon + '</span><span class="chip chip--active">Active</span></div>'
       + '<h3 class="resource__title">' + title + '</h3>'
       + (desc ? '<p class="resource__desc">' + desc + '</p>' : '')
       + (actions ? '<div class="resource__actions">' + actions + '</div>' : '')
@@ -310,6 +311,17 @@ body.list-view .res-grid .resource__tags,
 body.list-view .res-grid .resource__meta { display: none; }
 body.list-view .res-grid .resource__actions { margin-top: 0; flex-shrink: 0; margin-left: auto; }
 body.list-view .res-grid .resource__body { flex: 1; min-width: 0; }
+
+/* Favourite heart button */
+.resource { position: relative; }
+.gl-fav-btn {
+  position: absolute; top: 8px; right: 8px;
+  background: none; border: none; cursor: pointer;
+  font-size: 16px; line-height: 1; padding: 2px 4px; color: #d1d5db;
+}
+body.list-view .res-grid .gl-fav-btn {
+  position: static; flex-shrink: 0; order: -1;
+}
 </style>
 <script>
 (function () {

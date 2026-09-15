@@ -454,6 +454,17 @@ body.list-view .res-grid .resource__tags,
 body.list-view .res-grid .resource__meta { display: none; }
 body.list-view .res-grid .resource__actions { margin-top: 0; flex-shrink: 0; margin-left: auto; }
 body.list-view .res-grid .resource__body { flex: 1; min-width: 0; }
+
+/* Favourite heart button */
+.resource { position: relative; }
+.gl-fav-btn {
+  position: absolute; top: 8px; right: 8px;
+  background: none; border: none; cursor: pointer;
+  font-size: 16px; line-height: 1; padding: 2px 4px; color: #d1d5db;
+}
+body.list-view .res-grid .gl-fav-btn {
+  position: static; flex-shrink: 0; order: -1;
+}
 </style>
 <script>
 (function () {
@@ -543,9 +554,10 @@ body.list-view .res-grid .resource__body { flex: 1; min-width: 0; }
 
     var favId  = 'rs-' + (row.title || '').replace(/\W+/g,'-').toLowerCase().slice(0,35);
     var favUrl = btns.match(/href="([^"]+)"/)?.[1] || '';
-    var heart  = '<button data-fav-id="' + favId + '" data-fav-title="' + esc(row.title) + '" data-fav-url="' + favUrl.replace(/"/g,'&quot;') + '" onclick="icfToggleFav(this)" title="Save" style="background:none;border:none;cursor:pointer;font-size:16px;line-height:1;padding:2px 4px;color:#d1d5db;margin-left:auto;">♡</button>';
+    var heart  = '<button class="gl-fav-btn" data-fav-id="' + favId + '" data-fav-title="' + esc(row.title) + '" data-fav-url="' + favUrl.replace(/"/g,'&quot;') + '" onclick="icfToggleFav(this)" title="Save">♡</button>';
     return '<article class="resource' + color + '">' +
-      '<div class="resource__top">' + heart + '</div>' +
+      heart +
+      '<div class="resource__top"></div>' +
       '<div class="resource__body">' +
         '<h3 class="resource__title">' + esc(row.title) + '</h3>' +
         '<p class="resource__desc">' + esc(row.description) + '</p>' +
