@@ -133,13 +133,35 @@
           btn = btns ? '<div style="display:flex;gap:6px;flex-shrink:0;">'+btns+'</div>' : '';
         }
 
+        var favId  = 'res-'+slug+'-'+title.replace(/\W+/g,'-').toLowerCase().slice(0,35);
+        var favUrl = linkUrl || contUrl || '';
+        var heart  = '<button data-fav-id="'+esc(favId)+'" data-fav-title="'+esc(title)+'" data-fav-url="'+esc(favUrl)+'" onclick="icfToggleFav(this)" title="Save" style="background:none;border:none;cursor:pointer;font-size:16px;line-height:1;padding:2px 4px;flex-shrink:0;color:#d1d5db;">♡</button>';
+
         html+='<div style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:8px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 1px 2px rgba(0,0,0,.04);">'
-             +'<div style="min-width:0;"><div style="font-weight:500;font-size:13.5px;margin:0;">'+esc(title)+'</div>'
+             +heart
+             +'<div style="min-width:0;flex:1;"><div style="font-weight:500;font-size:13.5px;margin:0;">'+esc(title)+'</div>'
              +(desc?'<div style="font-size:12px;color:var(--text-muted);margin:0;">'+esc(desc)+'</div>':'')
              +'</div>'+btn+'</div>\n';
       });
-      if(html) wrap.innerHTML = html;
+      if(html){
+        wrap.innerHTML = html;
+        if(window.icfInitFavBtns) window.icfInitFavBtns();
+      }
     }).catch(function(){});
+  }
+
+  // Inject icf-fav.js once if not already loaded
+  if(!window._icfFavLoaded){
+    window._icfFavLoaded = true;
+    var s = document.createElement('script');
+    s.src = (document.querySelector('base[href]')||{href:''}).href + 'assets/icf-fav.js?v=1';
+    // resolve relative path based on script location
+    var scripts = document.querySelectorAll('script[src*="dept-resources"]');
+    if(scripts.length){
+      var base = scripts[scripts.length-1].src.replace(/assets\/dept-resources\.js[^/]*$/,'');
+      s.src = base + 'assets/icf-fav.js?v=1';
+    }
+    document.head.appendChild(s);
   }
 
   // Expose for explicit calls (e.g. second section on same page)
