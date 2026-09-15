@@ -397,21 +397,31 @@
     return '<div class="list__item"><span class="list__icon" style="background:#f0fdf4;color:#059669;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">'+CHECK_ICON+'</svg></span><div class="list__text"><p class="list__title">'+titleHtml+'</p><p class="list__sub">'+esc(row.description)+'</p></div><div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">'+ownerChip+statusChip+'</div></div>';
   }
 
+  function notComingSoon(r){return (r.status||'').toLowerCase().trim()!=='coming soon';}
   function render(rows){
-    rows=rows.filter(isLive);
+    rows=rows.filter(isLive).filter(notComingSoon);
     var services=rows.filter(function(r){return r.type==='service';}).sort(byOrder);
     var brand=rows.filter(function(r){return r.type==='brand';}).sort(byOrder);
     var sops=rows.filter(function(r){return r.type==='sop';}).sort(byOrder);
-    // Per-section fallback: if the sheet has no entries for a type, use fallback
-    var fbSvc=FALLBACK_ROWS.filter(function(r){return r.type==='service';}).sort(byOrder);
-    var fbBrand=FALLBACK_ROWS.filter(function(r){return r.type==='brand';}).sort(byOrder);
-    var fbSop=FALLBACK_ROWS.filter(function(r){return r.type==='sop';}).sort(byOrder);
+    // Per-section fallback: if the sheet has no entries for a type, use fallback (also filter coming soon)
+    var fbSvc=FALLBACK_ROWS.filter(function(r){return r.type==='service';}).filter(notComingSoon).sort(byOrder);
+    var fbBrand=FALLBACK_ROWS.filter(function(r){return r.type==='brand';}).filter(notComingSoon).sort(byOrder);
+    var fbSop=FALLBACK_ROWS.filter(function(r){return r.type==='sop';}).filter(notComingSoon).sort(byOrder);
     var svcEl=document.getElementById('marcom-services');
     if(svcEl)svcEl.innerHTML=(services.length?services:fbSvc).map(buildServiceCard).join('');
     var brandEl=document.getElementById('marcom-brand-resources');
     if(brandEl)brandEl.innerHTML=(brand.length?brand:fbBrand).map(buildBrandCard).join('');
     var sopEl=document.getElementById('marcom-sops');
-    if(sopEl)sopEl.innerHTML=(sops.length?sops:fbSop).map(buildSopRow).join('');
+    var finalSops=sops.length?sops:fbSop;
+    if(sopEl){
+      if(finalSops.length){
+        sopEl.innerHTML=finalSops.map(buildSopRow).join('');
+      } else {
+        // Hide entire Guidelines section if nothing to show
+        var sopSection=document.getElementById('marcom-guidelines-section');
+        if(sopSection)sopSection.style.display='none';
+      }
+    }
     if(window.initCards)window.initCards();
   }
 

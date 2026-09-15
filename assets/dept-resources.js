@@ -86,7 +86,7 @@
 
     var pal = PALETTES[COLOR] || {bg:'#f8fafc',border:'#e2e8f0',text:COLOR};
 
-    var url = 'https://docs.google.com/spreadsheets/d/'+SHEET_ID+'/gviz/tq?tqx=out:csv'
+    var url = 'https://docs.google.com/spreadsheets/d/'+SHEET_ID+'/gviz/tq?tqx=out:csv&headers=1'
             + (TAB ? '&sheet='+encodeURIComponent(TAB) : '');
 
     fetch(url).then(function(r){return r.text();}).then(function(csv){
@@ -97,7 +97,10 @@
 
       var items = rows.slice(1).filter(function(r){
         var live = col(r,'live').toUpperCase();
-        return live===''||live==='TRUE'||live==='YES';
+        if(live!==''&&live!=='TRUE'&&live!=='YES') return false;
+        var status = col(r,'status').toLowerCase().trim();
+        if(status==='coming soon'||status==='soon') return false;
+        return true;
       });
       if(!items.length) return;
       items.sort(function(a,b){return(parseInt(col(a,'order'))||99)-(parseInt(col(b,'order'))||99);});
@@ -113,8 +116,8 @@
         var status    = col(row,'status').toLowerCase();
 
         var btn = '';
-        if(status==='coming soon'||status==='soon'||(!linkUrl&&!contUrl)){
-          btn = '<span style="'+bStyle('#f8fafc','#e2e8f0','#94a3b8')+'cursor:not-allowed;">'+ICON_SOON+'Coming soon</span>';
+        if(!linkUrl&&!contUrl){
+          btn = '';
         } else if(status==='contact'&&linkUrl){
           btn = '<button onclick="(window.ICF_OPEN_MODAL||openModal)(\''+raw(linkUrl).replace(/\\/g,'\\\\').replace(/'/g,"\\'")+'\')" style="'+bStyle(pal.bg,pal.border,pal.text)+'cursor:pointer;">'+ICON_SEND+esc(linkLabel)+'</button>';
         } else {
@@ -122,7 +125,7 @@
           if(linkUrl){
             var isFile=/\.(pdf|doc|docx|xls|xlsx|png|jpg|jpeg|gif)(\b|$)/i.test(linkUrl)||linkUrl.includes('/export?format=');
             var icon = isFile ? ICON_FILE : ICON_LINK;
-            btns+='<a href="'+esc(linkUrl)+'" target="_blank" rel="noopener" style="'+bStyle(COLOR,'transparent','#fff')+'">'+icon+esc(linkLabel)+'</a>';
+            btns+='<a href="'+esc(linkUrl)+'" target="_blank" rel="noopener" style="'+bStyle(pal.bg,pal.border,pal.text)+'">'+icon+esc(linkLabel)+'</a>';
           }
           if(contUrl&&contLabel){
             btns+='<a href="'+esc(contUrl)+'" target="_blank" rel="noopener" style="'+bStyle(pal.bg,pal.border,pal.text)+'">'+ICON_SEND+esc(contLabel)+'</a>';
