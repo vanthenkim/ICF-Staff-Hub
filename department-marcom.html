@@ -393,7 +393,8 @@
   function buildSopRow(row){
     var titleHtml=row.link_url?'<a href="'+esc(row.link_url)+'" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">'+esc(row.title)+'</a>':esc(row.title);
     var ownerChip=row.owner?'<span data-owner-chip="'+esc(row.owner)+'" style="display:inline-flex;align-items:center;gap:6px;padding:7px 14px;background:#f0fdf4;border:1.5px solid #6ee7b7;border-radius:20px;color:#059669;font-weight:500;font-size:13px;cursor:pointer;white-space:nowrap;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>'+esc(row.owner)+'</span>':'';
-    return '<div class="list__item"><span class="list__icon" style="background:#f0fdf4;color:#059669;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">'+CHECK_ICON+'</svg></span><div class="list__text"><p class="list__title">'+titleHtml+'</p><p class="list__sub">'+esc(row.description)+'</p></div><div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">'+ownerChip+'<span class="chip">'+esc(row.status||'')+'</span></div></div>';
+    var statusChip=row.status&&row.status!=='Coming soon'?'<span class="chip">'+esc(row.status)+'</span>':'';
+    return '<div class="list__item"><span class="list__icon" style="background:#f0fdf4;color:#059669;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">'+CHECK_ICON+'</svg></span><div class="list__text"><p class="list__title">'+titleHtml+'</p><p class="list__sub">'+esc(row.description)+'</p></div><div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">'+ownerChip+statusChip+'</div></div>';
   }
 
   function render(rows){

@@ -1264,19 +1264,19 @@ if ('serviceWorker' in navigator) {
     // Brand & Media
     { t: 'ICF Corporate Design Guide',              g: 'Brand & Media', h: 'https://drive.google.com/file/d/1kdi_0DjGjAqpLec2_63b9lBw5hZQrMQK/view', i: 'palette' },
     { t: 'Alle Logos · Media Center',               g: 'Brand & Media', h: 'media.html', i: 'image' },
-    { t: 'ICF Cambodia Logo · Primary Black',       g: 'Brand & Media', h: 'https://drive.google.com/file/d/14frlS1gJuAizV3LBeQkOm7v_eAY_msa2/view', i: 'image', p: 'https://lh3.googleusercontent.com/d/14frlS1gJuAizV3LBeQkOm7v_eAY_msa2=s64' },
-    { t: 'ICF Cambodia Logo · Primary White',       g: 'Brand & Media', h: 'https://drive.google.com/file/d/16hzrqWgAswgUJX6O-dCLtGckFWw1Z1Av/view', i: 'image', p: 'https://lh3.googleusercontent.com/d/16hzrqWgAswgUJX6O-dCLtGckFWw1Z1Av=s64' },
-    { t: 'ICF Cambodia Logo · Secondary Black',     g: 'Brand & Media', h: 'https://drive.google.com/file/d/1WhyDRyfkTT8WlFYaeZ1EmhsHJmgLk6Mc/view', i: 'image', p: 'https://lh3.googleusercontent.com/d/1WhyDRyfkTT8WlFYaeZ1EmhsHJmgLk6Mc=s64' },
-    { t: 'ICF Cambodia Logo · Social Media Avatar', g: 'Brand & Media', h: 'https://drive.google.com/file/d/1gDYZ-aq8OeKBRd8iIAYgqo3TztYtAF32/view', i: 'image', p: 'https://lh3.googleusercontent.com/d/1gDYZ-aq8OeKBRd8iIAYgqo3TztYtAF32=s64' },
-    { t: 'ICF Main Logo · Black',                   g: 'Brand & Media', h: 'https://drive.google.com/file/d/1tLJIjUUfBbDAoXVlqb1XJ2uIOFObUgKB/view', i: 'image', p: 'https://lh3.googleusercontent.com/d/1tLJIjUUfBbDAoXVlqb1XJ2uIOFObUgKB=s64' },
-    { t: 'ICF Main Logo · White',                   g: 'Brand & Media', h: 'https://drive.google.com/file/d/1a0TEC9uPAqjcMP4vjC_4NE_Ra7TsY-dd/view', i: 'image', p: 'https://lh3.googleusercontent.com/d/1a0TEC9uPAqjcMP4vjC_4NE_Ra7TsY-dd=s64' },
-    { t: 'ICF Kids Logo',                           g: 'Brand & Media', h: 'https://drive.google.com/file/d/1cTd3j9K4qZDkmJ5qg489adl5B675c5WD/view', i: 'image', p: 'https://lh3.googleusercontent.com/d/1cTd3j9K4qZDkmJ5qg489adl5B675c5WD=s64' },
-    { t: 'ICF Youth Logo',                          g: 'Brand & Media', h: 'https://drive.google.com/file/d/1Ua5MyVQq6KO6bSHs5matSrEg3EDS_7mz/view', i: 'image', p: 'https://lh3.googleusercontent.com/d/1Ua5MyVQq6KO6bSHs5matSrEg3EDS_7mz=s64' },
-    { t: 'ICF Siem Reap Logo',                      g: 'Brand & Media', h: 'https://drive.google.com/file/d/1nd36dORA6HhKKgc_IqCRAxofqvxpQpa2/view', i: 'image', p: 'https://lh3.googleusercontent.com/d/1nd36dORA6HhKKgc_IqCRAxofqvxpQpa2=s64' },
-    { t: 'Leadership Academy Logo',                 g: 'Brand & Media', h: 'https://drive.google.com/file/d/1Mp8uvrW7nLz5ad1fpvrc4YwYLUFOdqCb/view', i: 'image', p: 'https://lh3.googleusercontent.com/d/1Mp8uvrW7nLz5ad1fpvrc4YwYLUFOdqCb=s64' },
-    { t: 'Money Boss Club Logo',                    g: 'Brand & Media', h: 'https://drive.google.com/file/d/1-H2VWsImArS0KqFdQw0csRsLk4MvnWzz/view', i: 'image', p: 'https://lh3.googleusercontent.com/d/1-H2VWsImArS0KqFdQw0csRsLk4MvnWzz=s64' },
-    { t: 'Sponsorship Logos',                       g: 'Brand & Media', h: 'https://drive.google.com/file/d/1Bdda5OpZip23fl4Jli8yNSinzbpm2vR_/view', i: 'image', p: 'https://lh3.googleusercontent.com/d/1Bdda5OpZip23fl4Jli8yNSinzbpm2vR_=s64' },
-    { t: 'Discover Course Logo',                    g: 'Brand & Media', h: 'https://drive.google.com/file/d/1XhQwjQOM6R19JaFHXDRxBeDjAvsnYDjW/view', i: 'image', p: 'https://lh3.googleusercontent.com/d/1XhQwjQOM6R19JaFHXDRxBeDjAvsnYDjW=s64' },
+    { t: 'ICF Cambodia Logo · Primary Black',       g: 'Brand & Media', h: 'https://drive.google.com/file/d/14frlS1gJuAizV3LBeQkOm7v_eAY_msa2/view', i: 'image', p: 'https://drive.google.com/thumbnail?id=14frlS1gJuAizV3LBeQkOm7v_eAY_msa2&sz=w128' },
+    { t: 'ICF Cambodia Logo · Primary White',       g: 'Brand & Media', h: 'https://drive.google.com/file/d/16hzrqWgAswgUJX6O-dCLtGckFWw1Z1Av/view', i: 'image', p: 'https://drive.google.com/thumbnail?id=16hzrqWgAswgUJX6O-dCLtGckFWw1Z1Av&sz=w128' },
+    { t: 'ICF Cambodia Logo · Secondary Black',     g: 'Brand & Media', h: 'https://drive.google.com/file/d/1WhyDRyfkTT8WlFYaeZ1EmhsHJmgLk6Mc/view', i: 'image', p: 'https://drive.google.com/thumbnail?id=1WhyDRyfkTT8WlFYaeZ1EmhsHJmgLk6Mc&sz=w128' },
+    { t: 'ICF Cambodia Logo · Social Media Avatar', g: 'Brand & Media', h: 'https://drive.google.com/file/d/1gDYZ-aq8OeKBRd8iIAYgqo3TztYtAF32/view', i: 'image', p: 'https://drive.google.com/thumbnail?id=1gDYZ-aq8OeKBRd8iIAYgqo3TztYtAF32&sz=w128' },
+    { t: 'ICF Main Logo · Black',                   g: 'Brand & Media', h: 'https://drive.google.com/file/d/1tLJIjUUfBbDAoXVlqb1XJ2uIOFObUgKB/view', i: 'image', p: 'https://drive.google.com/thumbnail?id=1tLJIjUUfBbDAoXVlqb1XJ2uIOFObUgKB&sz=w128' },
+    { t: 'ICF Main Logo · White',                   g: 'Brand & Media', h: 'https://drive.google.com/file/d/1a0TEC9uPAqjcMP4vjC_4NE_Ra7TsY-dd/view', i: 'image', p: 'https://drive.google.com/thumbnail?id=1a0TEC9uPAqjcMP4vjC_4NE_Ra7TsY-dd&sz=w128' },
+    { t: 'ICF Kids Logo',                           g: 'Brand & Media', h: 'https://drive.google.com/file/d/1cTd3j9K4qZDkmJ5qg489adl5B675c5WD/view', i: 'image', p: 'https://drive.google.com/thumbnail?id=1cTd3j9K4qZDkmJ5qg489adl5B675c5WD&sz=w128' },
+    { t: 'ICF Youth Logo',                          g: 'Brand & Media', h: 'https://drive.google.com/file/d/1Ua5MyVQq6KO6bSHs5matSrEg3EDS_7mz/view', i: 'image', p: 'https://drive.google.com/thumbnail?id=1Ua5MyVQq6KO6bSHs5matSrEg3EDS_7mz&sz=w128' },
+    { t: 'ICF Siem Reap Logo',                      g: 'Brand & Media', h: 'https://drive.google.com/file/d/1nd36dORA6HhKKgc_IqCRAxofqvxpQpa2/view', i: 'image', p: 'https://drive.google.com/thumbnail?id=1nd36dORA6HhKKgc_IqCRAxofqvxpQpa2&sz=w128' },
+    { t: 'Leadership Academy Logo',                 g: 'Brand & Media', h: 'https://drive.google.com/file/d/1Mp8uvrW7nLz5ad1fpvrc4YwYLUFOdqCb/view', i: 'image', p: 'https://drive.google.com/thumbnail?id=1Mp8uvrW7nLz5ad1fpvrc4YwYLUFOdqCb&sz=w128' },
+    { t: 'Money Boss Club Logo',                    g: 'Brand & Media', h: 'https://drive.google.com/file/d/1-H2VWsImArS0KqFdQw0csRsLk4MvnWzz/view', i: 'image', p: 'https://drive.google.com/thumbnail?id=1-H2VWsImArS0KqFdQw0csRsLk4MvnWzz&sz=w128' },
+    { t: 'Sponsorship Logos',                       g: 'Brand & Media', h: 'https://drive.google.com/file/d/1Bdda5OpZip23fl4Jli8yNSinzbpm2vR_/view', i: 'image', p: 'https://drive.google.com/thumbnail?id=1Bdda5OpZip23fl4Jli8yNSinzbpm2vR_&sz=w128' },
+    { t: 'Discover Course Logo',                    g: 'Brand & Media', h: 'https://drive.google.com/file/d/1XhQwjQOM6R19JaFHXDRxBeDjAvsnYDjW/view', i: 'image', p: 'https://drive.google.com/thumbnail?id=1XhQwjQOM6R19JaFHXDRxBeDjAvsnYDjW&sz=w128' },
     { t: 'Flama Semicondensed Font',                g: 'Brand & Media', h: 'https://drive.google.com/drive/folders/1-139mJr-uJvbHHGiI3TMqYaZFfmooJ9I', i: 'palette' },
 
     // Training & Development Webhub
@@ -1434,7 +1434,7 @@ if ('serviceWorker' in navigator) {
         hits.forEach(h => { groups[h.g] = groups[h.g] || []; groups[h.g].push(h); });
         results.innerHTML = Object.keys(groups).map(g => {
           const items = groups[g].map(item => {
-            const isExt = /^(Resources%20Public|Training%20%26|Medical%20Webhub)/.test(item.h);
+            const isExt = /^https?:\/\//.test(item.h) || /^(Resources%20Public|Training%20%26|Medical%20Webhub)/.test(item.h);
             const tgt = isExt ? ' target="_blank" rel="noopener"' : '';
             const isStaff = item.g === 'Staff';
             const iconHtml = item.p
