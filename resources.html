@@ -595,6 +595,10 @@ body.list-view .res-grid .resource__body { flex: 1; min-width: 0; }
     var content = document.getElementById('resources-content');
     content.innerHTML = html;
 
+    // Hide the static fallback — sheet data loaded successfully
+    var fb = document.getElementById('resources-fallback');
+    if (fb) fb.style.display = 'none';
+
     // Wire up app.js card behaviours (favorites etc) if available
     if (window.initCards) window.initCards();
 
