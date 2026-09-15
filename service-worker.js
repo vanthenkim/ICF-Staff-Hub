@@ -1,4 +1,4 @@
-const CACHE = 'icf-staff-hub-v25';
+const CACHE = 'icf-staff-hub-v26';
 const PRECACHE = [
   '/',
   '/index.html',

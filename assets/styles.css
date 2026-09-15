@@ -504,7 +504,8 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   .topbar__search.is-open .inline-results__hit__title { color: #fff; }
   .topbar__search.is-open .inline-results__hit__sub { color: rgba(255,255,255,0.55); }
   .topbar__search.is-open .inline-results__hit:hover,
-  .topbar__search.is-open .inline-results__hit:active { background: rgba(255,255,255,0.08); }
+  .topbar__search.is-open .inline-results__hit:active,
+  .topbar__search.is-open .inline-results__hit.is-focused { background: rgba(255,255,255,0.08); }
   .topbar__search.is-open .inline-results__hit__icon { background: rgba(255,255,255,0.16); color: #fff; }
   .topbar__search.is-open .inline-results__hit__icon svg { stroke-width: 2.25; }
   .topbar__search.is-open .inline-results__empty { color: rgba(255,255,255,0.55); }
@@ -787,16 +788,8 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
 }
 .resource__top .resource__icon,
 .resource__top .chip { display: none; }
-/* Push chip + heart to the right */
+/* Push chip to the right */
 .resource__top .chip { margin-left: auto; }
-/* Heart inside resource__top is inline, not absolute */
-.resource__top .card-fav-btn {
-  position: static;
-  width: 24px; height: 24px;
-  background: transparent;
-  backdrop-filter: none;
-  flex-shrink: 0;
-}
 .resource__icon {
   width: 38px; height: 38px;
   border-radius: 10px;
@@ -2010,7 +2003,8 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   cursor: pointer;
   text-decoration: none;
 }
-.inline-results__hit:hover { background: var(--surface-2); }
+.inline-results__hit:hover,
+.inline-results__hit.is-focused { background: var(--surface-2); }
 .inline-results__hit__icon {
   width: 30px; height: 30px;
   border-radius: 8px;
@@ -2217,6 +2211,7 @@ html[lang="km"] body { font-family: 'FlamaKH', 'Hanuman', 'Battambang', -apple-s
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
+  object-position: center top;
   display: block;
   background: var(--surface-2);
 }

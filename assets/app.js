@@ -923,7 +923,7 @@ if ('serviceWorker' in navigator) {
     // ---- Add heart buttons to all card types ----
     const CARD_DEFS = [
       { sel: 'a.hc-card',        labelSel: '.hc-card__label' },
-      { sel: '.resource',         labelSel: '.resource__title', insertInto: '.resource__top' },
+      { sel: '.resource',         labelSel: '.resource__title' },
       { sel: 'a.dept',            labelSel: '.dept__name' },
       { sel: '.course',           labelSel: '.course__title' },
       { sel: '.tool',             labelSel: '.tool__title' },
@@ -1262,17 +1262,22 @@ if ('serviceWorker' in navigator) {
     { t: 'Feeling Weak',                           g: 'Medical', h: 'Medical%20Webhub/Ressource%20Center/Feeling%20Weak.%20Docx/Feeling%20weak_%20It%E2%80%99s%20not%20always%20%E2%80%9ELow%20red%20blood%20Cells%E2%80%9C.docx.pdf', i: 'medical' },
 
     // Brand & Media
-    { t: 'ICF Corporate Design Guide',             g: 'Brand & Media', h: 'Resources%20Public/1_RECRUITMENT/ICF%20Corporate%20Design%20-%20Updated%20May%202025%20-%20EN.pdf', i: 'palette' },
-    { t: 'ICF Cambodia Logo (Primary)',            g: 'Brand & Media', h: 'Resources%20Public/4-%20Graphic%20Resources/01%20Logo/00%20ICF%20Main%20Logo/ICF%20Cambodia%20Logo/01%20Primary', i: 'image' },
-    { t: 'ICF Main Logo',                          g: 'Brand & Media', h: 'Resources%20Public/4-%20Graphic%20Resources/01%20Logo/00%20ICF%20Main%20Logo/ICF%20Main%20Logo', i: 'image' },
-    { t: 'ICF Kids Logo',                          g: 'Brand & Media', h: 'media.html', i: 'image' },
-    { t: 'ICF Youth Logo',                         g: 'Brand & Media', h: 'media.html', i: 'image' },
-    { t: 'ICF Siem Reap Logo',                     g: 'Brand & Media', h: 'media.html', i: 'image' },
-    { t: 'Leadership Academy Logo',                g: 'Brand & Media', h: 'media.html', i: 'image' },
-    { t: 'Money Boss Club Logo',                   g: 'Brand & Media', h: 'media.html', i: 'image' },
-    { t: 'Sponsorship Logos',                      g: 'Brand & Media', h: 'media.html', i: 'image' },
-    { t: 'Discover Course Logo',                   g: 'Brand & Media', h: 'media.html', i: 'image' },
-    { t: 'Flama Semicondensed Font',               g: 'Brand & Media', h: 'Resources%20Public/4-%20Graphic%20Resources/Flama-Semicondensed%20Font', i: 'palette' },
+    { t: 'ICF Corporate Design Guide',              g: 'Brand & Media', h: 'https://drive.google.com/file/d/1kdi_0DjGjAqpLec2_63b9lBw5hZQrMQK/view', i: 'palette' },
+    { t: 'Alle Logos · Media Center',               g: 'Brand & Media', h: 'media.html', i: 'image' },
+    { t: 'ICF Cambodia Logo · Primary Black',       g: 'Brand & Media', h: 'https://drive.google.com/file/d/14frlS1gJuAizV3LBeQkOm7v_eAY_msa2/view', i: 'image', p: 'https://drive.google.com/thumbnail?id=14frlS1gJuAizV3LBeQkOm7v_eAY_msa2&sz=w128' },
+    { t: 'ICF Cambodia Logo · Primary White',       g: 'Brand & Media', h: 'https://drive.google.com/file/d/16hzrqWgAswgUJX6O-dCLtGckFWw1Z1Av/view', i: 'image', p: 'https://drive.google.com/thumbnail?id=16hzrqWgAswgUJX6O-dCLtGckFWw1Z1Av&sz=w128' },
+    { t: 'ICF Cambodia Logo · Secondary Black',     g: 'Brand & Media', h: 'https://drive.google.com/file/d/1WhyDRyfkTT8WlFYaeZ1EmhsHJmgLk6Mc/view', i: 'image', p: 'https://drive.google.com/thumbnail?id=1WhyDRyfkTT8WlFYaeZ1EmhsHJmgLk6Mc&sz=w128' },
+    { t: 'ICF Cambodia Logo · Social Media Avatar', g: 'Brand & Media', h: 'https://drive.google.com/file/d/1gDYZ-aq8OeKBRd8iIAYgqo3TztYtAF32/view', i: 'image', p: 'https://drive.google.com/thumbnail?id=1gDYZ-aq8OeKBRd8iIAYgqo3TztYtAF32&sz=w128' },
+    { t: 'ICF Main Logo · Black',                   g: 'Brand & Media', h: 'https://drive.google.com/file/d/1tLJIjUUfBbDAoXVlqb1XJ2uIOFObUgKB/view', i: 'image', p: 'https://drive.google.com/thumbnail?id=1tLJIjUUfBbDAoXVlqb1XJ2uIOFObUgKB&sz=w128' },
+    { t: 'ICF Main Logo · White',                   g: 'Brand & Media', h: 'https://drive.google.com/file/d/1a0TEC9uPAqjcMP4vjC_4NE_Ra7TsY-dd/view', i: 'image', p: 'https://drive.google.com/thumbnail?id=1a0TEC9uPAqjcMP4vjC_4NE_Ra7TsY-dd&sz=w128' },
+    { t: 'ICF Kids Logo',                           g: 'Brand & Media', h: 'https://drive.google.com/file/d/1cTd3j9K4qZDkmJ5qg489adl5B675c5WD/view', i: 'image', p: 'https://drive.google.com/thumbnail?id=1cTd3j9K4qZDkmJ5qg489adl5B675c5WD&sz=w128' },
+    { t: 'ICF Youth Logo',                          g: 'Brand & Media', h: 'https://drive.google.com/file/d/1Ua5MyVQq6KO6bSHs5matSrEg3EDS_7mz/view', i: 'image', p: 'https://drive.google.com/thumbnail?id=1Ua5MyVQq6KO6bSHs5matSrEg3EDS_7mz&sz=w128' },
+    { t: 'ICF Siem Reap Logo',                      g: 'Brand & Media', h: 'https://drive.google.com/file/d/1nd36dORA6HhKKgc_IqCRAxofqvxpQpa2/view', i: 'image', p: 'https://drive.google.com/thumbnail?id=1nd36dORA6HhKKgc_IqCRAxofqvxpQpa2&sz=w128' },
+    { t: 'Leadership Academy Logo',                 g: 'Brand & Media', h: 'https://drive.google.com/file/d/1Mp8uvrW7nLz5ad1fpvrc4YwYLUFOdqCb/view', i: 'image', p: 'https://drive.google.com/thumbnail?id=1Mp8uvrW7nLz5ad1fpvrc4YwYLUFOdqCb&sz=w128' },
+    { t: 'Money Boss Club Logo',                    g: 'Brand & Media', h: 'https://drive.google.com/file/d/1-H2VWsImArS0KqFdQw0csRsLk4MvnWzz/view', i: 'image', p: 'https://drive.google.com/thumbnail?id=1-H2VWsImArS0KqFdQw0csRsLk4MvnWzz&sz=w128' },
+    { t: 'Sponsorship Logos',                       g: 'Brand & Media', h: 'https://drive.google.com/file/d/1Bdda5OpZip23fl4Jli8yNSinzbpm2vR_/view', i: 'image', p: 'https://drive.google.com/thumbnail?id=1Bdda5OpZip23fl4Jli8yNSinzbpm2vR_&sz=w128' },
+    { t: 'Discover Course Logo',                    g: 'Brand & Media', h: 'https://drive.google.com/file/d/1XhQwjQOM6R19JaFHXDRxBeDjAvsnYDjW/view', i: 'image', p: 'https://drive.google.com/thumbnail?id=1XhQwjQOM6R19JaFHXDRxBeDjAvsnYDjW&sz=w128' },
+    { t: 'Flama Semicondensed Font',                g: 'Brand & Media', h: 'https://drive.google.com/drive/folders/1-139mJr-uJvbHHGiI3TMqYaZFfmooJ9I', i: 'palette' },
 
     // Training & Development Webhub
     { t: 'T&D Webhub — Develop People',            g: 'Training & Development', h: 'Training%20%26%20Development%20Webhub/Training%20%26%20Development%20Webhub/index.html#/develop', i: 'graduation' },
@@ -1396,14 +1401,27 @@ if ('serviceWorker' in navigator) {
 
 
   // ---------- Live inline search (top bar — no modal) ----------
-  // Same behavior everywhere it's used: type, see grouped results appear
-  // right below the field, click outside or Esc to dismiss.
+  // Type → grouped results appear below the field.
+  // Arrow ↓/↑ to navigate, Enter to open, Esc to dismiss, click outside to close.
   function initInlineSearch(inputId, resultsId) {
     const input   = document.getElementById(inputId);
     const results = document.getElementById(resultsId);
     if (!input || !results) return;
 
+    let focusedIdx = -1;
+
+    function getFocusableHits() {
+      return Array.from(results.querySelectorAll('.inline-results__hit'));
+    }
+    function setFocused(idx) {
+      const hits = getFocusableHits();
+      hits.forEach((h, i) => h.classList.toggle('is-focused', i === idx));
+      focusedIdx = idx;
+      if (idx >= 0 && hits[idx]) hits[idx].scrollIntoView({ block: 'nearest' });
+    }
+
     function renderInline(q) {
+      focusedIdx = -1;
       const query = q.trim();
       if (!query) { results.hidden = true; return; }
 
@@ -1416,11 +1434,11 @@ if ('serviceWorker' in navigator) {
         hits.forEach(h => { groups[h.g] = groups[h.g] || []; groups[h.g].push(h); });
         results.innerHTML = Object.keys(groups).map(g => {
           const items = groups[g].map(item => {
-            const isExt = /^(Resources%20Public|Training%20%26|Medical%20Webhub)/.test(item.h);
+            const isExt = /^https?:\/\//.test(item.h) || /^(Resources%20Public|Training%20%26|Medical%20Webhub)/.test(item.h);
             const tgt = isExt ? ' target="_blank" rel="noopener"' : '';
             const isStaff = item.g === 'Staff';
             const iconHtml = item.p
-              ? `<img src="${item.p}" alt="" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;background:#e2e8f0;" onerror="this.onerror=null;this.style.background='#e2e8f0';">`
+              ? `<img src="${item.p}" alt="" style="width:32px;height:32px;border-radius:50%;object-fit:cover;object-position:top;flex-shrink:0;background:#e2e8f0;" onerror="this.onerror=null;this.style.background='#e2e8f0';">`
               : `<span class="inline-results__hit__icon">${iconFor(item.i)}</span>`;
             if (isStaff) {
               const sn = item.t.replace(/"/g,'&quot;');
@@ -1449,15 +1467,33 @@ if ('serviceWorker' in navigator) {
     input.addEventListener('input', e => renderInline(e.target.value));
     input.addEventListener('focus', e => { if (e.target.value.trim()) renderInline(e.target.value); });
 
-    // Close when clicking outside
-    document.addEventListener('click', e => {
+    // Prevent input blur when mousedown-ing on a result so the click can register
+    results.addEventListener('mousedown', e => e.preventDefault());
+
+    // Close on mousedown outside (fires before blur, more reliable than click)
+    document.addEventListener('mousedown', e => {
       if (!input.contains(e.target) && !results.contains(e.target)) {
         results.hidden = true;
+        focusedIdx = -1;
       }
     });
 
+    // Keyboard navigation: ↓/↑ move focus, Enter activates, Esc closes
     input.addEventListener('keydown', e => {
-      if (e.key === 'Escape') { results.hidden = true; input.blur(); }
+      if (e.key === 'Escape') { results.hidden = true; input.blur(); focusedIdx = -1; return; }
+      if (results.hidden) return;
+      const hits = getFocusableHits();
+      if (!hits.length) return;
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        setFocused(Math.min(focusedIdx + 1, hits.length - 1));
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        setFocused(Math.max(focusedIdx - 1, 0));
+      } else if (e.key === 'Enter' && focusedIdx >= 0) {
+        e.preventDefault();
+        hits[focusedIdx].click();
+      }
     });
   }
 

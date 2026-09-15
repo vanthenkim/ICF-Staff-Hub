@@ -135,9 +135,9 @@
       function renderPerson(p, indent) {
         var lv = p.level;
         var isLead   = !indent && (lv === 'Director' || lv === 'Manager' || lv === 'Leader');
-        var sz       = (lv === 'Director') ? '40px' : isLead ? '38px' : '36px';
-        var pad      = isLead ? '6px 8px' : '4px 6px';
-        var margin   = isLead ? '0'       : '-4px -6px';
+        var sz       = isLead ? '38px' : '36px';
+        var pad      = isLead ? '6px 8px' : '4px 8px';
+        var margin   = isLead ? '0'       : '-4px 0';
         var bgNormal = isLead ? LIGHT     : '';
         var bgHover  = isLead ? COLOR+'2a': '#f8fafc';
         var border   = isLead ? 'border:1px solid '+COLOR+'33;' : '';
@@ -151,7 +151,7 @@
         if (p.photo) {
           photoHtml = '<img src="'+ esc(p.photo) +'" alt="'+ esc(p.name) +'"'
                     + ' style="width:'+ sz +';height:'+ sz +';border-radius:50%;'
-                    + 'object-fit:cover;flex-shrink:0;"'
+                    + 'object-fit:cover;object-position:top;flex-shrink:0;"'
                     + ' onerror="this.outerHTML=\''
                     + fallback.replace(/'/g,"\\'").replace(/"/g,'&quot;')
                     + '\'">';
@@ -175,9 +175,11 @@
       }
 
       /* ── render ─────────────────────────────────────────────────────── */
+      var prepend = window.ICF_TEAM_PREPEND || '';
       var html = '<div class="card" style="margin-bottom:14px;">'
                + '<h3 style="margin:0 0 10px;font-size:15px;">Team</h3>'
-               + '<div style="display:flex;flex-direction:column;gap:8px;">';
+               + '<div style="display:flex;flex-direction:column;gap:8px;">'
+               + prepend;
 
       var firstSection = true;
       groupOrder.forEach(function(key){

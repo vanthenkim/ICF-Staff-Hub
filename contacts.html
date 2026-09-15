@@ -27,6 +27,8 @@
   #cpanel{width:100vw;height:92dvh;border-radius:18px 18px 0 0;transform:translateY(110%);}
   #cov.open #cpanel{transform:translateY(0);}
 }
+/* Sticky header: offset 0 inside scroll container, not viewport */
+#contact-table thead th { top: 0; }
 </style>
 </head>
 <body>
@@ -208,6 +210,9 @@ const DEPT_REMAP = {
   'Sakorun Pok':    'Operations',
   'Sreymom Lim':    'Operations',
   'Kimleang Lun':   'Operations',
+  // University Scholarship Students — connect to their actual working departments
+  'Chintha Pav':    'After School',
+  'Rebecca Vey':    'Donor Care',
 };
 
 // Department value remaps — normalises sheet values to display names
@@ -233,6 +238,32 @@ const DEPT_VALUE_REMAP = {
 // Role overrides — shown in reporting line nodes regardless of sheet data
 const ROLE_OVERRIDES = {
   'ND Strupler': 'Executive Director · Founder',
+};
+
+// Responsible Leader / Mentor relationships — shown separately in the contact modal
+const MENTOR_OVERRIDES = {
+  'Davit Mao':      'ND Strupler',
+  'Tola Khy':       'ND Strupler',
+  // University Scholarship Students — Responsible Leader
+  'Sopheak Phol':   'Phin Teb',
+  'Ry Rey':         'Phin Teb',
+  'Sinat Hoem':     'Phin Teb',
+  'Sreynuch Phuk':  'Phin Teb',
+  'Prerk Sey':      'Phin Teb',
+  'Kanha Vat':      'Phin Teb',
+  'Sreylin Nan':    'Phin Teb',
+  'Makara Chy':     'Phin Teb',
+  'Sriydav Nak':    'Phin Teb',
+  'Monyroth Ev':    'Phin Teb',
+  'Sreyleak Houn':  'Phin Teb',
+  'Sary Sarin':     'Phin Teb',
+  'Sothea Thov':    'Phin Teb',
+  'Chintha Pav':    'Parigna',
+  'Chhaivorn Vin':  'Phin Teb',
+  'Naroth Roth':    'Phin Teb',
+  'Hun Hub':        'Phin Teb',
+  'Rebecca Vey':    'Steffi Lendi',
+  'Sovann Choeut':  'Phin Teb',
 };
 
 // Names hidden from the reporting line chain (chain still traverses through them)
@@ -283,7 +314,7 @@ function renderList(staff) {
       onmouseenter="this.style.background='#eff6ff'" onmouseleave="this.style.background='${bg}'">
       <td style="padding:8px 12px;">
         <div style="display:flex;align-items:center;gap:8px;">
-          ${p.photo ? `<img src="${p.photo}" alt="${p.name}" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;" onerror="this.outerHTML='<div style=\\'width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;\\'>${initials(p.name)}</div>'">` : `<div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;">${initials(p.name)}</div>`}
+          ${p.photo ? `<img src="${p.photo}" alt="${p.name}" style="width:32px;height:32px;border-radius:50%;object-fit:cover;object-position:top;flex-shrink:0;" onerror="this.outerHTML='<div style=\\'width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;\\'>${initials(p.name)}</div>'">` : `<div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;">${initials(p.name)}</div>`}
           <div>
             <div style="font-weight:400;font-size:15px;">${p.name}</div>
             ${p.khmerName ? `<div style="font-size:11px;color:#94a3b8;">${p.khmerName}</div>` : ''}
@@ -310,7 +341,7 @@ function renderGallery(staff) {
       const s = DEPT_STYLES[p.department] || ['#f1f5f9','#374151','#e2e8f0'];
       const srch = [p.name, p.alias, p.khmerName, p.department, p.email, p.telegram].join(' ').toLowerCase();
       const avatar = p.photo
-        ? `<img src="${p.photo}" alt="${p.name}" style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.12);" onerror="this.outerHTML='<div style=\\'width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:24px;font-weight:500;display:flex;align-items:center;justify-content:center;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.12);\\'>${initials(p.name)}</div>'">`
+        ? `<img src="${p.photo}" alt="${p.name}" style="width:80px;height:80px;border-radius:50%;object-fit:cover;object-position:top;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.12);" onerror="this.outerHTML='<div style=\\'width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:24px;font-weight:500;display:flex;align-items:center;justify-content:center;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.12);\\'>${initials(p.name)}</div>'">`
         : `<div style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:24px;font-weight:500;display:flex;align-items:center;justify-content:center;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.12);">${initials(p.name)}</div>`;
       return `<div data-dept="${p.department}" data-search="${srch}" data-n="${p.name.replace(/"/g,'&quot;')}" onclick="openContactByName(this.dataset.n)" style="background:#fff;border:1.5px solid #e2e8f0;border-radius:16px;overflow:hidden;transition:box-shadow .15s;text-align:center;cursor:pointer;" onmouseenter="this.style.boxShadow='0 4px 20px rgba(37,99,235,.12)'" onmouseleave="this.style.boxShadow=''">
         <div style="padding:28px 20px 16px;display:flex;flex-direction:column;align-items:center;">
@@ -747,6 +778,7 @@ function renderGallery(staff) {
         activedate: header.findIndex(h => /active/i.test(h)),
         status:     header.findIndex(h => h.includes('status')),
         khmer:    header.findIndex(h => h.includes('khmer')),
+        manager:  header.findIndex(h => h === 'manager'),
       };
 
       const contacts = [];
@@ -780,7 +812,9 @@ function renderGallery(staff) {
         }
         const photoUrl = col.photo >= 0 ? (r[col.photo] || '').trim() : '';
         const local = LOCAL_CONTACTS[name] || {};
-        const sheetPhone    = col.phone    >= 0 ? (r[col.phone]    || '').trim() : '';
+        const _rawPhone = col.phone >= 0 ? (r[col.phone] || '').trim() : '';
+        // Normalize: add + to Cambodian numbers stored as digits (e.g. 85512345678 → +85512345678)
+        const sheetPhone = _rawPhone && !_rawPhone.startsWith('+') && /^855\d{7,10}$/.test(_rawPhone) ? '+' + _rawPhone : _rawPhone;
         const sheetTelegram = col.telegram >= 0 ? (r[col.telegram] || '').trim().replace(/^@/, '') : '';
         contacts.push({
           name,
@@ -792,6 +826,7 @@ function renderGallery(staff) {
           phone:      sheetPhone    || local.phone    || '',
           telegram:   sheetTelegram || local.telegram || '',
           photo:      resolvePhoto(name, photoUrl),
+          manager:    col.manager >= 0 ? (r[col.manager] || '').trim() : '',
         });
       }
 
@@ -800,6 +835,17 @@ function renderGallery(staff) {
       STATIC_STAFF.forEach(s => { if (!sheetNames.has(s.name)) contacts.push(s); });
 
       allStaff = contacts.slice().sort((a, b) => a.name.localeCompare(b.name));
+
+      // Build ORG dynamically from Sheet manager data
+      ORG = {};
+      allStaff.forEach(p => {
+        ORG[p.name] = { manager: p.manager || null, reports: [] };
+        if (MENTOR_OVERRIDES[p.name]) ORG[p.name].mentor = MENTOR_OVERRIDES[p.name];
+      });
+      allStaff.forEach(p => {
+        if (p.manager && ORG[p.manager]) ORG[p.manager].reports.push(p.name);
+      });
+
       // Nickname / alias overrides — add entries here as needed
       const ALIASES = {
         'Longsamnieng Pol': 'Paul',
@@ -824,155 +870,8 @@ function renderGallery(staff) {
     });
 })();
 
-// ── Org Hierarchy ─────────────────────────────────────────────────────────────
-const ORG = {
-  // Top
-  "ND Strupler":           { manager: null,                 reports: ["Sophal Strupler","Longsamnieng Pol","Steffi Lendi","Annina Huembeli"] },
-  "Sophal Strupler":       { manager: "ND Strupler",        reports: ["Eddie Roach","Matthias Lendi","Karano Chhuon","Simone Strupler","Vattey Chhun","Martin Strupler"] },
-  "Longsamnieng Pol":      { manager: "ND Strupler",        reports: ["Kongkea Kouk","Jane Meas","Sreyleak Orn"] },
-  "Steffi Lendi":          { manager: "ND Strupler",        reports: ["Loy Sambo Hout","Seavva Hann"] },
-  "Annina Huembeli":       { manager: "ND Strupler",        reports: [] },
-  // Church
-  "Eddie Roach":           { manager: null,                 reports: ["Robson Barbosa","Rany Mom","Mom Kalic","Sombo Ros","Bethany Roach","Panha Neang"] },
-  "Robson Barbosa":        { manager: "Eddie Roach",        reports: ["Aline Barbosa"] },
-  "Aline Barbosa":         { manager: "Robson Barbosa",     reports: [] },
-  "Rany Mom":              { manager: "Eddie Roach",        reports: ["Davit Mao"] },
-  "Mom Kalic":             { manager: "Eddie Roach",        reports: ["Kanal Tensok","Somun Yem","Elea Weber","Boromey Hom"] },
-  "Kanal Tensok":          { manager: "Mom Kalic",          reports: [] },
-  "Somun Yem":             { manager: "Mom Kalic",          reports: [] },
-  "Elea Weber":            { manager: "Mom Kalic",          reports: [] },
-  "Sombo Ros":             { manager: "Eddie Roach",        reports: ["Sreileak Rous","Dana Thy","Pichey Ken"] },
-  "Sreileak Rous":         { manager: "Sombo Ros",          reports: [] },
-  "Dana Thy":              { manager: "Sombo Ros",          reports: [] },
-  "Pichey Ken":            { manager: "Sombo Ros",          reports: [] },
-  "Bethany Roach":         { manager: "Eddie Roach",        reports: ["Ranaomi Heak","Noa Flammer","Seangly Leng","Champa Vong","Rothana Ros","Sambath Song"] },
-  "Ranaomi Heak":          { manager: "Bethany Roach",      reports: [] },
-  "Noa Flammer":           { manager: "Bethany Roach",      reports: [] },
-  "Seangly Leng":          { manager: "Bethany Roach",      reports: [] },
-  "Champa Vong":           { manager: "Bethany Roach",      reports: [] },
-  "Rothana Ros":           { manager: "Bethany Roach",      reports: [] },
-  "Sambath Song":          { manager: "Bethany Roach",      reports: [] },
-  "Panha Neang":           { manager: "Eddie Roach",        reports: ["Sreypich Chhean","Tola Khy"] },
-  "Boromey Hom":           { manager: "Mom Kalic",          reports: [] },
-  "Sreypich Chhean":       { manager: "Panha Neang",        reports: ["Sotheavy Ngen"] },
-  "Sotheavy Ngen":         { manager: "Sreypich Chhean",    reports: [] },
-  // Women's Ministry
-  "Simone Strupler":       { manager: null               ,    reports: ["Sothiery Un","Vann Rotha","Kropumkannika Gnorng"] },
-  "Sothiery Un":           { manager: "Simone Strupler",    reports: [] },
-  "Vann Rotha":            { manager: "Simone Strupler",    reports: [] },
-  "Kropumkannika Gnorng":  { manager: "Simone Strupler",    reports: [] },
-  // Education
-  "Matthias Lendi":        { manager: null               ,    reports: ["Parigna Souem","Khunhy Thoeun","Phin Teb","Thavy Tham","Ousaphea Lim"] },
-  "Parigna Souem":         { manager: "Matthias Lendi",     reports: [] },
-  "Khunhy Thoeun":         { manager: "Matthias Lendi",     reports: ["Su Sey","Nirorn Sok","David Piseth","Sreynouch Khit","Sotheany Ngeun","Tola Khem","Vicheth Song","Seav Ey Khean"] },
-  "Su Sey":                { manager: "Khunhy Thoeun",      reports: [] },
-  "Nirorn Sok":            { manager: "Khunhy Thoeun",      reports: [] },
-  "David Piseth":          { manager: "Khunhy Thoeun",      reports: [] },
-  "Sreynouch Khit":        { manager: "Khunhy Thoeun",      reports: [] },
-  "Sotheany Ngeun":        { manager: "Khunhy Thoeun",      reports: [] },
-  "Tola Khem":             { manager: "Khunhy Thoeun",      reports: [] },
-  "Vicheth Song":          { manager: "Khunhy Thoeun",      reports: [] },
-  "Seav Ey Khean":         { manager: "Khunhy Thoeun",      reports: [] },
-  "Phin Teb":              { manager: "Matthias Lendi",     reports: ["Makara Seng","Srytom Pogn"] },
-  "Makara Seng":           { manager: "Phin Teb",           reports: [] },
-  "Srytom Pogn":           { manager: "Phin Teb",           reports: [] },
-  // Family Care
-  "Karano Chhuon":         { manager: null               ,    reports: ["Sreymom Thorng","Sopheap Heang","Sreymom Touch","Seyla Nga","Kolap Touch","Vichea Khen","Chanthat Leat","Sotheavy Thea","Rongroeung Chamroeun","Champa Toch","Sreypeou Hout","Srey Roth Outh","Sopheaktra Mao","Sokuntheary Sim","Sideth Duch","Chamroeun Muon","Savry Klot","Sophea Mak","Noya Men","Thea Rith Keo","Sa Soueyvan","Bora Heang","Matthew Seng","Sophy Chek","Nam Seyla"] },
-  "Sreymom Thorng":        { manager: "Karano Chhuon",      reports: [] },
-  "Sopheap Heang":         { manager: "Karano Chhuon",      reports: [] },
-  "Sreymom Touch":         { manager: "Karano Chhuon",      reports: [] },
-  "Seyla Nga":             { manager: "Karano Chhuon",      reports: [] },
-  "Kolap Touch":           { manager: "Karano Chhuon",      reports: [] },
-  "Vichea Khen":           { manager: "Karano Chhuon",      reports: [] },
-  "Chanthat Leat":         { manager: "Karano Chhuon",      reports: [] },
-  "Sotheavy Thea":         { manager: "Karano Chhuon",      reports: [] },
-  "Rongroeung Chamroeun":  { manager: "Karano Chhuon",      reports: [] },
-  "Champa Toch":           { manager: "Karano Chhuon",      reports: [] },
-  "Sreypeou Hout":         { manager: "Karano Chhuon",      reports: [] },
-  "Srey Roth Outh":        { manager: "Karano Chhuon",      reports: [] },
-  "Sopheaktra Mao":        { manager: "Karano Chhuon",      reports: [] },
-  "Sokuntheary Sim":       { manager: "Karano Chhuon",      reports: [] },
-  "Sideth Duch":           { manager: "Karano Chhuon",      reports: [] },
-  "Chamroeun Muon":        { manager: "Karano Chhuon",      reports: [] },
-  "Savry Klot":            { manager: "Karano Chhuon",      reports: [] },
-  "Sophea Mak":            { manager: "Karano Chhuon",      reports: [] },
-  "Noya Men":              { manager: "Karano Chhuon",      reports: [] },
-  "Thea Rith Keo":         { manager: "Karano Chhuon",      reports: [] },
-  "Sa Soueyvan":           { manager: "Karano Chhuon",      reports: [] },
-  "Bora Heang":            { manager: "Karano Chhuon",      reports: [] },
-  "Matthew Seng":          { manager: "Karano Chhuon",      reports: [] },
-  "Sophy Chek":            { manager: "Karano Chhuon",      reports: [] },
-  "Nam Seyla":             { manager: "Karano Chhuon",      reports: [] },
-  // Social Administration (reports to Matthias Lendi via Ousaphea Lim)
-  "Ousaphea Lim":          { manager: "Matthias Lendi",     reports: ["Sibimol Pol","Chakriya Nith","Sreyleak So","Rina Nov"] },
-  "Sibimol Pol":           { manager: "Ousaphea Lim",       reports: [] },
-  "Chakriya Nith":         { manager: "Ousaphea Lim",       reports: [] },
-  "Rina Nov":              { manager: "Ousaphea Lim",       reports: [] },
-  "Sreyleak So":           { manager: "Ousaphea Lim",       reports: [] },
-  // Human Resources & Catering
-  "Thavy Tham":            { manager: "Matthias Lendi",     reports: ["Nuthida Han","Sodalin Thangham","Vivian Stumpf","Bopha Mom"] },
-  "Nuthida Han":           { manager: "Thavy Tham",         reports: [] },
-  "Sodalin Thangham":      { manager: "Thavy Tham",         reports: [] },
-  "Vivian Stumpf":         { manager: "Thavy Tham",         reports: [] },
-  "Bopha Mom":             { manager: "Thavy Tham",         reports: ["Lieng Huon","Som Chhang","Phat Sout","Pech Sang"] },
-  "Lieng Huon":            { manager: "Bopha Mom",          reports: [] },
-  "Som Chhang":            { manager: "Bopha Mom",          reports: [] },
-  "Phat Sout":             { manager: "Bopha Mom",          reports: [] },
-  "Pech Sang":             { manager: "Bopha Mom",          reports: [] },
-  // Operations
-  "Vattey Chhun":          { manager: null               ,    reports: ["Kanha Un","Linet Un","Vanthen Kim","Sakorun Pok"] },
-  "Kanha Un":              { manager: "Vattey Chhun",       reports: [] },
-  "Linet Un":              { manager: "Vattey Chhun",       reports: ["Rachana San","Kimbuoy Pheng"] },
-  "Rachana San":           { manager: "Linet Un",           reports: [] },
-  "Kimbuoy Pheng":         { manager: "Linet Un",           reports: [] },
-  "Vanthen Kim":           { manager: "Vattey Chhun",       reports: ["Makara Tes","Neaksen Sok"] },
-  "Makara Tes":            { manager: "Vanthen Kim",        reports: [] },
-  "Neaksen Sok":           { manager: "Vanthen Kim",        reports: [] },
-  "Sakorun Pok":           { manager: "Vattey Chhun",       reports: ["Sreymom Lim","Kimleang Lun"] },
-  "Sreymom Lim":           { manager: "Sakorun Pok",        reports: [] },
-  "Kimleang Lun":          { manager: "Sakorun Pok",        reports: [] },
-  // MarCom & Learning Center
-  "Ratana Khy":            { manager: "ND Strupler",        reports: ["Piseth Nuon","Florin Flammer","Sengly Muol","Soktheavy Tann","Vutha Kry","Savann Sun","Rayu Roeun","Sorotha Oeun","Malin Toy"] },
-  "Piseth Noun":           { manager: "Ratana Khy",         reports: [] },
-  "Florin Flammer":        { manager: "Ratana Khy",         reports: [] },
-  "Sengly Muol":           { manager: "Ratana Khy",         reports: [] },
-  "Soktheavy Tann":        { manager: "Ratana Khy",         reports: [] },
-  "Vutha Kry":             { manager: "Ratana Khy",         reports: [] },
-  "Savann Sun":            { manager: "Ratana Khy",         reports: [] },
-  "Rayu Roeun":            { manager: "Ratana Khy",         reports: [] },
-  "Sorotha Oeun":          { manager: "Ratana Khy",         reports: [] },
-  "Malin Toy":             { manager: "Ratana Khy",         reports: [] },
-  "Makara Ne":             { manager: "Martin Strupler",    reports: [] },
-  "Davit Mao":             { manager: "Rany Mom",           reports: [], mentor: "ND Strupler" },
-  "Tola Khy":              { manager: "Panha Neang",        reports: [], mentor: "ND Strupler" },
-  // Property
-  "Martin Strupler":       { manager: null               ,    reports: ["Sarath Sok"] },
-  "Sarath Sok":            { manager: "Martin Strupler",    reports: ["Hing Hoeun","Sila Kun","Nan Houn","Kim Sorn Soeuth","Barang Soeurm","Kim Sopheap"] },
-  "Kim Sopheap":           { manager: "Sarath Sok",         reports: [] },
-  "Hing Hoeun":            { manager: "Sarath Sok",         reports: ["Hin Loeb","Ya Hoeun","Thon Tep","Saroeun Kim"] },
-  "Hin Loeb":              { manager: "Hing Hoeun",         reports: [] },
-  "Ya Hoeun":              { manager: "Hing Hoeun",         reports: [] },
-  "Thon Tep":              { manager: "Hing Hoeun",         reports: [] },
-  "Saroeun Kim":           { manager: "Hing Hoeun",         reports: [] },
-  "Sila Kun":              { manager: "Sarath Sok",         reports: ["Hou Sokcheat","Rin Nga"] },
-  "Hou Sokcheat":          { manager: "Sila Kun",           reports: [] },
-  "Rin Nga":               { manager: "Sila Kun",           reports: [] },
-  "Nan Houn":              { manager: "Sarath Sok",         reports: ["Hean Luos","Minea Soy"] },
-  "Hean Luos":             { manager: "Nan Houn",           reports: [] },
-  "Minea Soy":             { manager: "Nan Houn",           reports: [] },
-  "Kim Sorn Soeuth":       { manager: "Sarath Sok",         reports: ["Chrach Chen"] },
-  "Chrach Chen":           { manager: "Kim Sorn Soeuth",    reports: [] },
-  "Barang Soeurm":         { manager: "Sarath Sok",         reports: ["Sopheap Puth","Sen Meta","Nhoem David"] },
-  "Sopheap Puth":          { manager: "Barang Soeurm",      reports: [] },
-  "Sen Meta":              { manager: "Barang Soeurm",      reports: [] },
-  "Nhoem David":           { manager: "Barang Soeurm",      reports: [] },
-  // Fundraising & Guest Relations
-  "Kongkea Kouk":          { manager: "Longsamnieng Pol",   reports: [] },
-  "Jane Meas":             { manager: "Longsamnieng Pol",   reports: [] },
-  "Sreyleak Orn":          { manager: "Longsamnieng Pol",   reports: [] },
-  "Loy Sambo Hout":        { manager: "Steffi Lendi",       reports: [] },
-  "Seavva Hann":           { manager: "Steffi Lendi",       reports: [] },
-};
+// ── Org Hierarchy — populated dynamically from Sheet in fetch callback above ──
+let ORG = {};
 
 // ── Contact Modal ─────────────────────────────────────────────────────────────
 const staffByName = {};
@@ -991,7 +890,7 @@ function _miniAvatar(p, size) {
   const ini = initials(p ? p.name : '?');
   const fallback = `<div style="width:${s}px;height:${s}px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:${fs}px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;">${ini}</div>`;
   if (p && p.photo) {
-    return `<img src="${p.photo}" alt="${p.name}" style="width:${s}px;height:${s}px;border-radius:50%;object-fit:cover;flex-shrink:0;" onerror="_imgErr(this,'${ini}',${s})">`;
+    return `<img src="${p.photo}" alt="${p.name}" style="width:${s}px;height:${s}px;border-radius:50%;object-fit:cover;object-position:top;flex-shrink:0;" onerror="_imgErr(this,'${ini}',${s})">`;
   }
   return fallback;
 }
@@ -1025,7 +924,7 @@ function openContact(p) {
   const ini = initials(p.name);
   const bigFallback = `<div style="width:88px;height:88px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:26px;font-weight:500;display:flex;align-items:center;justify-content:center;border:3px solid #fff;box-shadow:0 4px 16px rgba(0,0,0,.12);">${ini}</div>`;
   const bigAvatar = p.photo
-    ? `<img src="${p.photo}" alt="${p.name}" style="width:88px;height:88px;border-radius:50%;object-fit:cover;border:3px solid #fff;box-shadow:0 4px 16px rgba(0,0,0,.12);" onerror="_imgErr(this,'${ini}',88,1)">`
+    ? `<img src="${p.photo}" alt="${p.name}" style="width:88px;height:88px;border-radius:50%;object-fit:cover;object-position:top;border:3px solid #fff;box-shadow:0 4px 16px rgba(0,0,0,.12);" onerror="_imgErr(this,'${ini}',88,1)">`
     : bigFallback;
 
   // Contact rows
@@ -1063,7 +962,7 @@ function openContact(p) {
     }
     const ancestorHtml = ancestors.filter(n => !REPORTING_LINE_HIDDEN.has(n)).map(n => _orgNode(n, false) + arrow).join('');
     const mentorHtml = mentorName ? `<div style="margin-top:12px;padding-top:12px;border-top:1px dashed #e2e8f0;">
-      <div style="font-size:11px;font-weight:500;color:#94a3b8;margin-bottom:6px;letter-spacing:.04em;">Mentor</div>
+      <div style="font-size:11px;font-weight:500;color:#94a3b8;margin-bottom:6px;letter-spacing:.04em;">Responsible Leader</div>
       ${_orgNode(mentorName, false)}
     </div>` : '';
     orgHtml = `<div style="margin-top:24px;padding-top:20px;border-top:1.5px solid #f1f5f9;">
