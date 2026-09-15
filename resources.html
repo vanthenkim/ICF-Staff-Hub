@@ -455,11 +455,12 @@ body.list-view .res-grid .resource__meta { display: none; }
 body.list-view .res-grid .resource__actions { margin-top: 0; flex-shrink: 0; margin-left: auto; }
 body.list-view .res-grid .resource__body { flex: 1; min-width: 0; }
 
-/* Favourite heart button — always left */
-.gl-fav-btn {
-  background: none; border: none; cursor: pointer;
-  font-size: 16px; line-height: 1; padding: 2px 6px 2px 0; color: #d1d5db;
-  flex-shrink: 0; align-self: flex-start;
+/* Favourite heart — only visible in list-view */
+.gl-fav-btn { display: none; }
+body.list-view .res-grid .gl-fav-btn {
+  display: block; background: none; border: none; cursor: pointer;
+  font-size: 18px; line-height: 1; padding: 0 6px 0 0; color: #d1d5db;
+  flex-shrink: 0; align-self: center;
 }
 </style>
 <script>
