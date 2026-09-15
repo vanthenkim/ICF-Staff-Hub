@@ -299,12 +299,14 @@
         col += sectionLabel(sec, colCfg, sid);
         col += '<div id="'+sid+'" style="display:none;flex-direction:column;gap:5px;width:100%;align-items:center;">';
 
-        // Collect all non-director people for this section's depts
+        // Collect Manager + Leader level people for this section's depts (no Team members)
         var secPeople = [];
         sec.depts.forEach(function(d){
           (byDept[d]||[]).forEach(function(p){
             if(director && p.name===director.name) return; // skip the ED
-            if(p.level!=='director') secPeople.push(p);
+            if(p.level==='director') return; // skip other directors
+            if(p.level==='team') return; // team members not shown in main chart
+            secPeople.push(p);
           });
         });
         secPeople.sort(function(a,b){return a.sort-b.sort;});
