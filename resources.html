@@ -553,7 +553,6 @@ body.list-view .res-grid .resource__body { flex: 1; min-width: 0; }
     var heart  = '<button class="gl-fav-btn" data-fav-id="' + favId + '" data-fav-title="' + esc(row.title) + '" data-fav-url="' + favUrl.replace(/"/g,'&quot;') + '" onclick="icfToggleFav(this)" title="Save">♡</button>';
     return '<article class="resource' + color + '">' +
       heart +
-      '<div class="resource__top"></div>' +
       '<div class="resource__body">' +
         '<h3 class="resource__title">' + esc(row.title) + '</h3>' +
         '<p class="resource__desc">' + esc(row.description) + '</p>' +
