@@ -356,6 +356,66 @@ if ('serviceWorker' in navigator) {
     "Read the full report →": "អានរបាយការណ៍ពេញ →",
     "Provides strategic leadership and oversees budget, staffing, and legal matters.": "ផ្ដល់ភាពជាអ្នកដឹកនាំ និងត្រួតពិនិត្យថវិកា បុគ្គលិក និងបញ្ហាច្បាប់ ។",
     "Empowering Cambodia · Helping people become more like Jesus Christ and fearlessly change their world.": "ផ្ដល់អំណាចដល់កម្ពុជា · ជួយមនុស្សឱ្យក្លាយជាដូចព្រះយេស៊ូ និងផ្លាស់ប្ដូរពិភពលោករបស់ពួកគេ ។",
+    // ── About ICF — roles & chips ──────────────────────────────────────
+    "Founder - Executive Director": "ស្ថាបនិក - នាយកប្រតិបត្តិ",
+    "Location Pastor": "គ្រូគង្វាល",
+    "Location Pastor (Khnar)": "គ្រូគង្វាល (Khnar)",
+    "Family Care Manager": "អ្នកគ្រប់គ្រងការថែទាំគ្រួសារ",
+    "Education Manager": "អ្នកគ្រប់គ្រងការអប់រំ",
+    "Head of Fundraising": "ប្រធានរៃអង្គាស",
+    "Head of MarCom": "ប្រធាន MarCom",
+    "Head of Human Resources": "ប្រធានធនធានមនុស្ស",
+    "Head of Finance": "ប្រធានហិរញ្ញវត្ថុ",
+    "Family Care": "ការថែទាំគ្រួសារ",
+    "Education": "ការអប់រំ",
+    "Fundraising": "ការរៃអង្គាស",
+    "Finance": "ហិរញ្ញវត្ថុ",
+    "Human Resources": "ធនធានមនុស្ស",
+    "Social": "សង្គម",
+    "Church": "ព្រះវិហារ",
+    "Property": "អចលនទ្រព្យ",
+    "Catering": "ម្ហូបអាហារ",
+    "Operations": "ប្រតិបត្តិការ",
+    "Donor Care": "ការថែទាំអ្នកបរិច្ចាគ",
+    "New Campus": "ទីតាំងថ្មី",
+    "Learning Center": "មជ្ឈមណ្ឌលសិក្សា",
+    "Finds solutions for daily operational challenges across all departments.": "រកដំណោះស្រាយបញ្ហាប្រតិបត្តិការប្រចាំថ្ងៃ នៅគ្រប់នាយកដ្ឋាន ។",
+    // ── About ICF — culture cards ──────────────────────────────────────
+    "Input ↔ Output": "ទទួល ↔ ចែករំលែក",
+    "Small ↔ Big": "តូច ↔ ធំ",
+    "1. We Multiply": "១. យើងបង្កើន",
+    "(Apostle)": "(ក្ស័ត្រ)",
+    "2. We Encounter": "២. យើងជួបប្រទះ",
+    "(Prophet)": "(ហោរា)",
+    "3. We Reach": "៣. យើងឈានដល់",
+    "(Evangelist)": "(ផ្សព្វផ្សាយ)",
+    "4. We Care": "៤. យើងយកចិត្តទុកដាក់",
+    "(Shepherd)": "(គ្រូគង្វាល)",
+    "5. We Empower": "៥. យើងផ្ដល់អំណាច",
+    "(Teacher)": "(គ្រូ)",
+    "1. Faith": "១. ជំនឿ",
+    "2. Relationships": "២. ទំនាក់ទំនង",
+    "3. Health": "៣. សុខភាព",
+    "5. Work": "៥. ការងារ",
+    "1. Passion": "១. ចំណង់ចំណូលចិត្ត",
+    "2. Playfield": "២. វិស័យ",
+    "3. Person": "៣. មនុស្ស",
+    "4. Perspective": "៤. ទស្សនៈ",
+    // ── About ICF — impact stats ───────────────────────────────────────
+    "Across all departments": "នៅគ្រប់នាយកដ្ឋាន",
+    "725 Kids \xb7 232 Youth \xb7 357 Adults": "725 កុមារ · 232 យុវវ័យ · 357 មនុស្សពេញវ័យ",
+    "Sponsored children": "កុមារដែលទទួលការឧបត្ថម្ភ",
+    "Child Sponsorship": "ការឧបត្ថម្ភកុមារ",
+    "Graduates this year": "ប្រឡងជាប់ឆ្នាំនេះ",
+    "Audio Bibles": "គម្ពីរសំឡេង",
+    "Baptisms": "បុណ្យជ្រមុជ",
+    "Backpacks given": "កាតាប់ដែលបានប្រគល់",
+    "Meals served": "អាហារបានបម្រើ",
+    "small groups \xb7": "ក្រុមតូច ·",
+    "people": "នាក់",
+    "mission teams \xb7": "ក្រុមបេសកកម្ម ·",
+    "people hosted": "នាក់ស្ថិតនៅ",
+    "guests welcomed to campus": "ភ្ញៀវស្វាគមន៍",
     // ── Guidelines / Resources page ───────────────────────────────────
     "Child Protection": "ការការពារកុមារ",
     "Human Resources Guidelines": "គោលការណ៍ HR",
@@ -537,6 +597,29 @@ if ('serviceWorker' in navigator) {
   // Expose so page-specific scripts can translate dynamically-rendered content
   window.icfWalkAndSwap = function(root, toKH) { walkAndSwap(root, toKH); };
 
+  // Auto-translate: MutationObserver watches for new DOM nodes and translates them automatically
+  let _autoTranslateObs = null;
+  function setupAutoTranslate(lang) {
+    if (_autoTranslateObs) { _autoTranslateObs.disconnect(); _autoTranslateObs = null; }
+    if (lang !== 'km') return;
+    _autoTranslateObs = new MutationObserver(function(mutations) {
+      for (const m of mutations) {
+        for (const node of m.addedNodes) {
+          if (node.nodeType === Node.ELEMENT_NODE) {
+            walkAndSwap(node, true);
+            // Also handle any input placeholders in newly added nodes
+            node.querySelectorAll && node.querySelectorAll('input[placeholder]').forEach(function(inp) {
+              const en = inp.getAttribute('data-ph-en') || inp.placeholder;
+              if (!inp.getAttribute('data-ph-en')) inp.setAttribute('data-ph-en', en);
+              if (KH[en]) inp.placeholder = KH[en];
+            });
+          }
+        }
+      }
+    });
+    _autoTranslateObs.observe(document.body, { childList: true, subtree: true });
+  }
+
   function applyLang(lang) {
     const html = document.documentElement;
     if (lang === 'km') {
@@ -556,6 +639,8 @@ if ('serviceWorker' in navigator) {
     if (hcatIn) hcatIn.placeholder = lang === 'km' ? 'ស្វែងរក — គ្រុន ដុត ស្ទះ…' : 'Search health topics — fever, burns, choking…';
     // Update hero greeting if present
     if (typeof window._icfHeroName !== 'undefined') renderHeroGreeting(lang);
+    // Start/stop auto-translation observer
+    setupAutoTranslate(lang);
     try { localStorage.setItem('icf-lang', lang); } catch (e) {}
   }
 
