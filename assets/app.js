@@ -281,6 +281,81 @@ if ('serviceWorker' in navigator) {
     "Call 119 now": "ទូរស័ព្ទ 119 ឥឡូវ",
     "Call 119": "ទូរស័ព្ទ 119",
     "No results found": "រកមិនឃើញ",
+    // ── Home page ─────────────────────────────────────────────────────
+    "Welcome to the ICF Cambodia Staff Hub!": "សូមស្វាគមន៍មកកាន់ ICF Cambodia Staff Hub!",
+    "2026 Year Topic": "ប្រធានបទឆ្នាំ ២០២៦",
+    "Grateful": "ដឹងគុណ",
+    "Always be joyful. Never stop praying. Be thankful in all circumstances, for this is God's will for you who belong to Christ Jesus.": "ចូររីករាយជានិច្ច ។ កុំបញ្ឈប់ការអធិស្ឋាន ។ ចូរដឹងគុណក្នុងគ្រប់ករណី ។ នេះជាព្រះហឫទ័យរបស់ព្រះជាម្ចាស់សម្រាប់អ្នក ។",
+    "Year Planner": "ផែនការប្រចាំឆ្នាំ",
+    "Staff Contact": "ទំនាក់ទំនងបុគ្គលិក",
+    "Feature Update": "ព័ត៌មានថ្មី",
+    "Upcoming Events": "ព្រឹត្តិការណ៍ខាងមុខ",
+    "All events →": "ព្រឹត្តិការណ៍ទាំងអស់ →",
+    "Today's Lunch": "អាហារថ្ងៃត្រង់ថ្ងៃនេះ",
+    "Full menu →": "មីនុយពេញ →",
+    "Today's Birthdays": "ខួបកំណើតថ្ងៃនេះ",
+    "Full calendar →": "ប្រតិទិនពេញ →",
+    "No announcements yet.": "មិនទាន់មានសេចក្ដីប្រកាស",
+    "No birthdays today": "គ្មានខួបកំណើតថ្ងៃនេះ",
+    "No lunch today": "គ្មានអាហារថ្ងៃត្រង់ថ្ងៃនេះ",
+    "Human Resources · Thavy Tham": "ធនធានមនុស្ស · Thavy Tham",
+    "Family Care · Karano Chhuon": "ការថែទាំគ្រួសារ · Karano Chhuon",
+    "Medical · Sibimol Pol": "វេជ្ជសាស្ត្រ · Sibimol Pol",
+    "Security +855 12 200 681": "សន្តិសុខ +855 12 200 681",
+    // ── Sidebar / Nav ─────────────────────────────────────────────────
+    "Year Planner Overview": "ទិដ្ឋភាពទូទៅផែនការ",
+    "ICF Public Shared Drives": "Google Drive ចែករំលែក",
+    "Google Drive": "Google Drive",
+    "Collapse sidebar": "បិទ Sidebar",
+    "Expand sidebar": "បើក Sidebar",
+    "Feedback & Support": "មតិ និងជំនួយ",
+    "Feedback &amp; Support": "មតិ និងជំនួយ",
+    // ── About ICF page ─────────────────────────────────────────────────
+    "About ICF Cambodia": "អំពី ICF Cambodia",
+    "Our Purpose · Why We Exist": "គោលបំណង · មូលហេតុដែលយើងមាន",
+    "“As a church, it is our passion for people to become more like Jesus Christ, live fearlessly and have a positive influence on their world.”": "«​ជាព្រះវិហារ យើងប្រាថ្នាឱ្យមនុស្សក្លាយជាដូច​ព្រះ​យេស៊ូ​គ្រីស្ទ​ រស់​ដោយ​ក្លាហាន និង​មាន​ឥទ្ធិពល​វិជ្ជមាន​លើ​ពិភពលោករបស់​ខ្លួន ​»",
+    "How We Do What We Do": "របៀបដែលយើងធ្វើ",
+    "We Equip": "យើងបណ្តុះបណ្តាល",
+    "We Meet": "យើងជួបគ្នា",
+    "We Take Next Steps": "យើងផ្លាស់ប្ដូរ",
+    "We Lead": "យើងដឹកនាំ",
+    "We Multiply": "យើងបង្កើន",
+    "We Encounter": "យើងជួបប្រទះ",
+    "We Reach": "យើងឈានដល់",
+    "We Care": "យើងយកចិត្តទុកដាក់",
+    "We Empower": "យើងផ្ដល់អំណាច",
+    "Excellent": "ល្អឥតខ្ចោះ",
+    "Relevant": "ទាន់ហេតុការណ៍",
+    "Excited": "រំភើប",
+    "Authentic": "ពិតប្រាកដ",
+    "Hospitable": "ស្វាគមន៍",
+    "Generous": "សប្បុរស",
+    "We give our best in every small thing — because the people we serve deserve our best work.": "យើងខំប្រឹងក្នុងគ្រប់រឿងតូចៗ — ព្រោះអ្នកដែលយើងបម្រើសមនឹងទទួលការងារល្អបំផុតរបស់យើង ។",
+    "We meet people where they are — in their language, their culture, and their reality.": "យើងជួបមនុស្សនៅកន្លែងដែលពួកគេស្ថិតនៅ — ភាសា វប្បធម៌ និងការពិតរបស់ពួកគេ ។",
+    "Joy and energy are core to who we are — we bring them to the work and to each other.": "ក្ដីរីករាយ និងថាមពលជាស្នូលរបស់យើង — យើងនាំពួកវាទៅការងារ និងទៅគ្នាទៅវិញទៅមក ។",
+    "Real, honest, transparent. We don’t perform — we live what we believe.": "ពិត ស្មោះត្រង់ និងថ្លា ។ យើងមិនបង្ហាញ — យើងរស់ក្នុងអ្វីដែលយើងជឿ ។",
+    "Every person — staff, visitor, child, family — is welcomed home.": "មនុស្សគ្រប់រូប — បុគ្គលិក ភ្ញៀវ កុមារ គ្រួសារ — ទទួលស្វាគមន៍ ។",
+    "We give freely — our time, resources, and love — because we have received generously.": "យើងចែករំលែកដោយសេរី — ពេលវេលា ធនធាន និងក្ដីស្រឡាញ់ — ព្រោះយើងបានទទួលច្រើន ។",
+    "Inspired by 1 Kings 10": "បំផុសចិត្តដោយ ១ ស្ដេច ១០",
+    "inspired by Eph 4:11-16": "ផ្អែកលើ អេភេស ៤:១១-១៦",
+    "inspired by Acts 2:42-47": "ផ្អែកលើ កិច្ចការ ២:៤២-៤៧",
+    "inspired by 2 Cor 3:18": "ផ្អែកលើ ២ កូរិនថូស ៣:១៨",
+    "inspired by Rev 4:7": "ផ្អែកលើ វិវរណៈ ៤:៧",
+    "Mission": "បេសកកម្ម",
+    "What we do every day.": "អ្វីដែលយើងធ្វើប្រចាំថ្ងៃ ។",
+    "ICF Cambodia walks alongside vulnerable children, youth, and families through holistic church, social, educational, medical, and leadership programs — strengthening individuals, families, and communities for long-term flourishing.": "ICF Cambodia ដើរជាមួយកុមារ យុវវ័យ និងគ្រួសារដែលងាយរងគ្រោះ តាមរយៈកម្មវិធីព្រះវិហារ សង្គម អប់រំ វេជ្ជសាស្ត្រ និងភាពជាអ្នកដឹកនាំ — ពង្រឹងបុគ្គល គ្រួសារ និងសហគមន៍ ។",
+    "Programs": "កម្មវិធី",
+    "Church · Social · Education · Family Care · Medical Care · Leadership Academy · Sponsorship · Operations · Fundraising · MarCom": "ព្រះវិហារ · សង្គម · អប់រំ · ការថែទាំគ្រួសារ · វេជ្ជសាស្ត្រ · វិទ្យាល័យភាពជាអ្នកដឹកនាំ · ការឧបត្ថម្ភ · ប្រតិបត្តិការ · ហិរញ្ញប្បទាន · MarCom",
+    "Weekly attendance": "ចូលរួមប្រចាំសប្ដាហ៍",
+    "Breakdown across all gatherings": "ចំនួនតាមការជួបជុំ",
+    "Kids": "កុមារ",
+    "Youth": "យុវវ័យ",
+    "Adults": "មនុស្សពេញវ័យ",
+    "Leadership": "ភាពជាអ្នកដឹកនាំ",
+    "Impact 2025/26": "ផលប៉ះពាល់ ២០២៥/២៦",
+    "Read the full report →": "អានរបាយការណ៍ពេញ →",
+    "Provides strategic leadership and oversees budget, staffing, and legal matters.": "ផ្ដល់ភាពជាអ្នកដឹកនាំ និងត្រួតពិនិត្យថវិកា បុគ្គលិក និងបញ្ហាច្បាប់ ។",
+    "Empowering Cambodia · Helping people become more like Jesus Christ and fearlessly change their world.": "ផ្ដល់អំណាចដល់កម្ពុជា · ជួយមនុស្សឱ្យក្លាយជាដូចព្រះយេស៊ូ និងផ្លាស់ប្ដូរពិភពលោករបស់ពួកគេ ។",
     // ── Guidelines / Resources page ───────────────────────────────────
     "Child Protection": "ការការពារកុមារ",
     "Human Resources Guidelines": "គោលការណ៍ HR",
@@ -474,6 +549,13 @@ if ('serviceWorker' in navigator) {
     document.querySelectorAll('.lang-toggle__label').forEach(el => {
       el.textContent = (lang === 'km') ? 'EN' : 'KH';
     });
+    // Translate input placeholders
+    const srchIn = document.getElementById('topbar-search-input');
+    if (srchIn) srchIn.placeholder = lang === 'km' ? 'ស្វែងរក…' : 'Find resources, contacts, forms…';
+    const hcatIn = document.getElementById('hcat-search');
+    if (hcatIn) hcatIn.placeholder = lang === 'km' ? 'ស្វែងរក — គ្រុន ដុត ស្ទះ…' : 'Search health topics — fever, burns, choking…';
+    // Update hero greeting if present
+    if (typeof window._icfHeroName !== 'undefined') renderHeroGreeting(lang);
     try { localStorage.setItem('icf-lang', lang); } catch (e) {}
   }
 
@@ -533,30 +615,38 @@ if ('serviceWorker' in navigator) {
   })();
 
   // ---------- Hero greeting + date ----------
+  const KH_GREET = { morning: 'អរុណសួស្ដី', afternoon: 'ទិវាសួស្ដី', evening: 'សាយណ្ហសួស្ដី' };
+  function renderHeroGreeting(lang) {
+    const now = new Date(); const hour = now.getHours();
+    const slot = hour < 5 ? 'evening' : hour < 12 ? 'morning' : hour < 17 ? 'afternoon' : 'evening';
+    const greetEl = document.getElementById('hero-greeting');
+    if (greetEl) {
+      const name = window._icfHeroName || 'Friend';
+      greetEl.textContent = lang === 'km'
+        ? `${KH_GREET[slot]}, ${name} 👋`
+        : `Good ${slot}, ${name} 👋`;
+    }
+    const dateEl = document.getElementById('hero-date');
+    if (dateEl) {
+      const loc = lang === 'km' ? 'km-KH' : 'en-US';
+      const day = now.toLocaleDateString(loc, { weekday: 'long' });
+      const date = now.toLocaleDateString(loc, { month: 'long', day: 'numeric', year: 'numeric' });
+      dateEl.textContent = `${day} · ${date}`;
+    }
+  }
   (function setHeroDate() {
-    const now = new Date();
-    const hour = now.getHours();
-    // Read first name from icf_user cookie (base64-encoded email, set by auth-callback)
     let name = 'Friend';
     try {
       const cookie = document.cookie.split('; ').find(r => r.startsWith('icf_user='));
       if (cookie) {
-        const email = atob(cookie.split('=').slice(1).join('=')); // e.g. vivian.stumpf@icf-cambodia.com
+        const email = atob(cookie.split('=').slice(1).join('='));
         const first = email.split('@')[0].split('.')[0];
         if (first) name = first.charAt(0).toUpperCase() + first.slice(1);
       }
     } catch(e) {}
-
-    const greet = hour < 5 ? 'Good evening' : hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
-    const greetEl = document.getElementById('hero-greeting');
-    if (greetEl) greetEl.textContent = `${greet}, ${name} 👋`;
-
-    const dateEl = document.getElementById('hero-date');
-    if (dateEl) {
-      const day = now.toLocaleDateString('en-US', { weekday: 'long' });
-      const date = now.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-      dateEl.textContent = `${day} · ${date}`;
-    }
+    window._icfHeroName = name;
+    const lang = document.documentElement.getAttribute('lang') || 'en';
+    renderHeroGreeting(lang);
   })();
 
   // ---------- Year Planner — Upcoming Events (list view, next 2 weeks) ----------
@@ -882,7 +972,8 @@ if ('serviceWorker' in navigator) {
       btn.title = 'Feedback & Support';
       btn.onclick = () => window.open(FORM_URL, '_blank');
       btn.style.cssText = 'display:flex;align-items:center;gap:10px;width:100%;border:none;cursor:pointer;background:linear-gradient(135deg,#2563EB,#1d4ed8);color:#fff;border-radius:10px;padding:9px 12px;font-size:14px;font-weight:500;font-family:inherit;margin-top:10px;text-align:left;box-sizing:border-box;';
-      btn.innerHTML = `<span style="display:flex;flex:none;">${ICON}</span><span class="nav__item-label">Feedback &amp; Support</span>`;
+      const fbLabel = document.documentElement.getAttribute('lang') === 'km' ? 'មតិ និងជំនួយ' : 'Feedback &amp; Support';
+      btn.innerHTML = `<span style="display:flex;flex:none;">${ICON}</span><span class="nav__item-label">${fbLabel}</span>`;
       return btn;
     }
 
