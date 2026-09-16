@@ -239,6 +239,48 @@ if ('serviceWorker' in navigator) {
     "Find Help Fast": "ស្វែងរកជំនួយ",
     "Before going to hospital": "មុនពេលទៅមន្ទីរពេទ្យ",
     "Medical Room": "បន្ទប់ពេទ្យ",
+    "Health resources, emergency procedures, and clinic info.": "ធនធានសុខភាព នីតិវិធីបន្ទាន់ និងព័ត៌មានគ្លីនិក",
+    "Role / Info": "តួនាទី / ព័ត៌មាន",
+    "ICF Internal": "ខាងក្នុង ICF",
+    "Emergency Services": "សេវាបន្ទាន់",
+    "Recommended Pharmacies": "ឱសថស្ថានដែលបានណែនាំ",
+    "Medical Coordinator": "អ្នកសម្របសម្រួលវេជ្ជសាស្ត្រ",
+    "Mental Health Coordinator": "អ្នកសម្របសម្រួលសុខភាពផ្លូវចិត្ត",
+    "HR Administrator": "រដ្ឋបាលធនធានមនុស្ស",
+    "Campus emergencies & incidents": "ករណីបន្ទាន់ក្នុងទីតាំង",
+    "Campus emergencies &amp; incidents": "ករណីបន្ទាន់ក្នុងទីតាំង",
+    "Ambulance": "រថយន្តពេទ្យ",
+    "Life-threatening emergencies": "ករណីបន្ទាន់គ្រោះថ្នាក់ដល់ជីវិត",
+    "Police": "ប៉ូលិស",
+    "Security & crime incidents": "ឧប្បត្តិហេតុសន្តិសុខ",
+    "Security &amp; crime incidents": "ឧប្បត្តិហេតុសន្តិសុខ",
+    "General & specialist care": "ការថែទាំទូទៅ និងឯកទេស",
+    "General &amp; specialist care": "ការថែទាំទូទៅ និងឯកទេស",
+    "Sivutha Blvd · Open 8:00–23:00": "ផ្លូវវីថីស៊ីហ្វ · បើក 8:00–23:00",
+    "Sivatha Blvd (opp. Acleda Bank)": "ផ្លូវវីថាស៊ីហ្វ (ជ្រុង Acleda Bank)",
+    "Life Care Polyclinic": "គ្លីនិក Life Care",
+    "Neak Tep Clinic": "គ្លីនិក Neak Tep",
+    "U Care Pharmacy": "ឱសថស្ថាន U Care",
+    "Angkor Thom Pharmacy": "ឱសថស្ថានអង្គរធំ",
+    "ICF Cambodia · Siem Reap Campus": "ICF កម្ពុជា · ទីតាំងសៀមរាប",
+    "Hours:": "ម៉ោងបើក:",
+    "Tue–Fri 8:00–17:00 · Sat 8:00–12:00": "អង្គារ–សុក្រ 8:00–17:00 · សៅរ៍ 8:00–12:00",
+    "⚠ Closed on Mondays": "⚠ បិទថ្ងៃចន្ទ",
+    "Walk-in:": "ចូលដោយផ្ទាល់:",
+    "First-come, first-served": "មកមុន ទទួលជាមុន",
+    "Insurance & Claims": "ធានារ៉ាប់រង និងការទាមទារ",
+    "Insurance &amp; Claims": "ធានារ៉ាប់រង និងការទាមទារ",
+    "Need to claim a medical expense? Use the relevant insurance form below.": "ត្រូវការទាមទារចំណាយវេជ្ជសាស្ត្រ? ប្រើទម្រង់ធានារ៉ាប់រងដែលពាក់ព័ន្ធ",
+    "Medical Support Request Form": "ទម្រង់ស្នើសុំជំនួយវេជ្ជសាស្ត្រ",
+    "Simple health guidance · tap a card": "ការណែនាំសុខភាព · ចុចលើកាត",
+    "When to go to hospital →": "ពេលណាត្រូវទៅមន្ទីរពេទ្យ →",
+    "Medical emergency? Call Sibimol": "ករណីបន្ទាន់? ទូរស័ព្ទ Sibimol",
+    "Search health topics — fever, burns, choking…": "ស្វែងរក — គ្រុន ដុត ស្ទះ…",
+    "Please contact Sibimol first if possible — she can help you prepare.": "សូមទំនាក់ទំនង Sibimol ជាមុន — នាងអាចជួយអ្នករៀបចំ",
+    "Call Sibimol": "ទូរស័ព្ទ Sibimol",
+    "Call 119 now": "ទូរស័ព្ទ 119 ឥឡូវ",
+    "Call 119": "ទូរស័ព្ទ 119",
+    "No results found": "រកមិនឃើញ",
     // ── Guidelines / Resources page ───────────────────────────────────
     "Child Protection": "ការការពារកុមារ",
     "Human Resources Guidelines": "គោលការណ៍ HR",
@@ -416,6 +458,9 @@ if ('serviceWorker' in navigator) {
       }
     }
   }
+
+  // Expose so page-specific scripts can translate dynamically-rendered content
+  window.icfWalkAndSwap = function(root, toKH) { walkAndSwap(root, toKH); };
 
   function applyLang(lang) {
     const html = document.documentElement;
