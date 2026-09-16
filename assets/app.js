@@ -416,6 +416,22 @@ if ('serviceWorker' in navigator) {
     "mission teams \xb7": "ក្រុមបេសកកម្ម ·",
     "people hosted": "នាក់ស្ថិតនៅ",
     "guests welcomed to campus": "ភ្ញៀវស្វាគមន៍",
+    // ── About ICF — missing entries ────────────────────────────────────
+    "Our Values": "តម្លៃរបស់យើង",
+    "Our Culture": "វប្បធម៌របស់យើង",
+    "How We Do What We Do": "របៀបដែលយើងធ្វើ",
+    "Leadership Academy": "មន្ទីរបណ្ដុះបណ្ដាលភាពជាអ្នកដឹកនាំ",
+    "4. Resources": "៤. ធនធាន",
+    "We Equip": "យើងបំពាក់",
+    "We Meet": "យើងជួបប្រជុំ",
+    "We Take Next Steps": "យើងចាត់វិធានការ",
+    "We Lead": "យើងដឹកនាំ",
+    "inspired by Eph 4:11-16": "ប្រភព: អេភេស ៤:១១-១៦",
+    "inspired by Acts 2:42-47": "ប្រភព: កិច្ចការ ២:៤២-៤៧",
+    "inspired by 2 Cor 3:18": "ប្រភព: ២ កូរ ៣:១៨",
+    "inspired by Rev 4:7": "ប្រភព: វិវ ៤:៧",
+    "Read the full report →": "អានរបាយការណ៍ពេញ →",
+    "ICF Cambodia is part of the broader ICF Movement. The movement sets the overarching vision, values, and theological direction that ICF Cambodia operates within.": "ICF កម្ពុជា គឺជាផ្នែកមួយនៃចលនា ICF ។ ចលនានេះកំណត់ចក្ខុវិស័យ តម្លៃ និងទិសដៅទ្រឹស្ដីសាសនា ដែល ICF កម្ពុជា ប្រតិបត្តិ ។",
     // ── Guidelines / Resources page ───────────────────────────────────
     "Child Protection": "ការការពារកុមារ",
     "Human Resources Guidelines": "គោលការណ៍ HR",
@@ -424,13 +440,59 @@ if ('serviceWorker' in navigator) {
     "Policy": "គោលការណ៍",
     "Guideline": "ការណែនាំ",
     "Guidelines": "ការណែនាំ",
+    // ── Page header descriptions ──────────────────────────────────────
+    "Health resources, emergency procedures, and clinic info.": "ធនធានសុខភាព នីតិវិធីបន្ទាន់ និងព័ត៌មានគ្លីនិក ។",
+    "Guides, trainings and resources — for you, your team and your growth as a leader.": "មគ្គុទ្ទេស ការបណ្ដុះបណ្ដាល និងធនធាន — សម្រាប់អ្នក ក្រុមអ្នក និងការលូតលាស់ជាអ្នកដឹកនាំ ។",
+    "Policies, codes of conduct, rules & regulations — everything to read and follow at ICF.": "គោលការណ៍ ច្បាប់ស្ដីពីការប្រព្រឹត្ត និងបទប្បញ្ញត្តិ — អ្វីៗទាំងអស់ត្រូវអាន និងអនុវត្តនៅ ICF ។",
+    "Policies, codes of conduct, rules &amp; regulations — everything to read and follow at ICF.": "គោលការណ៍ ច្បាប់ស្ដីពីការប្រព្រឹត្ត និងបទប្បញ្ញត្តិ — អ្វីៗទាំងអស់ត្រូវអាន និងអនុវត្តនៅ ICF ។",
+    "Forms, templates, and working documents — everything you need to get things done.": "ទម្រង់ គំរូ និងឯកសារការងារ — អ្វីៗដែលអ្នកត្រូវការ ។",
+    "Each department's home — with key contacts, SOPs, templates, and request forms in one place.": "មូលដ្ឋាននៃនាយកដ្ឋាននីមួយៗ — ជាមួយទំនាក់ទំនងសំខាន់ SOP គំរូ និងទម្រង់ ។",
     // ── Training page ─────────────────────────────────────────────────
     "Training Hub": "មជ្ឈមណ្ឌលបណ្តុះបណ្តាល",
+    "How to Request a Training": "របៀបស្នើសុំការបណ្ដុះបណ្ដាល",
+    "Staff Requested": "ស្នើដោយបុគ្គលិក",
+    "ICF Requires": "ICF ទាមទារ",
+    "Leader forwards the request to HR": "ប្រធានបញ្ជូនសំណើទៅ HR",
+    "Fill out the Commitment Form": "បំពេញទម្រង់ការប្ដេជ្ញាចិត្ត",
+    "Finance process": "ដំណើរការហិរញ្ញវត្ថុ",
+    "ICF sponsors the training": "ICF ឧបត្ថម្ភការបណ្ដុះបណ្ដាល",
+    "Fill out the Commitment Form & send to HR": "បំពេញទម្រង់ការប្ដេជ្ញាចិត្ត ហើយផ្ញើទៅ HR",
+    "Fill out the Commitment Form &amp; send to HR": "បំពេញទម្រង់ការប្ដេជ្ញាចិត្ត ហើយផ្ញើទៅ HR",
+    "Questions? Contact Thavy in HR.": "មានសំណួរ? ទាក់ទង Thavy នៅ HR ។",
+    "Thavy on Telegram": "Thavy លើ Telegram",
+    "Send an Email": "ផ្ញើអ៊ីមែល",
     "Heart": "បេះដូង",
     "Head": "ខ្លឹមសារ",
     "Hands": "ការអនុវត្ត",
     "Communication": "ទំនាក់ទំនង",
     "Culture": "វប្បធម៌",
+    // ── Departments page — card descriptions ──────────────────────────
+    "Daily staff meals, event catering, and kitchen operations.": "អាហារបុគ្គលិកប្រចាំថ្ងៃ ការផ្ដល់ម្ហូបព្រឹត្តិការណ៍ និងប្រតិបត្តិការផ្ទះបាយ ។",
+    "Worship, outreach, discipleship, youth & kids ministry.": "ថ្វាយបង្គំ ការផ្សព្វផ្សាយ ការដើរតាមព្រះគ្រីស្ទ យុវវ័យ និងក្មេង ។",
+    "Worship, outreach, discipleship, youth &amp; kids ministry.": "ថ្វាយបង្គំ ការផ្សព្វផ្សាយ ការដើរតាម​ព្រះ​គ្រីស្ទ យុវវ័យ និងក្មេង ។",
+    "Donor relations, fundraising, hospitality, campus tours, mission teams.": "ទំនាក់ទំនងម្ចាស់ជំនួយ ការប្រមូលមូលនិធិ ការស្វាគមន៍ ដំណើរកំសាន្ត និងក្រុមបេសកកម្ម ។",
+    "People, policies, leave, recruitment, staff care.": "បុគ្គលិក គោលការណ៍ ច្បាប់ឈប់សម្រាក ការជ្រើសរើស និងការថែទាំបុគ្គលិក ។",
+    "Brand, design, content, translation, external storytelling.": "ម៉ាក ការរចនា មាតិកា ការបកប្រែ និងការប្រាប់រឿងខាងក្រៅ ។",
+    "Campus construction, project management, campus fundraising.": "សំណង់ទីធ្លា ការគ្រប់គ្រងគម្រោង និងការប្រមូលមូលនិធិទីធ្លា ។",
+    "Finance, IT, admin & legal, and coffee shop operations.": "ហិរញ្ញវត្ថុ IT រដ្ឋបាល និងច្បាប់ ហើយនឹងការដំណើរការហាងកាហ្វេ ។",
+    "Finance, IT, admin &amp; legal, and coffee shop operations.": "ហិរញ្ញវត្ថុ IT រដ្ឋបាល និងច្បាប់ ហើយនឹងការដំណើរការហាងកាហ្វេ ។",
+    "Campus, maintenance, vehicles, security, logistics.": "ទីធ្លា ការថែទាំ យានយន្ត សន្តិសុខ និងភស្តុភារ ។",
+    // ── Resources page — section titles ──────────────────────────────
+    "Child Protection Forms": "ទម្រង់ការការពារកុមារ",
+    "Employee Life Cycle": "វដ្តជីវិតបុគ្គលិក",
+    "Allowances & Family Support": "ប្រាក់ឧបត្ថម្ភ និងការជំនួយគ្រួសារ",
+    "Allowances &amp; Family Support": "ប្រាក់ឧបត្ថម្ភ និងការជំនួយគ្រួសារ",
+    "Insurance & NSSF": "ធានារ៉ាប់រង និង NSSF",
+    "Insurance &amp; NSSF": "ធានារ៉ាប់រង និង NSSF",
+    "Recruitment": "ការជ្រើសរើសបុគ្គលិក",
+    "Human Resources Forms & Templates": "ទម្រង់ និងគំរូ HR",
+    "Human Resources Forms &amp; Templates": "ទម្រង់ និងគំរូ HR",
+    // ── Medical page — insurance section ─────────────────────────────
+    "Insurance & Claims": "ធានារ៉ាប់រង និងការទាមទារ",
+    "Insurance &amp; Claims": "ធានារ៉ាប់រង និងការទាមទារ",
+    "Need to claim a medical expense? Use the relevant insurance form below.": "ត្រូវការទាមទារចំណាយវេជ្ជសាស្ត្រ? ប្រើទម្រង់ធានារ៉ាប់រងពាក់ព័ន្ធខាងក្រោម ។",
+    "Medical Support Request Form": "ទម្រង់សំណើជំនួយវេជ្ជសាស្ត្រ",
+    "Medical Support Request Form→": "ទម្រង់សំណើជំនួយវេជ្ជសាស្ត្រ →",
     // ── Events / Media / Brand pages ──────────────────────────────────
     "Org Chart": "តារាងអង្គការ",
     "Brand Resources": "ធនធានម៉ាក",
@@ -632,6 +694,18 @@ if ('serviceWorker' in navigator) {
     document.querySelectorAll('.lang-toggle__label').forEach(el => {
       el.textContent = (lang === 'km') ? 'EN' : 'KH';
     });
+    // Handle elements with data-kh attribute (mixed content: text + links)
+    if (lang === 'km') {
+      document.querySelectorAll('[data-kh]').forEach(function(el) {
+        if (!el.getAttribute('data-en')) el.setAttribute('data-en', el.innerHTML);
+        el.innerHTML = el.getAttribute('data-kh');
+      });
+    } else {
+      document.querySelectorAll('[data-en]').forEach(function(el) {
+        el.innerHTML = el.getAttribute('data-en');
+        el.removeAttribute('data-en');
+      });
+    }
     // Translate input placeholders
     const srchIn = document.getElementById('topbar-search-input');
     if (srchIn) srchIn.placeholder = lang === 'km' ? 'ស្វែងរក…' : 'Find resources, contacts, forms…';
