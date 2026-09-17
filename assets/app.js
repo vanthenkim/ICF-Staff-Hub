@@ -239,6 +239,213 @@ if ('serviceWorker' in navigator) {
     "Find Help Fast": "ស្វែងរកជំនួយ",
     "Before going to hospital": "មុនពេលទៅមន្ទីរពេទ្យ",
     "Medical Room": "បន្ទប់ពេទ្យ",
+    "Health resources, emergency procedures, and clinic info.": "ធនធានសុខភាព នីតិវិធីបន្ទាន់ និងព័ត៌មានគ្លីនិក",
+    "Role / Info": "តួនាទី / ព័ត៌មាន",
+    "ICF Internal": "ខាងក្នុង ICF",
+    "Emergency Services": "សេវាបន្ទាន់",
+    "Recommended Pharmacies": "ឱសថស្ថានដែលបានណែនាំ",
+    "Medical Coordinator": "អ្នកសម្របសម្រួលវេជ្ជសាស្ត្រ",
+    "Mental Health Coordinator": "អ្នកសម្របសម្រួលសុខភាពផ្លូវចិត្ត",
+    "HR Administrator": "រដ្ឋបាលធនធានមនុស្ស",
+    "Campus emergencies & incidents": "ករណីបន្ទាន់ក្នុងទីតាំង",
+    "Campus emergencies &amp; incidents": "ករណីបន្ទាន់ក្នុងទីតាំង",
+    "Ambulance": "រថយន្តពេទ្យ",
+    "Life-threatening emergencies": "ករណីបន្ទាន់គ្រោះថ្នាក់ដល់ជីវិត",
+    "Police": "ប៉ូលិស",
+    "Security & crime incidents": "ឧប្បត្តិហេតុសន្តិសុខ",
+    "Security &amp; crime incidents": "ឧប្បត្តិហេតុសន្តិសុខ",
+    "General & specialist care": "ការថែទាំទូទៅ និងឯកទេស",
+    "General &amp; specialist care": "ការថែទាំទូទៅ និងឯកទេស",
+    "Sivutha Blvd · Open 8:00–23:00": "ផ្លូវវីថីស៊ីហ្វ · បើក 8:00–23:00",
+    "Sivatha Blvd (opp. Acleda Bank)": "ផ្លូវវីថាស៊ីហ្វ (ជ្រុង Acleda Bank)",
+    "Life Care Polyclinic": "គ្លីនិក Life Care",
+    "Neak Tep Clinic": "គ្លីនិក Neak Tep",
+    "U Care Pharmacy": "ឱសថស្ថាន U Care",
+    "Angkor Thom Pharmacy": "ឱសថស្ថានអង្គរធំ",
+    "ICF Cambodia · Siem Reap Campus": "ICF កម្ពុជា · ទីតាំងសៀមរាប",
+    "Hours:": "ម៉ោងបើក:",
+    "Tue–Fri 8:00–17:00 · Sat 8:00–12:00": "អង្គារ–សុក្រ 8:00–17:00 · សៅរ៍ 8:00–12:00",
+    "⚠ Closed on Mondays": "⚠ បិទថ្ងៃចន្ទ",
+    "Walk-in:": "ចូលដោយផ្ទាល់:",
+    "First-come, first-served": "មកមុន ទទួលជាមុន",
+    "Insurance & Claims": "ធានារ៉ាប់រង និងការទាមទារ",
+    "Insurance &amp; Claims": "ធានារ៉ាប់រង និងការទាមទារ",
+    "Need to claim a medical expense? Use the relevant insurance form below.": "ត្រូវការទាមទារចំណាយវេជ្ជសាស្ត្រ? ប្រើទម្រង់ធានារ៉ាប់រងដែលពាក់ព័ន្ធ",
+    "Medical Support Request Form": "ទម្រង់ស្នើសុំជំនួយវេជ្ជសាស្ត្រ",
+    "Simple health guidance · tap a card": "ការណែនាំសុខភាព · ចុចលើកាត",
+    "When to go to hospital →": "ពេលណាត្រូវទៅមន្ទីរពេទ្យ →",
+    "Medical emergency? Call Sibimol": "ករណីបន្ទាន់? ទូរស័ព្ទ Sibimol",
+    "Search health topics — fever, burns, choking…": "ស្វែងរក — គ្រុន ដុត ស្ទះ…",
+    "Please contact Sibimol first if possible — she can help you prepare.": "សូមទំនាក់ទំនង Sibimol ជាមុន — នាងអាចជួយអ្នករៀបចំ",
+    "Call Sibimol": "ទូរស័ព្ទ Sibimol",
+    "Call 119 now": "ទូរស័ព្ទ 119 ឥឡូវ",
+    "Call 119": "ទូរស័ព្ទ 119",
+    "No results found": "រកមិនឃើញ",
+    // ── Home page ─────────────────────────────────────────────────────
+    "Welcome to the ICF Cambodia Staff Hub!": "សូមស្វាគមន៍មកកាន់ ICF Cambodia Staff Hub!",
+    "2026 Year Topic": "ប្រធានបទឆ្នាំ ២០២៦",
+    "Grateful": "ដឹងគុណ",
+    "Always be joyful. Never stop praying. Be thankful in all circumstances, for this is God's will for you who belong to Christ Jesus.": "ចូររីករាយជានិច្ច ។ កុំបញ្ឈប់ការអធិស្ឋាន ។ ចូរដឹងគុណក្នុងគ្រប់ករណី ។ នេះជាព្រះហឫទ័យរបស់ព្រះជាម្ចាស់សម្រាប់អ្នក ។",
+    "Year Planner": "ផែនការប្រចាំឆ្នាំ",
+    "Staff Contact": "ទំនាក់ទំនងបុគ្គលិក",
+    "Feature Update": "ព័ត៌មានថ្មី",
+    "Upcoming Events": "ព្រឹត្តិការណ៍ខាងមុខ",
+    "All events →": "ព្រឹត្តិការណ៍ទាំងអស់ →",
+    "Today's Lunch": "អាហារថ្ងៃត្រង់ថ្ងៃនេះ",
+    "Full menu →": "មីនុយពេញ →",
+    "Today's Birthdays": "ខួបកំណើតថ្ងៃនេះ",
+    "Full calendar →": "ប្រតិទិនពេញ →",
+    "No announcements yet.": "មិនទាន់មានសេចក្ដីប្រកាស",
+    "No birthdays today": "គ្មានខួបកំណើតថ្ងៃនេះ",
+    "No lunch today": "គ្មានអាហារថ្ងៃត្រង់ថ្ងៃនេះ",
+    "Human Resources · Thavy Tham": "ធនធានមនុស្ស · Thavy Tham",
+    "Family Care · Karano Chhuon": "ការថែទាំគ្រួសារ · Karano Chhuon",
+    "Medical · Sibimol Pol": "វេជ្ជសាស្ត្រ · Sibimol Pol",
+    "Security +855 12 200 681": "សន្តិសុខ +855 12 200 681",
+    // ── Sidebar / Nav ─────────────────────────────────────────────────
+    "Year Planner Overview": "ទិដ្ឋភាពទូទៅផែនការ",
+    // ── Events page — planner toolbar ──────────────────────────────────
+    "All our events for the year — plan ahead or look back, in one place.": "ព្រឹត្តិការណ៍ទាំងអស់របស់យើងក្នុងឆ្នាំ — រៀបចំផែនការទុកជាមុន ឬ ពិនិត្យមើលឡើងវិញ នៅកន្លែងតែមួយ។",
+    "All events": "ព្រឹត្តិការណ៍ទាំងអស់",
+    "Week": "សប្តាហ៍",
+    "2 weeks": "២ សប្តាហ៍",
+    "Month": "ខែ",
+    "Year overview": "ទិដ្ឋភាពទូទៅប្រចាំឆ្នាំ",
+    "Select all": "ជ្រើសរើសទាំងអស់",
+    "Deselect all": "មិនជ្រើសរើសទាំងអស់",
+    "All staff": "បុគ្គលិកទាំងអស់",
+    "Next up": "ព្រឹត្តិការណ៍ខាងមុខ",
+    "Add to calendar": "បន្ថែមទៅប្រតិទិន",
+    "ICF Public Shared Drives": "Google Drive ចែករំលែក",
+    "Google Drive": "Google Drive",
+    "Collapse sidebar": "បិទ Sidebar",
+    "Expand sidebar": "បើក Sidebar",
+    "Feedback & Support": "មតិ និងជំនួយ",
+    "Feedback &amp; Support": "មតិ និងជំនួយ",
+    // ── About ICF page ─────────────────────────────────────────────────
+    "About ICF Cambodia": "អំពី ICF Cambodia",
+    "Our Purpose · Why We Exist": "គោលបំណង · មូលហេតុដែលយើងមាន",
+    "“As a church, it is our passion for people to become more like Jesus Christ, live fearlessly and have a positive influence on their world.”": "«​ជាព្រះវិហារ យើងប្រាថ្នាឱ្យមនុស្សក្លាយជាដូច​ព្រះ​យេស៊ូ​គ្រីស្ទ​ រស់​ដោយ​ក្លាហាន និង​មាន​ឥទ្ធិពល​វិជ្ជមាន​លើ​ពិភពលោករបស់​ខ្លួន ​»",
+    "How We Do What We Do": "របៀបដែលយើងធ្វើ",
+    "We Equip": "យើងបណ្តុះបណ្តាល",
+    "We Meet": "យើងជួបគ្នា",
+    "We Take Next Steps": "យើងផ្លាស់ប្ដូរ",
+    "We Lead": "យើងដឹកនាំ",
+    "We Multiply": "យើងបង្កើន",
+    "We Encounter": "យើងជួបប្រទះ",
+    "We Reach": "យើងឈានដល់",
+    "We Care": "យើងយកចិត្តទុកដាក់",
+    "We Empower": "យើងផ្ដល់អំណាច",
+    "Excellent": "ល្អឥតខ្ចោះ",
+    "Relevant": "ទាន់ហេតុការណ៍",
+    "Excited": "រំភើប",
+    "Authentic": "ពិតប្រាកដ",
+    "Hospitable": "ស្វាគមន៍",
+    "Generous": "សប្បុរស",
+    "We give our best in every small thing — because the people we serve deserve our best work.": "យើងខំប្រឹងក្នុងគ្រប់រឿងតូចៗ — ព្រោះអ្នកដែលយើងបម្រើសមនឹងទទួលការងារល្អបំផុតរបស់យើង ។",
+    "We meet people where they are — in their language, their culture, and their reality.": "យើងជួបមនុស្សនៅកន្លែងដែលពួកគេស្ថិតនៅ — ភាសា វប្បធម៌ និងការពិតរបស់ពួកគេ ។",
+    "Joy and energy are core to who we are — we bring them to the work and to each other.": "ក្ដីរីករាយ និងថាមពលជាស្នូលរបស់យើង — យើងនាំពួកវាទៅការងារ និងទៅគ្នាទៅវិញទៅមក ។",
+    "Real, honest, transparent. We don’t perform — we live what we believe.": "ពិត ស្មោះត្រង់ និងថ្លា ។ យើងមិនបង្ហាញ — យើងរស់ក្នុងអ្វីដែលយើងជឿ ។",
+    "Every person — staff, visitor, child, family — is welcomed home.": "មនុស្សគ្រប់រូប — បុគ្គលិក ភ្ញៀវ កុមារ គ្រួសារ — ទទួលស្វាគមន៍ ។",
+    "We give freely — our time, resources, and love — because we have received generously.": "យើងចែករំលែកដោយសេរី — ពេលវេលា ធនធាន និងក្ដីស្រឡាញ់ — ព្រោះយើងបានទទួលច្រើន ។",
+    "Inspired by 1 Kings 10": "បំផុសចិត្តដោយ ១ ស្ដេច ១០",
+    "inspired by Eph 4:11-16": "ផ្អែកលើ អេភេស ៤:១១-១៦",
+    "inspired by Acts 2:42-47": "ផ្អែកលើ កិច្ចការ ២:៤២-៤៧",
+    "inspired by 2 Cor 3:18": "ផ្អែកលើ ២ កូរិនថូស ៣:១៨",
+    "inspired by Rev 4:7": "ផ្អែកលើ វិវរណៈ ៤:៧",
+    "Mission": "បេសកកម្ម",
+    "What we do every day.": "អ្វីដែលយើងធ្វើប្រចាំថ្ងៃ ។",
+    "ICF Cambodia walks alongside vulnerable children, youth, and families through holistic church, social, educational, medical, and leadership programs — strengthening individuals, families, and communities for long-term flourishing.": "ICF Cambodia ដើរជាមួយកុមារ យុវវ័យ និងគ្រួសារដែលងាយរងគ្រោះ តាមរយៈកម្មវិធីព្រះវិហារ សង្គម អប់រំ វេជ្ជសាស្ត្រ និងភាពជាអ្នកដឹកនាំ — ពង្រឹងបុគ្គល គ្រួសារ និងសហគមន៍ ។",
+    "Programs": "កម្មវិធី",
+    "Church · Social · Education · Family Care · Medical Care · Leadership Academy · Sponsorship · Operations · Fundraising · MarCom": "ព្រះវិហារ · សង្គម · អប់រំ · ការថែទាំគ្រួសារ · វេជ្ជសាស្ត្រ · វិទ្យាល័យភាពជាអ្នកដឹកនាំ · ការឧបត្ថម្ភ · ប្រតិបត្តិការ · ហិរញ្ញប្បទាន · MarCom",
+    "Weekly attendance": "ចូលរួមប្រចាំសប្ដាហ៍",
+    "Breakdown across all gatherings": "ចំនួនតាមការជួបជុំ",
+    "Kids": "កុមារ",
+    "Youth": "យុវវ័យ",
+    "Adults": "មនុស្សពេញវ័យ",
+    "Leadership": "ភាពជាអ្នកដឹកនាំ",
+    "Impact 2025/26": "ផលប៉ះពាល់ ២០២៥/២៦",
+    "Read the full report →": "អានរបាយការណ៍ពេញ →",
+    "Provides strategic leadership and oversees budget, staffing, and legal matters.": "ផ្ដល់ភាពជាអ្នកដឹកនាំ និងត្រួតពិនិត្យថវិកា បុគ្គលិក និងបញ្ហាច្បាប់ ។",
+    "Empowering Cambodia · Helping people become more like Jesus Christ and fearlessly change their world.": "ផ្ដល់អំណាចដល់កម្ពុជា · ជួយមនុស្សឱ្យក្លាយជាដូចព្រះយេស៊ូ និងផ្លាស់ប្ដូរពិភពលោករបស់ពួកគេ ។",
+    // ── About ICF — roles & chips ──────────────────────────────────────
+    "Founder - Executive Director": "ស្ថាបនិក - នាយកប្រតិបត្តិ",
+    "Executive Director – Operations": "នាយកប្រតិបត្តិ – ប្រតិបត្តិការ",
+    "Property Management": "ការគ្រប់គ្រងទ្រព្យសម្បត្តិ",
+    "Location Pastor": "គ្រូគង្វាល",
+    "Location Pastor (Khnar)": "គ្រូគង្វាល (Khnar)",
+    "Family Care Manager": "អ្នកគ្រប់គ្រងការថែទាំគ្រួសារ",
+    "Education Manager": "អ្នកគ្រប់គ្រងការអប់រំ",
+    "Head of Fundraising": "ប្រធានរៃអង្គាស",
+    "Head of MarCom": "ប្រធាន MarCom",
+    "Head of Human Resources": "ប្រធានធនធានមនុស្ស",
+    "Head of Finance": "ប្រធានហិរញ្ញវត្ថុ",
+    "Family Care": "ការថែទាំគ្រួសារ",
+    "Education": "ការអប់រំ",
+    "Fundraising": "ការរៃអង្គាស",
+    "Finance": "ហិរញ្ញវត្ថុ",
+    "Human Resources": "ធនធានមនុស្ស",
+    "Social": "សង្គម",
+    "Church": "ព្រះវិហារ",
+    "Property": "អចលនទ្រព្យ",
+    "Catering": "ម្ហូបអាហារ",
+    "Operations": "ប្រតិបត្តិការ",
+    "Donor Care": "ការថែទាំអ្នកបរិច្ចាគ",
+    "New Campus": "ទីតាំងថ្មី",
+    "Learning Center": "មជ្ឈមណ្ឌលសិក្សា",
+    "Finds solutions for daily operational challenges across all departments.": "រកដំណោះស្រាយបញ្ហាប្រតិបត្តិការប្រចាំថ្ងៃ នៅគ្រប់នាយកដ្ឋាន ។",
+    // ── About ICF — culture cards ──────────────────────────────────────
+    "Input ↔ Output": "ទទួល ↔ ចែករំលែក",
+    "Small ↔ Big": "តូច ↔ ធំ",
+    "1. We Multiply": "១. យើងបង្កើន",
+    "(Apostle)": "(ក្ស័ត្រ)",
+    "2. We Encounter": "២. យើងជួបប្រទះ",
+    "(Prophet)": "(ហោរា)",
+    "3. We Reach": "៣. យើងឈានដល់",
+    "(Evangelist)": "(ផ្សព្វផ្សាយ)",
+    "4. We Care": "៤. យើងយកចិត្តទុកដាក់",
+    "(Shepherd)": "(គ្រូគង្វាល)",
+    "5. We Empower": "៥. យើងផ្ដល់អំណាច",
+    "(Teacher)": "(គ្រូ)",
+    "1. Faith": "១. ជំនឿ",
+    "2. Relationships": "២. ទំនាក់ទំនង",
+    "3. Health": "៣. សុខភាព",
+    "5. Work": "៥. ការងារ",
+    "1. Passion": "១. ចំណង់ចំណូលចិត្ត",
+    "2. Playfield": "២. វិស័យ",
+    "3. Person": "៣. មនុស្ស",
+    "4. Perspective": "៤. ទស្សនៈ",
+    // ── About ICF — impact stats ───────────────────────────────────────
+    "Across all departments": "នៅគ្រប់នាយកដ្ឋាន",
+    "725 Kids \xb7 232 Youth \xb7 357 Adults": "725 កុមារ · 232 យុវវ័យ · 357 មនុស្សពេញវ័យ",
+    "Sponsored children": "កុមារដែលទទួលការឧបត្ថម្ភ",
+    "Child Sponsorship": "ការឧបត្ថម្ភកុមារ",
+    "Graduates this year": "ប្រឡងជាប់ឆ្នាំនេះ",
+    "Audio Bibles": "គម្ពីរសំឡេង",
+    "Baptisms": "បុណ្យជ្រមុជ",
+    "Backpacks given": "កាតាប់ដែលបានប្រគល់",
+    "Meals served": "អាហារបានបម្រើ",
+    "small groups \xb7": "ក្រុមតូច ·",
+    "people": "នាក់",
+    "mission teams \xb7": "ក្រុមបេសកកម្ម ·",
+    "people hosted": "នាក់ស្ថិតនៅ",
+    "guests welcomed to campus": "ភ្ញៀវស្វាគមន៍",
+    // ── About ICF — missing entries ────────────────────────────────────
+    "Our Values": "តម្លៃរបស់យើង",
+    "Our Culture": "វប្បធម៌របស់យើង",
+    "How We Do What We Do": "របៀបដែលយើងធ្វើ",
+    "Leadership Academy": "មន្ទីរបណ្ដុះបណ្ដាលភាពជាអ្នកដឹកនាំ",
+    "4. Resources": "៤. ធនធាន",
+    "We Equip": "យើងបំពាក់",
+    "We Meet": "យើងជួបប្រជុំ",
+    "We Take Next Steps": "យើងចាត់វិធានការ",
+    "We Lead": "យើងដឹកនាំ",
+    "inspired by Eph 4:11-16": "ប្រភព: អេភេស ៤:១១-១៦",
+    "inspired by Acts 2:42-47": "ប្រភព: កិច្ចការ ២:៤២-៤៧",
+    "inspired by 2 Cor 3:18": "ប្រភព: ២ កូរ ៣:១៨",
+    "inspired by Rev 4:7": "ប្រភព: វិវ ៤:៧",
+    "Read the full report →": "អានរបាយការណ៍ពេញ →",
+    "ICF Cambodia is part of the broader ICF Movement. The movement sets the overarching vision, values, and theological direction that ICF Cambodia operates within.": "ICF កម្ពុជា គឺជាផ្នែកមួយនៃចលនា ICF ។ ចលនានេះកំណត់ចក្ខុវិស័យ តម្លៃ និងទិសដៅទ្រឹស្ដីសាសនា ដែល ICF កម្ពុជា ប្រតិបត្តិ ។",
     // ── Guidelines / Resources page ───────────────────────────────────
     "Child Protection": "ការការពារកុមារ",
     "Human Resources Guidelines": "គោលការណ៍ HR",
@@ -247,19 +454,140 @@ if ('serviceWorker' in navigator) {
     "Policy": "គោលការណ៍",
     "Guideline": "ការណែនាំ",
     "Guidelines": "ការណែនាំ",
+    // ── Page header descriptions ──────────────────────────────────────
+    "Health resources, emergency procedures, and clinic info.": "ធនធានសុខភាព នីតិវិធីបន្ទាន់ និងព័ត៌មានគ្លីនិក ។",
+    "Guides, trainings and resources — for you, your team and your growth as a leader.": "មគ្គុទ្ទេស ការបណ្ដុះបណ្ដាល និងធនធាន — សម្រាប់អ្នក ក្រុមអ្នក និងការលូតលាស់ជាអ្នកដឹកនាំ ។",
+    "Policies, codes of conduct, rules & regulations — everything to read and follow at ICF.": "គោលការណ៍ ច្បាប់ស្ដីពីការប្រព្រឹត្ត និងបទប្បញ្ញត្តិ — អ្វីៗទាំងអស់ត្រូវអាន និងអនុវត្តនៅ ICF ។",
+    "Policies, codes of conduct, rules &amp; regulations — everything to read and follow at ICF.": "គោលការណ៍ ច្បាប់ស្ដីពីការប្រព្រឹត្ត និងបទប្បញ្ញត្តិ — អ្វីៗទាំងអស់ត្រូវអាន និងអនុវត្តនៅ ICF ។",
+    "Forms, templates, and working documents — everything you need to get things done.": "ទម្រង់ គំរូ និងឯកសារការងារ — អ្វីៗដែលអ្នកត្រូវការ ។",
+    "Each department's home — with key contacts, SOPs, templates, and request forms in one place.": "មូលដ្ឋាននៃនាយកដ្ឋាននីមួយៗ — ជាមួយទំនាក់ទំនងសំខាន់ SOP គំរូ និងទម្រង់ ។",
     // ── Training page ─────────────────────────────────────────────────
     "Training Hub": "មជ្ឈមណ្ឌលបណ្តុះបណ្តាល",
+    "How to Request a Training": "របៀបស្នើសុំការបណ្ដុះបណ្ដាល",
+    "Staff Requested": "ស្នើដោយបុគ្គលិក",
+    "ICF Requires": "ICF ទាមទារ",
+    "Leader forwards the request to HR": "ប្រធានបញ្ជូនសំណើទៅ HR",
+    "Fill out the Commitment Form": "បំពេញទម្រង់ការប្ដេជ្ញាចិត្ត",
+    "Finance process": "ដំណើរការហិរញ្ញវត្ថុ",
+    "ICF sponsors the training": "ICF ឧបត្ថម្ភការបណ្ដុះបណ្ដាល",
+    "Fill out the Commitment Form & send to HR": "បំពេញទម្រង់ការប្ដេជ្ញាចិត្ត ហើយផ្ញើទៅ HR",
+    "Fill out the Commitment Form &amp; send to HR": "បំពេញទម្រង់ការប្ដេជ្ញាចិត្ត ហើយផ្ញើទៅ HR",
+    "Questions? Contact Thavy in HR.": "មានសំណួរ? ទាក់ទង Thavy នៅ HR ។",
+    "Thavy on Telegram": "Thavy លើ Telegram",
+    "Send an Email": "ផ្ញើអ៊ីមែល",
     "Heart": "បេះដូង",
     "Head": "ខ្លឹមសារ",
     "Hands": "ការអនុវត្ត",
     "Communication": "ទំនាក់ទំនង",
     "Culture": "វប្បធម៌",
+    // ── Departments page — card descriptions ──────────────────────────
+    "Daily staff meals, event catering, and kitchen operations.": "អាហារបុគ្គលិកប្រចាំថ្ងៃ ការផ្ដល់ម្ហូបព្រឹត្តិការណ៍ និងប្រតិបត្តិការផ្ទះបាយ ។",
+    "Worship, outreach, discipleship, youth & kids ministry.": "ថ្វាយបង្គំ ការផ្សព្វផ្សាយ ការដើរតាមព្រះគ្រីស្ទ យុវវ័យ និងក្មេង ។",
+    "Worship, outreach, discipleship, youth &amp; kids ministry.": "ថ្វាយបង្គំ ការផ្សព្វផ្សាយ ការដើរតាម​ព្រះ​គ្រីស្ទ យុវវ័យ និងក្មេង ។",
+    "Donor relations, fundraising, hospitality, campus tours, mission teams.": "ទំនាក់ទំនងម្ចាស់ជំនួយ ការប្រមូលមូលនិធិ ការស្វាគមន៍ ដំណើរកំសាន្ត និងក្រុមបេសកកម្ម ។",
+    "People, policies, leave, recruitment, staff care.": "បុគ្គលិក គោលការណ៍ ច្បាប់ឈប់សម្រាក ការជ្រើសរើស និងការថែទាំបុគ្គលិក ។",
+    "Brand, design, content, translation, external storytelling.": "ម៉ាក ការរចនា មាតិកា ការបកប្រែ និងការប្រាប់រឿងខាងក្រៅ ។",
+    "Campus construction, project management, campus fundraising.": "សំណង់ទីធ្លា ការគ្រប់គ្រងគម្រោង និងការប្រមូលមូលនិធិទីធ្លា ។",
+    "Finance, IT, admin & legal, and coffee shop operations.": "ហិរញ្ញវត្ថុ IT រដ្ឋបាល និងច្បាប់ ហើយនឹងការដំណើរការហាងកាហ្វេ ។",
+    "Finance, IT, admin &amp; legal, and coffee shop operations.": "ហិរញ្ញវត្ថុ IT រដ្ឋបាល និងច្បាប់ ហើយនឹងការដំណើរការហាងកាហ្វេ ។",
+    "Campus, maintenance, vehicles, security, logistics.": "ទីធ្លា ការថែទាំ យានយន្ត សន្តិសុខ និងភស្តុភារ ។",
+    // ── Resources page — section titles ──────────────────────────────
+    "Child Protection Forms": "ទម្រង់ការការពារកុមារ",
+    "Employee Life Cycle": "វដ្តជីវិតបុគ្គលិក",
+    "Allowances & Family Support": "ប្រាក់ឧបត្ថម្ភ និងការជំនួយគ្រួសារ",
+    "Allowances &amp; Family Support": "ប្រាក់ឧបត្ថម្ភ និងការជំនួយគ្រួសារ",
+    "Insurance & NSSF": "ធានារ៉ាប់រង និង NSSF",
+    "Insurance &amp; NSSF": "ធានារ៉ាប់រង និង NSSF",
+    "Recruitment": "ការជ្រើសរើសបុគ្គលិក",
+    "Human Resources Forms & Templates": "ទម្រង់ និងគំរូ HR",
+    "Human Resources Forms &amp; Templates": "ទម្រង់ និងគំរូ HR",
+    // ── Medical page — insurance section ─────────────────────────────
+    "Insurance & Claims": "ធានារ៉ាប់រង និងការទាមទារ",
+    "Insurance &amp; Claims": "ធានារ៉ាប់រង និងការទាមទារ",
+    "Need to claim a medical expense? Use the relevant insurance form below.": "ត្រូវការទាមទារចំណាយវេជ្ជសាស្ត្រ? ប្រើទម្រង់ធានារ៉ាប់រងពាក់ព័ន្ធខាងក្រោម ។",
+    "Medical Support Request Form": "ទម្រង់សំណើជំនួយវេជ្ជសាស្ត្រ",
+    "Medical Support Request Form→": "ទម្រង់សំណើជំនួយវេជ្ជសាស្ត្រ →",
     // ── Events / Media / Brand pages ──────────────────────────────────
     "Org Chart": "តារាងអង្គការ",
     "Brand Resources": "ធនធានម៉ាក",
     "Event Planner": "ផែនការព្រឹត្តិការណ៍",
     "Staff Birthdays": "ខួបកំណើតបុគ្គលិក",
     "Staff Lunch Menu": "មីនុយអាហារថ្ងៃត្រង់",
+    // ── Department page — hero descriptions ──────────────────────────
+    "Daily staff meals, event catering, and kitchen operations — keeping ICF Cambodia fed and fuelled.": "អាហារបុគ្គលិកប្រចាំថ្ងៃ ការផ្ដល់ម្ហូបព្រឹត្តិការណ៍ និងប្រតិបត្តិការផ្ទះបាយ — ចិញ្ចឹមបី ICF កម្ពុជា ។",
+    "Gathering people around Jesus — through worship, outreach, discipleship, youth and kids ministry, and pastoral care across all ICF Cambodia church locations.": "ប្រមូលផ្ដុំមនុស្សជុំវិញព្រះយេស៊ូ — តាមរយៈការថ្វាយបង្គំ ការផ្សព្វផ្សាយ ការដើរតាម យុវវ័យ​ ក្មេង និងការថែទាំ គ្រប់ទីតាំងព្រះវិហារ ICF ។",
+    "Growing ICF Cambodia's support base through meaningful donor relationships, transparent stewardship, and accountability for every gift entrusted to us.": "ពង្រីកមូលដ្ឋានអ្នកគាំទ្រ ICF — តាមរយៈទំនាក់ទំនងម្ចាស់ជំនួយ ការគ្រប់គ្រងថ្លៃថ្នូ និងការទទួលខុសត្រូវ ។",
+    "We are dedicated to fostering the healthy personal development of children and young people by strengthening their identity, competence, and living environment — empowering them to build strong families and positively influence their communities.": "យើងប្ដេជ្ញាចិត្តជំរុញការអភិវឌ្ឍន៍ផ្ទាល់ខ្លួនដ៏រឹងមាំ ដល់កុមារ និងយុវវ័យ — ពង្រឹងអត្ដសញ្ញាណ សមត្ថភាព និងបរិស្ថានរស់នៅ ។",
+    "We care for the people who care for our community — through hiring, onboarding, support, growth, and farewell.": "យើងថែទាំអ្នកដែលថែទាំសហគមន៍ — តាមរយៈការជ្រើសរើស ការបណ្ដុះបណ្ដាល ការគាំទ្រ ការលូតលាស់ និងការអគ្គិ ។",
+    "We shape how ICF Cambodia looks, sounds and tells its story — through design, photography, video, translation, social media and the Learning Center.": "យើងកំណត់រូបរាងរបស់ ICF — តាមរយៈការរចនា ការថតរូប វីដេអូ ការបកប្រែ ប្រព័ន្ធផ្សព្វផ្សាយ និងមជ្ឈមណ្ឌលសិក្សា ។",
+    "Coordinating day-to-day organisational processes across ICF Cambodia — ensuring systems, procurement, and cross-department workflows run smoothly.": "សម្របសម្រួលដំណើរការអង្គភាពប្រចាំថ្ងៃ — ធានាប្រព័ន្ធ ការទិញ​ទំនិញ និងដំណើរការរបស់នាយកដ្ឋានប្រព្រឹត្ត ។",
+    "Maintaining, securing, and improving ICF Cambodia's campus — from daily cleaning and security to vehicles, maintenance, and electrical services.": "ថែទាំ ធានាសុវត្ថិភាព និងកែលម្អទីតាំង ICF — ពីការសម្អាត សន្ដិសុខ រថយន្ត ថែទាំ និងសេវាអគ្គិសនី ។",
+    "Building the future home of ICF Cambodia — coordinating the planning, construction, and fundraising for the new campus that will serve the next generation of our mission.": "កសាងទីលំនៅអនាគតរបស់ ICF — សម្របសម្រួលការរៀបចំផែនការ ការសំណង់ និងការប្រមូលមូលនិធិ ។",
+    "The Board of Directors and Executive Directors who lead ICF Cambodia's five pillars — Church, Social, Operations, Communication, Property, and Fundraising.": "ក្រុមប្រឹក្សាភិបាល និងនាយកប្រតិបត្តិ ដែលដឹកនាំ ICF — ព្រះវិហារ សង្គម ប្រតិបត្តិការ ទំនាក់ទំនង អចលនទ្រព្យ និងការប្រមូលមូលនិធិ ។",
+    // ── Department page — section titles ────────────────────────────
+    "Staff Fun Activities": "សកម្មភាពកម្សាន្ត",
+    "Helpful Links": "តំណភ្ជាប់មានប្រយោជន៍",
+    "Resources & Documents": "ធនធាន និងឯកសារ",
+    "Resources &amp; Documents": "ធនធាន និងឯកសារ",
+    "Brand & Media Resources": "ធនធានម៉ាក និងប្រព័ន្ធ",
+    "Brand &amp; Media Resources": "ធនធានម៉ាក និងប្រព័ន្ធ",
+    "Worship Resources": "ធនធានថ្វាយបង្គំ",
+    "Creative Request Links": "តំណសំណើ Creative",
+    "Construction Phases": "ដំណាក់កាលសំណង់",
+    "Timeline & Milestones": "ពេលវេលា និងការសម្រេច",
+    "Timeline &amp; Milestones": "ពេលវេលា និងការសម្រេច",
+    "Latest Project Updates": "បច្ចុប្បន្នភាពគម្រោងថ្មីបំផុត",
+    "Campus Buildings": "អគារទីតាំង",
+    "Campus Visualisations": "ការបង្ហាញទស្សន៍ទីតាំង",
+    "Full organisational structure": "រចនាសម្ព័ន្ធអង្គភាពពេញលេញ",
+    "Contact details coming soon": "ព័ត៌មានទំនាក់ទំនងនឹងមកដល់ឆាប់ៗ",
+    // ── Department page — MarCom resources ──────────────────────────
+    "Graphic Design & Print": "ការរចនា Graphic និងការបោះពុម្ព",
+    "Graphic Design &amp; Print": "ការរចនា Graphic និងការបោះពុម្ព",
+    "Flyers, banners, posters, certificates, social graphics. Submit via Media Request with brief and deadline.": "ក្រដាសផ្សព្វផ្សាយ បដា រូបភាពផ្សព្វផ្សាយ — ដាក់ស្នើ Media Request ។",
+    "Photography & Video": "ថតរូប និងវីដេអូ",
+    "Photography &amp; Video": "ថតរូប និងវីដេអូ",
+    "Event coverage, staff portraits, promo videos. Book at least 2 weeks in advance.": "ការថតព្រឹត្តិការណ៍ រូបបុគ្គលិក វីដេអូ — ចុះឈ្មោះ ២ សប្ដាហ៍មុន ។",
+    "Social Media & Content": "ប្រព័ន្ធផ្សព្វផ្សាយ និងមាតិកា",
+    "Social Media &amp; Content": "ប្រព័ន្ធផ្សព្វផ្សាយ និងមាតិកា",
+    "Facebook, Instagram, YouTube posts and campaigns. Share content brief 5 days before posting date.": "ប្រកាសសម្រាប់ Facebook Instagram YouTube — ចែករំលែក brief ៥ ថ្ងៃមុន ។",
+    "Event Support": "ការគាំទ្រព្រឹត្តិការណ៍",
+    "Stage design, livestreaming, AV setup for internal events and church services.": "ការរចនាឆាក ការ livestream និង AV ។",
+    "Learning Center": "មជ្ឈមណ្ឌលសិក្សា",
+    "Staff learning resources, training materials and development content. Coordinator: Makara Ne.": "ធនធានបណ្ដុះបណ្ដាល និងការអភិវឌ្ឍន៍ ។ សម្របសម្រួល: Makara Ne ។",
+    "Translation (EN ↔ KH)": "ការបកប្រែ (EN ↔ KH)",
+    "Documents, emails, announcements. Allow 3–5 working days per document.": "ឯកសារ អ៊ីមែល សេចក្ដីជូនដំណឹង — ត្រូវការ ៣-៥ ថ្ងៃ ។",
+    "ICF Cambodia Logo Pack": "ឯកសារ Logo ICF កម្ពុជា",
+    "All logo variants — colour, white, black — in PNG and SVG.": "Logo ទំាងអស់ — ពណ៌ ស ខ្មៅ — ក្នុង PNG និង SVG ។",
+    "Brand Colour & Font Guide": "មគ្គុទ្ទេសពណ៌ និង Font",
+    "Brand Colour &amp; Font Guide": "មគ្គុទ្ទេសពណ៌ និង Font",
+    "Official ICF Cambodia colours, typography and usage rules.": "ពណ៌ Typography និងច្បាប់ប្រើប្រាស់ ICF ។",
+    "Brand Usage Policy": "គោលការណ៍ប្រើប្រាស់ម៉ាក",
+    "Approval chain, tone of voice, content rules.": "ខ្សែអនុម័ត សំឡេង និងច្បាប់មាតិកា ។",
+    "Communication Templates": "គំរូទំនាក់ទំនង",
+    "Email headers, newsletter layout, announcement banners.": "Headers អ៊ីមែល Newsletter layout និង banners ។",
+    "SOP — Media Request Workflow": "SOP — ដំណើរការ Media Request",
+    "SOP — Translation Request Process": "SOP — ដំណើរការ Translation Request",
+    "SOP — Social Media Posting Guidelines": "SOP — គោលការណ៍ Social Media",
+    "Submission, review timelines and file handover.": "ការដាក់ស្នើ ពេលវេលាពិនិត្យ និងការប្រគល់ ។",
+    "Submission, turnaround times and quality check.": "ការដាក់ស្នើ ពេលវេលា និងការត្រួតពិនិត្យ ។",
+    // ── Department page — specific hardcoded content ──────────────────
+    "Technical": "បច្ចេកទេស",
+    "Hospitality": "បដិសណ្ឋារកិច្ច",
+    "Stationery": "គ្រឿងសម្ភារៈការិយាល័យ",
+    "Office stationery requests and supplies": "ការស្នើ​ ​និងផ្គត់ផ្គង់គ្រឿងសម្ភារៈ",
+    "Lunch allowance requests and staff kitchen forms": "ការស្នើប្រាក់ឧបត្ថម្ភអាហារ និងទម្រង់ផ្ទះបាយ",
+    "Posting and managing local freelancer job announcements": "ប្រកាស និងគ្រប់គ្រងការជ្រើសរើស freelancer",
+    "Basketball": "បាល់បោះ",
+    "Volleyball": "បាល់ទះ",
+    "Badminton": "ប៉ារ​ ​(Badminton)",
+    "Gardening": "ដាំដំណាំ",
+    "Click here": "ចុចទីនេះ",
+    "Click here if you are not redirected.": "ចុចទីនេះ ប្រសិនបើអ្នកមិនត្រូវបានបញ្ជូន ។",
+    "This page has moved to Operations.": "ទំព័រនេះបានផ្លាស់ទៅ Operations ។",
+    "This page has moved to Social.": "ទំព័រនេះបានផ្លាស់ទៅ Social ។",
+    "This page has moved. Click here if you are not redirected.": "ទំព័រនេះបានផ្លាស់ទី ។ ចុចទីនេះប្រសិនបើអ្នកមិនត្រូវបានបញ្ជូន ។",
+    "Coming soon": "ឆាប់ៗ",
     // ── Department names & badges (auto-translated, review recommended) ──
     "Catering Department": "នាយកដ្ឋានម្ហូបអាហារ",
     "Church Department": "នាយកដ្ឋានព្រះវិហារ",
@@ -417,6 +745,32 @@ if ('serviceWorker' in navigator) {
     }
   }
 
+  // Expose so page-specific scripts can translate dynamically-rendered content
+  window.icfWalkAndSwap = function(root, toKH) { walkAndSwap(root, toKH); };
+
+  // Auto-translate: MutationObserver watches for new DOM nodes and translates them automatically
+  let _autoTranslateObs = null;
+  function setupAutoTranslate(lang) {
+    if (_autoTranslateObs) { _autoTranslateObs.disconnect(); _autoTranslateObs = null; }
+    if (lang !== 'km') return;
+    _autoTranslateObs = new MutationObserver(function(mutations) {
+      for (const m of mutations) {
+        for (const node of m.addedNodes) {
+          if (node.nodeType === Node.ELEMENT_NODE) {
+            walkAndSwap(node, true);
+            // Also handle any input placeholders in newly added nodes
+            node.querySelectorAll && node.querySelectorAll('input[placeholder]').forEach(function(inp) {
+              const en = inp.getAttribute('data-ph-en') || inp.placeholder;
+              if (!inp.getAttribute('data-ph-en')) inp.setAttribute('data-ph-en', en);
+              if (KH[en]) inp.placeholder = KH[en];
+            });
+          }
+        }
+      }
+    });
+    _autoTranslateObs.observe(document.body, { childList: true, subtree: true });
+  }
+
   function applyLang(lang) {
     const html = document.documentElement;
     if (lang === 'km') {
@@ -429,6 +783,27 @@ if ('serviceWorker' in navigator) {
     document.querySelectorAll('.lang-toggle__label').forEach(el => {
       el.textContent = (lang === 'km') ? 'EN' : 'KH';
     });
+    // Handle elements with data-kh attribute (mixed content: text + links)
+    if (lang === 'km') {
+      document.querySelectorAll('[data-kh]').forEach(function(el) {
+        if (!el.getAttribute('data-en')) el.setAttribute('data-en', el.innerHTML);
+        el.innerHTML = el.getAttribute('data-kh');
+      });
+    } else {
+      document.querySelectorAll('[data-en]').forEach(function(el) {
+        el.innerHTML = el.getAttribute('data-en');
+        el.removeAttribute('data-en');
+      });
+    }
+    // Translate input placeholders
+    const srchIn = document.getElementById('topbar-search-input');
+    if (srchIn) srchIn.placeholder = lang === 'km' ? 'ស្វែងរក…' : 'Find resources, contacts, forms…';
+    const hcatIn = document.getElementById('hcat-search');
+    if (hcatIn) hcatIn.placeholder = lang === 'km' ? 'ស្វែងរក — គ្រុន ដុត ស្ទះ…' : 'Search health topics — fever, burns, choking…';
+    // Update hero greeting if present
+    if (typeof window._icfHeroName !== 'undefined') renderHeroGreeting(lang);
+    // Start/stop auto-translation observer
+    setupAutoTranslate(lang);
     try { localStorage.setItem('icf-lang', lang); } catch (e) {}
   }
 
@@ -488,30 +863,38 @@ if ('serviceWorker' in navigator) {
   })();
 
   // ---------- Hero greeting + date ----------
+  const KH_GREET = { morning: 'អរុណសួស្ដី', afternoon: 'ទិវាសួស្ដី', evening: 'សាយណ្ហសួស្ដី' };
+  function renderHeroGreeting(lang) {
+    const now = new Date(); const hour = now.getHours();
+    const slot = hour < 5 ? 'evening' : hour < 12 ? 'morning' : hour < 17 ? 'afternoon' : 'evening';
+    const greetEl = document.getElementById('hero-greeting');
+    if (greetEl) {
+      const name = window._icfHeroName || 'Friend';
+      greetEl.textContent = lang === 'km'
+        ? `${KH_GREET[slot]}, ${name} 👋`
+        : `Good ${slot}, ${name} 👋`;
+    }
+    const dateEl = document.getElementById('hero-date');
+    if (dateEl) {
+      const loc = lang === 'km' ? 'km-KH' : 'en-US';
+      const day = now.toLocaleDateString(loc, { weekday: 'long' });
+      const date = now.toLocaleDateString(loc, { month: 'long', day: 'numeric', year: 'numeric' });
+      dateEl.textContent = `${day} · ${date}`;
+    }
+  }
   (function setHeroDate() {
-    const now = new Date();
-    const hour = now.getHours();
-    // Read first name from icf_user cookie (base64-encoded email, set by auth-callback)
     let name = 'Friend';
     try {
       const cookie = document.cookie.split('; ').find(r => r.startsWith('icf_user='));
       if (cookie) {
-        const email = atob(cookie.split('=').slice(1).join('=')); // e.g. vivian.stumpf@icf-cambodia.com
+        const email = atob(cookie.split('=').slice(1).join('='));
         const first = email.split('@')[0].split('.')[0];
         if (first) name = first.charAt(0).toUpperCase() + first.slice(1);
       }
     } catch(e) {}
-
-    const greet = hour < 5 ? 'Good evening' : hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
-    const greetEl = document.getElementById('hero-greeting');
-    if (greetEl) greetEl.textContent = `${greet}, ${name} 👋`;
-
-    const dateEl = document.getElementById('hero-date');
-    if (dateEl) {
-      const day = now.toLocaleDateString('en-US', { weekday: 'long' });
-      const date = now.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-      dateEl.textContent = `${day} · ${date}`;
-    }
+    window._icfHeroName = name;
+    const lang = document.documentElement.getAttribute('lang') || 'en';
+    renderHeroGreeting(lang);
   })();
 
   // ---------- Year Planner — Upcoming Events (list view, next 2 weeks) ----------
@@ -837,7 +1220,8 @@ if ('serviceWorker' in navigator) {
       btn.title = 'Feedback & Support';
       btn.onclick = () => window.open(FORM_URL, '_blank');
       btn.style.cssText = 'display:flex;align-items:center;gap:10px;width:100%;border:none;cursor:pointer;background:linear-gradient(135deg,#2563EB,#1d4ed8);color:#fff;border-radius:10px;padding:9px 12px;font-size:14px;font-weight:500;font-family:inherit;margin-top:10px;text-align:left;box-sizing:border-box;';
-      btn.innerHTML = `<span style="display:flex;flex:none;">${ICON}</span><span class="nav__item-label">Feedback &amp; Support</span>`;
+      const fbLabel = document.documentElement.getAttribute('lang') === 'km' ? 'មតិ និងជំនួយ' : 'Feedback &amp; Support';
+      btn.innerHTML = `<span style="display:flex;flex:none;">${ICON}</span><span class="nav__item-label">${fbLabel}</span>`;
       return btn;
     }
 
