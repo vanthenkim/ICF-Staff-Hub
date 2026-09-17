@@ -304,6 +304,18 @@ if ('serviceWorker' in navigator) {
     "Security +855 12 200 681": "សន្តិសុខ +855 12 200 681",
     // ── Sidebar / Nav ─────────────────────────────────────────────────
     "Year Planner Overview": "ទិដ្ឋភាពទូទៅផែនការ",
+    // ── Events page — planner toolbar ──────────────────────────────────
+    "All our events for the year — plan ahead or look back, in one place.": "ព្រឹត្តិការណ៍ទាំងអស់របស់យើងក្នុងឆ្នាំ — រៀបចំផែនការទុកជាមុន ឬ ពិនិត្យមើលឡើងវិញ នៅកន្លែងតែមួយ។",
+    "All events": "ព្រឹត្តិការណ៍ទាំងអស់",
+    "Week": "សប្តាហ៍",
+    "2 weeks": "២ សប្តាហ៍",
+    "Month": "ខែ",
+    "Year overview": "ទិដ្ឋភាពទូទៅប្រចាំឆ្នាំ",
+    "Select all": "ជ្រើសរើសទាំងអស់",
+    "Deselect all": "មិនជ្រើសរើសទាំងអស់",
+    "All staff": "បុគ្គលិកទាំងអស់",
+    "Next up": "ព្រឹត្តិការណ៍ខាងមុខ",
+    "Add to calendar": "បន្ថែមទៅប្រតិទិន",
     "ICF Public Shared Drives": "Google Drive ចែករំលែក",
     "Google Drive": "Google Drive",
     "Collapse sidebar": "បិទ Sidebar",
@@ -358,6 +370,8 @@ if ('serviceWorker' in navigator) {
     "Empowering Cambodia · Helping people become more like Jesus Christ and fearlessly change their world.": "ផ្ដល់អំណាចដល់កម្ពុជា · ជួយមនុស្សឱ្យក្លាយជាដូចព្រះយេស៊ូ និងផ្លាស់ប្ដូរពិភពលោករបស់ពួកគេ ។",
     // ── About ICF — roles & chips ──────────────────────────────────────
     "Founder - Executive Director": "ស្ថាបនិក - នាយកប្រតិបត្តិ",
+    "Executive Director – Operations": "នាយកប្រតិបត្តិ – ប្រតិបត្តិការ",
+    "Property Management": "ការគ្រប់គ្រងទ្រព្យសម្បត្តិ",
     "Location Pastor": "គ្រូគង្វាល",
     "Location Pastor (Khnar)": "គ្រូគង្វាល (Khnar)",
     "Family Care Manager": "អ្នកគ្រប់គ្រងការថែទាំគ្រួសារ",

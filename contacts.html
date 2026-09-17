@@ -397,7 +397,7 @@ function renderGallery(staff) {
     const dept = deptSel.value;
     return allStaff.filter(p => {
       const matchDept = dept === 'all' || p.department === dept;
-      const matchQ = !q || [p.name, p.alias, p.department, p.email, p.telegram].join(' ').toLowerCase().includes(q);
+      const matchQ = !q || [p.name, p.alias, p.khmerName, p.department, p.email, p.telegram].join(' ').toLowerCase().includes(q);
       return matchDept && matchQ;
     });
   }
@@ -783,7 +783,7 @@ function renderGallery(staff) {
         leftdate:   header.findIndex(h => h.includes('left')),
         activedate: header.findIndex(h => /active/i.test(h)),
         status:     header.findIndex(h => h.includes('status')),
-        khmer:    header.findIndex(h => h.includes('khmer')),
+        khmer:    header.findIndex(h => h.includes('khmer') || h === 'local name'),
         manager:  header.findIndex(h => h === 'manager'),
       };
 
