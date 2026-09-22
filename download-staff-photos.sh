@@ -1,15 +1,20 @@
 #!/usr/bin/env bash
 # Downloads all staff photos from Google Drive CDN into assets/people/
-# Run once from the repo root: bash download-staff-photos.sh
+# Canonical source: Drive folder 1BBov-TCUH4UqDSpooHsyyRIiWAuOYJky
+# Run from repo root:
+#   bash download-staff-photos.sh          → skip existing files
+#   bash download-staff-photos.sh --force  → re-download all (for updates)
 
 set -e
 DEST="assets/people"
 mkdir -p "$DEST"
+FORCE=0
+[[ "$1" == "--force" ]] && FORCE=1
 
 download() {
   local id="$1" name="$2"
   local file="$DEST/$name"
-  if [ -f "$file" ]; then
+  if [ -f "$file" ] && [ "$FORCE" -eq 0 ]; then
     echo "✓ exists   $name"
   else
     echo "↓ fetching $name"
@@ -75,6 +80,58 @@ download "1xXxQM4x8eRw6s-XZWSIIXizwq4aefY3o"  "hin-loeb.jpg"
 download "1ypQbxtmFqJjtvROE24XPOSu7ViInuCkI"  "ya-hoeun.jpg"
 download "1zOJxLOsVVAtz9DiTKp9PZjUP3RtevtBF"  "srey-roth-outh.jpg"
 download "1zbPyv1efgVCvHz9p6pnauH23BJLvcRlZ"  "matthew-seng.jpg"
+
+# ── Photos from canonical Drive folder 1BBov-TCUH4UqDSpooHsyyRIiWAuOYJky ──
+download "1_uT9uu-CYHtaBDrFnlrcqTBeWW1B62Co"  "nhoem-david.jpg"
+download "1qQqD3qXvIKJAD1h4oZ2DQnOI5ogiS4Fq"  "chakriya-nith.jpg"
+download "1t3vp41BBFkZgEbmZYPpgwoNcXAIxCPat"   "sibimol-pol.jpg"
+download "1f_Z3Wd7ImS2H_byTDMX4qkSbMZJkkl5t"   "minea-soy.jpg"
+download "1UOaZFm_Nl0abP8uZVZVZKtB772Ln9Nen"   "rayu-roeun.jpg"
+download "1YGNKOB0gZ638qiQN2xaiZhDVqOljBFqR"   "pech-sang.jpg"
+download "18AzOpZDWRVkR7-g0GzLenmPkhSuNPtvb"   "makara-tes.jpg"
+download "13NH1dKQ7Wu6y8xBEyBp0O7NUoGYwofB2"   "loy-sambo-hout.jpg"
+download "1sJ4mBDfwG6sgto1Jr8dPkrLULcDfll-q"   "florin-flammer.jpg"
+download "1kBDYVdVo2n3kfDrKDzsBuYiTgvxFuhLC"   "khunhy-thoeun.jpg"
+download "15snZY3d6RkkqXhkgIywpU5MIZFaLhCez"   "kanal-tensok.jpg"
+download "1f0o8rJQfNmxMtuCaNdq4JTbWxmLyCAjc"   "kimbuoy-pheng.jpg"
+download "1pmNFHtS9NmObHb6FgCkncuxka0kiiRbV"   "chanthat-leat.jpg"
+download "18USM6birRhzEqYA3BsuH9zika3aKCR-C"   "elea-weber.jpg"
+download "1GOf0SLp7qgdUjJiYnGN62Rc9sWGoKmpp"   "hing-hoeun.jpg"
+download "1UcR7f8OA5oTEMiZkJpGQFZjYQoa7mMkQ"   "soktheavy-tann.jpg"
+download "1ZZrlXvF7LYHVNCyFWtxjd6s9y_U0VU1H"   "bora-heang.jpg"
+download "1di_hiqfoMoU56Z83Cj7ZiquRYfn3L0P4"   "dana-thy.jpg"
+download "1nUpdkIlx8X2hVTNUAUmhsQAooHN-KeAQ"   "robson-barbosa.jpg"
+download "1UZL7ACkhnnMW1XyyzyMhIxoNE9A1UKIF"   "bethany-roach.jpg"
+download "1f5FVIKA4LJ6NbhAzXcF7ZVpkmhq97DhD"   "davit-mao.jpg"
+download "1qnG15c3VhkSKbfAZPNMh2WW9fy1S8dtK"   "sakorun-pok.jpg"
+download "13DqBxGhLlPHHwWdYuC9knOBOXBj2eJV_"   "champa-vong.jpg"
+download "1w2mxK4BqqPhiWxF2_TufcYpYlyUt3DXF"   "annina-huembeli.jpg"
+download "17zRa3JbGNJufvDFe4CcPstN9kvsQ81Bk"   "khit-sreynouch.jpg"
+download "15kNuyuzVPUffChmqC46O2HuU7ijSTlUQ"   "aline-barbosa.jpg"
+download "1id7K2clDd-29fK_Gj9zqgReQ4uhYRQaA"   "bopha-mom.jpg"
+download "18b4tCPW4AfPfcDJnCzvT94MEy4sv1D6l"   "vivian-stumpf.jpg"
+download "1296502COoUhMyCPt5aykgfTtzJbfa3jH"   "sodalin-thangham.jpg"
+download "184MIGk585-umiJW9IgODVWZ1fCsLccaQ"   "nuthida-han.jpg"
+download "1cVHVDXbgvQecpxw5yle0SKXbZukyCoWz"   "vattey-chhun.jpg"
+download "1ME_m_MLfMrb_0AnSOgIQA_ad1kV7zpp7"   "stephanie-shelow.jpg"
+download "1OE0JCQAfP-0QE4hU26Yp4gkPsRiYwX53"   "thavy-tham.jpg"
+download "1f7XLLbda0S1s7sVAuolDPw-VOXBrsWbL"   "rany-mom.jpg"
+download "1pbRKjea5bXU4qLdp_1BnE3lGClvViTTv"   "ratana-khy.jpg"
+download "1JMFFLwsjEFR1xgodC_abyyuPvCZjyKIr"   "parigna-soeum.jpg"
+download "1Bq2IkjjdrKJ9jfZDmtoqn4DGS6mfmKnY"   "hou-sokcheat.jpg"
+download "1WDccJrT1IUwo6jssZiT6qWwIUFOAFbya"   "nd-strupler.jpg"
+download "1lkkGzd1LIEqyzJzN1LFJH1tmMmgSJo0N"   "rachana-san.jpg"
+download "1BTJ8ETN8P1Qm76W5fft4U3ucU2wXb29p"   "ranaomi-heak.jpg"
+download "1hvbo2pTN76UviANeo8vklKzRD3z8rz_g"   "seava-han.jpg"
+download "1xeMgcUMztcm92xwJGrZfbMMvLCsW5zNg"   "rongroeung-chamroeun.jpg"
+download "1-_qSAqY9aeCS6m_Vux27ltMM4OMRQqGb"   "sarath-sok.jpg"
+download "13XmlwcaUHTI01PWqfs-MKpV0lXoTh55G"   "neaksen-sok.jpg"
+download "1zkZ9srU6DalF8zOuDh1azvRBKx6oEJ1O"   "sa-soueyvan.jpg"
+download "14aT9IFL6jZPohi2gvvQFzivRPa6aVXxa"   "phat-sout.jpg"
+download "1ijhW6jKNu13EzwFD86ij90BVQtElvx9F"   "david-piseth.jpg"
+download "13J3mJMgY0HN0MGSAhkDYhDgRIm8OrHiy"   "noa-flammer.jpg"
+download "1AYzn4f6M3xT0REtnThz_7ANsxEh5vasA"   "nirorn-sok.jpg"
+download "1TmS6UtOGOv10NSXxkKiPrKzwSBeec1Tf"   "kropumkannika-gnorng.jpg"
 
 echo ""
 echo "Done! $(ls $DEST/*.jpg 2>/dev/null | wc -l) photos in $DEST/"

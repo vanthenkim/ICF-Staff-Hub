@@ -245,25 +245,25 @@ const MENTOR_OVERRIDES = {
   'Davit Mao':      'ND Strupler',
   'Tola Khy':       'ND Strupler',
   // University Scholarship Students — Responsible Leader
-  'Sopheak Phol':   'Phin Teb',
-  'Ry Rey':         'Phin Teb',
-  'Sinat Hoem':     'Phin Teb',
-  'Sreynuch Phuk':  'Phin Teb',
-  'Prerk Sey':      'Phin Teb',
-  'Kanha Vat':      'Phin Teb',
-  'Sreylin Nan':    'Phin Teb',
-  'Makara Chy':     'Phin Teb',
-  'Sriydav Nak':    'Phin Teb',
-  'Monyroth Ev':    'Phin Teb',
-  'Sreyleak Houn':  'Phin Teb',
-  'Sary Sarin':     'Phin Teb',
-  'Sothea Thov':    'Phin Teb',
-  'Chintha Pav':    'Parigna',
-  'Chhaivorn Vin':  'Phin Teb',
-  'Naroth Roth':    'Phin Teb',
-  'Hun Hub':        'Phin Teb',
-  'Rebecca Vey':    'Steffi Lendi',
-  'Sovann Choeut':  'Phin Teb',
+  'Sopheak Phol':   'Khunhy',
+  'Ry Rey':         'Khunhy',
+  'Sinat Hoem':     'Savann Sun',
+  'Sreynuch Phuk':  'Khunhy',
+  'Prerk Sey':      'Linet',
+  'Kanha Vat':      'Khunhy',
+  'Sreylin Nan':    'Khunhy',
+  'Makara Chy':     'Linet',
+  'Sriydav Nak':    'Khunhy',
+  'Monyroth Ev':    'Khunhy',
+  'Sreyleak Houn':  'Khunhy',
+  'Sary Sarin':     'Khunhy',
+  'Sothea Thov':    'Khunhy',
+  'Chintha Pav':    'Khunhy',
+  'Chhaivorn Vin':  'Khunhy',
+  'Naroth Roth':    'Khunhy',
+  'Hun Hub':        'Khunhy',
+  'Rebecca Vey':    'Loy Sambo Hout',
+  'Sovann Choeut':  'Khunhy',
 };
 
 // Names hidden from the reporting line chain (chain still traverses through them)
@@ -320,7 +320,7 @@ function renderList(staff) {
       onmouseenter="this.style.background='#eff6ff'" onmouseleave="this.style.background='${bg}'">
       <td style="padding:8px 12px;">
         <div style="display:flex;align-items:center;gap:8px;">
-          ${p.photo ? `<img src="${p.photo}" alt="${p.name}" style="width:32px;height:32px;border-radius:50%;object-fit:cover;object-position:top;flex-shrink:0;" onerror="this.outerHTML='<div style=\\'width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;\\'>${initials(p.name)}</div>'">` : `<div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;">${initials(p.name)}</div>`}
+          ${p.photo ? `<img src="${p.photo}" alt="${p.name}" style="width:32px;height:32px;border-radius:50%;object-fit:cover;object-position:center 20%;flex-shrink:0;" onerror="this.outerHTML='<div style=\\'width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;\\'>${initials(p.name)}</div>'">` : `<div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;">${initials(p.name)}</div>`}
           <div>
             <div style="font-weight:400;font-size:15px;">${p.name}</div>
             ${p.khmerName ? `<div style="font-size:11px;color:#94a3b8;">${p.khmerName}</div>` : ''}
@@ -347,7 +347,7 @@ function renderGallery(staff) {
       const s = DEPT_STYLES[p.department] || ['#f1f5f9','#374151','#e2e8f0'];
       const srch = [p.name, p.alias, p.khmerName, p.department, p.email, p.telegram].join(' ').toLowerCase();
       const avatar = p.photo
-        ? `<img src="${p.photo}" alt="${p.name}" style="width:80px;height:80px;border-radius:50%;object-fit:cover;object-position:top;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.12);" onerror="this.outerHTML='<div style=\\'width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:24px;font-weight:500;display:flex;align-items:center;justify-content:center;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.12);\\'>${initials(p.name)}</div>'">`
+        ? `<img src="${p.photo}" alt="${p.name}" style="width:80px;height:80px;border-radius:50%;object-fit:cover;object-position:center 20%;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.12);" onerror="this.outerHTML='<div style=\\'width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:24px;font-weight:500;display:flex;align-items:center;justify-content:center;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.12);\\'>${initials(p.name)}</div>'">`
         : `<div style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:24px;font-weight:500;display:flex;align-items:center;justify-content:center;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.12);">${initials(p.name)}</div>`;
       return `<div data-dept="${p.department}" data-search="${srch}" data-n="${p.name.replace(/"/g,'&quot;')}" onclick="openContactByName(this.dataset.n)" style="background:#fff;border:1.5px solid #e2e8f0;border-radius:16px;overflow:hidden;transition:box-shadow .15s;text-align:center;cursor:pointer;" onmouseenter="this.style.boxShadow='0 4px 20px rgba(37,99,235,.12)'" onmouseleave="this.style.boxShadow=''">
         <div style="padding:28px 20px 16px;display:flex;flex-direction:column;align-items:center;">
@@ -498,6 +498,10 @@ function renderGallery(staff) {
     'minea-soy':             'assets/people/minea-soy.jpg',
     'sibimol-pol':           'assets/people/sibimol-pol.jpg',
     'vutha-kry':             'assets/people/vutha-kry.jpg',
+    'hana-seap':             'assets/people/hana-seap.jpg',
+    'tola-khy':              'assets/people/tola-khy.jpg',
+    'makara-ne':             'assets/people/makara-ne.jpg',
+    'nhoem-david':           'assets/people/nhoem-david.jpg',
     // Drive thumbnail URLs for staff without local photo files
     'boromey-hom':           'assets/people/boromey-hom.jpg',
     'champa-toch':           'assets/people/champa-toch.jpg',
@@ -516,7 +520,7 @@ function renderGallery(staff) {
     'lieng-huon':            'assets/people/lieng-huon.jpg',
     'makara-seng':           'assets/people/makara-seng.jpg',
     'matthew-seng':          'assets/people/matthew-seng.jpg',
-    'mom-kalic':             'assets/people/mom-kalic.jpg',
+    'kali-mom':              'assets/people/mom-kalic.jpg',
     'nan-houn':              'assets/people/nan-houn.jpg',
     'noya-men':              'assets/people/noya-men.jpg',
     'ousaphea-lim':          'assets/people/ousaphea-lim.jpg',
@@ -574,7 +578,7 @@ function renderGallery(staff) {
     'Eddie Roach':           { phone:'+85578972760',   telegram:'EddieRoach' },
     'Elea Weber':            { phone:'+85578210127',   telegram:'Ellie_Weber' },
     'Kanal Tensok':          { phone:'+85561230207',   telegram:'kanal_tensok' },
-    'Mom Kalic':             { phone:'+85561657594',   telegram:'Kalimom' },
+    'Kali Mom':              { phone:'+85561657594',   telegram:'Kalimom' },
     'Noa Flammer':           { phone:'+85511549774',   telegram:'noanoemi' },
     'Panha Neang':           { phone:'+85577540537' },
     'Pichey Ken':            { phone:'+855969390522',  telegram:'pichey16' },
@@ -896,7 +900,7 @@ function _miniAvatar(p, size) {
   const ini = initials(p ? p.name : '?');
   const fallback = `<div style="width:${s}px;height:${s}px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:${fs}px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;">${ini}</div>`;
   if (p && p.photo) {
-    return `<img src="${p.photo}" alt="${p.name}" style="width:${s}px;height:${s}px;border-radius:50%;object-fit:cover;object-position:top;flex-shrink:0;" onerror="_imgErr(this,'${ini}',${s})">`;
+    return `<img src="${p.photo}" alt="${p.name}" style="width:${s}px;height:${s}px;border-radius:50%;object-fit:cover;object-position:center 20%;flex-shrink:0;" onerror="_imgErr(this,'${ini}',${s})">`;
   }
   return fallback;
 }
@@ -930,7 +934,7 @@ function openContact(p) {
   const ini = initials(p.name);
   const bigFallback = `<div style="width:88px;height:88px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:26px;font-weight:500;display:flex;align-items:center;justify-content:center;border:3px solid #fff;box-shadow:0 4px 16px rgba(0,0,0,.12);">${ini}</div>`;
   const bigAvatar = p.photo
-    ? `<img src="${p.photo}" alt="${p.name}" style="width:88px;height:88px;border-radius:50%;object-fit:cover;object-position:top;border:3px solid #fff;box-shadow:0 4px 16px rgba(0,0,0,.12);" onerror="_imgErr(this,'${ini}',88,1)">`
+    ? `<img src="${p.photo}" alt="${p.name}" style="width:88px;height:88px;border-radius:50%;object-fit:cover;object-position:center 20%;border:3px solid #fff;box-shadow:0 4px 16px rgba(0,0,0,.12);" onerror="_imgErr(this,'${ini}',88,1)">`
     : bigFallback;
 
   // Contact rows

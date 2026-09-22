@@ -1822,7 +1822,7 @@ if ('serviceWorker' in navigator) {
             const tgt = isExt ? ' target="_blank" rel="noopener"' : '';
             const isStaff = item.g === 'Staff';
             const iconHtml = item.p
-              ? `<img src="${item.p}" alt="" style="width:32px;height:32px;border-radius:50%;object-fit:cover;object-position:top;flex-shrink:0;background:#e2e8f0;" onerror="this.onerror=null;this.style.background='#e2e8f0';">`
+              ? `<img src="${item.p}" alt="" style="width:32px;height:32px;border-radius:50%;object-fit:cover;object-position:center 20%;flex-shrink:0;background:#e2e8f0;" onerror="this.onerror=null;this.style.background='#e2e8f0';">`
               : `<span class="inline-results__hit__icon">${iconFor(item.i)}</span>`;
             if (isStaff) {
               const sn = item.t.replace(/"/g,'&quot;');

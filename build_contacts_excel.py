@@ -25,7 +25,7 @@ START_DATES = {
     'Martin Strupler':'01-Apr-2021','Thavy Tham':'01-Apr-2021','Hing Hoeun':'01-Feb-2021',
     'Chrach Chen':'09-Feb-2021','Seangly Leng':'20-Apr-2021','Longsamnieng Pol':'01-Apr-2021',
     'Makara Seng':'01-Mar-2021','Sreyleak So':'01-Feb-2021','Khemry Men':'01-Jun-2021',
-    'Sopheak Vat':'08-Jun-2021','Mom Kalic':'22-Jun-2021','Rothana Ros':'01-Nov-2021',
+    'Sopheak Vat':'08-Jun-2021','Kali Mom':'22-Jun-2021','Rothana Ros':'01-Nov-2021',
     'Kongkea Kouk':'01-Aug-2022','Saroeun Kim':'01-Jun-2022','Sreymom Touch':'15-Sep-2021',
     'Aline Barbosa':'04-Jan-2021','Robson Barbosa':'04-Jan-2021','Steffi Lendi':'15-Aug-2015',
     'Bethany Roach':'07-Jan-2017','Eddie Roach':'07-Jan-2017','Stephanie Shelow':'28-Feb-2019',
@@ -117,7 +117,7 @@ BIRTHDAYS = {
     'Savann Sun':           '04-Jan',
     'Florin Flammer':       '07-Jan',
     'Davit Mao':            '07-Jan',
-    'Mom Kalic':            '08-Jan',
+    'Kali Mom':             '08-Jan',
     'Phat Sout':            '09-Jan',
     'Som Chhang':           '14-Jan',
     'Seav Ey Khean':        '15-Jan',
@@ -240,7 +240,7 @@ SUB_DEPT_OVERRIDE = {
     'Rothana Ros':'Outreach','Sambath Song':'Outreach','Noa Flammer':'Outreach',
     'Ranaomi Heak':'Outreach',
     'Sombo Ros':'Worship','Sreileak Rous':'Worship','Dana Thy':'Worship','Pichey Ken':'Worship',
-    'Mom Kalic':'Worship & Technical','Kanal Tensok':'Worship & Technical',
+    'Kali Mom':'Worship & Technical','Kanal Tensok':'Worship & Technical',
     'Somun Yem':'Worship & Technical','Elea Weber':'Worship & Technical',
     'Sreypich Chhean':'Youth','Sotheavy Ngen':'Youth',
     'Ryna Mom':'Kids','Khemry Men':'Kids','Robson Barbosa':'Kids','Aline Barbosa':'Kids',
@@ -257,8 +257,8 @@ ORG = {
     "Annina Huembeli":{"manager":"ND Strupler"},
     "Eddie Roach":{"manager":None},
     "Rany Mom":{"manager":"Eddie Roach"},"Davit Mao":{"manager":"Rany Mom"},
-    "Mom Kalic":{"manager":"Eddie Roach"},"Kanal Tensok":{"manager":"Mom Kalic"},
-    "Somun Yem":{"manager":"Mom Kalic"},"Elea Weber":{"manager":"Mom Kalic"},
+    "Kali Mom":{"manager":"Eddie Roach"},"Kanal Tensok":{"manager":"Kali Mom"},
+    "Somun Yem":{"manager":"Kali Mom"},"Elea Weber":{"manager":"Kali Mom"},
     "Sombo Ros":{"manager":"Eddie Roach"},"Sreileak Rous":{"manager":"Sombo Ros"},
     "Dana Thy":{"manager":"Sombo Ros"},"Pichey Ken":{"manager":"Sombo Ros"},
     "Bethany Roach":{"manager":"Eddie Roach"},"Ranaomi Heak":{"manager":"Bethany Roach"},
@@ -607,7 +607,7 @@ ws_hist.freeze_panes='A2'
 YELLOW_FILL = PatternFill('solid',fgColor='FFF9C4')
 ORANGE_FILL = PatternFill('solid',fgColor='FEF3C7')
 boromey = ['2026-08-20','Boromey Hom','Next Steps Facilitator','Program Specialist',
-           'Church','Worship & Technical','Mom Kalic','Scheduled — position change effective 20 Aug 2026']
+           'Church','Worship & Technical','Kali Mom','Scheduled — position change effective 20 Aug 2026']
 for ci,v in enumerate(boromey,1):
     cell = ws_hist.cell(row=2,column=ci,value=v)
     cell.font=Font(name='Arial',size=10,bold=(ci in (2,3,4)))
