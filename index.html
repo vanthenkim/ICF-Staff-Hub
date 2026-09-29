@@ -299,22 +299,21 @@
     const blocks = icsText.split('BEGIN:VEVENT');
     for (let i = 1; i < blocks.length; i++) {
       const block = blocks[i];
-      const dtMatch = block.match(/DTSTART[^:]*:(\d{4})(\d{2})(\d{2})/);
+      const unfolded = block.replace(/\r?\n[ \t]/g, '');
+      const dtMatch = unfolded.match(/DTSTART[^:]*:(\d{4})(\d{2})(\d{2})/);
       if (!dtMatch || (dtMatch[2] + dtMatch[3]) !== mmdd) continue;
-      // Check if recurring and still active (no UNTIL, or UNTIL >= today)
-      const rruleMatch = block.match(/RRULE:[^\r\n]*/i);
+      const rruleMatch = unfolded.match(/RRULE:[^\r\n]*/i);
       if (rruleMatch) {
+        // Recurring: skip only if UNTIL is in the past
         const untilMatch = rruleMatch[0].match(/UNTIL=(\d{4})(\d{2})(\d{2})/i);
         if (untilMatch) {
           const until = new Date(+untilMatch[1], +untilMatch[2]-1, +untilMatch[3]);
-          if (until < today) continue; // expired recurring event
+          if (until < today) continue;
         }
-        // Active recurring event — month-day match is enough
       } else {
-        // Non-recurring: must be from the current year
+        // Non-recurring: only show if from this year
         if (dtMatch[1] !== currentYear) continue;
       }
-      const unfolded = block.replace(/\r?\n[ \t]/g, '');
       const sumMatch = unfolded.match(/SUMMARY:([^\r\n]+)/);
       if (sumMatch) summaries.push(sumMatch[1].trim());
     }
