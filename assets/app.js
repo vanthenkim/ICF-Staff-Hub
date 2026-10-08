@@ -314,6 +314,12 @@ if ('serviceWorker' in navigator) {
     "Select all": "ជ្រើសរើសទាំងអស់",
     "Deselect all": "មិនជ្រើសរើសទាំងអស់",
     "All staff": "បុគ្គលិកទាំងអស់",
+    "Business Academy": "វិទ្យាស្ថានអាជីវកម្ម",
+    "Business Network": "បណ្តាញអាជីវកម្ម",
+    "Mission Team": "ក្រុមមីស្ស្យុន",
+    "Guests": "ភ្ញៀវ",
+    "Other": "ផ្សេងទៀត",
+    "No events": "គ្មានព្រឹត្តិការណ៍",
     "Next up": "ព្រឹត្តិការណ៍ខាងមុខ",
     "Add to calendar": "បន្ថែមទៅប្រតិទិន",
     "ICF Public Shared Drives": "Google Drive ចែករំលែក",
@@ -447,6 +453,7 @@ if ('serviceWorker' in navigator) {
     "Read the full report →": "អានរបាយការណ៍ពេញ →",
     "ICF Cambodia is part of the broader ICF Movement. The movement sets the overarching vision, values, and theological direction that ICF Cambodia operates within.": "ICF កម្ពុជា គឺជាផ្នែកមួយនៃចលនា ICF ។ ចលនានេះកំណត់ចក្ខុវិស័យ តម្លៃ និងទិសដៅទ្រឹស្ដីសាសនា ដែល ICF កម្ពុជា ប្រតិបត្តិ ។",
     // ── Guidelines / Resources page ───────────────────────────────────
+    "HR Forms": "ទម្រង់ HR",
     "Child Protection": "ការការពារកុមារ",
     "Human Resources Guidelines": "គោលការណ៍ HR",
     "Finance Policies": "គោលការណ៍ហិរញ្ញវត្ថុ",
@@ -1822,7 +1829,7 @@ if ('serviceWorker' in navigator) {
             const tgt = isExt ? ' target="_blank" rel="noopener"' : '';
             const isStaff = item.g === 'Staff';
             const iconHtml = item.p
-              ? `<img src="${item.p}" alt="" style="width:32px;height:32px;border-radius:50%;object-fit:cover;object-position:top;flex-shrink:0;background:#e2e8f0;" onerror="this.onerror=null;this.style.background='#e2e8f0';">`
+              ? `<img src="${item.p}" alt="" style="width:32px;height:32px;border-radius:50%;object-fit:cover;object-position:center 20%;flex-shrink:0;background:#e2e8f0;" onerror="this.onerror=null;this.style.background='#e2e8f0';">`
               : `<span class="inline-results__hit__icon">${iconFor(item.i)}</span>`;
             if (isStaff) {
               const sn = item.t.replace(/"/g,'&quot;');

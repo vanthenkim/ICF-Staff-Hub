@@ -302,18 +302,28 @@
 
   function parseEvents(icsText, mmdd) {
     const summaries = [];
+    const today = new Date(); today.setHours(0,0,0,0);
+    const currentYear = String(today.getFullYear());
     const blocks = icsText.split('BEGIN:VEVENT');
     for (let i = 1; i < blocks.length; i++) {
       const block = blocks[i];
       const unfolded = block.replace(/\r?\n[ \t]/g, '');
       const dtMatch = unfolded.match(/DTSTART[^:]*:(\d{4})(\d{2})(\d{2})/);
-      if (dtMatch) {
-        const eventMMDD = dtMatch[2] + dtMatch[3];
-        if (eventMMDD === mmdd) {
-          const sumMatch = unfolded.match(/SUMMARY:([^\r\n]+)/);
-          if (sumMatch) summaries.push(sumMatch[1].trim());
+      if (!dtMatch || (dtMatch[2] + dtMatch[3]) !== mmdd) continue;
+      const rruleMatch = unfolded.match(/RRULE:[^\r\n]*/i);
+      if (rruleMatch) {
+        // Recurring: skip only if UNTIL is in the past
+        const untilMatch = rruleMatch[0].match(/UNTIL=(\d{4})(\d{2})(\d{2})/i);
+        if (untilMatch) {
+          const until = new Date(+untilMatch[1], +untilMatch[2]-1, +untilMatch[3]);
+          if (until < today) continue;
         }
+      } else {
+        // Non-recurring: only show if from this year
+        if (dtMatch[1] !== currentYear) continue;
       }
+      const sumMatch = unfolded.match(/SUMMARY:([^\r\n]+)/);
+      if (sumMatch) summaries.push(sumMatch[1].trim());
     }
     return [...new Set(summaries)];
   }
