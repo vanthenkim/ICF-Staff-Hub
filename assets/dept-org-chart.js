@@ -1,5 +1,8 @@
-/* dept-org-chart.js
+/* dept-org-chart.js v2
    Dynamically renders department org chart columns from the Master Sheet.
+   Supports 2-tier hierarchy: a Manager who heads a group can have other
+   group heads reporting to them, shown as sub-columns below.
+
    Config (set on page before this script):
      window.ICF_DEPT        — department name (required, matches Sheet Department column)
      window.ICF_DEPT_EXTRA  — array of extra dept names to include (optional)
@@ -19,6 +22,11 @@
   var slug=DEPT.toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'');
   var container=document.getElementById(slug+'-chart-cols');
   if(!container)return;
+
+  // Width constants
+  var COL_W=185;
+  var COL_GAP=8;
+  var COL_TOTAL=COL_W+COL_GAP; // 193
 
   // Color palette per base color
   var PALETTES={
@@ -59,8 +67,8 @@
   }
 
   function avatar(person,size){
-    var esc=function(s){return s.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');};
-    if(person.photo)return'<img src="'+esc(person.photo)+'" style="width:'+size+'px;height:'+size+'px;border-radius:50%;object-fit:cover;object-position:top;flex-shrink:0;">';
+    var e=function(s){return s.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');};
+    if(person.photo)return'<img src="'+e(person.photo)+'" style="width:'+size+'px;height:'+size+'px;border-radius:50%;object-fit:cover;object-position:top;flex-shrink:0;">';
     return'<div style="width:'+size+'px;height:'+size+'px;border-radius:50%;background:'+pl.m+';display:flex;align-items:center;justify-content:center;font-weight:500;font-size:'+(size<40?11:13)+'px;color:'+pl.a+';flex-shrink:0;">'+initials(person.name)+'</div>';
   }
 
@@ -80,6 +88,7 @@
       +'<div style="font-size:10.5px;color:#6b7280;">'+esc(person.role)+'</div></div></div>';
   }
 
+  // Leaf column (no sub-groups)
   function buildCol(label,head,staff){
     var inner='';
     if(head)inner+=managerCard(head);
@@ -90,9 +99,57 @@
     }
     return'<div style="display:flex;flex-direction:column;align-items:center;">'
       +'<div style="width:2px;height:16px;background:'+pl.c+';"></div>'
-      +'<div style="width:185px;box-sizing:border-box;display:flex;flex-direction:column;gap:0;background:#fff;border:1.5px solid #e2e8f0;border-top:3px solid '+pl.a+';border-radius:10px;padding:12px 10px;">'
+      +'<div style="width:'+COL_W+'px;box-sizing:border-box;display:flex;flex-direction:column;gap:0;background:#fff;border:1.5px solid #e2e8f0;border-top:3px solid '+pl.a+';border-radius:10px;padding:12px 10px;">'
       +'<div style="font-size:9px;font-weight:500;color:'+pl.a+';text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;">'+esc(label)+'</div>'
       +inner+'</div></div>';
+  }
+
+  // Count leaf columns in a subtree (for bar width calculation)
+  function countLeaves(g,childrenOf){
+    var ch=childrenOf[g]||[];
+    if(!ch.length)return 1;
+    return ch.reduce(function(s,cg){return s+countLeaves(cg,childrenOf);},0);
+  }
+
+  // Build a node that may have sub-columns
+  function buildNode(g,groups,childrenOf){
+    var members=groups[g];
+    // Pick head: highest-level person (Manager > Leader > Team)
+    function lvlRank(l){return l==='Manager'?3:l==='Leader'?2:l==='Team'?1:0;}
+    var head=null,bestRank=-1;
+    members.forEach(function(m){var r=lvlRank(m.level);if(r>bestRank){bestRank=r;head=m;}});
+    if(!head)head=members[0];
+    var directStaff=members.filter(function(m){return m!==head;});
+    var children=childrenOf[g]||[];
+
+    if(!children.length){
+      // Leaf node: simple column
+      return buildCol(g,head,directStaff);
+    }
+
+    // Intermediate node: manager card + sub-columns below
+    var manHtml=managerCard(head);
+    if(directStaff.length){
+      manHtml+='<div style="margin-top:6px;margin-left:18px;border-left:2px solid '+pl.c+';padding-left:10px;display:flex;flex-direction:column;gap:5px;">';
+      directStaff.forEach(function(s){manHtml+=staffCard(s);});
+      manHtml+='</div>';
+    }
+
+    var subHtml='';
+    children.forEach(function(cg){subHtml+=buildNode(cg,groups,childrenOf);});
+    var leaves=children.reduce(function(s,cg){return s+countLeaves(cg,childrenOf);},0);
+    var subBarW=Math.max(leaves*COL_TOTAL-COL_GAP,COL_W);
+
+    return'<div style="display:flex;flex-direction:column;align-items:center;">'
+      +'<div style="width:2px;height:16px;background:'+pl.c+';"></div>'
+      +'<div style="min-width:'+COL_W+'px;box-sizing:border-box;background:#fff;border:1.5px solid #e2e8f0;border-top:3px solid '+pl.a+';border-radius:10px;padding:12px 10px;">'
+        +'<div style="font-size:9px;font-weight:500;color:'+pl.a+';text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;">'+esc(g)+'</div>'
+        +manHtml
+      +'</div>'
+      +'<div style="width:2px;height:12px;background:'+pl.c+';"></div>'
+      +(leaves>1?'<div style="width:'+subBarW+'px;border-top:2px solid '+pl.c+';"></div>':'')
+      +'<div style="display:flex;gap:'+COL_GAP+'px;align-items:flex-start;">'+subHtml+'</div>'
+    +'</div>';
   }
 
   fetch(SHEET)
@@ -148,36 +205,51 @@
         groups[g].push(person);
       });
 
-      // Level rank: used to pick the group head (highest-ranked person = head)
-      function lvlRank(l){
-        if(l==='Manager')return 3;
-        if(l==='Leader')return 2;
-        if(l==='Team')return 1;
-        return 0;
+      // Find head of each group (highest-level, Sheet order as tiebreak)
+      function lvlRank(l){return l==='Manager'?3:l==='Leader'?2:l==='Team'?1:0;}
+      function getHead(members){
+        var head=null,best=-1;
+        members.forEach(function(m){var r=lvlRank(m.level);if(r>best){best=r;head=m;}});
+        return head||members[0];
       }
 
-      // Build columns HTML
-      var colsHtml='';
+      // Build head→group map
+      var headToGroup={};
       groupOrder.forEach(function(g){
-        var members=groups[g];
-        // Head = highest-level person in the group (Manager > Leader > Team)
-        // In case of tie, Sheet order wins (first occurrence is head)
-        var head=null,bestRank=-1;
-        members.forEach(function(m){
-          var r=lvlRank(m.level);
-          if(r>bestRank){bestRank=r;head=m;}
-        });
-        if(!head)head=members[0];
-        var staff=members.filter(function(m){return m!==head;});
-        colsHtml+=buildCol(g,head,staff);
+        var h=getHead(groups[g]);
+        if(h)headToGroup[h.name]=g;
       });
 
-      // Horizontal bar spanning all columns: only when >1 column
-      var n=groupOrder.length;
-      var barW=Math.max(n*193-8,193);
+      // Classify: which groups are sub-groups of another group?
+      var childrenOf={}; // parentGroup → [childGroup, ...]
+      var isChild={};    // groupName → true if it's a sub-group
+
+      groupOrder.forEach(function(g){
+        var head=getHead(groups[g]);
+        if(!head)return;
+        var mgr=head.manager;
+        if(mgr&&headToGroup[mgr]&&headToGroup[mgr]!==g){
+          var parent=headToGroup[mgr];
+          if(!childrenOf[parent])childrenOf[parent]=[];
+          childrenOf[parent].push(g);
+          isChild[g]=true;
+        }
+      });
+
+      // Top-level groups: not classified as children of another group
+      var topGroups=groupOrder.filter(function(g){return!isChild[g];});
+
+      // Build HTML for all top-level nodes
+      var colsHtml='';
+      topGroups.forEach(function(g){colsHtml+=buildNode(g,groups,childrenOf);});
+
+      // Top horizontal bar width: sum of leaf counts across top groups
+      var totalLeaves=topGroups.reduce(function(s,g){return s+countLeaves(g,childrenOf);},0);
+      var barW=Math.max(totalLeaves*COL_TOTAL-COL_GAP,COL_W);
+
       var html='<div style="width:2px;height:16px;background:'+pl.c+';"></div>'
-              +(n>1?'<div style="width:'+barW+'px;border-top:2px solid '+pl.c+';"></div>':'')
-              +'<div style="display:flex;gap:8px;align-items:flex-start;">'+colsHtml+'</div>';
+              +(totalLeaves>1?'<div style="width:'+barW+'px;border-top:2px solid '+pl.c+';"></div>':'')
+              +'<div style="display:flex;gap:'+COL_GAP+'px;align-items:flex-start;">'+colsHtml+'</div>';
       container.innerHTML=html;
     })
     .catch(function(){});
