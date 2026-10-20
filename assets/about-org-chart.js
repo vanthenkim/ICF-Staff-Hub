@@ -63,8 +63,7 @@
       sections:[{ label:'Church',              depts:['Church'],              page:'department-church.html' }] },
     { edDept:'Catering',            color:'#dc2626', lc:'#fca5a5',
       sections:[
-        { label:'Social',           depts:['Social'],              page:'department-social.html' },
-        { label:'Education',        depts:['Education'],           page:'department-social.html' },
+        { label:'Social',           depts:['Social','Education'],  page:'department-social.html' },
         { label:'Catering',         depts:['Catering'],            page:'department-catering.html' }
       ]},
     { edDept:'Operations',          color:'#2563eb', lc:'#bfdbfe',
