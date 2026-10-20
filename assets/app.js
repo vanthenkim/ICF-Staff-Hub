@@ -1235,10 +1235,6 @@ if ('serviceWorker' in navigator) {
     const nav = document.querySelector('.sidebar .nav');
     if (nav) {
       nav.appendChild(makeBtn());
-      const divider = document.createElement('div');
-      divider.className = 'nav__divider fav-anchor-divider';
-      divider.style.marginTop = '10px';
-      nav.appendChild(divider);
     }
     const ssNav = document.querySelector('.sidesheet .nav');
     if (ssNav) ssNav.appendChild(makeBtn());
@@ -1292,9 +1288,13 @@ if ('serviceWorker' in navigator) {
         link.href = 'favorites.html';
         link.title = 'My Favorites';
         link.innerHTML = `<span class="icon">${FAV_HEART}</span><span class="nav__item-label">My Favorites${badge}</span>`;
-        const ql = Array.from(nav.querySelectorAll('.nav__group-label')).find(el => el.textContent.trim() === 'Quick Links');
-        if (ql) nav.insertBefore(link, ql);
-        else nav.appendChild(link);
+        // Insert right after the first nav item (Home) so it's always visible
+        const firstNavItem = Array.from(nav.querySelectorAll('.nav__item')).find(el => !el.classList.contains('fav-section'));
+        if (firstNavItem && firstNavItem.nextSibling) {
+          nav.insertBefore(link, firstNavItem.nextSibling);
+        } else {
+          nav.appendChild(link);
+        }
       }
 
       // Mobile sidesheet: replace sidesheet-favs content with a nav link
