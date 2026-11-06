@@ -188,11 +188,7 @@
     }).join('');
     var desc = (row.description || '').trim();
     var title = (row.title || '').trim();
-    var favUrl = (files.length ? files[0].url : '');
-    var favId  = 'gl-' + title.replace(/\W+/g,'-').toLowerCase().slice(0,35);
-    var heart  = '<button class="gl-fav-btn" data-fav-id="' + favId + '" data-fav-title="' + title.replace(/"/g,'&quot;') + '" data-fav-url="' + favUrl.replace(/"/g,'&quot;') + '" onclick="icfToggleFav(this)" title="Save">♡</button>';
     return '<article class="resource' + colorAttr + '">'
-      + heart
       + '<div class="resource__body"><h3 class="resource__title">' + title + '</h3>'
       + (desc ? '<p class="resource__desc">' + desc + '</p>' : '') + '</div>'
       + (actions ? '<div class="resource__actions">' + actions + '</div>' : '')
@@ -230,6 +226,7 @@
     document.getElementById('guidelines-content').innerHTML = html;
     document.getElementById('guidelines-loading').style.display = 'none';
     document.getElementById('guidelines-fallback').style.display = 'none';
+    if (window.initCards) window.initCards();
     // Re-apply current filter and view after dynamic content loads
     var savedFilter = 'all';
     try { savedFilter = localStorage.getItem('guidelines-filter') || 'all'; } catch(e) {}
@@ -308,18 +305,8 @@ body.list-view .res-grid .resource__meta { display: none; }
 body.list-view .res-grid .resource__actions { margin-top: 0; flex-shrink: 0; margin-left: auto; }
 body.list-view .res-grid .resource__body { flex: 1; min-width: 0; }
 
-/* Favourite heart button */
+/* Favourite heart button — handled by app.js card-fav-btn */
 .resource { position: relative; }
-.gl-fav-btn {
-  position: absolute; top: 10px; right: 10px;
-  background: none; border: none; cursor: pointer;
-  font-size: 18px; line-height: 1; padding: 2px 4px; color: #d1d5db;
-  z-index: 1;
-}
-body.list-view .res-grid .gl-fav-btn {
-  position: static; flex-shrink: 0; align-self: center;
-  padding: 0 6px 0 0;
-}
 </style>
 <script>
 (function () {
@@ -364,7 +351,6 @@ body.list-view .res-grid .gl-fav-btn {
   } catch(e) { setView('list'); }
 })();
 </script>
-<script src="assets/icf-fav.js?v=1"></script>
 
 </body>
 </html>
