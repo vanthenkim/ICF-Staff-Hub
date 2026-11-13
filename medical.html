@@ -296,7 +296,8 @@ var HCAT=[
   {id:'women',title:"Women's Health",tKh:'សុខភាពស្ត្រី',desc:'Period, pregnancy, warning signs.',dKh:'រដូវវិសាខ មានផ្ទៃ សញ្ញាព្រមាន',color:'#db2777',bg:'#fdf2f8',topics:['menstruation','pregnancy','pregnancy-warning']},
   {id:'heat',title:'Heat & Environment',tKh:'ក្ដៅ និងបរិស្ថាន',desc:'Sun, heat, mosquitoes, dengue.',dKh:'ថ្ងៃ ក្ដៅ មូស ជំងឺដង្គ្វូ',color:'#ea580c',bg:'#fff7ed',topics:['sunstroke','heat-exhaustion','mosquito-risks','dengue']},
   {id:'med',title:'Medication',tKh:'ថ្នាំ',desc:'ORS, paracetamol, antibiotics.',dKh:'ORS ប៉ារ៉ាសេតាម៉ូល ថ្នាំប្រឆាំង',color:'#059669',bg:'#f0fdf4',topics:['ors','paracetamol','antibiotics','medication-safety']},
-  {id:'hospital',title:'Go to Hospital Now',tKh:'ទៅមន្ទីរពេទ្យភ្លាម',desc:'Warning signs. When to leave right now.',dKh:'សញ្ញាព្រមាន ពេលណាត្រូវចេញ',color:'#991b1b',bg:'#fef2f2',topics:['emergency-warning-signs','severe-dehydration','dangerous-pregnancy','hosp-trouble-breathing','child-emergency']}
+  {id:'hospital',title:'Go to Hospital Now',tKh:'ទៅមន្ទីរពេទ្យភ្លាម',desc:'Warning signs. When to leave right now.',dKh:'សញ្ញាព្រមាន ពេលណាត្រូវចេញ',color:'#991b1b',bg:'#fef2f2',topics:['emergency-warning-signs','severe-dehydration','dangerous-pregnancy','hosp-trouble-breathing','child-emergency']},
+  {id:'childhood',title:'Childhood Illnesses',tKh:'ជំងឺកុមារ',desc:'Chickenpox, hand-foot-mouth, conjunctivitis, dengue, lice, and more.',dKh:'ជំងឺស្អូច ពងបែក ភ្នែកក្រហម ដង្គ្វូ ចៃ និងជំងឺដទៃទៀត',color:'#0891b2',bg:'#ecfeff',topics:['child-chickenpox','child-hfmd','child-pinkeye','child-dengue-fever','child-cold-flu','child-diarrhea-vomiting','child-lice','child-monkeypox','child-measles','child-hives']}
 ];
 
 function isKH(){return document.documentElement.getAttribute('lang')==='km';}
@@ -507,6 +508,66 @@ var HT={
     w:['Blue lips, face, or fingers','Cannot speak full sentences','Chest pulling in around ribs','Wheezing or noisy breathing','Confusion, fainting'],
     n:['Do NOT make them lie flat','Do NOT give food or drink','Do NOT leave them alone'],
     h:'Sudden trouble breathing is always a hospital emergency.'},
+  'child-chickenpox':{t:'Chickenpox',tKh:'ជំងឺស្អូច',s:'Itchy blisters all over body. Very contagious. Usually mild in children.',sKh:'ពងជ្រូករមាស់ ។ ចម្លងងាយ ។ ជាទូទៅស្រាលចំពោះកុមារ ។',kh:'ស្អូច ពង ជ្រូក រមាស់ ពងស្អូច',c:'childhood',
+    d:['Keep child at home — do not go to school until all blisters have dried into scabs (5–7 days).','Cut nails short to avoid scratching — scratching causes infection and scars.','Cool bath with oatmeal or baking soda helps the itch.','Calamine lotion on the rash to reduce itching.','Give paracetamol for fever or discomfort (never aspirin or ibuprofen).'],
+    w:['Blisters become very red, hot, or filled with pus','High fever above 39°C lasting more than 3 days','Child is very drowsy, confused, or has trouble breathing','Rash spreads heavily to eyes or inside mouth'],
+    n:['Do NOT give aspirin to children — risk of serious complication','Do NOT scratch blisters — causes scars and infection','Do NOT send to school until all scabs are fully dry','Do NOT give ibuprofen'],
+    h:'Go to clinic if fever is very high or lasts long, blisters look infected, or child seems very unwell.',
+    pdf:'https://drive.google.com/file/d/12eFSIq2J_nGjguwrh-GraEii2GUVDt_a/view'},
+  'child-hfmd':{t:'Hand, Foot & Mouth',tKh:'ជំងឺពងបែក ដៃ មាត់ ជើង',s:'Painful blisters in mouth and rash on hands and feet. Viral. Very contagious.',sKh:'ពងឈឺក្នុងមាត់ ស្ទីផ្ទៃ ។ ចម្លង ។',kh:'ពង ដៃ មាត់ ជើង ស្ទី ពងបែក',c:'childhood',
+    d:['Keep child at home until fever is gone and blisters have dried.','Give cool soft foods — yoghurt, cold soup — mouth sores are very painful.','Give paracetamol for pain and fever.','Encourage fluids — dehydration is the main risk.','Wash hands very well after every nappy change — spreads on hands.'],
+    w:['Child refuses all liquids for more than 6 hours','Very high fever that does not go down','Child becomes drowsy, confused, or has muscle weakness','Severe headache or vomiting'],
+    n:['Do NOT send to school until fully recovered','Do NOT share cups, towels, or utensils','Do NOT force food — focus on fluids','Do NOT use cold baths for fever'],
+    h:'Go to hospital if child will not drink anything, has very high fever, or seems very weak or confused.',
+    pdf:'https://drive.google.com/file/d/1upV9FFk98iloFS_85t0D3S2q_gWEF-5_/view'},
+  'child-pinkeye':{t:'Pink Eye (Conjunctivitis)',tKh:'ជំងឺភ្នែកក្រហម',s:'Red, watery, itchy eyes. Very contagious. Keep eyes clean.',sKh:'ភ្នែកក្រហម ទឹក រមាស់ ។ ចម្លងខ្លាំង ។',kh:'ភ្នែក ក្រហម ឈឺភ្នែក រមាស់',c:'childhood',
+    d:['Wipe each eye gently from inner corner outward with a fresh clean cloth — use a separate cloth per eye.','Wash hands after every eye contact.','Warm compress on closed eye for comfort.','Keep child from rubbing their eyes.','Do not share pillows, towels, or face cloths.'],
+    w:['Vision seems affected or blurry','Heavy pus or eye is very swollen shut','Severe eye pain','Symptoms last more than 5 days without improving','Newborn with any eye discharge'],
+    n:['Do NOT share towels or pillows','Do NOT rub the eye','Do NOT use the same cloth for both eyes','Do NOT use someone else\'s eye drops'],
+    h:'See a clinic if pus is heavy, eye is swollen shut, vision is affected, or no improvement after a few days.',
+    pdf:'https://drive.google.com/file/d/1i4hmNdC9AH2IpvK1EDMPqcPr_q4Axp98/view'},
+  'child-dengue-fever':{t:'Dengue Fever',tKh:'ជំងឺគ្រុនឈាម',s:'High fever, headache, eye pain. Watch carefully days 3–7 when fever drops.',sKh:'គ្រុនខ្ពស់ ឈឺក្បាល ។ ប្រយ័ត្នថ្ងៃ ៣–៧ ។',kh:'ដង្គ្វូ គ្រុនឈាម គ្រុន ឈាម',c:'childhood',
+    d:['Rest. Give plenty of ORS, water, or coconut water.','Take paracetamol only — NEVER aspirin or ibuprofen.','Have a blood test at clinic to confirm dengue.','Watch very carefully when fever drops (days 3–7) — this is the danger time.','Tell family to stay with the child overnight during this period.'],
+    w:['Strong belly pain','Vomiting more than 3 times','Bleeding from nose, gums, or under skin','Cold hands and feet, sweating, pale','Very tired, sleepy, or confused','Less urine'],
+    n:['Do NOT give aspirin or ibuprofen — causes dangerous bleeding','Do NOT ignore when fever drops — most dangerous time','Do NOT stay home with any warning sign'],
+    h:'Go to hospital immediately for any warning sign — even if fever has gone.',
+    pdf:'https://drive.google.com/file/d/1rsSVeSylpQeOMXaQSBpyAjh3aeSB7uJV/view'},
+  'child-cold-flu':{t:'Cold & Flu',tKh:'ជំងឺផ្តាសាយ',s:'Runny nose, cough, sore throat, fever. Rest and fluids. Most get better in a week.',sKh:'ក្អក ក្ដៅ ។ ការសំរាក និងទឹក ជួយ ។',kh:'ផ្ដាសាយ ក្អក ក្ដៅ ហ្ស៊ីហ្ស',c:'childhood',
+    d:['Rest and sleep — the body heals during sleep.','Offer warm water, broth, or clear soup.','1 spoon of honey for sore throat (children over 1 year only).','Paracetamol for fever over 38.5°C.','Steam inhalation (careful with hot water near children) for blocked nose.'],
+    w:['Fever above 39°C for more than 3 days','Trouble breathing or fast breathing','Very drowsy or hard to wake','Symptoms get worse after day 3','Ear pain or worsening headache'],
+    n:['Do NOT give aspirin','Do NOT give antibiotics — cold and flu are viruses','Do NOT give honey to babies under 1 year','Do NOT send to school while fever is present'],
+    h:'Go to clinic if fever lasts more than 3 days, breathing is fast, or child seems very unwell.',
+    pdf:'https://drive.google.com/file/d/11HXtgawtU-mYImQ0XD0QRVih3LXERzaI/view'},
+  'child-diarrhea-vomiting':{t:'Diarrhea & Vomiting',tKh:'ជំងឺរាគ ក្អួត',s:'Stomach bug — loose stools and/or vomiting. Main risk is dehydration.',sKh:'ក្រពះ ។ ការខ្វះទឹក ជាគ្រោះថ្នាក់ ។',kh:'រាគ ក្អួត ចំណោ ក្រពះ',c:'childhood',
+    d:['Give ORS in small sips after every loose stool or vomiting episode.','Continue breastfeeding if still breastfeeding.','Offer soft foods: rice, banana, plain bread.','Wash hands with soap before and after each nappy change.','Watch for dehydration signs every 2 hours.'],
+    w:['No urine for 6 hours','Sunken eyes, no tears when crying','Very sleepy, floppy, or hard to wake','Blood or black color in stool','Vomiting blood or green vomit'],
+    n:['Do NOT give plain water only — ORS has needed salts','Do NOT give anti-diarrhea medicine without advice','Do NOT stop offering fluids even if child vomits'],
+    h:'Go to hospital fast if child cannot drink at all, no urine, blood in stool, or very weak.',
+    pdf:'https://drive.google.com/file/d/1Kw3rRtiVYbbgIAEonMQ-fUHckj0Cosit/view'},
+  'child-lice':{t:'Head Lice',tKh:'ចៃ',s:'Tiny insects in hair. Itchy scalp. Very common. Not dangerous — but needs treatment.',sKh:'សត្វតូចក្នុងសក់ ។ រមាស់ ។ ត្រូវព្យាបាល ។',kh:'ចៃ ក្បាល សក់ រមាស់',c:'childhood',
+    d:['Use a fine-toothed lice comb on wet hair with conditioner — comb slowly section by section.','Apply a lice treatment (permethrin or similar) from pharmacy as directed.','Wash all bedding, pillows, and hats in hot water.','Check all family members.','Repeat treatment after 7–10 days to kill any hatched eggs.'],
+    w:['Scalp shows sores, broken skin, or pus from scratching','Signs of secondary skin infection (redness, warmth, crusting)'],
+    n:['Do NOT share combs, hats, pillows, or hair ties','Do NOT send to school until treated','Do NOT ignore family members — everyone needs to be checked'],
+    h:'See a clinic if scalp has infected sores or treatment is not working after two rounds.',
+    pdf:'https://drive.google.com/file/d/1_hGMCagV6GpJaw2hPVvAsLjNU_1B3A-A/view'},
+  'child-monkeypox':{t:'Monkeypox',tKh:'ជំងឺអុតស្វាយ',s:'Rash with pus-filled bumps, fever, swollen glands. Contagious. Notify medical coordinator.',sKh:'ស្ទី ពង ។ ជូនដំណឹង Medical Coordinator ភ្លាម ។',kh:'អុតស្វាយ ស្វាយ ពង ស្ទី',c:'childhood',
+    d:['Isolate the child at home immediately.','Contact Sibimol (Medical Coordinator) right away.','Keep skin clean and dry — do not burst blisters.','Give paracetamol for fever or pain.','Avoid contact with others until all blisters have fully healed.'],
+    w:['High fever that does not come down','Trouble breathing','Rash spreads to eyes, mouth, or genitals','Child seems very unwell or confused','Swollen glands in neck or groin'],
+    n:['Do NOT send to school or public places','Do NOT burst blisters — risks spreading','Do NOT touch rash without protection if possible','Do NOT delay — notify medical coordinator immediately'],
+    h:'Go to hospital if fever is very high, breathing is affected, or child is very unwell. Always notify medical coordinator.',
+    pdf:'https://drive.google.com/file/d/1rN6xgnJagQB7qlJ9Wnv5acY1ONRR-5Rz/view'},
+  'child-measles':{t:'Measles / Rubella',tKh:'ជំងឺព្រូន / អៀន',s:'Rash with fever and cold-like symptoms. Highly contagious. Seek medical care.',sKh:'ស្ទី គ្រុន ។ ចម្លងខ្លាំង ។ ត្រូវការព្យាបាល ។',kh:'ព្រូន អៀន ស្ទី ជំងឺ',c:'childhood',
+    d:['Isolate at home — keep away from unvaccinated people, pregnant women, and babies.','Rest in a cool room. Give plenty of fluids.','Give paracetamol for fever.','Keep eyes clean — measles can cause eye complications.','Contact a clinic — vaccination status and notification may be required.'],
+    w:['Very high fever above 40°C','Trouble breathing','Severe eye pain or blurred vision','Severe headache or stiff neck','Child is very weak or drowsy'],
+    n:['Do NOT send to school','Do NOT let near pregnant women or unvaccinated babies','Do NOT give aspirin','Do NOT ignore — this is a notifiable disease'],
+    h:'Always see a clinic to confirm. Go to hospital for high fever, breathing trouble, or eye problems.',
+    pdf:'https://drive.google.com/file/d/1Chb-KVv5oFjIOgkCzv8_J6VsDMx4mI9k/view'},
+  'child-hives':{t:'Hives / Skin Rash',tKh:'ជំងឺព្រូន ក្រោមស្បែក',s:'Itchy red welts or raised bumps on skin. Often allergic. Usually gets better quickly.',sKh:'ស្ទីក្រហម រមាស់ ។ ជារឿយៗ ។ ជាទូទៅ ធូរ​ ស្រាល ឆាប់ ។',kh:'ព្រូន ស្ទី រមាស់ ក្រហម ស្បែក',c:'childhood',
+    d:['Remove any possible trigger — new food, soap, medicine, insect bite.','Cool wet cloth on the rash for relief.','Antihistamine from pharmacy (follow label for child\'s weight/age).','Keep child cool and comfortable.','Watch for any signs of allergic reaction beyond the skin.'],
+    w:['Swelling of lips, tongue, or throat','Trouble breathing or swallowing','Dizziness or fainting','Rash spreads very fast and covers large areas','Vomiting along with the rash'],
+    n:['Do NOT scratch — worsens the rash and risks infection','Do NOT give new foods while rash is present','Do NOT ignore throat swelling — it is a medical emergency'],
+    h:'Go to hospital immediately if throat swells, trouble breathing, or child collapses — this is anaphylaxis.',
+    pdf:'https://drive.google.com/file/d/1yvi_RN2Ey-yrEcOd4xp9Mow9ng88GIqJ/view'},
   'child-emergency':{t:'Child Emergency Signs',tKh:'ករណីបន្ទាន់ក្មេង',s:'Any of these in a child = hospital, fast.',sKh:'ប្រសិនបើ ទៅមន្ទីរពេទ្យ ។',kh:'កុមារ ក្មេង គ្រោះថ្នាក់ ជំងឺ',c:'hospital',
     d:['Stay calm. Pick the child up gently.','Keep them comfortable — sitting if breathing trouble, lying on side if fits.','Call 119 or go to hospital.','Bring vaccination card and medicines.','Keep talking softly to the child.'],
     w:['Hard to wake, very sleepy, or floppy','Trouble breathing, fast breathing, blue lips','Fits / convulsions','Very pale or blue skin','Not drinking, no urine for 6 hours','Heavy bleeding','Strong belly pain with vomiting','Stiff neck with fever','Skin rash that does not fade with pressure'],
@@ -576,6 +637,14 @@ function hOpenTopic(slug) {
   html+='<div style="background:#eff6ff;border-radius:10px;padding:14px;margin-bottom:20px;">';
   html+='<div style="font-weight:500;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:#1d4ed8;margin-bottom:6px;">'+(kh?'ពេលណាត្រូវទៅមន្ទីរពេទ្យ':'When to go to hospital')+'</div>';
   html+='<p style="margin:0;font-size:13px;color:#1e293b;">'+he(t.h)+'</p></div>';
+  if(t.pdf){
+    html+='<div style="margin-bottom:16px;">';
+    html+='<a href="'+t.pdf+'" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:space-between;gap:12px;background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:10px;padding:12px 14px;text-decoration:none;">';
+    html+='<div><div style="font-weight:500;font-size:13px;color:#1e293b;">'+(kh?'ឯកសារ PDF ពេញ (ភាសាខ្មែរ)':'Full Guide PDF (Khmer)')+'</div>';
+    html+='<div style="font-size:12px;color:#64748b;">'+(kh?'ចុចដើម្បីបើក PDF →':'Tap to open full Khmer PDF guide →')+'</div></div>';
+    html+='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
+    html+='</a></div>';
+  }
   html+='<div style="border-top:1.5px solid #f1f5f9;padding-top:16px;">';
   html+='<div style="font-weight:500;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:#94a3b8;margin-bottom:12px;">'+(kh?'ទំនាក់ទំនងបន្ទាន់':'Emergency contacts')+'</div>';
   if(kh){
